@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/main.cpp.o -c /home/snail/share/accelerated_cpp/main.cpp",
+  "file": "/home/snail/share/accelerated_cpp/main.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter04/chapter04_student_info.cpp.o -c /home/snail/share/accelerated_cpp/chapter04/chapter04_student_info.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter04/chapter04_student_info.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter04/chapter04_grade.cpp.o -c /home/snail/share/accelerated_cpp/chapter04/chapter04_grade.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter04/chapter04_grade.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter04/chapter04_median.cpp.o -c /home/snail/share/accelerated_cpp/chapter04/chapter04_median.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter04/chapter04_median.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter05/chapter05_extract_fails.cpp.o -c /home/snail/share/accelerated_cpp/chapter05/chapter05_extract_fails.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter05/chapter05_extract_fails.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter05/chapter05_str.cpp.o -c /home/snail/share/accelerated_cpp/chapter05/chapter05_str.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter05/chapter05_str.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter06/chapter06_str.cpp.o -c /home/snail/share/accelerated_cpp/chapter06/chapter06_str.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter06/chapter06_str.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter06/chapter06_student.cpp.o -c /home/snail/share/accelerated_cpp/chapter06/chapter06_student.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter06/chapter06_student.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter11/chapter11_vec.cpp.o -c /home/snail/share/accelerated_cpp/chapter11/chapter11_vec.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter11/chapter11_vec.cpp"
+},
+{
+  "directory": "/home/snail/share/accelerated_cpp/build",
+  "command": "/bin/g++-9    -g   -o CMakeFiles/accelerated_cpp.dir/chapter12/chapter12_str.cpp.o -c /home/snail/share/accelerated_cpp/chapter12/chapter12_str.cpp",
+  "file": "/home/snail/share/accelerated_cpp/chapter12/chapter12_str.cpp"
+}
+]

@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/snail/share/grokking_algorithms/01/01.c
+string.h
+-
+stdio.h
+-
+01.h
+/home/snail/share/grokking_algorithms/01/01.h
+
+/home/snail/share/grokking_algorithms/01/01.h
+
