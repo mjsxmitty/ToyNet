@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gao_zhuo/share/cpp_primer/chapter_16/chapter_16.cpp
+chapter_16.h
+/home/gao_zhuo/share/cpp_primer/chapter_16/chapter_16.h
+../object/blob.h
+/home/gao_zhuo/share/cpp_primer/object/blob.h
+iostream
+-
+string
+-
+vector
+-
+list
+-
+
+/home/gao_zhuo/share/cpp_primer/chapter_16/chapter_16.h
+functional
+-
+string.h
+-
+iostream
+-
+algorithm
+-
+
+/home/gao_zhuo/share/cpp_primer/object/blob.h
+vector
+-
+memory
+-
+vector
+-
+stdexcept
+-
+
