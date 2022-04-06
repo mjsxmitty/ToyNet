@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gao_zhuo/share/essential_cpp/chapter_03/chapter_03.cpp
+chapter_03.h
+/home/gao_zhuo/share/essential_cpp/chapter_03/chapter_03.h
+vector
+-
+string
+-
+iostream
+-
+list
+-
+algorithm
+-
+functional
+-
+iterator
+-
+fstream
+-
+
+/home/gao_zhuo/share/essential_cpp/chapter_03/chapter_03.h
+vector
+-
+functional
+-
+iostream
+-
+

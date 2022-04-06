@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/grokking_algorithms.dir/main.c.o CMakeFiles/grokking_algorithms.dir/01/01.c.o  -o grokking_algorithms 

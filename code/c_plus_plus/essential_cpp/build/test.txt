@@ -1,0 +1,17 @@
+11)
+3.16)
+CXX)
+LANGUAGES
+ON)
+add_executable(essential
+chapter_02/chapter_02.cpp
+chapter_02/chapter_02.h
+chapter_03/chapter_03.cpp)
+chapter_03/chapter_03.h
+cmake_minimum_required(VERSION
+main.cpp
+num_seq/num_seq.cpp
+num_seq/num_seq.h
+project(essential_cpp
+set(CMAKE_CXX_STANDARD
+set(CMAKE_CXX_STANDARD_REQUIRED

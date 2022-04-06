@@ -1,0 +1,3 @@
+/home/snail/share/houjie_cpp/build/CMakeFiles/rebuild_cache.dir
+/home/snail/share/houjie_cpp/build/CMakeFiles/edit_cache.dir
+/home/snail/share/houjie_cpp/build/CMakeFiles/video.dir

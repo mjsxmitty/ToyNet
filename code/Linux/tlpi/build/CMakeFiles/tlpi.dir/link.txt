@@ -1,0 +1,1 @@
+/usr/bin/gcc    CMakeFiles/tlpi.dir/main.c.o  -o tlpi 
