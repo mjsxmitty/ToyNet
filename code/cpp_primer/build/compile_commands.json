@@ -1,0 +1,172 @@
+[
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/main.cpp.o -c /home/gao_zhuo/share/cpp_primer/main.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/main.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_02/chapter_02.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_02/chapter_02.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_02/chapter_02.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_03/chapter_03.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_03/chapter_03.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_03/chapter_03.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_04/chapter_04.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_04/chapter_04.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_04/chapter_04.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_05/chapter_05.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_05/chapter_05.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_05/chapter_05.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_06/local_math.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_06/local_math.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_06/local_math.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_06/chapter_06.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_06/chapter_06.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_06/chapter_06.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/sales_data.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/sales_data.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/sales_data.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/person.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/person.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/person.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/screen.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/screen.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/screen.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/account.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/account.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/account.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/window_mgr.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/window_mgr.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/window_mgr.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_07/chapter_07.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_07/chapter_07.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_07/chapter_07.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_08/chapter_08.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_08/chapter_08.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_08/chapter_08.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_09/chapter_09.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_09/chapter_09.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_09/chapter_09.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_10/chapter_10.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_10/chapter_10.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_10/chapter_10.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_11/chapter_11.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_11/chapter_11.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_11/chapter_11.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_12/str_blob.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_12/str_blob.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_12/str_blob.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_12/query_result.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_12/query_result.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_12/query_result.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_12/text_query.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_12/text_query.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_12/text_query.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_12/chapter_12.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_12/chapter_12.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_12/chapter_12.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/employee.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/employee.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/employee.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/str_vec.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/str_vec.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/str_vec.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/string.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/string.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/string.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/has_ptr.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/has_ptr.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/has_ptr.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/folder_message.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/folder_message.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/folder_message.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_13/chapter_13.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_13/chapter_13.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_13/chapter_13.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_14/chapter_14.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_14/chapter_14.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_14/chapter_14.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_15/quote.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_15/quote.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_15/quote.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_15/bulk_quote.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_15/bulk_quote.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_15/bulk_quote.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_15/limit_quote.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_15/limit_quote.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_15/limit_quote.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_15/disc_quote.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_15/disc_quote.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_15/disc_quote.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_15/chapter_15.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_15/chapter_15.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_15/chapter_15.cpp"
+},
+{
+  "directory": "/home/gao_zhuo/share/cpp_primer/build",
+  "command": "/usr/bin/c++      -o CMakeFiles/cpp_primer.dir/chapter_16/chapter_16.cpp.o -c /home/gao_zhuo/share/cpp_primer/chapter_16/chapter_16.cpp",
+  "file": "/home/gao_zhuo/share/cpp_primer/chapter_16/chapter_16.cpp"
+}
+]
