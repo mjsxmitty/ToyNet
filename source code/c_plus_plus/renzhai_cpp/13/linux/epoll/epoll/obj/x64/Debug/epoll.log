@@ -1,0 +1,21 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.31.178'
+  Validating architecture
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  main.cpp
+F:\C++\13\linux\epoll\epoll\main.cpp(75,80): warning : comparison of constant ‘-1’ with boolean expression is always false [-Wbool-compare]
+F:\C++\13\linux\epoll\epoll\main.cpp(75,80): warning :   if (ResetEpollContext(epfd,EPOLL_CTL_ADD, listensocket,EPOLLIN,&listensocket) == -1)
+F:\C++\13\linux\epoll\epoll\main.cpp(75,80): warning :       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+F:\C++\13\linux\epoll\epoll\main.cpp(87,23): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\epoll\epoll\main.cpp(87,23): warning :      int readnum = read(REvent->mysocket, REvent->data, 255);
+F:\C++\13\linux\epoll\epoll\main.cpp(87,23): warning :                    ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\C++\13\linux\epoll\epoll\main.cpp(112,25): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\epoll\epoll\main.cpp(112,25): warning :      int writenum = write(REvent->mysocket, REvent->data + REvent->offset, REvent->len);
+F:\C++\13\linux\epoll\epoll\main.cpp(112,25): warning :                     ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\C++\13\linux\epoll\epoll\main.cpp(127,23): warning : suggest parentheses around assignment used as truth value [-Wparentheses]
+F:\C++\13\linux\epoll\epoll\main.cpp(127,23): warning :        if (REvent->len = 0)
+F:\C++\13\linux\epoll\epoll\main.cpp(127,23): warning :            ~~~~~~~~~~~~^~~
+  Linking objects
+  epoll.vcxproj -> F:\C++\13\linux\epoll\epoll\bin\x64\Debug\epoll.out

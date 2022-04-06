@@ -1,0 +1,18 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.31.178'
+  Validating architecture
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  main.cpp
+F:\C++\13\linux\client\client\main.cpp(24,18): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\client\client\main.cpp(24,18): warning :   int error = send(clienttsocket, "I m client", strlen("I m client"), 0);
+F:\C++\13\linux\client\client\main.cpp(24,18): warning :               ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\C++\13\linux\client\client\main.cpp(27,20): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\client\client\main.cpp(27,20): warning :   int recvnum = recv(clienttsocket, buff,1024,0);
+F:\C++\13\linux\client\client\main.cpp(27,20): warning :                 ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\C++\13\linux\client\client\main.cpp(24,6): warning : unused variable ‘error’ [-Wunused-variable]
+F:\C++\13\linux\client\client\main.cpp(24,6): warning :   int error = send(clienttsocket, "I m client", strlen("I m client"), 0);
+F:\C++\13\linux\client\client\main.cpp(24,6): warning :       ^~~~~
+  Linking objects
+  client.vcxproj -> F:\C++\13\linux\client\client\bin\x64\Debug\client.out

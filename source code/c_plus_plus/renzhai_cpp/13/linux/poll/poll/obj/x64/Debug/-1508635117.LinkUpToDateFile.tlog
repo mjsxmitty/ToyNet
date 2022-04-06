@@ -1,0 +1,1 @@
+g++ -o "/home/renzhai/projects/poll/bin/x64/Debug/poll.out" -Wl,--no-undefined -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack /home/renzhai/projects/poll/obj/x64/Debug/main.o

@@ -1,0 +1,14 @@
+﻿  Source.cpp
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(71,42): warning C4267: '=': conversion from 'size_t' to 'ULONG', possible loss of data
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(110,94): error C2664: 'BOOL GetQueuedCompletionStatus(HANDLE,LPDWORD,PULONG_PTR,LPOVERLAPPED *,DWORD)': cannot convert argument 3 from 'LPDWORD' to 'PULONG_PTR'
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(110,62): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\ioapiset.h(43,1): message : see declaration of 'GetQueuedCompletionStatus'
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(135,30): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'SOCKET'
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(135,30): message : consider using '%lld' in the format string
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(135,30): message : consider using '%Id' in the format string
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(135,30): message : consider using '%I64d' in the format string
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(185,19): warning C4018: '<': signed/unsigned mismatch
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(220,28): warning C4305: 'argument': truncation from 'int' to 'u_short'
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(220,23): warning C4309: 'argument': truncation of constant value
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(260,1): warning C4311: 'type cast': pointer truncation from 'FClient *' to 'DWORD'
+F:\C++\Socket\CompletionPort\Server\Server\Source.cpp(260,1): warning C4302: 'type cast': truncation from 'FClient *' to 'DWORD'

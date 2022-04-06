@@ -1,0 +1,15 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.31.178'
+  Validating architecture
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  main.cpp
+F:\C++\13\linux\server\server\main.cpp(46,21): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\server\server\main.cpp(46,21): warning :      int error = send(clientsocket,"I m server",strlen("I m server"),0);
+F:\C++\13\linux\server\server\main.cpp(46,21): warning :                  ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\C++\13\linux\server\server\main.cpp(46,9): warning : unused variable ‘error’ [-Wunused-variable]
+F:\C++\13\linux\server\server\main.cpp(46,9): warning :      int error = send(clientsocket,"I m server",strlen("I m server"),0);
+F:\C++\13\linux\server\server\main.cpp(46,9): warning :          ^~~~~
+  Linking objects
+  server.vcxproj -> F:\C++\13\linux\server\server\bin\x64\Debug\server.out

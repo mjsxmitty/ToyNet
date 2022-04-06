@@ -1,0 +1,12 @@
+﻿  Source.cpp
+F:\C++\9\stl\stl\Source.cpp(145,16): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(324,19): warning C4018: '<': signed/unsigned mismatch
+F:\C++\9\stl\stl\Source.cpp(336,20): warning C4018: '<': signed/unsigned mismatch
+F:\C++\9\stl\stl\Source.cpp(378,12): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(379,11): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(419,14): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(441,15): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(508,9): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(658,14): warning C4834: discarding return value of function with 'nodiscard' attribute
+F:\C++\9\stl\stl\Source.cpp(660,13): warning C4834: discarding return value of function with 'nodiscard' attribute
+  stl.vcxproj -> F:\C++\9\stl\Debug\stl.exe
