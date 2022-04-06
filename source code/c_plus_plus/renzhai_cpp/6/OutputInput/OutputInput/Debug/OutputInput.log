@@ -1,0 +1,4 @@
+﻿  Source.cpp
+F:\C++\6\OutputInput\OutputInput\Source.cpp(11,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+F:\C++\6\OutputInput\OutputInput\Source.cpp(34,14): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+  OutputInput.vcxproj -> F:\C++\6\OutputInput\Debug\OutputInput.exe

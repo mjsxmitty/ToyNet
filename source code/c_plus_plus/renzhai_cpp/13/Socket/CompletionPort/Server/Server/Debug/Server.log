@@ -1,0 +1,6 @@
+﻿  Source.cpp
+F:\C++\13\Socket\CompletionPort\Server\Server\Source.cpp(194,19): warning C4018: '<': signed/unsigned mismatch
+F:\C++\13\Socket\CompletionPort\Server\Server\Source.cpp(229,28): warning C4305: 'argument': truncation from 'int' to 'u_short'
+F:\C++\13\Socket\CompletionPort\Server\Server\Source.cpp(229,23): warning C4309: 'argument': truncation of constant value
+F:\C++\13\Socket\CompletionPort\Server\Server\Source.cpp(281,20): warning C4018: '<': signed/unsigned mismatch
+  Server.vcxproj -> F:\C++\13\Socket\CompletionPort\Server\Debug\Server.exe

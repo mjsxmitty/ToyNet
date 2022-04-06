@@ -1,0 +1,9 @@
+﻿  Source.cpp
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(26,29): warning C4305: 'argument': truncation from 'int' to 'u_short'
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(26,24): warning C4309: 'argument': truncation of constant value
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(39,27): warning C4477: 'sprintf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'SOCKET'
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(39,27): message : consider using '%lld' in the format string
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(39,27): message : consider using '%Id' in the format string
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(39,27): message : consider using '%I64d' in the format string
+F:\C++\13\Socket\CompletionPort\Client\Client\Source.cpp(41,47): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Client.vcxproj -> F:\C++\13\Socket\CompletionPort\Client\x64\Debug\Client.exe

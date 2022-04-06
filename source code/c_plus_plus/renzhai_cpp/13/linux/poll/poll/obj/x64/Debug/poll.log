@@ -1,0 +1,15 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.31.178'
+  Validating architecture
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  main.cpp
+F:\C++\13\linux\poll\poll\main.cpp(94,26): warning : suggest parentheses around arithmetic in operand of ‘|’ [-Wparentheses]
+F:\C++\13\linux\poll\poll\main.cpp(94,26): warning :     if (client[i].revents & POLLRDNORM | POLLERR)
+F:\C++\13\linux\poll\poll\main.cpp(94,26): warning :                           ^
+F:\C++\13\linux\poll\poll\main.cpp(97,23): warning : conversion to ‘int’ from ‘ssize_t {aka long int}’ may alter its value [-Wconversion]
+F:\C++\13\linux\poll\poll\main.cpp(97,23): warning :      int recvnum = read(client[i].fd, buffer,1024);
+F:\C++\13\linux\poll\poll\main.cpp(97,23): warning :                    ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Linking objects
+  poll.vcxproj -> F:\C++\13\linux\poll\poll\bin\x64\Debug\poll.out
