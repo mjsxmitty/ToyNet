@@ -246,6 +246,9 @@ void Practice_3_9()
 /************************************************************/
 
 void InitExclusionSet()
+{
+
+}
 
 void Homework_3_1()
 {
