@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_03_STACK_H__
-#define __ESSENTIAL_CPP_CHAPTER_03_STACK_H__
+#ifndef __ESSENTIAL_CPP_CHAPTER_04_STACK_H__
+#define __ESSENTIAL_CPP_CHAPTER_04_STACK_H__
 
 #include <vector>
 #include <string>
