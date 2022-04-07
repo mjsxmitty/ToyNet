@@ -11,6 +11,8 @@ add_executable(essential
                 chapter_02/chapter_02.h chapter_02/chapter_02.cpp
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
                 chapter_04/stack.h chapter_04/stack.cpp
+                chapter_04/matrix.h chapter_04/matrix.cpp
+                chapter_04/triangular.h chapter_04/triangular.cpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp
                 chapter_05/libmat.h chapter_05/libmat.cpp
                 chapter_05/book.h chapter_05/book.cpp
