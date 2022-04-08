@@ -148,7 +148,7 @@ int Sum(const Triangular &item)
 
 ostream &operator<<(ostream &os, const Triangular &rhs)
 {
-    os << "( " << rhs.length_ << ", " << rhs.beg_pos_ << " )\n";
+    os << "( " << rhs.length_ << ", " << rhs.beg_pos_ << " ) ";
     rhs.Display(rhs.length_, rhs.beg_pos_, os);
     return os;
 }

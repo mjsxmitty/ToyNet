@@ -1,5 +1,7 @@
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 #include "chapter_04.h"
 #include "triangular.h"
@@ -11,7 +13,8 @@ void Chapter_04()
 {
     //Practice_4_3();
     //Practice_4_5();
-    Practice_4_7();
+    //Practice_4_7();
+    Practice_4_9();
 }
 
 void Example(const ValClass *pvc, ValClass &rvc)
@@ -57,7 +60,6 @@ void Practice_4_7()
     Triangular::Iterator end = tri.End();
 
     cout << "Triangular Sequence of: " << tri.Length() << " elements\n";
-    //Triangular::Display(20, 1, cout);
     cout << endl;
 
 //    while (beg != end)
@@ -67,4 +69,41 @@ void Practice_4_7()
 //    }
     cout << tri;
     cout << endl;
+}
+
+int CountLessThan(const vector<int> &vec, int comp)
+{
+    LessThan lt(comp);
+    int count = 0;
+
+    for (int ix = 0; ix < vec.size(); ++ix)
+        if (lt(vec[ix]))
+            ++count;
+
+    return count;
+}
+
+void PrintLessThan(const vector<int> &vec, int comp, ostream &os = cout)
+{
+    LessThan lt(comp);
+    auto it = vec.begin(), it_end = vec.end();
+
+//    while ((it = find(it, it_end, lt)) != it_end)
+//    {
+//        os << *it << ' ';
+//        ++it;
+//    }
+}
+
+void Practice_4_9()
+{
+    int ia[16] = { 17, 12, 44, 9, 18, 45, 6, 14,
+                   23, 67, 9, 0, 27, 55, 8, 16 };
+
+    vector<int> vec( ia, ia+16 );
+    int comp_val = 20;
+
+    cout << CountLessThan(vec, comp_val);
+    cout << endl;
+    //PrintLessThan(vec, comp_val, cout);
 }
