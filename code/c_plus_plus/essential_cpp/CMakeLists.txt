@@ -13,6 +13,7 @@ add_executable(essential
                 chapter_04/stack.h chapter_04/stack.cpp
                 chapter_04/matrix.h chapter_04/matrix.cpp
                 chapter_04/triangular.h chapter_04/triangular.cpp
+                chapter_04/triangular_iterator.h chapter_04/triangular_iterator.cpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp
                 chapter_05/libmat.h chapter_05/libmat.cpp
                 chapter_05/book.h chapter_05/book.cpp
