@@ -13,7 +13,7 @@ public:
     Book(const std::string &title, const std::string &author) :
         title_(title), author_(author)
     {
-        std::cout << "( " << title_ << ", "
+        std::cout << "Book::Book() ---( " << title_ << ", "
                   << author_ << " )" << std::endl;
     }
     virtual ~Book() { std::cout << "Book::~Book() -- destructor!\n"; }
@@ -21,8 +21,8 @@ public:
     void Print() const override
     {
         std::cout << "Book::Print() -- i am Book object\n"
-                  << "My title is: " << title_
-                  << "My name is: " << author_
+                  << ", My title is: " << title_
+                  << ", My name is: " << author_
                   << std::endl;
     }
 
