@@ -15,8 +15,8 @@ const int NUM = 100;
 
 void Chapter_03()
 {
-    //Practice_3_2_3();
-    Practice_3_3_3();
+    Practice_3_2_3();
+    //Practice_3_3_3();
     //Homework_20();
     //Practice_3_4_1();
     //Practice_3_5_4();
@@ -50,6 +50,18 @@ void Practice_3_2_3()
         ++index;
     }
     cout << s << endl;
+
+    /* 进制转换 */
+    const string hex_digits = "0123456789ABCDEF";
+    cout << "Enter a series of numbers between 0 an 15"
+         << " sparated by spaces, Hit ENTER when finished: ";
+
+    string result;
+    string::size_type n;
+    while (cin >> n)
+        if (n < hex_digits.size())
+            result += hex_digits[n];
+    cout << "You hex number is: " << result;
 }
 
 //计算索引
