@@ -15,10 +15,13 @@ const int NUM = 100;
 
 void Chapter_03()
 {
-    Practice_3_2_3();
+    //Practice_3_2_3();
+    //Practice_3_3_1();
     //Practice_3_3_3();
     //Homework_20();
     //Practice_3_4_1();
+    //Practice_3_5_1();
+    Practice_3_5_3();
     //Practice_3_5_4();
     //Homework43_44_45();
 }
@@ -62,6 +65,15 @@ void Practice_3_2_3()
         if (n < hex_digits.size())
             result += hex_digits[n];
     cout << "You hex number is: " << result;
+}
+
+/* 列表初始值还是元素数量 */
+void Practice_3_3_1()
+{
+    //使用了{},但是提供的值不能执行列表初始化-->构造
+    vector<string>  v1{10};
+    vector<string>  v2{5, "hi"};
+    cout << v1.size() << ", " << v2.size() << endl;
 }
 
 //计算索引
@@ -108,7 +120,7 @@ void Practice_3_3_3()
 void Homework_20()
 {
     vector<int> vInt;
-    int         iVal;
+    //int         iVal;
 
     srand((unsigned) time(NULL));
     unsigned arr_size;
@@ -127,6 +139,7 @@ void Homework_20()
         cout << "容器内没有元素!" << endl;
         return;
     }
+    cout << vInt.size() << endl;
 
     cout << "随机数组元素为: " << endl;
     for (const auto &item : vInt)
@@ -142,7 +155,7 @@ void Homework_20()
     //     if ((i + 2) % 10 == 0)
     //         cout << endl;
     // }
-    for (auto it = vInt.begin(); it != vInt.end() - 1; ++it)
+    for (auto it = vInt.cbegin(); it <= vInt.cend() - 1; it++)
     {
         cout << (*it + *(++it)) << " ";
         if ((it - vInt.cbegin() + 1) % 10 == 0)
@@ -163,7 +176,7 @@ void Homework_20()
     // }
     auto beg = vInt.begin();
     auto end = vInt.end();
-    for (auto it = beg; it != end; ++it)
+    for (auto it = beg; it != beg + (end - beg) / 2; ++it)
     {
         cout << (*it + *(beg + (end - it) - 1)) << " ";
         if ((it - beg + 1) % 5 == 0)
@@ -254,6 +267,37 @@ void Practice_3_4_1()
     cout << "auto for loop assign a new value to str: " << str  << endl;
 }
 
+void Practice_3_5_1()
+{
+    /* 字符数组的特殊性 */
+    char a[] = "C++";   //最后一个\0
+    cout << sizeof (a) / sizeof (*a) << endl;   //strlen
+
+    /* 复杂声明 */
+    int arr[10];
+    int* parr[10];              //右-->左
+    int (*parray)[10] = &arr;   //内-->外
+    //int (*parray2)[10] = &arr2;
+    int (&rarray)[10] = arr;
+    //int (&rarray2)[100] = arr;
+
+    int* (&rparr)[10] = parr;
+}
+
+/* 指针和数组 */
+void Practice_3_5_3()
+{
+    int a[] = {10,1,2,3,4,5};
+    auto a2(a);     //auto将数组名推断为指针
+    cout << *a2 << endl;
+    //a2 = 42;
+
+    //decltype推断为数组
+    decltype (a) a3 = {1,2,3,4,5,6};
+    //a3 = a2;
+    a3[1] = 100;
+}
+
 //C风格字符串
 void Practice_3_5_4()
 {
@@ -292,6 +336,27 @@ void Practice_3_5_4()
     strncat(large_str, " ", 2);
     strncat(large_str, ca2, sz - strlen(large_str));
     cout << "change after str: " << large_str << endl;
+}
+
+void Practice_3_5_5()
+{
+    string s("Hello");
+
+    const char *str = s.c_str();    //指针赋值（以0结尾）
+}
+
+/* 多维数组 */
+void Practice_3_6()
+{
+    //多维数组下标使用: 下标运算符与维度的的关系
+    int arr[3][4] = {0};
+    int (&rarr)[4] = arr[2];
+
+    int (*parr)[4] = arr;   //数组名转换为指向第一个内层数组指针
+    parr = &arr[1];
+
+    int arr2[10][20][30];
+    int (*parr2)[20][30] = &arr2[1];
 }
 
 void Homework_43_44_45()
@@ -354,7 +419,7 @@ void Homework_43_44_45()
     }
 
     cout << "使用类型别名和指针: " << endl;
-    for (ArrayType *p = a; p != a + row; ++p)
+    for (ArrayType *p = a; p != a + row; ++p)   //数组名转换为第一个内层数组指针
     {
         for (int *q = *p; q != *p + col; ++q)
             cout << *q << " ";
@@ -387,3 +452,5 @@ void Homework_43_44_45()
     }
     
 }
+
+
