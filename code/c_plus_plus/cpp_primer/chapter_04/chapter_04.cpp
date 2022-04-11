@@ -15,7 +15,8 @@ void Chapter_04()
     //Practice_4_5();
     //Practice_4_7();
     //Practice_4_9();
-    Practice_4_11_2();
+    Practice_4_8();
+    //Practice_4_11_2();
 }
 
 //溢出
@@ -60,6 +61,14 @@ void Practice_4_7()
     cout << endl;
 
     //cout << grade < 60 ?  "fail" : "pass";
+}
+
+void Practice_4_8()
+{
+    unsigned long quiz = 0;
+    quiz |= 1UL << 2;
+    quiz &= ~(1UL << 2);
+    cout << quiz;
 }
 
 /*数组与指针的关系*/
