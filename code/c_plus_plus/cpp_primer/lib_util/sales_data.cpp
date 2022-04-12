@@ -4,19 +4,23 @@
 #include <iostream>
 #include <string>
 
-using std::string;
-using std::istream;
-using std::ostream;
+using namespace std;
 
-/*
- * 类外定义成员函数
- * 与类内声明一致
- * 类作用域(遇到类名便认为在在类作用域内)
- * const声明
- */
+/* 类外定义成员函数 */
+
+//与类内声明一致
+//类作用域(遇到类名便认为在在类作用域内)
+//const声明
 double SalesData::AvgPrice() const
 {
     return units_sold_ ? revenue_ / units_sold_ : 0;
+}
+
+SalesData& SalesData::Combine(const SalesData &item)
+{
+    units_sold_ += item.units_sold_;
+    revenue_ += item.revenue_;
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream &os, const SalesData &item)

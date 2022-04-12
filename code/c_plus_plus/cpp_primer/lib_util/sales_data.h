@@ -8,15 +8,17 @@
 class SalesData
 {
 public:
-    /* chapter 07引入this/const*/
+    /* chapter 07 */
+    //引入this/const
     //成员函数由对象调用得以使用: total.Isbn() --> SalesData::Isbn(&total)
     std::string Isdn() const //this的类型 SalesData *const(普通函数) --> const SalesData *const
     {
         return book_no_;
-        /* 可以直接使用成员: 先编译声明再编译函数体*/
+        // 可以直接使用成员: 先编译声明再编译函数体
         //return this->book_no_;
     }
 
+    /* 返回this对象的函数 */
     SalesData& Combine(const SalesData &item);
 private:
     double AvgPrice() const ;
