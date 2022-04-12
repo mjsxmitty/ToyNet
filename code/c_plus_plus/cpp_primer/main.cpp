@@ -28,6 +28,7 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
+    cout << "================ Hello World ==================\n";
     //Chapter_02();
     //Chapter_03();
     //Chapter_04();
@@ -47,5 +48,6 @@ int main(int argc, char **argv)
     //Chapter_14();
     //Chapter_15();
     //Chapter_16();
+    cout << "=== Amazing, and then everyone works quietly ===\n";
     return 0;
 }
