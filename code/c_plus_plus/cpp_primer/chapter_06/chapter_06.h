@@ -15,6 +15,8 @@ void Practice_6_3_2();
 void Practice_6_3_3();
 void Practice_6_7();
 
+void Homework_6_33();
+
 void Practice();
 
 struct ErrCode

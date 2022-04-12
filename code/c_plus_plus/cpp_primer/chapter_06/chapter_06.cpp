@@ -19,9 +19,10 @@ void Chapter_06()
     //Practice_6_1_1();
     //Practice_6_1_3();
     //Practice_6_2_6();
-    Practice_6_2_2();
+    //Practice_6_2_2();
     //Practice_6_3_2();
-    //Practice_6_3_3();
+    Practice_6_3_3();
+    //Homework_6_33();
     //Practice_6_7();
 
     //Practice();
@@ -194,27 +195,50 @@ decltype(odd)* ArrPtr(int i)
     return (i % 2) ? &odd : &even;
 }
 
+//arrT& ArrRef(int i);
+//auto ArrRef(int i) -> int (&)[5];
+//decltype (even)& ArrRef(int i);
 int (&ArrRef(int i))[5]
 {
     return (i % 2) ? odd : even;
 }
 
-/*返回数组指针*/
+/*返回数组指针/引用*/
 void Practice_6_3_3()
 {
     int* p = ElemPtr(6);
+    for (size_t i = 0; i < 5; ++i)
+        cout << p[i] << ' ';
+    cout << endl;
+
     //int (*arrP)[5] = ArrPtr(5);
     arrT* arrP = ArrPtr(5);
+    for (size_t i = 0; i < 5; ++i)
+        cout << (*arrP)[i] << ' ';
+    cout << endl;
+
     int (&arrR)[5] = ArrRef(4);
-
+    //arrT& pppp = ArrRef(6);
     for (size_t i = 0; i < 5; ++i)
-        cout << p[i] << endl;
+        cout << arrR[i] << ' ';
+    cout << endl;
+}
 
-    for (size_t i = 0; i < 5; ++i)
-        cout << (*arrP)[i] << endl;
+void PrintVec(const vector<int> &vec, unsigned index)
+{
+    unsigned sz = vec.size();
+    if (!vec.empty() && index < sz)
+    {
+        cout << vec[index] << ' ';
+        PrintVec(vec, ++index);
+    }
+}
 
-    for (size_t i = 0; i < 5; ++i)
-        cout << arrR[i] << endl;
+void Homework_6_33()
+{
+    int a[] = {1,3,5,7,9};
+    vector<int> local_vec(std::begin(a), std::end(a));
+    PrintVec(local_vec, 0);
 }
 
 string::size_type SumLength(const string &s1, const string &s2)
@@ -261,7 +285,6 @@ auto GetFun(const string &) -> string::size_type (*)(const string &, const strin
 string::size_type (*GetFun(const string &))(const string &, const string &);
 // using GetFun = string::size_type (*)(const string &, const string &);
 // typedef string::size_type (*GetFun)(const string&, const string &);
-
 decltype(SumLength)* GetFun(const string &fetch)
 {
     if (fetch == "sum")

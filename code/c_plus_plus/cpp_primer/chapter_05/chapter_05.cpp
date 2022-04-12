@@ -12,6 +12,7 @@ using std::string;
 
 void Chapter_05()
 {
+    Practice_5_3_2();
     //Homework_5_12();
     //Homework_5_14();
     //Homework_5_20();
@@ -20,6 +21,26 @@ void Chapter_05()
     //Homework_5_25();
 }
 
+/* switch语句 */
+void Practice_5_3_2()
+{
+    /* 不允许跨过变量 初始化语句 直接跳转到变量作用域的另一位置*/
+    bool flag = false;
+    switch (flag)
+    {
+        case true:
+            //string name;
+            //int i = 10;
+            int ival;
+            break;
+        case false:
+        {
+            ival = 100;
+            cout << ival << endl;
+        }
+        break;
+    }
+}
 void Homework_5_12()
 {
     unsigned int ffCnt = 0, flCnt = 0, fiCnt = 0;
@@ -30,7 +51,6 @@ void Homework_5_12()
     {
         bool b1 = true;
         if (pref == 'f')
-        {
             switch (ch)
             {
                 case 'f':
@@ -44,12 +64,11 @@ void Homework_5_12()
                     ++fiCnt;
                     break;
             }
-        }
 
-        if (!b1)
-            pref = '\0';
-        else
+        if (b1)
             pref = ch;
+        else
+            pref = '\0';
     }
 
     cout << "ff的数量: " << ffCnt << endl;
@@ -61,7 +80,7 @@ void Homework_5_12()
 
 void Homework_5_14()
 {
-    string  current_str, pre_str = " ", max_str;
+    string  current_str, pre_str = "", max_str;
     int     current_cnt = 1, max_cnt = 0;
 
     while (cin >> current_str)
