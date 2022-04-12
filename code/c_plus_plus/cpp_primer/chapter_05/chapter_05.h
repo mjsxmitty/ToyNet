@@ -5,6 +5,8 @@
 
 void Chapter_05();
 
+void Practice_5_3_2();
+
 void Homework_5_12();
 void Homework_5_14();
 void Homework_5_20();

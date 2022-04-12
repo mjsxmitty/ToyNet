@@ -15,10 +15,12 @@ void Chapter_04()
     //Practice_4_5();
     //Practice_4_7();
     //Practice_4_9();
+    //Practice_4_8();
     Practice_4_11_2();
+    //Practice_4_11_3();
 }
 
-//溢出
+//婧㈠嚭
 //TODO...
 void Practice_4_2()
 {
@@ -27,7 +29,7 @@ void Practice_4_2()
     cout << "short value: " << short_value << endl;
 }
 
-/*���������*/
+/*后置运算符*/
 void Practice_4_5()
 {
     vector<int> ivec;
@@ -49,20 +51,28 @@ void Practice_4_5()
         cout << *it++ << endl;
 }
 
-/*������������ȼ��ǳ���*/
+/*条件运算符优先级非常低*/
 void Practice_4_7()
 {
     int grade = 75;
     cout << ((grade < 60) ?  "fail" : "pass");
     cout << endl;
 
-    cout << (grade < 60) ?  "fail" : "pass";
-    cout << endl;
+//    cout << (grade < 60) ?  "fail" : "pass";
+//    cout << endl;
 
     //cout << grade < 60 ?  "fail" : "pass";
 }
 
-/*数组与指针的关系*/
+void Practice_4_8()
+{
+    unsigned long quiz = 0;
+    quiz |= 1UL << 2;
+    quiz &= ~(1UL << 2);
+    cout << quiz;
+}
+
+/*鏁扮粍涓庢寚閽堢殑鍏崇郴*/
 void Practice_4_9()
 {
     int x[10];
@@ -100,6 +110,25 @@ void Practice_4_11_2()
     cout << &array[1] << endl;
     cout << &array[0] + 1 << endl;
     cout << &array + 1 << endl;
-    cout << (&array + 1) - &array << endl;
-    cout << sizeof(*array) << endl; 
+    auto v1= &array + 1;
+    auto v2 = &array;
+    cout << v1 - v2 << endl;
+    cout << sizeof(*array) << endl;
+    cout << sizeof (int) << endl;
+}
+
+void Practice_4_11_3()
+{
+    const char  *pc = "hello";
+    char        *p = const_cast<char *>(pc);
+    //*p = "world";     //通过p写值是未定义行为
+
+    string s = static_cast<string>(pc);
+    cout << s << endl;
+
+    int i = 1;
+    int *pi = &i;
+    char *ppc = reinterpret_cast<char *>(pi);
+//    string tmp(ppc);
+//    cout << *ppc << ", " << tmp << endl;
 }
