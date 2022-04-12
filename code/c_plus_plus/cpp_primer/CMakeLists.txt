@@ -12,7 +12,7 @@ add_executable(cpp_primer
                 chapter_05/chapter_05.h chapter_05/chapter_05.cpp
                 chapter_06/local_math.h chapter_06/local_math.cpp
                 chapter_06/chapter_06.h chapter_06/chapter_06.cpp
-                chapter_07/sales_data.h chapter_07/sales_data.cpp
+                lib_util/sales_data.h lib_util/sales_data.cpp
                 chapter_07/person.h chapter_07/person.cpp
                 chapter_07/screen.h chapter_07/screen.cpp
                 chapter_07/account.h chapter_07/account.cpp

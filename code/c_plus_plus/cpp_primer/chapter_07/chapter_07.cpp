@@ -2,7 +2,7 @@
 #include <string>
 
 #include "chapter_07.h"
-#include "sales_data.h"
+#include "../lib_util/sales_data.h"
 #include "account.h"
 
 using std::string;

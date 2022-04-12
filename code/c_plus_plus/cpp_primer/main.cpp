@@ -11,7 +11,7 @@
 #include "chapter_07/person.h"
 #include "chapter_07/screen.h"
 #include "chapter_07/window_mgr.h"
-#include "chapter_07/sales_data.h"
+#include "lib_util/sales_data.h"
 #include "chapter_07/chapter_07.h"
 #include "chapter_08/chapter_08.h"
 #include "chapter_09/chapter_09.h"
@@ -28,12 +28,12 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
-    cout << "================ Hello World ==================\n";
+    cout << "================= Hello World ==================\n";
     //Chapter_02();
     //Chapter_03();
     //Chapter_04();
     //Chapter_05();
-    Chapter_06();
+    //Chapter_06();
     //TestScreen();
     //TestWindowMgr();
     //SalesData sales(std::cin);
