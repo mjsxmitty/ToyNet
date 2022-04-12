@@ -8,6 +8,20 @@
 class SalesData
 {
 public:
+    /* chapter 07ÒýÈëthis/const*/
+    //³ÉÔ±º¯ÊýÓÉ¶ÔÏóµ÷ÓÃµÃÒÔÊ¹ÓÃ: total.Isbn() --> SalesData::Isbn(&total)
+    std::string Isdn() const //thisµÄÀàÐÍ SalesData *const(ÆÕÍ¨º¯Êý) --> const SalesData *const
+    {
+        return book_no_;
+        /* ¿ÉÒÔÖ±½ÓÊ¹ÓÃ³ÉÔ±: ÏÈ±àÒëÉùÃ÷ÔÙ±àÒëº¯ÊýÌå*/
+        //return this->book_no_;
+    }
+
+    SalesData& Combine(const SalesData &item);
+private:
+    double AvgPrice() const ;
+
+public:
     //ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È¨ï¿½ï¿½
     friend std::istream& Read(std::istream &in, SalesData &item);
     friend std::ostream& Print(std::ostream &out, const SalesData &item);
@@ -40,15 +54,11 @@ public:
 
     //std::string operator std::string() const { return book_no_; }
     // double operator double() const { return revenue_; }
-public:
-    std::string Isdn() const { return book_no_; }
-    SalesData& Combine(const SalesData &item);
+
 private:
-    double AvgPrice() const ;
-private:
-    std::string     book_no_;
-    unsigned        units_sold_;
-    double          revenue_;
+    std::string     book_no_;       //isbn
+    unsigned        units_sold_;    //ÏúÁ¿
+    double          revenue_;       //×ÜÊÕÈë
 };
 
 //ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ù´ï¿½ï¿½ï¿½ï¿½ï¿½

@@ -2,17 +2,16 @@
 #include <string>
 
 #include "chapter_07.h"
-#include "../lib_util/sales_data.h"
 #include "account.h"
+#include "../lib_util/sales_data.h"
 
-using std::string;
-using std::cin;
-using std::cout;
-using std::endl;
+using namespace std;
 
 void Chapter_07()
 {
+    cout << "================= chapter 07 test start ==================\n";
     Practice_7_6();
+    cout << "================== chapter 07 test end ===================\n";
 }
 
 /*类型的隐式转换*/
