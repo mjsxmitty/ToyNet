@@ -26,7 +26,7 @@ void WindowMgr::Clear(ScreenIndex i)
     cout << endl;
 }
 
-//类的作用域
+/* 7-4 类的作用域 */
 WindowMgr::ScreenIndex WindowMgr::AddScreen(const Screen &s)
 {
     screens.push_back(s);

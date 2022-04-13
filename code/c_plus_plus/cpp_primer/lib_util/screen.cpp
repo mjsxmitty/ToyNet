@@ -2,6 +2,7 @@
 
 #include "screen.h"
 
+#include <string>
 #include <iostream>
 
 using std::cout;
@@ -34,10 +35,12 @@ Screen& Screen::Display(std::ostream &os)
     return *this;
 }
 
-//const鍑芥暟缁戝畾鐨勫璞℃槸const鐨勶紝杩斿洖鐨勬槸const Screen&
 const Screen& Screen::Display(std::ostream &os) const
 {
     DoDisplay(os);
+
+    /* 7-3-2-1 从const成员返回*this */
+    //返回 const Screen&类型
     return *this;
 }
 
@@ -49,11 +52,20 @@ Screen::pos Verify(Screen::pos)
 
 void Screen::DummyFcn(pos height_)
 {
+    //函数体名字查找规则
     //cursor_ = weight_ * height_;
-    cursor_ = weight_ + this->height_;
-    cout << "use val: " << height_ << endl;
+    //cursor_ = weight_ + this->height_;
+    //cout << "use val: " << height_ << endl;
     cout << "use val: " << this->height_ << endl;
     cout << "use val: " << Screen::height_<< endl;
     cout << "use val: " << ::height_<< endl;
-    cursor_ = Verify(height_);
+    height_ = Verify(height_);
 }
+
+Screen &Screen::Clear(char c)
+{
+    contents_ = std::string(weight_ * height_, c);
+    return *this;
+}
+
+const char Screen::bak_ground_;

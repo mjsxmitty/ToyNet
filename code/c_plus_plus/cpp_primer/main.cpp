@@ -28,7 +28,7 @@ using std::endl;
 
 int main(int argc, char **argv)
 {
-    cout << "================= Hello World ==================\n";
+    cout << "================= Hello World ==================\n\n";
     //Chapter_02();
     //Chapter_03();
     //Chapter_04();
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     //TestScreen();
     //TestWindowMgr();
     //SalesData sales(std::cin);
-    //Chapter_07();
+    Chapter_07();
     //Chapter_08();
     //Chapter_12();
     //Chapter_09();
@@ -48,6 +48,6 @@ int main(int argc, char **argv)
     //Chapter_14();
     //Chapter_15();
     //Chapter_16();
-    cout << "=== Amazing, and then everyone works quietly ===\n";
+    cout << "\n=== Amazing, and then everyone works quietly ===\n";
     return 0;
 }

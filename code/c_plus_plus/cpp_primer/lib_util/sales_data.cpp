@@ -6,10 +6,8 @@
 
 using namespace std;
 
-/* 类外定义成员函数 */
-
 //与类内声明一致
-//类作用域(遇到类名便认为在在类作用域内)
+//类作用域(遇到类名便在类作用域内)
 //const声明
 double SalesData::AvgPrice() const
 {
@@ -21,6 +19,40 @@ SalesData& SalesData::Combine(const SalesData &item)
     units_sold_ += item.units_sold_;
     revenue_ += item.revenue_;
     return *this;
+}
+
+istream &Read(istream &in, SalesData &item)
+{
+    double price = 0;
+    in >> item.book_no_ >> item.units_sold_ >> price;
+    item.revenue_ = item.units_sold_ * price;
+    return in;
+}
+
+ostream &Print(ostream &out, const SalesData &item)
+{
+    out << item.book_no_ << ", "
+        << item.units_sold_ << ", "
+        << item.revenue_ << ", "
+        << item.AvgPrice();
+
+    return out;
+}
+
+SalesData Add(const SalesData &lhs, const SalesData &rhs)
+{
+    SalesData sum = lhs;
+    sum.Combine(rhs);
+    return sum;
+}
+
+//执行了函数体,仍可以初始化成员
+//使用this整体访问
+SalesData::SalesData(istream &in)
+{
+    std::cout << "SalesData::SalesData(istream) --- consturctor\n";
+    Read(in, *this);
+    // in >> *this;
 }
 
 std::ostream& operator<<(std::ostream &os, const SalesData &item)
@@ -55,12 +87,7 @@ SalesData operator+(const SalesData &lhs, const SalesData &rhs)
     ret.revenue_ += rhs.revenue_;
     return ret;
 }
-///执锟叫猴拷锟斤拷锟斤拷之前,锟斤拷员默锟较筹拷始锟斤拷
-SalesData::SalesData(istream &in)
-{
-    Read(in, *this);
-    // in >> *this;
-}
+
 
 SalesData& SalesData::operator=(const SalesData &rhs)
 {
@@ -97,24 +124,4 @@ SalesData& SalesData::operator+=(const SalesData &rhs)
 
 
 
-istream &Read(istream &in, SalesData &item)
-{
-    double price = 0;
-    in >> item.book_no_ >> item.units_sold_ >> price;
-    item.revenue_ = item.units_sold_ * price;
-    return in;
-}
 
-ostream &Print(ostream &out, const SalesData &item)
-{
-    out << item.book_no_ << " " << item.units_sold_ << " "
-        << item.revenue_ << " " << item.AvgPrice();
-    return out;
-}
-
-SalesData Add(const SalesData &lhs, const SalesData &rhs)
-{
-    SalesData sum = lhs;
-    sum.Combine(rhs);
-    return sum;
-}
