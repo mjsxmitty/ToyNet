@@ -13,10 +13,10 @@ add_executable(cpp_primer
                 chapter_06/local_math.h chapter_06/local_math.cpp
                 chapter_06/chapter_06.h chapter_06/chapter_06.cpp
                 lib_util/sales_data.h lib_util/sales_data.cpp
-                chapter_07/person.h chapter_07/person.cpp
-                chapter_07/screen.h chapter_07/screen.cpp
-                chapter_07/account.h chapter_07/account.cpp
-                chapter_07/window_mgr.h chapter_07/window_mgr.cpp
+                lib_util/person.h lib_util/person.cpp
+                lib_util/screen.h lib_util/screen.cpp
+                lib_util/account.h lib_util/account.cpp
+                lib_util/window_mgr.h lib_util/window_mgr.cpp
                 chapter_07/chapter_07.h chapter_07/chapter_07.cpp
                 chapter_08/chapter_08.h chapter_08/chapter_08.cpp
                 chapter_09/chapter_09.h chapter_09/chapter_09.cpp
