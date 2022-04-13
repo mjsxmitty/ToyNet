@@ -7,23 +7,15 @@
 #include <sstream>
 #include <string>
 #include <vector>
+//#include <ifstream>
+//#include <ofstream>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::cerr;
-using std::vector;
-using std::string;
-using std::istream;
-using std::ostream;
-using std::ifstream;
-using std::ostringstream;
-using std::istringstream;
+using namespace std;
 
 void Chapter_08()
 {
     //Practice_8_1_2();
-    Practice_8_3_2();
+    //Practice_8_3_2();
 }
 
 void Read()
@@ -139,4 +131,19 @@ void Practice_8_3_2()
     }
     else
         cout << "read file failed." << endl;
+}
+
+//8-2节综合练习
+void Homework_8_2(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        cout << "param nums failed.\n";
+        return ;
+    }
+
+    fstream in(argv[0]);
+    fstream out;
+    out.open(argv[1], ofstream::out | ofstream::trunc);
+
 }

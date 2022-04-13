@@ -37,8 +37,8 @@ int main(int argc, char **argv)
     //TestScreen();
     //TestWindowMgr();
     //SalesData sales(std::cin);
-    Chapter_07();
-    //Chapter_08();
+    //Chapter_07();
+    Chapter_08();
     //Chapter_12();
     //Chapter_09();
     //Chapter_10();

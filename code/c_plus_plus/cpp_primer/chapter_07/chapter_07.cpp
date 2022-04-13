@@ -68,7 +68,8 @@ void Practice_7_6()
 
 constexpr double Example::rate;
 const int Example::vec_size;
-//constexpr std::vector<int> Example::vec;
+const std::vector<int> Example::ivec(20);
+//constexpr ???
 
 void Homework_7_58()
 {

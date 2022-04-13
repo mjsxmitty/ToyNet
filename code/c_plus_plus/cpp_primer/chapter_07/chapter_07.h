@@ -106,7 +106,7 @@ public:
     //static const double rate = 6.5;
     static constexpr double rate = 6.5;
     static const int vec_size = 20;
-    //static constexpr std::vector<int> vec(vec_size);
+    static const std::vector<int> ivec;
 };
 
 void Homework_7_58();
