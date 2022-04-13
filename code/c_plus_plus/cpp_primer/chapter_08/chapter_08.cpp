@@ -16,6 +16,7 @@ void Chapter_08()
 {
     //Practice_8_1_2();
     //Practice_8_3_2();
+    Homework_8_2();
 }
 
 void Read()
@@ -134,16 +135,32 @@ void Practice_8_3_2()
 }
 
 //8-2节综合练习
-void Homework_8_2(int argc, char **argv)
+void Homework_8_2()
 {
-    if (argc != 2)
+    fstream in("Makefile");
+    fstream out;
+    out.open("Makefile.temp", ofstream::out | ofstream::trunc);
+    if (!in || !out.is_open())
     {
-        cout << "param nums failed.\n";
+        cout << "open file failed.\n";
         return ;
     }
 
-    fstream in(argv[0]);
-    fstream out;
-    out.open(argv[1], ofstream::out | ofstream::trunc);
 
+    string words;
+    while (getline(in, words))
+    {
+        ostringstream os;
+        out << words << "\n";
+        string word;
+        istringstream line(words);
+        while (line >> word)
+            os << word << " --- ";
+            //cout << word << endl;
+        cout << os.str() << endl;
+    }
+
+
+    in.close();
+    out.close();
 }
