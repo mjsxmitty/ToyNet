@@ -1,6 +1,7 @@
 
 
 #include "chapter_09.h"
+#include "../lib_util/sales_data.h"
 
 #include <forward_list>
 #include <algorithm>
@@ -11,11 +12,14 @@
 #include <list>
 #include <stack>
 #include <fstream>
+#include <array>
+#include <queue>
 
 using namespace std;
 
 void Chapter_09()
 {
+    //Practice_9_2();
     //Practice_9_3_1();
     //Practice_9_3_3();
     //Practice_9_4();
@@ -23,12 +27,60 @@ void Chapter_09()
     //Practice_9_5_2();
     //Practice_9_5_3();
     //Practice_9_5_5();
-    //Practice_9_6();
+    Practice_9_6();
 
     //Homework_9_4_5();
+    //Homework_9_16();
+    //Homework_9_28();
     //Homework_9_31();
     //Homework_9_43();
+    //Homework47_48();
     //Homework_9_50();
+}
+
+void Practice_9_2()
+{
+    /* 内置数组不可以copy */
+    int sou[10] = {1,2,3,4};
+//    int cpy[10] = sou;
+
+    /* 标准库数组可以copy */
+    array<int, 10> digits = {1,2,3,4,5};
+    //array<int, 5>   copy = digits;  //error大小不同
+    array<int, 10> copy = digits;
+    copy = digits;
+
+    /* 类型必须相同 */
+    array<string, 10> copy2;
+//    copy2 = digits;
+
+    /* assgin */
+    //类型转化
+    list<string>        names;
+    vector<const char*> old_style;
+    //names = old_style;
+    names.assign(old_style.begin(), old_style.end());
+    names.assign(10, "yyy");
+
+//    vector<int> temp_vec(10);
+//    old_style.assign(temp_vec.begin(), temp_vec.end());
+
+    /* swap */
+    //相同类型
+    //交换之后,指针/迭代器还有效,指向发生变化
+    vector<string> svec1(10, "hi");
+    vector<string> svec2(22, "nihao");
+    auto it1 = svec1.begin(), it2 = svec2.begin();
+    cout << svec1.size() << ", " << svec2.size() << endl;
+    cout << *it1 << ", " << *it2 << endl;
+    swap(svec1, svec2);
+    cout << svec1.size() << ", " << svec2.size() << endl;
+    auto it3 = svec1.begin(), it4 = svec2.begin();
+    cout << *it3 << ", " << *it4 << endl;
+    cout << *it1 << ", " << *it2 << endl;       //
+
+    /* 关系运算 */
+    //运算对象为相同类型
 }
 
 void PrintVec(const vector<int> &vi)
@@ -38,9 +90,62 @@ void PrintVec(const vector<int> &vi)
         cout << *iter++ <<  " ";
 }
 
+//vector, list, deque, forward_list, array, string
+//push_back     --->    vector, list, deque, string
+//push_front    --->    list, deque, forward_list
+//insert        --->    vector, list, deque, string
+
+//front         --->    all
+//back          --->    vector, list, deque, array, string
+//[]
+//at()
+
+//pop_back
+//pop_front
+//erase
+
 /*改变容器大小*/
 void Practice_9_3_1()
 {
+    /* insert范围元素 */
+    list<int> slist = {1,2,3,4,5};
+    vector<int> v;
+    v.insert(v.begin(), slist.begin(), slist.end());
+    PrintVec(v);
+    cout << endl;
+    v.insert(v.begin(), 10, 0);
+    PrintVec(v);
+    cout << endl;
+    v.insert(v.begin(), {7,8,9});
+    PrintVec(v);
+    cout << endl;
+
+    //访问返回的是引用
+    v.front() = 100;
+    auto &elem1 = v.back();
+    elem1 = 1222;
+    auto elem2 = v.back();
+    elem2 = 2222;
+    PrintVec(v);
+    cout << endl;
+
+    cout << v[5] << endl;
+//    cout << v[20] << endl;
+//    cout << v.at(20) << endl;
+
+    auto iter1 = v.begin() + 3, iter2 = v.begin() + 13;
+//    v.erase(iter1, iter2);
+//    v.erase(iter1, v.end());
+    v.erase(v.end(), v.end());
+    PrintVec(v);
+    cout << endl;
+
+    vector<SalesData> c;
+    c.emplace_back("11", 2, 2);
+    auto iii = c.begin();
+    c.emplace(iii, "11", 2, 2);
+
+
     vector<int> vi = {0,1,2,3,4,5,6,7,8,9};
     PrintVec(vi);
     cout << endl;
@@ -107,7 +212,37 @@ void Practice_9_3_3()
     cout << endl;
 }
 
+void FLInsert(forward_list<string> &sflist,
+              const string &s1, const string &s2)
+{
+    auto prev = sflist.before_begin();
+    auto curr = sflist.begin();
+    bool insert = false;
 
+    while (curr != sflist.end())
+    {
+        if (*curr == s1)
+        {
+            curr = sflist.insert_after(curr, s2);
+            insert = true;
+        }
+
+        prev = curr;
+        ++curr;
+    }
+
+    if (!insert)
+        sflist.insert_after(prev, s2);
+}
+
+void Homework_9_28()
+{
+    forward_list<string> sflist = {"hello", "!", "world", "!"};
+    FLInsert(sflist, "!", "?");
+    for (auto it = sflist.cbegin(); it != sflist.end(); ++it)
+        cout << *it << ' ';
+    cout << endl;
+}
 
 /*容器对象是如何增长的()*/
 void Practice_9_4()
@@ -149,6 +284,22 @@ void Practice_9_4()
 void Practice_9_5_1()
 {
     string s("hello world");
+    const char *sp = "nihao!!!!";
+    const char ssp[] = {'n', 'i'};
+
+    string s1(sp);
+    string s2(sp, 2);
+    string s3(ssp, 1);
+//    string s4(ssp);
+    string s5(s, 3);
+    string s6(s, 3, 3);
+    cout << s1 << ", "
+         << s2 << ", "
+         << s3 << ", "
+//         << s4 << ", "
+         << s5 << ", "
+         << s6 << endl;
+
     try {
         cout << s.substr(1,6) << endl;
         cout << s.substr(6) << endl;
@@ -198,7 +349,7 @@ void Practice_9_5_2()
 //    s1.insert(0, s2, 0, s2.size() - 1);
 //    cout << "insert positional version: " << s1 << endl;
 
-    //
+    //下标
     string s = "";
     vector<char> cvec(1, 'a');
     s.insert(s.begin(), cvec.begin(), cvec.end());
@@ -285,6 +436,14 @@ void Practice_9_5_5()
 /*容器适配器*/
 void Practice_9_6()
 {
+    deque<int>  deq;
+    vector<int> vec;
+    stack<int>  stk(deq);
+    //stack<int>  stk(vec);
+
+    stack<string, vector<string>>   str_stk;
+    stack<string, vector<string>>   str_stk2(str_stk);
+
     stack<int> istack;
 
     for (size_t ix = 0; ix != 10; ++ix)
@@ -295,6 +454,9 @@ void Practice_9_6()
         cout << istack.top() << " ";
         istack.pop();
     }
+
+    queue<int> que(deq);
+    //queue<int, vector<int>> que2;
 }
 
 bool SearchVec(vector<int>::iterator beg,
@@ -325,6 +487,32 @@ void Homework_9_4_5()
 
     cout << SearchVec2(ivec.begin(), ivec.end(), 6) - ivec.begin() << endl;
     cout << SearchVec2(ivec.begin(), ivec.end(), 10) - ivec.begin() << endl;
+}
+
+bool VLEqual(const vector<int> &v, const list<int> &l)
+{
+    if (v.size() != l.size())
+        return false;
+
+    auto vb = v.begin(), ve = v.end();
+    auto lb = l.begin(), le = l.end();
+    for (; vb != ve; ++vb, ++lb)
+        if (*vb != *lb)
+            return false;
+    return true;
+}
+
+void Homework_9_16()
+{
+    vector<int> ivec = {0,1,2,3,4,5,6,7,8,9};
+    list<int> ilist = {0,1,2,3,4,5,6,7,8,9};
+    list<int> ilist2 = {0,1,2,3,4,5,6,7};
+    list<int> ilist3 = {0,1,2,3,4,5,6,7,7,9};
+
+    cout << VLEqual(ivec, ilist) << ", "
+         << VLEqual(ivec, ilist2) << ", "
+         << VLEqual(ivec, ilist3)
+         << endl;
 }
 
 void Homework_9_31()
@@ -416,7 +604,7 @@ void FindChar(const string &s, const string &chars)
     string::size_type pos = 0;
     while ((pos = s.find_first_of(chars, pos)) != string::npos)
     {
-        cout << "pos = " << pos << ", char: " << chars[pos] << endl;
+        cout << "pos = " << pos << ", char: " << s[pos] << endl;
         ++pos;
     }
 }
@@ -426,12 +614,12 @@ void FindNotChar(string &s, const string &chars)
     string::size_type pos = 0;
     while ((pos = s.find_first_not_of(chars, pos)) != string::npos)
     {
-        cout << "pos = " << pos << ", char: " << chars[pos] << endl;
+        cout << "pos = " << pos << ", char: " << s[pos] << endl;
         ++pos;
     }
 }
 
-void FindLongestWord(ifstream &in)
+void FindLongestWord(istream &in)
 {
     string  s, longest_word;
     int     max_length = 0;
@@ -452,7 +640,20 @@ void FindLongestWord(ifstream &in)
     cout << "the longest word: " << longest_word << endl;
 }
 
+void Homework47_48()
+{
+    string s("ab2c3d7R4E6");
+    FindChar(s, "0123456789");
+    cout << endl;
+    FindChar(s, "abcdefghijklmnopqrstuvwxyz");
+    cout << endl;
 
+    FindNotChar(s, "0123456789");
+    cout << endl;
+    FindNotChar(s, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+    FindLongestWord(cin);
+}
 void Homework_9_50()
 {
     vector<string> vs = {"123", "+456", "-789"};
