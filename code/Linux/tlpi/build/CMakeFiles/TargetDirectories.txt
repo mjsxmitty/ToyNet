@@ -1,3 +1,0 @@
-/home/gao_zhuo/share/tlpi_code/build/CMakeFiles/rebuild_cache.dir
-/home/gao_zhuo/share/tlpi_code/build/CMakeFiles/edit_cache.dir
-/home/gao_zhuo/share/tlpi_code/build/CMakeFiles/tlpi.dir
