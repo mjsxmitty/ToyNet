@@ -19,6 +19,7 @@ using std::placeholders::_2;
 void Chapter_10()
 {
     //Practice_10_2_1();
+    Practice_10_2_2();
     //Practice_10_3_1();
     //Practice_10_3_2();
     //Practice_10_3_3();
@@ -35,7 +36,7 @@ void Chapter_10()
     //Homework_10_27();
     //Homework_10_34_35();
     //Homework_10_36();
-    Homework_10_37();
+    //Homework_10_37();
 }
 
 /*只读算法*/
@@ -47,6 +48,81 @@ void Practice_10_2_1()
     //注意元素数量
     auto b = equal(roster2.begin(), roster2.end(), roster1.begin());
     (b) ? cout << "true" : cout << "false";
+}
+
+void Homework_10_5()
+{
+    char* p[] = {(char*)"hello", (char *)"world", (char *)"1"};
+    char* q[] = {strdup(p[0]), strdup(p[1]),strdup(p[2])};
+    char* r[] = {p[0], p[1], p[2]};
+
+    cout << p[0] << ", " << q[0] << ", " << r[0] << endl;
+    cout << equal(begin(p), end(p), q) << endl; //
+    cout << equal(begin(p), end(p), r) << endl;
+}
+
+#include <iterator>
+
+/* 10-2-2 写容器元素算法 */
+void Practice_10_2_2()
+{
+    vector<int> ivec = {1,2,3,4};
+
+    //fill
+    vector<int> vec1(ivec);
+    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});    //临时测试用...
+    cout << endl;
+
+    fill(vec1.begin(), vec1.end(), 0);
+    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    fill(vec1.begin(), vec1.begin() + vec1.size() / 2, 1);
+    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    fill_n(vec1.begin(), vec1.size(), 2);
+    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    /* 算法不检查写操作 */
+//    vector<int> vec2;
+//    fill_n(vec2.begin(), 10, 1);
+//    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' '; });
+//    cout << endl;
+
+    /* back_inserter */
+    vector<int> vec3;
+    auto it = back_inserter(vec3);
+    *it = 100;
+    for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    vector<int> vec4;
+    fill_n(back_inserter(vec4), 10, 10);
+    for_each(vec4.begin(), vec4.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    /* copy 算法 */
+    vector<int> vec5;
+    copy(ivec.begin(), ivec.end(), back_inserter(vec5)); //返回拷贝之后的位置
+    for_each(vec5.begin(), vec5.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    list<int>   list1(ivec.begin(), ivec.end());
+    replace(list1.begin(), list1.end(), 1, 100);
+    for_each(begin(list1), end(list1), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    list<int>   list2;
+    replace_copy(ivec.begin(), ivec.end(), back_inserter(list2), 4, 4000);
+    for_each(list2.begin(), list2.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+}
+
+void Practice_10_2_3()
+{
+
 }
 
 bool IsShorter(const string &s1, const string &s2)
@@ -331,16 +407,6 @@ void Practice_10_5_3()
     for (auto it = vec.crbegin(); it != vec.crend(); ++it)
         cout << *it << " ";
     cout << endl;
-}
-
-void Homework_10_5()
-{
-    char* p[] = {(char*)"hello", (char *)"world", (char *)"1"};
-    char* q[] = {strdup(p[0]), strdup(p[1]),strdup(p[2])};
-    char* r[] = {p[0], p[1], p[2]};
-
-    cout << equal(begin(p), end(p), q) << endl; //
-    cout << equal(begin(p), end(p), r) << endl;
 }
 
 bool NumMoreWords(const string &s)
