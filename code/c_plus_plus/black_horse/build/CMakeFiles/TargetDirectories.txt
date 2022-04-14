@@ -1,3 +1,0 @@
-/home/snail/share/black_horse/build/CMakeFiles/rebuild_cache.dir
-/home/snail/share/black_horse/build/CMakeFiles/edit_cache.dir
-/home/snail/share/black_horse/build/CMakeFiles/BlackHorse.dir
