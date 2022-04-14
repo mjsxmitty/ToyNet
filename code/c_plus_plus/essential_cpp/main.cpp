@@ -11,10 +11,10 @@ using namespace std;
 int main()
 {
     cout << "==================Hello World!==================" << endl;
-    //Chapter_02();
+    Chapter_02();
     //Chapter_03();
     //Chapter_04();
-    Chapter_05();
+    //Chapter_05();
     cout << "===Quietly try and amaze everyone's sentences===" << endl;
     
     return 0;
