@@ -21,7 +21,7 @@ string  s_sa[s_string_size] = { "pooh", "piglet", "eeyore", "tigger" };
 vector<int>     s_ivec(s_ia, s_ia + s_int_size);
 vector<string>  s_svec(s_sa, s_sa + s_string_size);
 
-const int* FindVer(const vector<int> &vec, int val)
+const int* FindVec(const vector<int> &vec, int val)
 {
     for (int i = 0; i < vec.size(); i++)
         if (vec[i] == val)
@@ -32,11 +32,11 @@ const int* FindVer(const vector<int> &vec, int val)
 
 void Chapter_03()
 {
-    //Practice_3_1();
+    Practice_3_1();
     //Practice_3_6();
     //Practice_3_9();
 
-    Homework_3_1();
+    //Homework_3_1();
     // Homework_3_2();
     // Homework_3_3();
     // Homework_3_4();
@@ -47,96 +47,103 @@ void Practice_3_1()
     const int       *iptr = nullptr;
     const string    *sptr = nullptr;
 
-    iptr = FindVer(s_ivec, s_ivec[5]);
+    iptr = FindVec(s_ivec, s_ivec[5]);
     if (iptr == &s_ivec[5])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test no template func failed, ret: "
              << *iptr << endl;
 
     iptr = FindVer1(s_ivec, s_ivec[6]);
     if (iptr == &s_ivec[6])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer1 with int array type func failed, ret: "
              << *iptr << endl;
 
     sptr = FindVer1(s_svec, s_svec[0]);
     if (sptr == &s_svec[0])
         cout << *sptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer1 with char array type func failed, ret: "
              << *sptr << endl;
 
     iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
     if (iptr == &s_ia[7])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer2 with int array type func failed, ret: "
              << *iptr << endl;
     
     sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
     if (sptr == &s_sa[2])
         cout << *sptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer2 with char array type func failed, ret: "
              << *sptr << endl;
 
     iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
     if (iptr == &s_ia[7])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer3 with int array type func failed, ret: "
              << *iptr << endl;
     
     sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
     if (sptr == &s_sa[2])
         cout << *sptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer3 with char array type func failed, ret: "
              << *sptr << endl;
 
     iptr = FindVer4(s_ia, s_ia + s_int_size, s_ia[8]);
     if (iptr == &s_ia[8])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer4 with int array type func failed, ret: "
              << *iptr << endl;
     
     sptr = FindVer4(s_sa, s_sa + s_string_size, s_sa[3]);
     if (sptr == &s_sa[3])
         cout << *sptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer4 with char array type func failed, ret: "
              << *sptr << endl;
 
     iptr = FindVer4(Begin(s_ivec), End(s_ivec), s_ivec[9]);
     if (iptr == &s_ivec[9])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer4 with int vector type func failed, ret: "
              << *iptr << endl;
     
     sptr = FindVer4(Begin(s_svec), End(s_svec), s_svec[3]);
     if (sptr == &s_svec[3])
         cout << *sptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer4 with char vector type func failed, ret: "
              << *sptr << endl;
 
     iptr = FindVer5(s_ia, s_ia + s_int_size, s_ia[10]);
     if (iptr == &s_ivec[10])
         cout << *iptr << endl;
     else
-        cout << "test no template func failed, ret: " 
+        cout << "test FindVer5 with int array type func failed, ret: "
              << *iptr << endl;
+
+    sptr = FindVer5(Begin(s_svec), End(s_svec), s_svec[1]);
+    if (sptr == &s_svec[1])
+        cout << *sptr << endl;
+    else
+        cout << "test FindVer5 with char vector type func failed, ret: "
+             << *sptr << endl;
 
     list<int>    slist(s_ia, s_ia + s_int_size);
     list<int>::iterator it = FindVer5(slist.begin(), slist.end(), 1024);
     if (it != slist.end())
         cout << *it << endl;
     else
-        cout << "not find 1024" 
+        cout << "not find appoint val."
              << endl;
 }
 

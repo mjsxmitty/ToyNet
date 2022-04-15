@@ -17,7 +17,7 @@ void Homework_3_2();
 void Homework_3_3();
 void Homework_3_4();
 
-const int* FindVer(const std::vector<int> &vec, int val);
+extern const int* FindVec(const std::vector<int> &vec, int val);
 
 template <typename T>
 const T* FindVer1(const std::vector<T> &vec, T &val)
@@ -89,6 +89,7 @@ T FindVer5(T first, T last, const Y &val)
 
     return last;
 }
+
 
 std::vector<int> FilterVer1(const std::vector<int> &vec, int filter_val, bool (*pred)(int, int));
 //std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt)
