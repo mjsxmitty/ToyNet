@@ -6,14 +6,12 @@
 
 using namespace std;
 
-pfunc gen_elems[] = {
+//pvec (*seq_array[])(int)
+pfunc gen_elems[seq_cnt] = {
     0,
-    FiboSeq,
-    PellSeq,
-    LucaSeq,
-    TriaSeq,
-    SquaSeq,
-    PentSeq
+    FiboSeq,    PellSeq,
+    LucaSeq,    TriaSeq,
+    SquaSeq,    PentSeq
 };
 
 pvec FiboSeq(int pos)
@@ -158,11 +156,13 @@ pvec PentSeq(int pos)
 }
 
 /* call back */
+//指针带来更大的弹性 ---> 函数指针
 bool SeqElem(int pos, int &elem, pfunc f)
 {
     pvec pseq = f(pos);
     if (!pseq)
     {
+        //DisplayMsg();
         elem = 0;
         return false;
     }

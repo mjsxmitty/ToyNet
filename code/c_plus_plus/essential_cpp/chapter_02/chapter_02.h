@@ -26,7 +26,26 @@ extern void BubbleSort(std::vector<int> &vec, std::ostream *ofile = 0);
 extern bool FibonElem(int pos, int &elem);
 extern bool PrintFibon(int pos);
 
-extern std::vector<int> FibonSeq(int size);
+extern const std::vector<int>* FibonSeq(int pos);
+
+extern void DisplayMsg(const std::string &msg);
+extern void DisplayMsg(const std::string &msg, int size);
+
+inline bool IsSizeOk(int size)
+{
+    const int           max_elems = 512;
+    const std::string   msg("requested size is not supported.");
+
+    if (size <= 0 || size > max_elems)
+    {
+//        std::cerr << "invalid position: " << size
+//                  << "cannot handle request!\n";
+        DisplayMsg(msg);
+        return false;
+    }
+
+    return true;
+}
 
 template <typename T>
 inline T Max(T t1, T t2) { return t1 > t2 ? t1 : t2; }

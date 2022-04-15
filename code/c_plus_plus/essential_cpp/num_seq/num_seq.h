@@ -10,12 +10,14 @@
 typedef const std::vector<int>* pvec; 
 typedef const std::vector<int>* (*pfunc)(int);
 
-extern pfunc    gen_elems[];
+const int seq_cnt = 7;
+extern pfunc    gen_elems[seq_cnt];
 
-enum NUM_SEQ {
+enum NUM_SEQ
+{
     NS_UNK, 
-    NS_FIB, NS_PELL, NS_LUCAS, 
-    NS_TRI, NS_SQ, NS_PENT
+    NS_FIB, NS_PELL,NS_LUCAS,
+    NS_TRI, NS_SQ,  NS_PENT
 };
 
 //

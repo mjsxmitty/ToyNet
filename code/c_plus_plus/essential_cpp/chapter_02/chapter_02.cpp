@@ -11,9 +11,9 @@ using namespace std;
 void Chapter_02()
 {
     //Practice_2_1();
-    Practice_2_3();
+    //Practice_2_3();
     //Homework_2_1();
-    //Homework_2_6();
+    Homework_2_6();
 }
 
 bool FibonElem(int pos, int &elem)
@@ -223,9 +223,51 @@ void Practice_2_3()
     Display(&vec, &ofile);
 }
 
-vector<int> FibonSeq(int size)
+const vector<int>* FibonSeq(int pos)
 {
+//    const int           max_elems = 512;
+    static vector<int>  elems;
 
+//    if (pos <= 0 || pos > max_elems)
+//    {
+//        std::cerr << "invalid position: " << pos
+//                  << "cannot handle request!\n";
+//        return 0;
+//    }
+
+    if (!IsSizeOk(pos))
+        return 0;
+
+    for (int ix = elems.size(); ix < pos; ++ix)
+        if (ix == 0 || ix == 1)
+            elems.push_back(1);
+        else
+            elems.push_back(elems[ix - 2] + elems[ix - 1]);
+
+    return &elems;
+}
+
+bool FibonElem2(int pos, int &elem)
+{
+    const vector<int> *pseq = FibonSeq(pos);
+    if (!pseq)
+    {
+        elem = 0;
+        return false;
+    }
+
+    elem = (*pseq)[pos - 1];
+    return true;
+}
+
+void DisplayMsg(const std::string &msg)
+{
+    cerr << msg;
+}
+
+void DisplayMsg(const std::string &msg, int size)
+{
+    cerr << msg << " size: " << size << endl;
 }
 
 void Homework_2_6()
@@ -235,9 +277,17 @@ void Homework_2_6()
          << endl;
 
     int ia[ 8 ] = { 8, 34, 39, 13, 1, 21, 5, 2 };
+    vector<int> vec(ia, ia + 8);
+    cout << "max vec value: " << Max(vec) << endl;
     cout << "max array value: " << Max(ia, 8) << endl;
 
-    vector<int> vec(ia, ia + 8);
-    //cout << "max vec value: " << *Max(vec.begin(), vec.end()) << endl;
-    cout << "max value: " << *max_element(vec.begin(), vec.end()) << endl;
+    string sarray[]={ "we", "were", "her", "pride", "of", "ten" };
+    vector<string> svec( sarray, sarray+6 );
+    cout << "max svec value: " << Max(svec) << endl;
+    cout << "max sarray value: " << Max(sarray, sizeof(sarray) / sizeof (sarray[0])) << endl;
+
+    float farray[]={ 2.5, 24.8, 18.7, 4.1, 23.9 };
+    vector<float> fvec( farray, farray+5 );
+    cout << "max fvec value: " << Max(fvec) << endl;
+    cout << "max farray value: " << Max(farray, sizeof(farray) / sizeof (farray[0])) << endl;
 }
