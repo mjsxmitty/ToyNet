@@ -92,12 +92,12 @@ T FindVer5(T first, T last, const Y &val)
 
 
 std::vector<int> FilterVer1(const std::vector<int> &vec, int filter_val, bool (*pred)(int, int));
-//std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt)
+std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt);
 
-template <typename InputIterator, typename OutputIterator,
+template <typename It, typename Ot,
 		  typename ElemType,      typename Comp>
-OutputIterator FilterVer3( InputIterator first, InputIterator last,
-             OutputIterator at, const ElemType &val, Comp pred )
+Ot FilterVer3( It first, It last, Ot at,
+               const ElemType &val, Comp pred )
 {
     while (( first = find_if( first, last, bind2nd( pred, val ))) != last )
     {
@@ -108,17 +108,6 @@ OutputIterator FilterVer3( InputIterator first, InputIterator last,
     return at;
 }
 
-template <typename InputIterator, typename OutputIterator,
-		  typename ElemType,      typename Comp>
-OutputIterator FilterVer4(InputIterator first, InputIterator last,
-             OutputIterator at, const ElemType &val, Comp pred)
-{
-    //std::vector<ElemType> loca_vec(first, last);
-    //sort(loca_vec.begin(), loca_vec.end());
-    // sort(first, last);
-    // auto iter = find_if(first, last, bind2nd(pred, val));
-    
-    // loca_vec.erase(iter, last);
-    return first;
-}
+extern std::vector<int> SubVec(const std::vector<int> &vec, int val);
+
 #endif //
