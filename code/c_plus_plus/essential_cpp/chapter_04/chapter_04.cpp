@@ -14,7 +14,8 @@ void Chapter_04()
     //Practice_4_3();
     //Practice_4_5();
     //Practice_4_7();
-    Practice_4_9();
+    //Practice_4_9();
+    Practice_4_10();
 }
 
 void Example(const ValClass *pvc, ValClass &rvc)
@@ -62,18 +63,18 @@ void Practice_4_7()
     cout << "Triangular Sequence of: " << tri.Length() << " elements\n";
     cout << endl;
 
-//    while (beg != end)
-//    {
-//        cout << *beg << ' ';
-//        ++beg;
-//    }
+    while (beg != end)
+    {
+        cout << *beg << ' ';
+        ++beg;
+    }
     cout << tri;
     cout << endl;
 }
 
 int CountLessThan(const vector<int> &vec, int comp)
 {
-    LessThan lt(comp);
+    LessThan1 lt(comp);
     int count = 0;
 
     for (int ix = 0; ix < vec.size(); ++ix)
@@ -85,14 +86,14 @@ int CountLessThan(const vector<int> &vec, int comp)
 
 void PrintLessThan(const vector<int> &vec, int comp, ostream &os = cout)
 {
-    LessThan lt(comp);
+    LessThan1 lt(comp);
     auto it = vec.begin(), it_end = vec.end();
 
-//    while ((it = find(it, it_end, lt)) != it_end)
-//    {
-//        os << *it << ' ';
-//        ++it;
-//    }
+    while ((it = find_if(it, it_end, lt)) != it_end)
+    {
+        os << *it << ' ';
+        ++it;
+    }
 }
 
 void Practice_4_9()
@@ -105,5 +106,12 @@ void Practice_4_9()
 
     cout << CountLessThan(vec, comp_val);
     cout << endl;
-    //PrintLessThan(vec, comp_val, cout);
+    PrintLessThan(vec, comp_val, cout);
+    cout << endl;
+}
+
+void Practice_4_10()
+{
+    Triangular tri(6, 3);
+    cout << tri << endl;
 }
