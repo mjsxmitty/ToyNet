@@ -202,15 +202,6 @@ bool NumSeqVer1::CheckIntegrity(int pos) const
         return false;
     }
 
-    if (pos > elem_->size())
-    {
-        cout << "check integrity: calculating "
-             << pos - elem_->size() << " additional elem_ents\n";
-
-        //指定队列生产元素
-        //(this->*pmf_)(pos);//
-    }
-
     return true;
 }
 
@@ -230,6 +221,15 @@ int NumSeqVer1::Elem(int pos)
 {
     if (!CheckIntegrity(pos))
         return 0;
+
+    if (pos > elem_->size())
+    {
+        cout << "check integrity: calculating "
+             << pos - elem_->size() << " additional elem_ents\n";
+
+        //指定队列生产元素
+        (this->*pmf_)(pos);//
+    }
     return (*elem_)[pos - 1];
 }
 
