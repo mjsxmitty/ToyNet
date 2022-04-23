@@ -4,7 +4,8 @@ project(blp VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(blp main.c)
+add_executable(blp main.c
+                    chapter_03/chapter_03.h chapter_03/chapter_03.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
