@@ -4,8 +4,9 @@
 #include <algorithm>
 
 #include "chapter_04.h"
-#include "triangular.h"
-#include "triangular_iterator.h"
+#include "../util/triangular.h"
+#include "../util/triangular_iterator.h"
+#include "../util/num_seq1.h"
 
 using namespace std;
 
@@ -15,7 +16,8 @@ void Chapter_04()
     //Practice_4_5();
     //Practice_4_7();
     //Practice_4_9();
-    Practice_4_10();
+    //Practice_4_10();
+    Practice_4_11();
 }
 
 void Example(const ValClass *pvc, ValClass &rvc)
@@ -114,4 +116,33 @@ void Practice_4_10()
 {
     Triangular tri(6, 3);
     cout << tri << endl;
+}
+
+void Display(ostream &os, const NumSeqVer1 &ns,
+             int pos, int elem_val)
+{
+    os << "The element at position: " << pos
+        << " for the: " << ns.WhatAmI()
+        << " sequence is: " << elem_val 
+        << endl;
+}
+
+void Practice_4_11()
+{
+    NumSeqVer1 ns;
+    //cout << ns << endl;
+
+    const int pos = 8;
+    for (int ix = 1; ix < NumSeqVer1::NumOfSequence() ; ++ix)
+    {
+        ns.SetSequence(NumSeqVer1::SeqType(ix));
+        int val = ns.Elem(pos);
+        //Display(cout, ns, pos, val);
+
+        if (ns.IsElem(val))
+            cout << "ok!\n";
+    }
+
+    // NumSeqVer1 ns1(1, 8, NumSeqVer1::NS_TRI);
+    // cout << ns1 << endl;
 }

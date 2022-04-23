@@ -1,7 +1,7 @@
 
 
 #include "chapter_02.h"
-#include "../num_seq/num_seq.h"
+#include "../util/num_seq.h"
 
 #include <iostream>
 #include <vector>

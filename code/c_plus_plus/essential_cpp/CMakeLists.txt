@@ -7,14 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(essential 
                 main.cpp
-                num_seq/num_seq.h num_seq/num_seq.cpp
+                util/num_seq.h util/num_seq.cpp
                 chapter_02/chapter_02.h chapter_02/chapter_02.cpp
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
-                chapter_04/stack.h chapter_04/stack.cpp
-                chapter_04/matrix.h chapter_04/matrix.cpp
-                chapter_04/triangular.h chapter_04/triangular.cpp
-                chapter_04/triangular_iterator.h chapter_04/triangular_iterator.cpp
-                chapter_04/num_seq1.h chapter_04/num_seq1.cpp
+                util/stack.h util/stack.cpp
+                util/matrix.h util/matrix.cpp
+                util/triangular.h util/triangular.cpp
+                util/triangular_iterator.h util/triangular_iterator.cpp
+                util/num_seq1.h util/num_seq1.cpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp
                 chapter_05/libmat.h chapter_05/libmat.cpp
                 chapter_05/book.h chapter_05/book.cpp
