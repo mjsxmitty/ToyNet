@@ -8,7 +8,8 @@ vector<int> Fibon3::elems_;
 
 //显示调用基类
 Fibon3::Fibon3(int len, int beg) :
-                NumSeq3(len, beg, elems_){}
+                // NumSeq3(len, beg, elems_){}
+                NumSeq3(len, beg, elems_, "Fibon3"){}
 
 Fibon3::Fibon3(const Fibon3 &rhs)
         : NumSeq3(rhs) {}
@@ -23,6 +24,7 @@ Fibon3& Fibon3::operator=(const Fibon3 &rhs)
 
 void Fibon3::GenElems(int pos) const
 {
+    cout << "Fibon3::GenElems(int )" << endl;
     if (elems_.empty())
     {
         elems_.push_back(1);

@@ -14,7 +14,10 @@ public:
     Fibon3& operator=(const Fibon3 &rhs);
 public:
     Fibon3(int len = 1, int beg = 1);
-    const char* WhatAmI() const { return "fibonacci"; }
+    // const char* WhatAmI() const { return "fibonacci"; }
+    //const char* WhatAmI() { return "fibonacci"; }
+
+    Fibon3* Clone() { return new Fibon3(*this); }
 private:
     void    GenElems(int pos) const;
 private:
