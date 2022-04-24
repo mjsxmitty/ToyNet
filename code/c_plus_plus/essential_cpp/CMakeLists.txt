@@ -20,4 +20,9 @@ add_executable(essential
                 chapter_05/book.h chapter_05/book.cpp
                 chapter_05/audio_book.h chapter_05/audio_book.cpp
                 chapter_05/chapter_05.h chapter_05/chapter_05.cpp
+                util/num_seq2.h util/num_seq2.cpp
+                util/fibon.h util/fibon.cpp
+                util/fibon3.h util/fibon3.cpp
+                util/num_seq2.h util/num_seq2.cpp
+                util/num_seq3.h util/num_seq3.cpp
                 )
