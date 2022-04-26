@@ -9,7 +9,10 @@
 
 void Chapter_03()
 {
-    chapter_3_4_3();
+    //chapter_3_4_3();
+    //chapter_3_6_2();
+
+    chapter_3_6_3();
 }
 
 void chapter_3_4_1()
@@ -46,7 +49,38 @@ void chapter_3_4_3()
     int nread;
     while ((nread = read(in_fd, buf, 1024)) > 0)
         write(out_fd, buf, nread);
-    
+   
     printf("write finished.");
+    exit(0);
+}
+
+void chapter_3_6_2()
+{
+    char    s[256];
+    int     n;
+    float   f;
+    char    c;
+
+    //scanf("hello, %d,%g, %c, %[^\n]", &n, &f, &c, s);
+    //printf("%s\n%d\n%g\n%c\n", s, n, f, c);
+
+    char sss[256];
+    //sprintf(sss, "%s-%d-%g-%c\n", s, n, f, c);
+    sprintf(sss, "%s-%d-%g-%c\n", "ss123", 9, 3.14, 'a');
+    printf("%s\n", sss);
+}
+
+void chapter_3_6_3()
+{
+    int c;
+    FILE *in, *out;
+
+    in = fopen("Makefile", "r");
+    while ((c = fgetc(in)) != EOF)
+        fputc(c, stdout);
+    
+    printf("%d\n", feof(in));
+    printf("file id = %d\n", fileno(in));
+    fclose(in);
     exit(0);
 }

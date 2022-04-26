@@ -7,5 +7,7 @@ void Chapter_03();
 void chapter_3_4_1();
 void chapter_3_4_2();
 void chapter_3_4_3();
+void chapter_3_6_2();
+void chapter_3_6_3();
 
 #endif //
