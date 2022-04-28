@@ -7,6 +7,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <sys/mman.h>
+#include <errno.h>
 
 #include "chapter_03.h"
 
@@ -15,7 +16,8 @@ void Chapter_03(int argc, char **argv)
     //chapter_3_4_3();
     //chapter_3_6_2();
     //chapter_3_6_3();
-    chapter_3_8(argc, argv);
+    //chapter_3_8(argc, argv);
+    chapter_3_11();
 }
 
 void chapter_3_4_1()
@@ -139,7 +141,25 @@ typedef struct {
     char    str[24];
 } RECORD;
 
-#define NRECORDS    (100)
+#define NRECORDS    (10)
+
+void PrintFile(const char *s)
+{
+    RECORD record;
+
+    FILE *fp = fopen(s, "r+");
+    if (fp == NULL) {
+        fprintf(stderr, "open file failed.\n");
+        return ;
+    }
+
+    for (int i = 0; i < NRECORDS; ++i) {
+        fread(&record, sizeof (RECORD), 1, fp);
+        printf("%d ---> %s\n", record.integer, record.str);
+    }
+    printf("\n\n");
+    fclose(fp);
+}
 
 void chapter_3_11()
 {
@@ -153,34 +173,46 @@ void chapter_3_11()
         return ;
     }
 
-    //Ð´ÈëÊý¾Ý
+    //å†™æ–‡ä»¶
     for (int i = 0; i < NRECORDS; ++i) {
         record.integer = i;
         sprintf(record.str, "RECORE-%d", i);
         fwrite(&record, sizeof (RECORD), 1, fp);
     }
     fclose(fp);
+    PrintFile("record.dat");
 
-    //ÐÞ¸ÄÊý¾Ý
+    //ä¿®æ”¹æ–‡ä»¶
     fp = fopen("record.dat", "r+");
     if (fp == NULL) {
         fprintf(stderr, "can not open record file!");
         return ;
     }
 
-    fseek(fp, 43 * sizeof (RECORD), SEEK_SET);
+    fseek(fp, 3 * sizeof (RECORD), SEEK_SET);
     //fread(&record, sizeof (RECORD), 1, fp);
     record.integer = 10000;
     sprintf(record.str, "RECORE-%d", record.integer);
     fwrite(&record, sizeof (RECORD), 1, fp);
     fclose(fp);
+    PrintFile("record.dat");
 
-    //Ó³Éä
+    //æ˜ å°„
     f = open("record.dat", O_RDWR);
     if (f == -1) {
         printf("open file failed, errno: %d\n", errno);
         return ;
     }
 
-   // mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), );
+    mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), 
+            PROT_READ | PROT_WRITE, MAP_SHARED, f, 0);
+    mapped[3].integer = 111;
+    sprintf(mapped[3].str, "RECORD-%d", mapped[3].integer);
+    msync((void *)mapped, NRECORDS * sizeof(RECORD), MS_ASYNC);
+    munmap((void *)mapped, NRECORDS * sizeof(RECORD));
+    close(f);
+    PrintFile("record.dat");
+
+    exit(0);
+
 }
