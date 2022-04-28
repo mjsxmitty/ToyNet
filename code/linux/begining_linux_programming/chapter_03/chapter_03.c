@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>
+#include <sys/mman.h>
 
 #include "chapter_03.h"
 
@@ -131,4 +132,55 @@ void chapter_3_8(int argc, char **argv)
     printf("%s\n", strerror(0));
     //printf("%d\n", );
     perror("prodram");
+}
+
+typedef struct {
+    int     integer;
+    char    str[24];
+} RECORD;
+
+#define NRECORDS    (100)
+
+void chapter_3_11()
+{
+    RECORD  record, *mapped;
+    FILE    *fp;
+    int     f;
+
+    fp = fopen("record.dat", "w+");
+    if (fp == NULL) {
+        fprintf(stderr, "can not open record file!");
+        return ;
+    }
+
+    //写入数据
+    for (int i = 0; i < NRECORDS; ++i) {
+        record.integer = i;
+        sprintf(record.str, "RECORE-%d", i);
+        fwrite(&record, sizeof (RECORD), 1, fp);
+    }
+    fclose(fp);
+
+    //修改数据
+    fp = fopen("record.dat", "r+");
+    if (fp == NULL) {
+        fprintf(stderr, "can not open record file!");
+        return ;
+    }
+
+    fseek(fp, 43 * sizeof (RECORD), SEEK_SET);
+    //fread(&record, sizeof (RECORD), 1, fp);
+    record.integer = 10000;
+    sprintf(record.str, "RECORE-%d", record.integer);
+    fwrite(&record, sizeof (RECORD), 1, fp);
+    fclose(fp);
+
+    //映射
+    f = open("record.dat", O_RDWR);
+    if (f == -1) {
+        printf("open file failed, errno: %d\n", errno);
+        return ;
+    }
+
+   // mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), );
 }
