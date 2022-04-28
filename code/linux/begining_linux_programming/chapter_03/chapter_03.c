@@ -4,15 +4,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <dirent.h>
+#include <string.h>
 
 #include "chapter_03.h"
 
-void Chapter_03()
+void Chapter_03(int argc, char **argv)
 {
     //chapter_3_4_3();
     //chapter_3_6_2();
-
-    chapter_3_6_3();
+    //chapter_3_6_3();
+    chapter_3_8(argc, argv);
 }
 
 void chapter_3_4_1()
@@ -83,4 +85,50 @@ void chapter_3_6_3()
     printf("file id = %d\n", fileno(in));
     fclose(in);
     exit(0);
+}
+
+void PrintDir(void *dir, int depth)
+{
+    printf("%s\n", dir);
+    DIR             *dp;
+    struct dirent   *entry;
+    struct stat     stat_buf;
+
+    if ((dp = opendir(dir)) == NULL)
+    {
+        fprintf(stderr, "cannot open direntry: %s\n", dir);
+        return ;
+    }
+
+    chdir(dir);
+    while ((entry = readdir(dp)) != NULL)
+    {
+        lstat(entry->d_name, &stat_buf);
+        if (S_ISDIR(stat_buf.st_mode))
+        {
+            if (strcmp(".", entry->d_name) == 0||
+                strcmp("..", entry->d_name) == 0)
+                    continue;
+            
+            //printf("dir name:%s\n", entry->d_name);
+            PrintDir(entry->d_name, depth + 4);
+        }
+        else
+            printf("%*s%s\n", depth, "", entry->d_name);
+    }
+}
+
+void chapter_3_8(int argc, char **argv)
+{
+    char *top_dir = ".";
+    if (argc >= 2)
+        top_dir = argv[1];
+
+    printf("list dir...\n");
+    PrintDir(top_dir, 0);
+    printf("list dir done\n");
+
+    printf("%s\n", strerror(0));
+    //printf("%d\n", );
+    perror("prodram");
 }
