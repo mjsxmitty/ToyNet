@@ -207,6 +207,6 @@ int Practice_28_8()
     close(fd);
 
     p[0] = 0x30313233;
-    munmap(p, 6);
+    munmap(p, 6);   //解除映射
     return 0;
 }
