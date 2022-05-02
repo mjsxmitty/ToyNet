@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
     printf("Hello world\n");
-    Chapter_28();
+    Chapter_28(argc, argv);
     
     return 0;
 }
