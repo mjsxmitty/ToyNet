@@ -11,10 +11,10 @@ void Chapter_02()
     //Practice_2_2_1();
     //Practice_2_2_2();
     //Practice_2_2_4();
-    //Practice_2_3_2();
+    Practice_2_3_2();
     //Practice_2_3_3();
     //Practice_2_5_1();
-    Practice_2_5_3();
+    //Practice_2_5_3();
 
     //Homework_2_35();
 }
@@ -65,20 +65,26 @@ void Practice_2_2_1()
     int v3 = 1024;  //拷贝初始化      
 
     //此时aa赋值给cc表示的是aa的值可能超过范围，报警
-    //const double aa = 12.34;
+    const double aa = 12.34;
     //int cc{aa};
 
     double v4{33.43};       //不存在丢失信息的风险;同类型转换
     //int v4 = {1024.12};   //丢失信息风险（类型的范围超过最大值）
+    int v5(3.14);           //丢失信息
 }
 
-/*函数内部初始化extern变量报错*/
 extern int init = 2;    //定义
 extern int initt;       //声明
+int initt = 111;        //定义
 void Practice_2_2_2()
 {
-    //函数内部初始化extern变量有错
+    /*函数内部初始化extern变量报错*/
     //extern int init = 2;
+
+    initt = 1;
+
+    extern int initt;   //可以声明多次
+    cout << initt << endl;
 }
 
 /*名字的作用域*/
@@ -89,6 +95,7 @@ void Practice_2_2_4()
     std::cout << g_reused << std::endl;
 
     //内部同名变量屏蔽外部变量
+    //重定义
     int g_reused = 0;
     std::cout << g_reused << std::endl;
 
@@ -96,21 +103,36 @@ void Practice_2_2_4()
     std::cout << ::g_reused << std::endl;
 }
 
+#include <cstdlib>
+
 void Practice_2_3_2()
 {
     /* 类型不一致 */
     int val = 0;
     //int *ptr = val;
 
+    //空指针初始化方法
     int *ptr = 0;
     int *pptr = nullptr;
     int *ppptr = NULL;
+
+    //void* 指针
+    double obj = 3.14, *pd = &obj;
+    void *pv = &obj;
+    pv = pd;        //可以指向其他类型
+    //pd = pv;
+    //*pv = 3.333;  //不能访问数据
+    if (pv < pd)
+        ;
+
+    cout << "true "  << pv
+         << ", " << pd << endl;
 }
 
 /* 复合类型声明 */
 void Practice_2_3_3()
 {
-    //多级指针
+    /* 多级指针 */
     int ival = 1024;
     int *pi = &ival;
     int **ppi = &pi;
@@ -130,7 +152,7 @@ void Practice_2_3_3()
 
     /* 指向指针的引用 */
     int val = 42, val2 = 0, *ptr = &val;
-    int *&pref = ptr;       //从左向右理解声明
+    int *&pref = ptr;       //从右向左理解声明
     cout << "val: " << *pref << endl;
 
     pref = &val2;
