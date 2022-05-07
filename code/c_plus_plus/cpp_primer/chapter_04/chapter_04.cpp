@@ -11,12 +11,12 @@ using namespace std;
 
 void Chapter_04()
 {
-    //Practice_4_2();
+    Practice_4_2();
     //Practice_4_5();
     //Practice_4_7();
     //Practice_4_9();
     //Practice_4_8();
-    Practice_4_11_2();
+    //Practice_4_11_2();
     //Practice_4_11_3();
 }
 
@@ -24,6 +24,9 @@ void Chapter_04()
 //TODO...
 void Practice_4_2()
 {
+    int i = 1;
+    cout << -i << ", " << i << endl;    //-返回的是副本
+
     short short_value = 32767;
     short_value += 1;
     cout << "short value: " << short_value << endl;

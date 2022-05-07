@@ -17,14 +17,14 @@ public:
     int             BegPos() const { return beg_pos_; }
     int             Elem(int pos) const;
     virtual const char* WhatAmI() const { return typeid(*this).name(); }
-    // virtual const char*     WhatAmI() const = 0;//纯虚函数
+    // virtual const char*     WhatAmI() const = 0;//绾櫄鍑芥暟
     static int              max_elems() { return 64; }
     std::ostream&   Print(std::ostream &os = std::cout) const;
 
     virtual NumSeq3* Clone() = 0;
 //protected:
 public:
-    virtual void    GenElems(int pos) const = 0; //纯虚函数
+    virtual void    GenElems(int pos) const = 0; //绾櫄鍑芥暟
     bool    CheckIntegrity(int pos, int size) const;
 protected:
     NumSeq3(int len, int beg, std::vector<int> &re, const std::string &s) : 
