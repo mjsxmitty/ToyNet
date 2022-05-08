@@ -16,12 +16,14 @@ const int NUM = 100;
 void Chapter_03()
 {
     //Practice_3_2_3();
+    //Homework_3_8();
+    Homework_3_10();
     //Practice_3_3_1();
     //Practice_3_3_3();
     //Homework_20();
     //Practice_3_4_1();
     //Practice_3_5_1();
-    Practice_3_5_3();
+    //Practice_3_5_3();
     //Practice_3_5_4();
     //Homework43_44_45();
 }
@@ -65,6 +67,46 @@ void Practice_3_2_3()
         if (n < hex_digits.size())
             result += hex_digits[n];
     cout << "You hex number is: " << result;
+}
+
+void Homework_3_8()
+{
+    string s;
+    cout << "please enter a series word, include space: ";
+    getline(cin, s);
+
+    int i = 0;
+    while (s[i] != '\0')
+    {
+        if (!isspace(s[i]))
+            s[i] = 'X';
+
+        ++i;
+    }
+    cout << s << endl;
+    return ;
+}
+
+void Homework_3_10()
+{
+    string s;
+    cout << "please enter a series word, include character: ";
+    getline(cin, s);
+
+    for (auto c : s)
+    {
+        if (!ispunct(c))
+            cout << c;
+    }
+
+    string ret;
+    for (decltype(s.size()) i = 0; i != s.size(); ++i)
+    {
+        if (!ispunct(s[i]))
+            ret += s[i];
+    }
+    cout << ret;
+    return;
 }
 
 /* 列表初始值还是元素数量 */

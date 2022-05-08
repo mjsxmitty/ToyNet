@@ -6,6 +6,9 @@
 void Chapter_03();
 
 void Practice_3_2_3();
+void Homework_3_8();
+void Homework_3_10();
+
 void Practice_3_3_1();
 void Practice_3_3_3();
 void Practice_3_4_1();
