@@ -20,12 +20,12 @@ void Chapter_04()
     //Practice_4_11_3();
 }
 
-//婧㈠嚭
-//TODO...
+
 void Practice_4_2()
 {
     int i = 1;
-    cout << -i << ", " << i << endl;    //-返回的是副本
+    cout << -i << ", " << +i << ", " << i << endl;    //-返回的是副本
+    //cout << +i << ", " << i << endl;
 
     short short_value = 32767;
     short_value += 1;
