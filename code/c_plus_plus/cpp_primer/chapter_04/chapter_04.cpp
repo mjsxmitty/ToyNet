@@ -122,10 +122,17 @@ void Practice_4_11_2()
 
 void Practice_4_11_3()
 {
+    /* 保证转换后指向类型与原类型相同 */
+    double d = 3.14;
+    void    *vpd = &d;
+    //double  *dpd = static_cast<int *>(vpd);
+    double  *dpd = static_cast<double *>(vpd);
+
     const char  *pc = "hello";
     char        *p = const_cast<char *>(pc);
     //*p = "world";     //通过p写值是未定义行为
 
+    //string tmp = const_cast<string>(pc);
     string s = static_cast<string>(pc);
     cout << s << endl;
 

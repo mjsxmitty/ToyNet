@@ -34,6 +34,17 @@ size_t FuncCalls()
     return ++cnt;
 }
 
+/* 函数最外层作用域中局部变量不能与函数形参命名一样 */
+int Practice_6_1(int i)
+{
+    //同一作用域
+    //int i = 1;
+    {
+        int i = 1;
+    }
+    return i;
+}
+
 /*局部静态函数*/
 void Practice_6_1_1()
 {

@@ -31,7 +31,7 @@ void Practice_5_3_2()
         case true:
             //string name;
             //int i = 10;
-            int ival;
+            int ival;   //没有被初始化
             break;
         case false:
         {
