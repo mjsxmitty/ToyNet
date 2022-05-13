@@ -18,10 +18,10 @@ void Chapter_06()
 {
     //Practice_6_1_1();
     //Practice_6_1_3();
-    //Practice_6_2_6();
+    Practice_6_2_6();
     //Practice_6_2_2();
     //Practice_6_3_2();
-    Practice_6_3_3();
+    //Practice_6_3_3();
     //Homework_6_33();
     //Practice_6_7();
 
@@ -144,15 +144,13 @@ void Practice_6_2_2()
 void Practice_6_2_6()
 {
     string expected = "description", actual = "some other case";
-    if (expected != actual)
-        ErrorMsg({"functionX", expected, actual});
-    else
-        ErrorMsg({"functionX", "okay"});
-
-    if (expected != actual)
-        ErrorMsg(ErrCode(1), {"functionX", expected, actual});
-    else
-        ErrorMsg(ErrCode(0), {"functionX", "okay"});
+    ErrorMsg({"functionX", expected, actual});
+    cout << endl;
+    ErrorMsg({"functionX", "okay"});
+    cout << endl;
+    ErrorMsg(ErrCode(1), {"functionX", expected, actual});
+    cout << endl;
+    ErrorMsg(ErrCode(0), {"functionX", "okay"});
 }
 
 

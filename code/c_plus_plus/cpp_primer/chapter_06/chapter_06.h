@@ -26,7 +26,7 @@ struct ErrCode
     std::string Msg()
     {
         std::stringstream s;
-        s << "ErrCode " << num;
+        s << "ErrCode: " << num;
         return s.str();
     }     
     int num;    
