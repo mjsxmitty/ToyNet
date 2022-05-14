@@ -1,3 +1,0 @@
-﻿  Source.cpp
-F:\C++\12\ptr\ptr\Source.cpp(278,11): warning C4834: discarding return value of function with 'nodiscard' attribute
-  ptr.vcxproj -> F:\C++\12\ptr\Debug\ptr.exe

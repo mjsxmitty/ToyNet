@@ -1,1 +1,0 @@
-g++ -o "/home/renzhai/projects/epoll/bin/x64/Debug/epoll.out" -Wl,--no-undefined -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack /home/renzhai/projects/epoll/obj/x64/Debug/main.o
