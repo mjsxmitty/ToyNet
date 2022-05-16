@@ -175,18 +175,18 @@ void Practice_6_3_2()
 }
 
 /*数组类型相关*/
-int Arr[10];
-int *pArr[10];
-int (*p)[10] = &Arr;
+int Arr[10];            // int  数组
+int *pArr[10];          // int* 数组
+int (*p)[10] = &Arr;    // 指向数组的指针
 
 /*数组类型别名*/
 //using arrT = int [5];
 typedef int arrT[5];
 
 /*返回指向数组相关类型的函数*/
-arrT* Func(int i);
-auto Func(int i) -> int (*)[5];
-int (*Func(int i))[5];
+arrT*   Func(int i);                //类型别名
+auto    Func(int i) -> int (*)[5];  //尾置类型
+int     (*Func(int i))[5];          //直接声明
 
 int odd[] = {1,3,5,7,9};
 int even[] = {0,2,4,6,8};
@@ -212,7 +212,7 @@ int (&ArrRef(int i))[5]
     return (i % 2) ? odd : even;
 }
 
-/*返回数组指针/引用*/
+/* 返回数组指针&引用的函数 */
 void Practice_6_3_3()
 {
     int* p = ElemPtr(6);
@@ -227,9 +227,15 @@ void Practice_6_3_3()
     cout << endl;
 
     int (&arrR)[5] = ArrRef(4);
-    //arrT& pppp = ArrRef(6);
     for (size_t i = 0; i < 5; ++i)
         cout << arrR[i] << ' ';
+    cout << endl;
+
+    arrT& pppp = ArrRef(6);
+    for (size_t i = 0; i != 5; ++i)
+    {
+        cout << pppp[i] << ' ';
+    }
     cout << endl;
 }
 
