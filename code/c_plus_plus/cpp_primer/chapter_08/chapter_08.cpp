@@ -14,9 +14,9 @@ using namespace std;
 
 void Chapter_08()
 {
-    //Practice_8_1_2();
+    Practice_8_1_2();
     //Practice_8_3_2();
-    Homework_8_2();
+    //Homework_8_2();
 }
 
 void Read()
@@ -26,39 +26,40 @@ void Read()
 
 void Off()
 {
+    // clear带参数版本表示设置新的标志位
     cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
 }
 
 /*条件状态*/
 void Practice_8_1_2()
 {
-    cout << "before read" << endl;
-    if (cin.good()) cout << "cin's good" << endl;
-    if (cin.bad()) cout << "cin's bad" << endl;
-    if (cin.fail()) cout << "cin's fail" << endl;
-    if (cin.eof()) cout << "cin's eof" << endl;
+    cout << "before read: " << endl;
+    if (cin.good()) cout << "cin's good"    << endl;
+    if (cin.bad())  cout << "cin's bad"     << endl;
+    if (cin.fail()) cout << "cin's fail"    << endl;
+    if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
-    cout << cout.rdstate() << endl;
+//    cout << cout.rdstate() << endl;
     cout << endl;
 
     Read();
-    cout << "after read" << endl;
-    if (cin.good()) cout << "cin's good" << endl;
-    if (cin.bad()) cout << "cin's bad" << endl;
-    if (cin.fail()) cout << "cin's fail" << endl;
-    if (cin.eof()) cout << "cin's eof" << endl;
+    cout << "after read: " << endl;
+    if (cin.good()) cout << "cin's good"    << endl;
+    if (cin.bad())  cout << "cin's bad"     << endl;
+    if (cin.fail()) cout << "cin's fail"    << endl;
+    if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
-    cout << cout.rdstate() << endl;
+//    cout << cout.rdstate() << endl;
     cout << endl;
 
     Off();
-    cout << "after off" << endl;
-    if (cin.good()) cout << "cin's good" << endl;
-    if (cin.bad()) cout << "cin's bad" << endl;
-    if (cin.fail()) cout << "cin's fail" << endl;
-    if (cin.eof()) cout << "cin's eof" << endl;
+    cout << "after off: " << endl;
+    if (cin.good()) cout << "cin's good"    << endl;
+    if (cin.bad())  cout << "cin's bad"     << endl;
+    if (cin.fail()) cout << "cin's fail"    << endl;
+    if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
-    cout << cout.rdstate() << endl;
+//    cout << cout.rdstate() << endl;
 }
 
 struct PersonInfo

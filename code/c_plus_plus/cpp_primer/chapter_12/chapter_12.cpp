@@ -21,10 +21,10 @@ void Chapter_12(int argc, char **argv)
     Homework_12_20(argc, argv);
 }
 
-/*shared_ptr类*/
+/* shared_ptr类 */
 void Practice_12_1_1()
 {
-    shared_ptr<string>  p1;
+    shared_ptr<string>      p1;
     shared_ptr<list<int>>   p2;
 
     // if (p1 && p1->empty())
