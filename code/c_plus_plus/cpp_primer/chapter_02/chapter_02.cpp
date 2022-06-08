@@ -11,7 +11,7 @@ void Chapter_02()
     //Practice_2_2_1();
     //Practice_2_2_2();
     //Practice_2_2_4();
-    Practice_2_3_2();
+    //Practice_2_3_2();
     //Practice_2_3_3();
     //Practice_2_5_1();
     //Practice_2_5_3();
@@ -78,9 +78,10 @@ extern int initt;       //声明
 int initt = 111;        //定义
 void Practice_2_2_2()
 {
-    /*函数内部初始化extern变量报错*/
+    /* 函数内部初始化extern变量报错 */
     //extern int init = 2;
-
+    
+    //int initt = 2;
     initt = 1;
 
     extern int initt;   //可以声明多次
@@ -278,7 +279,9 @@ void Practice_2_5_1()
     cout << "val: " << *cstr << endl;
 
     //ps是一个指针(*ps),指向一个const常量指针（pstring）
+    const char ch = 'c';
     const pstring *ps = &cstr;
+    //ps = &ch;
     const pstring ccstr = &temp;
     ps = &ccstr;
     cout << "val: " << **ps << endl;
@@ -298,7 +301,6 @@ void Practice_2_5_2()
     //auto c = 'a', b = 3.123;
 
     /* 复合类型、常量和auto */
-    //使用引用对象的类型
     int &r = i;
     auto a = r;     //int
 
@@ -306,9 +308,12 @@ void Practice_2_5_2()
     const int ci = i, &cr = ci;
     auto b = ci;    //int
     b = 10;
+
     auto c = cr;    // auto 忽略顶层const(ci)
+
     auto d = &i;    // int *
     *d = 10;
+
     auto e = &ci;   // const int*(底层)
     //*e = 1;
     e = &i;
@@ -318,6 +323,7 @@ void Practice_2_5_2()
 
     auto &g = ci;   //const引用保留顶层属性
     //g = 10;
+
     //auto &h = 42;
     const auto &j = 42;
 
@@ -344,6 +350,9 @@ void Homework_2_35()
 void Practice_2_5_3()
 {
     const int ci = 1, &cj = ci;
+    decltype (ci) x = 0;
+    //x = 1;
+
     decltype (cj) y = ci;
     //y = 101;
     cout << cj << endl;
