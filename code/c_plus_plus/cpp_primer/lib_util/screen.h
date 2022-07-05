@@ -52,6 +52,8 @@ public:
 
     /* 7-3-1-5 可变数据成员 */
     void SomeMember() const;
+
+    int GetSomeNum() const { return func_call_num_; }
 public:
     /* 7-3-2-1 返回*this成员函数 */
     Screen& Set(char c);

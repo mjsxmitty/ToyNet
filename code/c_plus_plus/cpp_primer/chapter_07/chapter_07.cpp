@@ -4,14 +4,18 @@
 #include "chapter_07.h"
 #include "../lib_util/account.h"
 #include "../lib_util/sales_data.h"
+#include "../lib_util/screen.h"
+#include "gz_screen.h"
 
 using namespace std;
 
 void Chapter_07()
 {
+    GZPractice_7_3_2();
     //Homework_7_11();
     //Practice_7_6();
-    Homework_7_58();
+    //Practice_7();
+    //Homework_7_58();
 }
 
 void Homework_7_11()
@@ -29,6 +33,14 @@ NoDefault no(1);
 C cc;
 C ccc(10);
 //B bbb;
+
+void Practice_7()
+{
+    Screen s;
+    s.SomeMember();
+    s.SomeMember();
+    cout << s.GetSomeNum() << endl;
+}
 
 /* 7-5-4 类型的隐式转换 */
 void Practice_7_5_4()

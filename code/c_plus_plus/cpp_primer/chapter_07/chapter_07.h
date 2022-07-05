@@ -9,7 +9,7 @@
 void Chapter_07();
 void Practice_7_5_4();
 void Practice_7_6();
-
+void Practice_7();
 void Homework_7_11();
 
 /* 7-3-4 友元声明和作用域 */

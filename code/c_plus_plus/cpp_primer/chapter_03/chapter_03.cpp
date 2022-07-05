@@ -17,11 +17,13 @@ void Chapter_03()
 {
     //Practice_3_2_3();
     //Homework_3_8();
-    Homework_3_10();
+    //Homework_3_10();
     //Practice_3_3_1();
     //Practice_3_3_3();
     //Homework_20();
     //Practice_3_4_1();
+    //Homework_3_22();
+    Homework_2_23();
     //Practice_3_5_1();
     //Practice_3_5_3();
     //Practice_3_5_4();
@@ -307,6 +309,49 @@ void Practice_3_4_1()
     for (auto beg = str.begin(); beg != str.end(); ++beg)
         *beg = '*';
     cout << "auto for loop assign a new value to str: " << str  << endl;
+}
+
+void Homework_3_22()
+{
+    vector<string>  s_vec;
+    string          str;
+
+    while (getline(cin, str))
+    {
+        s_vec.push_back(str);
+    }
+
+    for (auto it = s_vec.begin(); it != s_vec.end() && !it->empty(); ++it)
+    {
+        for (auto it2 = it->begin(); it2 != it->end(); ++it2)
+            *it2 = toupper(*it2);
+        cout << *it << endl;
+    }
+
+    //return 0;
+}
+
+void Homework_2_23()
+{
+    vector<int> ivec;
+    srand((unsigned)time(NULL));
+
+    for (int i = 0; i != 10; ++i)
+    {
+        ivec.push_back(rand() % 100);
+    }
+
+    cout << "after input: " << endl;
+    for (auto cit = ivec.cbegin(); cit != ivec.cend(); ++cit)
+    {
+        cout << *cit << ' ';
+    }
+    cout << endl;
+
+    for (auto cit = ivec.cbegin(); cit != ivec.cend(); ++cit)
+    {
+        cout << *cit * *cit << ' ';
+    }
 }
 
 void Practice_3_5_1()

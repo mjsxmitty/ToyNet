@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <initializer_list>
+#include <cassert>
 
 using std::initializer_list;
 using std::vector;
@@ -18,11 +19,14 @@ void Chapter_06()
 {
     //Practice_6_1_1();
     //Practice_6_1_3();
-    Practice_6_2_6();
+    //Practice_6_2_6();
     //Practice_6_2_2();
     //Practice_6_3_2();
     //Practice_6_3_3();
     //Homework_6_33();
+    //Practice_6_5_1();
+    //Practice_6_5_2();
+    Practice_6_5_3();
     //Practice_6_7();
 
     //Practice();
@@ -256,6 +260,50 @@ void Homework_6_33()
     PrintVec(local_vec, 0);
 }
 
+sz wd = 111;
+char def = '*';
+sz ht()
+{
+    return 123;
+}
+
+std::string Screen2(sz = ht(), sz = wd, char = def);
+
+string Screen1(sz param1, sz param2, char c)
+{
+    cout << param1 << ' ' << param2 << ' ' << c << endl;
+}
+
+string Screen2(sz param1, sz param2, char c)
+{
+    cout << param1 << ' ' << param2 << ' ' << c << endl;
+}
+void Practice_6_5_1()
+{
+
+    Screen1(10);
+
+    def = '#';
+    //sz wd = 1;
+
+    Screen2();
+}
+
+constexpr int NewSize() {return 10;}
+constexpr size_t Scale(size_t cnt) {return  NewSize() * cnt;}
+void Practice_6_5_2()
+{
+    int Arr[Scale(2)] = {0};
+    int i = 2;
+    //int Arr2[Scale(i)] = {0};
+}
+
+void Practice_6_5_3()
+{
+    //assert(false);
+    assert(true);
+}
+
 string::size_type SumLength(const string &s1, const string &s2)
 {
     return s1.size() + s2.size();
@@ -298,8 +346,7 @@ void Practice_6_7_1()
 decltype(SumLength)* GetFun(const string &);
 auto GetFun(const string &) -> string::size_type (*)(const string &, const string &);
 string::size_type (*GetFun(const string &))(const string &, const string &);
-// using GetFun = string::size_type (*)(const string &, const string &);
-// typedef string::size_type (*GetFun)(const string&, const string &);
+
 decltype(SumLength)* GetFun(const string &fetch)
 {
     if (fetch == "sum")
@@ -354,3 +401,14 @@ void Practice()
 
     return ;
 }
+
+//函数别名
+// using GetFun = string::size_type (*)(const string &, const string &);
+// typedef string::size_type (*GetFun)(const string&, const string &);
+
+//函数类型别名
+typedef string::size_type GetFun1(const string &, const string &);
+typedef decltype (LargerLength) GetFun1;
+//函数指针别名
+typedef string::size_type (*GetFun2)(const string&, const string);
+typedef decltype (LargerLength) *GetFun3;

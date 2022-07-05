@@ -13,6 +13,9 @@ void Practice_6_2_2();
 void Practice_6_2_6();
 void Practice_6_3_2();
 void Practice_6_3_3();
+void Practice_6_5_1();
+void Practice_6_5_2();
+void Practice_6_5_3();
 void Practice_6_7();
 
 void Homework_6_33();
@@ -31,5 +34,12 @@ struct ErrCode
     }     
     int num;    
 };
+
+//默认实参声明
+typedef std::string::size_type sz;
+std::string Screen1(sz, sz, char = ' ');
+//std::string Screen1(sz, sz, char = '*');
+std::string Screen1(sz, sz = 100, char);
+
 
 #endif // __CPP_PRIMER_CHAPTER_06_H__
