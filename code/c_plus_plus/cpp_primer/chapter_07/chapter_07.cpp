@@ -9,6 +9,10 @@
 
 using namespace std;
 
+/***************************7.3.4*********************************/
+
+void GZX::h() { return f(); }
+
 void Chapter_07()
 {
     GZPractice_7_3_2();
@@ -26,8 +30,6 @@ void Homework_7_11()
     SalesData s4(cin);
 }
 
-void Xxx::k() { return f();}
-Xxx::Xxx() {f();}
 
 NoDefault no(1);
 C cc;

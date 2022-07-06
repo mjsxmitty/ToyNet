@@ -46,7 +46,6 @@ GZScreen &GZScreen::Set(pos ht, pos wd, char c)
     return *this;
 }
 
-
 void GZPractice_7_3_2()
 {
     GZScreen my_screen(10, 20, '#');
@@ -54,4 +53,23 @@ void GZPractice_7_3_2()
     my_screen.Move(1, 2).Set('*');
     cout << my_screen.Get() << endl;
 
+   GZScreen my_screen2(3, 5);
+   const GZScreen my_screen3(1, 2);
+   my_screen2.Set('#').Display(cout);
+   cout << endl;
+   my_screen3.Display(cout);
 }
+
+/*****************************************************************/
+/***************************7.3.4*********************************/
+
+ostream& StoreOn(ostream &os, GZScreen &s)
+{
+    os << s.contents_ << endl;
+}
+
+//BitMap& StoreOn(BitMap &b, GZScreen &s)
+//{
+//    b.os << s.contents_ << endl;
+//    return b;
+//}

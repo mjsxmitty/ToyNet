@@ -13,18 +13,20 @@ void Practice_7();
 void Homework_7_11();
 
 /* 7-3-4 友元声明和作用域 */
-struct Xxx
+//7.3.4
+// 友元声明和作用域
+struct GZX
 {
-    Xxx();
-    friend void f() { }     //友元可以定义在类内
-    //X() { f(); }            //error: 未声明
+    friend void f() {}
+    //GZX() { f(); }
+
     void g();
-    void k();
+    void h();
 };
 
-//void Xxx::g() {f();}        //error: 未声明
+//void GZX::g() { return f(); }
 void f();
-//k()实现在源文件...
+
 
 typedef double Money;
 class Acc
