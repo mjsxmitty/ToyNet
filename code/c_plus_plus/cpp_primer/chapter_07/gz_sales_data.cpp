@@ -48,8 +48,9 @@ GZSalesData Add(const GZSalesData &lhs, const GZSalesData &rhs)
 }
 /*****************************************************************/
 /***************************7.1.4*********************************/
-
+/*
 GZSalesData::GZSalesData(istream &is)
 {
     Read(is, *this);
 }
+*/

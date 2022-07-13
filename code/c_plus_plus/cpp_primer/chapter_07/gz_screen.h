@@ -8,6 +8,7 @@
 
 void GZPractice_7_3_1();
 void GZPractice_7_3_2();
+void GZPractice_7_4_1();
 
 class BitMap;
 class GZScreen
@@ -61,6 +62,33 @@ private:
     // 函数重载和友元
     friend std::ostream& StoreOn(std::ostream &, GZScreen &);
     //friend BitMap& StoreOn(BitMap &, GZScreen &);
+
+    //homework 7.33
+    pos Size() const;
+public:
+    // 7.4.1名字查找与作用域
+    // 成员定义中的普通块作用域的名字查找
+    void DummyFcn(pos height_)
+    {
+        cursur_ = width_ * height_;
+        std::cout << cursur_ << std::endl;
+    }
+    void DummyFcn2(pos height_)
+    {
+        //cursur_ = width_ * this->height_;
+        cursur_ = width_ * GZScreen::height_;
+        std::cout << cursur_ << std::endl;
+    }
+    void DummyFcn3(pos height_);
+
+    //当文件中名字的出现处对其进行解析
+    void SetHeight(pos);
+
+    // 7.6
+    //GZScreen& Clear(char c = bkground_);
+private:
+    //static const char bkground_ = '*';
+    //const char bk_groung_;
 };
 
 class BitMap

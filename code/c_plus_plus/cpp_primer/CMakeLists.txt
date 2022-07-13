@@ -21,6 +21,7 @@ add_executable(cpp_primer
                 chapter_07/gz_sales_data.h chapter_07/gz_sales_data.cpp
                 chapter_07/gz_screen.h chapter_07/gz_screen.cpp
                 chapter_07/gz_window_mgr.h chapter_07/gz_window_mgr.cpp
+                chapter_07/gz_account.h chapter_07/gz_account.cpp
                 chapter_08/chapter_08.h chapter_08/chapter_08.cpp
                 chapter_09/chapter_09.h chapter_09/chapter_09.cpp
                 chapter_10/chapter_10.h chapter_10/chapter_10.cpp

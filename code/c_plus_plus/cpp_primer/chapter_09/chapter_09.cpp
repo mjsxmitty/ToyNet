@@ -19,7 +19,7 @@ using namespace std;
 
 void Chapter_09()
 {
-    //Practice_9_2();
+    Practice_9_2();
     //Practice_9_3_1();
     //Practice_9_3_3();
     //Practice_9_4();
@@ -27,7 +27,7 @@ void Chapter_09()
     //Practice_9_5_2();
     //Practice_9_5_3();
     //Practice_9_5_5();
-    Practice_9_6();
+    //Practice_9_6();
 
     //Homework_9_4_5();
     //Homework_9_16();

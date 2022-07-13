@@ -73,3 +73,36 @@ ostream& StoreOn(ostream &os, GZScreen &s)
 //    b.os << s.contents_ << endl;
 //    return b;
 //}
+
+/*****************************************************************/
+/****************************7.33*********************************/
+
+GZScreen::pos GZScreen::Size() const
+{
+    return height_ * width_;
+}
+
+/*****************************************************************/
+/****************************7.33*********************************/
+int gz_height_ = 10;
+void GZScreen::DummyFcn3(GZScreen::pos height_)
+{
+    cursur_ = width_ * ::gz_height_;
+    std::cout << cursur_ << std::endl;
+}
+
+void GZPractice_7_4_1()
+{
+    GZScreen my_screen(1, 1, '*');
+    my_screen.Display(cout);
+    my_screen.DummyFcn(3);
+    my_screen.DummyFcn2(3);
+    my_screen.DummyFcn3(4);
+}
+
+// Verify定义在类之后,却在函数之前
+GZScreen::pos Verify(GZScreen::pos p);
+void GZScreen::SetHeight(GZScreen::pos val)
+{
+    height_ = Verify(val);
+}

@@ -12,10 +12,25 @@ using namespace std;
 /***************************7.3.4*********************************/
 
 void GZX::h() { return f(); }
+/*****************************************************************/
+/****************************7.32*********************************/
+void ZGWindowMgr::clear()
+{
+    ZGScreen screen;
+    screen.contents_ = "";
+}
+
+void Homework_7_32()
+{
+    ZGWindowMgr w;
+    w.clear();
+}
+
 
 void Chapter_07()
 {
-    GZPractice_7_3_2();
+    //GZPractice_7_3_2();
+    GZPractice_7_4_1();
     //Homework_7_11();
     //Practice_7_6();
     //Practice_7();
