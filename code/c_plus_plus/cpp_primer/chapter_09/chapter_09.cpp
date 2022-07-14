@@ -19,9 +19,11 @@ using namespace std;
 
 void Chapter_09()
 {
-    Practice_9_2();
+    //Practice_9_2();
     //Practice_9_3_1();
     //Practice_9_3_3();
+    //Practice_9_3_6();
+    Homework_9_31();
     //Practice_9_4();
     //Practice_9_5_1();
     //Practice_9_5_2();
@@ -32,7 +34,7 @@ void Chapter_09()
     //Homework_9_4_5();
     //Homework_9_16();
     //Homework_9_28();
-    //Homework_9_31();
+
     //Homework_9_43();
     //Homework47_48();
     //Homework_9_50();
@@ -212,6 +214,29 @@ void Practice_9_3_3()
     cout << endl;
 }
 
+
+void Homework_9_27()
+{
+    forward_list<int> iflist = {1,2,3,4,5,6,7,8,9};
+    auto prev = iflist.before_begin();
+    auto curr = iflist.begin();
+
+    while (curr != iflist.end())
+    {
+        if (*curr & 1)
+            curr = iflist.erase_after(prev);
+        else
+        {
+            prev = curr;
+            ++curr;
+        }
+    }
+    for (curr = iflist.begin(); curr != iflist.end(); ++curr)
+    {
+
+    }
+}
+
 void FLInsert(forward_list<string> &sflist,
               const string &s1, const string &s2)
 {
@@ -235,6 +260,7 @@ void FLInsert(forward_list<string> &sflist,
         sflist.insert_after(prev, s2);
 }
 
+
 void Homework_9_28()
 {
     forward_list<string> sflist = {"hello", "!", "world", "!"};
@@ -242,6 +268,87 @@ void Homework_9_28()
     for (auto it = sflist.cbegin(); it != sflist.end(); ++it)
         cout << *it << ' ';
     cout << endl;
+}
+
+/*****************************************************************/
+/***************************9.3.6*********************************/
+void Practice_9_3_6()
+{
+    // 编写改变容器的循环程序
+    vector<int> ivec = {1,2,3,4,5,6,7,8,9};
+
+    auto iter = ivec.begin();
+    while (iter != ivec.end())
+    {
+        if (*iter % 2)
+        {
+            iter = ivec.insert(iter, *iter);
+            iter += 2;
+        }
+        else
+        {
+            iter = ivec.erase(iter);
+        }
+    }
+
+    //for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
+
+    // 不要保存end() 返回的迭代器
+    auto begin = ivec.begin();
+    //auto end = ivec.end();
+    while (begin != ivec.end())
+    {
+        ++begin;
+        begin = ivec.insert(begin, 42);
+        ++begin;
+        //++begin;
+    }
+    for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
+}
+
+// 删除偶数元素,复制奇数元素
+void Homework_9_31()
+{
+    vector<int> ivec = {1,2,3,4,5,6,7,8,9};
+
+    list<int> ilist(ivec.begin(), ivec.end());
+    auto iter = ilist.begin();
+    while (iter != ilist.end())
+    {
+        if (*iter & 1)
+        {
+            iter = ilist.insert(iter, *iter);
+            //iter += 2;
+            ++iter;
+            ++iter;
+        }
+        else
+        {
+            iter = ilist.erase(iter);
+        }
+    }
+    cout << "============list=================" << endl;
+    for_each(ilist.begin(), ilist.end(), [](int i){cout << i << endl;});
+
+    forward_list<int> iflist(ivec.begin(), ivec.end());
+    auto prev = iflist.before_begin();
+    auto curr = iflist.begin();
+
+    while (curr != iflist.end())
+    {
+        if (*curr & 1)
+        {
+            curr = iflist.insert_after(curr, *curr);
+            prev = curr;
+            curr++;
+        }
+        else
+        {
+            curr = iflist.erase_after(prev);
+        }
+    }
+    cout << "============forward list=================" << endl;
+    for_each(iflist.begin(), iflist.end(), [](int i){cout << i << endl;});
 }
 
 /*容器对象是如何增长的()*/
@@ -515,28 +622,7 @@ void Homework_9_16()
          << endl;
 }
 
-void Homework_9_31()
-{
-    forward_list<int> iflist = {0,1,2,3,4,5,6,7,8,9};
-    auto prev = iflist.before_begin();
-    auto curr = iflist.begin();
 
-    while (curr != iflist.end())
-    {
-        if (*curr & 1)
-        {
-            curr = iflist.insert_after(curr, *curr);
-            prev = curr;
-            ++curr;
-        }
-        else
-            curr = iflist.erase_after(prev);
-    }
-
-    for (curr = iflist.begin(); curr != iflist.end(); ++curr)
-        cout << *curr << " ";
-    cout << endl;
-}
 
 
 void ReplaceStr(string &s, const string &old_val, const string &new_val)
