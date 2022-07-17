@@ -23,8 +23,9 @@ void Chapter_09()
     //Practice_9_3_1();
     //Practice_9_3_3();
     //Practice_9_3_6();
-    Homework_9_31();
-    //Practice_9_4();
+    //Homework_9_31();
+
+    Practice_9_4();
     //Practice_9_5_1();
     //Practice_9_5_2();
     //Practice_9_5_3();
@@ -80,9 +81,6 @@ void Practice_9_2()
     auto it3 = svec1.begin(), it4 = svec2.begin();
     cout << *it3 << ", " << *it4 << endl;
     cout << *it1 << ", " << *it2 << endl;       //
-
-    /* 关系运算 */
-    //运算对象为相同类型
 }
 
 void PrintVec(const vector<int> &vi)
@@ -306,6 +304,7 @@ void Practice_9_3_6()
     for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
 }
 
+
 // 删除偶数元素,复制奇数元素
 void Homework_9_31()
 {
@@ -351,7 +350,10 @@ void Homework_9_31()
     for_each(iflist.begin(), iflist.end(), [](int i){cout << i << endl;});
 }
 
-/*容器对象是如何增长的()*/
+/*****************************************************************/
+/***************************9.4*********************************/
+
+//vector对象是如何增长的
 void Practice_9_4()
 {
     vector<int> ivec;
@@ -388,6 +390,8 @@ void Practice_9_4()
          << endl;
 }
 
+/*****************************************************************/
+/***************************9.4*********************************/
 void Practice_9_5_1()
 {
     string s("hello world");
