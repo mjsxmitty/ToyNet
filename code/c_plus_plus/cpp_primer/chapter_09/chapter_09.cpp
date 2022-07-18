@@ -25,9 +25,10 @@ void Chapter_09()
     //Practice_9_3_6();
     //Homework_9_31();
 
-    Practice_9_4();
+    //Practice_9_4();
+
     //Practice_9_5_1();
-    //Practice_9_5_2();
+    Practice_9_5_2();
     //Practice_9_5_3();
     //Practice_9_5_5();
     //Practice_9_6();
@@ -391,7 +392,8 @@ void Practice_9_4()
 }
 
 /*****************************************************************/
-/***************************9.4*********************************/
+/***************************9.5*********************************/
+//额外的string操作
 void Practice_9_5_1()
 {
     string s("hello world");
@@ -403,13 +405,13 @@ void Practice_9_5_1()
     string s3(ssp, 1);
 //    string s4(ssp);
     string s5(s, 3);
-    string s6(s, 3, 3);
-    cout << s1 << ", "
-         << s2 << ", "
-         << s3 << ", "
-//         << s4 << ", "
-         << s5 << ", "
-         << s6 << endl;
+    string s6(s, 3, 5);
+    cout << "s1 = " << s1 << endl
+         << "s2 = " << s2 << endl
+         << "s3 = " << s3 << endl
+//         << s4 << endl
+         << "s5 = " << s5 << endl
+         << "s6 = " << s6 << endl;
 
     try {
         cout << s.substr(1,6) << endl;
@@ -423,51 +425,23 @@ void Practice_9_5_1()
     }
 }
 
-/*改变string*/
+/* 改变string的其他方法 */
 void Practice_9_5_2()
 {
-//    list<string>    slist;
-//    string          s;
-
-//    cout << "please input some strings: ";
-//    while (cin >> s)
-//        slist.push_back(s);
-//    cout << "slist size: " << slist.size() << endl;
-
-//    auto iter = find(slist.begin(), slist.end(), "aaa");
-//    if (iter != slist.end())
-//        slist.erase(iter);
-//    cout << "slist size: " << slist.size() << endl;
-
-//    auto orig = slist;
-//    orig.clear();
-//    cout << "slist size: " << orig.size() << endl;
-
-//    orig = slist;
-//    orig.erase(orig.begin(), orig.end());
-//    cout << "slist size: " << orig.size() << endl;
-
-            //
-//    string s1 = "some string", s2 = "some other string";
-//    s1.insert(s1.begin(), s2.begin(), s2.end());
-//    cout << "insert iterators version: " << s1 << endl;
-
-//    s1 = "some string";
-//    s1.insert(0, s2);
-//    cout << "insert string at given position: " << s1 << endl;
-
-//    s1 = "some thing";
-//    s1.insert(0, s2, 0, s2.size() - 1);
-//    cout << "insert positional version: " << s1 << endl;
-
-    //下标
-    string s = "";
+    string s = "Hello World";
     vector<char> cvec(1, 'a');
     s.insert(s.begin(), cvec.begin(), cvec.end());
     cout << s << endl;
-    s.insert(s.size(), 5, '!');
+
+    //下标
+    s.insert(s.size(), 3, '!');
     cout << s << endl;
+    s.insert(5, 1, '*');
+    cout << s << endl;
+
     s.erase(s.size() - 5, 2);
+    cout << s << endl;
+    s.erase(0, 1);
     cout << s << endl;
 
     s = "";
