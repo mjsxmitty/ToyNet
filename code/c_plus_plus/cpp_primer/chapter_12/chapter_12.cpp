@@ -13,12 +13,12 @@ using namespace std;
 
 void Chapter_12(int argc, char **argv)
 {
-    //Practice_12_1_1();
+    Practice_12_1_1();
     //Practice_12_1_5();
 
     //Homework_12_2();
     //Homework_12_5();
-    Homework_12_20(argc, argv);
+    //Homework_12_20(argc, argv);
 }
 
 /* shared_ptr类 */
@@ -26,7 +26,8 @@ void Practice_12_1_1()
 {
     shared_ptr<string>      p1;
     shared_ptr<list<int>>   p2;
-
+    if (p1)
+        cout << "pi ptr is empty." << endl;
     // if (p1 && p1->empty())
     //     *p1 = "hi";
     // cout << *p1 << endl;
@@ -40,6 +41,19 @@ void Practice_12_1_1()
 
     shared_ptr<int> p5 = make_shared<int>();
     auto p6 = make_shared<vector<int>>();
+
+    cout << "test use GXStrBlob class ..." << endl;
+    GZStrBlob b1;
+    {
+        GZStrBlob b2 = {"a", "an", "the"};
+        cout << "before push back b2 size: " << b2.Size() << endl;
+        b1 = b2;
+        cout << "before push back b1 size: " << b1.Size() << endl;
+        b2.PushBack("about");
+        cout << "after push back b2 size: " << b2.Size() << endl;
+        cout << "after push back b1 size: " << b1.Size() << endl;
+    }
+
 }
 
 typedef int T;
@@ -76,9 +90,9 @@ shared_ptr<Foo> UseFactory(T arg)
 
 void Homework_12_2()
 {
-    StrBlob b1;
+    GZStrBlob b1;
     {
-        StrBlob b2 = {"a", "an", "the"};
+        GZStrBlob b2 = {"a", "an", "the"};
         b1 = b2;
         cout << "b1 size: " << b1.Size() << ", b2 size: " << b2.Size() << endl;
         b2.PushBack("hi");
@@ -87,7 +101,7 @@ void Homework_12_2()
     cout << "b1 size: " << b1.Size() << endl;
     cout << "b1 front: " << b1.Front() << ", b1 back: " << b1.Back() << endl;
 
-    StrBlob b3 = b1;
+    GZStrBlob b3 = b1;
     cout << "b1 size: " << b1.Size() << ", b3 size: " << b3.Size() << endl;
 
     for (auto iter = b1.Begin(); NotEqual(iter, b1.End()); iter.Incr())
@@ -188,7 +202,7 @@ void Homework_12_20(int argc, char **argv)
         return ;
     }
     
-    StrBlob sb;
+    GZStrBlob sb;
     string s;
     while (getline(in, s))
         sb.PushBack(s);

@@ -39,10 +39,10 @@ int main(int argc, char **argv)
     //SalesData sales(std::cin);
     //Chapter_07();
     //Chapter_08();
-    Chapter_09();
+    //Chapter_09();
     //Chapter_10();
     //Chapter_11();
-    //Chapter_12(argc, argv);
+    Chapter_12(argc, argv);
     //Chapter_13();
     //Chapter_14();
     //Chapter_15();
