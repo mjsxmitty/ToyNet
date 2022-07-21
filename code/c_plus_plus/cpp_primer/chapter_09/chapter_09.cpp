@@ -19,7 +19,10 @@ using namespace std;
 
 void Chapter_09()
 {
-    //Practice_9_2();
+    Practice_9_2();
+    //Homework_9_2();
+
+
     //Practice_9_3_1();
     //Practice_9_3_3();
     //Practice_9_3_6();
@@ -28,7 +31,7 @@ void Chapter_09()
     //Practice_9_4();
 
     //Practice_9_5_1();
-    Practice_9_5_2();
+    //Practice_9_5_2();
     //Practice_9_5_3();
     //Practice_9_5_5();
     //Practice_9_6();
@@ -42,11 +45,25 @@ void Chapter_09()
     //Homework_9_50();
 }
 
+/***************************************************************/
+/***************************9.2*********************************/
+
 void Practice_9_2()
 {
-    /* 内置数组不可以copy */
-    int sou[10] = {1,2,3,4};
-//    int cpy[10] = sou;
+    /* 9.2.4容器定义和初始化 */
+    // 将一个容器初始化为另一个容器的拷贝
+    vector<const char *> cstr = {"aaa", "bbb", "c"};        // 列表初始化
+    forward_list<string> flstr(cstr.begin(), cstr.end());   // 传递范围
+    for_each(cstr.begin(), cstr.end(), [](const string &s){ cout << s << ' ';});
+    cout << endl;
+    for_each(flstr.begin(), flstr.end(), [](const string &s){ cout << s << ' ';});
+    cout << endl << endl;
+
+    // 标准array具有固定大小
+    int arr[10] = {1,2,3,4};
+    for_each(begin(arr), end(arr), [](int i){ cout << i << ' ';});
+    cout << endl << endl;
+    //int cpy[10] = arr;
 
     /* 标准库数组可以copy */
     array<int, 10> digits = {1,2,3,4,5};
@@ -82,6 +99,38 @@ void Practice_9_2()
     auto it3 = svec1.begin(), it4 = svec2.begin();
     cout << *it3 << ", " << *it4 << endl;
     cout << *it1 << ", " << *it2 << endl;       //
+}
+
+bool SearchVec(vector<int>::iterator beg,
+               vector<int>::iterator end,
+               int val)
+{
+    for (; beg != end; ++beg)
+        if (*beg == val)
+            return true;
+
+    return false;
+}
+
+vector<int>::iterator SearchVec2(vector<int>::iterator beg,
+                                 vector<int>::iterator end,
+                                 int val)
+{
+    for (;beg != end; ++beg)
+        if (*beg == val)
+            return beg;
+
+    return end;
+}
+
+void Homework_9_2()
+{
+    vector<int> ivec = {1,2,3,4,5,6,7,8,9};
+    cout << SearchVec(ivec.begin(), ivec.end(), 0) << endl;
+    cout << SearchVec(ivec.begin(), ivec.end(), 3) << endl;
+
+    cout << (SearchVec2(ivec.begin(), ivec.end(), 0) == ivec.end()) << endl;
+    cout << (SearchVec2(ivec.begin(), ivec.end(), 8) == ivec.end()) << endl;
 }
 
 void PrintVec(const vector<int> &vi)
@@ -429,11 +478,8 @@ void Practice_9_5_1()
 void Practice_9_5_2()
 {
     string s = "Hello World";
-    vector<char> cvec(1, 'a');
-    s.insert(s.begin(), cvec.begin(), cvec.end());
-    cout << s << endl;
 
-    //下标
+    //insert 下标操作
     s.insert(s.size(), 3, '!');
     cout << s << endl;
     s.insert(5, 1, '*');
@@ -544,25 +590,8 @@ void Practice_9_6()
     //queue<int, vector<int>> que2;
 }
 
-bool SearchVec(vector<int>::iterator beg,
-               vector<int>::iterator end,
-               int val)
-{
-    for (; beg != end; ++beg)
-        if (*beg == val)
-            return true;
-    return false;
-}
 
-vector<int>::iterator SearchVec2(vector<int>::iterator beg,
-                                 vector<int>::iterator end,
-                                 int val)
-{
-    for (;beg != end; ++beg)
-        if (*beg == val)
-            return beg;
-    return end;
-}
+
 
 void Homework_9_4_5()
 {

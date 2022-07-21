@@ -3,10 +3,22 @@
 #ifndef __CPP_PRIMER_CHAPTER_09_H__
 #define __CPP_PRIMER_CHAPTER_09_H__
 
+#include <vector>
 
 void Chapter_09();
 
 void Practice_9_2();
+bool SearchVec(std::vector<int>::iterator beg,
+               std::vector<int>::iterator end,
+               int val);
+
+std::vector<int>::iterator SearchVec2(std::vector<int>::iterator beg,
+                                 std::vector<int>::iterator end,
+                                 int val);
+void Homework_9_2();
+
+
+
 
 void Practice_9_3_1();
 void Practice_9_3_3();
