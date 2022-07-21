@@ -65,40 +65,38 @@ void Practice_9_2()
     cout << endl << endl;
     //int cpy[10] = arr;
 
-    /* 标准库数组可以copy */
     array<int, 10> digits = {1,2,3,4,5};
     //array<int, 5>   copy = digits;  //error大小不同
     array<int, 10> copy = digits;
     copy = digits;
 
-    /* 类型必须相同 */
-    array<string, 10> copy2;
-//    copy2 = digits;
+//    copy = {0,1,2,3,4,5,6,7,8};
+//    for_each(copy.begin(), copy.end(), [](int i){ cout << i << ' ';});
+//    cout << endl << endl;
 
-    /* assgin */
-    //类型转化
+    array<string, 10> copy2;
+    //copy2 = digits;
+
+    /* 9.2.5 赋值和swap */
+    // 使用assgin
     list<string>        names;
     vector<const char*> old_style;
     //names = old_style;
-    names.assign(old_style.begin(), old_style.end());
-    names.assign(10, "yyy");
+    names.assign(old_style.begin(), old_style.end());   // 类型相容
+    names.assign(10, "yyy");                            // 第二个版本
 
 //    vector<int> temp_vec(10);
 //    old_style.assign(temp_vec.begin(), temp_vec.end());
 
-    /* swap */
-    //相同类型
-    //交换之后,指针/迭代器还有效,指向发生变化
-    vector<string> svec1(10, "hi");
-    vector<string> svec2(22, "nihao");
-    auto it1 = svec1.begin(), it2 = svec2.begin();
+    // 使用 swap
+    vector<string> svec1(5, "hi");
+    vector<string> svec2(10, "Hello");
+    auto it1 = svec1.begin() + 2, it2 = svec2.begin() + 2;
     cout << svec1.size() << ", " << svec2.size() << endl;
     cout << *it1 << ", " << *it2 << endl;
     swap(svec1, svec2);
     cout << svec1.size() << ", " << svec2.size() << endl;
-    auto it3 = svec1.begin(), it4 = svec2.begin();
-    cout << *it3 << ", " << *it4 << endl;
-    cout << *it1 << ", " << *it2 << endl;       //
+    cout << *it1 << ", " << *it2 << endl;
 }
 
 bool SearchVec(vector<int>::iterator beg,
