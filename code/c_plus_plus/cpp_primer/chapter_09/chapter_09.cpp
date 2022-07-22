@@ -2,6 +2,7 @@
 
 #include "chapter_09.h"
 #include "../lib_util/sales_data.h"
+#include "../chapter_07/gz_sales_data.h"
 
 #include <forward_list>
 #include <algorithm>
@@ -19,29 +20,32 @@ using namespace std;
 
 void Chapter_09()
 {
-    Practice_9_2();
+    //Practice_9_2();
     //Homework_9_2();
-
+    //Homework_9_4_5();
+    //Homework_9_16();
 
     //Practice_9_3_1();
+    //Practice_9_3_2();
     //Practice_9_3_3();
+    //Practice_9_3_4();
     //Practice_9_3_6();
+    //Homework_9_27();
+    //Homework_9_28();
+    //Practice_9_3_5();
     //Homework_9_31();
 
     //Practice_9_4();
+    //Homework_9_39();
 
     //Practice_9_5_1();
     //Practice_9_5_2();
     //Practice_9_5_3();
     //Practice_9_5_5();
-    //Practice_9_6();
-
-    //Homework_9_4_5();
-    //Homework_9_16();
-    //Homework_9_28();
-
     //Homework_9_43();
-    //Homework47_48();
+    //Homework_9_47_48_49();
+
+    //Practice_9_6();
     //Homework_9_50();
 }
 
@@ -96,7 +100,7 @@ void Practice_9_2()
     cout << *it1 << ", " << *it2 << endl;
     swap(svec1, svec2);
     cout << svec1.size() << ", " << svec2.size() << endl;
-    cout << *it1 << ", " << *it2 << endl;
+    cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的容器
 }
 
 bool SearchVec(vector<int>::iterator beg,
@@ -131,6 +135,54 @@ void Homework_9_2()
     cout << (SearchVec2(ivec.begin(), ivec.end(), 8) == ivec.end()) << endl;
 }
 
+void Homework_9_4_5()
+{
+    vector<int> ivec = {0,1,2,3,4,5,6,7,8,9};
+    cout << SearchVec(ivec.begin(), ivec.end(), 3) << endl;
+    cout << SearchVec(ivec.begin(), ivec.end(), 10) << endl;
+
+    cout << SearchVec2(ivec.begin(), ivec.end(), 6) - ivec.begin() << endl;
+    cout << SearchVec2(ivec.begin(), ivec.end(), 10) - ivec.begin() << endl;
+}
+
+bool VLEqual(const vector<int> &v, const list<int> &l)
+{
+    if (v.size() != l.size())
+        return false;
+
+    auto vb = v.begin(), ve = v.end();
+    auto lb = l.begin();
+    for (; vb != ve; ++vb, ++lb)
+        if (*vb != *lb)
+            return false;
+
+    return true;
+}
+
+void Homework_9_16()
+{
+    vector<int> ivec    = {0,1,2,3,4,5,6,7,8,9};
+    list<int>   ilist   = {0,1,2,3,4,5,6,7,8,9};
+    list<int>   ilist2  = {0,1,2,3,4,5,6,7};
+    list<int>   ilist3  = {0,1,2,3,4,5,6,7,7,9};
+
+    cout << VLEqual(ivec, ilist) << ", "
+         << VLEqual(ivec, ilist2) << ", "
+         << VLEqual(ivec, ilist3)
+         << endl;
+}
+
+/***************************************************************/
+/***************************9.3*********************************/
+
+/*
+ * vector, list, deque, forward_list, array, string
+ *
+ * push_back     --->    vector,    list,       deque,      string
+ * push_front    --->    list,      deque,      forward_list
+ * insert        --->    vector,    list,       deque,      string
+ */
+
 void PrintVec(const vector<int> &vi)
 {
     auto iter = vi.begin();
@@ -138,89 +190,104 @@ void PrintVec(const vector<int> &vi)
         cout << *iter++ <<  " ";
 }
 
-//vector, list, deque, forward_list, array, string
-//push_back     --->    vector, list, deque, string
-//push_front    --->    list, deque, forward_list
-//insert        --->    vector, list, deque, string
-
-//front         --->    all
-//back          --->    vector, list, deque, array, string
-//[]
-//at()
-
-//pop_back
-//pop_front
-//erase
-
-/*改变容器大小*/
+/* 9.3.1 向容器中添加元素 */
 void Practice_9_3_1()
 {
-    /* insert范围元素 */
-    list<int> slist = {1,2,3,4,5};
-    vector<int> v;
-    v.insert(v.begin(), slist.begin(), slist.end());
-    PrintVec(v);
-    cout << endl;
-    v.insert(v.begin(), 10, 0);
-    PrintVec(v);
-    cout << endl;
-    v.insert(v.begin(), {7,8,9});
-    PrintVec(v);
-    cout << endl;
+    // 容器中特定位置添加元素
+    list<int>   ilist = {1,2,3,4,5};
+    vector<int> ivec;
 
-    //访问返回的是引用
-    v.front() = 100;
-    auto &elem1 = v.back();
-    elem1 = 1222;
-    auto elem2 = v.back();
-    elem2 = 2222;
-    PrintVec(v);
+    ivec.insert(ivec.begin(), ilist.begin(), ilist.end());
+    PrintVec(ivec);
+    cout << endl;
+    //ivec.push_front(1);
+
+    // 插入范围元素
+    ivec.insert(ivec.begin(), 3, 0);
+    PrintVec(ivec);
+    cout << endl;
+    // 初始化列表
+    ivec.insert(ivec.begin(), {7,8,9});
+    PrintVec(ivec);
     cout << endl;
 
-    cout << v[5] << endl;
-//    cout << v[20] << endl;
-//    cout << v.at(20) << endl;
+//    ivec.insert(ivec.begin(), ivec.begin(), ivec.end());  // error
+//    PrintVec(ivec);
+//    cout << endl;
 
-    auto iter1 = v.begin() + 3, iter2 = v.begin() + 13;
-//    v.erase(iter1, iter2);
-//    v.erase(iter1, v.end());
-    v.erase(v.end(), v.end());
-    PrintVec(v);
-    cout << endl;
-
-    vector<SalesData> c;
-    c.emplace_back("11", 2, 2);
-    auto iii = c.begin();
-    c.emplace(iii, "11", 2, 2);
-
-
-    vector<int> vi = {0,1,2,3,4,5,6,7,8,9};
-    PrintVec(vi);
-    cout << endl;
-
-    auto iter = vi.begin();
-    while (iter != vi.end())
+    // 使用insert返回值
+    int num = 3;
+    auto iter = ivec.begin();
+    while (num)
     {
-        if (*iter % 2)
-        {
-            iter = vi.insert(iter, *iter);
-            iter += 2;
-        }
-        else
-            iter = vi.erase(iter);
+        iter = ivec.insert(iter, num);
+        --num;
     }
-    PrintVec(vi);
+    PrintVec(ivec);
+    cout << endl;
+
+    // 使用emplace操作
+    list<GZSalesData> sales_data_list;
+    sales_data_list.emplace_front("test", 1, 2);
+    sales_data_list.emplace_back("test1", 2, 3);
+    sales_data_list.emplace(sales_data_list.begin(), "test2", 2, 3);
+
+    vector<GZSalesData> sales_data_vec;
+    sales_data_vec.push_back(GZSalesData("test1", 2, 3));
 }
 
-/*删除元素*/
+/* 9.3.2 访问元素 */
+void Practice_9_3_2()
+{
+    list<string>   slist = {"aaa", "abc", "123"};
+    if (!slist.empty()) // 确保非空
+    {
+        auto val = *slist.begin(), val2 = slist.front();
+
+        auto last = slist.end();
+        auto val3 = *(--last);
+        auto val4 = slist.back();
+    }
+
+    // 访问成员函数返回的是引用
+    if (!slist.empty())
+    {
+        slist.front() = "zzz";
+        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+        cout << endl;
+
+        auto &v1 = slist.back();
+        v1 = "456";
+        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+        cout << endl;
+
+        auto v2 = slist.back();
+        v2 = "789";
+        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+        cout << endl;
+    }
+
+    // 下标操作和安全的随机访问
+    vector<int> ivec;
+    //cout << ivec[0] << endl;
+    try {
+        cout << ivec.at(0) << endl;
+    } catch (out_of_range &s) {
+        cout << "exception!!!" << endl;
+        cout << s.what() << endl;
+    }
+
+}
+
+/* 9.3.3 删除元素*/
 void Practice_9_3_3()
 {
     list<int> lst = {0,1,2,3,4,5,6,7,8,9};
-    cout << "initial list: ";
-    for (const auto &c: lst)
-        cout << c << " ";
+    cout << "init elements from lst: ";
+    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
+    // 从容器内部删除一个元素
     auto it = lst.begin();
     while (it != lst.end())
     {
@@ -230,15 +297,27 @@ void Practice_9_3_3()
             ++it;
     }
     cout << "after erasing odd elements from lst: ";
-    for (auto it : lst)
-        cout << it << " ";
+    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
+    lst.erase(++(++lst.begin()), lst.end());
+    cout << "after erasing from lst: ";
+    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+
+    lst.clear();
+    cout << "after clear elems from lst: ";
+    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+}
+
+/* 9.3.4 特殊的forwa_list操作 */
+void Practice_9_3_4()
+{
     forward_list<int> flst = {0,1,2,3,4,5,6,7,8,9};
 
     cout << "initial list: ";
-    for (auto it : flst)
-        cout << it << " ";
+    for_each(flst.begin(), flst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
     auto prev = flst.before_begin();
@@ -255,11 +334,9 @@ void Practice_9_3_3()
     }
 
     cout << "after erasing elements from flst: ";
-    for (auto it : flst)
-        cout << it << " ";
+    for_each(flst.begin(), flst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 }
-
 
 void Homework_9_27()
 {
@@ -277,10 +354,10 @@ void Homework_9_27()
             ++curr;
         }
     }
-    for (curr = iflist.begin(); curr != iflist.end(); ++curr)
-    {
 
-    }
+    cout << "after erasing elements from flst: ";
+    for_each(iflist.begin(), iflist.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
 }
 
 void FLInsert(forward_list<string> &sflist,
@@ -310,14 +387,33 @@ void FLInsert(forward_list<string> &sflist,
 void Homework_9_28()
 {
     forward_list<string> sflist = {"hello", "!", "world", "!"};
-    FLInsert(sflist, "!", "?");
-    for (auto it = sflist.cbegin(); it != sflist.end(); ++it)
-        cout << *it << ' ';
+    FLInsert(sflist, "!", "***");
+
+    for_each(sflist.begin(), sflist.end(), [](const string &s){ cout << s << ' ';});
     cout << endl;
 }
 
-/*****************************************************************/
-/***************************9.3.6*********************************/
+/* 9.3.5 改变容器大小 */
+void Practice_9_3_5()
+{
+    list<int> ilist(10, 42);
+    for_each(ilist.begin(), ilist.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+
+    ilist.resize(15);
+    for_each(ilist.begin(), ilist.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+
+    ilist.resize(20, 100);
+    for_each(ilist.begin(), ilist.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+
+    ilist.resize(3);
+    for_each(ilist.begin(), ilist.end(), [](int &i){ cout << i << ' ';});
+    cout << endl;
+}
+
+/* 9.3.6 容器操作可能使迭代器失效 */
 void Practice_9_3_6()
 {
     // 编写改变容器的循环程序
@@ -337,7 +433,7 @@ void Practice_9_3_6()
         }
     }
 
-    //for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
+    for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
 
     // 不要保存end() 返回的迭代器
     auto begin = ivec.begin();
@@ -415,7 +511,8 @@ void Practice_9_4()
          << ", capacity: " << ivec.capacity()
          << endl;
 
-    ivec.reserve(25);
+    //ivec.reserve(25);
+    ivec.reserve(5);
     cout << "ivec size: " << ivec.size()
          << ", capacity: " << ivec.capacity()
          << endl;
@@ -438,9 +535,28 @@ void Practice_9_4()
          << endl;
 }
 
-/*****************************************************************/
+void Homework_9_39()
+{
+    vector<int> ivec;
+    ivec.reserve(100);
+    size_t num = 101;
+    for (size_t i = 0; i != num; ++i)
+        ivec.push_back(i);
+
+    cout << "ivec size: " << ivec.size()
+         << ", capacity: " << ivec.capacity()
+         << endl;
+
+    ivec.resize(ivec.size() + ivec.size() / 2);
+    cout << "ivec size: " << ivec.size()
+         << ", capacity: " << ivec.capacity()
+         << endl;
+}
+
+/***************************************************************/
 /***************************9.5*********************************/
-//额外的string操作
+
+/* 9.5.1 构造string的其他方法 */
 void Practice_9_5_1()
 {
     string s("hello world");
@@ -472,7 +588,7 @@ void Practice_9_5_1()
     }
 }
 
-/* 改变string的其他方法 */
+/* 9.5.2 改变string的其他方法 */
 void Practice_9_5_2()
 {
     string s = "Hello World";
@@ -483,17 +599,16 @@ void Practice_9_5_2()
     s.insert(5, 1, '*');
     cout << s << endl;
 
+    // erase
     s.erase(s.size() - 5, 2);
     cout << s << endl;
     s.erase(0, 1);
     cout << s << endl;
 
-    s = "";
+    // assgin
     string s1 ="hello";
     const char *cp = "Stately, plump Buck";
-    s.assign(s1);
-    cout << s << endl;
-    s.assign(cp, 7);
+    s.assign(cp + 7, 7);
     cout << s << endl;
 
     s = "C++ Primer";
@@ -506,7 +621,7 @@ void Practice_9_5_2()
     cout << s << endl;
     s.insert(11, "5th");
     cout << s << endl;
-    s.replace(11, 2, "ooo");
+    s.replace(11, 3, "ooo");
     cout << s << endl;
 
     s2 = "C++ Primer 5th Ed.";
@@ -517,118 +632,6 @@ void Practice_9_5_2()
         cout << "no find appoint strings." << endl;
     cout << s2 << endl;
 }
-
-/*string的find操作*/
-void Practice_9_5_3()
-{
-    string numbers("0123456789"), name("r9d2");
-    auto pos = name.find_first_of(numbers);
-    if (pos != string::npos)
-        cout << "found number at index: " << pos
-             << " element is " << name[pos] << endl;
-    else
-        cout << "no number in: " << name << endl;
-
-    pos = 0;
-    while ((pos = name.find_first_of(numbers, pos)) != string::npos)
-    {
-        cout << "found number at index: " << pos
-             << " element is " << name[pos] << endl;
-        ++pos;
-    }
-
-    string river("Mississippi");
-    auto first_pos = river.find("is");
-    auto rfirst_pos = river.rfind("is");
-    cout << "find returned: " << first_pos
-         << " rfind returned: " << rfirst_pos << endl;
-
-    string dept("03714prol3");
-    pos = dept.find_first_not_of(numbers);
-    cout << "first_not returned: " << pos <<" element is " << dept[pos] << endl;
-    pos = dept.find_last_not_of(numbers);
-    cout << "first_not returned: " << pos << " element is " << dept[pos] << endl;
-}
-
-/*数值转换*/
-void Practice_9_5_5()
-{
-    double i = 4.3;
-    cout << "i = " << i << " s = " << to_string(i) << " d is: " << stod(to_string(i)) << endl;
-
-    string s2 = "pi = 3.14";
-    cout << s2.find_first_of("+-.0123456789") << endl;
-    cout << s2.substr(s2.find_first_of("+-.0123456789")) << endl;
-    cout << stod(s2.substr(s2.find_first_of("+-.0123456789"))) << endl;
-}
-
-/*容器适配器*/
-void Practice_9_6()
-{
-    deque<int>  deq;
-    vector<int> vec;
-    stack<int>  stk(deq);
-    //stack<int>  stk(vec);
-
-    stack<string, vector<string>>   str_stk;
-    stack<string, vector<string>>   str_stk2(str_stk);
-
-    stack<int> istack;
-
-    for (size_t ix = 0; ix != 10; ++ix)
-        istack.push(ix);
-
-    while (!istack.empty())
-    {
-        cout << istack.top() << " ";
-        istack.pop();
-    }
-
-    queue<int> que(deq);
-    //queue<int, vector<int>> que2;
-}
-
-
-
-
-void Homework_9_4_5()
-{
-    vector<int> ivec = {0,1,2,3,4,5,6,7,8,9};
-    cout << SearchVec(ivec.begin(), ivec.end(), 3) << endl;
-    cout << SearchVec(ivec.begin(), ivec.end(), 10) << endl;
-
-    cout << SearchVec2(ivec.begin(), ivec.end(), 6) - ivec.begin() << endl;
-    cout << SearchVec2(ivec.begin(), ivec.end(), 10) - ivec.begin() << endl;
-}
-
-bool VLEqual(const vector<int> &v, const list<int> &l)
-{
-    if (v.size() != l.size())
-        return false;
-
-    auto vb = v.begin(), ve = v.end();
-    auto lb = l.begin(), le = l.end();
-    for (; vb != ve; ++vb, ++lb)
-        if (*vb != *lb)
-            return false;
-    return true;
-}
-
-void Homework_9_16()
-{
-    vector<int> ivec = {0,1,2,3,4,5,6,7,8,9};
-    list<int> ilist = {0,1,2,3,4,5,6,7,8,9};
-    list<int> ilist2 = {0,1,2,3,4,5,6,7};
-    list<int> ilist3 = {0,1,2,3,4,5,6,7,7,9};
-
-    cout << VLEqual(ivec, ilist) << ", "
-         << VLEqual(ivec, ilist2) << ", "
-         << VLEqual(ivec, ilist3)
-         << endl;
-}
-
-
-
 
 void ReplaceStr(string &s, const string &old_val, const string &new_val)
 {
@@ -666,7 +669,7 @@ void ReplaceStr(string &s, const string &old_val, const string &new_val)
 //            ++iter;
 //    }
 
-    auto p = 0;
+    size_t p = 0;
     while ((p = s.find(old_val, p)) != string::npos)
     {
         s.replace(p, old_val.size(), new_val);
@@ -689,6 +692,47 @@ void Homework_9_43()
     cout << s << endl;
 }
 
+/* 9.5.3 string的搜索操作 */
+void Practice_9_5_3()
+{
+    string numbers("0123456789"), name("r9d2");
+    auto pos = name.find_first_of(numbers);
+    if (pos != string::npos)
+        cout << "found number at index: " << pos
+             << " element is " << name[pos] << endl;
+    else
+        cout << "no number in: " << name << endl;
+
+    //pos = name.find_first_not_of(numbers);
+    pos = name.find_last_not_of(numbers);
+    if (pos != string::npos)
+        cout << "found elem at index: " << pos
+             << " element is " << name[pos] << endl;
+    else
+        cout << "no number in: " << name << endl;
+
+    // 指定哪里搜索
+    pos = 0;
+    while ((pos = name.find_first_of(numbers, pos)) != string::npos)
+    {
+        cout << "found number at index: " << pos
+             << " element is " << name[pos] << endl;
+        ++pos;
+    }
+
+    // 逆向搜索
+    string river("Mississippi");
+    auto first_pos = river.find("is");
+    auto last_pos = river.rfind("is");
+    cout << "find returned: " << first_pos
+         << ", rfind returned: " << last_pos << endl;
+
+    string dept("03714prol3");
+    pos = dept.find_first_not_of(numbers);
+    cout << "first_not returned: " << pos <<" element is " << dept[pos] << endl;
+    pos = dept.find_last_not_of(numbers);
+    cout << "first_not returned: " << pos << " element is " << dept[pos] << endl;
+}
 
 void FindChar(const string &s, const string &chars)
 {
@@ -713,9 +757,9 @@ void FindNotChar(string &s, const string &chars)
 void FindLongestWord(istream &in)
 {
     string  s, longest_word;
-    int     max_length = 0;
+    size_t     max_length = 0;
 
-    while (cin >> s)
+    while (in >> s)
     {
         if (s.find_first_of("bdfghjklpqty") != string::npos)
             continue;
@@ -727,11 +771,11 @@ void FindLongestWord(istream &in)
             longest_word = s;
         }
     }
-    
+
     cout << "the longest word: " << longest_word << endl;
 }
 
-void Homework47_48()
+void Homework_9_47_48_49()
 {
     string s("ab2c3d7R4E6");
     FindChar(s, "0123456789");
@@ -745,6 +789,19 @@ void Homework47_48()
 
     FindLongestWord(cin);
 }
+
+/* 9.5.5 数值转换*/
+void Practice_9_5_5()
+{
+    double i = 4.3;
+    cout << "i = " << i << " s = " << to_string(i) << " d is: " << stod(to_string(i)) << endl;
+
+    string s2 = "pi = 3.14";
+    cout << s2.find_first_of("+-.0123456789") << endl;
+    cout << s2.substr(s2.find_first_of("+-.0123456789")) << endl;
+    cout << stod(s2.substr(s2.find_first_of("+-.0123456789"))) << endl;
+}
+
 void Homework_9_50()
 {
     vector<string> vs = {"123", "+456", "-789"};
@@ -755,3 +812,44 @@ void Homework_9_50()
 
     cout << "sum: " << sum << endl;
 }
+
+// TODO...
+// Homework_9_51
+
+/***************************************************************/
+/***************************9.6*********************************/
+
+/* 9.6 容器适配器 */
+void Practice_9_6()
+{
+    // 定义适配器
+    deque<int>  deq;
+    stack<int>  stk(deq);
+    queue<int>  que;
+
+    // 使用指定容器构造
+    stack<string, vector<string>>   str_stk;
+
+    vector<string> svec;
+    stack<string, vector<string>>   str_stk2(svec);
+
+    stack<int> istack;
+
+    for (size_t ix = 0; ix != 10; ++ix)
+        istack.push(ix);
+
+    while (!istack.empty())
+    {
+        cout << istack.top() << " ";
+        istack.pop();
+    }
+}
+
+//TODO ...
+// Homework_9_52()
+
+
+
+
+
+
