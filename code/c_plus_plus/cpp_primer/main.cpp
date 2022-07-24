@@ -42,8 +42,8 @@ int main(int argc, char **argv)
     //Chapter_07();
 
     //Chapter_08();
-    Chapter_09();
-    //Chapter_10();
+    //Chapter_09();
+    Chapter_10();
     //Chapter_11();
     //Chapter_12(argc, argv);
     //Chapter_13();

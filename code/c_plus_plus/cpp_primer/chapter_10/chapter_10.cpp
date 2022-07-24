@@ -11,6 +11,7 @@
 #include <fstream>
 #include <list>
 #include <string.h>
+#include <time.h>
 
 using namespace std;
 using std::placeholders::_1;
@@ -18,8 +19,10 @@ using std::placeholders::_2;
 
 void Chapter_10()
 {
+    Homework_10_1();
+
     //Practice_10_2_1();
-    Practice_10_2_2();
+    //Practice_10_2_2();
     //Practice_10_3_1();
     //Practice_10_3_2();
     //Practice_10_3_3();
@@ -39,13 +42,41 @@ void Chapter_10()
     //Homework_10_37();
 }
 
-/*只读算法*/
+/***************************************************************/
+/***************************10.1********************************/
+
+void Homework_10_1()
+{
+    srand(time(NULL));
+
+    vector<int> ivec;
+    for (size_t i = 0; i != 10; ++i)
+    {
+        ivec.push_back(rand() % 10);
+    }
+    for_each(ivec.begin(), ivec.end(), [](int i){ cout << i << ' ';});
+    cout << endl;
+
+    cout << "input you need search num: ";
+    int num;
+    cin >> num;
+    cout << "the array include " << count(ivec.begin(), ivec.end(), num) << " number(s) " << num << endl;
+}
+
+/***************************************************************/
+/***************************10.2********************************/
+
+/* 10.2.1 只读算法 */
 void Practice_10_2_1()
 {
     list<const char *> roster1 = {"hello", "so long", "tata"};
-    vector<string> roster2 = {"hello", "so long"};
 
-    //注意元素数量
+    // 算法和元素类型
+    string sum = accumulate(roster1.begin(), roster1.end(), string(""));
+    //string sum1 = accumulate(roster1.begin(), roster1.end(), "");
+
+    // 操作两个序列的算法
+    vector<string> roster2 = {"hello", "so long"};
     auto b = equal(roster2.begin(), roster2.end(), roster1.begin());
     (b) ? cout << "true" : cout << "false";
 }
@@ -63,7 +94,7 @@ void Homework_10_5()
 
 #include <iterator>
 
-/* 10-2-2 写容器元素算法 */
+/* 10.2.2 写容器元素算法 */
 void Practice_10_2_2()
 {
     vector<int> ivec = {1,2,3,4};

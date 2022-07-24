@@ -4,6 +4,8 @@
 
 void Chapter_10();
 
+void Homework_10_1();
+
 void Practice_10_2_1();
 void Practice_10_2_2();
 void Practice_10_3_1();
