@@ -98,12 +98,11 @@ void Homework_10_5()
 void Practice_10_2_2()
 {
     vector<int> ivec = {1,2,3,4};
+    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' ';});    //临时测试用...
+    cout << endl;
 
     //fill
     vector<int> vec1(ivec);
-    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});    //临时测试用...
-    cout << endl;
-
     fill(vec1.begin(), vec1.end(), 0);
     for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
     cout << endl;
@@ -112,17 +111,17 @@ void Practice_10_2_2()
     for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 
+    // 算法不检查写操作
     fill_n(vec1.begin(), vec1.size(), 2);
     for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 
-    /* 算法不检查写操作 */
 //    vector<int> vec2;
 //    fill_n(vec2.begin(), 10, 1);
 //    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' '; });
 //    cout << endl;
 
-    /* back_inserter */
+    // back_inserter
     vector<int> vec3;
     auto it = back_inserter(vec3);
     *it = 100;
@@ -134,27 +133,58 @@ void Practice_10_2_2()
     for_each(vec4.begin(), vec4.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 
-    /* copy 算法 */
+    // copy
     vector<int> vec5;
     copy(ivec.begin(), ivec.end(), back_inserter(vec5)); //返回拷贝之后的位置
     for_each(vec5.begin(), vec5.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 
+    // replace
     list<int>   list1(ivec.begin(), ivec.end());
     replace(list1.begin(), list1.end(), 1, 100);
     for_each(begin(list1), end(list1), [](int i) { cout << i << ' '; });
     cout << endl;
 
+    // replace_copy
     list<int>   list2;
     replace_copy(ivec.begin(), ivec.end(), back_inserter(list2), 4, 4000);
     for_each(list2.begin(), list2.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 }
 
+void ElimDups(vector<string> &words)
+{
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    sort(words.begin(), words.end());
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    auto end_unique = unique(words.begin(), words.end());
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    words.erase(end_unique, words.end());
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+}
+
+/* 10.2.3 重排容器元素 */
 void Practice_10_2_3()
 {
+    vector<string>  svec;
 
+    string str;
+    while (cin >> str) {
+        svec.push_back(str);
+    }
+
+    ElimDups(svec);
 }
+
+/***************************************************************/
+/***************************10.3********************************/
 
 bool IsShorter(const string &s1, const string &s2)
 {
@@ -179,23 +209,9 @@ void Practice_10_3_1()
     vector<string>  svec;
     while (cin >> s)
         svec.push_back(s);
-    //Print(svec);
-
-//    vector<string>  scopy = svec;
-
-//    sort(svec.begin(), svec.end());
-//    Print(svec);
-
-//    svec = scopy;
-//    sort(svec.begin(), svec.end(), LT);
-//    Print(svec);
-
-//    svec = scopy;
-    sort(svec.begin(), svec.end());
-    auto it = unique(svec.begin(), svec.end());
     Print(svec);
-    svec.erase(it, svec.end());
-    Print(svec);
+
+    ElimDups(svec);
 
 //    stable_sort(svec.begin(), svec.end(), IsShorter);
 //    Print(svec);
@@ -207,7 +223,69 @@ void Practice_10_3_1()
 //    Print(svec);
 }
 
-/*lambada*/
+bool NumMoreWords(const string &s)
+{
+    return s.size() > 5;
+}
+
+void Homework_10_13()
+{
+    vector<string>  svec;
+    string          s;
+
+    istream_iterator<string> in(cin), eof;
+    while (in != eof)
+        svec.push_back(*in++);
+    for_each(svec.begin(), svec.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    auto it = partition(svec.begin(), svec.end(), NumMoreWords);
+    for_each(svec.begin(), it, [](const string &s){cout << s << " ";});
+}
+
+/* 10.3.3 lambada表达式 */
+void Biggies(vector<string> &words, vector<string>::size_type sz)
+{
+    ElimDups(words);
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    stable_sort(words.begin(), words.end(), [](const string &a, const string &b) {return a.size() < b.size();});
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    //auto wc = find_if(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
+    //auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
+    auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
+    //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
+
+    //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
+    //cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
+
+    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+}
+
+#include <sstream>
+
+void Practice_10_3_2_1()
+{
+    vector<string>  svec;
+    string          line;
+
+    while(getline(cin, line))
+    {
+        string s;
+        istringstream in(line);
+        while (in >> s)
+        {
+            svec.push_back(s);
+        }
+    }
+
+    Biggies(svec, 3);
+}
+
 void Practice_10_3_2()
 {
     size_t v1 = 42, v2 = 100;
@@ -245,43 +323,7 @@ bool CheckSize(const string &s, string::size_type sz)
     return s.size() >= sz;
 }
 
-void ElimDups(vector<string> &words)
-{
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
 
-    sort(words.begin(), words.end());
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    auto end_unique = unique(words.begin(), words.end());
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    words.erase(end_unique, words.end());
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-}
-
-void Biggies(vector<string> &words, vector<string>::size_type sz)
-{
-    stable_sort(words.begin(), words.end(), [](const string &a, const string &b) {return a.size() < b.size();});
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    ElimDups(words);
-
-    //auto wc = find_if(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
-    //auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    //auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
-    //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
-
-    auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
-
-    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-}
 
 void Biggies2(vector<string> &words, vector<string>::size_type sz)
 {
@@ -440,25 +482,7 @@ void Practice_10_5_3()
     cout << endl;
 }
 
-bool NumMoreWords(const string &s)
-{
-    return s.size() > 5;
-}
 
-void Homework_10_13()
-{
-    vector<string>  svec;
-    string          s;
-
-    istream_iterator<string> in(cin), eof;
-    while (in != eof)
-        svec.push_back(*in++);
-    for_each(svec.begin(), svec.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    auto it = partition(svec.begin(), svec.end(), NumMoreWords);
-    for_each(svec.begin(), it, [](const string &s){cout << s << " ";});
-}
 
 void Homework_10_20()
 {
