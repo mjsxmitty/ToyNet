@@ -247,18 +247,23 @@ void Homework_10_13()
 void Biggies(vector<string> &words, vector<string>::size_type sz)
 {
     ElimDups(words);
+
     for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
     cout << endl;
 
+    // 向lambda传递参数
     stable_sort(words.begin(), words.end(), [](const string &a, const string &b) {return a.size() < b.size();});
     for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
     cout << endl;
 
+    // 使用捕获列表
+    // 调用find_if
     //auto wc = find_if(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
-    //auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
-    //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
+    //auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
+    auto wc = stable_partition(words.begin(), words.end(), [sz] (const string &s) { return s.size() > sz; });
 
+    //auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
+    //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
     //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
     //cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
 
@@ -268,7 +273,7 @@ void Biggies(vector<string> &words, vector<string>::size_type sz)
 
 #include <sstream>
 
-void Practice_10_3_2_1()
+void Practice_10_3_2()
 {
     vector<string>  svec;
     string          line;
@@ -286,25 +291,35 @@ void Practice_10_3_2_1()
     Biggies(svec, 3);
 }
 
-void Practice_10_3_2()
+void Biggies(vector<string> &words, vector<string>::size_type sz,
+             ostream &os = cout, char c = ' ')
+{
+    // 隐式捕获
+    for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
+    for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
+}
+
+void Practice_10_3_3()
 {
     size_t v1 = 42, v2 = 100;
-//    auto f1 = [v1]{return v1;};
-//    cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
-//    v1 = 0;
-//    cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
+    // 值捕获
+    auto f1 = [v1]{return v1;};
+    cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
+    v1 = 0;
+    cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
 
-//    auto f2 = [&v2]{return v2;};
-//    v2 = 0;
-//    cout << "v2 = " << v2 << ", f2() = " << f2() << endl;
+    // 引用捕获
+    auto f2 = [&v2]{return v2;};
+    v2 = 0;
+    cout << "v2 = " << v2 << ", f2() = " << f2() << endl;
 
-//    auto f3 = [v1] () mutable {return ++v1;};
-//    v1 = 0;
-//    cout << "v1 = " << v1 << ", f3() = " << f3() << endl;
+    auto f3 = [v1] () mutable {return ++v1;};
+    v1 = 0;
+    cout << "v1 = " << v1 << ", f3() = " << f3() << endl;
 
-//    auto f4 = [&v2]{return ++v2;};
-//    v2 = 0;
-//    cout << "v2 = " << v2 << ", f4() = " << f4() << endl;
+    auto f4 = [&v2]{return ++v2;};
+    v2 = 0;
+    cout << "v2 = " << v2 << ", f4() = " << f4() << endl;
 
     size_t* const p = &v1;
     auto f = [p](){return ++*p;};
@@ -338,17 +353,6 @@ void Biggies2(vector<string> &words, vector<string>::size_type sz)
 
     for_each(wc, words.end(), [](const string &s){cout << s << " ";});
     cout << endl;
-}
-//
-void Practice_10_3_3()
-{
-    vector<string>  words;
-    string          next_word;
-
-    while (cin >> next_word)
-        words.push_back(next_word);
-
-    Biggies(words, 5);
 }
 
 ostream& Print(ostream& os, const string &s, char c)
