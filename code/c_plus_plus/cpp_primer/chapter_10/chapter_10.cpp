@@ -14,28 +14,29 @@
 #include <time.h>
 
 using namespace std;
-using std::placeholders::_1;
-using std::placeholders::_2;
 
 void Chapter_10()
 {
-    Homework_10_1();
+    //Homework_10_1();
 
     //Practice_10_2_1();
     //Practice_10_2_2();
+    //Homework_10_5();
+
     //Practice_10_3_1();
+    //Homework_10_13();
     //Practice_10_3_2();
     //Practice_10_3_3();
+    //Homework_10_20();
+    Homework_10_21();
     //Practice_10_3_4();
+
+
     //Practice_10_4_1();
     //Practice_10_4_2();
     //Practice_10_4_3();
     //Practice_10_5_3();
 
-    //Homework_10_5();
-    //Homework_10_13();
-    //Homework_10_20();
-    //Homework_10_21();
     //Homework_10_27();
     //Homework_10_34_35();
     //Homework_10_36();
@@ -262,11 +263,6 @@ void Biggies(vector<string> &words, vector<string>::size_type sz)
     //auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
     auto wc = stable_partition(words.begin(), words.end(), [sz] (const string &s) { return s.size() > sz; });
 
-    //auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
-    //cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
-
     for_each(wc, words.end(), [](const string &s){cout << s << " ";});
     cout << endl;
 }
@@ -297,22 +293,27 @@ void Biggies(vector<string> &words, vector<string>::size_type sz,
     // 隐式捕获
     for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
     for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
+
+    for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
 }
 
 void Practice_10_3_3()
 {
     size_t v1 = 42, v2 = 100;
     // 值捕获
-    auto f1 = [v1]{return v1;};
+    auto f1 = [v1]{return v1;};     // lambda创建时拷贝
     cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
     v1 = 0;
-    cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
+    cout << "v1 = " << v1 << ", f1() = " << f1() << endl  << endl;;
 
     // 引用捕获
     auto f2 = [&v2]{return v2;};
     v2 = 0;
-    cout << "v2 = " << v2 << ", f2() = " << f2() << endl;
+    cout << "v2 = " << v2 << ", f2() = " << f2() << endl << endl;
 
+    // 隐式捕获 ...
+
+    // 可变lambda
     auto f3 = [v1] () mutable {return ++v1;};
     v1 = 0;
     cout << "v1 = " << v1 << ", f3() = " << f3() << endl;
@@ -321,24 +322,53 @@ void Practice_10_3_3()
     v2 = 0;
     cout << "v2 = " << v2 << ", f4() = " << f4() << endl;
 
+    // 是否可以更改,需要看指向的是否是const
     size_t* const p = &v1;
     auto f = [p](){return ++*p;};
     cout << "v1 = " << v1 << ", f() = " << f() << endl;
     v1 = 0;
     cout << "v1 = " << v1 << ", f() = " << f() << endl;
+
+    // 指定lambda返回类型
+    vector<int> ivec;
+    // TODO ...
+    transform(ivec.begin(), ivec.end(), ivec.begin(), [](int i) -> int { if (i < 0) return -i; else return i; });
 }
+
+void Homework_10_20()
+{
+    vector<string>  svec;
+    string          s;
+
+    istream_iterator<string> in(cin), eof;
+    while (in != eof)
+        svec.push_back(*in++);
+
+    for_each(svec.begin(), svec.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    auto it = count_if(svec.begin(), svec.end(), [](const string &s){return s.size() > 6;});
+    cout << "more than 6 size words counts: " << it << endl;
+}
+
+void Homework_10_21()
+{
+    int i = 5;
+    auto f = [i] () mutable -> bool { if (i > 0) {--i; return false;} else return true; };
+
+    for (int j = 0; j < 6; ++j)
+    {
+        cout << f() << ' ';
+    }
+    cout << endl;
+}
+
+
 
 bool GT(const string &s, string::size_type sz)
 {
     return s.size() > sz;
 }
-
-bool CheckSize(const string &s, string::size_type sz)
-{
-    return s.size() >= sz;
-}
-
-
 
 void Biggies2(vector<string> &words, vector<string>::size_type sz)
 {
@@ -355,30 +385,59 @@ void Biggies2(vector<string> &words, vector<string>::size_type sz)
     cout << endl;
 }
 
-ostream& Print(ostream& os, const string &s, char c)
+
+
+bool CheckSize(const string &s, string::size_type sz)
+{
+    return s.size() >= sz;
+}
+
+ostream& PrintVer1(ostream& os, const string &s, char c)
 {
     return os << s << c;
 }
 
-/*参数绑定*/
+//using std::placeholders::_1;
+//using std::placeholders::_2;
+using namespace std::placeholders;
+
+/* 10.3.4 参数绑定 */
 void Practice_10_3_4()
 {
-    string          s;
-    vector<string>  words;
-//    while (cin >> s)
-//        words.push_back(s);
+    // 绑定CheckSize的sz参数
+    {
+        vector<string>              words;
+        vector<string>::size_type   sz;
 
-//    for_each(words.begin(), words.end(), bind(Print, ref(cout), _1, ' '));
-//    cout << endl;
+        auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
+        cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
 
-//    ofstream os("../out_file1");
-//    for_each(words.begin(), words.end(), bind(Print, ref(os), _1, ' '));
-//    cout << endl;
+        // homework_10_25
+        //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
+        //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
+    }
 
-//    ifstream in("../chapter_10/chapter_10.cpp");
-//    istream_iterator<string> is(in), eof;
-//    for_each(is, eof, bind(Print, ref(cout), _1, ' '));
-//    cout << endl;
+    // 使用 placeholders
+
+    // 绑定引用参数
+    {
+        string          s;
+        vector<string>  words;
+        while (cin >> s)
+            words.push_back(s);
+
+        for_each(words.begin(), words.end(), bind(PrintVer1, ref(cout), _1, ' '));
+        cout << endl;
+
+//        ofstream os("../out_file1");
+//        for_each(words.begin(), words.end(), bind(Print, ref(os), _1, ' '));
+//        cout << endl;
+
+//        ifstream in("../chapter_10/chapter_10.cpp");
+//        istream_iterator<string> is(in), eof;
+//        for_each(is, eof, bind(Print, ref(cout), _1, ' '));
+//        cout << endl;
+    }
 }
 
 void Print(const string &label, const list<int> &lst)
@@ -484,32 +543,6 @@ void Practice_10_5_3()
     for (auto it = vec.crbegin(); it != vec.crend(); ++it)
         cout << *it << " ";
     cout << endl;
-}
-
-
-
-void Homework_10_20()
-{
-    vector<string>  svec;
-    string          s;
-
-    istream_iterator<string> in(cin), eof;
-    while (in != eof)
-        svec.push_back(*in++);
-    for_each(svec.begin(), svec.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    auto it = count_if(svec.begin(), svec.end(), [](const string &s){return s.size() > 6;});
-    cout << "more than 6 size words counts: " << it << endl;
-}
-
-void Homework_10_21()
-{
-    int i = 5;
-    auto f = [i]()mutable -> bool {if (i > 0){--i; return false;}else return true;};
-
-    for (int i = 0; i < 6; ++i)
-        cout << f() << endl;
 }
 
 void PrintList(int i)
