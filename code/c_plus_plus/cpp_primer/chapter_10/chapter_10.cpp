@@ -28,11 +28,10 @@ void Chapter_10()
     //Practice_10_3_2();
     //Practice_10_3_3();
     //Homework_10_20();
-    Homework_10_21();
+    //Homework_10_21();
     //Practice_10_3_4();
 
-
-    //Practice_10_4_1();
+    Practice_10_4_1();
     //Practice_10_4_2();
     //Practice_10_4_3();
     //Practice_10_5_3();
@@ -192,25 +191,21 @@ bool IsShorter(const string &s1, const string &s2)
     return s1.size() < s2.size();
 }
 
-bool LT(const string &s1, const string &s2)
-{
-    return s1 < s2;
-}
-
-void Print(const vector<string> &vec)
+void PrintVer0(const vector<string> &vec)
 {
     for_each(vec.begin(), vec.end(), [](string s){ cout << s << " "; });
     cout << endl;
 }
 
-/*向算法传递函数*/
+/* 10.3.1 向算法传递函数 */
 void Practice_10_3_1()
 {
     string          s;
     vector<string>  svec;
     while (cin >> s)
         svec.push_back(s);
-    Print(svec);
+
+    PrintVer0(svec);
 
     ElimDups(svec);
 
@@ -363,30 +358,6 @@ void Homework_10_21()
     cout << endl;
 }
 
-
-
-bool GT(const string &s, string::size_type sz)
-{
-    return s.size() > sz;
-}
-
-void Biggies2(vector<string> &words, vector<string>::size_type sz)
-{
-    ShorterString ss;
-    stable_sort(words.begin(), words.end(), ss);
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    SzieComp sc(sz);
-    auto wc = stable_partition(words.begin(), words.end(), sc);
-    cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
-
-    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-}
-
-
-
 bool CheckSize(const string &s, string::size_type sz)
 {
     return s.size() >= sz;
@@ -440,7 +411,35 @@ void Practice_10_3_4()
     }
 }
 
-void Print(const string &label, const list<int> &lst)
+/***************************************************************/
+/***************************10.4********************************/
+
+bool LT(const string &s1, const string &s2)
+{
+    return s1 < s2;
+}
+
+bool GT(const string &s, string::size_type sz)
+{
+    return s.size() > sz;
+}
+
+void Biggies2(vector<string> &words, vector<string>::size_type sz)
+{
+    ShorterString ss;
+    stable_sort(words.begin(), words.end(), ss);
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    SzieComp sc(sz);
+    auto wc = stable_partition(words.begin(), words.end(), sc);
+    cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
+
+    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+}
+
+void PrintVer2(const string &label, const list<int> &lst)
 {
     cout << label << ": ";
     for (auto iter : lst)
@@ -448,25 +447,25 @@ void Print(const string &label, const list<int> &lst)
     cout << endl;
 }
 
-/*插入迭代器*/
+/* 10.4.1 插入迭代器 */
 void Practice_10_4_1()
 {
     list<int> lst = {1,2,3,4};
-    Print("lst", lst);
+    PrintVer2("source list", lst);
 
     list<int> lst2, lst3;
-    copy(lst.begin(), lst.end(), front_inserter(lst2)); //push_front
-    Print("lst2", lst2);
+    copy(lst.begin(), lst.end(), front_inserter(lst2));
+    PrintVer2("front_inserter", lst2);
 
     copy(lst.begin(), lst.end(), inserter(lst3, lst3.begin()));
-    Print("lst3", lst3);
+    PrintVer2("inserter", lst3);
 
     vector<int> v = {6,7,8,9,0};
-    copy(v.begin(), v.end(), inserter(lst, lst.begin()));
-    Print("new lst", lst);
+    copy(v.begin(), v.end(), front_inserter(lst));
+    PrintVer2("vector front_inserter list", lst);
 
     copy(v.begin(), v.end(), inserter(lst3, lst3.end()));
-    Print("new lst2", lst3);
+    PrintVer2("vector inserter list", lst3);
 }
 
 /*iostream迭代器*/
@@ -580,7 +579,7 @@ void Homework_10_36()
     
     auto last_it = find(ilst.crbegin(), ilst.crend(), 0);
     last_it++;
-    int cnt = 1;
+    unsigned int cnt = 1;
 
     for (auto iter = ilst.begin(); iter != last_it.base(); ++iter, ++cnt) ;
 
