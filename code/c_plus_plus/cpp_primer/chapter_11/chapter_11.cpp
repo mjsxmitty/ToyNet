@@ -1,5 +1,4 @@
 
-
 #include "chapter_11.h"
 
 #include <iostream>
@@ -17,13 +16,52 @@ using namespace std;
 
 void Chapter_11()
 {
-    //Practice_11_2_1();
+    //Practice_11_1();
+
+    Practice_11_2_1();
     //Practice_11_2_3();
     //Practice_11_3_2();
-	Practice_11_3_3();
+    //Practice_11_3_3();
     //Practice_11_3_5();
 }
 
+/***************************************************************/
+/***************************11.1********************************/
+
+// homework 11.4
+string& Trans(string &s)
+{
+    for (size_t i = 0; i != s.size(); ++i)
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] -= ('A' - 'a');
+        else if (s[i] == ',' || s[i] == '.')
+            s.erase(i, 1);
+    }
+
+    return s;
+}
+
+void Practice_11_1()
+{
+    map<string, int>    word_count;
+    string              word;
+    set<string>         exclude = {"the", "The", "But", "but"};
+
+    cout << "please input a series string words: ";
+    while (cin >> word)
+        ++word_count[Trans(word)];
+
+    for (const auto &w : word_count)
+        if (exclude.find(w.first) == exclude.end())
+            cout << w.first << " occurs " << w.second <<
+                    ((w.second > 1) ? " times" : " time") << endl;
+}
+
+/***************************************************************/
+/***************************11.2********************************/
+
+/* 11.2.1 定义关联容器 */
 void Practice_11_2_1()
 {
     vector<int> v;
@@ -32,14 +70,14 @@ void Practice_11_2_1()
         v.push_back(i);
         v.push_back(i);
     }
-    for_each(v.begin(), v.end(), [](int i){cout << i << " ";});
+    for_each(v.begin(), v.end(), [](int i){cout << i << ' ';});
     cout << endl;
 
-    set<int>    iset(v.begin(), v.end());
+    set<int>        iset(v.begin(), v.end());
     multiset<int>   miset(v.begin(), v.end());
-    cout << "iset size: " << iset.size() << ", miset: size: " << miset.size() << endl;
-    cout << "iset find 1: " << iset.count(1) << ", miset find 1: " << miset.count(1) << endl;
-    cout << "iset find 11: " << iset.count(11) << ", miset find 11: " << miset.count(11) << endl;
+    cout << "iset size: "       << iset.size()      << ", miset: size: "    << miset.size() << endl;
+    cout << "iset find 1: "     << iset.count(1)    << ", miset find 1: "   << miset.count(1) << endl;
+    cout << "iset find 11: "    << iset.count(11)   << ", miset find 11: "  << miset.count(11) << endl;
 
     v = {2,4,6,8,2,4,6,8};
     set<int> set2;
