@@ -19,14 +19,17 @@ void Homework_10_21();
 void Practice_10_3_4();
 
 void Practice_10_4_1();
-void Practice_10_4_2();
-void Practice_10_4_3();
-void Practice_10_5_3();
-
 void Homework_10_27();
-void Homework_10_34_35();
+void Practice_10_4_2();
+void Homework_10_29();
+void Homework_10_30();
+void Practice_10_4_3();
+void Homework_10_34();
 void Homework_10_36();
 void Homework_10_37();
 
+void Practice_10_5_3();
+
+void Practice_10_6();
 
 #endif // __CPP_PRIMER_CHAPTER_10_H__

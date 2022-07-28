@@ -31,15 +31,19 @@ void Chapter_10()
     //Homework_10_21();
     //Practice_10_3_4();
 
-    Practice_10_4_1();
-    //Practice_10_4_2();
-    //Practice_10_4_3();
-    //Practice_10_5_3();
-
+    //Practice_10_4_1();
     //Homework_10_27();
-    //Homework_10_34_35();
+    //Practice_10_4_2();
+    //Homework_10_29();
+    //Homework_10_30();
+    //Practice_10_4_3();
+    //Homework_10_34();
     //Homework_10_36();
     //Homework_10_37();
+
+    //Practice_10_5_3();
+
+    Practice_10_6();
 }
 
 /***************************************************************/
@@ -414,31 +418,6 @@ void Practice_10_3_4()
 /***************************************************************/
 /***************************10.4********************************/
 
-bool LT(const string &s1, const string &s2)
-{
-    return s1 < s2;
-}
-
-bool GT(const string &s, string::size_type sz)
-{
-    return s.size() > sz;
-}
-
-void Biggies2(vector<string> &words, vector<string>::size_type sz)
-{
-    ShorterString ss;
-    stable_sort(words.begin(), words.end(), ss);
-    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-
-    SzieComp sc(sz);
-    auto wc = stable_partition(words.begin(), words.end(), sc);
-    cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
-
-    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
-    cout << endl;
-}
-
 void PrintVer2(const string &label, const list<int> &lst)
 {
     cout << label << ": ";
@@ -468,82 +447,6 @@ void Practice_10_4_1()
     PrintVer2("vector inserter list", lst3);
 }
 
-/*iostream迭代器*/
-void Practice_10_4_2()
-{
-//    istream_iterator<int>   in(cin), eof;
-//    cout << "sum: " << accumulate(in, eof, 0) << endl;
-
-    vector<int> vec;
-    istream_iterator<int> in_iter(cin), eof;
-    //vector<int> vec(in_iter, eof);
-    while (in_iter != eof)
-        vec.push_back(*in_iter++);
-
-//    for (auto it : vec)
-//        cout << it << " ";
-
-    ostream_iterator<int> out_iter(cout, "\n");
-    for (const auto& e : vec)
-        //out_iter = e;
-        *out_iter++ = e;
-}
-
-/*反向迭代器*/
-void Practice_10_4_3()
-{
-    string s;
-    getline(cin, s);
-    cout << "s  = " << s << endl;
-    cout << "s1 = " << string(s.begin(), find(s.begin(), s.end(), ',')) << endl;
-    cout << "s2 = " << string(s.crbegin(), find(s.crbegin(), s.crend(), ',')) << endl;
-
-    cout << "s3 = " << string(find(s.crbegin(), s.crend(), ',').base(), s.cend()) << endl;
-}
-
-void Practice_10_5_3()
-{
-//    vector<int> v1 = {0,1,2,3,4,5,6,7,8,9};
-//    vector<int> cpy = v1;
-
-//    reverse(v1.begin(), v1.end());
-//    for_each(v1.begin(), v1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
-//    vector<int> v2;
-//    v1 = cpy;
-//    reverse_copy(v1.begin(), v1.end(), back_inserter(v2));
-//    for_each(v2.begin(), v2.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
-//    v1 = cpy;
-//    auto it = remove_if(v1.begin(), v1.end(), [](int i){return i % 2;});//
-//    for_each(v1.begin(), it, [](int i){cout << i << " ";});
-//    cout << endl;
-
-//    v1 = cpy;
-//    v2.clear();
-//    remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [](int i){return i & 1;});
-//    for_each(v1.begin(), v1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-//    for_each(v2.begin(), v2.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
-//    vector<int> vec;
-//    istream_iterator<int>   in(cin), eof;
-//    copy(in, eof, back_inserter(vec));
-//    for_each(vec.begin(), vec.end(), [](int i){cout << i << " ";});
-
-//    sort(vec.begin(), vec.end());
-//    ostream_iterator<int> out(cout, "\n");
-//    copy(vec.begin(), vec.end(), out);
-
-    vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
-    for (auto it = vec.crbegin(); it != vec.crend(); ++it)
-        cout << *it << " ";
-    cout << endl;
-}
-
 void PrintList(int i)
 {
     cout << i << "\n";
@@ -558,38 +461,112 @@ void Homework_10_27()
     for_each(ilst.begin(), ilst.end(), bind(PrintList, _1));
 }
 
-
-void Homework_10_34_35()
+/* 10.4.2 iostream迭代器 */
+void Practice_10_4_2()
 {
-    vector<int> vec = {0,1,2,3,3,3,4,5,6,7,8,8,9};
-    for (auto it = vec.crbegin(); it != vec.crend(); ++it)
-        cout << *it << " ";
+//    vector<int> vec;
+//    istream_iterator<int> in_iter(cin), eof;
+//    while (in_iter != eof)
+//        vec.push_back(*in_iter++);
+//    for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+
+    istream_iterator<int> in_iter(cin), eof;
+    vector<int> vec(in_iter, eof);
+    for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
     cout << endl;
 
+    // 使用算法操作流迭代器
+//    istream_iterator<int>   in(cin), eof;
+//    cout << "stream sum = " << accumulate(in, eof, 0) << endl;
+//    cout << count(in, eof, 1) << endl;
+
+    // ostream_iterator 操作
+    ostream_iterator<int> out_iter(cout, "\n");
+//    for (const auto& e : vec)
+//        //out_iter = e;
+//        *out_iter++ = e;
+    copy(vec.begin(), vec.end(), out_iter);
+}
+
+void Homework_10_29()
+{
+    ifstream in("Makefile");    // 测试用的文件
+    if (!in)
+    {
+        cout << "open file failed!" << endl;
+        return ;
+    }
+
+    istream_iterator<string>    in_iter(in), eof;
+    vector<string>              svec;
+
+    while (in_iter != eof)
+        svec.push_back(*in_iter++);
+    for_each(svec.begin(), svec.end(), [](const string &s) { cout << s << '\n'; });
+}
+
+void Homework_10_30()
+{
+    istream_iterator<int>    in_iter(cin), eof;
+    vector<int>              ivec(in_iter, eof);
+
+    sort(ivec.begin(), ivec.end());
+    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    ostream_iterator<int>   out_iter(cout, "\n");
+    //copy(ivec.begin(), ivec.end(), out_iter);
+    unique_copy(ivec.begin(), ivec.end(), out_iter);
+}
+
+/* 10.4.3 反向迭代器 */
+void Practice_10_4_3()
+{
+    vector<int> ivec = {10, 1, 23, 3, 12, 34, 14, 9};
+    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    sort(ivec.rbegin(), ivec.rend());
+    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+    cout << endl;
+
+    // 反向迭代器和其他迭代器之间的关系
+    string s("FIRST,MIDDLE,LAST");
+    //getline(cin, s);
+    cout << "s  = " << s << endl;
+    cout << "s1 = " << string(s.begin(), find(s.begin(), s.end(), ',')) << endl;
+    cout << "s2 = " << string(s.crbegin(), find(s.crbegin(), s.crend(), ',')) << endl;
+    cout << "s3 = " << string(find(s.crbegin(), s.crend(), ',').base(), s.cend()) << endl;
+}
+
+void Homework_10_34()
+{
+    vector<int> vec = {0,1,2,3,3,3,4,5,6,7,8,8,9};
+    for_each(vec.crbegin(), vec.crend(), [] (int i) { cout << i << ' '; });
+    cout << endl;
+
+    // 10.35
     for (auto it = vec.end(); it != vec.begin(); )
-        cout << *(--it) << " ";
+        cout << *(--it) << ' ';
     cout << endl;
 }
 
-//TODO 正向查找
 void Homework_10_36()
 {
-    
-    list<int> ilst = {0,1,2,3,4,0,6,7,8,9};
-    
+    list<int> ilst = {0,1,2,3,4,0,6,7,0,9};
+
     auto last_it = find(ilst.crbegin(), ilst.crend(), 0);
     last_it++;
-    unsigned int cnt = 1;
 
-    for (auto iter = ilst.begin(); iter != last_it.base(); ++iter, ++cnt) ;
+    unsigned int cnt = 1;
+    for (auto iter = ilst.begin(); iter != last_it.base(); iter++, cnt++) ; // 空语句
 
     if (cnt >= ilst.size())
-        cout << "no o params." << endl;
+        cout << "no value." << endl;
     else
         cout << "the last 0 in: " << cnt << " position." << endl;
 }
 
-//TODO
 void Homework_10_37()
 {
     vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
@@ -599,8 +576,123 @@ void Homework_10_37()
     cout << endl;
 
     list<int> li;
-    vector<int>::reverse_iterator re(vec.begin() + 2);
+    vector<int>::reverse_iterator re(vec.begin() + 2);  //反向迭代器
     vector<int>::reverse_iterator rb(vec.begin() + 7);
     copy(rb, re, back_inserter(li));
     copy(li.begin(), li.end(), out_iter);
+}
+
+/***************************************************************/
+/***************************10.5********************************/
+
+void Practice_10_5_3()
+{
+    vector<int> v1 = {0,1,2,3,4,5,6,7,8,9};
+    vector<int> cpy = v1;
+
+    reverse(v1.begin(), v1.end());
+    for_each(v1.begin(), v1.end(), [](int i){cout << i << " ";});
+    cout << endl;
+
+    vector<int> v2;
+    v1 = cpy;
+    reverse_copy(v1.begin(), v1.end(), back_inserter(v2));
+    for_each(v2.begin(), v2.end(), [](int i){cout << i << " ";});
+    cout << endl;
+
+    v1 = cpy;
+    auto it = remove_if(v1.begin(), v1.end(), [](int i){return i % 2;});//
+    for_each(v1.begin(), it, [](int i){cout << i << " ";});
+    cout << endl;
+
+    v1 = cpy;
+    v2.clear();
+    remove_copy_if(v1.begin(), v1.end(), back_inserter(v2), [](int i){return i & 1;});
+    for_each(v1.begin(), v1.end(), [](int i){cout << i << " ";});
+    cout << endl;
+    for_each(v2.begin(), v2.end(), [](int i){cout << i << " ";});
+    cout << endl;
+
+    vector<int> vec;
+    istream_iterator<int>   in(cin), eof;
+    copy(in, eof, back_inserter(vec));
+    for_each(vec.begin(), vec.end(), [](int i){cout << i << " ";});
+
+    sort(vec.begin(), vec.end());
+    ostream_iterator<int> out(cout, "\n");
+    copy(vec.begin(), vec.end(), out);
+
+//    vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
+//    for (auto it = vec.crbegin(); it != vec.crend(); ++it)
+//        cout << *it << " ";
+//    cout << endl;
+}
+
+/***************************************************************/
+/***************************10.6********************************/
+
+void Practice_10_6()
+{
+    list<int>   ilist1 = {0, 1, 2, 3};
+    list<int>   ilist2 = {6, 7, 8, 9};
+
+//    ilist1.merge(ilist2);
+//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+//    for_each(ilist2.begin(), ilist2.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+//    ilist1.reverse();
+//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+//    ilist1.remove(0);
+//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+//    ilist1.insert(ilist1.end(), 1);
+//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+//    ilist1.unique();
+//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+    list<int>   ilist3 = {0, 1, 2, 3};
+    list<int>   ilist4 = {6, 7, 8, 9};
+
+//    ilist3.splice(--ilist3.end(), ilist4);
+//    for_each(ilist3.begin(), ilist3.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+//    for_each(ilist4.begin(), ilist4.end(), [](int i){cout << i << " ";});
+//    cout << endl;
+
+    ilist3.splice(--ilist3.end(), ilist4, ilist4.begin(), ilist4.end());
+    for_each(ilist3.begin(), ilist3.end(), [](int i){cout << i << " ";});
+    cout << endl;
+}
+
+bool LT(const string &s1, const string &s2)
+{
+    return s1 < s2;
+}
+
+bool GT(const string &s, string::size_type sz)
+{
+    return s.size() > sz;
+}
+
+void Biggies2(vector<string> &words, vector<string>::size_type sz)
+{
+    ShorterString ss;
+    stable_sort(words.begin(), words.end(), ss);
+    for_each(words.begin(), words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
+
+    SzieComp sc(sz);
+    auto wc = stable_partition(words.begin(), words.end(), sc);
+    cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
+
+    for_each(wc, words.end(), [](const string &s){cout << s << " ";});
+    cout << endl;
 }
