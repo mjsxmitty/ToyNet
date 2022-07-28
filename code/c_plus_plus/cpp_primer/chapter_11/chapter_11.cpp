@@ -18,7 +18,9 @@ void Chapter_11()
 {
     //Practice_11_1();
 
-    Practice_11_2_1();
+    //Practice_11_2_1();
+    Homework_11_8();
+
     //Practice_11_2_3();
     //Practice_11_3_2();
     //Practice_11_3_3();
@@ -84,6 +86,38 @@ void Practice_11_2_1()
     set2.insert(v.begin(), v.end());
     set2.insert({1,3,5,7,1,3,5,7});
     cout << "set2 size: " << set2.size() << endl;
+}
+
+void AddFamily(map<string, vector<string>> &families, const string &family)
+{
+    if (families.find(family) == families.end())
+        families[family] = vector<string>();
+}
+
+void AddChild(map<string, vector<string>> &families,
+              const string &family, const string &child)
+{
+    families[family].push_back(child);
+}
+
+void Homework_11_8()
+{
+    map<string, vector<string>> families;
+
+    AddFamily(families, "zhang");
+    AddChild(families, "zhang", "san");
+    AddChild(families, "zhang", "sansan");
+    AddChild(families, "wang", "wu");
+    AddFamily(families, "wang");
+
+    for(auto &f : families)
+    {
+        cout << "family: " << f.first << ": ";
+        for (auto &c : f.second)
+            cout << c << ' ';
+        cout << endl;
+    }
+    cout << endl;
 }
 
 typedef pair<string, string> Author;
