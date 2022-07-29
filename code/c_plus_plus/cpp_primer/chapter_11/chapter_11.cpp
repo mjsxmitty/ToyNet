@@ -19,9 +19,12 @@ void Chapter_11()
     //Practice_11_1();
 
     //Practice_11_2_1();
-    Homework_11_8();
-
+    //Homework_11_8();
     //Practice_11_2_3();
+    //Homework_11_14();
+    //Homework_11_20();
+    Homework_11_23();
+
     //Practice_11_3_2();
     //Practice_11_3_3();
     //Practice_11_3_5();
@@ -80,12 +83,6 @@ void Practice_11_2_1()
     cout << "iset size: "       << iset.size()      << ", miset: size: "    << miset.size() << endl;
     cout << "iset find 1: "     << iset.count(1)    << ", miset find 1: "   << miset.count(1) << endl;
     cout << "iset find 11: "    << iset.count(11)   << ", miset find 11: "  << miset.count(11) << endl;
-
-    v = {2,4,6,8,2,4,6,8};
-    set<int> set2;
-    set2.insert(v.begin(), v.end());
-    set2.insert({1,3,5,7,1,3,5,7});
-    cout << "set2 size: " << set2.size() << endl;
 }
 
 void AddFamily(map<string, vector<string>> &families, const string &family)
@@ -125,8 +122,7 @@ Author proust("Marcel", "Proust");
 Author joyce{"James", "Joyce"};
 Author austen = make_pair("Jane", "Austen");
 
-pair<string, int>
-Process(const vector<string> &vec)
+pair<string, int> Process(const vector<string> &vec)
 {
     if (!vec.empty())
         //return {vec.back(), vec.back().size()};
@@ -136,11 +132,12 @@ Process(const vector<string> &vec)
         return pair<string, int>();
 }
 
-/*pair绫诲瀷*/
+/* 11.2.3 pair类型 */
 void Practice_11_2_3()
 {
     vector<string>  v;
 
+    // 创建 pair 对象的函数
     istream_iterator<string>    in_iter(cin), eof;
     copy(in_iter, eof, back_inserter(v));
     sort(v.begin(), v.end(), [](const string &s1, const string &s2) {return s1.size() < s2.size();});
@@ -149,18 +146,113 @@ void Practice_11_2_3()
     cout << biggest.first << " " << biggest.second << endl;
 }
 
-/*娣诲姞鍏冪礌*/
+void AddFamily(map<string, vector<pair<string, string>>> &families, const string &family)
+{
+    families[family];
+}
+
+void AddChild(map<string, vector<pair<string, string>>> &families,
+              const string &family, const string &child,
+              const string &birth)
+{
+    families[family].push_back({child, birth});
+}
+
+void Homework_11_14()
+{
+    map<string, vector<pair<string, string>>> families;
+
+    AddFamily(families, "zhang");
+    AddChild(families, "zhang", "san", "1991");
+    AddChild(families, "zhang", "sansan", "2001");
+    AddChild(families, "wang", "wu", "1990");
+    AddFamily(families, "wang");
+
+    for(auto &f : families)
+    {
+        cout << "family: " << f.first << ", ";
+        for (auto &c : f.second)
+            cout << c.first << ',' << c.second;
+        cout << endl;
+    }
+}
+
+/***************************************************************/
+/***************************11.3********************************/
+
+/* 11.3.2 添加元素 */
 void Practice_11_3_2()
 {
+    // insert
+    vector<int> v = {2,4,6,8,2,4,6,8};
+    set<int> set2;
+    set2.insert(v.begin(), v.end());
+    set2.insert({1,3,5,7,1,3,5,7});
+    cout << "set2 size: " << set2.size() << endl;
+
+    // 检测insert返回值
     map<string, size_t> word_count;
     string              word;
     while (cin >> word)
-        ++word_count.insert({word, 0}).first->second;
+    {
+        // insert
+        auto ret = word_count.insert({word, 1});
+//        ret = word_count.insert(make_pair(word, 1));
+//        ret = word_count.insert(pair<string, size_t>(word, 1));
+//        ret = word_count.insert(map<string, size_t>::value_type(word, 1));
+        if (!ret.second)
+            ++ret.first->second;
+    }
 
     for (auto iter = word_count.begin(); iter != word_count.end(); ++iter)
         cout << "elem: " << iter->first << ", count: " << iter->second << endl;
+
+    // 向 multimap 或者 multiset添加元素
+    multimap<string, string> authors;
+    authors.insert({"test_key", "test_val1"});
+    authors.insert(pair<string, string>("test_key", "test_val2"));
 }
 
+void Homework_11_20()
+{
+    map<string, int>    word_count;
+    string              word;
+
+    cout << "please input a series string words: ";
+    while (cin >> word)
+    {
+        auto ret = word_count.insert({word, 1});
+        if (!ret.second)
+            ++ret.first->second;
+    }
+
+    for (const auto &w : word_count)
+        cout << w.first << " occurs " << w.second <<
+                ((w.second > 1) ? " times" : " time") <<
+                endl;
+}
+
+void AddChild(multimap<string, string> &families,
+              const string &family, const string &child)
+{
+    families.insert({family, child});
+}
+
+void Homework_11_23()
+{
+    multimap<string, string> families;
+
+    AddChild(families, "zhang", "san");
+    AddChild(families, "zhang", "sansan");
+    AddChild(families, "wang", "wu");
+
+    for(auto &f : families)
+    {
+        cout << f.first << " : " << f.second << endl;
+    }
+}
+
+/* 11.3.3 删除元素 */
 void Practice_11_3_3()
 {
     string                  s;
