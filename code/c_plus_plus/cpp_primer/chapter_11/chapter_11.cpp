@@ -250,6 +250,8 @@ void Homework_11_23()
     {
         cout << f.first << " : " << f.second << endl;
     }
+
+    //cout << families.erase("zhang") << endl;
 }
 
 /* 11.3.3 É¾³ýÔªËØ */
@@ -265,9 +267,8 @@ void Practice_11_3_3()
         cout << w.first << " occurs " << w.second
              << ((w.second > 1) ? " times" : " time")
              << endl;
-    //åˆ é™¤å…ƒç´ 
-    string erase_word = "the";
 
+    string erase_word = "the";
     if (word_count.erase(erase_word))
         cout << "removed " << erase_word << " ok." << endl;
     else
@@ -275,7 +276,6 @@ void Practice_11_3_3()
 
      string erase = "The";
      map<string, size_t>::iterator where = word_count.find(erase);
-
     if (where != word_count.end())
     {
         word_count.erase(erase);
