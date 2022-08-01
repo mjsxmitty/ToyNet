@@ -18,5 +18,6 @@ void Homework_11_23();
 void Practice_11_3_3();
 void Practice_11_3_5();
 void Practice_11_3_6();
+void Homework_11_38();
 
 #endif // __CPP_PRIMER_CHAPTER_10_H__

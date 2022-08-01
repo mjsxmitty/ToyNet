@@ -11,6 +11,10 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include <unordered_set>
+#include <unordered_map>
+
+#include "../chapter_07/gz_sales_data.h"
 
 using namespace std;
 
@@ -23,11 +27,12 @@ void Chapter_11()
     //Practice_11_2_3();
     //Homework_11_14();
     //Homework_11_20();
-    Homework_11_23();
+    //Homework_11_23();
 
     //Practice_11_3_2();
     //Practice_11_3_3();
     //Practice_11_3_5();
+    Homework_11_38();
 }
 
 /***************************************************************/
@@ -66,7 +71,7 @@ void Practice_11_1()
 /***************************************************************/
 /***************************11.2********************************/
 
-/* 11.2.1 ¶¨Òå¹ØÁªÈİÆ÷ */
+/* 11.2.1 å®šä¹‰å…³è”å®¹å™¨ */
 void Practice_11_2_1()
 {
     vector<int> v;
@@ -132,12 +137,12 @@ pair<string, int> Process(const vector<string> &vec)
         return pair<string, int>();
 }
 
-/* 11.2.3 pairÀàĞÍ */
+/* 11.2.3 pairç±»å‹ */
 void Practice_11_2_3()
 {
     vector<string>  v;
 
-    // ´´½¨ pair ¶ÔÏóµÄº¯Êı
+    // åˆ›å»º pair å¯¹è±¡çš„å‡½æ•°
     istream_iterator<string>    in_iter(cin), eof;
     copy(in_iter, eof, back_inserter(v));
     sort(v.begin(), v.end(), [](const string &s1, const string &s2) {return s1.size() < s2.size();});
@@ -180,7 +185,7 @@ void Homework_11_14()
 /***************************************************************/
 /***************************11.3********************************/
 
-/* 11.3.2 Ìí¼ÓÔªËØ */
+/* 11.3.2 æ·»åŠ å…ƒç´  */
 void Practice_11_3_2()
 {
     // insert
@@ -190,7 +195,7 @@ void Practice_11_3_2()
     set2.insert({1,3,5,7,1,3,5,7});
     cout << "set2 size: " << set2.size() << endl;
 
-    // ¼ì²âinsert·µ»ØÖµ
+    // æ£€æµ‹insertè¿”å›å€¼
     map<string, size_t> word_count;
     string              word;
     while (cin >> word)
@@ -207,7 +212,7 @@ void Practice_11_3_2()
     for (auto iter = word_count.begin(); iter != word_count.end(); ++iter)
         cout << "elem: " << iter->first << ", count: " << iter->second << endl;
 
-    // Ïò multimap »òÕß multisetÌí¼ÓÔªËØ
+    // å‘ multimap æˆ–è€… multisetæ·»åŠ å…ƒç´ 
     multimap<string, string> authors;
     authors.insert({"test_key", "test_val1"});
     authors.insert(pair<string, string>("test_key", "test_val2"));
@@ -254,7 +259,7 @@ void Homework_11_23()
     //cout << families.erase("zhang") << endl;
 }
 
-/* 11.3.3 É¾³ıÔªËØ */
+/* 11.3.3 åˆ é™¤å…ƒç´  */
 void Practice_11_3_3()
 {
     string                  s;
@@ -274,8 +279,8 @@ void Practice_11_3_3()
     else
         cout << "oops: " << erase_word << " not found." << endl;
 
-     string erase = "The";
-     map<string, size_t>::iterator where = word_count.find(erase);
+    string erase = "The";
+    map<string, size_t>::iterator where = word_count.find(erase);
     if (where != word_count.end())
     {
         word_count.erase(erase);
@@ -288,7 +293,27 @@ void Practice_11_3_3()
         
 }
 
-/*è®¿é—®å…ƒç´ */
+void RemoveAuthor(multimap<string, string>  &authors, const string &author)
+{
+    auto pos = authors.equal_range(author);
+    if (pos.first == pos.second)
+    {
+        cout << "authors map can't include: " << author << endl;
+    }
+
+    authors.erase(pos.first, pos.second);
+}
+
+void PrintAuthor(multimap<string, string>  &authors)
+{
+    for (const auto &a : authors)
+    {
+        cout << a.first << "<<" << a.second << ">>" << endl;
+    }
+    cout << endl;
+}
+
+/* 11.3.5 è®¿é—®å…ƒç´  */
 void Practice_11_3_5()
 {
     multimap<string, string>    authors;
@@ -298,24 +323,47 @@ void Practice_11_3_5()
     authors.insert({"Alain de Botton", "Architecture of Happiness"});
 
     string  search_item("Alain de Botton");
-    auto entries = authors.count(search_item);
-    auto iter = authors.find(search_item);
-    while (entries)
-    {
-        cout << iter->second << endl;
-        ++iter;
-        --entries;
-    }
-    cout << endl;
+    // åœ¨ multimap æˆ– multiset æŸ¥æ‰¾å…ƒç´ 
+//    auto entries = authors.count(search_item);
+//    auto iter = authors.find(search_item);
+//    while (entries)
+//    {
+//        cout << iter->second << endl;
+//        ++iter;
+//        --entries;
+//    }
+//    cout << endl;
 
-    for (auto beg = authors.lower_bound(search_item),
-              end = authors.upper_bound(search_item);
-         beg != end; ++beg)
-        cout << beg->second << endl;
-    cout << endl;
+    // ä¸€ç§ä¸åŒçš„ï¼Œé¢ç›¸è¿­ä»£å™¨çš„è§£å†³åŠæ³•
+//    for (auto beg = authors.lower_bound(search_item),
+//              end = authors.upper_bound(search_item);
+//         beg != end; ++beg)
+//        cout << beg->second << endl;
+//    cout << endl;
 
-    for (auto pos = authors.equal_range(search_item); pos.first != pos.second; ++pos.first)
-        cout << pos.first->second << endl;
+    // equal_range å‡½æ•°
+//    for (auto pos = authors.equal_range(search_item); pos.first != pos.second; ++pos.first)
+//        cout << pos.first->second << endl;
+
+    // homework 11.31
+    authors.insert({"Alain de Botton2", "Architecture of Happiness"});
+    authors.insert({"Alain de Botton2", "Architecture of Happiness"});
+
+//    auto count = authors.count("Alain de Botton2");
+//    auto iter2 = authors.find("Alain de Botton2");
+//    if (count)
+//    {
+//        cout << "authors size: " << authors.size() << endl;
+//        authors.erase(iter2->first);
+//        cout << "after erase authors size: " << authors.size() << endl;
+//        ++iter2;
+//        --count;
+//    }
+
+    // homework 11.32
+    PrintAuthor(authors);
+    RemoveAuthor(authors, "Alain de Botton");
+    PrintAuthor(authors);
 }
 
 map<string, string> BuildRuleMap(ifstream &map_file)
@@ -371,7 +419,42 @@ void WordTransform(ifstream &map_file, ifstream &input)
     }
 }
 
+// TODO ...
 void Practice_11_3_6()
 {
+
+}
+
+/***************************************************************/
+/***************************11.4********************************/
+
+size_t Hasher(const GZSalesData &sd)
+{
+    return hash<string>()(sd.Isbn());
+}
+
+bool EqualOption(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    return lhs.Isbn() == rhs.Isbn();
+}
+
+//using SDMultiset = unordered_multiset<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*>;
+typedef unordered_multiset<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultiset;
+typedef unordered_multimap<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultimap;
+SDMultiset book(100, Hasher, EqualOption);
+
+//TODO ...
+void Homework_11_38()
+{
+    unordered_map<string, size_t>    word_count;
+    string              word;
+
+    cout << "please input a series string words: ";
+    while (cin >> word)
+        ++word_count[word];
+
+    for (const auto &w : word_count)
+        cout << w.first << " occurs " << w.second <<
+                ((w.second > 1) ? " times" : " time") << endl;
 
 }
