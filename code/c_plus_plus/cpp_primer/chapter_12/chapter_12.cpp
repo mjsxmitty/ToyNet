@@ -14,11 +14,11 @@ using namespace std;
 void Chapter_12(int argc, char **argv)
 {
     //Practice_12_1_1();
-    Practice_12_1_2();
-    //Practice_12_1_5();
-
     //Homework_12_2();
+    //Practice_12_1_2();
     //Homework_12_5();
+    Practice_12_1_3();
+    //Practice_12_1_5();
     //Homework_12_20(argc, argv);
 }
 
@@ -238,6 +238,15 @@ shared_ptr<int> Clone(int p)
     //return new int(p);
     //return make_shared<int>(p);
     return shared_ptr<int>(new int(p));
+}
+
+void Practice_12_1_3()
+{
+    // 不能将一个内置指针隐式转换为一个智能指针
+    shared_ptr<int> sp = Clone(3);
+    cout << *sp << endl;
+
+
 }
 
 void Practice_12_1_5()
