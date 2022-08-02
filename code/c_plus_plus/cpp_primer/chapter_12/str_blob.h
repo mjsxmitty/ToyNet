@@ -7,9 +7,10 @@
 #include <vector>
 
 class GZStrBlobPtr;
+
+/* 12.1.1 shared_ptr类 */
 class GZStrBlob
 {
-/* 12.1.1 shared_ptr类 */
 // 定义类
 public:
     typedef std::vector<std::string>::size_type size_type;
