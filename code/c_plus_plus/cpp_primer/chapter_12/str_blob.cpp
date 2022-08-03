@@ -58,8 +58,6 @@ GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
     return *this;   
 }
 
-
-
 GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
 GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
 

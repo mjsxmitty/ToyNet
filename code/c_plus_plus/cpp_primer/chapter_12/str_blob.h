@@ -49,16 +49,25 @@ public:
 
 };
 
-
+/* 12.1.6 weak_ptr类 */
 class GZStrBlobPtr
 {
+public:
+    GZStrBlobPtr(): curr_(0) { }
+    GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): wptr_(a.data_), curr_(sz) { }
+private:
+    std::shared_ptr<std::vector<std::string>>
+        Check(std::size_t, const std::string&) const;
+private:
+    std::weak_ptr<std::vector<std::string>> wptr_;
+    std::size_t                             curr_;
+
     friend bool Equal(const GZStrBlobPtr&, const GZStrBlobPtr&);
     friend bool NotEqual(const GZStrBlobPtr&, const GZStrBlobPtr&);
     friend GZStrBlobPtr operator+(const GZStrBlobPtr&, int);
     friend GZStrBlobPtr operator-(const GZStrBlobPtr&, int);
 public:
-    GZStrBlobPtr(): curr_(0) { }
-    GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): wptr_(a.data_), curr_(sz) { }
+
 
     GZStrBlobPtr& operator++();
     GZStrBlobPtr& operator--();
@@ -71,12 +80,6 @@ public:
     std::string&    Deref(int index) const;
     GZStrBlobPtr&     Incr();
     GZStrBlobPtr&     Decr();
-private:
-    std::shared_ptr<std::vector<std::string>> 
-        Check(std::size_t, const std::string&) const;
-private:
-    std::weak_ptr<std::vector<std::string>> wptr_;  
-    std::size_t                             curr_;  
 };
 
 GZStrBlobPtr operator+(const GZStrBlobPtr&, int);

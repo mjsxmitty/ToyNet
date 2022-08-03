@@ -17,8 +17,11 @@ void Chapter_12(int argc, char **argv)
     //Homework_12_2();
     //Practice_12_1_2();
     //Homework_12_5();
-    Practice_12_1_3();
+    //Practice_12_1_3();
+    //Practice_12_1_4();
     //Practice_12_1_5();
+    Practice_12_1_6();
+
     //Homework_12_20(argc, argv);
 }
 
@@ -235,26 +238,112 @@ void Homework_12_6()
 
 shared_ptr<int> Clone(int p)
 {
+    // 不能将一个内置指针隐式转换为一个智能指针
     //return new int(p);
     //return make_shared<int>(p);
+
     return shared_ptr<int>(new int(p));
+}
+
+void Process(shared_ptr<int> ptr)
+{
+    cout << "func ptr: " << *ptr << endl;
 }
 
 void Practice_12_1_3()
 {
-    // 不能将一个内置指针隐式转换为一个智能指针
-    shared_ptr<int> sp = Clone(3);
-    cout << *sp << endl;
+    //
+//    shared_ptr<int> sp = Clone(3);
+//    cout << *sp << endl;
 
+    // 不要混用普通指针和智能指针
+    // 正确的使用方法
+    shared_ptr<int> p(new int(42));
+    //Process(shared_ptr<int> (p));
+//    Process(p);
+//    int i = *p;
+//    cout << "i = " << i << endl;
 
+    // 错误的使用方法
+    int *x(new int(42));
+    //Process(new int());
+//    Process(x);   //只能直接初始化
+//    Process(shared_ptr<int> (x));
+//    int j = *x;
+//    cout << "j = " << j << endl;
+
+    // 不要使用一个get初始化另一个智能指针或者为智能指针赋值
+//    {
+//        shared_ptr<int> q(p.get());
+//        cout << "*q = " << *q << endl;
+//    }
+//    int foo = *p;
+//    cout << "foo = " << foo << endl;
+
+    // shared_ptr其他操作
+    // shared_ptr<int> q = p;
+//    if (p.unique())
+//    {
+//        cout << "only one pointer!" << endl;
+//        p.reset(new int(1024));
+//        cout << "*p = " << *p << endl;
+//    }
+}
+
+struct Destination {};
+// 没有析构
+struct Connection{};
+Connection Connect(Destination *dest)
+{
+    cout << "open connect ..." << endl;
+}
+void DisConnection(Connection)
+{
+    cout << "disconnect ..." << endl;
+}
+void EndConnection(Connection *p){DisConnection(*p);}
+
+void FuncConnect(Destination &dest)
+{
+    cout << "FuncConnect ..." << endl;
+    Connection c = Connect(&dest);
+
+    cout << endl;
+}
+
+void FuncConnect1(Destination &dest)
+{
+    cout << "FuncConnect1 ..." << endl;
+    Connection c = Connect(&dest);
+
+    shared_ptr<Connection> p(&c, EndConnection);
+    //shared_ptr<Connection> p1(&c, [](Connection *p){DisConnection(*p);});
+    //shared_ptr<Connection> p(&c, DisConnection); //error
+
+    //unique_ptr<Connection, decltype(EndConnection)*> up(&c, EndConnection);
+}
+
+void Practice_12_1_4()
+{
+    Destination d;
+    //FuncConnect(d);
+    FuncConnect1(d);
+}
+
+unique_ptr<string> Clone(string p)
+{
+    //return unique_ptr<string>(new string(p));
+    unique_ptr<string> ret(new string(p));
+    return ret;
 }
 
 void Practice_12_1_5()
 {
+    //
     unique_ptr<string> p1(new string("hello world"));
     cout << "p1 = " << *p1 <<  endl;
-//    unique_ptr<string> p2 = p1;
-//    unique_ptr<string> p2;
+//    unique_ptr<string> p2(p1);
+//    unique_ptr<string> p3;
 //    p3 =p1;
 
     unique_ptr<string> p2(p1.release());
@@ -263,16 +352,40 @@ void Practice_12_1_5()
     unique_ptr<string> p3(new string("ni hao"));
     p2.reset(p3.release());
     cout << "p2 = " << *p2 << endl;
+
+    // 传递unique_ptr参数和返回unique_ptr
+    string s = "hello";
+    unique_ptr<string> ups = Clone(s);
+
+    // 向unique_ptr传递删除器
+    // ...
 }
 
-/*unique_ptr可以拷贝一个临时临时值*/
-unique_ptr<string> Clone(string p)
+void Practice_12_1_6()
 {
-    //return unique_ptr<string>(new string(p));
-    unique_ptr<string> ret(new string(p));
-    return ret;
-}
+    shared_ptr<int> isp = make_shared<int>(1024);
+    weak_ptr<int>   wp(isp);
+    cout << wp.use_count() << endl;
 
+    if (isp.unique())
+    {
+        cout << "only one pointer!" << endl;
+    }
+
+    if (shared_ptr<int> isp2 = wp.lock())
+    {
+        cout << wp.use_count() << endl;
+        if (isp.unique())
+        {
+            cout << "only one pointer2!" << endl;
+        }
+    }
+
+    if (isp.unique())
+    {
+        cout << "only one pointer3!" << endl;
+    }
+}
 
 void Homework_12_20(int argc, char **argv)
 {
@@ -292,6 +405,9 @@ void Homework_12_20(int argc, char **argv)
     for (auto it = sb.Begin(); NotEqual(it, sb.End()); it.Incr())
         cout << it.Deref() << endl;
 }
+
+/***************************************************************/
+/***************************12.2********************************/
 
 void Practice_12_2_1()
 {
