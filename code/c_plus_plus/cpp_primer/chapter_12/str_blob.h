@@ -29,7 +29,7 @@ private:
     std::shared_ptr<std::vector<std::string>> data_;
     void CheckSize(size_type i, const std::string &msg) const;
 
-public:
+public:    
     friend class GZStrBlobPtr;
 
     GZStrBlob(std::vector<std::string> *p);

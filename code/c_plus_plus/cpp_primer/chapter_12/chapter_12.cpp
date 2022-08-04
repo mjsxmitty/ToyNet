@@ -1,6 +1,7 @@
 
 #include "chapter_12.h"
 #include "str_blob.h"
+#include "../chapter_07/gz_sales_data.h"
 
 #include <iostream>
 #include <string>
@@ -8,6 +9,7 @@
 #include <list>
 #include <vector>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
@@ -20,9 +22,13 @@ void Chapter_12(int argc, char **argv)
     //Practice_12_1_3();
     //Practice_12_1_4();
     //Practice_12_1_5();
-    Practice_12_1_6();
-
+    //Practice_12_1_6();
     //Homework_12_20(argc, argv);
+
+    //Practice_12_2_1();
+    //Homework_12_23();
+    //Homework_12_24();
+    Practice_12_2_2();
 }
 
 /***************************************************************/
@@ -409,12 +415,27 @@ void Homework_12_20(int argc, char **argv)
 /***************************************************************/
 /***************************12.2********************************/
 
+/* 12.2.1 new和数组 */
 void Practice_12_2_1()
 {
-    unique_ptr<string []> ps(new string[10]);
+
+    typedef int IntArry[10];
+    int *parray = new IntArry;
+    delete [] parray;
+
+    int *pia = new int[10]{1,2,3};
+    for (int *q = pia; q != pia + 10; ++q)
+    {
+        cout << *q << ' ';
+    }
+    cout << endl;
+    delete [] pia;
+
+    // 智能指针和动态数组
+    unique_ptr<int []> upi(new int[10]);
     for (int i = 0; i != 10; ++i)
-        ps[i] = i;
-    ps.release();
+        upi[i] = i;
+    upi.release();
 
     shared_ptr<int> sp(new int[10], [](int *p){delete [] p; });
     for (int i = 0; i != 10; ++i)
@@ -422,8 +443,60 @@ void Practice_12_2_1()
     sp.reset();
 }
 
+void Homework_12_23()
+{
+    const char *c1 = "Hello";
+    const char *c2 = "World";
+
+    char *nc = new char[strlen(c1) + strlen(c2) + 1];
+    strcpy(nc, c1);
+    strcat(nc, c2);
+    cout << nc << endl;
+
+    string s1 = "Nihao";
+    string s2 = "World";
+    strcpy(nc, (s1 + s2).c_str());
+    cout << nc << endl;
+    delete [] nc;
+}
+
+void Homework_12_24()
+{
+    char *nc = new char[20];
+    int  pos = 0;
+
+    char c;
+    while (cin.get(c))
+    {
+        if (isspace(c))
+            break;
+
+        nc[pos++] = c;
+        if (pos == 20)
+        {
+            cout << "reach max!!!" << endl;
+            break;
+        }
+    }
+    nc[pos] = 0;
+    cout << nc << endl;
+    delete [] nc;
+}
+
+/* 12.2.2 allocator类 */
 void Practice_12_2_2()
 {
+    //
+//    allocator<GZSalesData> gz_alloc;
+//    auto gz_ptr = gz_alloc.allocate(10);
+//    string isbn("gz_test");
+//    gz_alloc.construct(gz_ptr, isbn);
+//    cout << gz_ptr->Isbn() << endl;
+
+//    gz_alloc.destroy(gz_ptr);
+//    gz_alloc.deallocate(gz_ptr, 10);
+
+    // allocator类
     const size_t n = 100;
     allocator<string> alloc;
     auto p = alloc.allocate(n);

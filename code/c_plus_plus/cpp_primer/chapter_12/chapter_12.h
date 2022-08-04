@@ -15,7 +15,10 @@ void Practice_12_1_3();
 void Practice_12_1_4();
 void Practice_12_1_5();
 void Practice_12_1_6();
+
 void Practice_12_2_1();
+void Homework_12_23();
+void Homework_12_24();
 void Practice_12_2_2();
 
 void Homework_12_20(int argc, char **argv);
