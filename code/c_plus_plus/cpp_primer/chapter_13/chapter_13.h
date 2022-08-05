@@ -9,7 +9,6 @@ void Chapter_13();
 
 void Practice_13_6_2();
 
-
 void Homework_13_13();
 void Homework_13_14();
 void Homework_13_18();

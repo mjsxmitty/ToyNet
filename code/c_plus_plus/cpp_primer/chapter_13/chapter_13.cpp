@@ -14,14 +14,75 @@ size_t Numbered::sn_ = 0;
 
 void Chapter_13()
 {
-    //Practice_13_6_2();
-    //Homework_13_13();
+    Homework_13_13();
 
-    Homework_13_14();
+    //Practice_13_6_2();
+
+
+    //Homework_13_14();
     //Homework_13_18();
     //Homework_13_22();
     //Homework_13_31();
 }
+
+/***************************************************************/
+/***************************13.1********************************/
+
+class X
+{
+public:
+    X() { cout << "construct func." << endl;}
+    X(const X &x) { cout << "copy construct func." << endl; }
+    X& operator= (const X &x) { cout << "assign construct func." << endl; return *this;}
+    ~X() { cout << "distruct func." << endl; }
+};
+
+void F1(X x)
+{
+    //cout << "pass by value func!" << endl;
+}
+
+void F2(X &x)
+{
+    //cout << "pass by refrence func!" << endl;
+}
+
+void Homework_13_13()
+{
+    X object;
+    cout << endl;
+
+//    cout << "pass value call" << endl;
+//    F1(object);
+//    cout << endl;
+
+//    cout << "refrence call" << endl;
+//    F2(object);
+//    cout << endl;
+
+//    cout << "malloc " << endl;
+//    X *p = new X;
+//    cout << endl;
+
+//    cout << "vector push back val" << endl;
+//    vector<X> vec;  //vec析构的时候,会析构里边的对象
+//    vec.push_back(object);
+//    cout << endl;
+
+//    cout << "dis object" << endl;
+//    delete p;
+//    cout << endl;
+
+//    cout << "create new object" << endl;
+//    X y = object;
+//    cout << endl;
+
+    cout << "assign value" << endl;
+    X new_val;
+    new_val = object;
+    cout << endl;
+}
+
 
 class Foo
 {
@@ -48,61 +109,6 @@ void Practice_13_6_2()
     Foo x;
     Foo y(x);
     Foo z(std::move(x));    //Foo&& --> const Foo&
-}
-
-class X
-{
-public:
-    X() { cout << "construct func." << endl;}
-    X(const X &x) { cout << "copy construct func." << endl; }
-    X& operator= (const X &x) { cout << "assign construct func." << endl; return *this;}
-    ~X() { cout << "distruct func." << endl; }
-};
-
-void F1(X x)
-{
-
-}
-
-void F2(X &x)
-{
-
-}
-
-void Homework_13_13()
-{
-    X object;
-    cout << endl;
-
-    cout << "pass value call" << endl;
-    F1(object);
-    cout << endl;
-
-    cout << "refrence call" << endl;
-    F2(object);
-    cout << endl;
-
-    cout << "malloc " << endl;
-    X *p = new X;
-    cout << endl;
-
-    cout << "vector push back val" << endl;
-    vector<X> vec;  //vec析构的时候,会析构里边的对象
-    vec.push_back(object);
-    cout << endl;
-
-    cout << "dis object" << endl;
-    delete p;
-    cout << endl;
-
-    cout << "create new object" << endl;
-    X y = object;
-    cout << endl;
-
-    cout << "assign value" << endl;
-    X new_val;
-    new_val = object;
-    cout << endl;
 }
 
 
