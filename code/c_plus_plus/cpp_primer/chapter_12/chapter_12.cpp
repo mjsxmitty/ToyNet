@@ -497,24 +497,24 @@ void Practice_12_2_2()
 //    gz_alloc.deallocate(gz_ptr, 10);
 
     // allocator类
-    const size_t n = 100;
-    allocator<string> alloc;
-    auto p = alloc.allocate(n);
+//    const size_t n = 100;
+//    allocator<string> alloc;
+//    auto p = alloc.allocate(n);
 
-    auto q = p;
-    alloc.construct(q++);
-    cout << *(q -1) << endl;
+//    auto q = p;
+//    alloc.construct(q++);
+//    cout << *(q -1) << endl;
 
-    alloc.construct(q++, 10, 'c');
-    cout << *(q -1) << endl;
+//    alloc.construct(q++, 10, 'c');
+//    cout << *(q -1) << endl;
 
-    alloc.construct(q++, "hi");
-    cout << *(q -1) << endl;
+//    alloc.construct(q++, "hi");
+//    cout << *(q -1) << endl;
 
-    while (q != p)
-        alloc.destroy(--q);
+//    while (q != p)
+//        alloc.destroy(--q);
 
-    alloc.deallocate(p, n);
+//    alloc.deallocate(p, n);
 
     vector<int> vi{1,2,3,4,5,6,7,8,9};
     allocator<int> ialloc;
@@ -524,10 +524,14 @@ void Practice_12_2_2()
     uninitialized_fill_n(qi, vi.size(), 100);
 
     for (int i = 0; i != vi.size(); ++i)
-        cout << *(pi + i) << endl;
+        cout << *(pi + i) << ' ';
+    cout << endl;
 
     for (int i = 0; i != vi.size(); ++i)
-        cout << *(qi + i) << endl;
+        cout << *(qi + i) << ' ';
+    cout << endl;
 
+    while (qi != pi)
+        ialloc.destroy(--qi);
     ialloc.deallocate(pi, vi.size() * 2);
 }
