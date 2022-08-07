@@ -10,16 +10,12 @@
 
 using namespace std;
 
-size_t Numbered::sn_ = 0;
-
 void Chapter_13()
 {
-    Homework_13_13();
+    //Homework_13_13();
+    Homework_13_14();
 
     //Practice_13_6_2();
-
-
-    //Homework_13_14();
     //Homework_13_18();
     //Homework_13_22();
     //Homework_13_31();
@@ -83,6 +79,22 @@ void Homework_13_13()
     cout << endl;
 }
 
+size_t Numbered::sn_ = 0;
+
+// homework 13.16
+void f(const Numbered &s)
+//void f(Numbered s)
+{
+    cout << s.my_sn_ << endl;
+}
+
+void Homework_13_14()
+{
+    Numbered a, b = a, c = b;
+    f(a);
+    f(b);
+    f(c);
+}
 
 class Foo
 {
@@ -112,19 +124,9 @@ void Practice_13_6_2()
 }
 
 
-void f(const Numbered &s)
-//void f(Numbered s)
-{
-    cout << s.my_sn_ << endl;
-}
 
-void Homework_13_14()
-{
-    Numbered a, b = a, c = b;
-    f(a);
-    f(b);
-    f(c);
-}
+
+
 
 void Homework_13_18()
 {

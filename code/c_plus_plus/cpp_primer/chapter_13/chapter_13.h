@@ -19,9 +19,10 @@ void Homework_13_31();
 struct Numbered
 {
     Numbered() :my_sn_(sn_++){}
+    // 13.15
     Numbered(const Numbered &rhs) : my_sn_(sn_++) {}
 
-    static size_t   sn_;
+    static size_t   sn_;    // 用于生成唯一id
     size_t          my_sn_;
 };
 
