@@ -6,9 +6,9 @@
 
 using namespace std;
 
-int Employee::sn = 0;
+int GZEmployee::sn = 0;
 
-void PrintEmployee(const Employee &e)
+void PrintGZEmployee(const GZEmployee &e)
 {
     cout << e.GetName() << " : " << e.GetMySn() << endl;
 }

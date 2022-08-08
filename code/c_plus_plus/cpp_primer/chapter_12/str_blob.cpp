@@ -51,11 +51,24 @@ void GZStrBlob::PopBack()
 GZStrBlob::GZStrBlob() : data_(make_shared<vector<string>>()){}
 GZStrBlob::GZStrBlob(const initializer_list<string> &il) : data_(make_shared<vector<string>>(il)){}
 GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
+
+// homework 13.25ÐÐÎªÏñÖµ
+//GZStrBlob::GZStrBlob(const GZStrBlob &rhs)
+//{
+//    data_ = make_shared<vector<string>>(*rhs.data_);
+//}
+
+//GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
+//{
+//    data_ = make_shared<vector<string>>(*rhs.data_);
+//    return *this;
+//}
+
 GZStrBlob::GZStrBlob(const GZStrBlob &rhs) : data_(rhs.data_){}
 GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
 {
     data_ = rhs.data_;
-    return *this;   
+    return *this;
 }
 
 GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }

@@ -96,6 +96,38 @@ void Homework_13_14()
     f(c);
 }
 
+/* 13.1.6 阻止拷贝*/
+void Practice_13_1_2()
+{
+    GZNoCopy no_object;
+    //GZNoCopy no_object2 = no_object;
+    GZNoCopy no_object3;
+    //no_object3 = no_object;
+
+    //GZNoDtor no_dtor;
+    //GZNoDtor *no_dtor_ptr = new GZNoDtor;
+    //delete no_dtor_ptr;
+
+    GZPrivateCopy pri_object;
+    //GZPrivateCopy pri_object2 = pri_object;
+
+    //GZPrivateCopy pri_object3;
+    //pri_object3 = pri_object;
+}
+
+void Homework_13_18()
+{
+    GZEmployee a("a"), b = a, c;
+    c = b;
+
+    PrintGZEmployee(a);
+    PrintGZEmployee(b);
+    PrintGZEmployee(c);
+}
+
+/***************************************************************/
+/***************************13.2********************************/
+
 class Foo
 {
 public:
@@ -121,21 +153,6 @@ void Practice_13_6_2()
     Foo x;
     Foo y(x);
     Foo z(std::move(x));    //Foo&& --> const Foo&
-}
-
-
-
-
-
-
-void Homework_13_18()
-{
-    Employee a("a"), b = a, c;
-    c = b;
-
-    PrintEmployee(a);
-    PrintEmployee(b);
-    PrintEmployee(c);
 }
 
 void Homework_13_22()

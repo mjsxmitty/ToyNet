@@ -47,11 +47,12 @@ public:
     GZSalesData(std::istream &is) : GZSalesData() { Read(is, *this); }
 
     /* 13.1.1 拷贝构造函数 */
-    GZSalesData(const GZSalesData &);
+    GZSalesData(const GZSalesData &) = default;
 
     /* 13.1.2 拷贝赋值运算符 */
     GZSalesData& operator=(const GZSalesData &);
 };
+
 
 //7.1.3 定义类相关的非成员函数
 std::istream&   Read(std::istream &is, GZSalesData &item);

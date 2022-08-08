@@ -7,11 +7,35 @@
 
 void Chapter_13();
 
-void Practice_13_6_2();
+struct GZNoCopy
+{
+    GZNoCopy() = default;
+    GZNoCopy(const GZNoCopy &) = delete;
+    GZNoCopy& operator=(const GZNoCopy &) = delete;
+    ~GZNoCopy() = default;
+};
 
+struct GZNoDtor
+{
+    GZNoDtor() = default;
+    ~GZNoDtor() = delete;
+};
+
+class GZPrivateCopy
+{
+    GZPrivateCopy(const GZPrivateCopy &);
+    GZPrivateCopy& operator=(const GZPrivateCopy &);
+public:
+    GZPrivateCopy() = default;
+    ~GZPrivateCopy() = default;
+};
+
+void Practice_13_1_2();
 void Homework_13_13();
 void Homework_13_14();
 void Homework_13_18();
+
+void Practice_13_6_2();
 void Homework_13_22();
 void Homework_13_31();
 

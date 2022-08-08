@@ -4,21 +4,26 @@
 
 using namespace std;
 
-//HasPtr &HasPtr::operator=(const HasPtr &h)
-//{
-//    auto p = new string(*h.ps_);
-//    delete ps_;
-
-//    ps_ = p;
-//    i_ = h.i_;
-//    return *this;
-//}
-
-HasPtr &HasPtr::operator=(HasPtr h)
+HasPtr &HasPtr::operator=(const HasPtr &h)
 {
-    Swap(*this, h);
+    auto p = new string(*h.ps_);
+    delete ps_;
+
+    ps_ = p;
+    i_ = h.i_;
     return *this;
 }
+
+HasPtr::~HasPtr()
+{
+    delete ps_;
+}
+
+//HasPtr &HasPtr::operator=(HasPtr h)
+//{
+//    Swap(*this, h);
+//    return *this;
+//}
 
 HasPtr &HasPtr::operator=(const string &s)
 {
@@ -36,10 +41,6 @@ bool HasPtr::operator<(const HasPtr &rhs) const
     return *ps_ < *rhs.ps_;
 }
 
-HasPtr::~HasPtr()
-{
-    delete ps_;
-}
 
 void Swap(HasPtr &lhs, HasPtr &rhs)
 {

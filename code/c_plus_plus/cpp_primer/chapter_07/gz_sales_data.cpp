@@ -56,19 +56,22 @@ GZSalesData::GZSalesData(istream &is)
 */
 
 /* 13.1.1 拷贝构造函数 */
-GZSalesData::GZSalesData(const GZSalesData &orig)
-    : book_no_(orig.book_no_), units_sold_(orig.units_sold_),
-      revenue_(orig.revenue_)
-{
+//GZSalesData::GZSalesData(const GZSalesData &orig)
+//    : book_no_(orig.book_no_), units_sold_(orig.units_sold_),
+//      revenue_(orig.revenue_)
+//{
 
-}
+//}
 
 /* 13.1.2 拷贝赋值运算符 */
-GZSalesData& GZSalesData::operator=(const GZSalesData &orig)
-{
-    book_no_ = orig.book_no_;
-    units_sold_ = orig.units_sold_;
-    revenue_ = orig.revenue_;
+//GZSalesData& GZSalesData::operator=(const GZSalesData &orig)
+//{
+//    book_no_ = orig.book_no_;
+//    units_sold_ = orig.units_sold_;
+//    revenue_ = orig.revenue_;
 
-    return *this;
-}
+//    return *this;
+//}
+
+/* 13.1.5 使用default */
+GZSalesData& GZSalesData::operator=(const GZSalesData &) = default;
