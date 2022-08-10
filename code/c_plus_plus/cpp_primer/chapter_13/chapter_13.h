@@ -35,6 +35,9 @@ void Homework_13_13();
 void Homework_13_14();
 void Homework_13_18();
 
+
+void Practice_13_3();
+
 void Practice_13_6_2();
 void Homework_13_22();
 void Homework_13_31();

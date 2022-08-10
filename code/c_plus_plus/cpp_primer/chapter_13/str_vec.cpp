@@ -10,11 +10,33 @@ using namespace std;
 
 allocator<string> StrVec::alloc;
 
-StrVec::StrVec(const std::initializer_list<string> &il)
+/***************************************************************/
+/***************************13.5********************************/
+
+void StrVec::PushBack(const string &s)
 {
-    auto new_data = AllocCopy(il.begin(), il.end());
-    elements = new_data.first;
-    cap = first_free = new_data.second;
+    CheckAlloc();
+    alloc.construct(first_free++, s);
+}
+
+pair<string*, string *>
+StrVec::AllocCopy(const string *beg, const string *end)
+{
+    auto data = alloc.allocate(end - beg);
+    //return {data, uninitialized_copy(beg, end, data)};
+    return make_pair(data, uninitialized_copy(beg, end, data));
+}
+
+void StrVec::Free()
+{
+    if (!elements)
+        return ;
+
+    // for (auto it = first_free; it != elements; )
+    //     alloc.destroy(--it);
+
+    for_each(first_free, elements, [](string &s) {alloc.destroy(&s);});
+    alloc.deallocate(elements, cap - elements);
 }
 
 StrVec::StrVec(const StrVec &rhs)
@@ -24,6 +46,30 @@ StrVec::StrVec(const StrVec &rhs)
     first_free = cap = new_data.second;
 }
 
+StrVec::~StrVec()
+{
+    Free();
+}
+
+StrVec& StrVec::operator=(const StrVec &rhs)
+{
+    auto new_data = AllocCopy(rhs.Begin(), rhs.End());
+    Free();
+
+    elements = new_data.first;
+    first_free = cap = new_data.second;
+    return *this;
+}
+
+StrVec::StrVec(const std::initializer_list<string> &il)
+{
+    auto new_data = AllocCopy(il.begin(), il.end());
+    elements = new_data.first;
+    cap = first_free = new_data.second;
+}
+
+
+
 StrVec::StrVec(StrVec &&rhs) noexcept : 
                     elements(rhs.elements),
                     first_free(rhs.first_free),
@@ -32,14 +78,7 @@ StrVec::StrVec(StrVec &&rhs) noexcept :
     elements = first_free = cap = nullptr;
 }
 
-StrVec &StrVec::operator=(const StrVec &rhs)
-{
-    auto new_data = AllocCopy(rhs.Begin(), rhs.End());
-    Free();
-    elements = new_data.first;
-    first_free = cap = new_data.second;
-    return *this;
-}
+
 
 StrVec& StrVec::operator=(const initializer_list<string> &il)
 {
@@ -63,16 +102,8 @@ StrVec& StrVec::operator=(StrVec &&rhs) noexcept
     return *this;
 }
 
-StrVec::~StrVec()
-{
-    Free();
-}
 
-void StrVec::PushBack(const std::string &s)
-{
-    CheckAlloc();
-    alloc.construct(first_free++, s);
-}
+
 
 void StrVec::Reserve(size_t n)
 {
@@ -135,20 +166,5 @@ void StrVec::Reallocate(size_t n)
     cap = elements + n;
 }
 
-void StrVec::Free()
-{
-    if (!elements)
-        return ;
 
-    // for (auto it = first_free; it != elements; )
-    //     alloc.destroy(it--);
-    for_each(first_free, elements, [](string &s) {alloc.destroy(&s);});
-    alloc.deallocate(elements, cap - elements);
-}
 
-pair<string*, string *> StrVec::AllocCopy(const string *beg, const string *end)
-{
-    auto data = alloc.allocate(end - beg);
-    //return {data, uninitialized_copy(beg, end, data)};
-    return make_pair(data, uninitialized_copy(beg, end, data));
-}

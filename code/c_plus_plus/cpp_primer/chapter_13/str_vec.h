@@ -6,8 +6,36 @@
 #include <string>
 #include <memory>
 
+/* 13.5 动态内存管理类 */
 class StrVec
 {
+    // 定义StrVec类
+public:
+    StrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
+    StrVec(const StrVec &rhs);
+    StrVec& operator=(const StrVec &rhs);
+    ~StrVec();
+public:
+    void            PushBack(const std::string &s);
+    size_t          Size()  const { return first_free - elements; }
+    size_t          Capacity() const { return cap - elements; }
+    std::string*    Begin() const { return elements; }
+    std::string*    End() const { return first_free; }
+private:
+    static std::allocator<std::string> alloc;
+
+    std::string *elements;
+    std::string *first_free;
+    std::string *cap;
+private:
+    void CheckAlloc() { if (Size() == Capacity()) Reallocate(); }
+
+    std::pair<std::string*, std::string*>
+    AllocCopy(const std::string *beg, const std::string *end);
+    void Free();
+    void Reallocate();
+
+
     friend bool operator==(const StrVec &lhs, const StrVec &rhs);
     friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
     friend bool operator<(const StrVec &lhs, const StrVec &rhs);
@@ -15,39 +43,28 @@ class StrVec
     friend bool operator>(const StrVec &lhs, const StrVec &rhs);
     friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
 public:
-    StrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
     StrVec(const std::initializer_list<std::string> &il);
-    StrVec(const StrVec &rhs);
     StrVec(StrVec &&rhs) noexcept;
-    StrVec& operator=(const StrVec &rhs);
     StrVec& operator=(const std::initializer_list<std::string> &il);
     StrVec& operator=(StrVec &&rhs) noexcept;
-    ~StrVec();
+
 public:
     std::string& operator[](std::size_t n) { return elements[n]; }
     const std::string& operator[](std::size_t n) const { return elements[n]; }
 public:
-    void PushBack(const std::string &s);
-    size_t Size() const { return first_free - elements; }
-    size_t Capacity() const { return cap - elements; }
-    std::string* Begin() const { return elements; }
-    std::string* End() const { return first_free; }
+
+
 
     void Reserve(size_t n);
     void Resize(size_t n);
     void Resize(size_t n, const std::string &s);
 private:
-    void Reallocate();
-    void Reallocate(size_t n);
-    void CheckAlloc() {if (Size() == Capacity()) Reallocate(); }
-    void Free();
-    std::pair<std::string*, std::string*> AllocCopy(const std::string *beg, const std::string *end);
-private:
-    static std::allocator<std::string> alloc;
 
-    std::string *elements;
-    std::string *first_free;
-    std::string *cap;
+    void Reallocate(size_t n);
+
+
+
+
 };
 
 

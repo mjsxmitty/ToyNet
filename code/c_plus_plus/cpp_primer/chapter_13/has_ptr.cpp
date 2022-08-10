@@ -1,29 +1,77 @@
 
-
+#include <iostream>
 #include "has_ptr.h"
 
 using namespace std;
 
-HasPtr &HasPtr::operator=(const HasPtr &h)
-{
-    auto p = new string(*h.ps_);
-    delete ps_;
+/***************************************************************/
+/***************************13.2********************************/
 
-    ps_ = p;
-    i_ = h.i_;
-    return *this;
-}
+//HasPtr &HasPtr::operator=(const HasPtr &h)
+//{
+//    auto p = new string(*h.ps_);
+//    delete ps_;
+
+//    ps_ = p;
+//    i_ = h.i_;
+//    return *this;
+//}
 
 HasPtr::~HasPtr()
 {
+    cout << "HasPtr disfunc: " << PrintVal() << endl;
     delete ps_;
 }
 
-//HasPtr &HasPtr::operator=(HasPtr h)
-//{
-//    Swap(*this, h);
-//    return *this;
-//}
+HasPtrRef &HasPtrRef::operator=(const HasPtrRef &p)
+{
+    ++*p.use_;
+    if (--*use_ == 0)
+    {
+        delete ps_;
+        delete use_;
+    }
+
+    ps_ = p.ps_;
+    i_ = p.i_;
+    use_ = p.use_;
+    return *this;
+}
+
+HasPtrRef::~HasPtrRef()
+{
+    if (--*use_ == 0)
+    {
+        cout << "HasPtrRef disfunc ..." << endl;
+        delete use_;
+        delete ps_;
+    }
+}
+
+/***************************************************************/
+/***************************13.3********************************/
+
+void swap(HasPtr &lhs, HasPtr &rhs)
+{
+    cout << "swap HasPtr object: " << lhs.PrintVal() <<
+            " and "  << rhs.PrintVal() << endl;
+    using std::swap;
+    swap(lhs.ps_, rhs.ps_);
+    swap(lhs.i_, rhs.i_);
+}
+
+// 在赋值运算符中是用swap
+HasPtr &HasPtr::operator=(HasPtr h)
+{
+    cout << PrintVal() << endl;
+    swap(*this, h);
+    cout << PrintVal() << endl;
+    return *this;
+}
+
+/***************************************************************/
+/***************************13.x********************************/
+
 
 HasPtr &HasPtr::operator=(const string &s)
 {
@@ -39,30 +87,6 @@ string &HasPtr::operator*()
 bool HasPtr::operator<(const HasPtr &rhs) const
 {
     return *ps_ < *rhs.ps_;
-}
-
-
-void Swap(HasPtr &lhs, HasPtr &rhs)
-{
-    using std::swap;
-    swap(lhs.ps_, rhs.ps_);
-    swap(lhs.i_, rhs.i_);
-}
-
-
-HasPtrRef &HasPtrRef::operator=(const HasPtrRef &p)
-{
-    ++*p.use_;
-    if (--*use_ == 0)
-    {
-        delete ps_;
-        delete use_;
-    }
-
-    ps_ = p.ps_;
-    i_ = p.i_;
-    use_ = p.use_;
-    return *this;
 }
 
 HasPtrRef& HasPtrRef::operator=(HasPtrRef &&rhs)
@@ -85,11 +109,4 @@ HasPtrRef& HasPtrRef::operator=(HasPtrRef &&rhs)
 }
 
 
-HasPtrRef::~HasPtrRef()
-{
-    if (--*use_ == 0)
-    {
-        delete use_;
-        delete ps_;
-    }
-}
+

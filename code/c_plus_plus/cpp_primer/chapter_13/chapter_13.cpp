@@ -13,7 +13,9 @@ using namespace std;
 void Chapter_13()
 {
     //Homework_13_13();
-    Homework_13_14();
+    //Homework_13_14();
+
+    Practice_13_3();
 
     //Practice_13_6_2();
     //Homework_13_18();
@@ -126,7 +128,36 @@ void Homework_13_18()
 }
 
 /***************************************************************/
-/***************************13.2********************************/
+/***************************13.3********************************/
+
+class GZFoo
+{
+    friend void swap(GZFoo &lhs, GZFoo &rhs);
+public:
+    explicit GZFoo(const string &s) : s_(s), hp_(s) {}
+    string PrintVal() const { return s_; }
+private:
+    string s_;
+    HasPtr hp_;
+};
+
+// swap调用的应该是swap，而不是std::swap
+void swap(GZFoo &lhs, GZFoo &rhs)
+{
+    using std::swap;
+    cout << "swap GZFoo object: " << lhs.PrintVal() <<
+            " and " << rhs.PrintVal() << endl;
+    swap(lhs.hp_, rhs.hp_);
+}
+
+void Practice_13_3()
+{
+//    GZFoo foo1("foo1"), foo2("foo2");
+//    swap(foo1, foo2);
+
+    HasPtr h1("h1"), h2("h2");
+    h1 = h2;
+}
 
 class Foo
 {
@@ -169,7 +200,7 @@ void Homework_13_22()
     cout << "h3: " << *h3 << endl;
     cout << endl;
 
-    Swap(h2, h3);
+    swap(h2, h3);
     cout << "h1: " << *h1 << endl;
     cout << "h2: " << *h2 << endl;
     cout << "h3: " << *h3 << endl;
