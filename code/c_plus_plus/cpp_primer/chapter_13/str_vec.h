@@ -34,7 +34,9 @@ private:
     AllocCopy(const std::string *beg, const std::string *end);
     void Free();
     void Reallocate();
-
+public:
+    // homework 13.40
+    StrVec(const std::initializer_list<std::string> &il);
 
     friend bool operator==(const StrVec &lhs, const StrVec &rhs);
     friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
@@ -43,7 +45,7 @@ private:
     friend bool operator>(const StrVec &lhs, const StrVec &rhs);
     friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
 public:
-    StrVec(const std::initializer_list<std::string> &il);
+
     StrVec(StrVec &&rhs) noexcept;
     StrVec& operator=(const std::initializer_list<std::string> &il);
     StrVec& operator=(StrVec &&rhs) noexcept;

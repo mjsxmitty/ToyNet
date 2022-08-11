@@ -35,6 +35,7 @@ void StrVec::Free()
     // for (auto it = first_free; it != elements; )
     //     alloc.destroy(--it);
 
+    // homework 13.43
     for_each(first_free, elements, [](string &s) {alloc.destroy(&s);});
     alloc.deallocate(elements, cap - elements);
 }
@@ -61,6 +62,24 @@ StrVec& StrVec::operator=(const StrVec &rhs)
     return *this;
 }
 
+void StrVec::Reallocate()
+{
+    auto new_size = (Size() > 0 ? Size() * 2 : 1);
+    auto new_data = alloc.allocate(new_size);
+
+    auto dest = new_data;
+    auto elem = elements;
+    for (size_t i = 0; i != Size(); ++i)
+        alloc.construct(dest++, std::move(*elem++));
+
+    Free();
+
+    elements = new_data;
+    first_free = dest;
+    cap = elements + new_size;
+}
+
+
 StrVec::StrVec(const std::initializer_list<string> &il)
 {
     auto new_data = AllocCopy(il.begin(), il.end());
@@ -68,7 +87,8 @@ StrVec::StrVec(const std::initializer_list<string> &il)
     cap = first_free = new_data.second;
 }
 
-
+/***************************************************************/
+/***************************13.6********************************/
 
 StrVec::StrVec(StrVec &&rhs) noexcept : 
                     elements(rhs.elements),
@@ -133,22 +153,7 @@ void StrVec::Resize(size_t n, const string &s)
             alloc.destroy(--first_free);
 }
 
-void StrVec::Reallocate()
-{
-    auto new_size = (Size() > 0 ? Size() * 2 : 1);
-    auto new_data = alloc.allocate(new_size);
 
-    auto dest = new_data;
-    auto elem = elements;
-    for (size_t i = 0; i != Size(); ++i)
-        alloc.construct(dest++, std::move(*elem++));
-
-    Free();
-
-    elements = new_data;
-    first_free = dest;
-    cap = elements + new_size;
-}
 
 void StrVec::Reallocate(size_t n)
 {
