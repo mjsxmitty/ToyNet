@@ -37,6 +37,14 @@ private:
 public:
     // homework 13.40
     StrVec(const std::initializer_list<std::string> &il);
+    StrVec& operator=(const std::initializer_list<std::string> &il);
+public:
+    /* 13.6 */
+    StrVec(StrVec &&rhs) noexcept;
+    // ÒÆ¶¯¸³ÖµÔËËã·û
+    StrVec& operator=(StrVec &&rhs) noexcept;
+
+
 
     friend bool operator==(const StrVec &lhs, const StrVec &rhs);
     friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
@@ -44,11 +52,7 @@ public:
     friend bool operator<=(const StrVec &lhs, const StrVec &rhs);
     friend bool operator>(const StrVec &lhs, const StrVec &rhs);
     friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
-public:
 
-    StrVec(StrVec &&rhs) noexcept;
-    StrVec& operator=(const std::initializer_list<std::string> &il);
-    StrVec& operator=(StrVec &&rhs) noexcept;
 
 public:
     std::string& operator[](std::size_t n) { return elements[n]; }

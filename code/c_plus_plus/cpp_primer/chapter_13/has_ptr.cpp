@@ -70,8 +70,22 @@ HasPtr &HasPtr::operator=(HasPtr h)
 }
 
 /***************************************************************/
-/***************************13.x********************************/
+/***************************13.6********************************/
 
+//HasPtr& HasPtr::operator=(HasPtr &&rhs) noexcept
+//{
+//    if (this != &rhs)
+//    {
+//        delete ps_;
+
+//        ps_ = rhs.ps_;
+//        i_ = rhs.i_;
+
+//        rhs.ps_ = nullptr;
+//        rhs.i_ = 0;
+//    }
+//    return *this;
+//}
 
 HasPtr &HasPtr::operator=(const string &s)
 {

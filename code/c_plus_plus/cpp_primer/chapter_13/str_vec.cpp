@@ -1,7 +1,7 @@
 
 
 #include "str_vec.h"
-
+#include <iostream>
 #include <memory>
 #include <algorithm>
 
@@ -42,6 +42,7 @@ void StrVec::Free()
 
 StrVec::StrVec(const StrVec &rhs)
 {
+    cout << "copy construct ..." << endl;
     auto new_data = AllocCopy(rhs.Begin(), rhs.End());
     elements = new_data.first;
     first_free = cap = new_data.second;
@@ -54,6 +55,7 @@ StrVec::~StrVec()
 
 StrVec& StrVec::operator=(const StrVec &rhs)
 {
+    cout << "copy construct ..."<< endl;
     auto new_data = AllocCopy(rhs.Begin(), rhs.End());
     Free();
 
@@ -72,6 +74,11 @@ void StrVec::Reallocate()
     for (size_t i = 0; i != Size(); ++i)
         alloc.construct(dest++, std::move(*elem++));
 
+    /* 13.6.2 */
+    // ÒÆ¶¯µü´úÆ÷
+//    auto last = uninitialized_copy(make_move_iterator(Begin()),
+//                                   make_move_iterator(End()),
+//                                   dest);
     Free();
 
     elements = new_data;
@@ -87,19 +94,6 @@ StrVec::StrVec(const std::initializer_list<string> &il)
     cap = first_free = new_data.second;
 }
 
-/***************************************************************/
-/***************************13.6********************************/
-
-StrVec::StrVec(StrVec &&rhs) noexcept : 
-                    elements(rhs.elements),
-                    first_free(rhs.first_free),
-                    cap(rhs.cap)
-{
-    elements = first_free = cap = nullptr;
-}
-
-
-
 StrVec& StrVec::operator=(const initializer_list<string> &il)
 {
     auto ret = AllocCopy(il.begin(), il.end());
@@ -109,8 +103,21 @@ StrVec& StrVec::operator=(const initializer_list<string> &il)
     return *this;
 }
 
+/***************************************************************/
+/***************************13.6********************************/
+
+StrVec::StrVec(StrVec &&rhs) noexcept : 
+                    elements(rhs.elements),
+                    first_free(rhs.first_free),
+                    cap(rhs.cap)
+{
+    cout << "move construct ..." << endl;
+    elements = first_free = cap = nullptr;
+}
+
 StrVec& StrVec::operator=(StrVec &&rhs) noexcept
 {
+    cout << "move assgin ..." << endl;
     if (this != &rhs)
     {
         Free();

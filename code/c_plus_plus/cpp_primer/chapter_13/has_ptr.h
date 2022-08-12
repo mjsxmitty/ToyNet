@@ -27,12 +27,18 @@ public:
     // 在赋值运算符中使用swap
     HasPtr& operator=(HasPtr h);
 
+    /* 13.6.2 */
+    // 拷贝并交换赋值运算符和移动操作
+    HasPtr(HasPtr &&rhs) noexcept : ps_(rhs.ps_), i_(rhs.i_) {rhs.ps_ = 0;}
+    // homework 13.53
+    //HasPtr& operator=(HasPtr &&rhs) noexcept;
+
 
     HasPtr& operator=(const std::string &s);
     std::string& operator*();
     bool operator<(const HasPtr &rhs) const;
 
-    HasPtr(HasPtr &&rhs) noexcept : ps_(rhs.ps_), i_(rhs.i_) {rhs.ps_ = 0;}
+
 };
 
 /* 13.3 交换操作 */

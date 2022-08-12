@@ -2,6 +2,7 @@
 #include "chapter_13.h"
 #include "employee.h"
 #include "has_ptr.h"
+#include "str_vec.h"
 
 #include <algorithm>
 #include <iostream>
@@ -14,12 +15,12 @@ void Chapter_13()
 {
     //Homework_13_13();
     //Homework_13_14();
-
-    Practice_13_3();
-
-    //Practice_13_6_2();
     //Homework_13_18();
+
+    //Practice_13_3();
     //Homework_13_22();
+
+    Practice_13_6_2();
     //Homework_13_31();
 }
 
@@ -159,6 +160,38 @@ void Practice_13_3()
     h1 = h2;
 }
 
+// 编译器会为GZX和GZhasX合成移动构造函数
+struct GZX
+{
+    int     i;
+    string  s;
+};
+
+struct GZhasX
+{
+    GZX mem;
+};
+
+struct GZY
+{
+    int     i;
+    string  s;
+    GZY(const GZY&){}
+};
+
+struct GZhasY
+{
+    GZhasY() = default;
+    GZhasY(GZhasY &&) = default;
+
+    GZY mem;
+};
+
+StrVec GetVec(istream &is)
+{
+
+}
+
 class Foo
 {
 public:
@@ -177,10 +210,26 @@ private:
 //     sort()
 // }
 
-
-/*没有移动构造函数，右值被拷贝*/
 void Practice_13_6_2()
 {
+    //
+//    StrVec sv1;
+//    //StrVec sv2(sv1);
+//    StrVec sv3;
+//    sv3 = std::move(sv1);
+
+    // 合成移动操作
+//    GZX x, x2 = std::move(x);
+//    GZhasX hx, hx2 = std::move(hx);
+
+    //GZhasY hy, hy2 = std::move(hy);
+
+    // 移动右值,拷贝左值...
+    StrVec v1, v2;
+    //v1 = v2;
+    //v2 = GetVec(cin);
+
+    // 没有移动构造函数，右值被拷贝
     Foo x;
     Foo y(x);
     Foo z(std::move(x));    //Foo&& --> const Foo&
