@@ -43,9 +43,11 @@ public:
     StrVec(StrVec &&rhs) noexcept;
     // 移动赋值运算符
     StrVec& operator=(StrVec &&rhs) noexcept;
+public:
+    /* 13.6.3 右值引用和成员函数 */
+    void PushBack(std::string &&);
 
-
-
+public:
     friend bool operator==(const StrVec &lhs, const StrVec &rhs);
     friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
     friend bool operator<(const StrVec &lhs, const StrVec &rhs);
@@ -58,19 +60,12 @@ public:
     std::string& operator[](std::size_t n) { return elements[n]; }
     const std::string& operator[](std::size_t n) const { return elements[n]; }
 public:
-
-
-
     void Reserve(size_t n);
     void Resize(size_t n);
     void Resize(size_t n, const std::string &s);
 private:
 
     void Reallocate(size_t n);
-
-
-
-
 };
 
 

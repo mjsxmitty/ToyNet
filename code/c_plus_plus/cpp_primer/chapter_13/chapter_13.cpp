@@ -129,6 +129,29 @@ void Homework_13_18()
 }
 
 /***************************************************************/
+/***************************13.2********************************/
+
+void Homework_13_22()
+{
+    HasPtr h1("hi");
+    HasPtr h2(h1);
+    HasPtr h3 = h1;
+
+    *h2 = "nihao";
+    *h3 = "hello";
+
+    cout << "h1: " << *h1 << endl;
+    cout << "h2: " << *h2 << endl;
+    cout << "h3: " << *h3 << endl;
+    cout << endl;
+
+    swap(h2, h3);
+    cout << "h1: " << *h1 << endl;
+    cout << "h2: " << *h2 << endl;
+    cout << "h3: " << *h3 << endl;
+}
+
+/***************************************************************/
 /***************************13.3********************************/
 
 class GZFoo
@@ -159,6 +182,27 @@ void Practice_13_3()
     HasPtr h1("h1"), h2("h2");
     h1 = h2;
 }
+
+void Homework_13_31()
+{
+    srand(time(NULL));
+    vector<HasPtr> vec;
+
+    for (int i = 0; i != 10; ++i)
+        vec.push_back(to_string(rand() % 1000));
+
+    for (auto &it : vec)
+        cout << *it << " ";
+    cout << endl;
+
+    sort(vec.begin(), vec.end());
+    for (auto &it : vec)
+        cout << *it << " ";
+
+}
+
+/***************************************************************/
+/***************************13.6********************************/
 
 // 编译器会为GZX和GZhasX合成移动构造函数
 struct GZX
@@ -197,18 +241,37 @@ class Foo
 public:
     Foo() {cout << "construct func." << endl;}
     Foo(const Foo &rhs) { cout << "copy construct func." << endl; }
-    // Foo Sorted() &&;
-    // Foo Sorted() const &;
-    //~Foo();
+
+    /* 13.6.3 */
+    // 右值和左值成员函数
+    Foo& operator=(const Foo &) &;
+
+    // 重载和引用函数
+     Foo Sorted() &&;
+     Foo Sorted() const &;
+    ~Foo(){}
 private:
     vector<int> data;
 };
 
-// Foo Foo::Sorted() &&
-// {
-//     cout << "right version." << endl;
-//     sort()
-// }
+Foo& Foo::operator=(const Foo &rhs) &
+{
+    //
+    return *this;
+}
+
+Foo Foo::Sorted() &&
+{
+     sort(data.begin(), data.end());
+     return *this;
+}
+
+Foo Foo::Sorted() const &
+{
+    Foo ret(*this);
+    sort(ret.data.begin(), ret.data.end());
+    return ret;
+}
 
 void Practice_13_6_2()
 {
@@ -235,40 +298,23 @@ void Practice_13_6_2()
     Foo z(std::move(x));    //Foo&& --> const Foo&
 }
 
-void Homework_13_22()
+Foo& RetFoo()
 {
-    HasPtr h1("hi");
-    HasPtr h2(h1);
-    HasPtr h3 = h1;
 
-    *h2 = "nihao";
-    *h3 = "hello";
-
-    cout << "h1: " << *h1 << endl;
-    cout << "h2: " << *h2 << endl;
-    cout << "h3: " << *h3 << endl;
-    cout << endl;
-
-    swap(h2, h3);
-    cout << "h1: " << *h1 << endl;
-    cout << "h2: " << *h2 << endl;
-    cout << "h3: " << *h3 << endl;
 }
 
-void Homework_13_31()
+Foo RetVal()
 {
-    srand(time(NULL));
-    vector<HasPtr> vec;
 
-    for (int i = 0; i != 10; ++i)
-        vec.push_back(to_string(rand() % 1000));
+}
 
-    for (auto &it : vec)
-        cout << *it << " ";
-    cout << endl;
+void Practice_13_6_3()
+{
+    StrVec sv;
+    string s = "some thing";
+    sv.PushBack(s);
+    sv.PushBack("other thing");
 
-    sort(vec.begin(), vec.end());
-    for (auto &it : vec)
-        cout << *it << " ";
-
+    RetFoo().Sorted();
+    RetVal().Sorted();
 }

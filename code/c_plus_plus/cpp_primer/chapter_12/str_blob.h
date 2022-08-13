@@ -29,6 +29,9 @@ private:
     std::shared_ptr<std::vector<std::string>> data_;
     void CheckSize(size_type i, const std::string &msg) const;
 
+    // homework 13.55
+    //void        PushBack(const std::string &&s) { data_->push_back(std::move(s)); }
+
 public:    
     friend class GZStrBlobPtr;
 

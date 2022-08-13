@@ -129,7 +129,12 @@ StrVec& StrVec::operator=(StrVec &&rhs) noexcept
     return *this;
 }
 
-
+/* 13.6.3 */
+void StrVec::PushBack(std::string &&s)
+{
+    CheckAlloc();
+    alloc.construct(first_free++, std::move(s));
+}
 
 
 void StrVec::Reserve(size_t n)
