@@ -51,8 +51,18 @@ public:
 
     /* 13.1.2 拷贝赋值运算符 */
     GZSalesData& operator=(const GZSalesData &);
+
+public:
+    // homework 14.2
+    friend std::ostream& operator<<(std::ostream &, const GZSalesData &);
+    friend std::istream& operator>>(std::istream &, GZSalesData &);
+
+    GZSalesData& operator+=(const GZSalesData &);
 };
 
+GZSalesData operator+(const GZSalesData &, const GZSalesData &);
+std::ostream& operator<<(std::ostream &, const GZSalesData &);
+std::istream& operator>>(std::istream &, GZSalesData &);
 
 //7.1.3 定义类相关的非成员函数
 std::istream&   Read(std::istream &is, GZSalesData &item);

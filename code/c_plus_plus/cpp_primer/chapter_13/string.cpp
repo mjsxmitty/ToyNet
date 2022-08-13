@@ -1,10 +1,17 @@
 
 
 #include "string.h"
+#include <iostream>
 
 using namespace std;
 
 allocator<char> String::alloc;
+
+ostream& operator<<(ostream &os, const String &rhs)
+{
+    os << rhs.p_;
+    return os;
+}
 
 String& String::operator=(const String &rhs)
 {

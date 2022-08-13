@@ -17,6 +17,9 @@ class String
     friend bool operator!=(const String &lhs, const String &rhs);
     friend String operator+(const String &lhs, const String &rhs);
     friend std::ostream& operator<=(std::ostream &os, const String &item);
+
+    // homeeork14.7
+    friend std::ostream& operator<<(std::ostream &, const String &);
 public:
     String() = default;
     String(const char *cp) : 
@@ -51,7 +54,7 @@ private:
     static std::allocator<char> alloc;
 };
 
-//std::ostream& operator<<(std::ostream &os, const String &s);
+std::ostream& operator<<(std::ostream &os, const String &s);
 
 inline void Swap(String &lhs, String &rhs)
 {

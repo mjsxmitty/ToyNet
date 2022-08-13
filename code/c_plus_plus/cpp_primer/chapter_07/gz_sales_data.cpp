@@ -75,3 +75,12 @@ GZSalesData::GZSalesData(istream &is)
 
 /* 13.1.5  π”√default */
 GZSalesData& GZSalesData::operator=(const GZSalesData &) = default;
+
+/*****************************************************************/
+/***************************14.2*********************************/
+
+ostream& operator<<(ostream &os, const GZSalesData &rhs)
+{
+    os << rhs.Isbn() << rhs.units_sold_ << rhs.revenue_ << rhs.revenue_;
+    return os;
+}
