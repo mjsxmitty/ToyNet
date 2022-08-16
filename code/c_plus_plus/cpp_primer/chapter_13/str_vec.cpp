@@ -136,6 +136,29 @@ void StrVec::PushBack(std::string &&s)
     alloc.construct(first_free++, std::move(s));
 }
 
+/***************************************************************/
+/***************************14.2********************************/
+
+bool operator==(const StrVec &lhs, const StrVec &rhs)
+{
+    if (lhs.Size() != rhs.Size())
+        return false;
+
+    for (auto iter1 = lhs.Begin(), iter2 = rhs.Begin();
+         iter1 != lhs.End() && iter2 != rhs.End();
+         iter1++, iter2)
+    {
+        if (*iter1 != *iter2)
+        return false;
+    }
+
+    return true;
+}
+
+bool operator!=(const StrVec &lhs, const StrVec &rhs)
+{
+    return !(lhs == rhs);
+}
 
 void StrVec::Reserve(size_t n)
 {

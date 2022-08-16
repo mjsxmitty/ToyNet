@@ -37,7 +37,6 @@ private:
 public:
     // homework 13.40
     StrVec(const std::initializer_list<std::string> &il);
-    StrVec& operator=(const std::initializer_list<std::string> &il);
 public:
     /* 13.6 */
     StrVec(StrVec &&rhs) noexcept;
@@ -46,6 +45,14 @@ public:
 public:
     /* 13.6.3 右值引用和成员函数 */
     void PushBack(std::string &&);
+
+    /* 14.4 */
+    StrVec& operator=(const std::initializer_list<std::string> &il);
+
+public:
+    // homework14.26
+    std::string& operator[](std::size_t n) { return elements[n]; }
+    const std::string& operator[](std::size_t n) const { return elements[n]; }
 
 public:
     friend bool operator==(const StrVec &lhs, const StrVec &rhs);
@@ -56,9 +63,7 @@ public:
     friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
 
 
-public:
-    std::string& operator[](std::size_t n) { return elements[n]; }
-    const std::string& operator[](std::size_t n) const { return elements[n]; }
+
 public:
     void Reserve(size_t n);
     void Resize(size_t n);
@@ -68,26 +73,9 @@ private:
     void Reallocate(size_t n);
 };
 
-
-// bool operator==(const StrVec &lhs, const StrVec &rhs)
-// {
-//     if (lhs.Size() != rhs.Size())
-//         return false;
-
-//     for (auto iter1 = lhs.Begin(), iter2 = rhs.Begin();
-//          iter1 != lhs.End() && iter2 != rhs.End(); iter1++, iter2)
-//     {
-//         if (*iter1 != *iter2)
-//             return false;
-//     }
-    
-//     return true;
-// }
-
-// bool operator!=(const StrVec &lhs, const StrVec &rhs)
-// {
-//     return !(lhs == rhs);
-// }
+// homework14.16
+bool operator==(const StrVec &lhs, const StrVec &rhs);
+bool operator!=(const StrVec &lhs, const StrVec &rhs);
 
 // bool operator<(const StrVec &lhs, const StrVec &rhs)
 // {

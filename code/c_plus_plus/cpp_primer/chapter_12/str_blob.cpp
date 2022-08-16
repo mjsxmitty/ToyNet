@@ -115,6 +115,47 @@ GZStrBlobPtr& GZStrBlobPtr::Decr()
     return *this;
 }
 
+/****************************************************************/
+/***************************14.3*********************************/
+
+GZStrBlobPtr operator+(const GZStrBlobPtr &lhs, int n)
+{
+    GZStrBlobPtr ret(lhs);
+    ret.curr_ += n;
+    return ret;
+}
+
+
+GZStrBlobPtr operator-(const GZStrBlobPtr &lhs, int n)
+{
+    GZStrBlobPtr ret = lhs;
+    ret.curr_ -= n;
+    return ret;
+}
+
+bool operator==(const GZStrBlob &lhs, const GZStrBlob &rhs)
+{
+    return lhs.data_ == rhs.data_;
+}
+
+bool operator!=(const GZStrBlob &lhs, const GZStrBlob &rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+{
+    auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
+    if (l == r)
+        return (!r || lhs.curr_ == rhs.curr_);
+    return false;
+}
+
+bool operator!=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+{
+    return !(lhs == rhs);
+}
+
 GZStrBlobPtr& GZStrBlobPtr::operator++()
 {
     Check(curr_, "increment past end GZStrBlobPtr");
@@ -143,7 +184,6 @@ GZStrBlobPtr GZStrBlobPtr::operator--(int)
     return ret;
 }
 
-
 string& GZStrBlobPtr::operator*() const
 {
     auto ret = Check(curr_, "xxxxx");
@@ -169,17 +209,6 @@ bool NotEqual(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
     return !Equal(lhs, rhs);
 }
 
-GZStrBlobPtr operator+(const GZStrBlobPtr &lhs, int n)
-{
-    GZStrBlobPtr ret(lhs);
-    ret.curr_ += n;
-    return ret;
-}
 
 
-GZStrBlobPtr operator-(const GZStrBlobPtr &lhs, int n)
-{
-    GZStrBlobPtr ret = lhs;
-    ret.curr_ -= n;
-    return ret;
-}
+

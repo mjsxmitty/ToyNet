@@ -57,12 +57,25 @@ public:
     friend std::ostream& operator<<(std::ostream &, const GZSalesData &);
     friend std::istream& operator>>(std::istream &, GZSalesData &);
 
+    // homework 14.13
     GZSalesData& operator+=(const GZSalesData &);
+    GZSalesData& operator-=(const GZSalesData &);
+
+    friend GZSalesData operator+(const GZSalesData &, const GZSalesData &);
+    friend GZSalesData operator-(const GZSalesData &, const GZSalesData &);
+    friend bool operator==(const GZSalesData &, const GZSalesData &);
+    friend bool operator!=(const GZSalesData &, const GZSalesData &);
+public:
+    // homework14.22
+    GZSalesData& operator=(const std::string &isbn);
 };
 
-GZSalesData operator+(const GZSalesData &, const GZSalesData &);
 std::ostream& operator<<(std::ostream &, const GZSalesData &);
 std::istream& operator>>(std::istream &, GZSalesData &);
+GZSalesData operator+(const GZSalesData &, const GZSalesData &);
+GZSalesData operator-(const GZSalesData &, const GZSalesData &);
+bool operator==(const GZSalesData &, const GZSalesData &);
+bool operator!=(const GZSalesData &, const GZSalesData &);
 
 //7.1.3 定义类相关的非成员函数
 std::istream&   Read(std::istream &is, GZSalesData &item);

@@ -76,11 +76,63 @@ GZSalesData::GZSalesData(istream &is)
 /* 13.1.5  π”√default */
 GZSalesData& GZSalesData::operator=(const GZSalesData &) = default;
 
-/*****************************************************************/
+/****************************************************************/
 /***************************14.2*********************************/
 
 ostream& operator<<(ostream &os, const GZSalesData &rhs)
 {
-    os << rhs.Isbn() << rhs.units_sold_ << rhs.revenue_ << rhs.revenue_;
+    os << rhs.book_no_ << " "
+       << rhs.units_sold_  << " "
+       << rhs.revenue_ << " "
+       << rhs.revenue_;
     return os;
+}
+
+/****************************************************************/
+/***************************14.3*********************************/
+
+GZSalesData& GZSalesData::operator+=(const GZSalesData &rhs)
+{
+    units_sold_ += rhs.units_sold_;
+    revenue_ += rhs.revenue_;
+    return  *this;
+}
+
+GZSalesData& GZSalesData::operator-=(const GZSalesData &rhs)
+{
+    units_sold_ -= rhs.units_sold_;
+    revenue_ -= rhs.revenue_;
+    return *this;
+}
+
+GZSalesData operator+(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    GZSalesData ret(lhs);
+    ret += rhs;
+    return ret;
+}
+
+GZSalesData operator-(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    GZSalesData ret(lhs);
+    ret -= rhs;
+    return ret;
+}
+
+bool operator==(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    return lhs.book_no_ == rhs.book_no_ &&
+            lhs.units_sold_ == rhs.units_sold_ &&
+            lhs.revenue_ == rhs.revenue_;
+}
+
+bool operator!=(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    return !(lhs == rhs);
+}
+
+GZSalesData& GZSalesData::operator=(const std::string &isbn)
+{
+    book_no_ = isbn;
+    return *this;
 }

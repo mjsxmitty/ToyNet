@@ -9,6 +9,17 @@
 
 void Chapter_14();
 
+class PrintString
+{
+public:
+    PrintString(std::ostream &os = std::cout, char c = ' ') : os_(os), c_(c) {}
+
+    void operator()(const std::string &s) const { os_ << s << c_; }
+private:
+    std::ostream&   os_;
+    char            c_;
+};
+
 void Partice_14_8_2();
 void Partice_14_8_3();
 void Partice_14_9_1();
@@ -47,16 +58,7 @@ private:
     std::istream& in_;
 };
 
-class PrintString
-{
-public:
-    PrintString(std::ostream &os = std::cout, char c = ' ') : os_(os), c_(c) {}
 
-    void operator()(const std::string &s) const { os_ << s << c_; }
-private:
-    std::ostream&   os_;
-    char            c_;
-};
 
 class IntCompare
 {
