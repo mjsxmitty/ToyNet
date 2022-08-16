@@ -1,12 +1,81 @@
 
 #include "chapter_15.h"
+#include "../util/zg_quote.h"
+#include "../util/zg_bulk_quote.h"
+#include "../util/zg_base.h"
+//
 #include "quote.h"
 #include "bulk_quote.h"
 #include "disc_quote.h"
+//
 
 #include <iostream>
 
 using namespace std;
+
+void ch_15()
+{
+    ch_15_2();
+}
+
+/* 定义基类和派生类 */
+void ch_15_2()
+{
+    ch_15_2_2();
+}
+
+/* 定义派生类 */
+void ch_15_2_2()
+{
+    // 派生类中的虚函数
+    // double NetPrice(std::size_t n) const override;
+
+    // 派生类对象及派生类向基类的类型转换
+    {
+        ZGQuote     quote;
+        ZGBulkQuote bulk;
+
+        ZGQuote *p = &quote;
+        p = &bulk;
+
+        ZGQuote &r = bulk;
+    }
+
+    // 派生类构造函数
+    // ZGBulkQuote(const std::string &, double, std::size_t, double);
+
+    // 派生类使用基类成员
+    // double ZGBulkQuote::NetPrice(std::size_t n) const
+
+    // 继承与静态成员
+    // void ZGDerived::f(const ZGDerived &derived_obj)
+
+    // 派生类声明
+    {
+        //class ZGBulkQuote : public ZGQuote;
+        class ZGBulkQuote;
+    }
+
+    // 被用作基类的类
+    {
+        class ZGD1 : public ZGBase {};
+        class ZGD2 : public ZGD1 {};
+    }
+
+    // 防止继承的发生
+    {
+        class ZGNoDerived final {};
+        //class ZGBad : public ZGNoDerived {};
+        class ZGLast final : public ZGBase {};
+        //class ZGBad2 : public ZGLast {};
+    }
+}
+
+void exer_15_4()
+{
+
+}
+
 
 void Chapter_15()
 {

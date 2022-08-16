@@ -44,6 +44,9 @@ add_executable(cpp_primer
                 chapter_15/chapter_15.h chapter_15/chapter_15.cpp
                 object/blob.h
                 chapter_16/chapter_16.h chapter_16/chapter_16.cpp
+                util/zg_quote.h util/zg_quote.cpp
+                util/zg_bulk_quote.h util/zg_bulk_quote.cpp
+                util/zg_base.h util/zg_base.cpp
                 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

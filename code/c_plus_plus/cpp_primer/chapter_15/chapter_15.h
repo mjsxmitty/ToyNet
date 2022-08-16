@@ -3,6 +3,12 @@
 #ifndef __CPP_PRIMER_CHAPTER_15_H__
 #define __CPP_PRIMER_CHAPTER_15_H__
 
+void ch_15();
+void ch_15_2();
+void ch_15_2_2();
+void exer_15_4();
+
+
 void Chapter_15();
 
 void Practice_15_1();
