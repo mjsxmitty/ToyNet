@@ -11,10 +11,10 @@ class ZGQuote
 public:
     ZGQuote() = default;
     ZGQuote(const std::string &book, double sales_price) :
-        book_no_(book), price_(sales_price) {};
+            book_no_(book), price_(sales_price) {};
 
-    std::string isbn() const { return book_no_; }
-    virtual double NetPrice(std::size_t n) const
+    std::string     isbn() const { return book_no_; }
+    virtual double  NetPrice(std::size_t n) const
     { return n * price_; }
 
     virtual ~ZGQuote() = default;
@@ -24,4 +24,4 @@ protected:
     double          price_ = 0.0;
 };
 
-#endif // ZGQUOTE_H
+#endif // __CPP_PRIMER_ZGQUOTE_H__

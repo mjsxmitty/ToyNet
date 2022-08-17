@@ -16,3 +16,12 @@ double ZGBulkQuote::NetPrice(std::size_t n) const
     else
         return n * price_;
 }
+
+//homework 15.17
+double ZGBulkQuote1::NetPrice(std::size_t n) const
+{
+    if (n > quantity)
+        return n * (1 - discount) * price_;
+    else
+        return n * price_;
+}

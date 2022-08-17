@@ -71,7 +71,25 @@ void ch_15_2_2()
     }
 }
 
-void exer_15_4()
+void exer_15_7()
+{
+    class ZGLimitedQuote : public ZGQuote
+    {
+    public:
+        double NetPrice(size_t cnt) const override
+        {
+            if (cnt <= min_qty_)
+                return cnt * (1 - discount_) * price_;
+            else
+                return min_qty_ * (1 - discount_) * price_ + (cnt - min_qty_) * price_;
+        }
+    private:
+        size_t min_qty_ = 0;
+        double discount_ = 0.0;
+    };
+}
+
+void ch_15_4()
 {
 
 }

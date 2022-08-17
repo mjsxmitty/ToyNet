@@ -47,6 +47,7 @@ add_executable(cpp_primer
                 util/zg_quote.h util/zg_quote.cpp
                 util/zg_bulk_quote.h util/zg_bulk_quote.cpp
                 util/zg_base.h util/zg_base.cpp
+                util/zg_disc_quote.h util/zg_disc_quote.cpp
                 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

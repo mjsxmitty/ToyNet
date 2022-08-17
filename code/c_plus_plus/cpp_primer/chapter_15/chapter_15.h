@@ -6,8 +6,9 @@
 void ch_15();
 void ch_15_2();
 void ch_15_2_2();
-void exer_15_4();
+void exer_15_7();
 
+void ch_15_4();
 
 void Chapter_15();
 
