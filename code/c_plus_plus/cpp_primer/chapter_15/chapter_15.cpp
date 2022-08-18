@@ -15,7 +15,9 @@ using namespace std;
 
 void ch_15()
 {
-    ch_15_2();
+    //ch_15_2();
+    //ch_15_5();
+    ch_15_6();
 }
 
 /* 定义基类和派生类 */
@@ -89,11 +91,60 @@ void exer_15_7()
     };
 }
 
-void ch_15_4()
-{
 
+void ch_15_5()
+{
+    ZGPubDrev d1;
+    ZGProDrev d2;
+    ZGPriDrev d3;
+    d1.f();
+    d1.pub_mem();
+    d2.f();
+    //d2.pub_mem();
+    d3.f();
+    //d3.pub_mem();
+
+    ZGDerived1 d4;
+    d4.Size();
 }
 
+void ch_15_6()
+{
+//    ZGDerived2 d1(100);
+//    cout << d1.GetMem() << endl;
+//    cout << d1.GetMem2() << endl;
+
+//    ZGBase b1;
+//    b1.MemFcn();
+//    d1.MemFcn(10);
+//    //d1.MemFcn();
+//    d1.ZGBase::MemFcn();
+
+    ZGBase bobj;
+    ZGD1 d1obj;
+    ZGD2 d2obj;
+
+    ZGBase *bp1 = &bobj, *bp2 = &d1obj, *bp3 = &d2obj;
+    bp1->fcn();
+    bp2->fcn();
+    bp3->fcn();
+
+    ZGD1 *d1p = &d1obj;
+    ZGD2 *d2p = &d2obj;
+    //bp2->fcn2();
+    d1p->fcn2();
+    d2p->fcn2();
+
+    ZGD1 *d3p = &d2obj;
+    d3p->fcn2();
+
+    ZGBase  *p1 = &d2obj;
+    ZGD1    *p2 = &d2obj;
+    ZGD2    *p3 = &d2obj;
+    //p1->fcn(1);
+    p2->fcn(2);
+    p3->fcn(3);
+}
 
 void Chapter_15()
 {
