@@ -8,21 +8,25 @@
 
 using namespace std;
 
-void Chapter_02()
+void ch_02()
 {
-    //Practice_2_1();
-    //Practice_2_3();
-    //Homework_2_1();
-    Homework_2_6();
+    //ch_2_1();
+    //hw_2_1();
+
+    ch_2_3();
 }
+
+/********************************************************************************************************/
+/*************************************************2.1****************************************************/
 
 bool FibonElem(int pos, int &elem)
 {
     if (pos <= 0 || pos > 1024)
     {
-        cerr << "invalid position: " << pos
+        cerr << "invalid position" << pos
              << " ---> cannot handle request!"
              << endl;
+
         elem = 0;
         return false;
     }
@@ -39,6 +43,7 @@ bool FibonElem(int pos, int &elem)
     return true;
 }
 
+// 函数返回值
 bool PrintFibon(int pos)
 {
     if (pos <= 0 || pos > 1024)
@@ -50,15 +55,15 @@ bool PrintFibon(int pos)
     }
 
     cout << "the fibonacci sequence for "
-         << pos << " positions: \n\t";
+         << pos << " positions: \n";
 
     switch (pos)
     {
         default:
         case 2:
-            cout << "1\t";
+            cout << "1 ";
         case 1:
-            cout << "1\t";
+            cout << "1 ";
             break;
     }
 
@@ -69,36 +74,38 @@ bool PrintFibon(int pos)
         elem = val1 + val2;
         val2 = val1;
         val1 = elem;
-        cout << elem << (!(i % 10) ? "\n\t" : "\t");
+        cout << elem << (!(i % 10) ? "\n" : " ");
     }
 
     cout << endl;
     return false;
 }
 
-void Practice_2_1()
+
+/* 2.1 如何编写函数 */
+void ch_2_1()
 {
-    int pos;
     cout << "please enter a position: ";
+    int pos;
     cin >> pos;
 
-    int elem;
-    if (FibonElem(pos, elem))
-    {
-        cout << "fibonacci sequence at position: "
-             << pos << " is: " << elem << endl;
-    }
-    else
-    {
-        cout << "sorry! cannot calculate position: "
-             << pos << " elem."<< endl;
-        return ;
-    }
+//    int elem;
+//    if (FibonElem(pos, elem))
+//    {
+//        cout << "elemment at position # "
+//             << pos << " is: " << elem << endl;
+//    }
+//    else
+//    {
+//        cout << "sorry! cannot calculate position: "
+//             << pos << " elem."<< endl;
+//        return ;
+//    }
 
     PrintFibon(pos);
 }
 
-void Homework_2_1()
+void hw_2_1()
 {
     bool more = true;
     while (more)
@@ -110,8 +117,8 @@ void Homework_2_1()
         int elem;
         if (FibonElem(pos, elem))
         {
-            cout << "fibonacci sequence at position: " << pos
-                << " is: " << elem << endl;
+            cout << "elemment at position # " << pos
+                << " value is: " << elem << endl;
         }
         else
             cout << "sorry! cannot calculate position # "
@@ -123,18 +130,21 @@ void Homework_2_1()
         if (ch != 'y' && ch != 'Y')
             more = false;
     }
-    
+
 }
+
+/********************************************************************************************************/
+/*************************************************2.3****************************************************/
 
 void Display(const vector<int> *vec, ostream *out)
 {
-    if (vec != 0)
+    if (vec == 0)
     {
         *out << "display(): the vector pointer is 0\n";
         return ;
     }
 
-    for (int i = 0; i < vec->size(); i++)
+    for (unsigned int i = 0; i < vec->size(); i++)
         *out << (*vec)[i] << ' ';
 
     *out << endl;
@@ -142,12 +152,11 @@ void Display(const vector<int> *vec, ostream *out)
 
 void Display(const vector<int> &vec, ostream &out)
 {
-    for (int i = 0; i < vec.size(); i++)
-    out << vec[i] << ' ';
+    for (unsigned int i = 0; i < vec.size(); i++)
+        out << vec[i] << ' ';
 
     out << endl;
 }
-
 
 void Swap(int &val1, int &val2, std::ostream &ofile)
 {
@@ -177,16 +186,20 @@ void Swap(int &val1, int &val2, std::ostream *ofile)
 
 void BubbleSort(std::vector<int> &vec, std::ostream &ofile)
 {
-    for (int i = 0; i < vec.size(); ++i)
+    for (unsigned int i = 0; i < vec.size(); ++i)
     {
-        for (int j = i + 1; j < vec.size(); ++j)
+        for (unsigned int j = i + 1; j < vec.size(); ++j)
         {
             if (vec[i] > vec[j])
             {
                 ofile << "call swap()! positon : " << i
                       << ", and position: " << j << " swapping: "
                       << vec[i] << ", with: " << vec[j] << endl;
+
                 Swap(vec[i], vec[j], ofile);
+
+                ofile << "after swap vector elemment: ";
+                Display(vec, ofile);
             }
         }
     }
@@ -194,9 +207,9 @@ void BubbleSort(std::vector<int> &vec, std::ostream &ofile)
 
 void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
 {
-    for (int i = 0; i < vec.size(); ++i)
+    for (unsigned int i = 0; i < vec.size(); ++i)
     {
-        for (int j = i + 1; j < vec.size(); ++j)
+        for (unsigned int j = i + 1; j < vec.size(); ++j)
         {
             if (vec[i] > vec[j])
             {
@@ -204,21 +217,30 @@ void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
                     *ofile << "call swap()! positon : " << i
                         << ", and position: " << j << " swapping: "
                         << vec[i] << ", with: " << vec[j] << endl;
+
                 Swap(vec[i], vec[j], ofile);
+                *ofile << "after swap vector elemment: ";
+                Display(&vec, ofile);
             }
         }
     }
 }
 
-void Practice_2_3()
+
+/* 2.2 调用函数 */
+/* 2.2 使用默认参数 */
+void ch_2_3()
 {
     int ia[ 8 ] = { 8, 34, 3, 13, 1, 21, 5, 2 };
     vector<int> vec(ia, ia + 8);
 
-    BubbleSort(vec, cout);
-    Display(vec);
+//    Display(vec);
+//    BubbleSort(vec, cout);
+//    //BubbleSort(vec);
+//    Display(vec);
 
     ofstream    ofile("debug.txt");
+    Display(&vec, &ofile);
     BubbleSort(vec, &ofile);
     Display(&vec, &ofile);
 }

@@ -7,24 +7,36 @@
 #include <algorithm>
 #include <vector>
 
+extern void ch_02();
+
+extern bool FibonElem(int pos, int &elem);
+extern bool PrintFibon(int pos);
+extern void ch_2_1();
+extern void hw_2_1();
+
+extern void Swap(int &val1, int &val2, std::ostream &ofile = std::cout);
+extern void Swap(int &val1, int &val2, std::ostream *ofile = 0);
+extern void BubbleSort(std::vector<int> &vec, std::ostream &ofile = std::cout);
+extern void BubbleSort(std::vector<int> &vec, std::ostream *ofile = 0);
+extern void Display(const std::vector<int> &vec, std::ostream &out = std::cout);
+extern void Display(const std::vector<int> *vec, std::ostream *out = 0);
+extern void ch_2_3();
+
+
+
+
+
+
 void Chapter_02();
 
 void Practice_2_1();
 void Practice_2_3();
-void Homework_2_1();
+
 void Homework_2_6();
 
-extern void Display(const std::vector<int> *vec, std::ostream *out = 0);
-extern void Display(const std::vector<int> &vec, std::ostream &out = std::cout);
 
-extern void Swap(int &val1, int &val2, std::ostream &ofile);
-extern void Swap(int &val1, int &val2, std::ostream *ofile = 0);
 
-extern void BubbleSort(std::vector<int> &vec, std::ostream &ofile);
-extern void BubbleSort(std::vector<int> &vec, std::ostream *ofile = 0);
 
-extern bool FibonElem(int pos, int &elem);
-extern bool PrintFibon(int pos);
 
 extern const std::vector<int>* FibonSeq(int pos);
 
