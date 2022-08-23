@@ -13,7 +13,11 @@ void ch_02()
     //ch_2_1();
     //hw_2_1();
 
-    ch_2_3();
+    //ch_2_3();
+
+    //ch_2_4();
+
+    ch_2_8();
 }
 
 /********************************************************************************************************/
@@ -130,7 +134,6 @@ void hw_2_1()
         if (ch != 'y' && ch != 'Y')
             more = false;
     }
-
 }
 
 /********************************************************************************************************/
@@ -228,7 +231,7 @@ void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
 
 
 /* 2.2 调用函数 */
-/* 2.2 使用默认参数 */
+/* 2.3 使用默认参数 */
 void ch_2_3()
 {
     int ia[ 8 ] = { 8, 34, 3, 13, 1, 21, 5, 2 };
@@ -247,8 +250,8 @@ void ch_2_3()
 
 const vector<int>* FibonSeq(int pos)
 {
-//    const int           max_elems = 512;
     static vector<int>  elems;
+//    const int           max_elems = 512;
 
 //    if (pos <= 0 || pos > max_elems)
 //    {
@@ -267,6 +270,27 @@ const vector<int>* FibonSeq(int pos)
             elems.push_back(elems[ix - 2] + elems[ix - 1]);
 
     return &elems;
+}
+
+/* 2.4 使用局部静态对象 */
+void ch_2_4()
+{
+    bool more = true;
+    while (more)
+    {
+        int pos;
+        cout << "please enter a position: ";
+        cin >> pos;
+
+        ofstream    ofile("debug.txt");
+        Display(FibonSeq(pos), &ofile);
+
+        cout << "would you want to try again?(Y/N): ";
+        char ch;
+        cin >> ch;
+        if (ch != 'y' && ch != 'Y')
+            more = false;
+    }
 }
 
 bool FibonElem2(int pos, int &elem)
@@ -291,6 +315,64 @@ void DisplayMsg(const std::string &msg, int size)
 {
     cerr << msg << " size: " << size << endl;
 }
+
+/* 函数指针带来更大的弹性 */
+void ch_2_8()
+{
+//    bool more = true;
+//    while (more)
+//    {
+//        cout << "please enter a sequence index(0~7): ";
+//        int index;
+//        cin >> index;
+//        pfunc pf = seq_array[index];
+//        if (!pf)
+//        {
+//            DisPlay("Internal error: func ptr is set to null.");
+
+//            cout << "would you want to try again?(Y/N): ";
+//            char ch;
+//            cin >> ch;
+//            if (ch != 'y' && ch != 'Y')
+//                more = false;
+//            continue;
+//        }
+
+//        int pos;
+//        cout << "please enter a position: ";
+//        cin >> pos;
+
+//        int elem;
+//        ofstream    ofile("debug.txt");
+//        SeqElem(pos, elem, pf);
+//        cout << "position: " << pos << " value is: " << elem << endl;
+
+//        cout << "would you want to try again?(Y/N): ";
+//        char ch;
+//        cin >> ch;
+//        if (ch != 'y' && ch != 'Y')
+//            more = false;
+//    }
+
+    bool more = true;
+    while (more)
+    {
+        int pos;
+        cout << "please enter a position: ";
+        cin >> pos;
+
+        int elem;
+        SeqElem(pos, elem, seq_array[NS_FIB]);
+        cout << "position: " << pos << " value is: " << elem << endl;
+
+        cout << "would you want to try again?(Y/N): ";
+        char ch;
+        cin >> ch;
+        if (ch != 'y' && ch != 'Y')
+            more = false;
+    }
+}
+
 
 void Homework_2_6()
 {

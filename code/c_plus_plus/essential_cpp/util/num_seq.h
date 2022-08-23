@@ -10,10 +10,11 @@
 typedef const std::vector<int>* pvec; 
 typedef const std::vector<int>* (*pfunc)(int);
 
-const int seq_cnt = 7;
-extern pfunc    gen_elems[seq_cnt];
+const int       seq_cnt = 7;
+extern pfunc    seq_array[seq_cnt];
+//extern const std::vector<int>* (*seq_array[])(int);
 
-enum NUM_SEQ
+enum NS_TYPE
 {
     NS_UNK, 
     NS_FIB, NS_PELL,NS_LUCAS,
@@ -28,7 +29,12 @@ extern pvec TriaSeq(int pos);
 extern pvec SquaSeq(int pos);
 extern pvec PentSeq(int pos);
 
-extern bool SeqElem(int pos, int &elem, pfunc);
+extern bool SeqElem(int pos, int &elem, pfunc f);
+
+inline void DisPlay(const std::string &msg)
+{
+    std::cerr << msg << std::endl;
+}
 
 inline bool CheckIntegrity(int pos)
 {
@@ -36,7 +42,7 @@ inline bool CheckIntegrity(int pos)
     if (pos <= 0 || pos > max_elems)
     {
         std::cerr << "invalid position: " << pos
-                  << "cannot handle request!\n";
+                  << " cannot handle request!\n";
         return false;
     }
     

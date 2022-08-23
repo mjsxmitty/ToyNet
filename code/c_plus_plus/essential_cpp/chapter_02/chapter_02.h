@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <vector>
 
+#include "../util/num_seq.h"
+
 extern void ch_02();
 
 extern bool FibonElem(int pos, int &elem);
@@ -22,23 +24,8 @@ extern void Display(const std::vector<int> &vec, std::ostream &out = std::cout);
 extern void Display(const std::vector<int> *vec, std::ostream *out = 0);
 extern void ch_2_3();
 
-
-
-
-
-
-void Chapter_02();
-
-void Practice_2_1();
-void Practice_2_3();
-
-void Homework_2_6();
-
-
-
-
-
 extern const std::vector<int>* FibonSeq(int pos);
+extern void ch_2_4();
 
 extern void DisplayMsg(const std::string &msg);
 extern void DisplayMsg(const std::string &msg, int size);
@@ -58,6 +45,8 @@ inline bool IsSizeOk(int size)
 
     return true;
 }
+
+extern void ch_2_8();
 
 template <typename T>
 inline T Max(T t1, T t2) { return t1 > t2 ? t1 : t2; }
