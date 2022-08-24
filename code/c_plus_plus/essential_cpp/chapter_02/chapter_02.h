@@ -63,4 +63,6 @@ inline T Max(const T *arr, int size)
     return *std::max_element(arr, arr + size);
 }
 
+extern void hw_2_6();
+
 #endif //__ESSENTIAL_CPP_CHAPTER_02_H__

@@ -22,80 +22,76 @@ string  s_sa[s_string_size] = { "pooh", "piglet", "eeyore", "tigger" };
 vector<int>     s_ivec(s_ia, s_ia + s_int_size);
 vector<string>  s_svec(s_sa, s_sa + s_string_size);
 
+void ch_3()
+{
+    //ch_3_1();
+    //ch_3_2();
+    //ch_3_6();
+    ch_3_9();
+}
+
 const int* FindVec(const vector<int> &vec, int val)
 {
-    for (int i = 0; i < vec.size(); i++)
+    for (unsigned int i = 0; i < vec.size(); i++)
         if (vec[i] == val)
             return &vec[i];
 
     return 0;
 }
 
-void Chapter_03()
-{
-    //Practice_3_1();
-    //Practice_3_6();
-    //Practice_3_9();
-
-    //Homework_3_1();
-    //Homework_3_2();
-    //Homework_3_3();
-    Homework_3_4();
-}
-
-void Practice_3_1()
+void ch_3_1()
 {
     const int       *iptr = nullptr;
     const string    *sptr = nullptr;
 
-    iptr = FindVec(s_ivec, s_ivec[5]);
-    if (iptr == &s_ivec[5])
-        cout << *iptr << endl;
-    else
-        cout << "test no template func failed, ret: "
-             << *iptr << endl;
+//    iptr = FindVec(s_ivec, s_ivec[5]);
+//    if (iptr == &s_ivec[5])
+//        cout << *iptr << endl;
+//    else
+//        cout << "test no template func failed, ret: "
+//             << *iptr << endl;
 
-    iptr = FindVer1(s_ivec, s_ivec[6]);
-    if (iptr == &s_ivec[6])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer1 with int array type func failed, ret: "
-             << *iptr << endl;
+//    iptr = FindVer1(s_ivec, s_ivec[6]);
+//    if (iptr == &s_ivec[6])
+//        cout << *iptr << endl;
+//    else
+//        cout << "test FindVer1 with int array type func failed, ret: "
+//             << *iptr << endl;
 
-    sptr = FindVer1(s_svec, s_svec[0]);
-    if (sptr == &s_svec[0])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer1 with char array type func failed, ret: "
-             << *sptr << endl;
+//    sptr = FindVer1(s_svec, s_svec[0]);
+//    if (sptr == &s_svec[0])
+//        cout << *sptr << endl;
+//    else
+//        cout << "test FindVer1 with char array type func failed, ret: "
+//             << *sptr << endl;
 
-    iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
-    if (iptr == &s_ia[7])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer2 with int array type func failed, ret: "
-             << *iptr << endl;
-    
-    sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
-    if (sptr == &s_sa[2])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer2 with char array type func failed, ret: "
-             << *sptr << endl;
+//    iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
+//    if (iptr == &s_ia[7])
+//        cout << *iptr << endl;
+//    else
+//        cout << "test FindVer2 with int array type func failed, ret: "
+//             << *iptr << endl;
 
-    iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
-    if (iptr == &s_ia[7])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer3 with int array type func failed, ret: "
-             << *iptr << endl;
-    
-    sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
-    if (sptr == &s_sa[2])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer3 with char array type func failed, ret: "
-             << *sptr << endl;
+//    sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
+//    if (sptr == &s_sa[2])
+//        cout << *sptr << endl;
+//    else
+//        cout << "test FindVer2 with char array type func failed, ret: "
+//             << *sptr << endl;
+
+//    iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
+//    if (iptr == &s_ia[7])
+//        cout << *iptr << endl;
+//    else
+//        cout << "test FindVer3 with int array type func failed, ret: "
+//             << *iptr << endl;
+
+//    sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
+//    if (sptr == &s_sa[2])
+//        cout << *sptr << endl;
+//    else
+//        cout << "test FindVer3 with char array type func failed, ret: "
+//             << *sptr << endl;
 
     iptr = FindVer4(s_ia, s_ia + s_int_size, s_ia[8]);
     if (iptr == &s_ia[8])
@@ -103,7 +99,7 @@ void Practice_3_1()
     else
         cout << "test FindVer4 with int array type func failed, ret: "
              << *iptr << endl;
-    
+
     sptr = FindVer4(s_sa, s_sa + s_string_size, s_sa[3]);
     if (sptr == &s_sa[3])
         cout << *sptr << endl;
@@ -117,13 +113,20 @@ void Practice_3_1()
     else
         cout << "test FindVer4 with int vector type func failed, ret: "
              << *iptr << endl;
-    
+
     sptr = FindVer4(Begin(s_svec), End(s_svec), s_svec[3]);
     if (sptr == &s_svec[3])
         cout << *sptr << endl;
     else
         cout << "test FindVer4 with char vector type func failed, ret: "
              << *sptr << endl;
+
+}
+
+void ch_3_2()
+{
+    const int       *iptr = nullptr;
+    const string    *sptr = nullptr;
 
     iptr = FindVer5(s_ia, s_ia + s_int_size, s_ia[10]);
     if (iptr == &s_ivec[10])
@@ -149,7 +152,7 @@ void Practice_3_1()
 }
 
 bool LessThan(int v1, int v2) { return v1 < v2 ? true : false; }
-bool GreaterThan(int v1, int v2) { return v1 > v2 ? true : false; } 
+bool GreaterThan(int v1, int v2) { return v1 > v2 ? true : false; }
 
 vector<int> FilterVer1(const vector<int> &vec, int filter_val, bool (*pred)(int, int))
 {
@@ -171,7 +174,7 @@ int CountOccurs(const vector<int> &vec, int val)
         ++occurs;
         ++it;
     }
-    
+
     return occurs;
 }
 
@@ -185,7 +188,7 @@ vector<int> FilterVer2(const vector<int> &vec, int val, const less<int> &lt)
         nvec.push_back(*it);
         ++it;
     }
-    
+
     return nvec;
 }
 
@@ -195,7 +198,7 @@ vector<int> SubVec(const vector<int> &vec, int val)
     vector<int> local_vec(vec);
     sort(local_vec.begin(), local_vec.end());
 
-    //找出第一复合要求值
+    //找出第一满足要求值
     auto find_it = find_if(local_vec.begin(), local_vec.end(),
                            bind2nd(greater<int>(), val));
 
@@ -204,35 +207,67 @@ vector<int> SubVec(const vector<int> &vec, int val)
     return local_vec;
 }
 
-void Practice_3_6()
+void ch_3_6()
 {
-    const int ret_size = 6;
     const int part_val = 10;
 
-    vector<int> vec1 = FilterVer1(s_ivec, part_val, GreaterThan);
-    if (vec1.size() != ret_size)
-        cout << "test filter ver1 failed. ret size: " << vec1.size() << endl;
-    else
-        cout << "test filter ver1 ok." << endl;
-    
-    vector<int> vec2 = FilterVer2(s_ivec, part_val, less<int>());
-    cout << "less than 10 vector size: " << vec2.size() << endl;
+    for_each(s_ivec.begin(), s_ivec.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
 
-    int ia2[s_int_size];
-    FilterVer3(s_ia, s_ia + s_int_size, ia2, part_val, less<int>());
-//    cout << end(ia2) - begin(ia2) << endl;
+//    vector<int> vec1 = FilterVer1(s_ivec, part_val, GreaterThan);
+//    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});
+//    cout << endl;
 
-    vector<int> vec3;
-    FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, less<int>());
-    cout << vec3.size() << endl;
+//    vector<int> vec2 = FilterVer2(s_ivec, part_val, less<int>());
+//    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' ';});
+//    cout << endl;
 
-    list<string> slist;
-    FilterVer3(s_sa, s_sa + s_string_size, back_inserter(slist), "piglet", greater<string>());
-    cout << slist.size() << endl;
+//    int ia[s_int_size];
+//    auto ia2 = FilterVer3(s_ia, s_ia + s_int_size, ia, part_val, less<int>());
+//    for_each(ia, ia2, [](int i) { cout << i << ' ';});
+//    cout << endl;
 
-    auto ret_vec = SubVec(s_ivec, part_val);
-    cout << ret_vec.size() << endl;
+//    vector<int> vec3;
+//    FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, greater<int>());
+//    for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' ';});
+//    cout << endl;
+
+//    for_each(begin(s_sa), end(s_sa), [](const string &s) { cout << s << ' ';});
+//    cout << endl;
+
+//    list<string> slist;
+//    FilterVer3(s_sa, s_sa + s_string_size, back_inserter(slist), "piglet", greater<string>());
+//    for_each(slist.begin(), slist.end(), [](const string &s) { cout << s << ' ';});
+//    cout << endl;
+
+//    auto ret_vec = SubVec(s_ivec, part_val);
+//    for_each(ret_vec.begin(), ret_vec.end(), [](int i) { cout << i << ' ';});
+//    cout << endl;
+
+
 }
+
+void ch_3_9()
+{
+    vector<int> local_vec;
+    Filter(s_ivec.begin(), s_ivec.end(), back_inserter(local_vec), 10, greater<int>());
+    for_each(local_vec.begin(), local_vec.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
+}
+
+
+void Chapter_03()
+{
+    //Practice_3_1();
+    //Practice_3_6();
+    //Practice_3_9();
+
+    //Homework_3_1();
+    //Homework_3_2();
+    //Homework_3_3();
+    Homework_3_4();
+}
+
 
 void Practice_3_9()
 {
