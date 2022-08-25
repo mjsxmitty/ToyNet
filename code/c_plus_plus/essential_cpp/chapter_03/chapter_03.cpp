@@ -27,7 +27,11 @@ void ch_3()
     //ch_3_1();
     //ch_3_2();
     //ch_3_6();
-    ch_3_9();
+    //ch_3_9();
+    //ch_3_10();
+
+    //hw_3_1();
+    hw_3_2();
 }
 
 const int* FindVec(const vector<int> &vec, int val)
@@ -255,83 +259,47 @@ void ch_3_9()
     cout << endl;
 }
 
-
-void Chapter_03()
+void ch_3_10()
 {
-    //Practice_3_1();
-    //Practice_3_6();
-    //Practice_3_9();
+//    {
+//         istream_iterator<string>    is(cin);
+//         istream_iterator<string>    eof;
 
-    //Homework_3_1();
-    //Homework_3_2();
-    //Homework_3_3();
-    Homework_3_4();
-}
+//         vector<string>  local_vec;
+//         copy(is, eof, back_inserter(local_vec));
+//         sort(local_vec.begin(), local_vec.end());
 
+//         ostream_iterator<string>    os(cout, "\n");
+//         copy(local_vec.begin(), local_vec.end(), os);
+//         cout <<endl;
+//    }
 
-void Practice_3_9()
-{
-    // istream_iterator<string>    is(cin);
-    // istream_iterator<string>    eof;
-
-    // vector<string>  local_vec;
-    // copy(is, eof, back_inserter(local_vec));
-    // sort(local_vec.begin(), local_vec.end());
-
-    // ostream_iterator<string>    os(cout, "\t");
-    // copy(local_vec.begin(), local_vec.end(), os);
-    // cout <<endl;
-
-    fstream     in_file("Makefile");
-    ofstream    out_file("test.txt");    
-    
-    if (!in_file || !out_file)
     {
-        cout << "open input/output file failed." << endl;
-        return ;
+        fstream     in_file("Makefile");
+        ofstream    out_file("test.txt");
+
+        if (!in_file || !out_file)
+        {
+            cout << "open input/output file failed." << endl;
+            return ;
+        }
+
+        istream_iterator<string>    is(in_file);
+        istream_iterator<string>    eof;
+
+        vector<string>  vec;
+        copy(is, eof, back_inserter(vec));
+
+        sort(vec.begin(), vec.end());
+
+        ostream_iterator<string>    os(out_file, "\n");
+        copy(vec.begin(), vec.end(), os);
     }
-    
-    istream_iterator<string>    is(in_file);
-    istream_iterator<string>    eof;
-
-    vector<string>  vec;
-    copy(is, eof, back_inserter(vec));
-
-    sort(vec.begin(), vec.end());
-
-    ostream_iterator<string>    os(out_file, "\n");
-    copy(vec.begin(), vec.end(), os);
 }
 
 #include <iostream>
 #include <fstream>
 #include <map>
-
-void InitExclusionSet(set<string> &exs)
-{
-    static string exclusion_words[26] = {
-        "the","and","but","that","then","are","been",
-        "can","a","could","did","for", "of",
-        "had","have","him","his","her","its","is",
-        "were","which","when","with","would"
-    };
-
-    exs.insert(exclusion_words, exclusion_words + 26);
-}
-
-void ProcessFile(map<string, int> &word_map,
-                 const set<string> &exclude_set,
-                 ifstream &ifile)
-{
-    string word;
-    while (ifile >> word)
-    {
-        if (exclude_set.count(word))
-            continue;
-
-        word_map[word]++;
-    }
-}
 
 void UserQuery(const map<string, int> &word_map)
 {
@@ -353,7 +321,7 @@ void UserQuery(const map<string, int> &word_map)
     }
 }
 
-void DisplayWordCount(const map<string, int> &word_map, ostream &out)
+void DisplayWordCount(const map<string, int> &word_map, ostream &out = cout)
 {
     auto it = word_map.begin();
     while (it != word_map.end())
@@ -365,10 +333,35 @@ void DisplayWordCount(const map<string, int> &word_map, ostream &out)
     }
 }
 
-
-void Homework_3_1()
+void ProcessFile(map<string, int> &word_map,
+                 const set<string> &exclude_set,
+                 ifstream &ifile)
 {
-    ifstream    in_file("moo_cat.txt");
+    string word;
+    while (ifile >> word)
+    {
+        if (exclude_set.count(word))
+            continue;
+
+        word_map[word]++;
+    }
+}
+
+void InitExclusionSet(set<string> &exs)
+{
+    static string exclusion_words[26] = {
+        "the","and","but","that","then","are","been",
+        "can","a","could","did","for", "of",
+        "had","have","him","his","her","its","is",
+        "were","which","when","with","would"
+    };
+
+    exs.insert(exclusion_words, exclusion_words + 26);
+}
+
+void hw_3_1()
+{
+    ifstream    in_file("Makefile");
     ofstream    out_file("moo_cat.map");
 
     if (!in_file || !out_file)
@@ -383,10 +376,10 @@ void Homework_3_1()
     map<string, int>    word_count;
     ProcessFile(word_count, exclude_set, in_file);
 
-    //UserQuery(word_count);
-    DisplayWordCount(word_count, out_file);
-}
+    DisplayWordCount(word_count);
 
+    UserQuery(word_count);
+}
 
 class StrSizeComp
 {
@@ -397,9 +390,9 @@ public:
     }
 };
 
-void Homework_3_2()
+void hw_3_2()
 {
-    ifstream    in_file("moo_cat.txt");
+    ifstream    in_file("Makefile");
     ofstream    out_file("moo_cat.out");
 
     if (!in_file || !out_file)
@@ -409,17 +402,15 @@ void Homework_3_2()
     }
 
     vector<string>  text;
-    string          word;
-    while (in_file >> word)
-    {
-        cout << word << ' ';
-        text.push_back(word);
-    }
+    istream_iterator<string> is(in_file);
+    istream_iterator<string> eof;
+    copy(is, eof, back_inserter(text));
 
     sort(text.begin(), text.end(), StrSizeComp());
+    //sort(text.begin(), text.end(), less<string>());
 
-    for (auto it = text.begin(); it != text.end(); ++it)
-        cout << *it << "\n";
+    ostream_iterator<string> os(out_file, "\n");
+    copy(text.begin(), text.end(), os);
 }
 
 
@@ -433,7 +424,7 @@ void InitFamilyMap(ifstream &in, map<string, vstring> &family)
     {
         string  fam_name;
         vstring childs;
-        ssize_type pos = 0, prev_pos = 0, line_size = line.size();
+//        ssize_type pos = 0, prev_pos = 0, line_size = line.size();
 
 //        cout << "text line: " << line << endl;
 //        while ((pos = line.find_first_of(' ', pos)) != string::npos)
@@ -518,7 +509,7 @@ void QueryMap(const string &family, svec_map familes)
     }
 }
 
-void Homework_3_3()
+void hw_3_3()
 {
     ifstream    name_file("families.txt");
     if (!name_file)
@@ -553,7 +544,7 @@ public:
     }
 };
 
-void Homework_3_4()
+void hw_3_4()
 {
     ifstream    name_file("families.txt");
     if (!name_file)

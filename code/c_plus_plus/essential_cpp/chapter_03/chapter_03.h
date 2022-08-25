@@ -123,18 +123,11 @@ void Filter(It first, It last, Ot at, const ElemType &val, Comp pre)
 }
 
 extern void ch_3_9();
+extern void ch_3_10();
 
-void Chapter_03();
+extern void hw_3_1();
+extern void hw_3_2();
+extern void hw_3_3();
+extern void hw_3_4();
 
-void Practice_3_1();
-void Practice_3_6();
-void Practice_3_9();
-
-void Homework_3_1();
-void Homework_3_2();
-void Homework_3_3();
-void Homework_3_4();
-
-
-
-#endif //
+#endif // __ESSENTIAL_CPP_CHAPTER_03_H__
