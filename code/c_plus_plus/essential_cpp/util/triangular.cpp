@@ -19,8 +19,16 @@ Triangular::Triangular(int len, int bp) :
         GenElements(elem_cnt);
 }
 
+Triangular::Triangular(int len) : length_(len > 1 ? len : 1)
+{
+    beg_pos_ = 1;
+    next_ = 0;
+
+    // TODO...
+}
+
 Triangular::Triangular(const Triangular &rhs) :
-    beg_pos_(rhs.beg_pos_), length_(rhs.length_), next_(rhs.next_)
+    beg_pos_(rhs.beg_pos_), length_(rhs.length_), next_(rhs.beg_pos_ - 1)
 { }
 
 Triangular& Triangular::operator=(const Triangular &rhs)

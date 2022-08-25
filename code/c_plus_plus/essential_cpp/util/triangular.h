@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_04_TRIANGULAR_H__
-#define __ESSENTIAL_CPP_CHAPTER_04_TRIANGULAR_H__
+#ifndef __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
+#define __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
 
 #include <string>
 #include <vector>
@@ -11,13 +11,20 @@
 class TriangularIterator;
 class Triangular
 {
+private:
+    int             beg_pos_;
+    int             length_;
+    mutable int     next_;
+public:
+    Triangular(int len = 1, int bp = 1);
+    Triangular(int len);
+    Triangular(const Triangular &rhs);
+
 public:
     friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
     friend class TriangularIterator;
     typedef  TriangularIterator Iterator;
-public:
-    Triangular(int len = 1, int bp = 1);
-    Triangular(const Triangular &rhs);
+
     Triangular& operator=(const Triangular &rhs);
 public:
     int Length() const { return length_; }
@@ -45,11 +52,9 @@ private:
     //static const int max_size = 1024;
     enum { max_size = 1024 };
     static std::vector<int>    elems_;
-    int                 beg_pos_, length_;
-    mutable int         next_;
 };
 
 std::ostream &operator<<( std::ostream &os, const Triangular &rhs );
 int Sum(const Triangular &item);
 
-#endif // TRIANGULAR_H
+#endif // __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
