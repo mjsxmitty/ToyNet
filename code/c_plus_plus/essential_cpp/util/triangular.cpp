@@ -12,6 +12,8 @@ vector<int> Triangular::elems_;
 Triangular::Triangular(int len, int bp) :
     beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
 {
+    cout << "construct func ..." << endl;
+    cout << "beg pos: " << beg_pos_ << " length: " << length_ << endl;
     next_ = beg_pos_ - 1;
 
     unsigned int elem_cnt = length_ + beg_pos_ + 1;

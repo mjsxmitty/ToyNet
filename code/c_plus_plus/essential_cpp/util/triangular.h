@@ -16,10 +16,17 @@ private:
     int             length_;
     mutable int     next_;
 public:
-    Triangular(int len = 1, int bp = 1);
+    Triangular(int len, int bp);
     Triangular(int len);
     Triangular(const Triangular &rhs);
 
+public:
+    int Length() const { return length_; }
+    int BegPos() const { return beg_pos_; }
+    int Elem(int pos) const { return elems_[pos - 1]; }
+
+    void NextReset() const { next_ = beg_pos_ - 1; }
+    bool Next(int &val) const;
 public:
     friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
     friend class TriangularIterator;
@@ -27,15 +34,11 @@ public:
 
     Triangular& operator=(const Triangular &rhs);
 public:
-    int Length() const { return length_; }
-    int BegPos() const { return beg_pos_; }
-    int Elem(int pos) const { return elems_[pos - 1]; }
+
 
     void Length(int len) { length_ = len; }
     void BegPos(int pos) { beg_pos_ = pos; }
 
-    void NextReset() const { next_ = beg_pos_ - 1; }
-    bool Next(int &val) const;
 
     Iterator Begin() const;// { return Iterator(beg_pos_); }
     Iterator End() const;// { return  Iterator(beg_pos_ + length_); }

@@ -31,7 +31,7 @@ void ch_3()
     //ch_3_10();
 
     //hw_3_1();
-    hw_3_2();
+   // hw_3_2();
 }
 
 const int* FindVec(const vector<int> &vec, int val)

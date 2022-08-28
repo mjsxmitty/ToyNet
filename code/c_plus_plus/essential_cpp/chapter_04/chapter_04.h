@@ -5,6 +5,10 @@
 #include <string>
 #include <iostream>
 
+void ch_4();
+
+void ch_4_3();
+
 void Chapter_04();
 
 void Practice_4_3();
