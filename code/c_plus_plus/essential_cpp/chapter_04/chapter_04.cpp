@@ -19,16 +19,18 @@ void ch_4()
 void ch_4_3()
 {
     Triangular tri(4);
-    cout << tri << " -- sum of elements: "
-         << Sum(tri) << endl;
+    // cout << tri.Length() << endl;
+    cout << Sum(tri) << endl;
+    // cout << tri << " -- sum of elements: "
+    //      << Sum(tri) << endl;
 
-    Triangular tri2(4, 3);
-    cout << tri2 << " -- sum of elements: "
-         << Sum(tri2) << endl;
+    // Triangular tri2(4, 3);
+    // cout << tri2 << " -- sum of elements: "
+    //      << Sum(tri2) << endl;
 
-    Triangular tri3(4, 8);
-    cout << tri3 << " -- sum of elements: "
-         << Sum(tri3) << endl;
+    // Triangular tri3(4, 8);
+    // cout << tri3 << " -- sum of elements: "
+    //      << Sum(tri3) << endl;
 }
 
 void Chapter_04()

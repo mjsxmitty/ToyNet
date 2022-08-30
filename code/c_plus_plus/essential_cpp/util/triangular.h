@@ -16,8 +16,8 @@ private:
     int             length_;
     mutable int     next_;
 public:
-    Triangular(int len, int bp);
-    Triangular(int len);
+    Triangular(int len = 1, int bp = 1);
+    // Triangular(int len);
     Triangular(const Triangular &rhs);
 
 public:
