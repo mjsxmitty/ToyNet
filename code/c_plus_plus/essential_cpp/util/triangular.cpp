@@ -13,7 +13,6 @@ Triangular::Triangular(int len, int bp) :
     beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
 {
     next_ = beg_pos_ - 1;
-    cout << "bp: " << beg_pos_ << " len: " << length_ << endl;
     unsigned int elem_cnt = length_ + beg_pos_ + 1;
     if (elems_.size() < elem_cnt)
         GenElements(elem_cnt);
@@ -30,7 +29,9 @@ Triangular::Triangular(int len, int bp) :
 // }
 
 Triangular::Triangular(const Triangular &rhs) :
-    beg_pos_(rhs.beg_pos_), length_(rhs.length_), next_(rhs.beg_pos_ - 1)
+                        beg_pos_(rhs.beg_pos_),
+                        length_(rhs.length_),
+                        next_(rhs.beg_pos_ - 1)
 { }
 
 Triangular& Triangular::operator=(const Triangular &rhs)
@@ -47,12 +48,10 @@ Triangular& Triangular::operator=(const Triangular &rhs)
 
 bool Triangular::Next(int &val) const
 {
-    // cout<<"next: " << next_<< endl;
     // if (!next_) return false;
 
     if (next_ < beg_pos_ + length_ - 1)
     {
-        cout << "next1 " << next_ << endl;
         val = elems_[next_++];
         return true;
     }
@@ -145,21 +144,15 @@ void Triangular::Display(int len, int bp, ostream &os)
 
 int Sum(const Triangular &item)
 {
-    cout << item.Length() << endl;
     if (!item.Length()) return 0;
 
     int val = 0, sum = 0;
     item.NextReset();
     while (item.Next(val))
-    {
         sum += val;
-        //cout << "sum: " << sum << " next val: " << val << endl; 
-    }
-
 
 //    for (int ix = 0; ix < item.Length(); ++ix)
 //        sum += item.Elem(item.BegPos() + ix);
-    cout << "sum"<< endl;
     return sum;
 }
 
