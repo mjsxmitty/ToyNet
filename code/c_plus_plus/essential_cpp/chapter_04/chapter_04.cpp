@@ -12,7 +12,8 @@ using namespace std;
 
 void ch_4()
 {
-    ch_4_3();
+    //ch_4_3();
+    ch_4_5();
 }
 
 void ch_4_3()
@@ -28,6 +29,28 @@ void ch_4_3()
     Triangular tri3(8, 8);
     cout << tri3 << " -- sum of elements: "
       << Sum(tri3) << endl;
+}
+
+void ch_4_5()
+{
+    char ch;
+    bool more = true;
+
+    while (more)
+    {
+        cout << "Enter a value: ";
+        int ival;
+        cin >> ival;
+
+        bool is_elem = Triangular::IsElem(ival);
+        cout << ival << (is_elem ? " is " : " is not ")
+             << "an element in the Triangular series.\n"
+             << "Anther value(y/n)?";
+
+        cin >> ch;
+        if (ch == 'n' || ch == 'N')
+            more = false;
+    }
 }
 
 void Chapter_04()

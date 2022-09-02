@@ -2,6 +2,22 @@
 #include "triangular.h"
 #include "triangular_iterator.h"
 
+int TriangularIterator::operator*() const
+{
+    CheckIntegrity();
+    return Triangular::elems_[index_];
+}
+
+class IteratorOverflow {};
+
+void TriangularIterator::CheckIntegrity() const
+{
+    if (index_ > Triangular::max_size_)
+        throw IteratorOverflow();
+
+    if (index_ > Triangular::elems_.size())
+        Triangular::GenElements(index_ + 1);
+}
 
 bool TriangularIterator::operator==(const TriangularIterator &rhs) const
 {
@@ -13,11 +29,7 @@ bool TriangularIterator::operator!=(const TriangularIterator &rhs) const
     return !(*this == rhs);
 }
 
-int TriangularIterator::operator*() const
-{
-    CheckIntegrity();
-    return Triangular::elems_[index_];
-}
+
 
 TriangularIterator &TriangularIterator::operator++()
 {
@@ -34,13 +46,4 @@ TriangularIterator TriangularIterator::operator++(int)
     return ret;
 }
 
-class IteratorOverflow {};
 
-void TriangularIterator::CheckIntegrity() const
-{
-    if (index_ > Triangular::max_size)
-        throw IteratorOverflow();
-
-    if (index_ > Triangular::elems_.size())
-        Triangular::GenElements(index_ + 1);
-}

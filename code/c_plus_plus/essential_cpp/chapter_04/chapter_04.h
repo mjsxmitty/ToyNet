@@ -8,6 +8,7 @@
 void ch_4();
 
 void ch_4_3();
+void ch_4_5();
 
 void Chapter_04();
 

@@ -34,18 +34,6 @@ Triangular::Triangular(const Triangular &rhs) :
                         next_(rhs.beg_pos_ - 1)
 { }
 
-Triangular& Triangular::operator=(const Triangular &rhs)
-{
-    if (this != &rhs)
-    {
-        beg_pos_ = rhs.beg_pos_;
-        length_ = rhs.length_;
-        next_ = rhs.beg_pos_ - 1;
-    }
-
-    return *this;
-}
-
 bool Triangular::Next(int &val) const
 {
     // if (!next_) return false;
@@ -60,14 +48,43 @@ bool Triangular::Next(int &val) const
     return false;
 }
 
-Triangular::Iterator Triangular::Begin() const
+Triangular& Triangular::operator=(const Triangular &rhs)
 {
-    return Iterator(beg_pos_);
+    if (this != &rhs)
+    {
+        beg_pos_ = rhs.beg_pos_;
+        length_ = rhs.length_;
+        next_ = rhs.beg_pos_ - 1;
+    }
+
+    return *this;
 }
 
-Triangular::Iterator Triangular::End() const
+void Triangular::GenElemsToValue(int value)
 {
-    return Iterator(beg_pos_ + length_);    // 不需要-1
+    int ix = elems_.size();
+    if (!ix)
+    {
+        elems_.push_back(1);
+        ix = 1;
+    }
+
+    while (elems_[ix - 1] < value && ix < max_size_)
+    {
+        ++ix;
+        elems_.push_back(ix * (ix + 1) / 2);
+        //++ix;
+    }
+
+//    for (unsigned int ix = 0; ix < elems_.size(); ++ix)
+//        cout << elems_[ix] << ' ';
+
+    if (ix == max_size_)
+    {
+        cerr << "Triangular sequence: value to large: "
+             << value << " --- exceeds max size of "
+             << max_size_ << endl;
+    }
 }
 
 bool Triangular::IsElem(int val)
@@ -85,10 +102,10 @@ bool Triangular::IsElem(int val)
 
 void Triangular::GenElements(int length)
 {
-    if (length < 0 || length > max_size)
+    if (length < 0 || length > max_size_)
     {
-        cerr << "Triangular sequence: invalid szie: "
-             << length << " --- max size is: " << max_size
+        cerr << "Triangular sequence: invalid size: "
+             << length << " --- max size is: " << max_size_
              << endl;
         return;
     }
@@ -98,32 +115,16 @@ void Triangular::GenElements(int length)
         elems_.push_back(ix * (ix + 1) / 2);
 }
 
-void Triangular::GenElemsToValue(int value)
+Triangular::Iterator Triangular::Begin() const
 {
-    int ix = elems_.size();
-    if (!ix)
-    {
-        elems_.push_back(1);
-        ix = 1;
-    }
-
-    while (elems_[ix - 1] < value && ix < max_size)
-    {
-        ++ix;
-        elems_.push_back(ix * (ix + 1) / 2);
-        //++ix;
-    }
-
-    for (unsigned int ix = 0; ix < elems_.size(); ++ix)
-        cout << elems_[ix] << ' ';
-
-    if (ix == max_size)
-    {
-        cerr << "Triangular sequence: value to large: "
-             << value << " --- exceeds max size of "
-             << max_size << endl;
-    }
+    return Iterator(beg_pos_);
 }
+
+Triangular::Iterator Triangular::End() const
+{
+    return Iterator(beg_pos_ + length_);    // 不需要-1
+}
+
 
 void Triangular::Display(int len, int bp, ostream &os)
 {
