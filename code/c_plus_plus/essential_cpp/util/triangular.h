@@ -36,31 +36,29 @@ public:
     static void GenElemsToValue(int value);
 public:
     friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
-    friend class TriangularIterator;
-    typedef  TriangularIterator Iterator;
 
     Triangular& operator=(const Triangular &rhs);
 public:
-
-
     void Length(int len) { length_ = len; }
     void BegPos(int pos) { beg_pos_ = pos; }
-
+public:
+    friend class TriangularIterator;
+    typedef  TriangularIterator Iterator;
 
     Iterator Begin() const;// { return Iterator(beg_pos_); }
     Iterator End() const;// { return  Iterator(beg_pos_ + length_); }
-public:
-    static bool IsElem(int val);
-
-    static void Display(int len, int bp, std::ostream &os = std::cout);
 
     /* 可以避免友元 */
-    //static int max_size() { return max_size; }
+    static int max_size() { return max_size_; }
     static int elem_size() { return elems_.size(); }
 
+public:
+    static bool IsElem(int val);
+    static void Display(int len, int bp, std::ostream &os = std::cout);
 };
 
-std::ostream &operator<<( std::ostream &os, const Triangular &rhs );
+std::istream& operator>>(std::istream& in, Triangular& rhs);
+std::ostream& operator<<(std::ostream& os, const Triangular& rhs);
 int Sum(const Triangular &item);
 
 #endif // __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__

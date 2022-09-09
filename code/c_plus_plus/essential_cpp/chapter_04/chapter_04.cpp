@@ -13,7 +13,10 @@ using namespace std;
 void ch_4()
 {
     //ch_4_3();
-    ch_4_5();
+    //ch_4_5();
+    //ch_4_7();
+    //ch_4_9();
+    ch_4_10();
 }
 
 void ch_4_3()
@@ -51,6 +54,72 @@ void ch_4_5()
         if (ch == 'n' || ch == 'N')
             more = false;
     }
+}
+
+void ch_4_7()
+{
+    Triangular tri(20);
+    cout << tri << endl;
+
+    Triangular::Iterator beg = tri.Begin();
+    Triangular::Iterator end = tri.End();
+
+    while (beg != end)
+    {
+        cout << *beg << '\n';
+        ++beg;
+    }
+    cout << endl;
+}
+
+int CountLessThan(const vector<int> &vec, int comp)
+{
+    LessThan1 lt(comp);
+    int count = 0;
+
+    for (int ix = 0; ix < vec.size(); ++ix)
+        if (lt(vec[ix]))
+            ++count;
+
+    return count;
+}
+
+void PrintLessThan(const vector<int> &vec, int comp, ostream &os)
+{
+    LessThan1 lt(comp);
+    auto it = vec.begin(), it_end = vec.end();
+
+    while ((it = find_if(it, it_end, lt)) != it_end)
+    {
+        os << *it << ' ';
+        ++it;
+    }
+}
+
+void ch_4_9()
+{
+    int ia[16] = { 17, 12, 44, 9, 18, 45, 6, 14,
+                   23, 67, 9, 0, 27, 55, 8, 16 };
+
+    vector<int> vec( ia, ia+16 );
+    int comp_val = 20;
+
+    cout << "vector size: " << vec.size() << endl;
+    cout << CountLessThan(vec, comp_val);
+    cout << endl;
+
+    PrintLessThan(vec, comp_val, cout);
+    cout << endl;
+}
+
+void ch_4_10()
+{
+    Triangular tri(6, 3);
+    cout << tri << endl;
+
+    Triangular tri2;
+    cin >> tri2;
+    cout << tri2 << endl;
 }
 
 void Chapter_04()
@@ -117,29 +186,7 @@ void Practice_4_7()
     cout << endl;
 }
 
-int CountLessThan(const vector<int> &vec, int comp)
-{
-    LessThan1 lt(comp);
-    int count = 0;
 
-    for (int ix = 0; ix < vec.size(); ++ix)
-        if (lt(vec[ix]))
-            ++count;
-
-    return count;
-}
-
-void PrintLessThan(const vector<int> &vec, int comp, ostream &os = cout)
-{
-    LessThan1 lt(comp);
-    auto it = vec.begin(), it_end = vec.end();
-
-    while ((it = find_if(it, it_end, lt)) != it_end)
-    {
-        os << *it << ' ';
-        ++it;
-    }
-}
 
 void Practice_4_9()
 {

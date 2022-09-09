@@ -19,3 +19,21 @@ Matrix::~Matrix()
 {
     delete [] pmat_;
 }
+
+Matrix& Matrix::operator=(const Matrix &rhs)
+{
+    if (this != &rhs)
+    {
+        col_ = rhs.col_;
+        row_ = rhs.row_;
+
+        int elem_cnt = row_ * col_;
+        delete [] pmat_;
+        pmat_ = new double [elem_cnt];
+
+        for (int ix = 0; ix < elem_cnt; ++ix)
+            pmat_[ix] = rhs.pmat_[ix];
+    }
+
+    return *this;
+}

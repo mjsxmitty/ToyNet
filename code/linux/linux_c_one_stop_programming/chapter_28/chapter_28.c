@@ -14,20 +14,20 @@
 
 #include "chapter_28.h"
 
-void Chapter_28(int argc, char **argv)
+void ch_28(int argc, char **argv)
 {
-    //Practice_28_3();
-    //Practice_28_4();
-    //Practice_28_5();
-    //Practice_28_6(argc, argv);
-    //Practice_28_7();
-    Practice_28_8();
+    //ch_28_3();
+    //ch_28_4();
+    //ch_28_5();
+    //ch_28_6(argc, argv);
+    ch_28_7();
+    //ch_28_8();
 }
 
 #define MSG_TRY     "try again\n"
 
 /*非阻塞读终端*/
-int Practice_28_3()
+int ch_28_3()
 {
     char    buf[10];
     int     fd, n;
@@ -70,8 +70,8 @@ tryagain:
 
 #define MSG_TIMEOUT     "timeout\n"
 
-/*非阻塞读终端和等待超时*/
-int Practice_28_4()
+/* 非阻塞读终端和等待超时 */
+int ch_28_4()
 {
     char    buf[10];
     int     fd, n, i;
@@ -106,26 +106,29 @@ int Practice_28_4()
 }
 
 /*fcntl 改变file status(已打开)*/
-int Practice_28_5()
+int ch_28_5()
 {
     char    buf[64];
     int     fd, flags, n;
 
     flags = fcntl(STDIN_FILENO, F_GETFL);
     // flags |= O_NONBLOCK;
-    // if (fcntl(STDIN_FILENO, F_SETFL, flags) == -1) {
-    //     perror("fcntl");
+    // if (fcntl(STDIN_FILENO, F_SETFL, flags) == -1)
+    // {
+    //     perror("fcntl set error!");
     //     exit(1);
     // }
 
-    while ((n = read(STDIN_FILENO, buf, 10)) < 0) {
-        if (errno == EAGAIN) {
+    while ((n = read(STDIN_FILENO, buf, 10)) < 0) 
+    {
+        if (errno == EAGAIN) 
+        {
             sleep(1);
             write(STDOUT_FILENO, MSG_TRY, strlen(MSG_TRY));
             continue;
         }
         
-        perror("read stdin.");
+        perror("read stdin error!");
         exit(1);
     }
     
@@ -133,15 +136,17 @@ int Practice_28_5()
     return 0;
 }
 
-int Practice_28_6(int argc, char **argv)
+int ch_28_6(int argc, char **argv)
 {
     int     val;
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         fputs("usage: ./execution <file>\n", stderr);
         exit(1);
     }
 
-    if ((val = fcntl(atoi(argv[1]), F_GETFL)) < 0) {
+    if ((val = fcntl(atoi(argv[1]), F_GETFL)) < 0) 
+    {
         printf("fcntl error for fd %d\n", atoi(argv[1]));
         exit(1);
     }
@@ -173,24 +178,29 @@ int Practice_28_6(int argc, char **argv)
 }
 
 /* ioctl 获取设备信息 */
-int Practice_28_7()
+int ch_28_7()
 {
     struct winsize size;
 
     //判断是否是终端机
     if (isatty(STDIN_FILENO) == 0)
+    {
+        perror("not a tty!");
         exit(1);
+    }
+        
 
-    if (ioctl(STDIN_FILENO, TIOCGWINSZ, &size) < 0) {
+    if (ioctl(STDIN_FILENO, TIOCGWINSZ, &size) < 0) 
+    {
         perror("ioctl TIOCGWINSZ error");
         exit(1);
     }
     
-    printf("%d rows, %d cols\n", size.ws_row, size.ws_col);
+    printf("rows = %d, cols = %d\n", size.ws_row, size.ws_col);
     return 0;
 }
 
-int Practice_28_8()
+int ch_28_8()
 {
     int *p, fd;
     fd = open("hello", O_RDWR);

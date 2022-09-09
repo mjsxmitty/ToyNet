@@ -130,7 +130,7 @@ void Triangular::Display(int len, int bp, ostream &os)
 {
     if (len <= 0 || bp <= 0)
     {
-        cerr << "invalid paramters, can't handle request: "
+        cerr << "invalid parameters, can't handle request: "
              << len << ", " << bp << endl;
         return ;
     }
@@ -162,4 +162,17 @@ ostream &operator<<(ostream &os, const Triangular &rhs)
     os << "( " << rhs.length_ << ", " << rhs.beg_pos_ << " ) ";
     rhs.Display(rhs.length_, rhs.beg_pos_, os);
     return os;
+}
+
+istream& operator>>(istream& in, Triangular& rhs)
+{
+    char ch1, ch2;
+    int bp, len;
+
+    in >> bp >> len;
+    rhs.BegPos(bp);
+    rhs.Length(len);
+    rhs.NextReset();
+
+    return in;
 }

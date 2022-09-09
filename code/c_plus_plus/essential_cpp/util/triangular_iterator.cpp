@@ -10,12 +10,22 @@ int TriangularIterator::operator*() const
 
 class IteratorOverflow {};
 
-void TriangularIterator::CheckIntegrity() const
+// void TriangularIterator::CheckIntegrity() const
+// {
+//     if (index_ > Triangular::max_size_)
+//         throw IteratorOverflow();
+
+//     if (index_ > Triangular::elems_.size())
+//         Triangular::GenElements(index_ + 1);
+// }
+
+// 避免友元
+void TriangularIterator::CheckIntegrity () const
 {
-    if (index_ > Triangular::max_size_)
+    if (index_ > Triangular::max_size())
         throw IteratorOverflow();
 
-    if (index_ > Triangular::elems_.size())
+    if (index_ > Triangular::elem_size())
         Triangular::GenElements(index_ + 1);
 }
 
@@ -28,8 +38,6 @@ bool TriangularIterator::operator!=(const TriangularIterator &rhs) const
 {
     return !(*this == rhs);
 }
-
-
 
 TriangularIterator &TriangularIterator::operator++()
 {

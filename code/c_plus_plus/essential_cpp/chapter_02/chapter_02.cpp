@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void ch_02()
+void ch_2()
 {
     //ch_2_1();
     //hw_2_1();
@@ -49,7 +49,7 @@ bool FibonElem(int pos, int &elem)
     return true;
 }
 
-// º¯Êý·µ»ØÖµ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 bool PrintFibon(int pos)
 {
     if (pos <= 0 || pos > 1024)
@@ -88,7 +88,7 @@ bool PrintFibon(int pos)
 }
 
 
-/* 2.1 ÈçºÎ±àÐ´º¯Êý */
+/* 2.1 ï¿½ï¿½Î±ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ */
 void ch_2_1()
 {
     cout << "please enter a position: ";
@@ -232,8 +232,8 @@ void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
 }
 
 
-/* 2.2 µ÷ÓÃº¯Êý */
-/* 2.3 Ê¹ÓÃÄ¬ÈÏ²ÎÊý */
+/* 2.2 ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ */
+/* 2.3 Ê¹ï¿½ï¿½Ä¬ï¿½Ï²ï¿½ï¿½ï¿½ */
 void ch_2_3()
 {
     int ia[ 8 ] = { 8, 34, 3, 13, 1, 21, 5, 2 };
@@ -274,7 +274,7 @@ const vector<int>* FibonSeq(int pos)
     return &elems;
 }
 
-/* 2.4 Ê¹ÓÃ¾Ö²¿¾²Ì¬¶ÔÏó */
+/* 2.4 Ê¹ï¿½Ã¾Ö²ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ */
 void ch_2_4()
 {
     bool more = true;
@@ -318,7 +318,7 @@ void DisplayMsg(const std::string &msg, int size)
     cerr << msg << " size: " << size << endl;
 }
 
-/* º¯ÊýÖ¸Õë´øÀ´¸ü´óµÄµ¯ÐÔ */
+/* ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ */
 void ch_2_8()
 {
 //    bool more = true;

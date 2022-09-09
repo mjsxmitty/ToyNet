@@ -4,11 +4,16 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 void ch_4();
 
 void ch_4_3();
 void ch_4_5();
+void ch_4_7();
+void ch_4_9();
+void ch_4_10();
+
 
 void Chapter_04();
 
@@ -40,5 +45,8 @@ private:
 };
 
 inline bool LessThan1::operator()(int val) const { return val < val_; }
+
+int CountLessThan(const std::vector<int> &vec, int comp);
+void PrintLessThan(const std::vector<int> &vec, int comp, std::ostream &os = std::cout);
 
 #endif // __ESSENTIAL_CPP_CHAPTER_04_H__

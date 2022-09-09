@@ -9,7 +9,7 @@
 
 #include "../util/num_seq.h"
 
-extern void ch_02();
+extern void ch_2();
 
 extern bool FibonElem(int pos, int &elem);
 extern bool PrintFibon(int pos);
