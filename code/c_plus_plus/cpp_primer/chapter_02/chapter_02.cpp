@@ -8,9 +8,11 @@ using namespace std;
 void Chapter_02()
 {
     //Practice_2_1_2();
+
     //Practice_2_2_1();
-    //Practice_2_2_2();
+    Practice_2_2_2();
     //Practice_2_2_4();
+
     //Practice_2_3_2();
     //Practice_2_3_3();
     //Practice_2_5_1();
@@ -18,6 +20,9 @@ void Chapter_02()
 
     //Homework_2_35();
 }
+
+/********************************************************************************/
+/*****************************************2.1************************************/
 
 /* 内置类型类型转换 */
 void Practice_2_1_2()
@@ -55,38 +60,50 @@ void Practice_2_1_2()
          << endl;
 }
 
-/* 字面值就是数据 */
+/********************************************************************************/
+/*****************************************2.2************************************/
 
 /*内置类型列表初始化*/
 void Practice_2_2_1()
 {
-    int v1(1024);
-    int v2{1024};   //c++ 11
-    int v3 = 1024;  //拷贝初始化      
+    int units_sold = 0;
+    int units_sold2 = {0};
+    int units_sold3{0};
+    int units_sold4(0);
 
-    //此时aa赋值给cc表示的是aa的值可能超过范围，报警
-    const double aa = 12.34;
-    //int cc{aa};
-
-    double v4{33.43};       //不存在丢失信息的风险;同类型转换
-    //int v4 = {1024.12};   //丢失信息风险（类型的范围超过最大值）
-    int v5(3.14);           //丢失信息
+    double ld = 3.1415926;
+    //丢失风险
+    // int a{ld};
+    // int b = {ld};
+    int c(ld);
+    int d = ld;
+    cout << "ld = " << ld << endl;
+    cout << "c = " << c 
+         << ", d = " << d
+         << endl;
 }
 
-extern int init = 2;    //定义
-extern int initt;       //声明
-int initt = 111;        //定义
+extern int init = 1;    //定义
+extern int init2;       //声明
+int init2 = 2;          //定义
+int init3 = 3;
 void Practice_2_2_2()
 {
+    //int init = 100;
+    cout << "init = " << init << endl;
+
     /* 函数内部初始化extern变量报错 */
     //extern int init = 2;
     
-    //int initt = 2;
-    initt = 1;
+    /* 变量只可以定义一次 */
+    //int init2 = 2;
+    init2 = 1;
+    extern int init2;   //可以声明多次
+    cout << "init2 = " << init2 << endl;
 
-    extern int initt;   //可以声明多次
-    cout << initt << endl;
-}
+    int init3 = 2;
+    cout << "init3 = " << init3 << endl;
+}                                                                                                                                           
 
 /*名字的作用域*/
 int g_reused = 42;

@@ -17,8 +17,8 @@ void ch_03(int argc, char **argv)
     //ch_3_4_2();
     //ch_3_4_3();
     //ch_3_6_2();
-    ch_3_6_3();
-    //ch_3_8(argc, argv);
+    //ch_3_6_3();
+    ch_3_8(argc, argv);
     //ch_3_11();
 }
 
@@ -138,13 +138,11 @@ void ch_3_8(int argc, char **argv)
     if (argc >= 2)
         top_dir = argv[1];
 
-    printf("list dir...\n");
+    printf("Dir scan of %s\n", top_dir);
     PrintDir(top_dir, 0);
-    printf("list dir done\n");
+    printf(".done\n");
 
-    printf("%s\n", strerror(0));
-    //printf("%d\n", );
-    perror("prodram");
+    exit(0);
 }
 
 typedef struct {

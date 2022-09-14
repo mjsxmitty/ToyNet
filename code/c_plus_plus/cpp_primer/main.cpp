@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     cout << "================= Hello World ==================\n\n";
 
     //ch_15();
-    //Chapter_02();
+    Chapter_02();
     //Chapter_03();
     //Chapter_04();
     //Chapter_05();

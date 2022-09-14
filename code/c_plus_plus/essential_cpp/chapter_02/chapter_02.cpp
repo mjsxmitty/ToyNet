@@ -10,7 +10,7 @@ using namespace std;
 
 void ch_2()
 {
-    //ch_2_1();
+    ch_2_1();
     //hw_2_1();
 
     //ch_2_3();
@@ -19,7 +19,7 @@ void ch_2()
 
     //ch_2_8();
 
-    hw_2_6();
+    //hw_2_6();
 }
 
 /********************************************************************************************************/
@@ -49,7 +49,7 @@ bool FibonElem(int pos, int &elem)
     return true;
 }
 
-// ��������ֵ
+// 打印
 bool PrintFibon(int pos)
 {
     if (pos <= 0 || pos > 1024)
@@ -88,25 +88,25 @@ bool PrintFibon(int pos)
 }
 
 
-/* 2.1 ��α�д���� */
+/* 2.1 如何编写函数 */
 void ch_2_1()
 {
     cout << "please enter a position: ";
     int pos;
     cin >> pos;
 
-//    int elem;
-//    if (FibonElem(pos, elem))
-//    {
-//        cout << "elemment at position # "
-//             << pos << " is: " << elem << endl;
-//    }
-//    else
-//    {
-//        cout << "sorry! cannot calculate position: "
-//             << pos << " elem."<< endl;
-//        return ;
-//    }
+   int elem;
+   if (FibonElem(pos, elem))
+   {
+       cout << "elemment at position # "
+            << pos << " is: " << elem << endl;
+   }
+   else
+   {
+       cout << "sorry! cannot calculate position: "
+            << pos << " elem."<< endl;
+       return ;
+   }
 
     PrintFibon(pos);
 }
