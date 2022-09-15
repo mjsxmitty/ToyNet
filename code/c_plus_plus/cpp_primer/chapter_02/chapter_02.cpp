@@ -5,75 +5,84 @@
 
 using namespace std;
 
-void Chapter_02()
+void ch_02()
 {
-    //Practice_2_1_2();
+    /* 2.1 基本内置类型 */
+    //ch_2_1();
 
-    //Practice_2_2_1();
-    Practice_2_2_2();
-    //Practice_2_2_4();
+    /* 2.2 变量 */
+    //ch_2_2();
 
-    //Practice_2_3_2();
-    //Practice_2_3_3();
-    //Practice_2_5_1();
-    //Practice_2_5_3();
-
-    //Homework_2_35();
+    /* 2.3 复合类型 */
+    ch_2_3();
 }
 
 /********************************************************************************/
 /*****************************************2.1************************************/
 
-/* 内置类型类型转换 */
-void Practice_2_1_2()
+/* 基本内置类型 */
+void ch_2_1()
 {
-//    int i = 42;
-//    std::cout << i << std::endl;
-//    if (i)          //int-->bool
-//        i = 0;
-//    std::cout << i << std::endl;
+    /* 2.1.1 算数类型 */
 
-//    bool b = 42;    //int-->bool
-//    std::cout << b << std::endl;
+    /* 2.1.2 类型转换 */
+    ch_2_1_2();
 
-//    int j = b;      //bool-->int
-//    std::cout << j << std::endl;
+    /* 2.1.3 字面值常量 */
+}
 
-//    double pi = 3.14;
-//    j = pi;        //double-->int
-//    std::cout << j << std::endl;
-
-//    unsigned char c = -1;
-//    i = c;
-//    std::cout << i << std::endl;
-
+void ch_2_1_2()
+{
     bool    b = 42;
     int     i = b;
     i = 3.14;
     double  pi = i;
+    cout << "b = " << b << "\n"
+         << "i = " << i << "\n"
+         << "pi = " << pi << "\n"
+         << endl;
+
+    cout << "each type size: " << endl;
+    cout << "b: " << sizeof (b) << "\n"
+         << "i: " << sizeof (i) << "\n"
+         << "pi: " << sizeof (pi) << "\n"
+         << endl;
 
     //TODO:赋给无（有）符号类型超范围值？？？
     unsigned char   c = -1;
     signed char     c2 = 256;
-    cout << "c = " << c
-         << "c2 = " << c2
-         << endl;
+    cout << "c = " << c << "\n"
+         << "c2 = " << c2 << "\n";
 }
 
 /********************************************************************************/
 /*****************************************2.2************************************/
 
-/*内置类型列表初始化*/
-void Practice_2_2_1()
+void ch_2_2()
 {
+    /* 2.2.1 变量定义 */
+    ch_2_2_1();
+
+    /* 2.2.2 变量声明和定义的关系 */
+    ch_2_2_2();
+
+    /* 2.2.3 标识符 */
+
+    /* 2.2.4 名字的作用域 */
+    ch_2_2_4();
+}
+
+void ch_2_2_1()
+{
+    /* 列表初始化 */
     int units_sold = 0;
     int units_sold2 = {0};
     int units_sold3{0};
     int units_sold4(0);
 
     double ld = 3.1415926;
-    //丢失风险
-    // int a{ld};
+
+    // int a{ld};        //丢失风险
     // int b = {ld};
     int c(ld);
     int d = ld;
@@ -83,68 +92,67 @@ void Practice_2_2_1()
          << endl;
 }
 
-extern int init = 1;    //定义
-extern int init2;       //声明
-int init2 = 2;          //定义
+extern int init1 = 1;   // 定义
+extern int init2;       // 声明
+int init2 = 2;          // 定义
 int init3 = 3;
-void Practice_2_2_2()
+void ch_2_2_2()
 {
-    //int init = 100;
-    cout << "init = " << init << endl;
+    //extern int init = 2;  // 函数内部初始化extern变量报错
 
-    /* 函数内部初始化extern变量报错 */
-    //extern int init = 2;
-    
-    /* 变量只可以定义一次 */
-    //int init2 = 2;
+    extern int init2;       // 可以声明多次
     init2 = 1;
-    extern int init2;   //可以声明多次
     cout << "init2 = " << init2 << endl;
 
-    int init3 = 2;
+    int init3 = 2;          // 屏蔽外界定义
     cout << "init3 = " << init3 << endl;
 }                                                                                                                                           
 
-/*名字的作用域*/
-int g_reused = 42;
-void Practice_2_2_4()
+int reused = 1024;
+void ch_2_2_4()
 {
-    //内部可以使用外边变量
-    std::cout << g_reused << std::endl;
+    // 内部可以使用外边变量
+    cout << reused << endl;
 
-    //内部同名变量屏蔽外部变量
-    //重定义
-    int g_reused = 0;
-    std::cout << g_reused << std::endl;
+    // 内部同名变量屏蔽外部变量
+    int reused = 0;           // 重定义
+    cout << reused << endl;
 
-    //指定使用外部变量
-    std::cout << ::g_reused << std::endl;
+    // 指定使用外部变量
+    cout << ::reused << endl;
+}
+
+/********************************************************************************/
+/*****************************************2.3************************************/
+
+void ch_2_3()
+{
+    /* 2.3.1 引用 */
+
+    /* 2.3.2 指针 */
+    ch_2_3_2();
 }
 
 #include <cstdlib>
 
-void Practice_2_3_2()
+void ch_2_3_2()
 {
-    /* 类型不一致 */
+    /* 空指针 */
     int val = 0;
-    //int *ptr = val;
+    //int *ptr = val;       // 类型不一致
 
-    //空指针初始化方法
-    int *ptr = 0;
-    int *pptr = nullptr;
-    int *ppptr = NULL;
+    int *ptr1 = 0;
+    int *ptr2 = nullptr;
+    int *ptr3 = NULL;
 
-    //void* 指针
+    /* void* 指针 */
     double obj = 3.14, *pd = &obj;
     void *pv = &obj;
-    pv = pd;        //可以指向其他类型
+    pv = pd;                // 可以指向其他类型
     //pd = pv;
-    //*pv = 3.333;  //不能访问数据
-    if (pv < pd)
+    //*pv = 3.333;          // 不能访问数据
+    if (pv < pd)            // 可以比较
         ;
-
-    cout << "true "  << pv
-         << ", " << pd << endl;
 }
 
 /* 复合类型声明 */

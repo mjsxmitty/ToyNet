@@ -2,14 +2,18 @@
 #ifndef __CPP_PRIMER_CHAPTER_02_H__
 #define __CPP_PRIMER_CHAPTER_02_H__
 
-void Chapter_02();
+void ch_02();
 
-void Practice_2_1_2();
-void Practice_2_2_1();
-void Practice_2_2_2();
-void Practice_2_2_4();
+void ch_2_1();
+void ch_2_1_2();
 
-void Practice_2_3_2();
+void ch_2_2();
+void ch_2_2_1();
+void ch_2_2_2();
+void ch_2_2_4();
+
+void ch_2_3();
+void ch_2_3_2();
 void Practice_2_3_3();
 
 void practice_2_4_1();
