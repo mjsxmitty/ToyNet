@@ -14,7 +14,13 @@ void ch_02()
     //ch_2_2();
 
     /* 2.3 复合类型 */
-    ch_2_3();
+    //ch_2_3();
+
+    /* 2.4 const限定符 */
+    //ch_2_4();
+
+    /* 2.5 处理类型 */
+    ch_2_5();
 }
 
 /********************************************************************************/
@@ -131,6 +137,9 @@ void ch_2_3()
 
     /* 2.3.2 指针 */
     ch_2_3_2();
+
+    /* 2.3.3 复合类型声明 */
+    ch_2_3_3();
 }
 
 #include <cstdlib>
@@ -138,98 +147,136 @@ void ch_2_3()
 void ch_2_3_2()
 {
     /* 空指针 */
-    int val = 0;
-    //int *ptr = val;       // 类型不一致
+    {
+        int val = 0;
+        //int *ptr = val;       // 类型不一致
+    }
 
-    int *ptr1 = 0;
-    int *ptr2 = nullptr;
-    int *ptr3 = NULL;
+    {
+        int *ptr1 = 0;
+        int *ptr2 = nullptr;
+        int *ptr3 = NULL;
+    }
 
     /* void* 指针 */
-    double obj = 3.14, *pd = &obj;
-    void *pv = &obj;
-    pv = pd;                // 可以指向其他类型
-    //pd = pv;
-    //*pv = 3.333;          // 不能访问数据
-    if (pv < pd)            // 可以比较
-        ;
+    {
+        double obj = 3.14, *pd = &obj;
+        void *pv = &obj;
+        pv = pd;                            // 可以指向其他类型
+        //pd = pv;
+        //*pv = 3.333;                      // 不能访问数据
+        cout << (pv < pd ? "pv" : "pb");    // 可以比较
+    }
 }
 
-/* 复合类型声明 */
-void Practice_2_3_3()
+void ch_2_3_3()
 {
-    /* 多级指针 */
-    int ival = 1024;
-    int *pi = &ival;
-    int **ppi = &pi;
-    cout << "The value of ival\n"
-         << "direct value: " << ival << "\n"
-         << "indirect value: " << *pi << "\n"
-         << "doubly indirect value: " << **ppi
-         << endl;
+    /* 指向指针的指针 */
+    {
+        int ival = 1024;
+        int *pi = &ival;
+        int **ppi = &pi;
+        cout << "The value of ival\n"
+             << "direct value: " << ival << "\n"
+             << "indirect value: " << *pi << "\n"
+             << "doubly indirect value: " << **ppi
+             << endl;
+    }
 
-    int i = 2;
-    int *p1 = &i;
-    *p1 = *p1 * *p1;
-    cout << "i  = " << i << endl;
+    {
+        int i = 2;
+        int *p1 = &i;
+        *p1 = *p1 * *p1;
+        cout << "i  = " << i << endl;
 
-    *p1 *= *p1;
-    cout << "i  = " << i << endl;
+        *p1 *= *p1;
+        cout << "i  = " << i << endl;
+    }
 
     /* 指向指针的引用 */
-    int val = 42, val2 = 0, *ptr = &val;
-    int *&pref = ptr;       //从右向左理解声明
-    cout << "val: " << *pref << endl;
+    {
+        int val = 1024, val2 = 0, *ptr = &val;
+        int *&pref = ptr;       //从右向左理解声明
+        cout << "*pref: " << *pref << endl;
 
-    pref = &val2;
-    cout << "val2: " << *pref << endl;
+        pref = &val2;
+        cout << "*pref: " << *pref << endl;
+    }
 }
 
-/* const的引用 */
-void practice_2_4_1()
+/********************************************************************************/
+/*****************************************2.4************************************/
+
+void ch_2_4()
 {
-    const int ci = 1024;
-    //int &ri = ci;
-    const int &rci = ci;
-    //rci = 1025;
+    /* 2.4.1 const的引用 */
+    ch_2_4_1();
+
+    /* 2.4.2 指针和const */
+    ch_2_4_2();
+
+    /* 2.4.3 顶层const */
+    ch_2_4_3();
+
+    /* 2.4.4 constexptr 和常量表达式 */
+    ch_2_4_4();
+}
+
+void ch_2_4_1()
+{
+    {
+        const int ci = 1024;
+        const int &rci = ci;
+        //int &ri = ci;
+        //rci = 1025;
+    }
 
     /* 初始化和对const的引用 */
-    int i = 1024;
-    const int &r1 = i;  //const 的引用可能是一个非const对象
-    const int &r2 = 1024;
-    const int &r3 = i * 1024;
-    //int &r4 = i * 1024;
+    {
+        int i = 1024;
+         /* const引用可能是一个非const对象 */
+        const int &r1 = i;          // 普通变量
+        //r1 = 0;
+        const int &r2 = 1024;       // 字面值
+        const int &r3 = i * 1024;   // 算数表达式
+        //int &r4 = i * 1024;
+    }
 
-    double dval = 3.14;
-    const int &rd = dval;   //绑定临时变量
-//    int temp = dval;
-//    const int &rd = temp;
+    {
+        double dval = 3.14;
+        const int &rd = dval;       // 绑定临时变量
+        /*
+        const int temp = dval;
+        const int &rd = temp;
+        */
+    }
 }
 
-/* 指针和const */
-void practice_2_4_2()
+void ch_2_4_2()
 {
-    const double cd = 3.14;
-    //double *pd = &cd;
-    const double *pcd = &cd;
-    //*pcd = 3.125;
+    {
+        const double cd = 3.14;
+        //double *pd = &cd;
+        const double *pcd = &cd;
+        //*pcd = 0.0;
 
-    double dval = 3.33;
-    pcd = &dval;
+        double dval = 3.33;
+        pcd = &dval;
+    }
 
-    int i = 0;
-    int * const cpi = &i;
-    *cpi = 1024;
-//    int i2 = 0;
-//    cpi = &i2;
+    /* const 指针 */
+    {
+        int err_numb = 0;
+        int * const cur_err = &err_numb;
+        //*cur_err = 1024;
 
-    const double *const cpdc = &cd;
-//    *cpdc = 3.22;
-//    cpdc + &dval;
+        const double pi = 3.14;
+        const double * const pip = &pi;
+        //*pip = 0.0;
+    }
 }
 
-/* 顶层const */
-void practice_2_4_3()
+void ch_2_4_3()
 {
     int i = 0;
     int * const p1 = &i;
@@ -237,14 +284,15 @@ void practice_2_4_3()
     const int *p2 = &ci;
     const int *const p3 = p2;
 
-    //拷贝的时候顶层属性不受影响
+    // 拷贝的时候顶层属性不受影响
     i = ci;
-    p2 = p3;    //都含有底层属性
+    p2 = p3;            // 都含有底层属性
     //p1 = p3;
 
-    //int *p = p2;    //包含底层属性
-    int *p = p1;        //不包含底层属性,可以赋值
-    p2 = &ci;   //int * ---> const int *
+    //int *p = p3;      // 包含底层属性
+    int *p = p1;        // 不包含底层属性,可以赋值
+    p2 = &ci;
+    p2 = &i;            // int* ---> const int*
 
     //int &ri = ci;
     const int &rci = ci;
@@ -253,148 +301,244 @@ void practice_2_4_3()
 int         g_ival = 2;
 const int   g_jval = 3;
 
-int GetSize(int i) { return i; }
-constexpr int GetSize() {return 1000;}
+int             GetSize(int i) { return i; }
+constexpr int   GetSize() {return 1000;}
 
-/* constexptr 和常量表达式 */
-void Practice_2_4_4()
+void ch_2_4_4()
 {
-    /* 常量表达式是由类型和初始值决定 */
-    int i = 1;
-    const int ci = i;   //不是常量表达式
-    //int iarray[ci] = {0};
+    // 常量表达式是由类型和初始值决定
+    {
+        const int max_files = 1023;
+        const int limit = max_files + 1;
+        int staff_size = 27;
+        const int sz = GetSize(1024);
 
-    /* constexptr 修饰的变量是常量表达式 */
-    constexpr int j = 2;
-    int jarray[j] = {0};
+        int i = 1;
+        const int ci = i;   //不是常量表达式
+        //int iarray[ci] = {0};
+    }
 
-    /* 必须使用常量表达式初始化 */
-    int iii = 1000;
-    //constexpr int ci = iii;
-    const int ti = 20;
-    constexpr int cci = ti;
-//    constexpr int ccci = ci + 1;
-//    constexpr int cccci = i + 1;
-    const int ic = 10;
-    constexpr int icc = ic + 1;
+    /* constexptr 变量 */
+    {
+        constexpr int mf = 1021;
+        constexpr int limit = mf + 1;
+        constexpr int sz = GetSize();
 
-    //constexpr int sz = GetSize(iii);
-    constexpr int sz = GetSize();
+        constexpr int j = 2;
+        int jarray[j] = {0};
 
-    /* constexpr 修饰指针需要指向固定地址、nullptr、0 */
-    //constexpr int *ptr = &i;
-    constexpr int *iptr = &g_ival; /* 指向非常量 */
+        int ival = 1000;
+        //constexpr int ci = ival;
+        const int cval = 20;
+        constexpr int ci = cval;
 
-    *iptr = 100;    /* constexptr 修饰的指针,仅对指针有效 */
+        constexpr int ccci = cval + 1;
+        //constexpr int cccci = ival + 1;
 
-    constexpr const int *jptr = &g_jval;     /* 指向常量 */
+        const int ival2 = 10;
+        constexpr int icc = ival2 + 1;
+
+        //constexpr int sz2 = GetSize(ival);
+        //constexpr int sz3 = GetSize(ival2);
+    }
+
+    /* 字面值类型 */
+    {
+        //constexpr int *ptr = &i;
+        constexpr int *iptr = &g_ival;
+    }
+
+    /* 指针和constexptr */
+    {
+        const int *p = nullptr;
+        p = &g_ival;
+        constexpr int *q = nullptr;
+        *q = 1024;
+
+        // 只能指向固定地址
+        constexpr int *iptr = &g_ival;
+        *iptr = 100;
+        constexpr const int *jptr = &g_jval;
+
+        //constexpr int i = 1024;
+        //constexpr int *pi = &i;
+    }
 }
 
-/* 类型别名 */
-void Practice_2_5_1()
+/********************************************************************************/
+/*****************************************2.5************************************/
+
+void ch_2_5()
 {
-    char c = 'a';
-    char temp = 't';
-    typedef char *pstring;
+    /* 2.5.1 类型别名 */
+    //ch_2_5_1();
 
-    //const此时修饰的是指针（常量指针）
-    const pstring cstr = &c;
-    //cstr = &temp;    
-    *cstr = 'b';
-    cout << "val: " << *cstr << endl;
+    /* 2.5.2 auto 类型说明符 */
+    //ch_2_5_2();
+    //hw_2_35();
 
-    //ps是一个指针(*ps),指向一个const常量指针（pstring）
-    const char ch = 'c';
-    const pstring *ps = &cstr;
-    //ps = &ch;
-    const pstring ccstr = &temp;
-    ps = &ccstr;
-    cout << "val: " << **ps << endl;
-
-    char *cptr = &c;
-    pstring *pstr = &cptr;
-    pstring ppp = cptr;
-    **pstr = 'b';
-    cout << "val: " << **pstr << endl;
+    /* 2.5.3 decltype类型推导 */
+    //ch_2_5_3();
+    //hw_2_36();
+    hw_2_37();
 }
 
-/* auto 类型说明符 */
-void Practice_2_5_2()
+void ch_2_5_1()
 {
-    /* 声明多个变量,其基本类型要保持一致 */
-    auto i = 0, *pi = &i;
-    //auto c = 'a', b = 3.123;
+    {
+        typedef double wages;
+        typedef wages base, *p;
+
+        base dval = 3.14;
+        p pd = &dval;
+        cout << dval << ", " << *pd << endl;
+
+        using Int = int;
+        Int ival = 1024;
+        cout << ival << endl;
+    }
+
+    /* 指针、常量和类型别名 */
+    {
+        typedef char *pstring;
+
+        char c1 = 'a';
+        char c2 = 'b';
+        const pstring cp = &c1;
+        cout << "val = " << *cp << endl;
+        //cstr = &c2;
+        *cp = 'c';
+        cout << "val = " << *cp << endl;
+
+        //
+        const char ch = 'd';
+        const pstring *ps1 = &cp;
+
+        pstring tp = &c1;
+        ps1 = &tp;
+        //*ps1 = &c1;
+
+        const pstring ps2 = &c2;
+        //ps2 = &c1;
+        *ps2 = 'f';
+        cout << "val = " << **ps1 << endl;
+
+        char *cptr = &c1;
+        pstring *pstr = &cptr;
+        cout << "val = " << **pstr << endl;
+
+        pstring pstr2 = cptr;
+        **pstr = 'e';
+        cout << "val = " << *pstr2 << endl;
+    }
+
+}
+
+void ch_2_5_2()
+{
+    {
+        auto i = 0, *pi = &i;
+        //auto c = 'a', b = 3.123;
+    }
 
     /* 复合类型、常量和auto */
-    int &r = i;
-    auto a = r;     //int
+    {
+        int i = 1024, &r = i;
+        auto a = r;                     //int
+        cout << "a = " << a << endl;
 
-    //常量和引用
-    const int ci = i, &cr = ci;
-    auto b = ci;    //int
-    b = 10;
+        //常量和引用
+        const int ci = i, &cr = ci;
+        auto b = ci;                    //int
+        b = 1;
+        cout << "b = " << b << endl;
 
-    auto c = cr;    // auto 忽略顶层const(ci)
+        auto c = cr;                    // auto 忽略顶层const(ci)
+        c = 2;
+        cout << "c = " << c << endl;
 
-    auto d = &i;    // int *
-    *d = 10;
+        auto d = &i;                    // int *
+        *d = 3;
+        cout << "d = " << d << endl;
 
-    auto e = &ci;   // const int*(底层)
-    //*e = 1;
-    e = &i;
+        auto e = &ci;                   // const int*(底层)
+        //*e = 1;
+        e = &i;
+        cout << "e = " << e << endl;
 
-    const auto ca = ci; //明确指出const类型
-    //ca = 1;
+        const auto f = ci;              // 明确指出const类型
+        //f = 1;
+        cout << "f = " << f << endl;
 
-    auto &g = ci;   //const引用保留顶层属性
-    //g = 10;
+        auto &g = ci;   //const引用保留顶层属性
+        //g = 10;
+        cout << "g = " << g << endl;
 
-    //auto &h = 42;
-    const auto &j = 42;
+        //auto &h = 42;
 
-    auto k = ci, &l = i;
-    auto &m = ci, *n = &ci;
-    //auto &o = i, *pp = &ci;   //*、&属于声明符;多个变量要保持基本类型一致
+        const auto &j = 42;
+        cout << "j = " << j << endl;
+
+        //*、&属于声明符;多个变量要保持基本类型一致
+        auto k = ci, &l = i;        // int
+        auto &m = ci, *n = &ci;     // const int
+        //auto &o = i, *pp = &ci;
+    }
 }
 
-void Homework_2_35()
+void hw_2_35()
 {
-    const int i = 32;
-    const auto &k = i;
+    const int i = 1024;
+    auto j = i;
+    const auto &k = i;  // const int
     //k = 1;
-    const auto j = i, &k2 = i;
-    //  k2 = 3;
+
+    auto *p = &i;
+    //*p = 0;
+    p = &j;
+
+    const auto j2 = i, &k2 = i;
+    //k2 = 3;
+
+    auto &k3 = i;
 
     cout << typeid(i).name() << endl;
-    cout << typeid(k).name() << endl;
     cout << typeid(j).name() << endl;
+    cout << typeid(k).name() << endl;
+    cout << typeid(p).name() << endl;
     cout << typeid(k2).name() << endl;
+    cout << typeid(k3).name() << endl;
 }
 
-/* decltype类型推导 */
-void Practice_2_5_3()
+void ch_2_5_3()
 {
-    const int ci = 1, &cj = ci;
-    decltype (ci) x = 0;
-    //x = 1;
+    {
+        const int ci = 1, &cj = ci;
+        decltype (ci) x = 0;
+        //x = 1;
 
-    decltype (cj) y = ci;
-    //y = 101;
-    cout << cj << endl;
+        decltype (cj) y = ci;
+        //y = 101;
 
-    int i = 100, &ri = i;
-    decltype (ri) xxx = ri;
-    xxx = 101;
-    cout << "xxx = " << xxx << ", "
-         << "i = " << i
-         << endl;
+       // decltype (cj) z;
+    }
 
-    int *p = &i;
-    decltype (*p) ccc = i;  //解引用 ---> 引用 --->必须初始化
-    ccc = 110;
-    cout << "xxx = " << ccc << ", "
-         << "i = " << i
-         << endl;
+    /* decltype 和 引用 */
+    {
+        int i = 1024, *p = &i, &r = i;
+        decltype (r) a = i;
+        a = 1;
+        cout << "i = " << i << ", a = " << a << endl;
+
+        decltype (r + 0) b = i;
+        b = 2;
+        cout << "i = " << i << ", b = " << b << endl;
+
+        //decltype (*p) c;
+        decltype (*p) c = i;
+        c = 3;
+        cout << "i = " << i << ", c = " << c << endl;
+    }
 
     int a = 0;
     decltype(a) c = a;
@@ -413,5 +557,31 @@ void Practice_2_5_3()
     cout << "A: " << A << " C: " << C << " D: " << D << endl;
 }
 
+void hw_2_36()
+{
+    int a = 3, b = 4;
+    decltype (a) c = a;
+    decltype ((b)) d = a;
+    ++c;
+    ++d;
+    cout << "a = " << a  << endl//4
+         << "b = " << b  << endl//4
+         << "c = " << c  << endl//4
+         << "d = " << d  << endl//4
+         << endl;
+}
 
+void hw_2_37()
+{
+    int a = 3, b = 4;
+    decltype (a = b) c = a;
+    decltype ((b)) d = a;
+    ++c;
+    ++d;
+    cout << "a = " << a  << endl
+         << "b = " << b  << endl
+         << "c = " << c  << endl
+         << "d = " << d  << endl
+         << endl;
+}
 
