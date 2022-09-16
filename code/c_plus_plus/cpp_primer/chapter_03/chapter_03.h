@@ -3,9 +3,10 @@
 #ifndef __CPP_PRIMER_CHAPTER_03_H__
 #define __CPP_PRIMER_CHAPTER_03_H__
 
-void Chapter_03();
+extern void ch_03();
 
-void Practice_3_2_3();
+extern void ch_3_2();
+extern void ch_3_2_3();
 void Homework_3_8();
 void Homework_3_10();
 

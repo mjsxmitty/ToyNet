@@ -4,6 +4,7 @@
 // #include "chapter01/chapter01.h"
 #include "chapter_02/chapter_02.h"
 #include "chapter_03/chapter_03.h"
+
 #include "chapter_04/chapter_04.h"
 #include "chapter_05/chapter_05.h"
 #include "chapter_06/chapter_06.h"
@@ -30,9 +31,9 @@ int main(int argc, char **argv)
 {
     cout << "================= Hello World ==================\n\n";
 
+    //ch_02();
+    ch_03();
     //ch_15();
-    ch_02();
-    //Chapter_03();
     //Chapter_04();
     //Chapter_05();
     //Chapter_06();

@@ -13,30 +13,27 @@ using namespace std;
 
 const int NUM = 100;
 
-void Chapter_03()
+void ch_03()
 {
-    //Practice_3_2_3();
-    //Homework_3_8();
-    //Homework_3_10();
-    //Practice_3_3_1();
-    //Practice_3_3_3();
-    //Homework_20();
-    //Practice_3_4_1();
-    //Homework_3_22();
-    Homework_2_23();
-    //Practice_3_5_1();
-    //Practice_3_5_3();
-    //Practice_3_5_4();
-    //Homework43_44_45();
+    /* 3.2 标准库类型 string */
+    ch_3_2();
 }
 
-//处理string单个字符
-void Practice_3_2_3()
+/********************************************************************************/
+/*****************************************3.2************************************/
+
+void ch_3_2()
+{
+    /* 3.2.3 处理string对象中的字符 */
+    ch_3_2_3();
+}
+
+
+void ch_3_2_3()
 {
     string s("Hello World!!!");
-    decltype(s.size()) punct_cnt = 0;
 
-    //标点符号
+    decltype(s.size()) punct_cnt = 0;
     for (auto c : s)
         if (ispunct(c))
             ++punct_cnt;
