@@ -1,13 +1,20 @@
 
+
 #ifndef __ESSENTIAL_CPP_CHAPTER_03_H__
 #define __ESSENTIAL_CPP_CHAPTER_03_H__
 
+#include <set>
+#include <map>
+#include <string>
 #include <vector>
-#include <functional>
 #include <iostream>
 #include <algorithm>
+#include <functional>
 
 extern void ch_3();
+
+/********************************************************************************/
+/*****************************************3.1************************************/
 
 extern void ch_3_1();
 
@@ -74,6 +81,9 @@ inline const T* End(const std::vector<T> &vec)
     return vec.empty() ? 0 : &vec[vec.size()];
 }
 
+/********************************************************************************/
+/*****************************************3.2************************************/
+
 extern void ch_3_2();
 
 template <typename T, typename Y>
@@ -86,10 +96,13 @@ T FindVer5(T first, T last, const Y &val)
     return last;
 }
 
+/********************************************************************************/
+/*****************************************3.6************************************/
+
 extern void ch_3_6();
 
-std::vector<int> FilterVer1(const std::vector<int> &vec, int filter_val, bool (*pred)(int, int));
-std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt);
+extern std::vector<int> FilterVer1(const std::vector<int> &vec, int filter_val, bool (*pred)(int, int));
+extern std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt);
 
 template <typename It,          typename Ot,
           typename ElemType,    typename Comp>
@@ -111,20 +124,32 @@ template <typename It,          typename Ot,
 void Filter(It first, It last, Ot at, const ElemType &val, Comp pre)
 {
     //排序
-    std::vector<ElemType> local_vec(first, last);
-    std::sort(local_vec.begin(), local_vec.end());
+//    std::vector<ElemType> local_vec(first, last);
+//    std::sort(local_vec.begin(), local_vec.end());
+    std::sort(first, last);
 
     //找出第一满足要求值
-    auto it = find_if(local_vec.begin(), local_vec.end(), bind2nd(pre, val));
-    while (it != local_vec.end() )
+    auto it = find_if(first, last, bind2nd(pre, val));
+    //auto it = find_if(local_vec.begin(), local_vec.end(), bind2nd(pre, val));
+    while (it != last )
     {
         *at++ = *it++;
     }
 }
 
+/********************************************************************************/
+/*****************************************3.X************************************/
+
 extern void ch_3_9();
 extern void ch_3_10();
 
+extern void InitExclusionSet(std::set<std::string> &exs);
+extern void ProcessFile(std::map<std::string, int> &word_map,
+                        const std::set<std::string> &exclude_set,
+                        std::ifstream &ifile);
+extern void DisplayWordCount(const std::map<std::string, int> &word_map,
+                             std::ostream &out = std::cout);
+extern void UserQuery(const std::map<std::string, int> &word_map);
 extern void hw_3_1();
 extern void hw_3_2();
 extern void hw_3_3();

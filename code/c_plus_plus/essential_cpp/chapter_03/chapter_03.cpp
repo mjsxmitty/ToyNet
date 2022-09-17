@@ -30,9 +30,12 @@ void ch_3()
     //ch_3_9();
     //ch_3_10();
 
-    //hw_3_1();
-   // hw_3_2();
+    hw_3_1();
+    //hw_3_2();
 }
+
+/********************************************************************************/
+/*****************************************3.1************************************/
 
 const int* FindVec(const vector<int> &vec, int val)
 {
@@ -127,6 +130,9 @@ void ch_3_1()
 
 }
 
+/********************************************************************************/
+/*****************************************3.2************************************/
+
 void ch_3_2()
 {
     const int       *iptr = nullptr;
@@ -154,6 +160,9 @@ void ch_3_2()
         cout << "not find appoint val."
              << endl;
 }
+
+/********************************************************************************/
+/*****************************************3.6************************************/
 
 bool LessThan(int v1, int v2) { return v1 < v2 ? true : false; }
 bool GreaterThan(int v1, int v2) { return v1 > v2 ? true : false; }
@@ -247,17 +256,23 @@ void ch_3_6()
 //    auto ret_vec = SubVec(s_ivec, part_val);
 //    for_each(ret_vec.begin(), ret_vec.end(), [](int i) { cout << i << ' ';});
 //    cout << endl;
-
-
 }
+
+/********************************************************************************/
+/*****************************************3.9************************************/
 
 void ch_3_9()
 {
     vector<int> local_vec;
-    Filter(s_ivec.begin(), s_ivec.end(), back_inserter(local_vec), 10, greater<int>());
+    for_each(s_ivec.begin(), s_ivec.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
+    Filter(s_ivec.begin(), s_ivec.end(), back_inserter(local_vec), 20, greater<int>());
     for_each(local_vec.begin(), local_vec.end(), [](int i) { cout << i << ' ';});
     cout << endl;
 }
+
+/********************************************************************************/
+/*****************************************3.10************************************/
 
 void ch_3_10()
 {
@@ -321,7 +336,7 @@ void UserQuery(const map<string, int> &word_map)
     }
 }
 
-void DisplayWordCount(const map<string, int> &word_map, ostream &out = cout)
+void DisplayWordCount(const map<string, int> &word_map, ostream &out)
 {
     auto it = word_map.begin();
     while (it != word_map.end())
@@ -356,7 +371,8 @@ void InitExclusionSet(set<string> &exs)
         "were","which","when","with","would"
     };
 
-    exs.insert(exclusion_words, exclusion_words + 26);
+    //exs.insert(exclusion_words, exclusion_words + 26);
+    exs.insert(begin(exclusion_words), end(exclusion_words));
 }
 
 void hw_3_1()
@@ -366,7 +382,7 @@ void hw_3_1()
 
     if (!in_file || !out_file)
     {
-        cerr << "unalbe to open file!" << endl;
+        cerr << "open input/output file failed!" << endl;
         return ;
     }
     
@@ -376,7 +392,7 @@ void hw_3_1()
     map<string, int>    word_count;
     ProcessFile(word_count, exclude_set, in_file);
 
-    DisplayWordCount(word_count);
+    //DisplayWordCount(word_count);
 
     UserQuery(word_count);
 }
