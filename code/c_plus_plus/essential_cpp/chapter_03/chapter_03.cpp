@@ -429,10 +429,6 @@ void hw_3_2()
     copy(text.begin(), text.end(), os);
 }
 
-
-typedef vector<string> vstring;
-typedef string::size_type ssize_type;
-
 void InitFamilyMap(ifstream &in, map<string, vstring> &family)
 {
     string line;
@@ -498,7 +494,6 @@ void DisplayMap(const map<string, vstring> &familes, ostream &out)
     }
 }
 
-typedef map<string, vstring> svec_map;
 void QueryMap(const string &family, svec_map familes)
 {
     svec_map::const_iterator cit = familes.find(family);

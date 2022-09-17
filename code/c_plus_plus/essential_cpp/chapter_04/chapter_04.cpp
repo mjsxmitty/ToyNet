@@ -12,11 +12,27 @@ using namespace std;
 
 void ch_4()
 {
+    //ch_4_1();
     //ch_4_3();
     //ch_4_5();
-    //ch_4_7();
+    ch_4_7();
     //ch_4_9();
-    ch_4_10();
+    //ch_4_10();
+}
+
+void FillStack(Stack &stack, std::istream &is)
+{
+    string str;
+    if (is >> str && !stack.Empty())
+        stack.Push(str);
+    cout << "read in " << stack.Size() << " elements\n";
+}
+
+void ch_4_1()
+{
+    Stack sta;
+    cout << sta.Empty() << endl;
+    FillStack(sta, cin);
 }
 
 void ch_4_3()
@@ -58,8 +74,9 @@ void ch_4_5()
 
 void ch_4_7()
 {
-    Triangular tri(20);
-    cout << tri << endl;
+    Triangular tri(20,3);
+    //cout << tri << endl;
+    cout << "Triangular Sequence of: " << tri.Length() << " elements\n";
 
     Triangular::Iterator beg = tri.Begin();
     Triangular::Iterator end = tri.End();
@@ -170,7 +187,7 @@ void Practice_4_5()
 
 void Practice_4_7()
 {
-    Triangular  tri(20);
+    Triangular  tri(20, 12);
     Triangular::Iterator beg = tri.Begin();
     Triangular::Iterator end = tri.End();
 

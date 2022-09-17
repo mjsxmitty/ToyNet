@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include <algorithm>
 #include "stack.h"
 
@@ -6,7 +7,11 @@ using namespace std;
 
 bool Stack::Push(const std::string &elem)
 {
-    if (Full()) return false;
+    if (Full())
+    {
+        cerr << "stack is full!" << endl;
+        return false;
+    }
 
     elems_.push_back(elem);
     return true;

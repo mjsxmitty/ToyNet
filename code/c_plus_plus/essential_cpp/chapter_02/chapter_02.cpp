@@ -49,7 +49,7 @@ bool FibonElem(int pos, int &elem)
     return true;
 }
 
-// 打印
+// 鎵撳嵃
 bool PrintFibon(int pos)
 {
     if (pos <= 0 || pos > 1024)
@@ -88,7 +88,7 @@ bool PrintFibon(int pos)
 }
 
 
-/* 2.1 如何编写函数 */
+/* 2.1 濡備綍缂栧啓鍑芥暟 */
 void ch_2_1()
 {
     cout << "please enter a position: ";
@@ -232,8 +232,8 @@ void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
 }
 
 
-/* 2.2 ���ú��� */
-/* 2.3 ʹ��Ĭ�ϲ��� */
+/* 2.2 锟斤拷锟矫猴拷锟斤拷 */
+/* 2.3 使锟斤拷默锟较诧拷锟斤拷 */
 void ch_2_3()
 {
     int ia[ 8 ] = { 8, 34, 3, 13, 1, 21, 5, 2 };
@@ -274,7 +274,7 @@ const vector<int>* FibonSeq(int pos)
     return &elems;
 }
 
-/* 2.4 ʹ�þֲ���̬���� */
+/* 2.4 使锟矫局诧拷锟斤拷态锟斤拷锟斤拷 */
 void ch_2_4()
 {
     bool more = true;
@@ -318,7 +318,7 @@ void DisplayMsg(const std::string &msg, int size)
     cerr << msg << " size: " << size << endl;
 }
 
-/* ����ָ���������ĵ��� */
+/* 锟斤拷锟斤拷指锟斤拷锟斤拷锟斤拷锟斤拷锟侥碉拷锟斤拷 */
 void ch_2_8()
 {
 //    bool more = true;

@@ -43,9 +43,9 @@ public:
     
     bool IsElem(int elem);
 public:
-    const char* WhatAmI() const 
+    char const* WhatAmI() const
     {
-        static char* names[seq_cnt_] = {
+        static const char* names[seq_cnt_] = {
 			"not set",
 			"fibonacci",
 			"pell",

@@ -143,6 +143,9 @@ void Filter(It first, It last, Ot at, const ElemType &val, Comp pre)
 extern void ch_3_9();
 extern void ch_3_10();
 
+/********************************************************************************/
+/*****************************************h w************************************/
+
 extern void InitExclusionSet(std::set<std::string> &exs);
 extern void ProcessFile(std::map<std::string, int> &word_map,
                         const std::set<std::string> &exclude_set,
@@ -151,7 +154,16 @@ extern void DisplayWordCount(const std::map<std::string, int> &word_map,
                              std::ostream &out = std::cout);
 extern void UserQuery(const std::map<std::string, int> &word_map);
 extern void hw_3_1();
+
+typedef std::vector<std::string> vstring;
+typedef std::string::size_type ssize_type;
+typedef std::map<std::string, vstring> svec_map;
+
+extern void InitFamilyMap(std::ifstream &in, std::map<std::string, vstring> &family);
+extern void DisplayMap(const std::map<std::string, vstring> &familes, std::ostream &out);
+extern void QueryMap(const std::string &family, svec_map familes);
 extern void hw_3_2();
+
 extern void hw_3_3();
 extern void hw_3_4();
 
