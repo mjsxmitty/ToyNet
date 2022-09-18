@@ -15,6 +15,26 @@ extern void ch_4_1();
 extern void ch_4_3();
 extern void ch_4_5();
 extern void ch_4_7();
+
+class LessThan
+{
+public:
+    LessThan(int val) : val_(val) {}
+    bool operator()(int nval) const;
+private:
+    int val_;
+};
+
+inline bool LessThan::operator()(int val) const 
+{ 
+    return val < val_;
+}
+
+extern int CountLessThan(const std::vector<int> &vec, int comp);
+extern int SumLessThan(const std::vector<int> &vec, int comp);
+extern void PrintLessThan(const std::vector<int> &vec, int comp, 
+                          std::ostream &os = std::cout);
+
 extern void ch_4_9();
 extern void ch_4_10();
 
@@ -39,18 +59,8 @@ private:
     std::string val_;
 };
 
-class LessThan1
-{
-public:
-    LessThan1(int val) : val_(val) {}
-    bool operator()(int nval) const;
-private:
-    int val_;
-};
 
-inline bool LessThan1::operator()(int val) const { return val < val_; }
 
-int CountLessThan(const std::vector<int> &vec, int comp);
-void PrintLessThan(const std::vector<int> &vec, int comp, std::ostream &os = std::cout);
+
 
 #endif // __ESSENTIAL_CPP_CHAPTER_04_H__

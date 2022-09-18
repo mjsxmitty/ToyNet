@@ -1,5 +1,4 @@
 
-
 #ifndef __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
 #define __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
 
@@ -55,23 +54,20 @@ public:
     /* 4.7 友元 */
     friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
     friend class TriangularIterator;
+
+    /* 消除友元 */
+    static int max_size() { return max_size_; }
+    static int elem_size() { return elems_.size(); }
 public:
     void Length(int len) { length_ = len; }
     void BegPos(int pos) { beg_pos_ = pos; }
-
-
-    /* 鍙互閬垮厤鍙嬪厓 */
-    static int max_size() { return max_size_; }
-    static int elem_size() { return elems_.size(); }
-
-
 };
 
 /* 4.3 */
 extern int Sum(const Triangular &item);
 
-std::istream& operator>>(std::istream& in, Triangular& rhs);
-std::ostream& operator<<(std::ostream& os, const Triangular& rhs);
-
+/* 4.10 重载iostream运算符 */
+extern std::istream& operator>>(std::istream& in, Triangular& rhs);
+extern std::ostream& operator<<(std::ostream& os, const Triangular& rhs);
 
 #endif // __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__

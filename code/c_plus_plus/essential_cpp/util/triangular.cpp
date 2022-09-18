@@ -152,7 +152,7 @@ void Triangular::Display(int len, int bp, ostream &os)
         return ;
     }
 
-    unsigned int elems = len + bp - 1;
+    unsigned int elems = len + bp - 1;  // 元素个数
     if (elems_.size() < elems)
         GenElements(elems);
 
@@ -175,7 +175,7 @@ Triangular::Iterator Triangular::End() const
 }
 
 /********************************************************************************************************/
-/*************************************************4.7****************************************************/
+/*************************************************4.10***************************************************/
 
 ostream &operator<<(ostream &os, const Triangular &rhs)
 {
@@ -197,3 +197,5 @@ istream& operator>>(istream& in, Triangular& rhs)
 
     return in;
 }
+
+/********************************************************************************************************/

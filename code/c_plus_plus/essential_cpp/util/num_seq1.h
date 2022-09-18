@@ -1,5 +1,4 @@
 
-
 #ifndef __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 #define __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 
@@ -7,6 +6,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+
 class NumSeqVer1
 {
     friend std::ostream& operator<<(std::ostream &os, NumSeqVer1 &ns);

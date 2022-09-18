@@ -25,7 +25,7 @@ void ch_03(int argc, char **argv)
 void ch_3_4_1()
 {
     if (write(1, "Here is some data\n", 18) != 18) 
-        write(2, "a write error has occurred on file descriptor 1\n", 50);
+        write(2, "a write error has occurred on file descriptor 1 \n", 50);
 }
 
 void ch_3_4_2()
@@ -145,7 +145,8 @@ void ch_3_8(int argc, char **argv)
     exit(0);
 }
 
-typedef struct {
+typedef struct 
+{
     int     integer;
     char    str[24];
 } RECORD;
@@ -157,12 +158,14 @@ void PrintFile(const char *s)
     RECORD record;
 
     FILE *fp = fopen(s, "r+");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         fprintf(stderr, "open file failed.\n");
         return ;
     }
 
-    for (int i = 0; i < NRECORDS; ++i) {
+    for (int i = 0; i < NRECORDS; ++i) 
+    {
         fread(&record, sizeof (RECORD), 1, fp);
         printf("%d ---> %s\n", record.integer, record.str);
     }
@@ -177,13 +180,15 @@ void ch_3_11()
     int     f;
 
     fp = fopen("record.dat", "w+");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         fprintf(stderr, "can not open record file!");
         return ;
     }
 
     //写文件
-    for (int i = 0; i < NRECORDS; ++i) {
+    for (int i = 0; i < NRECORDS; ++i) 
+    {
         record.integer = i;
         sprintf(record.str, "RECORE-%d", i);
         fwrite(&record, sizeof (RECORD), 1, fp);

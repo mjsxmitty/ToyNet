@@ -15,8 +15,8 @@ void ch_4()
     //ch_4_1();
     //ch_4_3();
     //ch_4_5();
-    ch_4_7();
-    //ch_4_9();
+    //ch_4_7();
+    ch_4_9();
     //ch_4_10();
 }
 
@@ -91,7 +91,7 @@ void ch_4_7()
 
 int CountLessThan(const vector<int> &vec, int comp)
 {
-    LessThan1 lt(comp);
+    LessThan lt(comp);
     int count = 0;
 
     for (int ix = 0; ix < vec.size(); ++ix)
@@ -101,11 +101,28 @@ int CountLessThan(const vector<int> &vec, int comp)
     return count;
 }
 
+int SumLessThan(const std::vector<int> &vec, int comp)
+{
+    LessThan lt(comp);
+    
+    int sum = 0;
+    for (size_t i = 0; i < vec.size(); i++)
+    {
+        if (lt(vec[i]))
+        {
+            //cout << "val: " << vec[i] << endl;
+            sum += vec[i];
+        }
+    }
+    
+    return sum;
+}
+
 void PrintLessThan(const vector<int> &vec, int comp, ostream &os)
 {
-    LessThan1 lt(comp);
-    auto it = vec.begin(), it_end = vec.end();
+    LessThan lt(comp);
 
+    auto it = vec.begin(), it_end = vec.end();
     while ((it = find_if(it, it_end, lt)) != it_end)
     {
         os << *it << ' ';
@@ -122,8 +139,8 @@ void ch_4_9()
     int comp_val = 20;
 
     cout << "vector size: " << vec.size() << endl;
-    cout << CountLessThan(vec, comp_val);
-    cout << endl;
+    cout << "vector less than comp val size: " << CountLessThan(vec, comp_val) << endl;
+    cout << "vector sum is: " << SumLessThan(vec, comp_val) << endl;
 
     PrintLessThan(vec, comp_val, cout);
     cout << endl;
