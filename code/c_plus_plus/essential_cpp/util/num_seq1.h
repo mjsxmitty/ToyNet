@@ -17,11 +17,13 @@ public:
     enum NUM_SEQ
     {
         NS_UNK,
-        NS_FIB, NS_PELL,NS_LUCAS,
-        NS_TRI, NS_SQ,  NS_PENT
+        NS_FIB,
+        NS_PELL,
+        NS_LUCAS,
+        NS_TRI,
+        NS_SQ,
+        NS_PENT
     };
-public:
-    NumSeqVer1(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
 private:
     void FiboSeq(int pos);
     void PellSeq(int pos);
@@ -36,6 +38,9 @@ public:
     int                     BegPos() const { return beg_pos_; };
     int                     Length() const { return length_; };
     const std::vector<int>* Sequence() const;
+
+public:
+    NumSeqVer1(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
 
     void SetBegPos(int pos);
     void SetLength(int pos);
@@ -58,17 +63,17 @@ public:
         return names[isa_];
     }
 
-    // static void InitSeqMap()
-    // {
-	// 	seq_map_[ "fibonacci" ] = NS_FIB;
-	// 	seq_map_[ "pell" ] = NS_PELL;   
-	// 	seq_map_[ "lucus" ] = NS_LUCAS;
-	// 	seq_map_[ "triangular" ] = NS_TRI; 
-	// 	seq_map_[ "square" ] = NS_SQ; 
-	// 	seq_map_[ "pentagonal" ] = NS_PENT;
-    // }
+     static void InitSeqMap()
+     {
+        seq_map_[ "fibonacci" ] = NS_FIB;
+        seq_map_[ "pell" ] = NS_PELL;
+        seq_map_[ "lucus" ] = NS_LUCAS;
+        seq_map_[ "triangular" ] = NS_TRI;
+        seq_map_[ "square" ] = NS_SQ;
+        seq_map_[ "pentagonal" ] = NS_PENT;
+     }
 
-    static NUM_SEQ SeqType(/*const char *name*/ int num)
+    static NUM_SEQ SeqType(int num)
     {
         // if (seq_map_.empty())
         //     InitSeqMap();
@@ -101,18 +106,18 @@ private:
 
     int CalcPos(int elem);
 private:
-    int                 beg_pos_;
-    int                 length_;
-    NUM_SEQ             isa_;
-    PtrType             pmf_;
-    std::vector<int>    *elem_;
+    int                 beg_pos_;       // 起始位置
+    int                 length_;        // 数列长度
+    NUM_SEQ             isa_;           // 数列类型
+    PtrType             pmf_;           // 指向当前数列的指针
+    std::vector<int>    *elem_;         // 指向当前数列的数组
 
     //enum {seq_cnt_ = 7};
     static const int                        seq_cnt_ = 7;
-    static PtrType                          func_tbl_[seq_cnt_];
-    static std::vector<std::vector<int>>    seq_;
-    static const int                        max_seq_;
-    static std::map<std::string, NUM_SEQ>   seq_map_;
+    static const int                        max_seq_;                   // 数列最大元素个数
+    static PtrType                          func_tbl_[seq_cnt_];        // 所有数列函数指针
+    static std::vector<std::vector<int>>    seq_;                       // 所有数列
+    static std::map<std::string, NUM_SEQ>   seq_map_;                   // 每个数列映射
 };
 
 std::ostream& operator<<(std::ostream &os, const NumSeqVer1 &ns);

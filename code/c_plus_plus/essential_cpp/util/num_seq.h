@@ -17,8 +17,12 @@ extern pfunc    seq_array[seq_cnt];
 enum NS_TYPE
 {
     NS_UNK, 
-    NS_FIB, NS_PELL,NS_LUCAS,
-    NS_TRI, NS_SQ,  NS_PENT
+    NS_FIB,
+    NS_PELL,
+    NS_LUCAS,
+    NS_TRI,
+    NS_SQ,
+    NS_PENT
 };
 
 //

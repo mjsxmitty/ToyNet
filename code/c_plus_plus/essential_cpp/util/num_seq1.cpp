@@ -1,14 +1,16 @@
 
 #include <vector>
 #include <iostream>
-#include "num_seq1.h"
 #include <algorithm>
+
+#include "num_seq1.h"
 
 using namespace std;
 
 const int NumSeqVer1::seq_cnt_;
-vector<vector<int>> NumSeqVer1::seq_(seq_cnt_);
 const int NumSeqVer1::max_seq_ = 64;
+vector<vector<int>> NumSeqVer1::seq_(seq_cnt_);
+map<string, NumSeqVer1::NUM_SEQ> NumSeqVer1::seq_map_;
 
 typedef NumSeqVer1::PtrType PtrType;
 PtrType NumSeqVer1::func_tbl_[seq_cnt_] = {
@@ -152,16 +154,16 @@ void NumSeqVer1::SetBegPos(int pos)
     beg_pos_ = pos;
 }
 
-void NumSeqVer1::SetLength(int pos)
+void NumSeqVer1::SetLength(int len)
 {
-    if (pos <= 0 || pos + beg_pos_ - 1 > max_seq_)
+    if (len <= 0 || len + beg_pos_ - 1 > max_seq_)
     {
-        cerr << "invalid length: " << pos
+        cerr << "invalid length: " << len
              << " setting default length value of 1\n";
-        pos = 1;
+        len = 1;
     }
 
-    length_ = pos;
+    length_ = len;
 }
 
 void NumSeqVer1::SetSequence(NUM_SEQ nst)
@@ -174,6 +176,7 @@ void NumSeqVer1::SetSequence(NUM_SEQ nst)
             pmf_ = 0;
             elem_ = 0;
             isa_ = NS_UNK;
+            break;
         case NS_FIB:
         case NS_PELL:
         case NS_LUCAS:
