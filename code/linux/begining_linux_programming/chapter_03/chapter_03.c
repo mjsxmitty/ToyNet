@@ -18,8 +18,8 @@ void ch_03(int argc, char **argv)
     //ch_3_4_3();
     //ch_3_6_2();
     //ch_3_6_3();
-    ch_3_8(argc, argv);
-    //ch_3_11();
+    //ch_3_8(argc, argv);
+    ch_3_11();
 }
 
 void ch_3_4_1()
@@ -167,9 +167,9 @@ void PrintFile(const char *s)
     for (int i = 0; i < NRECORDS; ++i) 
     {
         fread(&record, sizeof (RECORD), 1, fp);
-        printf("%d ---> %s\n", record.integer, record.str);
+        printf("%d - %s\n", record.integer, record.str);
     }
-    printf("\n\n");
+    printf("\n");
     fclose(fp);
 }
 
@@ -198,15 +198,18 @@ void ch_3_11()
 
     //修改文件
     fp = fopen("record.dat", "r+");
-    if (fp == NULL) {
+    if (fp == NULL) 
+    {
         fprintf(stderr, "can not open record file!");
         return ;
     }
 
     fseek(fp, 3 * sizeof (RECORD), SEEK_SET);
-    //fread(&record, sizeof (RECORD), 1, fp);
-    record.integer = 10000;
+    fread(&record, sizeof (RECORD), 1, fp);
+    record.integer = 1024;
     sprintf(record.str, "RECORE-%d", record.integer);
+
+    fseek(fp, 3 * sizeof(RECORD), SEEK_SET);
     fwrite(&record, sizeof (RECORD), 1, fp);
     fclose(fp);
     PrintFile("record.dat");
@@ -220,7 +223,12 @@ void ch_3_11()
 
     mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), 
             PROT_READ | PROT_WRITE, MAP_SHARED, f, 0);
-    mapped[3].integer = 111;
+
+
+    // mapped = (RECORD *)mmap(0, (NRECORDS - 1) * sizeof (RECORD), 
+    //         PROT_READ | PROT_WRITE, MAP_SHARED, f, sizeof (RECORD));
+
+    mapped[3].integer = 0;
     sprintf(mapped[3].str, "RECORD-%d", mapped[3].integer);
     msync((void *)mapped, NRECORDS * sizeof(RECORD), MS_ASYNC);
     munmap((void *)mapped, NRECORDS * sizeof(RECORD));
@@ -228,5 +236,4 @@ void ch_3_11()
     PrintFile("record.dat");
 
     exit(0);
-
 }

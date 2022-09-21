@@ -5,7 +5,8 @@ include(CTest)
 enable_testing()
 
 add_executable(blp main.c
-                    chapter_03/chapter_03.h chapter_03/chapter_03.c)
+                    chapter_03/chapter_03.h chapter_03/chapter_03.c
+                    chapter_04/chapter_04.h chapter_04/chapter_04.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
