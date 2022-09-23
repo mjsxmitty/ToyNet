@@ -13,13 +13,26 @@
 
 void ch_03(int argc, char **argv)
 {
-    //ch_3_4_1();
-    //ch_3_4_2();
-    //ch_3_4_3();
-    //ch_3_6_2();
-    //ch_3_6_3();
+    /* 底层文件访问 */
+    ch_3_4();
+
+    /* 格式化输入和输出 */
+    ch_3_6();
+
+    /* 扫描目录 */
     //ch_3_8(argc, argv);
+
+    /* 高级主题 */
     ch_3_11();
+}
+
+void ch_3_4()
+{
+    //ch_3_4_1();
+
+    //ch_3_4_2();
+
+    //ch_3_4_3();
 }
 
 void ch_3_4_1()
@@ -66,6 +79,13 @@ void ch_3_4_3()
    
     printf("write finished.");
     exit(0);
+}
+
+void ch_3_6()
+{
+    //ch_3_6_2();
+
+    //ch_3_6_3();
 }
 
 void ch_3_6_2()
@@ -132,8 +152,20 @@ void PrintDir(char *dir, int depth)
     }
 }
 
+void test_format_output()
+{
+    // printf("str=%*s%s/\n", 0, "", "gao");
+    // printf("str=%*s%s/\n", 4, "", "zhuo");
+    // printf("str=%*s, %s\n", 10, "hello", "gz");
+    // printf("str=%*s, %*s\n", -10, "hello", 20, "gz");
+    // printf("str=%.*s, %s\n", 10, "hello", "gz");
+    // printf("str=%.*s, %s\n", 3, "hello", "gz");
+}
+
 void ch_3_8(int argc, char **argv)
 {
+    //test_format_output();
+
     char *top_dir = ".";
     if (argc >= 2)
         top_dir = argv[1];
@@ -223,10 +255,6 @@ void ch_3_11()
 
     mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), 
             PROT_READ | PROT_WRITE, MAP_SHARED, f, 0);
-
-
-    // mapped = (RECORD *)mmap(0, (NRECORDS - 1) * sizeof (RECORD), 
-    //         PROT_READ | PROT_WRITE, MAP_SHARED, f, sizeof (RECORD));
 
     mapped[3].integer = 0;
     sprintf(mapped[3].str, "RECORD-%d", mapped[3].integer);
