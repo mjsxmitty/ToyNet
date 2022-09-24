@@ -1,4 +1,6 @@
 
+/* 数列类中封装多个数列 */
+
 #ifndef __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 #define __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 
@@ -7,11 +9,11 @@
 #include <map>
 #include <string>
 
-class NumSeqVer1
+class NumSequenceVer1
 {
-    friend std::ostream& operator<<(std::ostream &os, NumSeqVer1 &ns);
+    friend std::ostream& operator<<(std::ostream &os, NumSequenceVer1 &ns);
 public:
-    typedef void (NumSeqVer1::*PtrType)(int);
+    typedef void (NumSequenceVer1::*PtrType)(int);
     typedef std::vector<int>::iterator  iterator;
 
     enum NUM_SEQ
@@ -40,7 +42,7 @@ public:
     const std::vector<int>* Sequence() const;
 
 public:
-    NumSeqVer1(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
+    NumSequenceVer1(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
 
     void SetBegPos(int pos);
     void SetLength(int pos);
@@ -86,13 +88,13 @@ public:
                 NS_UNK : static_cast<NUM_SEQ>(num);
     }
 public:
-    bool operator==(const NumSeqVer1 &rhs) const
+    bool operator==(const NumSequenceVer1 &rhs) const
     {
         return (beg_pos_ == rhs.beg_pos_) &&
                 (length_ == rhs.length_);
     }
 
-    inline bool operator!=(const NumSeqVer1 &rhs) const
+    inline bool operator!=(const NumSequenceVer1 &rhs) const
     {
         return !(*this == rhs);
     }
@@ -120,6 +122,6 @@ private:
     static std::map<std::string, NUM_SEQ>   seq_map_;                   // 每个数列映射
 };
 
-std::ostream& operator<<(std::ostream &os, const NumSeqVer1 &ns);
+std::ostream& operator<<(std::ostream &os, const NumSequenceVer1 &ns);
 
 #endif // __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__

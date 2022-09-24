@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "num_seq.h"
+#include "num_sequence.h"
 
 using namespace std;
 

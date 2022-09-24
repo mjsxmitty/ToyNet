@@ -1,18 +1,18 @@
 
 #include <iostream>
 
-#include "num_seq2.h"
+#include "num_sequence_ver2.h"
 
 using namespace std;
 
-std::ostream& operator<<(std::ostream &os, const NumSeq2 &ns)
+std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns)
 {
     cout << " ( " << ns.Length() << ", " << ns.BegPos() << " ) "; 
     ns.Print(os);
     return os;
 }
 
-bool NumSeq2::CheckIntegrity(int pos, int size) const
+bool NumSequenceVer2::CheckIntegrity(int pos, int size) const
 {
     if (pos <=0 || pos >= max_elems_)
     {

@@ -1,4 +1,6 @@
 
+/* 面向过程的的数列操作 */
+
 
 #ifndef __ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__
 #define __ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__

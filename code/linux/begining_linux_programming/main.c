@@ -7,11 +7,12 @@
 
 int main(int argc, char **argv)
 {
-    printf("hello world!\n");
+    printf("==================Hello World!==================\n");
 
     //ch_03(argc, argv);
 
     ch_04(argc, argv);
 
+	printf("===Quietly try and amaze everyone's sentences===\n");
     return 0;
 }

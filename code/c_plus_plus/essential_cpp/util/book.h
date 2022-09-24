@@ -13,14 +13,14 @@ public:
     Book(const std::string &title, const std::string &author) :
         title_(title), author_(author)
     {
-        std::cout << "Book::Book() ---( " << title_ << ", "
-                  << author_ << " )" << std::endl;
+        std::cout << "Book::Book() ( " << title_ << ", "
+                  << author_ << " ) constructor " << std::endl;
     }
-    virtual ~Book() { std::cout << "Book::~Book() -- destructor!\n"; }
+    virtual ~Book() { std::cout << "Book::~Book() destructor!\n"; }
 public:
     void Print() const override
     {
-        std::cout << "Book::Print() -- i am Book object\n"
+        std::cout << "Book::Print() i am Book object"
                   << ", My title is: " << title_
                   << ", My name is: " << author_
                   << std::endl;

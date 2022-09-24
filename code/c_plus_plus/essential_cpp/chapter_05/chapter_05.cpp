@@ -2,48 +2,55 @@
 #include <iostream>
 
 #include "chapter_05.h"
-#include "libmat.h"
-#include "book.h"
-#include "audio_book.h"
-#include "../util/num_seq2.h"
-#include "../util/fibon.h"
-#include "../util/num_seq3.h"
-#include "../util/fibon3.h"
+#include "../util/libmat.h"
+#include "../util/book.h"
+#include "../util/audio_book.h"
+#include "../util/num_sequence_ver2.h"
+#include "../util/fibonacci_ver2.h"
+#include "../util/num_sequence_ver3.h"
+#include "../util/fibonacci_ver3.h"
 
 using namespace std;
 
-void Chapter_05()
+void ch_5()
 {
-    //Practice_5_2();
-    //Practice_5_5();
+    //ch_5_2();
+    ch_5_5();
     //Practice_5_9();
-    Practice_5_10();
+    //Practice_5_10();
 }
 
-void Practice_5_2()
+void ch_5_2()
 {
-//    cout << "Creating a LibMat object to print.\n";
-//    LibMat libmat;
-//    Print(libmat);
+    {
+        LibMat libmat;
+        Print(libmat);
+    }
+    cout << "==================================" << endl;
 
-//    Book book("aaa", "bb");
-//    Print(book);
+    {
+        Book book("a", "b");
+        Print(book);
+    }
+    cout << "==================================" << endl;
 
-    AudioBook audio("aaa", "111", "***");
-    audio.Print();
+    {
+        AudioBook audio("1", "2", "3");
+        audio.Print();
+    }
 }
 
-void Practice_5_5()
+void ch_5_5()
 {
-    Fibon fib;
+    FibonacciVer2 fib;
     cout << "fib: the begging at element 1 for 1 element: "
          << fib << endl;
 
-    Fibon fib2(16);
+    FibonacciVer2 fib2(16);
     cout << "fib: the begging at element 1 for 16 element: "
          << fib2 << endl;
 
-    Fibon fib3(8, 12);
+    FibonacciVer2 fib3(8, 12);
     cout << "fib: the begging at element 12 for 8 element: "
          << fib3 << endl;
 }

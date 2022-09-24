@@ -6,7 +6,7 @@
 #include "chapter_04.h"
 #include "../util/triangular.h"
 #include "../util/triangular_iterator.h"
-#include "../util/num_seq1.h"
+#include "../util/num_sequence_ver1.h"
 
 using namespace std;
 
@@ -162,7 +162,7 @@ void ch_4_10()
     cout << tri2 << endl;
 }
 
-void Display(ostream &os, const NumSeqVer1 &ns,
+void Display(ostream &os, const NumSequenceVer1 &ns,
              int pos, int elem_val)
 {
     os << "The element at position: " << pos
@@ -173,11 +173,11 @@ void Display(ostream &os, const NumSeqVer1 &ns,
 
 void ch_4_11()
 {
-    NumSeqVer1 ns(1, 8);
+    NumSequenceVer1 ns(1, 8);
     int elem_val = 0;
     int pos = 0;
 
-    for (int ix = 0; ix < NumSeqVer1::NumOfSequence(); ++ix)
+    for (int ix = 0; ix < NumSequenceVer1::NumOfSequence(); ++ix)
     {
 
     }

@@ -13,10 +13,10 @@ public:
               const std::string &narrator) : Book(title, author),
                 narrator_(narrator)
     {
-        std::cout << "AudioBook::AudioBook() --- ( "
+        std::cout << "AudioBook::AudioBook() ( "
                   << title_ << ", "
                   << author_ << ", "
-                  << narrator_ << " ) "
+                  << narrator_ << " ) constructor"
                   << std::endl;
     }
 

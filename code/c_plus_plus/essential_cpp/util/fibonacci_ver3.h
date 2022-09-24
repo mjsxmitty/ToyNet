@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "num_seq3.h"
+#include "num_sequence_ver3.h"
 
 class Fibon3 : public NumSeq3
 {

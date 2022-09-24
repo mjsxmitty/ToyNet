@@ -1,6 +1,6 @@
 
 
-#include "num_seq3.h"
+#include "num_sequence_ver3.h"
 
 using namespace std;
 

@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "../util/num_seq.h"
+#include "../util/num_sequence.h"
 
 extern void ch_2();
 

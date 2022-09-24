@@ -1,13 +1,13 @@
 
 #include <vector>
 #include <iostream>
-#include "fibon.h"
+#include "fibonacci_ver2.h"
 
 using namespace std;
 
-vector<int> Fibon::elems_;
+vector<int> FibonacciVer2::elems_;
 
-void Fibon::GenElems(int pos) const
+void FibonacciVer2::GenElems(int pos) const
 {
     if (elems_.empty())
     {
@@ -31,32 +31,34 @@ void Fibon::GenElems(int pos) const
     }
 }
 
-int Fibon::Elem(int pos) const
+int FibonacciVer2::Elem(int pos) const
 {
     if (!CheckIntegrity(pos, elems_.size()))
         return 0;
 
+    // 跳过虚函数机制
     // if (pos > elems_.size())
-    //     Fibon::GenElems(pos);
+    //     FibonacciVer2::GenElems(pos);
     
     return elems_[pos - 1];
 }
 
-const char* Fibon::WhatAmI() const
+const char* FibonacciVer2::WhatAmI() const
 {
-    return "fibonacci";
+    return "Fibonacci";
 }
 
-ostream& Fibon::Print(ostream &os) const
+ostream& FibonacciVer2::Print(ostream &os) const
 {
-    int beg_pos = beg_pos_ - 1;
-    int end_pos = beg_pos + length_;
+    size_t elem_pos = beg_pos_ - 1;
+    size_t elem_cnt = elem_pos + length_;
 
-    if (end_pos > elems_.size())
-        Fibon::GenElems(end_pos);
+    if (elem_cnt > elems_.size())
+        FibonacciVer2::GenElems(elem_cnt);
 
-    while (beg_pos < end_pos)
-        os << elems_[beg_pos++] << ' ';
+    while (elem_pos < elem_cnt)
+        os << elems_[elem_pos++] << ' ';
+    os << endl;
     
     return os;
 }
