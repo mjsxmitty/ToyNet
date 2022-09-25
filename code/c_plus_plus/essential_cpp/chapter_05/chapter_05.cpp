@@ -15,9 +15,10 @@ using namespace std;
 void ch_5()
 {
     //ch_5_2();
-    ch_5_5();
-    //Practice_5_9();
-    //Practice_5_10();
+    //ch_5_5();
+    //ch_5_6();
+    //ch_5_9();
+    ch_5_10();
 }
 
 void ch_5_2()
@@ -55,6 +56,15 @@ void ch_5_5()
          << fib3 << endl;
 }
 
+void ch_5_6()
+{
+    const int postion = 8;
+    
+    FibonacciVer2 fib;
+    Display(cout, fib, postion);
+    // TODO 需要修改一下print函数
+}
+
 void Print1(LibMat lib, const LibMat *p1, const LibMat &r1)
 {
     lib.Print();    //基类切割
@@ -66,30 +76,33 @@ void Print1(LibMat lib, const LibMat *p1, const LibMat &r1)
     r1.Print();
 }
 
-void Practice_5_9()
+void ch_5_9()
 {
     // AudioBook a("1", "2", "3");
     // Print1(a, &a, a);
 
-    Fibon3 b;
+    FibonacciVer3 b;
     cout << b.WhatAmI() << endl;
-    Fibon3 *ptr = b.Clone();
+
+    FibonacciVer3 *ptr = b.Clone();
     cout << ptr->WhatAmI() << endl;
+    // TODO 完善其他类型接着测试一下
+
 }
 
 //RTII
-void Practice_5_10()
+void ch_5_10()
 {
-    Fibon3 fib;
-    NumSeq3 *ps = &fib;
+    FibonacciVer3 fib;
+    NumSequenceVer3 *ps = &fib;
 
-    if (typeid(*ps) == typeid(Fibon3))
+    if (typeid(*ps) == typeid(FibonacciVer3))
     {
         //cout << ps->WhatAmI() << endl;
-        ps->GenElems(64);
-        //ps->Fibon3::GenElems(64);   //error
+        //ps->GenElems(64);
+        //ps->FibonacciVer3::GenElems(64);   //error
     }
     
-    if (Fibon3 *pf = dynamic_cast<Fibon3 *>(ps))
+    if (FibonacciVer3 *pf = dynamic_cast<FibonacciVer3 *>(ps))
         cout << pf->WhatAmI() << endl;
 }

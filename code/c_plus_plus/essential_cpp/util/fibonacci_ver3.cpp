@@ -4,27 +4,26 @@
 
 using namespace std;
 
-vector<int> Fibon3::elems_;
+vector<int> FibonacciVer3::elems_;
 
 //显示调用基类
-Fibon3::Fibon3(int len, int beg) :
-                // NumSeq3(len, beg, elems_){}
-                NumSeq3(len, beg, elems_, "Fibon3"){}
+FibonacciVer3::FibonacciVer3(int len, int beg) :
+                // NumSequenceVer3(len, beg, elems_){}
+                NumSequenceVer3(len, beg, elems_, "FibonacciVer3"){}
 
-Fibon3::Fibon3(const Fibon3 &rhs)
-        : NumSeq3(rhs) {}
+FibonacciVer3::FibonacciVer3(const FibonacciVer3 &rhs):
+                                NumSequenceVer3(rhs) { }
 
-Fibon3& Fibon3::operator=(const Fibon3 &rhs)
+FibonacciVer3& FibonacciVer3::operator=(const FibonacciVer3 &rhs)
 {
     if (this != &rhs)
-        NumSeq3::operator=(rhs);    //显示调用基类的copy assign
+        NumSequenceVer3::operator=(rhs);    //显示调用基类的copy assign
     
     return *this;
 }
 
-void Fibon3::GenElems(int pos) const
+void FibonacciVer3::GenElems(int pos) const
 {
-    cout << "Fibon3::GenElems(int )" << endl;
     if (elems_.empty())
     {
         elems_.push_back(1);

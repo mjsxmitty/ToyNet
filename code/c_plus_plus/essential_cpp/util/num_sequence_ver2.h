@@ -1,5 +1,5 @@
 
-/* 面向对象的数列类 */
+/* 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷 */
 
 #ifndef __CHAPTER_05_NumSequenceVer2_H__
 #define __CHAPTER_05_NumSequenceVer2_H__
@@ -28,5 +28,14 @@ protected:
 };
 
 std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns);
+
+inline void Display(std::ostream &os, const NumSequenceVer2 &ns, int pos)
+{
+    os << "the element at position: " << pos
+       << " for the " << ns.WhatAmI() << " sequence is "
+       << ns.Elem(pos) << std::endl;
+
+    ns.Print();
+}
 
 #endif //

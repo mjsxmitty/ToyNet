@@ -6,35 +6,38 @@
 #include <vector>
 #include <iostream>
 #include <typeinfo>
-class NumSeq3
+
+class NumSequenceVer3
 {
-    //friend std::ostream& operator<<(std::ostream &os, const NumSeq2 &ns);
 public:
-    NumSeq3& operator=(const NumSeq3 &rhs);
-    virtual ~NumSeq3(){}
+    virtual ~NumSequenceVer3() { }
 public:
-    int             Length() const { return length_; }
-    int             BegPos() const { return beg_pos_; }
-    int             Elem(int pos) const;
+    //virtual const char* WhatAmI() const = 0;
     virtual const char* WhatAmI() const { return typeid(*this).name(); }
-    // virtual const char*     WhatAmI() const = 0;//绾櫄鍑芥暟
-    static int              max_elems() { return 64; }
-    std::ostream&   Print(std::ostream &os = std::cout) const;
+    int                 Elem(int pos) const;
+    std::ostream&       Print(std::ostream &os = std::cout) const;
 
-    virtual NumSeq3* Clone() = 0;
-//protected:
-public:
-    virtual void    GenElems(int pos) const = 0; //绾櫄鍑芥暟
-    bool    CheckIntegrity(int pos, int size) const;
+    int                 Length() const { return length_; }
+    int                 BegPos() const { return beg_pos_; }
+    
+    static int          MaxElems() { return 64; }
 protected:
-    NumSeq3(int len, int beg, std::vector<int> &re, const std::string &s) : 
-        length_(len), beg_pos_(beg), relems_(re), name_(s){}
-private:
-    int     length_;
-    int     beg_pos_;
+    virtual void        GenElems(int pos) const = 0;                // 
+    bool                CheckIntegrity(int pos, int size) const;
 
+    NumSequenceVer3(int len, int beg, std::vector<int> &re, const std::string &s) : 
+                    length_(len), beg_pos_(beg), relems_(re), name_(s) { }
+protected:
+    int                 length_;
+    int                 beg_pos_;
+    std::vector<int>    &relems_;   // ��һ��ʵ�֣�ָ�룩
+protected:
     std::string         name_;
-    std::vector<int>    &relems_;   //point???
+
+    NumSequenceVer3& operator=(const NumSequenceVer3 &rhs);
+
+public:
+    virtual NumSequenceVer3* Clone() = 0;
 };
 
 

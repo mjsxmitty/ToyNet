@@ -29,6 +29,8 @@ void FibonacciVer2::GenElems(int pos) const
             n1 = elem;
         }
     }
+
+    // 是否应该调整一下pos length ???
 }
 
 int FibonacciVer2::Elem(int pos) const
@@ -57,7 +59,9 @@ ostream& FibonacciVer2::Print(ostream &os) const
         FibonacciVer2::GenElems(elem_cnt);
 
     while (elem_pos < elem_cnt)
-        os << elems_[elem_pos++] << ' ';
+        os << elems_[elem_pos++] 
+           << ' ';
+
     os << endl;
     
     return os;

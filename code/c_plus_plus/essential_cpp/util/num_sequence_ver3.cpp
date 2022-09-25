@@ -4,20 +4,23 @@
 
 using namespace std;
 
-NumSeq3& NumSeq3::operator=(const NumSeq3 &rhs)
+NumSequenceVer3& NumSequenceVer3::operator=(const NumSequenceVer3 &rhs)
 {
     if (this != &rhs)
     {
         length_ = rhs.length_;
         beg_pos_ = rhs.beg_pos_;
         relems_ = rhs.relems_;
+
+        name_ = rhs.name_;
     }
+
     return *this;
 }
 
-bool NumSeq3::CheckIntegrity(int pos, int size) const
+bool NumSequenceVer3::CheckIntegrity(int pos, int size) const
 {
-    if (pos <=0 || pos >= max_elems())
+    if (pos <=0 || pos >= MaxElems())
     {
         cerr << "invalid position: " << pos
              << " can not handle request!!"
@@ -31,7 +34,7 @@ bool NumSeq3::CheckIntegrity(int pos, int size) const
     return true;
 }
 
-int NumSeq3::Elem(int pos) const
+int NumSequenceVer3::Elem(int pos) const
 {
     if (!CheckIntegrity(pos, relems_.size()))
         return 0;
