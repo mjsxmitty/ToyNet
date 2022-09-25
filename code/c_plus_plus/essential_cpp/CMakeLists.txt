@@ -11,6 +11,7 @@ add_executable(essential
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp
                 chapter_05/chapter_05.h chapter_05/chapter_05.cpp
+                chapter_06/chapter_06.h chapter_06/chapter_06.cpp
                 util/audio_book.h util/audio_book.cpp
                 util/book.h util/book.cpp
                 util/fibonacci_ver2.h util/fibonacci_ver2.cpp
@@ -24,4 +25,6 @@ add_executable(essential
                 util/stack.h util/stack.cpp
                 util/triangular.h util/triangular.cpp
                 util/triangular_iterator.h util/triangular_iterator.cpp
+                util/bt_node.h util/bt_node.cpp
+                util/binary_tree.h util/binary_tree.cpp
                 )

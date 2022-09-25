@@ -1,10 +1,8 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_06_BINARY_H__
-#define __ESSENTIAL_CPP_CHAPTER_06_BINARY_H__
+#ifndef __ESSENTIAL_CPP_CHAPTER_06_H__
+#define __ESSENTIAL_CPP_CHAPTER_06_H__
 
-//template <typename T>
+extern void ch_6();
 
-
-
-#endif //
+#endif // __ESSENTIAL_CPP_CHAPTER_06_H__
