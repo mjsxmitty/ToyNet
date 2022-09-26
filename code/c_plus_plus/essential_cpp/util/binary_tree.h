@@ -8,6 +8,15 @@ template <typename ElemType>
 class BinaryTree
 {
 public:
+    BinaryTree();
+    BinaryTree(const BinaryTree &);
+    ~BinaryTree();
+    BinaryTree& operator=(const BinaryTree &);
+public:
+    bool Empty() const { return root_ == 0; }
+    void Clear();
+private:
+    void Copy(BTnode<ElemType> *tar, BTnode<ElemType> *src);
 private:
     BTnode<ElemType>    *root_;
 };
