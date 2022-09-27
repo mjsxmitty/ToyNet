@@ -16,12 +16,14 @@ add_executable(essential
                 util/book.h util/book.cpp
                 util/fibonacci_ver2.h util/fibonacci_ver2.cpp
                 util/fibonacci_ver3.h util/fibonacci_ver3.cpp
+                util/fibonacci_ver4.h util/fibonacci_ver4.cpp
                 util/libmat.h util/libmat.cpp
                 util/matrix.h util/matrix.cpp
                 util/num_sequence.h util/num_sequence.cpp
                 util/num_sequence_ver1.h util/num_sequence_ver1.cpp
                 util/num_sequence_ver2.h util/num_sequence_ver2.cpp
                 util/num_sequence_ver3.h util/num_sequence_ver3.cpp
+                util/num_sequence_ver4.h util/num_sequence_ver4.cpp
                 util/stack.h util/stack.cpp
                 util/triangular.h util/triangular.cpp
                 util/triangular_iterator.h util/triangular_iterator.cpp

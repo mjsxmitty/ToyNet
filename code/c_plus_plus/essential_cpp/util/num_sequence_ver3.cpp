@@ -41,3 +41,19 @@ int NumSequenceVer3::Elem(int pos) const
 
     return relems_[pos - 1];
 }
+
+ostream &NumSequenceVer3::Print(ostream &os) const
+{
+    size_t elem_pos = beg_pos_ - 1;
+    size_t elem_cnt = elem_pos + length_;
+
+    if (elem_cnt > relems_.size())
+        GenElems(elem_cnt);
+
+    while (elem_pos < elem_cnt)
+        os << relems_[elem_pos++]
+           << ' ';
+    os << endl;
+
+    return os;
+}

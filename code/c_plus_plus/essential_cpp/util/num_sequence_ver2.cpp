@@ -8,8 +8,7 @@ using namespace std;
 std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns)
 {
     cout << " ( " << ns.Length() << ", " << ns.BegPos() << " ) "; 
-    ns.Print(os);
-    return os;
+    return  ns.Print(os);
 }
 
 bool NumSequenceVer2::CheckIntegrity(int pos, int size) const

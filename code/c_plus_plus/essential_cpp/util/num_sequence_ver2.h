@@ -20,8 +20,8 @@ public:
 
     static int              max_elems() { return max_elems_; }
 protected:
-    virtual void    GenElems(int pos) const = 0;
-    virtual bool    CheckIntegrity(int pos, int size) const;
+    virtual void            GenElems(int pos) const = 0;
+    virtual bool            CheckIntegrity(int pos, int size) const;
 protected:
     //const static int max_elems_ = 1024;
     enum { max_elems_ = 1024 };
