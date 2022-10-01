@@ -13,7 +13,10 @@ void ch_04(int argc, char **argv)
     //ch_4_2(argc, argv);
 
     /* 时间和日期 */
-    ch_4_3(argc, argv);
+    //ch_4_3(argc, argv);
+
+    /* 临时文件 */
+    ch_4_4(argc, argv);
 }
 
 void ch_4_1(int argc, char **argv)
@@ -219,4 +222,23 @@ void ch_4_3(int argc, char **argv)
     
     printf("the date is: %s\n", ctime(&the_time));
     return ;
+}
+
+void ch_4_4(int argc, char **argv)
+{
+    char tmpname[L_tmpnam] = "aaaXXXXXX";
+    //char *filename = tmpnam(tmpname);
+    char *filename = mktemp(tmpname);
+    printf("temporary file name is: %s - %s\n", filename, tmpname);
+
+    FILE *tmpfp = tmpfile();
+    if (tmpfp) {
+        printf("open a temporary file succeed.\n");
+    } else {
+        perror("tmpfile");
+    }
+
+    char tmpname2[] = "aaaXXXXXX";
+    int fd = mkstemp(tmpname2);
+    printf("open temporary succeed, fd: %d\n", fd);
 }

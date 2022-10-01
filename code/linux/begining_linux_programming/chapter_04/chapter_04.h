@@ -12,4 +12,6 @@ extern void ch_4_2(int argc, char **argv);
 
 extern void ch_4_3(int argc, char **argv);
 
+extern void ch_4_4(int argc, char **argv);
+
 #endif // __CHAPTER_04_H__
