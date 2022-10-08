@@ -156,6 +156,9 @@ void ch_2_3_2()
         int *ptr1 = 0;
         int *ptr2 = nullptr;
         int *ptr3 = NULL;
+
+        int zero = 0;
+        //int *ptr4 = zero;
     }
 
     /* void* 指针 */
