@@ -14,13 +14,13 @@ void ch_02()
     //ch_2_2();
 
     /* 2.3 复合类型 */
-    //ch_2_3();
+    ch_2_3();
 
     /* 2.4 const限定符 */
     //ch_2_4();
 
     /* 2.5 处理类型 */
-    ch_2_5();
+    //ch_2_5();
 }
 
 /********************************************************************************/
@@ -107,6 +107,7 @@ void ch_2_2_2()
     //extern int init = 2;  // 函数内部初始化extern变量报错
 
     extern int init2;       // 可以声明多次
+    cout << "init2 = " << init2 << endl;
     init2 = 1;
     cout << "init2 = " << init2 << endl;
 
@@ -139,7 +140,7 @@ void ch_2_3()
     ch_2_3_2();
 
     /* 2.3.3 复合类型声明 */
-    ch_2_3_3();
+    //ch_2_3_3();
 }
 
 #include <cstdlib>
@@ -159,6 +160,28 @@ void ch_2_3_2()
 
         int zero = 0;
         //int *ptr4 = zero;
+    }
+
+    /* 其他指针操作 */
+    {
+        int ival = 1024;
+        int *pi = 0;
+        int *pi2 = &ival;
+
+        if (pi)
+            cout << "pi is empty!" << endl;
+        if (pi2)
+            cout << "pi is empty!" << endl;
+
+        //
+        //pi2 = 0;
+        //pi = &ival;
+        cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
+        pi = &ival + 1;
+        pi2 += 1;
+        cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
+        if (pi == pi2)
+            cout << "pi equal tp pi2." << endl;
     }
 
     /* void* 指针 */
