@@ -260,9 +260,7 @@ void ch_2_4_1()
     /* 初始化和对const的引用 */
     {
         int i = 1024;
-         /* const引用可能是一个非const对象 */
         const int &r1 = i;          // 普通变量
-        //r1 = 0;
         const int &r2 = 1024;       // 字面值
         const int &r3 = i * 1024;   // 算数表达式
         //int &r4 = i * 1024;
@@ -275,6 +273,16 @@ void ch_2_4_1()
         const int temp = dval;
         const int &rd = temp;
         */
+    }
+
+    /* const引用可能是一个非const对象 */
+    {
+        int i = 1024;
+        int &r1 = i;
+        const int &r2 = i;
+
+        r1 = 0;
+        //r2 = 0;
     }
 }
 
@@ -294,7 +302,9 @@ void ch_2_4_2()
     {
         int err_numb = 0;
         int * const cur_err = &err_numb;
-        //*cur_err = 1024;
+        *cur_err = 1024;
+        int err_numb2 = 1024;
+        //cur_err = &err_numb2;
 
         const double pi = 3.14;
         const double * const pip = &pi;
@@ -336,8 +346,10 @@ void ch_2_4_4()
     {
         const int max_files = 1023;
         const int limit = max_files + 1;
+
         int staff_size = 27;
-        const int sz = GetSize(1024);
+        const int sz = GetSize(staff_size);
+        //int iarray[sz] = {0};
 
         int i = 1;
         const int ci = i;   //不是常量表达式
@@ -370,6 +382,7 @@ void ch_2_4_4()
 
     /* 字面值类型 */
     {
+        int i = 1024;
         //constexpr int *ptr = &i;
         constexpr int *iptr = &g_ival;
     }
@@ -379,6 +392,7 @@ void ch_2_4_4()
         const int *p = nullptr;
         p = &g_ival;
         constexpr int *q = nullptr;
+        //q = &g_jval;
         *q = 1024;
 
         // 只能指向固定地址
@@ -422,42 +436,44 @@ void ch_2_5_1()
         using Int = int;
         Int ival = 1024;
         cout << ival << endl;
+
+        using ptrd = double *;
+        ptrd pdd = &dval;
+
     }
 
     /* 指针、常量和类型别名 */
     {
-        typedef char *pstring;
+        typedef char *pchar;
 
-        char c1 = 'a';
-        char c2 = 'b';
-        const pstring cp = &c1;
-        cout << "val = " << *cp << endl;
-        //cstr = &c2;
-        *cp = 'c';
-        cout << "val = " << *cp << endl;
+        char ch1 = 'a';
+        char ch2 = 'b';
 
-        //
-        const char ch = 'd';
-        const pstring *ps1 = &cp;
+        pchar pc = &ch1;
+        pc = &ch2;
+        *pc = 'c';
 
-        pstring tp = &c1;
-        ps1 = &tp;
-        //*ps1 = &c1;
+        const pchar cpc = &ch1;
+        //cpc = &ch2;
+        *cpc = 'd';
 
-        const pstring ps2 = &c2;
-        //ps2 = &c1;
-        *ps2 = 'f';
-        cout << "val = " << **ps1 << endl;
+        pchar pc2 = &ch2;
+        pchar *pcp = &pc;
+        pcp = &pc2;
+        *pcp = &ch1;
+        **pcp = 'e';
 
-        char *cptr = &c1;
-        pstring *pstr = &cptr;
-        cout << "val = " << **pstr << endl;
+        const pchar *cpcp = &pc2;
+        cpcp = &pc;
+        **cpcp = 'f';
+        //*cpcp = &pcp;
 
-        pstring pstr2 = cptr;
+        char *cptr = &ch1;
+        pchar *pstr = &cptr;
+
+        pchar pstr2 = cptr;
         **pstr = 'e';
-        cout << "val = " << *pstr2 << endl;
     }
-
 }
 
 void ch_2_5_2()
@@ -503,6 +519,7 @@ void ch_2_5_2()
         //auto &h = 42;
 
         const auto &j = 42;
+        //j = 0;
         cout << "j = " << j << endl;
 
         //*、&属于声明符;多个变量要保持基本类型一致
@@ -516,6 +533,11 @@ void hw_2_35()
 {
     const int i = 1024;
     auto j = i;
+    j = 0;
+
+    auto &w = i;
+    //w = 0;
+
     const auto &k = i;  // const int
     //k = 1;
 
@@ -524,6 +546,7 @@ void hw_2_35()
     p = &j;
 
     const auto j2 = i, &k2 = i;
+    //j2 = 0;
     //k2 = 3;
 
     auto &k3 = i;
@@ -556,7 +579,7 @@ void ch_2_5_3()
         a = 1;
         cout << "i = " << i << ", a = " << a << endl;
 
-        decltype (r + 0) b = i;
+        decltype (r + 0) b;
         b = 2;
         cout << "i = " << i << ", b = " << b << endl;
 
