@@ -108,13 +108,15 @@ void Homework_3_10()
     return;
 }
 
-/* 列表初始值还是元素数量 */
 void Practice_3_3_1()
 {
-    //使用了{},但是提供的值不能执行列表初始化-->构造
-    vector<string>  v1{10};
-    vector<string>  v2{5, "hi"};
-    cout << v1.size() << ", " << v2.size() << endl;
+    /* 列表初始值还是元素数量？ */
+    {
+        //使用了{},但是提供的值不能执行列表初始化-->构造
+        vector<string>  v1{10};
+        vector<string>  v2{5, "hi"};
+        cout << v1.size() << ", " << v2.size() << endl;
+    }
 }
 
 //计算索引
@@ -354,16 +356,14 @@ void Homework_2_23()
 void Practice_3_5_1()
 {
     /* 字符数组的特殊性 */
-    char a[] = "C++";   //最后一个\0
+    char a[] = "C++";   //最后一个0
     cout << sizeof (a) / sizeof (*a) << endl;   //strlen
 
     /* 复杂声明 */
     int arr[10];
     int* parr[10];              //右-->左
     int (*parray)[10] = &arr;   //内-->外
-    //int (*parray2)[10] = &arr2;
     int (&rarray)[10] = arr;
-    //int (&rarray2)[100] = arr;
 
     int* (&rparr)[10] = parr;
 }
@@ -371,20 +371,76 @@ void Practice_3_5_1()
 /* 指针和数组 */
 void Practice_3_5_3()
 {
-    int a[] = {10,1,2,3,4,5};
-    auto a2(a);     //auto将数组名推断为指针
-    cout << *a2 << endl;
-    //a2 = 42;
+    {
+        int a[] = {10,1,2,3,4,5};
+        auto a2(a);                 //auto将数组名推断为指针
+        cout << *a2 << endl;
+        //a2 = 42;
+    }
 
-    //decltype推断为数组
-    decltype (a) a3 = {1,2,3,4,5,6};
-    //a3 = a2;
-    a3[1] = 100;
+    {
+        int a[] = {10,1,2,3,4,5};
+        //decltype推断为数组
+        decltype (a) a3 = {1,2,3,4,5,6};
+        //a3 = a2;
+        a3[1] = 100;
+    }
+
+    /* 指针也是迭代器 */
+    {
+        int arr[] = {0,1,2,3,4,5,6,7,8,9};
+        int *p = arr;
+        ++p;
+
+        int *e = &arr[10];   // 不要解引用
+        for (auto b = arr; b != e; ++b)
+            cout << *b << endl;
+    }
+
+    /* 标准库begin和end */
+    {
+        int arr[] = {0,1,2,3,4,5,6,7,8,9};
+        int *pbeg = begin(arr);
+        int *pend = end(arr);
+
+        while (pbeg != pend && *pbeg >= 0)
+            cout << *pbeg << endl;
+    }
+
+    /* 指针运算 */
+    {
+        constexpr size_t sz = 5;
+        int arr[sz] = {1,2,3,4,5};
+        int *ip = arr;
+        int *ip2 = ip + 4;  //ip[4]
+        //int *ip3 = ip + sz;
+        //int *ip4 = ip + 10;
+
+        auto n = end(arr) - begin(arr);
+
+        int *b = begin(arr), *e = end(arr);
+        while (b < e) {
+            //
+        }
+    }
+
+    /* 解引用和指针的交互 */
+    {
+        int ia[] = {1,2,3,4,5};
+        int last = *(ia + 4);   //ia[4]
+
+        last = *ia + 4;
+    }
 }
 
 //C风格字符串
 void Practice_3_5_4()
 {
+    {
+        char ca[] = {'C','+','+'};
+        //cout << strlen(ca) << endl;
+    }
+
     string s1 = "A string example";
     string s2 = "A different string";
 
@@ -426,7 +482,31 @@ void Practice_3_5_5()
 {
     string s("Hello");
 
+    //char *str = s.c_str();
     const char *str = s.c_str();    //指针赋值（以0结尾）
+}
+
+void hw_3_42()
+{
+    cout << "input array size: ";
+    int arr_sz;
+    cin >> arr_sz;
+
+    srand((unsigned)time(NULL));
+    vector<int> ivec;
+    for (int i = 0; i != arr_sz; ++i)
+        ivec.push_back(rand() % 100);
+    cout << endl;
+
+    int iarry[arr_sz];
+    auto it = ivec.cbegin();
+    for (auto &val : iarry)
+    {
+        val = *it;
+        cout << val << ' ';
+        ++it;
+    }
+    cout << endl;
 }
 
 /* 多维数组 */
