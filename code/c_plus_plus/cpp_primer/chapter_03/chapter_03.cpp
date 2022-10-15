@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,7 +17,10 @@ const int NUM = 100;
 void ch_03()
 {
     /* 3.2 标准库类型 string */
-    ch_3_2();
+    //ch_3_2();
+
+    /* 3.5 数组 */
+    ch_3_5();
 }
 
 /********************************************************************************/
@@ -68,7 +72,7 @@ void ch_3_2_3()
     cout << "You hex number is: " << result;
 }
 
-void Homework_3_8()
+void hw_3_8()
 {
     string s;
     cout << "please enter a series word, include space: ";
@@ -86,7 +90,7 @@ void Homework_3_8()
     return ;
 }
 
-void Homework_3_10()
+void hw_3_10()
 {
     string s;
     cout << "please enter a series word, include character: ";
@@ -108,7 +112,7 @@ void Homework_3_10()
     return;
 }
 
-void Practice_3_3_1()
+void ch_3_3_1()
 {
     /* 列表初始值还是元素数量？ */
     {
@@ -120,7 +124,7 @@ void Practice_3_3_1()
 }
 
 //计算索引
-void Practice_3_3_3()
+void ch_3_3_3()
 {
     vector<unsigned>    grades;
     unsigned            grade;
@@ -160,7 +164,7 @@ void Practice_3_3_3()
     cout << endl;
 }
 
-void Homework_20()
+void hw_20()
 {
     vector<int> vInt;
     //int         iVal;
@@ -236,7 +240,7 @@ void Homework_20()
 }
 
 //使用迭代器
-void Practice_3_4_1()
+void ch_3_4_1()
 {
     string str("some string"), orig = str;
     if (!str.empty())
@@ -310,7 +314,7 @@ void Practice_3_4_1()
     cout << "auto for loop assign a new value to str: " << str  << endl;
 }
 
-void Homework_3_22()
+void hw_3_22()
 {
     vector<string>  s_vec;
     string          str;
@@ -330,7 +334,7 @@ void Homework_3_22()
     //return 0;
 }
 
-void Homework_2_23()
+void hw_2_23()
 {
     vector<int> ivec;
     srand((unsigned)time(NULL));
@@ -353,7 +357,16 @@ void Homework_2_23()
     }
 }
 
-void Practice_3_5_1()
+void ch_3_5()
+{
+        int a[] = {10,1,2,3,4,5};
+        auto a2(a);                 //auto将数组名推断为指针
+        cout << *a2 << endl;
+        //a2 = 42;
+        cout << *(a2 + 1) << endl;
+}
+
+void ch_3_5_1()
 {
     /* 字符数组的特殊性 */
     char a[] = "C++";   //最后一个0
@@ -369,13 +382,14 @@ void Practice_3_5_1()
 }
 
 /* 指针和数组 */
-void Practice_3_5_3()
+void ch_3_5_3()
 {
     {
         int a[] = {10,1,2,3,4,5};
         auto a2(a);                 //auto将数组名推断为指针
         cout << *a2 << endl;
         //a2 = 42;
+        //cout << *(a2 + 1) << endl;
     }
 
     {
@@ -424,66 +438,120 @@ void Practice_3_5_3()
         }
     }
 
-    /* 解引用和指针的交互 */
+    /* 解引用和指针运算的交互 */
     {
         int ia[] = {1,2,3,4,5};
         int last = *(ia + 4);   //ia[4]
 
         last = *ia + 4;
+        int value = *(ia + 4);
+    }
+
+    {
+        int ia[] = {1,2,3,4,5};
+
+        int i =  ia[2];
+        int *p = ia;
+        i = *(p + 2);
+        i = *p + 2;
+        i = p[-1];  //
     }
 }
 
-//C风格字符串
-void Practice_3_5_4()
+void hw_36()
 {
+    const int sz = 5;
+    int a[sz], b[sz];
+    srand((unsigned) time(NULL));
+
+    for (int i = 0; i < sz; ++i)
+        a[i] = rand() % 100;
+    for_each(begin(a), end(a), [](int i) { cout << i << ' ';});
+
+    for (int i = 0; i < sz; ++i)
+        b[i] = rand() % 100;
+    for_each(begin(b), end(b), [](int i) { cout << i << ' ';});
+
+    int *p = begin(a), *q = begin(b);
+    while (p != end(a) && q != end(b))
+    {
+        if (*p != *q)
+        {
+            cout << "not equal!" << endl;
+            return ;
+        }
+        ++p;
+        ++q;
+    }
+    cout << "equal!!!" << endl;
+    return;
+}
+
+//C风格字符串
+void ch_3_5_4()
+{
+    /* C标准库String函数 */
     {
         char ca[] = {'C','+','+'};
         //cout << strlen(ca) << endl;
     }
 
-    string s1 = "A string example";
-    string s2 = "A different string";
-
-    if (s1 < s2)
-        cout << s1 << endl;
-    else
-        cout << s2 << endl;
-    string large_string = s1 + s2;
-    cout << "change after str: " << large_string << endl;
-
-    const char ca1[] = "A string example";
-    const char ca2[] = "A different string";
-
-    if (strcmp(ca1, ca2) < 0)
+    /* 比较字符串 */
     {
-        cout << ca1 << " " << strlen(ca1) << endl;
-    }
-    else
-    {
-        cout << ca2 << " " << strlen(ca2) << endl;
+        string s1 = "A string example";
+        string s2 = "A different string";
+        if (s1 < s2)
+            ;//
+
+        const char ca1[] = "A string example";
+        const char ca2[] = "A different string";
+
+        if (strcmp(ca1, ca2) < 0)
+            ;//
     }
 
-    const unsigned sz = strlen(ca1) + strlen(ca2) + 2;
-    char large_str[sz];
-    strcpy(large_str, ca1);
-    strcat(large_str, " ");
-    strcat(large_str, ca2);
-    cout << "change after str: " << large_str << endl;
+    /* 目标字符串的大小由调用者指定 */
+    {
+        const char ca1[] = "A string example";
+        const char ca2[] = "A different string";
 
-    strncpy(large_str, ca1, sz);
-    if (strlen(ca1) > sz)
-        large_str[sz - 1] = '\0';
-    strncat(large_str, " ", 2);
-    strncat(large_str, ca2, sz - strlen(large_str));
-    cout << "change after str: " << large_str << endl;
+        const unsigned sz = strlen(ca1) + strlen(ca2) + 2;
+        char large_str[sz];
+        strcpy(large_str, ca1);
+        strcat(large_str, " ");
+        strcat(large_str, ca2);
+        cout << "change after str: " << large_str << endl;
+    }
+
+    {
+        const char ca1[] = "A string example";
+        const char ca2[] = "A different string";
+
+        const unsigned sz = strlen(ca1) + strlen(ca2) + 2;
+        char large_str[sz];
+
+        strncpy(large_str, ca1, sz);
+        if (strlen(ca1) > sz)
+            large_str[sz - 1] = '\0';
+        strncat(large_str, " ", 2);
+        strncat(large_str, ca2, sz - strlen(large_str));
+        cout << "change after str: " << large_str << endl;
+    }
 }
 
-void Practice_3_5_5()
+void ch_3_5_5()
 {
     string s("Hello");
 
     //char *str = s.c_str();
     const char *str = s.c_str();    //指针赋值（以0结尾）
+
+    /* 使用数组初始化vector对象 */
+    {
+        int int_arr[] = {0,1,2,3,4};
+        vector<int> ivec(begin(int_arr), end(int_arr));
+        vector<int> sub_vec(int_arr + 1, int_arr + 3);
+    }
 }
 
 void hw_3_42()
@@ -510,7 +578,7 @@ void hw_3_42()
 }
 
 /* 多维数组 */
-void Practice_3_6()
+void ch_3_6()
 {
     //多维数组下标使用: 下标运算符与维度的的关系
     int arr[3][4] = {0};
@@ -523,7 +591,7 @@ void Practice_3_6()
     int (*parr2)[20][30] = &arr2[1];
 }
 
-void Homework_43_44_45()
+void hw_43_44_45()
 {
     constexpr size_t row = 3;
     constexpr size_t col = 4;
@@ -546,20 +614,27 @@ void Homework_43_44_45()
     //     }
     // }
     
+    cout << "使用普通for: " << endl;
+    for (size_t i = 0; i != row; ++i)
+    {
+        for (size_t j = 0; j != col; ++j)
+            cout << a[i][j] << " ";
+        cout << endl;
+    }
+
+    cout << "使用函数: " << endl;
+    for (auto p = begin(a); p != end(a); ++p)
+    {
+        for (auto q = begin(*p); q != end(*p); ++q)
+            cout << *q << " ";
+        std::cout << std::endl;
+    }
 
     cout << "使用c11 for: " << endl;
     for (int (&ch1)[4] : a)
     {
         for (int &ch2 : ch1)
             cout << ch2 << " ";
-        cout << endl;
-    }
-
-    cout << "使用普通for: " << endl;
-    for (size_t i = 0; i != row; ++i)
-    {
-        for (size_t j = 0; j != col; ++j)
-            cout << a[i][j] << " ";
         cout << endl;
     }
 
@@ -583,6 +658,7 @@ void Homework_43_44_45()
     }
 
     cout << "使用类型别名和指针: " << endl;
+    //for (ArrayType *p = begin(a); p != end(a); ++p)
     for (ArrayType *p = a; p != a + row; ++p)   //数组名转换为第一个内层数组指针
     {
         for (int *q = *p; q != *p + col; ++q)
@@ -605,16 +681,6 @@ void Homework_43_44_45()
             cout << *q << " ";
         cout << endl;
     }
-
-    cout << "使用函数: " << endl;
-    //for (ArrayType *p = begin(a); p != end(a); ++p)
-    for (auto p = begin(a); p != end(a); ++p)
-    {
-        for (auto q = begin(*p); q != end(*p); ++q)
-            cout << *q << " ";
-        std::cout << std::endl;
-    }
-    
 }
 
 
