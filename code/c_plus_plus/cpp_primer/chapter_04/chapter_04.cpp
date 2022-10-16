@@ -32,6 +32,29 @@ void Practice_4_2()
     cout << "short value: " << short_value << endl;
 }
 
+int get_val() { return 0; }
+void ch_4_4()
+{
+    {
+        int k = 0;
+        //k = {3.14};
+        k = {1024};
+
+        vector<int> ivec;
+        ivec = {0,1,2,3,4};
+    }
+
+    /* 赋值运算符优先级比较低 */
+    {
+        int i;
+        while ((i = get_val()) != 1024)
+        {
+            /* code */
+        }
+        
+    }
+}
+
 /*后置运算符*/
 void Practice_4_5()
 {
@@ -52,6 +75,15 @@ void Practice_4_5()
     auto it = vec.begin();
     while(it != vec.end())
         cout << *it++ << endl;
+}
+
+void ch_4_6()
+{
+    string s1 = "a string", *p = &s1;
+    auto n = s1.size();
+    n = (*p).size();
+    //n = *p.size();
+    n = p->size();
 }
 
 /*条件运算符优先级非常低*/
