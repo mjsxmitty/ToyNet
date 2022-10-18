@@ -5,20 +5,18 @@
 #include <iostream>
 #include <stdexcept>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::string;
+using namespace std;
 
-void Chapter_05()
+void ch_05()
 {
-    Practice_5_3_2();
-    //Homework_5_12();
-    //Homework_5_14();
-    //Homework_5_20();
-    //Homework_5_21();
-    //Homework_5_24();
-    //Homework_5_25();
+    //ch_5_3_2();
+
+    //hw_5_12();
+    //hw_5_14();
+    //hw_5_20();
+    //hw_5_21();
+    //hw_5_24();
+    hw_5_25();
 }
 
 /* switch语句 */
@@ -34,14 +32,14 @@ void Practice_5_3_2()
             int ival;   //没有被初始化
             break;
         case false:
-        {
-            ival = 100;
-            cout << ival << endl;
-        }
+            {
+                ival = 100;
+                cout << ival << endl;
+            }
         break;
     }
 }
-void Homework_5_12()
+void hw_5_12()
 {
     unsigned int ffCnt = 0, flCnt = 0, fiCnt = 0;
     char ch, pref = '\0';
@@ -78,7 +76,7 @@ void Homework_5_12()
     return ;
 }
 
-void Homework_5_14()
+void hw_5_14()
 {
     string  current_str, pre_str = "", max_str;
     int     current_cnt = 1, max_cnt = 0;
@@ -106,7 +104,7 @@ void Homework_5_14()
         cout << "each word occur once times." << endl;
 }
 
-void Homework_5_20()
+void hw_5_20()
 {
     string  current_str, pre_str = " ";
     bool b1 = true;
@@ -130,7 +128,7 @@ void Homework_5_20()
     return ;
 }
 
-void Homework_5_21()
+void hw_5_21()
 {
     string  current_str, pre_str = " ";
     bool b1 = true;
@@ -157,7 +155,7 @@ void Homework_5_21()
     return ;
 }
 
-void Homework_5_24()
+void hw_5_24()
 {
     cout << "请输入除数和被除数: ";
     int val1, val2;
@@ -168,16 +166,18 @@ void Homework_5_24()
     return ;
 }
 
-void Homework_5_25()
+void hw_5_25()
 {
     int val1, val2;
 
     cout << "请输入除数和被除数: ";
     while (cin >> val1 >> val2)
     {
-        try {
+        try
+        {
             if (val2 == 0)
                 throw std::runtime_error("除数为0");
+
             cout << "结果是: " << val1 / val2 << endl;
         } catch (std::runtime_error e) {
             cout << e.what() << endl;

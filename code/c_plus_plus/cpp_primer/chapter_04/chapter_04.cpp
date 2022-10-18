@@ -1,27 +1,23 @@
 
 
 #include "chapter_04.h"
-//#include "../sales_data/sales_data.h"
 
 #include <iostream>
 #include <vector>
 
-using std::vector;
 using namespace std;
 
-void Chapter_04()
+void ch_04()
 {
-    Practice_4_2();
-    //Practice_4_5();
-    //Practice_4_7();
-    //Practice_4_9();
-    //Practice_4_8();
-    //Practice_4_11_2();
-    //Practice_4_11_3();
+    //ch_4_2();
+    //ch_4_5();
+    //ch_4_7();
+    //ch_4_9();
+    //ch_4_8();
+    ch_4_11();
 }
 
-
-void Practice_4_2()
+void ch_4_2()
 {
     int i = 1;
     cout << -i << ", " << +i << ", " << i << endl;    //-返回的是副本
@@ -51,12 +47,11 @@ void ch_4_4()
         {
             /* code */
         }
-        
     }
 }
 
 /*后置运算符*/
-void Practice_4_5()
+void ch_4_5()
 {
     vector<int> ivec;
     int cnt = 10;
@@ -87,7 +82,7 @@ void ch_4_6()
 }
 
 /*条件运算符优先级非常低*/
-void Practice_4_7()
+void ch_4_7()
 {
     int grade = 75;
     cout << ((grade < 60) ?  "fail" : "pass");
@@ -96,10 +91,10 @@ void Practice_4_7()
 //    cout << (grade < 60) ?  "fail" : "pass";
 //    cout << endl;
 
-    //cout << grade < 60 ?  "fail" : "pass";
+//    cout << grade < 60 ?  "fail" : "pass";
 }
 
-void Practice_4_8()
+void ch_4_8()
 {
     unsigned long quiz = 0;
     quiz |= 1UL << 2;
@@ -107,8 +102,8 @@ void Practice_4_8()
     cout << quiz;
 }
 
-/*鏁扮粍涓庢寚閽堢殑鍏崇郴*/
-void Practice_4_9()
+/* sizeof */
+void ch_4_9()
 {
     int x[10];
     int *ptr = x;
@@ -134,25 +129,57 @@ void Practice_4_9()
     */
 }
 
-
-void Practice_4_11_2()
+void ch_4_11()
 {
-    int array[5] = {0};
-    cout << array << endl;
-    cout << &array << endl;
-    cout << &array[0] << endl;
-    
-    cout << &array[1] << endl;
-    cout << &array[0] + 1 << endl;
-    cout << &array + 1 << endl;
-    auto v1= &array + 1;
-    auto v2 = &array;
-    cout << v1 - v2 << endl;
-    cout << sizeof(*array) << endl;
-    cout << sizeof (int) << endl;
+    ch_4_11_2();
+
+    //ch_4_11_3();
 }
 
-void Practice_4_11_3()
+void ch_4_11_2()
+{
+    int array[5] = {0};
+
+    {
+        cout << array << endl;
+        cout << &array << endl;
+        cout << &array[0] << endl;
+        cout << endl;
+    }
+
+    {
+        cout << &array[1] << endl;
+        cout << &array[0] + 1 << endl;
+        cout << &array + 1 << endl;
+        cout << endl;
+    }
+
+    {
+        auto v1 = &array + 1;
+        auto v2 = &array;
+        cout << v1 - v2 << endl;
+        cout << sizeof(*array) << endl;
+        cout << sizeof (int) << endl;
+        cout << endl;
+    }
+
+    {
+        int array[2][3] = {0};
+        cout << array << endl;
+        cout << &array << endl;
+        cout << &array[0] << endl;
+        cout << &array[1] << endl;
+        cout << array + 1 << endl;
+        cout << &array + 1 << endl;
+        cout << endl;
+        cout << sizeof(**array) << endl;
+        cout << sizeof(*array) << endl;
+        cout << sizeof(array) << endl;
+        cout << endl;
+    }
+}
+
+void ch_4_11_3()
 {
     /* 保证转换后指向类型与原类型相同 */
     double d = 3.14;
