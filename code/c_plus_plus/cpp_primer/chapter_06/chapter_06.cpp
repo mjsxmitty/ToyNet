@@ -8,28 +8,49 @@
 #include <initializer_list>
 #include <cassert>
 
-using std::initializer_list;
-using std::vector;
-using std::cout;
-using std::endl;
-using std::string;
-using std::cin;
+using namespace std;
 
-void Chapter_06()
+void ch_06()
 {
-    //Practice_6_1_1();
-    //Practice_6_1_3();
-    //Practice_6_2_6();
-    //Practice_6_2_2();
-    //Practice_6_3_2();
-    //Practice_6_3_3();
-    //Homework_6_33();
-    //Practice_6_5_1();
-    //Practice_6_5_2();
-    Practice_6_5_3();
-    //Practice_6_7();
+    ch_6_1();
+    //ch_6_1_1();
+    //ch_6_1_3();
+    //ch_6_2_6();
+    //ch_6_2_2();
+    //ch_6_3_2();
+    //ch_6_3_3();
+    //hw_6_33();
+    //ch_6_5_1();
+    //ch_6_5_2();
+    ch_6_5_3();
+    //ch_6_7();
 
-    //Practice();
+    //ch();
+}
+
+/* 编写函数 */
+int fact(int val)
+{
+    int ret = 1;
+    while (val > 1)
+        ret *= val--;
+
+    return ret;
+}
+
+void ch_6_1()
+{
+    {
+        /* 调用函数 */
+        int j = fact(5);
+        cout << "5! is "<< j << endl;
+    }
+
+    /* 局部对象 */
+    ch_6_1_1();
+
+    /* 离式编译,函数调用，递归(6-1-1) */
+    ch_6_1_3();
 }
 
 size_t FuncCalls()
@@ -38,26 +59,14 @@ size_t FuncCalls()
     return ++cnt;
 }
 
-/* 函数最外层作用域中局部变量不能与函数形参命名一样 */
-int Practice_6_1(int i)
-{
-    //同一作用域
-    //int i = 1;
-    {
-        int i = 1;
-    }
-    return i;
-}
-
 /*局部静态函数*/
-void Practice_6_1_1()
+void ch_6_1_1()
 {
     for (size_t i = 0; i != 10; ++i)
         cout << FuncCalls() << endl;
 }
 
-/*分离式编译,函数调用，递归(6-1-1)*/
-void Practice_6_1_3()
+void ch_6_1_3()
 {
 	cout << Factorial(5) << endl;
 	cout << Fact(5) << endl;
@@ -121,7 +130,7 @@ vector<int>::const_iterator FindChar(
     return res_iter;       
 }
 
-void Practice_6_2_2()
+void ch_6_2_2()
 {
     // string s;
 	// getline(cin, s); 
@@ -145,7 +154,7 @@ void Practice_6_2_2()
 }
 
 /*含有可变参数列表*/
-void Practice_6_2_6()
+void ch_6_2_6()
 {
     string expected = "description", actual = "some other case";
     ErrorMsg({"functionX", expected, actual});
@@ -170,7 +179,7 @@ vector<string> FunctionX()
         return {"functionX", expected, actual};
 }
 
-void Practice_6_3_2()
+void ch_6_3_2()
 {
     auto ret = FunctionX();
     for (auto i : ret)
@@ -217,7 +226,7 @@ int (&ArrRef(int i))[5]
 }
 
 /* 返回数组指针&引用的函数 */
-void Practice_6_3_3()
+void ch_6_3_3()
 {
     int* p = ElemPtr(6);
     for (size_t i = 0; i < 5; ++i)
@@ -253,7 +262,7 @@ void PrintVec(const vector<int> &vec, unsigned index)
     }
 }
 
-void Homework_6_33()
+void hw_6_33()
 {
     int a[] = {1,3,5,7,9};
     vector<int> local_vec(std::begin(a), std::end(a));
@@ -278,7 +287,7 @@ string Screen2(sz param1, sz param2, char c)
 {
     cout << param1 << ' ' << param2 << ' ' << c << endl;
 }
-void Practice_6_5_1()
+void ch_6_5_1()
 {
 
     Screen1(10);
@@ -291,14 +300,14 @@ void Practice_6_5_1()
 
 constexpr int NewSize() {return 10;}
 constexpr size_t Scale(size_t cnt) {return  NewSize() * cnt;}
-void Practice_6_5_2()
+void ch_6_5_2()
 {
     int Arr[Scale(2)] = {0};
     int i = 2;
     //int Arr2[Scale(i)] = {0};
 }
 
-void Practice_6_5_3()
+void ch_6_5_3()
 {
     //assert(false);
     assert(true);
@@ -328,7 +337,7 @@ int MinElement(vector<int>::iterator beg, vector<int>::iterator end)
 
 int (*pf)(vector<int>::iterator beg, vector<int>::iterator end) = MinElement;
 
-void Practice_6_7_1()
+void ch_6_7_1()
 {
     vector<int> ivec;
     // give ivec some values
@@ -354,7 +363,7 @@ decltype(SumLength)* GetFun(const string &fetch)
     return LargerLength;
 }
 
-void Practice_6_7_2()
+void ch_6_7_2()
 {
     cout <<GetFun("sum")("hello", "world") << endl;
     cout <<GetFun("larger")("hello", "world") << endl;
@@ -391,7 +400,7 @@ void Complute(int a, int b, int (*p)(int, int))
 }
 
 //回调
-void Practice()
+void ch()
 {
     int i = 5, j = 10;
     decltype(Func1) *p1 = Func1, *p2 = Func2, *p3 = Func3, *p4 = Func4, *p5 = Func5;

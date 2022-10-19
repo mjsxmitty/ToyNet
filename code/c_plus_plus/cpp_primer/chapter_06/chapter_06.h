@@ -5,22 +5,24 @@
 #include <string>
 #include <sstream>
 
-void Chapter_06();
+extern void ch_06();
 
-void Practice_6_1_1();
-void Practice_6_1_3();
-void Practice_6_2_2();
-void Practice_6_2_6();
-void Practice_6_3_2();
-void Practice_6_3_3();
-void Practice_6_5_1();
-void Practice_6_5_2();
-void Practice_6_5_3();
-void Practice_6_7();
+extern int fact(int val);
+extern void ch_6_1();
+void ch_6_1_1();
+void ch_6_1_3();
+void ch_6_2_2();
+void ch_6_2_6();
+void ch_6_3_2();
+void ch_6_3_3();
+void ch_6_5_1();
+void ch_6_5_2();
+void ch_6_5_3();
+void ch_6_7();
 
-void Homework_6_33();
+void hw_6_33();
 
-void Practice();
+void ch();
 
 struct ErrCode
 {

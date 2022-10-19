@@ -35,6 +35,7 @@ int main(int argc, char **argv)
     //ch_03();
     //ch_04();
     //ch_05();
+    ch_06();
     //ch_15();
     //Chapter_04();
     //Chapter_05();
