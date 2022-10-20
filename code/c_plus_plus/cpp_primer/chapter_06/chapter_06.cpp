@@ -46,7 +46,7 @@ void ch_6_1()
         cout << "5! is "<< j << endl;
     }
 
-    /* 局部对象 */
+    /* 局部静态函数 */
     ch_6_1_1();
 
     /* 离式编译,函数调用，递归(6-1-1) */
@@ -59,7 +59,7 @@ size_t FuncCalls()
     return ++cnt;
 }
 
-/*局部静态函数*/
+
 void ch_6_1_1()
 {
     for (size_t i = 0; i != 10; ++i)
@@ -74,23 +74,19 @@ void ch_6_1_3()
 	cout << Fact(0) << endl;
 }
 
-/*可变参数也可以有其他的参数*/
-void ErrorMsg(ErrCode e, initializer_list<string> il)
+void ch_6_2()
 {
-    cout << e.Msg() << ": ";
-    for (const auto &elem : il)
-        cout << elem << " ";
-    cout << endl;
+    /* 传引用参数 */
+    ch_6_2_2();
+
+    /* 数组形参 */
+    ch_6_2_4();
+
+    /* 含有可变参数列表 */
+    ch_6_2_6();
 }
 
-void ErrorMsg(initializer_list<string> il)
-{
-    for (auto beg = il.begin(); beg != il.end(); ++beg)
-        cout << *beg << " ";
-    cout << endl;
-}
-
-/*使用引用传递额外参数*/
+/* 使用引用返回额外消息 */
 string::size_type FindChar(const string &s, char c, string::size_type &occurs)
 {
     auto ret = s.size();
@@ -108,6 +104,114 @@ string::size_type FindChar(const string &s, char c, string::size_type &occurs)
 
     return ret;
 }
+
+void ch_6_2_2()
+{
+    string s;
+    getline(cin, s);
+
+    size_t ctr = 0;
+    auto index = FindChar(s, 'o', ctr);
+    cout << index << " " << ctr << endl;
+
+//	vector<int> ivec;
+//	int i;
+//	while (cin >> i)
+//		ivec.push_back(i);
+
+//    for (auto i : {43, 33, 92})
+//    {
+//        auto it = FindChar(ivec.begin(), ivec.end(), i, ctr);
+//		if (it == ivec.end())
+//			cout << i << " is not in the input data" << endl;
+//		else
+//			cout << i << " was at position " << it - ivec.begin() << endl;
+//    }
+}
+
+
+void print(const int *cp)
+{
+    if (cp)
+        while (*cp)
+            cout << *cp++ << ' ';
+}
+
+void print(const int *beg, const int *end)
+{
+    while (beg != end)
+        cout << *beg++ << ' ';
+}
+
+void print(const int ia[], size_t size)
+{
+    for (size_t i = 0; i != size; ++i)
+        cout << ia[i] << ' ';
+}
+
+void print(int (&ra)[10])
+{
+    for (auto &elem : ra)
+        cout << elem << ' ';
+}
+
+void ch_6_2_4()
+{
+    int ia[] = {0,1,2,3,4,5,6,7,8,9};
+
+    /* 使用标记指定数组长度 */
+    print(ia);
+
+    /* 使用标准库规范 */
+    print(ia, ia + 10);
+
+    /* 显示传递一个数组大小形参 */
+    print(ia, 10);
+
+    /* 数组引用形参 */
+    print(ia);
+
+    /* 传递多维数组 */
+    {
+        void print(int (*ra)[10], int rol_size);
+        //void print(int ra[][10], int rol_size);
+    }
+}
+
+void ErrorMsg(ErrCode e, initializer_list<string> il)
+{
+    cout << e.Msg() << ": ";
+    for (const auto &elem : il)
+        cout << elem << " ";
+    cout << endl;
+}
+
+void ErrorMsg(initializer_list<string> il)
+{
+    for (auto beg = il.begin(); beg != il.end(); ++beg)
+        cout << *beg << " ";
+    cout << endl;
+}
+
+void ch_6_2_6()
+{
+    string expected = "description", actual = "some other case";
+    ErrorMsg({"functionX", expected, actual});
+    cout << endl;
+
+    /* 序列值放在{}中 */
+    ErrorMsg({"functionX", "okay"});
+    cout << endl;
+
+    /* 可变参数也可以有其他的参数 */
+    ErrorMsg(ErrCode(1), {"functionX", expected, actual});
+    cout << endl;
+
+    ErrorMsg(ErrCode(0), {"functionX", "okay"});
+
+    // TODO 省略符形参...
+}
+
 
 vector<int>::const_iterator FindChar(
     vector<int>::const_iterator beg,
@@ -130,41 +234,9 @@ vector<int>::const_iterator FindChar(
     return res_iter;       
 }
 
-void ch_6_2_2()
-{
-    // string s;
-	// getline(cin, s); 
-	size_t ctr = 0;
-	// auto index = FindChar(s, 'o', ctr);
-	// cout << index << " " << ctr << endl;
 
-	vector<int> ivec;
-	int i;
-	while (cin >> i)
-		ivec.push_back(i);
 
-    for (auto i : {43, 33, 92})
-    {
-        auto it = FindChar(ivec.begin(), ivec.end(), i, ctr);
-		if (it == ivec.end())
-			cout << i << " is not in the input data" << endl;
-		else
-			cout << i << " was at position " << it - ivec.begin() << endl;
-    }
-}
 
-/*含有可变参数列表*/
-void ch_6_2_6()
-{
-    string expected = "description", actual = "some other case";
-    ErrorMsg({"functionX", expected, actual});
-    cout << endl;
-    ErrorMsg({"functionX", "okay"});
-    cout << endl;
-    ErrorMsg(ErrCode(1), {"functionX", expected, actual});
-    cout << endl;
-    ErrorMsg(ErrCode(0), {"functionX", "okay"});
-}
 
 
 /*列表初始化返回值(c11)*/
