@@ -16,15 +16,18 @@ extern void ch_6_2();
 extern void ch_6_2_2();
 extern void ch_6_2_4();
 extern void ch_6_2_6();
+extern void hw_6_33();
 
+extern void ch_6_3();
 extern void ch_6_3_2();
 extern void ch_6_3_3();
+
+extern void ch_6_5();
 extern void ch_6_5_1();
 extern void ch_6_5_2();
 extern void ch_6_5_3();
-extern void ch_6_7();
 
-extern void hw_6_33();
+extern void ch_6_7();
 
 extern void ch();
 

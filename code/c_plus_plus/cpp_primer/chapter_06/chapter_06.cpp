@@ -12,20 +12,17 @@ using namespace std;
 
 void ch_06()
 {
+    /* 函数基础 */
     ch_6_1();
-    //ch_6_1_1();
-    //ch_6_1_3();
-    //ch_6_2_6();
-    //ch_6_2_2();
-    //ch_6_3_2();
-    //ch_6_3_3();
-    //hw_6_33();
-    //ch_6_5_1();
-    //ch_6_5_2();
-    ch_6_5_3();
-    //ch_6_7();
+    
+    /* 参数传递 */
+    ch_6_2();
 
-    //ch();
+    /* 返回类型和return语句 */
+    ch_6_3();
+
+    /*  */
+    ch_6_5();
 }
 
 /* 编写函数 */
@@ -105,6 +102,27 @@ string::size_type FindChar(const string &s, char c, string::size_type &occurs)
     return ret;
 }
 
+vector<int>::const_iterator FindChar(
+    vector<int>::const_iterator beg,
+    vector<int>::const_iterator end,
+    int val, string::size_type &occurs)
+{
+    auto res_iter = end;
+    occurs = 0;
+
+    for ( ; beg != end; ++beg)
+    {
+        if (*beg == val)
+        {
+            if (res_iter == end)
+                res_iter = beg;
+            ++occurs;
+        }
+    }
+
+    return res_iter;       
+}
+
 void ch_6_2_2()
 {
     string s;
@@ -176,6 +194,8 @@ void ch_6_2_4()
         void print(int (*ra)[10], int rol_size);
         //void print(int ra[][10], int rol_size);
     }
+
+    hw_6_33();
 }
 
 void ErrorMsg(ErrCode e, initializer_list<string> il)
@@ -212,32 +232,31 @@ void ch_6_2_6()
     // TODO 省略符形参...
 }
 
-
-vector<int>::const_iterator FindChar(
-    vector<int>::const_iterator beg,
-    vector<int>::const_iterator end,
-    int val, string::size_type &occurs)
+void PrintVec(const vector<int> &vec, unsigned index)
 {
-    auto res_iter = end;
-    occurs = 0;
-
-    for ( ; beg != end; ++beg)
+    unsigned sz = vec.size();
+    if (!vec.empty() && index < sz)
     {
-        if (*beg == val)
-        {
-            if (res_iter == end)
-                res_iter = beg;
-            ++occurs;
-        }
+        cout << vec[index] << ' ';
+        PrintVec(vec, ++index);
     }
-
-    return res_iter;       
 }
 
+void hw_6_33()
+{
+    int a[] = {1,3,5,7,9};
+    vector<int> local_vec(std::begin(a), std::end(a));
+    PrintVec(local_vec, 0);
+}
 
-
-
-
+void ch_6_3()
+{
+    /* 有返回值函数 */
+    ch_6_3_2();
+    
+    /* 返回数组指针&引用的函数 */
+    ch_6_3_3();
+}
 
 /*列表初始化返回值(c11)*/
 vector<string> FunctionX()
@@ -259,16 +278,16 @@ void ch_6_3_2()
     cout << endl;
 }
 
-/*数组类型相关*/
+/* 数组类型相关 */
 int Arr[10];            // int  数组
 int *pArr[10];          // int* 数组
 int (*p)[10] = &Arr;    // 指向数组的指针
 
-/*数组类型别名*/
+/* 数组类型别名 */
 //using arrT = int [5];
 typedef int arrT[5];
 
-/*返回指向数组相关类型的函数*/
+/* 声明返回指向数组指针的函数 */
 arrT*   Func(int i);                //类型别名
 auto    Func(int i) -> int (*)[5];  //尾置类型
 int     (*Func(int i))[5];          //直接声明
@@ -297,7 +316,6 @@ int (&ArrRef(int i))[5]
     return (i % 2) ? odd : even;
 }
 
-/* 返回数组指针&引用的函数 */
 void ch_6_3_3()
 {
     int* p = ElemPtr(6);
@@ -324,22 +342,20 @@ void ch_6_3_3()
     cout << endl;
 }
 
-void PrintVec(const vector<int> &vec, unsigned index)
+void ch_6_5()
 {
-    unsigned sz = vec.size();
-    if (!vec.empty() && index < sz)
-    {
-        cout << vec[index] << ' ';
-        PrintVec(vec, ++index);
-    }
+    ch_6_5_1();
 }
 
-void hw_6_33()
-{
-    int a[] = {1,3,5,7,9};
-    vector<int> local_vec(std::begin(a), std::end(a));
-    PrintVec(local_vec, 0);
-}
+typedef string::size_type sz;
+//string screen(sz ht = 24, sz wid = 80, char bkgrnd = ' ');
+//string screen(sz ht, sz wid, char bkgrnd = ' ');
+
+//string screen(sz ht, sz wid, char bkgrnd = '*');  // error
+
+//string screen(sz ht, sz wid = 80, char bkgrnd);
+//string screen(sz ht = 10, sz wid, char bkgrnd);
+//string screen(sz ht = 10, sz wid = 80, char bkgrnd);
 
 sz wd = 111;
 char def = '*';
@@ -348,26 +364,24 @@ sz ht()
     return 123;
 }
 
-std::string Screen2(sz = ht(), sz = wd, char = def);
-
-string Screen1(sz param1, sz param2, char c)
+string screen(sz p1 = ht(), sz p2 = wd, char p3 = def)
 {
-    cout << param1 << ' ' << param2 << ' ' << c << endl;
+    cout << "para1: " << p1 << endl
+         << "para2: " << p2 << endl
+         << "para3: " << p3 << endl;
+    
+    return "";
 }
 
-string Screen2(sz param1, sz param2, char c)
-{
-    cout << param1 << ' ' << param2 << ' ' << c << endl;
-}
 void ch_6_5_1()
 {
 
-    Screen1(10);
+    screen(10);
 
     def = '#';
     //sz wd = 1;
 
-    Screen2();
+    screen();
 }
 
 constexpr int NewSize() {return 10;}
