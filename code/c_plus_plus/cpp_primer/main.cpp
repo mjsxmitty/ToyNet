@@ -6,9 +6,11 @@
 #include "chapter_03/chapter_03.h"
 #include "chapter_04/chapter_04.h"
 #include "chapter_05/chapter_05.h"
-#include "chapter_08/chapter_08.h"
-
 #include "chapter_06/chapter_06.h"
+#include "chapter_08/chapter_08.h"
+#include "chapter_09/chapter_09.h"
+
+
 #include "lib_util/account.h"
 #include "lib_util/person.h"
 #include "lib_util/screen.h"
@@ -16,7 +18,7 @@
 #include "lib_util/sales_data.h"
 #include "chapter_07/chapter_07.h"
 
-#include "chapter_09/chapter_09.h"
+
 #include "chapter_10/chapter_10.h"
 #include "chapter_11/chapter_11.h"
 #include "chapter_12/chapter_12.h"
@@ -39,7 +41,8 @@ int main(int argc, char **argv)
     //ch_06();
 
     /* C++ 标准库 */
-    ch_08();
+    //ch_08();
+    ch_09();
 
     /* 类设计者工具 */
     //ch_15();
