@@ -12,15 +12,23 @@
 
 using namespace std;
 
-void Chapter_08()
+void ch_08()
 {
-    Practice_8_1_2();
-    //Practice_8_3_2();
-    //Homework_8_2();
+    /* IO 类 */
+    ch_8_1();
+
+    /* string 流 */
+    ch_8_3();
 }
 
-/*****************************************************************/
-/***************************8.1.2*********************************/
+void ch_8_1()
+{
+    /* 条件状态 */
+    //ch_8_1_2();
+
+    hw_8_1();
+}
+
 //条件状态
 void Read()
 {
@@ -33,8 +41,7 @@ void Off()
     cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
 }
 
-/*条件状态*/
-void Practice_8_1_2()
+void ch_8_1_2()
 {
     cout << "before read: " << endl;
     if (cin.good()) cout << "cin's good"    << endl;
@@ -63,6 +70,48 @@ void Practice_8_1_2()
     if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
 //    cout << cout.rdstate() << endl;
+}
+
+istream& ReadData(istream &in)
+{
+    int ival;
+    while (in >> ival, !in.eof())
+    {
+        try
+        {
+            if (in.bad())
+                throw runtime_error("IO error!");
+
+            if (in.fail())
+            {
+                cerr << "read num error, please try again!" << endl;
+                in.clear();
+                in.ignore(1024, '\n');
+                continue;
+            }
+
+            cout << ival << ' ';
+        } catch (runtime_error &e) {
+            cout << e.what() << endl;
+            in.clear();
+        }
+
+    }
+
+    in.clear();
+    return in;
+}
+
+void hw_8_1()
+{
+    ReadData(cin);
+}
+
+void ch_8_3()
+{
+    ch_8_3_2();
+
+    hw_8_2();
 }
 
 struct PersonInfo
@@ -125,7 +174,7 @@ ostream& Process(ostream &os, vector<PersonInfo> peoples)
     return os;
 }
 
-void Practice_8_3_2()
+void ch_8_3_2()
 {
     ifstream input("../chapter_08/sstream");
     vector<PersonInfo> peoples;
@@ -138,8 +187,7 @@ void Practice_8_3_2()
         cout << "read file failed." << endl;
 }
 
-//8-2节综合练习
-void Homework_8_2()
+void hw_8_2()
 {
     fstream in("Makefile");
     fstream out;
