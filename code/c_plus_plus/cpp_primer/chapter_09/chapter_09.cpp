@@ -21,34 +21,19 @@ using namespace std;
 void ch_09()
 {
     /* 容器库概览 */
-    ch_9_2();
-    //Practice_9_2();
-    //Homework_9_2();
-    //Homework_9_4_5();
-    //Homework_9_16();
+    //ch_9_2();
 
-    //Practice_9_3_1();
-    //Practice_9_3_2();
-    //Practice_9_3_3();
-    //Practice_9_3_4();
-    //Practice_9_3_6();
-    //Homework_9_27();
-    //Homework_9_28();
-    //Practice_9_3_5();
-    //Homework_9_31();
+    /* 顺序容器操作 */
+    //ch_9_3();
 
-    //Practice_9_4();
-    //Homework_9_39();
+    /* vector对象是如何增长的 */
+    //ch_9_4();
 
-    //Practice_9_5_1();
-    //Practice_9_5_2();
-    //Practice_9_5_3();
-    //Practice_9_5_5();
-    //Homework_9_43();
-    //Homework_9_47_48_49();
+    /* 额外string操作 */
+    //ch_9_5();
 
-    //Practice_9_6();
-    //Homework_9_50();
+    /* 容器适配器 */
+    ch_9_6();
 }
 
 void ch_9_2()
@@ -62,53 +47,60 @@ void ch_9_2()
 
 void ch_9_2_4()
 {
-    // 将一个容器初始化为另一个容器的拷贝
-    vector<const char *> cstr = {"aaa", "bbb", "c"};        // 列表初始化
-    forward_list<string> flstr(cstr.begin(), cstr.end());   // 传递范围
+    /* 将一个容器初始化为另一个容器的拷贝 */
+    {
+        vector<const char *> cstr = {"aaa", "bbb", "c"};        // 列表初始化
+        forward_list<string> flstr(cstr.begin(), cstr.end());   // 传递范围
 
-    for_each(cstr.begin(), cstr.end(), [](const string &s){ cout << s << ' ';});
-    cout << endl;
-    for_each(flstr.begin(), flstr.end(), [](const string &s){ cout << s << ' ';});
-    cout << endl << endl;
+        for_each(cstr.begin(), cstr.end(), [](const string &s){ cout << s << ' ';});
+        cout << endl;
+        for_each(flstr.begin(), flstr.end(), [](const string &s){ cout << s << ' ';});
+        cout << endl << endl;
+    }
 
-    // 标准array具有固定大小
-    int arr[10] = {1,2,3,4};
-    for_each(begin(arr), end(arr), [](int i){ cout << i << ' ';});
-    cout << endl << endl;
-    //int cpy[10] = arr;
+    /* 标准array具有固定大小 */
+    {
+        int arr[10] = {1,2,3,4};
+        for_each(begin(arr), end(arr), [](int i){ cout << i << ' ';});
+        cout << endl << endl;
+        //int cpy[10] = arr;
 
-    array<int, 10> digits = {1,2,3,4,5};
-    //array<int, 5>   copy = digits;  //error大小不同
-    array<int, 10> copy = digits;
-    copy = digits;
-//    copy = {0,1,2,3,4,5,6,7,8};
-//    for_each(copy.begin(), copy.end(), [](int i){ cout << i << ' ';});
-//    cout << endl << endl;
+        array<int, 10> digits = {1,2,3,4,5};
+        //array<int, 5>   copy = digits;  //error大小不同
+        array<int, 10> copy = digits;
+        copy = digits;
+    //    copy = {0,1,2,3,4,5,6,7,8};
+    //    for_each(copy.begin(), copy.end(), [](int i){ cout << i << ' ';});
+    //    cout << endl << endl;
 
-    array<string, 10> copy2;
-    //copy2 = digits;
+        array<string, 10> copy2;
+        //copy2 = digits;
+    }
 }
 
 void ch_9_2_5()
 {
-    list<string>        names;
-    vector<const char*> old_style;
-    //names = old_style;
-    names.assign(old_style.begin(), old_style.end());   // 类型相容
-    names.assign(10, "yyy");                            // 第二个版本
+    {
+        list<string>        names;
+        vector<const char*> old_style;
+        //names = old_style;
+        names.assign(old_style.begin(), old_style.end());   // 类型相容
+        names.assign(10, "yyy");                            // 第二个版本
 
-//    vector<int> temp_vec(10);
-//    old_style.assign(temp_vec.begin(), temp_vec.end());
+        //vector<int> temp_vec(10);
+        //old_style.assign(temp_vec.begin(), temp_vec.end());
+    }
 
-    vector<string> svec1(5, "hi");
-    vector<string> svec2(10, "Hello");
-    auto it1 = svec1.begin() + 2, it2 = svec2.begin() + 2;
-    cout << svec1.size() << ", " << svec2.size() << endl;
-    cout << *it1 << ", " << *it2 << endl;
-    swap(svec1, svec2);
-    cout << svec1.size() << ", " << svec2.size() << endl;
-    cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的容器
-
+    {
+        vector<string> svec1(5, "hi");
+        vector<string> svec2(10, "Hello");
+        auto it1 = svec1.begin() + 2, it2 = svec2.begin() + 2;
+        cout << svec1.size() << ", " << svec2.size() << endl;
+        cout << *it1 << ", " << *it2 << endl;
+        swap(svec1, svec2);
+        cout << svec1.size() << ", " << svec2.size() << endl;
+        cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的容器
+    }
 }
 
 bool SearchVec(vector<int>::iterator beg,
@@ -133,7 +125,7 @@ vector<int>::iterator SearchVec2(vector<int>::iterator beg,
     return end;
 }
 
-void Homework_9_2()
+void hw_9_2()
 {
     vector<int> ivec = {1,2,3,4,5,6,7,8,9};
     cout << SearchVec(ivec.begin(), ivec.end(), 0) << endl;
@@ -143,7 +135,7 @@ void Homework_9_2()
     cout << (SearchVec2(ivec.begin(), ivec.end(), 8) == ivec.end()) << endl;
 }
 
-void Homework_9_4_5()
+void hw_9_4_5()
 {
     vector<int> ivec = {0,1,2,3,4,5,6,7,8,9};
     cout << SearchVec(ivec.begin(), ivec.end(), 3) << endl;
@@ -167,7 +159,7 @@ bool VLEqual(const vector<int> &v, const list<int> &l)
     return true;
 }
 
-void Homework_9_16()
+void hw_9_16()
 {
     vector<int> ivec    = {0,1,2,3,4,5,6,7,8,9};
     list<int>   ilist   = {0,1,2,3,4,5,6,7,8,9};
@@ -194,10 +186,16 @@ void Homework_9_16()
 void ch_9_3()
 {
     /* 向容器中添加元素 */
-    Practice_9_3_1();
+    ch_9_3_1();
 
     /* 访问元素 */
-    Practice_9_3_2();
+    ch_9_3_2();
+
+    /* 改变容器大小 */
+    ch_9_3_5();
+
+    /* 容器操作可能使迭代器失效 */
+    ch_9_3_6();
 }
 
 void PrintVec(const vector<int> &vi)
@@ -207,7 +205,7 @@ void PrintVec(const vector<int> &vi)
         cout << *iter++ <<  " ";
 }
 
-void Practice_9_3_1()
+void ch_9_3_1()
 {
     // 容器中特定位置添加元素
     list<int>   ilist = {1,2,3,4,5};
@@ -222,14 +220,13 @@ void Practice_9_3_1()
     ivec.insert(ivec.begin(), 3, 0);
     PrintVec(ivec);
     cout << endl;
+
     // 初始化列表
     ivec.insert(ivec.begin(), {7,8,9});
     PrintVec(ivec);
     cout << endl;
 
-//    ivec.insert(ivec.begin(), ivec.begin(), ivec.end());  // error
-//    PrintVec(ivec);
-//    cout << endl;
+    //ivec.insert(ivec.begin(), ivec.begin(), ivec.end());  // error
 
     // 使用insert返回值
     int num = 3;
@@ -253,84 +250,98 @@ void Practice_9_3_1()
 }
 
 /* 9.3.2 访问元素 */
-void Practice_9_3_2()
+void ch_9_3_2()
 {
     list<string>   slist = {"aaa", "abc", "123"};
-    if (!slist.empty()) // 确保非空
+
     {
-        auto val = *slist.begin(), val2 = slist.front();
+        if (!slist.empty()) // 确保非空
+        {
+            auto val = *slist.begin(), val2 = slist.front();
 
-        auto last = slist.end();
-        auto val3 = *(--last);
-        auto val4 = slist.back();
+            auto last = slist.end();
+            auto val3 = *(--last);
+            auto val4 = slist.back();
+        }
     }
 
-    // 访问成员函数返回的是引用
-    if (!slist.empty())
+    /* 访问成员函数返回的是引用 */
     {
-        slist.front() = "zzz";
-        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
-        cout << endl;
+        if (!slist.empty())
+        {
+            slist.front() = "zzz";
+            for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+            cout << endl;
 
-        auto &v1 = slist.back();
-        v1 = "456";
-        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
-        cout << endl;
+            auto &v1 = slist.back();
+            v1 = "456";
+            for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+            cout << endl;
 
-        auto v2 = slist.back();
-        v2 = "789";
-        for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
-        cout << endl;
+            auto v2 = slist.back();
+            v2 = "789";
+            for_each(slist.begin(), slist.end(), [](const string &s){ cout << s << ' ';});
+            cout << endl;
+        }
     }
 
-    // 下标操作和安全的随机访问
-    vector<int> ivec;
-    //cout << ivec[0] << endl;
-    try {
-        cout << ivec.at(0) << endl;
-    } catch (out_of_range &s) {
-        cout << "exception!!!" << endl;
-        cout << s.what() << endl;
+    /* 下标操作和安全的随机访问 */
+    {
+        vector<int> ivec;
+        //cout << ivec[0] << endl;
+        try
+        {
+            cout << ivec.at(0) << endl;
+        }
+        catch (out_of_range &s)
+        {
+            cout << "exception!!!" << endl;
+            cout << s.what() << endl;
+        }
     }
-
 }
 
 /* 9.3.3 删除元素*/
-void Practice_9_3_3()
+void ch_9_3_3()
 {
     list<int> lst = {0,1,2,3,4,5,6,7,8,9};
     cout << "init elements from lst: ";
     for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
-    // 从容器内部删除一个元素
-    auto it = lst.begin();
-    while (it != lst.end())
+    /* 从容器内部删除一个元素 */
     {
-        if (*it % 2)
-            it = lst.erase(it);
-        else
-            ++it;
+        auto it = lst.begin();
+        while (it != lst.end())
+        {
+            if (*it % 2)
+                it = lst.erase(it);
+            else
+                ++it;
+        }
+        cout << "after erasing odd elements from lst: ";
+        for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
+        cout << endl;
     }
-    cout << "after erasing odd elements from lst: ";
-    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
-    cout << endl;
 
     /* 删除多个元素 */
-    lst.erase(++(++lst.begin()), lst.end());
-    cout << "after erasing from lst: ";
-    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
-    cout << endl;
+    {
+        lst.erase(++(++lst.begin()), lst.end());
+        cout << "after erasing from lst: ";
+        for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
+        cout << endl;
+    }
 
-    //lst.erase(lst.begin(), lst.end());
-    lst.clear();
-    cout << "after clear elems from lst: ";
-    for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
-    cout << endl;
+    {
+        //lst.erase(lst.begin(), lst.end());
+        lst.clear();
+        cout << "after clear elems from lst: ";
+        for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
+        cout << endl;
+    }
 }
 
-/* 9.3.4 特殊的forward_list操作 */
-void Practice_9_3_4()
+void ch_9_3_4()
 {
     forward_list<int> flst = {0,1,2,3,4,5,6,7,8,9};
 
@@ -342,7 +353,7 @@ void Practice_9_3_4()
     auto curr = flst.begin();
     while (curr != flst.end())
     {
-        if (*curr % 2 == 0)
+        if (*curr % 2 == 0) //
             curr = flst.erase_after(prev);
         else
         {
@@ -356,7 +367,7 @@ void Practice_9_3_4()
     cout << endl;
 }
 
-void Homework_9_27()
+void hw_9_27()
 {
     forward_list<int> iflist = {1,2,3,4,5,6,7,8,9};
     auto prev = iflist.before_begin();
@@ -364,7 +375,7 @@ void Homework_9_27()
 
     while (curr != iflist.end())
     {
-        if (*curr & 1)
+        if (*curr & 1)  //
             curr = iflist.erase_after(prev);
         else
         {
@@ -402,7 +413,7 @@ void FLInsert(forward_list<string> &sflist,
 }
 
 
-void Homework_9_28()
+void hw_9_28()
 {
     forward_list<string> sflist = {"hello", "!", "world", "!"};
     FLInsert(sflist, "!", "***");
@@ -411,8 +422,7 @@ void Homework_9_28()
     cout << endl;
 }
 
-/* 9.3.5 改变容器大小 */
-void Practice_9_3_5()
+void ch_9_3_5()
 {
     list<int> ilist(10, 42);
     for_each(ilist.begin(), ilist.end(), [](int &i){ cout << i << ' ';});
@@ -431,44 +441,46 @@ void Practice_9_3_5()
     cout << endl;
 }
 
-/* 9.3.6 容器操作可能使迭代器失效 */
-void Practice_9_3_6()
+void ch_9_3_6()
 {
-    // 编写改变容器的循环程序
     vector<int> ivec = {1,2,3,4,5,6,7,8,9};
 
-    auto iter = ivec.begin();
-    while (iter != ivec.end())
+    /* 编写改变容器的循环程序 */
     {
-        if (*iter % 2)
+        auto iter = ivec.begin();
+        while (iter != ivec.end())
         {
-            iter = ivec.insert(iter, *iter);
-            iter += 2;
+            if (*iter % 2)
+            {
+                iter = ivec.insert(iter, *iter);
+                iter += 2;
+            }
+            else
+            {
+                iter = ivec.erase(iter);
+            }
         }
-        else
-        {
-            iter = ivec.erase(iter);
-        }
+
+        for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
     }
 
-    for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
 
-    // 不要保存end() 返回的迭代器
-    auto begin = ivec.begin();
-    //auto end = ivec.end();
-    while (begin != ivec.end())
+    /* 不要保存end() 返回的迭代器 */
     {
-        ++begin;
-        begin = ivec.insert(begin, 42);
-        ++begin;
-        //++begin;
+        auto begin = ivec.begin();
+        //auto end = ivec.end();
+        while (begin != ivec.end())
+        {
+            ++begin;
+            begin = ivec.insert(begin, 42);
+            ++begin;
+            //++begin;
+        }
+        for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
     }
-    for_each(ivec.begin(), ivec.end(), [](int i){cout << i << endl;});
 }
 
-
-// 删除偶数元素,复制奇数元素
-void Homework_9_31()
+void hw_9_31()
 {
     vector<int> ivec = {1,2,3,4,5,6,7,8,9};
 
@@ -516,7 +528,7 @@ void Homework_9_31()
 /***************************9.4*********************************/
 
 //vector对象是如何增长的
-void Practice_9_4()
+void ch_9_4()
 {
     vector<int> ivec;
     cout << "ivec size: " << ivec.size()
@@ -553,7 +565,7 @@ void Practice_9_4()
          << endl;
 }
 
-void Homework_9_39()
+void hw_9_39()
 {
     vector<int> ivec;
     ivec.reserve(100);
@@ -574,8 +586,19 @@ void Homework_9_39()
 /***************************************************************/
 /***************************9.5*********************************/
 
-/* 9.5.1 构造string的其他方法 */
-void Practice_9_5_1()
+void ch_9_5()
+{
+    /* 构造string的其他方法 */
+    //ch_9_5_1();
+
+    /* 改变string的其他方法 */
+    //ch_9_5_2();
+
+    /* string的搜索操作 */
+    ch_9_5_3();
+}
+
+void ch_9_5_1()
 {
     string s("hello world");
     const char *sp = "nihao!!!!";
@@ -594,27 +617,29 @@ void Practice_9_5_1()
          << "s5 = " << s5 << endl
          << "s6 = " << s6 << endl;
 
-    try {
+    try
+    {
         cout << s.substr(1,6) << endl;
         cout << s.substr(6) << endl;
         cout << s.substr(6, 11) << endl;
 //        cout << s.substr(12) << endl;
 //        cout << s.substr(7,100) << endl;
-    } catch (out_of_range &e) {
+    }
+    catch (out_of_range &e)
+    {
         cout << e.what() << endl;
         cout << "out of range." << endl;
     }
 }
 
-/* 9.5.2 改变string的其他方法 */
-void Practice_9_5_2()
+void ch_9_5_2()
 {
     string s = "Hello World";
 
     //insert 下标操作
     s.insert(s.size(), 3, '!');
     cout << s << endl;
-    s.insert(5, 1, '*');
+    s.insert(5, 2, '*');
     cout << s << endl;
 
     // erase
@@ -653,50 +678,49 @@ void Practice_9_5_2()
 
 void ReplaceStr(string &s, const string &old_val, const string &new_val)
 {
-//    if (s.empty())
-//        return;
+    if (s.empty())
+        return;
+/*
+    auto iter = s.begin();
+    while (iter != s.end())
+    {
+        auto iter1 = iter;
+        auto iter2 = old_val.begin();
 
-//    auto iter = s.begin();
-//    while (iter != s.end())
-//    {
-//        auto iter1 = iter;
-//        auto iter2 = old_val.begin();
+        while (iter2 != old_val.end() && *iter1 == *iter2)
+        {
+            ++iter1;
+            ++iter2;
+        }
 
-//        while (iter2 != old_val.end() && *iter1 == *iter2)
-//        {
-//            ++iter1;
-//            ++iter2;
-//        }
+        if (iter2 == old_val.end())
+        {
+            iter = s.erase(iter, iter1);
+            if (!new_val.empty())
+            {
+                iter2 = new_val.end();
+                do
+                {
+                    --iter2;
+                    iter = s.insert(iter, *iter2);
+                } while (iter2 > new_val.begin());
 
-//        if (iter2 == old_val.end())
-//        {
-//            iter = s.erase(iter, iter1);
-//            if (!new_val.empty())
-//            {
-//                iter2 = new_val.end();
-//                do
-//                {
-//                    --iter2;
-//                    iter = s.insert(iter, *iter2);
-//                } while (iter2 > new_val.begin());
-
-//                iter += new_val.size();
-//            }
-//        }
-//        else
-//            ++iter;
-//    }
-
+                iter += new_val.size();
+            }
+        }
+        else
+            ++iter;
+    }
+*/
     size_t p = 0;
-    while ((p = s.find(old_val, p)) != string::npos)
+    while ((p = s.find(old_val, p)) != string::npos)    // find返回的是位置
     {
         s.replace(p, old_val.size(), new_val);
         p += new_val.size();
     }
 }
 
-
-void Homework_9_43()
+void hw_9_43_44()
 {
     string s = "tho thru tho";
     ReplaceStr(s, "tho", "thought");
@@ -710,46 +734,68 @@ void Homework_9_43()
     cout << s << endl;
 }
 
-/* 9.5.3 string的搜索操作 */
-void Practice_9_5_3()
+void NameString(string &name, const string &prefix, const string &suffix)
 {
-    string numbers("0123456789"), name("r9d2");
-    auto pos = name.find_first_of(numbers);
-    if (pos != string::npos)
-        cout << "found number at index: " << pos
-             << " element is " << name[pos] << endl;
-    else
-        cout << "no number in: " << name << endl;
+    /*
+    name.insert(name.begin(), 1, ' ');
+    name.insert(name.begin(), prefix.begin(), prefix.end());
 
-    //pos = name.find_first_not_of(numbers);
-    pos = name.find_last_not_of(numbers);
-    if (pos != string::npos)
-        cout << "found elem at index: " << pos
-             << " element is " << name[pos] << endl;
-    else
-        cout << "no number in: " << name << endl;
+    name.append(" ");
+    name.append(suffix.begin(), suffix.end());
+    */
 
-    // 指定哪里搜索
-    pos = 0;
-    while ((pos = name.find_first_of(numbers, pos)) != string::npos)
+    name.insert(0, " ");
+    name.insert(0, prefix);
+
+    name.insert(name.size(), " ");
+    name.insert(name.size(), suffix);
+}
+
+void hw_45_46()
+{
+    string s = "Gao";
+    NameString(s, "Mr", "II");
+}
+
+void ch_9_5_3()
+{
+    string numbers("0123456789"), name("0r9d2555gg67");
     {
-        cout << "found number at index: " << pos
-             << " element is " << name[pos] << endl;
-        ++pos;
+        auto pos = name.find_first_of(numbers);
+        if (pos != string::npos)
+            cout << "found number at index: " << pos
+                 << " element is " << name[pos] << endl;
+        else
+            cout << "no number in: " << name << endl;
+
+        //pos = name.find_first_not_of(numbers);
+        pos = name.find_last_not_of(numbers);
+        if (pos != string::npos)
+            cout << "found elem at index: " << pos
+                 << " element is " << name[pos] << endl;
+        else
+            cout << "no number in: " << name << endl;
     }
 
-    // 逆向搜索
-    string river("Mississippi");
-    auto first_pos = river.find("is");
-    auto last_pos = river.rfind("is");
-    cout << "find returned: " << first_pos
-         << ", rfind returned: " << last_pos << endl;
+    /* 指定哪里搜索 */
+    {
+        auto pos = 0;
+        while ((pos = name.find_first_of(numbers, pos)) != string::npos)
+        {
+            cout << "found number at index: " << pos
+                 << " element is " << name[pos] << endl;
+            ++pos;
+        }
+    }
 
-    string dept("03714prol3");
-    pos = dept.find_first_not_of(numbers);
-    cout << "first_not returned: " << pos <<" element is " << dept[pos] << endl;
-    pos = dept.find_last_not_of(numbers);
-    cout << "first_not returned: " << pos << " element is " << dept[pos] << endl;
+    /* 逆向搜索 */
+    {
+        string river("Mississippi");
+        auto first_pos = river.find("is");
+        auto last_pos = river.rfind("is");
+        cout << "find returned: " << first_pos
+             << ", rfind returned: " << last_pos << endl;
+    }
 }
 
 void FindChar(const string &s, const string &chars)
@@ -793,7 +839,7 @@ void FindLongestWord(istream &in)
     cout << "the longest word: " << longest_word << endl;
 }
 
-void Homework_9_47_48_49()
+void hw_9_47_48_49()
 {
     string s("ab2c3d7R4E6");
     FindChar(s, "0123456789");
@@ -809,18 +855,18 @@ void Homework_9_47_48_49()
 }
 
 /* 9.5.5 数值转换*/
-void Practice_9_5_5()
+void ch_9_5_5()
 {
     double i = 4.3;
     cout << "i = " << i << " s = " << to_string(i) << " d is: " << stod(to_string(i)) << endl;
 
     string s2 = "pi = 3.14";
-    cout << s2.find_first_of("+-.0123456789") << endl;
-    cout << s2.substr(s2.find_first_of("+-.0123456789")) << endl;
+    //cout << s2.find_first_of("+-.0123456789") << endl;
+    //cout << s2.substr(s2.find_first_of("+-.0123456789")) << endl;
     cout << stod(s2.substr(s2.find_first_of("+-.0123456789"))) << endl;
 }
 
-void Homework_9_50()
+void hw_9_50()
 {
     vector<string> vs = {"123", "+456", "-789"};
     int sum = 0;
@@ -832,13 +878,12 @@ void Homework_9_50()
 }
 
 // TODO...
-// Homework_9_51
+// hw_9_51
 
 /***************************************************************/
 /***************************9.6*********************************/
 
-/* 9.6 容器适配器 */
-void Practice_9_6()
+void ch_9_6()
 {
     // 定义适配器
     deque<int>  deq;
@@ -864,7 +909,7 @@ void Practice_9_6()
 }
 
 //TODO ...
-// Homework_9_52()
+// hw_9_52()
 
 
 
