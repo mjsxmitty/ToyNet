@@ -20,6 +20,8 @@ using namespace std;
 
 void ch_09()
 {
+    /* 容器库概览 */
+    ch_9_2();
     //Practice_9_2();
     //Homework_9_2();
     //Homework_9_4_5();
@@ -51,20 +53,19 @@ void ch_09()
 
 void ch_9_2()
 {
+    /* 容器定义和初始化 */
+    //ch_9_2_4();
 
+    /* 赋值和swap */
+    ch_9_2_5();
 }
 
-void ch_9_2_1()
+void ch_9_2_4()
 {
-
-}
-
-void Practice_9_2()
-{
-    /* 9.2.4容器定义和初始化 */
     // 将一个容器初始化为另一个容器的拷贝
     vector<const char *> cstr = {"aaa", "bbb", "c"};        // 列表初始化
     forward_list<string> flstr(cstr.begin(), cstr.end());   // 传递范围
+
     for_each(cstr.begin(), cstr.end(), [](const string &s){ cout << s << ' ';});
     cout << endl;
     for_each(flstr.begin(), flstr.end(), [](const string &s){ cout << s << ' ';});
@@ -80,16 +81,16 @@ void Practice_9_2()
     //array<int, 5>   copy = digits;  //error大小不同
     array<int, 10> copy = digits;
     copy = digits;
-
 //    copy = {0,1,2,3,4,5,6,7,8};
 //    for_each(copy.begin(), copy.end(), [](int i){ cout << i << ' ';});
 //    cout << endl << endl;
 
     array<string, 10> copy2;
     //copy2 = digits;
+}
 
-    /* 9.2.5 赋值和swap */
-    // 使用assgin
+void ch_9_2_5()
+{
     list<string>        names;
     vector<const char*> old_style;
     //names = old_style;
@@ -99,7 +100,6 @@ void Practice_9_2()
 //    vector<int> temp_vec(10);
 //    old_style.assign(temp_vec.begin(), temp_vec.end());
 
-    // 使用 swap
     vector<string> svec1(5, "hi");
     vector<string> svec2(10, "Hello");
     auto it1 = svec1.begin() + 2, it2 = svec2.begin() + 2;
@@ -108,6 +108,7 @@ void Practice_9_2()
     swap(svec1, svec2);
     cout << svec1.size() << ", " << svec2.size() << endl;
     cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的容器
+
 }
 
 bool SearchVec(vector<int>::iterator beg,
@@ -190,6 +191,15 @@ void Homework_9_16()
  * insert        --->    vector,    list,       deque,      string
  */
 
+void ch_9_3()
+{
+    /* 向容器中添加元素 */
+    Practice_9_3_1();
+
+    /* 访问元素 */
+    Practice_9_3_2();
+}
+
 void PrintVec(const vector<int> &vi)
 {
     auto iter = vi.begin();
@@ -197,7 +207,6 @@ void PrintVec(const vector<int> &vi)
         cout << *iter++ <<  " ";
 }
 
-/* 9.3.1 向容器中添加元素 */
 void Practice_9_3_1()
 {
     // 容器中特定位置添加元素
@@ -307,18 +316,20 @@ void Practice_9_3_3()
     for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
+    /* 删除多个元素 */
     lst.erase(++(++lst.begin()), lst.end());
     cout << "after erasing from lst: ";
     for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 
+    //lst.erase(lst.begin(), lst.end());
     lst.clear();
     cout << "after clear elems from lst: ";
     for_each(lst.begin(), lst.end(), [](int &i){ cout << i << ' ';});
     cout << endl;
 }
 
-/* 9.3.4 特殊的forwa_list操作 */
+/* 9.3.4 特殊的forward_list操作 */
 void Practice_9_3_4()
 {
     forward_list<int> flst = {0,1,2,3,4,5,6,7,8,9};

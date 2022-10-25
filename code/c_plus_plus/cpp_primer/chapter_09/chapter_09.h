@@ -8,12 +8,14 @@
 extern void ch_09();
 
 extern void ch_9_2();
-extern void ch_9_2_1();
-extern void Practice_9_2();
+extern void ch_9_2_4();
+extern void ch_9_2_5();
+
 extern void Homework_9_2();
 extern void Homework_9_4_5();
 extern void Homework_9_16();
 
+extern void ch_9_3();
 extern void Practice_9_3_1();
 extern void Practice_9_3_2();
 extern void Practice_9_3_3();
