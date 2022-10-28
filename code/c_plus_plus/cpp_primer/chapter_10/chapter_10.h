@@ -2,34 +2,37 @@
 #ifndef __CPP_PRIMER_CHAPTER_10_H__
 #define __CPP_PRIMER_CHAPTER_10_H__
 
-void Chapter_10();
+extern void ch_10();
 
-void Homework_10_1();
+extern void hw_10_1();
 
-void Practice_10_2_1();
-void Practice_10_2_2();
-void Homework_10_5();
+extern void ch_10_2();
+extern void ch_10_2_1();
+extern void hw_10_5();
 
-void Practice_10_3_1();
-void Homework_10_13();
-void Practice_10_3_2();
-void Practice_10_3_3();
-void Homework_10_20();
-void Homework_10_21();
-void Practice_10_3_4();
+void ch_10_2_2();
 
-void Practice_10_4_1();
-void Homework_10_27();
-void Practice_10_4_2();
-void Homework_10_29();
-void Homework_10_30();
-void Practice_10_4_3();
-void Homework_10_34();
-void Homework_10_36();
-void Homework_10_37();
 
-void Practice_10_5_3();
+void ch_10_3_1();
+void hw_10_13();
+void ch_10_3_2();
+void ch_10_3_3();
+void hw_10_20();
+void hw_10_21();
+void ch_10_3_4();
 
-void Practice_10_6();
+void ch_10_4_1();
+void hw_10_27();
+void ch_10_4_2();
+void hw_10_29();
+void hw_10_30();
+void ch_10_4_3();
+void hw_10_34();
+void hw_10_36();
+void hw_10_37();
+
+void ch_10_5_3();
+
+void ch_10_6();
 
 #endif // __CPP_PRIMER_CHAPTER_10_H__

@@ -15,41 +15,39 @@
 
 using namespace std;
 
-void Chapter_10()
+void ch_10()
 {
-    //Homework_10_1();
+    //hw_10_1();
 
-    //Practice_10_2_1();
-    //Practice_10_2_2();
-    //Homework_10_5();
+    ch_10_2();
 
-    //Practice_10_3_1();
-    //Homework_10_13();
-    //Practice_10_3_2();
-    //Practice_10_3_3();
-    //Homework_10_20();
-    //Homework_10_21();
-    //Practice_10_3_4();
+    //ch_10_3_1();
+    //hw_10_13();
+    //ch_10_3_2();
+    //ch_10_3_3();
+    //hw_10_20();
+    //hw_10_21();
+    //ch_10_3_4();
 
-    //Practice_10_4_1();
-    //Homework_10_27();
-    //Practice_10_4_2();
-    //Homework_10_29();
-    //Homework_10_30();
-    //Practice_10_4_3();
-    //Homework_10_34();
-    //Homework_10_36();
-    //Homework_10_37();
+    //ch_10_4_1();
+    //hw_10_27();
+    //ch_10_4_2();
+    //hw_10_29();
+    //hw_10_30();
+    //ch_10_4_3();
+    //hw_10_34();
+    //hw_10_36();
+    //hw_10_37();
 
-    //Practice_10_5_3();
+    //ch_10_5_3();
 
-    Practice_10_6();
+    //ch_10_6();
 }
 
 /***************************************************************/
 /***************************10.1********************************/
 
-void Homework_10_1()
+void hw_10_1()
 {
     srand(time(NULL));
 
@@ -70,25 +68,33 @@ void Homework_10_1()
 /***************************************************************/
 /***************************10.2********************************/
 
-/* 10.2.1 只读算法 */
-void Practice_10_2_1()
+void ch_10_2()
 {
-    list<const char *> roster1 = {"hello", "so long", "tata"};
+    /* 只读算法 */
+    //ch_10_2_1();
+    hw_10_5();
+}
 
-    // 算法和元素类型
-    string sum = accumulate(roster1.begin(), roster1.end(), string(""));
-    //string sum1 = accumulate(roster1.begin(), roster1.end(), "");
+void ch_10_2_1()
+{
+    /* 算法和元素类型 */ 
+    vector<int> vint = {0,1,2,3,4};
+    int isum = accumulate(vint.begin(), vint.end(), 0);
 
-    // 操作两个序列的算法
+    list<const char *> clist = {"hello", "so long", "tata"};
+    string sum = accumulate(clist.begin(), clist.end(), string(""));
+    //string sum1 = accumulate(clist.begin(), clist.end(), "");
+
+    /* 操作两个序列的算法 */ 
     vector<string> roster2 = {"hello", "so long"};
-    auto b = equal(roster2.begin(), roster2.end(), roster1.begin());
+    auto b = equal(roster2.begin(), roster2.end(), clist.begin());
     (b) ? cout << "true" : cout << "false";
 }
 
-void Homework_10_5()
+void hw_10_5()
 {
     char* p[] = {(char*)"hello", (char *)"world", (char *)"1"};
-    char* q[] = {strdup(p[0]), strdup(p[1]),strdup(p[2])};
+    char* q[] = {strdup(p[0]), strdup(p[1]),strdup(p[2])};  //会开辟空间
     char* r[] = {p[0], p[1], p[2]};
 
     cout << p[0] << ", " << q[0] << ", " << r[0] << endl;
@@ -99,7 +105,7 @@ void Homework_10_5()
 #include <iterator>
 
 /* 10.2.2 写容器元素算法 */
-void Practice_10_2_2()
+void ch_10_2_2()
 {
     vector<int> ivec = {1,2,3,4};
     for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' ';});    //临时测试用...
@@ -175,7 +181,7 @@ void ElimDups(vector<string> &words)
 }
 
 /* 10.2.3 重排容器元素 */
-void Practice_10_2_3()
+void ch_10_2_3()
 {
     vector<string>  svec;
 
@@ -202,7 +208,7 @@ void PrintVer0(const vector<string> &vec)
 }
 
 /* 10.3.1 向算法传递函数 */
-void Practice_10_3_1()
+void ch_10_3_1()
 {
     string          s;
     vector<string>  svec;
@@ -228,7 +234,7 @@ bool NumMoreWords(const string &s)
     return s.size() > 5;
 }
 
-void Homework_10_13()
+void hw_10_13()
 {
     vector<string>  svec;
     string          s;
@@ -268,7 +274,7 @@ void Biggies(vector<string> &words, vector<string>::size_type sz)
 
 #include <sstream>
 
-void Practice_10_3_2()
+void ch_10_3_2()
 {
     vector<string>  svec;
     string          line;
@@ -296,7 +302,7 @@ void Biggies(vector<string> &words, vector<string>::size_type sz,
     for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
 }
 
-void Practice_10_3_3()
+void ch_10_3_3()
 {
     size_t v1 = 42, v2 = 100;
     // 值捕获
@@ -334,7 +340,7 @@ void Practice_10_3_3()
     transform(ivec.begin(), ivec.end(), ivec.begin(), [](int i) -> int { if (i < 0) return -i; else return i; });
 }
 
-void Homework_10_20()
+void hw_10_20()
 {
     vector<string>  svec;
     string          s;
@@ -350,7 +356,7 @@ void Homework_10_20()
     cout << "more than 6 size words counts: " << it << endl;
 }
 
-void Homework_10_21()
+void hw_10_21()
 {
     int i = 5;
     auto f = [i] () mutable -> bool { if (i > 0) {--i; return false;} else return true; };
@@ -377,7 +383,7 @@ ostream& PrintVer1(ostream& os, const string &s, char c)
 using namespace std::placeholders;
 
 /* 10.3.4 参数绑定 */
-void Practice_10_3_4()
+void ch_10_3_4()
 {
     // 绑定CheckSize的sz参数
     {
@@ -387,7 +393,7 @@ void Practice_10_3_4()
         auto wc = find_if(words.begin(), words.end(), bind(CheckSize, _1, sz));
         cout << words.end() - wc << "(s) numbers of length: " << sz << " or longer." << endl;
 
-        // homework_10_25
+        // hw_10_25
         //auto wc = partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
         //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
     }
@@ -427,7 +433,7 @@ void PrintVer2(const string &label, const list<int> &lst)
 }
 
 /* 10.4.1 插入迭代器 */
-void Practice_10_4_1()
+void ch_10_4_1()
 {
     list<int> lst = {1,2,3,4};
     PrintVer2("source list", lst);
@@ -452,7 +458,7 @@ void PrintList(int i)
     cout << i << "\n";
 }
 
-void Homework_10_27()
+void hw_10_27()
 {
     vector<int> vec = {0,1,2,3,3,3,4,5,6,7,8,8,9};
     list<int>   ilst;
@@ -462,7 +468,7 @@ void Homework_10_27()
 }
 
 /* 10.4.2 iostream迭代器 */
-void Practice_10_4_2()
+void ch_10_4_2()
 {
 //    vector<int> vec;
 //    istream_iterator<int> in_iter(cin), eof;
@@ -488,7 +494,7 @@ void Practice_10_4_2()
     copy(vec.begin(), vec.end(), out_iter);
 }
 
-void Homework_10_29()
+void hw_10_29()
 {
     ifstream in("Makefile");    // 测试用的文件
     if (!in)
@@ -505,7 +511,7 @@ void Homework_10_29()
     for_each(svec.begin(), svec.end(), [](const string &s) { cout << s << '\n'; });
 }
 
-void Homework_10_30()
+void hw_10_30()
 {
     istream_iterator<int>    in_iter(cin), eof;
     vector<int>              ivec(in_iter, eof);
@@ -520,7 +526,7 @@ void Homework_10_30()
 }
 
 /* 10.4.3 反向迭代器 */
-void Practice_10_4_3()
+void ch_10_4_3()
 {
     vector<int> ivec = {10, 1, 23, 3, 12, 34, 14, 9};
     for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
@@ -539,7 +545,7 @@ void Practice_10_4_3()
     cout << "s3 = " << string(find(s.crbegin(), s.crend(), ',').base(), s.cend()) << endl;
 }
 
-void Homework_10_34()
+void hw_10_34()
 {
     vector<int> vec = {0,1,2,3,3,3,4,5,6,7,8,8,9};
     for_each(vec.crbegin(), vec.crend(), [] (int i) { cout << i << ' '; });
@@ -551,7 +557,7 @@ void Homework_10_34()
     cout << endl;
 }
 
-void Homework_10_36()
+void hw_10_36()
 {
     list<int> ilst = {0,1,2,3,4,0,6,7,0,9};
 
@@ -567,7 +573,7 @@ void Homework_10_36()
         cout << "the last 0 in: " << cnt << " position." << endl;
 }
 
-void Homework_10_37()
+void hw_10_37()
 {
     vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
 
@@ -585,7 +591,7 @@ void Homework_10_37()
 /***************************************************************/
 /***************************10.5********************************/
 
-void Practice_10_5_3()
+void ch_10_5_3()
 {
     vector<int> v1 = {0,1,2,3,4,5,6,7,8,9};
     vector<int> cpy = v1;
@@ -631,7 +637,7 @@ void Practice_10_5_3()
 /***************************************************************/
 /***************************10.6********************************/
 
-void Practice_10_6()
+void ch_10_6()
 {
     list<int>   ilist1 = {0, 1, 2, 3};
     list<int>   ilist2 = {6, 7, 8, 9};

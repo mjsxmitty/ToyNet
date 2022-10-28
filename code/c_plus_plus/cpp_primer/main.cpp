@@ -9,7 +9,7 @@
 #include "chapter_06/chapter_06.h"
 #include "chapter_08/chapter_08.h"
 #include "chapter_09/chapter_09.h"
-
+#include "chapter_10/chapter_10.h"
 
 #include "lib_util/account.h"
 #include "lib_util/person.h"
@@ -19,7 +19,7 @@
 #include "chapter_07/chapter_07.h"
 
 
-#include "chapter_10/chapter_10.h"
+
 #include "chapter_11/chapter_11.h"
 #include "chapter_12/chapter_12.h"
 #include "chapter_13/chapter_13.h"
@@ -33,18 +33,19 @@ int main(int argc, char **argv)
 {
     cout << "================= Hello World ==================\n\n";
 
-    /* C++ »ù´¡ */
+    /* C++ ï¿½ï¿½ï¿½ï¿½ */
     //ch_02();
     //ch_03();
     //ch_04();
     //ch_05();
     //ch_06();
 
-    /* C++ ±ê×¼¿â */
+    /* C++ ï¿½ï¿½×¼ï¿½ï¿½ */
     //ch_08();
-    ch_09();
+    //ch_09();
+    ch_10();
 
-    /* ÀàÉè¼ÆÕß¹¤¾ß */
+    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½ */
     //ch_15();
 
     cout << "\n=== Amazing, and then everyone works quietly ===\n";
