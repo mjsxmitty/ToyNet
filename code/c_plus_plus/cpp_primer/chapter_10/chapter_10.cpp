@@ -72,7 +72,10 @@ void ch_10_2()
 {
     /* 只读算法 */
     //ch_10_2_1();
-    hw_10_5();
+    //hw_10_5();
+
+    /* 写容器元素算法 */
+    ch_10_2_2();
 }
 
 void ch_10_2_1()
@@ -104,10 +107,9 @@ void hw_10_5()
 
 #include <iterator>
 
-/* 10.2.2 写容器元素算法 */
 void ch_10_2_2()
 {
-    vector<int> ivec = {1,2,3,4};
+    vector<int> ivec(5, 1024);
     for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' ';});    //临时测试用...
     cout << endl;
 
@@ -131,7 +133,7 @@ void ch_10_2_2()
 //    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' '; });
 //    cout << endl;
 
-    // back_inserter
+    // 介绍back_inserter
     vector<int> vec3;
     auto it = back_inserter(vec3);
     *it = 100;
