@@ -9,10 +9,10 @@ extern void hw_10_1();
 extern void ch_10_2();
 extern void ch_10_2_1();
 extern void hw_10_5();
+extern void ch_10_2_2();
+extern void ch_10_2_3();
 
-void ch_10_2_2();
-
-
+extern void ch_10_3();
 void ch_10_3_1();
 void hw_10_13();
 void ch_10_3_2();

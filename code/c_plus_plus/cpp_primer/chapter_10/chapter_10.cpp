@@ -19,29 +19,11 @@ void ch_10()
 {
     //hw_10_1();
 
+    /* 初始泛型算法 */
     ch_10_2();
 
-    //ch_10_3_1();
-    //hw_10_13();
-    //ch_10_3_2();
-    //ch_10_3_3();
-    //hw_10_20();
-    //hw_10_21();
-    //ch_10_3_4();
-
-    //ch_10_4_1();
-    //hw_10_27();
-    //ch_10_4_2();
-    //hw_10_29();
-    //hw_10_30();
-    //ch_10_4_3();
-    //hw_10_34();
-    //hw_10_36();
-    //hw_10_37();
-
-    //ch_10_5_3();
-
-    //ch_10_6();
+    /* 定制操作 */
+    ch_10_3();
 }
 
 /***************************************************************/
@@ -76,6 +58,9 @@ void ch_10_2()
 
     /* 写容器元素算法 */
     ch_10_2_2();
+
+    /* 重排容器元素 */
+    ch_10_2_3();
 }
 
 void ch_10_2_1()
@@ -198,6 +183,18 @@ void ch_10_2_3()
 /***************************************************************/
 /***************************10.3********************************/
 
+void ch_10_3()
+{
+    /* 向算法传递函数 */
+    ch_10_3_1();
+
+    /* lambda表达式 */
+    ch_10_3_2();
+
+    /* lambda捕获和返回 */
+    ch_10_3_3();
+}
+
 bool IsShorter(const string &s1, const string &s2)
 {
     return s1.size() < s2.size();
@@ -209,7 +206,6 @@ void PrintVer0(const vector<string> &vec)
     cout << endl;
 }
 
-/* 10.3.1 向算法传递函数 */
 void ch_10_3_1()
 {
     string          s;
@@ -221,8 +217,8 @@ void ch_10_3_1()
 
     ElimDups(svec);
 
-//    stable_sort(svec.begin(), svec.end(), IsShorter);
-//    Print(svec);
+   stable_sort(svec.begin(), svec.end(), IsShorter);
+   Print(svec);
 
 //    sort(svec.begin(), svec.end(), IsShorter);
 //    Print(svec);
@@ -251,7 +247,6 @@ void hw_10_13()
     for_each(svec.begin(), it, [](const string &s){cout << s << " ";});
 }
 
-/* 10.3.3 lambada表达式 */
 void Biggies(vector<string> &words, vector<string>::size_type sz)
 {
     ElimDups(words);
