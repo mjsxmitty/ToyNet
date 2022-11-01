@@ -20,7 +20,7 @@ void ch_10()
     //hw_10_1();
 
     /* 初始泛型算法 */
-    ch_10_2();
+    //ch_10_2();
 
     /* 定制操作 */
     ch_10_3();
@@ -186,13 +186,16 @@ void ch_10_2_3()
 void ch_10_3()
 {
     /* 向算法传递函数 */
-    ch_10_3_1();
+    //ch_10_3_1();
 
     /* lambda表达式 */
-    ch_10_3_2();
+    //ch_10_3_2();
 
     /* lambda捕获和返回 */
     ch_10_3_3();
+
+    /* 参数绑定 */
+    ch_10_3_4();
 }
 
 bool IsShorter(const string &s1, const string &s2)
@@ -218,7 +221,7 @@ void ch_10_3_1()
     ElimDups(svec);
 
    stable_sort(svec.begin(), svec.end(), IsShorter);
-   Print(svec);
+   //Print(svec);
 
 //    sort(svec.begin(), svec.end(), IsShorter);
 //    Print(svec);
@@ -303,17 +306,18 @@ void ch_10_3_3()
 {
     size_t v1 = 42, v2 = 100;
     // 值捕获
-    auto f1 = [v1]{return v1;};     // lambda创建时拷贝
+    auto f1 = [v1] {return v1;};     // lambda创建时拷贝
     cout << "v1 = " << v1 << ", f1() = " << f1() << endl;
     v1 = 0;
     cout << "v1 = " << v1 << ", f1() = " << f1() << endl  << endl;;
 
     // 引用捕获
-    auto f2 = [&v2]{return v2;};
+    auto f2 = [&v2] {return v2;};
     v2 = 0;
     cout << "v2 = " << v2 << ", f2() = " << f2() << endl << endl;
 
-    // 隐式捕获 ...
+    // 隐式捕获
+    //Biggies();
 
     // 可变lambda
     auto f3 = [v1] () mutable {return ++v1;};
@@ -349,14 +353,15 @@ void hw_10_20()
     for_each(svec.begin(), svec.end(), [](const string &s){cout << s << " ";});
     cout << endl;
 
-    auto it = count_if(svec.begin(), svec.end(), [](const string &s){return s.size() > 6;});
+    int num = 6;
+    auto it = count_if(svec.begin(), svec.end(), [=](const string &s){return s.size() > num;});
     cout << "more than 6 size words counts: " << it << endl;
 }
 
 void hw_10_21()
 {
     int i = 5;
-    auto f = [i] () mutable -> bool { if (i > 0) {--i; return false;} else return true; };
+    auto f = [=] () mutable -> bool { if (i > 0) {--i; return false;} else return true; };
 
     for (int j = 0; j < 6; ++j)
     {
@@ -379,10 +384,9 @@ ostream& PrintVer1(ostream& os, const string &s, char c)
 //using std::placeholders::_2;
 using namespace std::placeholders;
 
-/* 10.3.4 参数绑定 */
 void ch_10_3_4()
 {
-    // 绑定CheckSize的sz参数
+    /* 绑定CheckSize的sz参数 */ 
     {
         vector<string>              words;
         vector<string>::size_type   sz;
@@ -395,7 +399,12 @@ void ch_10_3_4()
         //auto wc = stable_partition(words.begin(), words.end(), bind(CheckSize, _1, sz));
     }
 
-    // 使用 placeholders
+    /* 用bind重排顺序 */
+    {
+        vector<int> ivec;
+        sort(ivec.begin(), ivec.end(), IsShorter);
+        sort(ivec.begin(), ivec.end(), bind(IsShorter, _2, _1));
+    } 
 
     // 绑定引用参数
     {
