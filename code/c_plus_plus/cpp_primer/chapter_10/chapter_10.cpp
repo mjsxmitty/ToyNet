@@ -23,7 +23,10 @@ void ch_10()
     //ch_10_2();
 
     /* 定制操作 */
-    ch_10_3();
+    //ch_10_3();
+
+    /* 再探迭代器 */
+    ch_10_4();
 }
 
 /***************************************************************/
@@ -401,7 +404,7 @@ void ch_10_3_4()
 
     /* 用bind重排顺序 */
     {
-        vector<int> ivec;
+        vector<string> ivec(10, "");
         sort(ivec.begin(), ivec.end(), IsShorter);
         sort(ivec.begin(), ivec.end(), bind(IsShorter, _2, _1));
     } 
@@ -430,6 +433,25 @@ void ch_10_3_4()
 /***************************************************************/
 /***************************10.4********************************/
 
+void ch_10_4()
+{
+    /* 插入迭代器 */
+    //ch_10_4_1();
+    //hw_10_27();
+    //hw_10_28();
+
+    /* iostream迭代器 */
+    //ch_10_4_2();
+    //hw_10_29();
+    //hw_10_30();
+    //hw_10_33();
+
+    /* 反向迭代器 */
+    //ch_10_4_3();
+    //hw_10_36();
+    hw_10_37();
+}
+
 void PrintVer2(const string &label, const list<int> &lst)
 {
     cout << label << ": ";
@@ -438,7 +460,6 @@ void PrintVer2(const string &label, const list<int> &lst)
     cout << endl;
 }
 
-/* 10.4.1 插入迭代器 */
 void ch_10_4_1()
 {
     list<int> lst = {1,2,3,4};
@@ -446,14 +467,16 @@ void ch_10_4_1()
 
     list<int> lst2, lst3;
     copy(lst.begin(), lst.end(), front_inserter(lst2));
-    PrintVer2("front_inserter", lst2);
+    PrintVer2("after front inserter operate ", lst2);
 
     copy(lst.begin(), lst.end(), inserter(lst3, lst3.begin()));
-    PrintVer2("inserter", lst3);
+    PrintVer2("after inserter operate ", lst3);
 
     vector<int> v = {6,7,8,9,0};
     copy(v.begin(), v.end(), front_inserter(lst));
     PrintVer2("vector front_inserter list", lst);
+
+    //copy(lst.begin(), lst.end(), back_inserter(lst));
 
     copy(v.begin(), v.end(), inserter(lst3, lst3.end()));
     PrintVer2("vector inserter list", lst3);
@@ -461,7 +484,7 @@ void ch_10_4_1()
 
 void PrintList(int i)
 {
-    cout << i << "\n";
+    cout << i << " ";
 }
 
 void hw_10_27()
@@ -473,31 +496,59 @@ void hw_10_27()
     for_each(ilst.begin(), ilst.end(), bind(PrintList, _1));
 }
 
-/* 10.4.2 iostream迭代器 */
-void ch_10_4_2()
+void hw_10_28()
 {
-//    vector<int> vec;
-//    istream_iterator<int> in_iter(cin), eof;
-//    while (in_iter != eof)
-//        vec.push_back(*in_iter++);
-//    for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+    vector<int> ivec = {1,2,3,4,5,6,7,8,9};
 
-    istream_iterator<int> in_iter(cin), eof;
-    vector<int> vec(in_iter, eof);
-    for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+    vector<int> ivec1;
+    copy_if(ivec.begin(), ivec.end(), back_inserter(ivec1), [](int i){return i <= 3;});
+    for_each(ivec1.begin(), ivec1.end(), bind(PrintList, _1));
     cout << endl;
 
-    // 使用算法操作流迭代器
-//    istream_iterator<int>   in(cin), eof;
-//    cout << "stream sum = " << accumulate(in, eof, 0) << endl;
-//    cout << count(in, eof, 1) << endl;
+    vector<int> ivec2;
+    copy_if(ivec.begin(), ivec.end(), back_inserter(ivec2), [](int i){return i > 3 && i <= 6;});
+    for_each(ivec2.begin(), ivec2.end(), bind(PrintList, _1));
+    cout << endl;
 
-    // ostream_iterator 操作
-    ostream_iterator<int> out_iter(cout, "\n");
-//    for (const auto& e : vec)
-//        //out_iter = e;
-//        *out_iter++ = e;
-    copy(vec.begin(), vec.end(), out_iter);
+    vector<int> ivec3;
+    copy_if(ivec.begin(), ivec.end(), back_inserter(ivec3), [](int i){return i > 6;});
+    for_each(ivec3.begin(), ivec3.end(), bind(PrintList, _1));
+}
+
+void ch_10_4_2()
+{
+    vector<int> vec;
+    {
+//        vector<int> vec;
+//        istream_iterator<int> in_iter(cin), eof;
+//        while (in_iter != eof)
+//            vec.push_back(*in_iter++);
+//        for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+
+        istream_iterator<int> in_iter(cin), eof;
+        vector<int> vec(in_iter, eof);
+        for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+        cout << endl;
+    }
+
+
+    /* 使用算法操作流迭代器 */
+    {
+        istream_iterator<int>   in(cin), eof;
+        cout << "stream sum = " << accumulate(in, eof, 0) << endl;
+        cout << count(in, eof, 1) << endl;
+    }
+
+
+    /* ostream_iterator 操作 */
+    {
+        ostream_iterator<int> out_iter(cout, "\n");
+    //    for (const auto& e : vec)
+    //        //out_iter = e;
+    //        *out_iter++ = e;
+        copy(vec.begin(), vec.end(), out_iter);
+    }
+
 }
 
 void hw_10_29()
@@ -512,8 +563,9 @@ void hw_10_29()
     istream_iterator<string>    in_iter(in), eof;
     vector<string>              svec;
 
-    while (in_iter != eof)
-        svec.push_back(*in_iter++);
+//    while (in_iter != eof)
+//        svec.push_back(*in_iter++);
+    copy(in_iter, eof, back_inserter(svec));
     for_each(svec.begin(), svec.end(), [](const string &s) { cout << s << '\n'; });
 }
 
@@ -531,24 +583,64 @@ void hw_10_30()
     unique_copy(ivec.begin(), ivec.end(), out_iter);
 }
 
-/* 10.4.3 反向迭代器 */
+bool Even(const string &s, size_t num)
+{
+    return s.size() > num;
+}
+
+void hw_10_33()
+{
+    const string in_file("Makefile");
+    ifstream in(in_file);
+    if (!in)
+    {
+        cerr << "open in file failed!" << endl;
+        return;
+    }
+
+    ofstream out1;
+    out1.open("out1.txt");
+
+    ofstream out2;
+    out2.open("out2.txt");
+
+    istream_iterator<string> in_iter(in), eof;
+//    ostream_iterator<string> out1_iter(out1, "\n");
+//    copy_if(in_iter, eof, out1_iter, [](const string &s) {return s.size() % 2;});
+
+    ostream_iterator<string> out2_iter(out2, "\n");
+    copy_if(in_iter, eof, out2_iter, bind(Even, _1, 5));
+
+
+    out1.close();
+    out2.close();
+}
+
 void ch_10_4_3()
 {
-    vector<int> ivec = {10, 1, 23, 3, 12, 34, 14, 9};
-    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
-    cout << endl;
+    {
+        vector<int> ivec = {10, 1, 23, 3, 12, 34, 14, 9};
+        for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+        cout << endl;
 
-    sort(ivec.rbegin(), ivec.rend());
-    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
-    cout << endl;
+        sort(ivec.begin(), ivec.end());
+        for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+        cout << endl;
 
-    // 反向迭代器和其他迭代器之间的关系
-    string s("FIRST,MIDDLE,LAST");
-    //getline(cin, s);
-    cout << "s  = " << s << endl;
-    cout << "s1 = " << string(s.begin(), find(s.begin(), s.end(), ',')) << endl;
-    cout << "s2 = " << string(s.crbegin(), find(s.crbegin(), s.crend(), ',')) << endl;
-    cout << "s3 = " << string(find(s.crbegin(), s.crend(), ',').base(), s.cend()) << endl;
+        sort(ivec.rbegin(), ivec.rend());
+        for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' '; });
+        cout << endl;
+    }
+
+
+    /* 反向迭代器和其他迭代器之间的关系 */
+    {
+        string s("FIRST,MIDDLE,LAST");
+        cout << "s  = " << s << endl;
+        cout << "s1 = " << string(s.begin(), find(s.begin(), s.end(), ',')) << endl;
+        cout << "s2 = " << string(s.crbegin(), find(s.crbegin(), s.crend(), ',')) << endl;
+        cout << "s3 = " << string(find(s.crbegin(), s.crend(), ',').base(), s.cend()) << endl;
+    }
 }
 
 void hw_10_34()
@@ -583,7 +675,7 @@ void hw_10_37()
 {
     vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
 
-    ostream_iterator<int> out_iter(cout, "\n");
+    ostream_iterator<int> out_iter(cout, " ");
     copy(vec.begin(), vec.end(), out_iter);
     cout << endl;
 
