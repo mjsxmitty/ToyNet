@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <utility>
 #include <set>
+#include <list>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -18,27 +19,19 @@
 
 using namespace std;
 
-void Chapter_11()
+void ch_11()
 {
-    //Practice_11_1();
+    /* 使用关联容器 */
+    //ch_11_1();
 
-    //Practice_11_2_1();
-    //Homework_11_8();
-    //Practice_11_2_3();
-    //Homework_11_14();
-    //Homework_11_20();
-    //Homework_11_23();
-
-    //Practice_11_3_2();
-    //Practice_11_3_3();
-    //Practice_11_3_5();
-    Homework_11_38();
+    /* 关联容器概述 */
+    ch_11_2();
 }
 
 /***************************************************************/
 /***************************11.1********************************/
 
-// homework 11.4
+// hw 11.4
 string& Trans(string &s)
 {
     for (size_t i = 0; i != s.size(); ++i)
@@ -52,7 +45,7 @@ string& Trans(string &s)
     return s;
 }
 
-void Practice_11_1()
+void ch_11_1()
 {
     map<string, int>    word_count;
     string              word;
@@ -71,8 +64,21 @@ void Practice_11_1()
 /***************************************************************/
 /***************************11.2********************************/
 
-/* 11.2.1 定义关联容器 */
-void Practice_11_2_1()
+void ch_11_2()
+{
+    /* 定义关联容器 */
+    //ch_11_2_1();
+
+    /* 关键字类型要求 */
+    //ch_11_2_2();
+    //hw_11_8();
+    hw_11_9();
+
+    /* pair类型 */
+    //ch_11_2_3();
+}
+
+void ch_11_2_1()
 {
     vector<int> v;
     for (auto i = 0; i != 10; ++i)
@@ -102,7 +108,7 @@ void AddChild(map<string, vector<string>> &families,
     families[family].push_back(child);
 }
 
-void Homework_11_8()
+void hw_11_8()
 {
     map<string, vector<string>> families;
 
@@ -122,6 +128,52 @@ void Homework_11_8()
     cout << endl;
 }
 
+void hw_11_9()
+{
+    string file("Makefile");
+    ifstream in(file);
+    if (!in)
+    {
+        cerr << "open file failed!" << endl;
+        return ;
+    }
+
+    map<string, list<int>>  word_line;
+    string  line;
+    string  word;
+    int lineno = 0;
+    while (getline(in, line))
+    {
+        lineno++;
+        istringstream l_in(line);
+        while (l_in >> word)
+        {
+            Trans(word);
+            word_line[word].push_back(lineno);
+        }
+    }
+    cout << "test" << endl;
+    for (const auto &w : word_line)
+    {
+        cout << w.first << " line: " << endl;
+        for (const auto &i : w.second)
+        {
+            cout << i << ' ';
+        }
+        cout << endl;
+    }
+}
+
+bool CompareIsbn(const GZSalesData &lhs, const GZSalesData &rhs)
+{
+    return lhs.Isbn().size() < rhs.Isbn().size();
+}
+
+void ch_11_2_2()
+{
+    //multiset<string, decltype(GZSalesData)*> bookstore(CompareIsbn);
+}
+
 typedef pair<string, string> Author;
 Author proust("Marcel", "Proust");
 Author joyce{"James", "Joyce"};
@@ -137,12 +189,11 @@ pair<string, int> Process(const vector<string> &vec)
         return pair<string, int>();
 }
 
-/* 11.2.3 pair类型 */
-void Practice_11_2_3()
+void ch_11_2_3()
 {
     vector<string>  v;
 
-    // 创建 pair 对象的函数
+    /* 创建 pair 对象 */ 
     istream_iterator<string>    in_iter(cin), eof;
     copy(in_iter, eof, back_inserter(v));
     sort(v.begin(), v.end(), [](const string &s1, const string &s2) {return s1.size() < s2.size();});
@@ -163,7 +214,7 @@ void AddChild(map<string, vector<pair<string, string>>> &families,
     families[family].push_back({child, birth});
 }
 
-void Homework_11_14()
+void hw_11_14()
 {
     map<string, vector<pair<string, string>>> families;
 
@@ -186,7 +237,7 @@ void Homework_11_14()
 /***************************11.3********************************/
 
 /* 11.3.2 添加元素 */
-void Practice_11_3_2()
+void ch_11_3_2()
 {
     // insert
     vector<int> v = {2,4,6,8,2,4,6,8};
@@ -218,7 +269,7 @@ void Practice_11_3_2()
     authors.insert(pair<string, string>("test_key", "test_val2"));
 }
 
-void Homework_11_20()
+void hw_11_20()
 {
     map<string, int>    word_count;
     string              word;
@@ -243,7 +294,7 @@ void AddChild(multimap<string, string> &families,
     families.insert({family, child});
 }
 
-void Homework_11_23()
+void hw_11_23()
 {
     multimap<string, string> families;
 
@@ -260,7 +311,7 @@ void Homework_11_23()
 }
 
 /* 11.3.3 删除元素 */
-void Practice_11_3_3()
+void ch_11_3_3()
 {
     string                  s;
     map<string, size_t>     word_count;
@@ -314,7 +365,7 @@ void PrintAuthor(multimap<string, string>  &authors)
 }
 
 /* 11.3.5 访问元素 */
-void Practice_11_3_5()
+void ch_11_3_5()
 {
     multimap<string, string>    authors;
     authors.insert({"Alain de Botton", "On Love"});
@@ -345,7 +396,7 @@ void Practice_11_3_5()
 //    for (auto pos = authors.equal_range(search_item); pos.first != pos.second; ++pos.first)
 //        cout << pos.first->second << endl;
 
-    // homework 11.31
+    // hw 11.31
     authors.insert({"Alain de Botton2", "Architecture of Happiness"});
     authors.insert({"Alain de Botton2", "Architecture of Happiness"});
 
@@ -360,7 +411,7 @@ void Practice_11_3_5()
 //        --count;
 //    }
 
-    // homework 11.32
+    // hw 11.32
     PrintAuthor(authors);
     RemoveAuthor(authors, "Alain de Botton");
     PrintAuthor(authors);
@@ -420,7 +471,7 @@ void WordTransform(ifstream &map_file, ifstream &input)
 }
 
 // TODO ...
-void Practice_11_3_6()
+void ch_11_3_6()
 {
 
 }
@@ -444,7 +495,7 @@ typedef unordered_multimap<GZSalesData, decltype(Hasher)*, decltype(EqualOption)
 SDMultiset book(100, Hasher, EqualOption);
 
 //TODO ...
-void Homework_11_38()
+void hw_11_38()
 {
     unordered_map<string, size_t>    word_count;
     string              word;
