@@ -11,9 +11,10 @@ extern void ch_11_2_1();
 extern void ch_11_2_2();
 extern void hw_11_8();
 extern void hw_11_9();
-void ch_11_2_3();
-void hw_11_14();
+extern void ch_11_2_3();
+extern void hw_11_14();
 
+extern void ch_11_3();
 void ch_11_3_2();
 void hw_11_20();
 void hw_11_23();
