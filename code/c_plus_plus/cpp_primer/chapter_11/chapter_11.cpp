@@ -242,7 +242,6 @@ void hw_11_14()
 void ch_11_3()
 {
     {
-        cout << "111" << endl;
         cout << set<string>::value_type() << endl;
     }
 }
