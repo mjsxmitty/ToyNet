@@ -241,43 +241,52 @@ void hw_11_14()
 
 void ch_11_3()
 {
-    {
-        cout << set<string>::value_type() << endl;
-    }
+    /* 添加元素 */
+    //ch_11_3_2();
+
+    /* 删除元素 */
+    //ch_11_3_3();
+
+    /* 访问元素 */
+    ch_11_3_5();
 }
 
-
-/* 11.3.2 添加元素 */
 void ch_11_3_2()
 {
-    // insert
-    vector<int> v = {2,4,6,8,2,4,6,8};
-    set<int> set2;
-    set2.insert(v.begin(), v.end());
-    set2.insert({1,3,5,7,1,3,5,7});
-    cout << "set2 size: " << set2.size() << endl;
-
-    // 检测insert返回值
-    map<string, size_t> word_count;
-    string              word;
-    while (cin >> word)
+    /* insert */
     {
-        // insert
-        auto ret = word_count.insert({word, 1});
-//        ret = word_count.insert(make_pair(word, 1));
-//        ret = word_count.insert(pair<string, size_t>(word, 1));
-//        ret = word_count.insert(map<string, size_t>::value_type(word, 1));
-        if (!ret.second)
-            ++ret.first->second;
+        vector<int> ivec = {2,4,6,8,2,4,6,8};
+        set<int> iset;
+        iset.insert(ivec.begin(), ivec.end());
+        iset.insert({1,3,5,7,1,3,5,7});
+        cout << "set size: " << iset.size() << endl;
     }
 
-    for (auto iter = word_count.begin(); iter != word_count.end(); ++iter)
-        cout << "elem: " << iter->first << ", count: " << iter->second << endl;
 
-    // 向 multimap 或者 multiset添加元素
-    multimap<string, string> authors;
-    authors.insert({"test_key", "test_val1"});
-    authors.insert(pair<string, string>("test_key", "test_val2"));
+    /* 检测insert返回值 */
+    {
+        map<string, size_t> word_count;
+        string              word;
+        while (cin >> word)
+        {
+            auto ret = word_count.insert({word, 1});
+//            ret = word_count.insert(make_pair(word, 1));
+//            ret = word_count.insert(pair<string, size_t>(word, 1));
+//            ret = word_count.insert(map<string, size_t>::value_type(word, 1));
+            if (!ret.second)
+                ++ret.first->second;
+        }
+
+        for (auto iter = word_count.begin(); iter != word_count.end(); ++iter)
+            cout << "elem: " << iter->first << ", count: " << iter->second << endl;
+    }
+
+    /* 向 multimap 或者 multiset添加元素 */
+    {
+        multimap<string, string> authors;
+        authors.insert({"test_key", "test_val1"});
+        authors.insert(pair<string, string>("test_key", "test_val2"));
+    }
 }
 
 void hw_11_20()
@@ -321,7 +330,6 @@ void hw_11_23()
     //cout << families.erase("zhang") << endl;
 }
 
-/* 11.3.3 删除元素 */
 void ch_11_3_3()
 {
     string                  s;
@@ -375,57 +383,71 @@ void PrintAuthor(multimap<string, string>  &authors)
     cout << endl;
 }
 
-/* 11.3.5 访问元素 */
 void ch_11_3_5()
 {
     multimap<string, string>    authors;
     authors.insert({"Alain de Botton", "On Love"});
     authors.insert({"Alain de Botton", "Status Anxiety"});
-    authors.insert({"Alain de Botton", "Art of Travel"});
+    authors.insert({"Alain de Botton jr", "Art of Travel"});
     authors.insert({"Alain de Botton", "Architecture of Happiness"});
 
     string  search_item("Alain de Botton");
-    // 在 multimap 或 multiset 查找元素
-//    auto entries = authors.count(search_item);
-//    auto iter = authors.find(search_item);
-//    while (entries)
-//    {
-//        cout << iter->second << endl;
-//        ++iter;
-//        --entries;
-//    }
-//    cout << endl;
+    /* 在 multimap 或 multiset 查找元素 */
+    {
+        auto entries = authors.count(search_item);
+        auto iter = authors.find(search_item);
+        while (entries)
+        {
+            cout << iter->second << endl;
+            ++iter;
+            --entries;
+        }
+        cout << endl;
+    }
 
-    // 一种不同的，面相迭代器的解决办法
-//    for (auto beg = authors.lower_bound(search_item),
-//              end = authors.upper_bound(search_item);
-//         beg != end; ++beg)
-//        cout << beg->second << endl;
-//    cout << endl;
 
-    // equal_range 函数
-//    for (auto pos = authors.equal_range(search_item); pos.first != pos.second; ++pos.first)
-//        cout << pos.first->second << endl;
+    /* 一种不同的，面相迭代器的解决办法 */
+    {
+        for (auto beg = authors.lower_bound(search_item),
+                  end = authors.upper_bound(search_item);
+             beg != end; ++beg)
+            cout << beg->second << endl;
+        cout << endl;
+    }
+
+
+    /* equal_range 函数 */
+    {
+        for (auto pos = authors.equal_range(search_item);
+             pos.first != pos.second; ++pos.first)
+            cout << pos.first->second << endl;
+    }
+
 
     // hw 11.31
-    authors.insert({"Alain de Botton2", "Architecture of Happiness"});
-    authors.insert({"Alain de Botton2", "Architecture of Happiness"});
+    {
+        authors.insert({"Alain de Botton2", "Architecture of Happiness"});
+        authors.insert({"Alain de Botton2", "Architecture of Happiness"});
 
-//    auto count = authors.count("Alain de Botton2");
-//    auto iter2 = authors.find("Alain de Botton2");
-//    if (count)
-//    {
-//        cout << "authors size: " << authors.size() << endl;
-//        authors.erase(iter2->first);
-//        cout << "after erase authors size: " << authors.size() << endl;
-//        ++iter2;
-//        --count;
-//    }
+        auto count = authors.count("Alain de Botton2");
+        auto iter2 = authors.find("Alain de Botton2");
+        if (count)
+        {
+            cout << "authors size: " << authors.size() << endl;
+            authors.erase(iter2->first);
+            cout << "after erase authors size: " << authors.size() << endl;
+            ++iter2;
+            --count;
+        }
+    }
+
 
     // hw 11.32
-    PrintAuthor(authors);
-    RemoveAuthor(authors, "Alain de Botton");
-    PrintAuthor(authors);
+    {
+        PrintAuthor(authors);
+        RemoveAuthor(authors, "Alain de Botton");
+        PrintAuthor(authors);
+    }
 }
 
 map<string, string> BuildRuleMap(ifstream &map_file)
@@ -436,7 +458,7 @@ map<string, string> BuildRuleMap(ifstream &map_file)
 
     while (map_file >> key && getline(map_file, val))   //
     {
-        if (val.size() > 1)
+        if (val.size() > 1) //
             trans_map[key] = val.substr(1);
         else
             throw runtime_error("no rule for " + key);
@@ -456,10 +478,10 @@ const string& Transform(const string &s, const map<string, string> &m)
 void WordTransform(ifstream &map_file, ifstream &input)
 {
     auto trans_map = BuildRuleMap(map_file);
-    cout << "Here is our trans rule: \n";
-    for (const auto &entry : trans_map)
-        cout << "key: " << entry.first << "\tvalue: " << entry.second << endl;
-    cout << endl;
+//    cout << "Here is our trans rule: \n";
+//    for (const auto &entry : trans_map)
+//        cout << "key: " << entry.first << "\tvalue: " << entry.second << endl;
+//    cout << endl;
 
     string text;
     while (getline(input, text))
@@ -481,10 +503,11 @@ void WordTransform(ifstream &map_file, ifstream &input)
     }
 }
 
-// TODO ...
 void ch_11_3_6()
 {
-
+    ifstream map_file;
+    ifstream input;
+    WordTransform(map_file, input);
 }
 
 /***************************************************************/
@@ -505,7 +528,7 @@ typedef unordered_multiset<GZSalesData, decltype(Hasher)*, decltype(EqualOption)
 typedef unordered_multimap<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultimap;
 SDMultiset book(100, Hasher, EqualOption);
 
-//TODO ...
+
 void hw_11_38()
 {
     unordered_map<string, size_t>    word_count;
@@ -518,5 +541,4 @@ void hw_11_38()
     for (const auto &w : word_count)
         cout << w.first << " occurs " << w.second <<
                 ((w.second > 1) ? " times" : " time") << endl;
-
 }
