@@ -13,26 +13,23 @@
 
 using namespace std;
 
-void Chapter_12(int argc, char **argv)
+void ch_12(int argc, char **argv)
 {
-    //Practice_12_1_1();
-    //Homework_12_2();
-    //Practice_12_1_2();
-    //Homework_12_5();
-    //Practice_12_1_3();
-    //Practice_12_1_4();
-    //Practice_12_1_5();
-    //Practice_12_1_6();
-    //Homework_12_20(argc, argv);
+    /* 动态内存与智能指针 */
+    ch_12_1();
 
-    //Practice_12_2_1();
-    //Homework_12_23();
-    //Homework_12_24();
-    Practice_12_2_2();
+    /* 动态数组 */
+    //ch_12_2();
 }
 
 /***************************************************************/
 /***************************12.1********************************/
+
+void ch_12_1()
+{
+    /* shared_ptr类 */
+    ch_12_1_1();
+}
 
 typedef int T;
 struct Foo
@@ -65,9 +62,7 @@ shared_ptr<Foo> UseFactory(T arg)
     return p;
 }
 
-
-/* 12.1.1 shared_ptr类 */
-void Practice_12_1_1()
+void ch_12_1_1()
 {
     shared_ptr<string>      p1;
     shared_ptr<list<int>>   p2;
@@ -86,24 +81,9 @@ void Practice_12_1_1()
 
     shared_ptr<int> p5 = make_shared<int>();
     auto p6 = make_shared<vector<int>>();
-
-    cout << "test use GZStrBlob class ..." << endl;
-    GZStrBlob b1;
-    cout << "b1 size: " << b1.Size() << endl;
-    {
-        GZStrBlob b2 = {"a", "an", "the"};
-        cout << "before push back b2 size: " << b2.Size() << endl;
-        b1 = b2;
-        cout << "before push back b1 size: " << b1.Size() << endl;
-        b2.PushBack("about");
-        cout << "after push back b2 size: " << b2.Size() << endl;
-        cout << "after push back b1 size: " << b1.Size() << endl;
-    }
-    cout << "b1 size: " << b1.Size() << endl;
-
 }
 
-void Homework_12_2()
+void hw_12_2()
 {
     GZStrBlob b1;
     {
@@ -125,7 +105,7 @@ void Homework_12_2()
 
 
 /* 12.1.2 直接管理内存 */
-void Practice_12_1_2()
+void ch_12_1_2()
 {
     // 使用new动态分配和管理对象
 //    int *pi = new int;
@@ -216,7 +196,7 @@ void PrintVec(shared_ptr<vector<int>> &vec)
     cout << endl;
 }
 
-void Homework_12_6()
+void hw_12_6()
 {
     vector<int> *pv = NewVector();
     if (!pv)
@@ -230,7 +210,7 @@ void Homework_12_6()
     delete pv;
     pv = nullptr;
 
-    // homework 12.7
+    // hw 12.7
     shared_ptr<vector<int>> spv = NewVec();
     if (!spv)
     {
@@ -256,7 +236,7 @@ void Process(shared_ptr<int> ptr)
     cout << "func ptr: " << *ptr << endl;
 }
 
-void Practice_12_1_3()
+void ch_12_1_3()
 {
     //
 //    shared_ptr<int> sp = Clone(3);
@@ -329,7 +309,7 @@ void FuncConnect1(Destination &dest)
     //unique_ptr<Connection, decltype(EndConnection)*> up(&c, EndConnection);
 }
 
-void Practice_12_1_4()
+void ch_12_1_4()
 {
     Destination d;
     //FuncConnect(d);
@@ -343,7 +323,7 @@ unique_ptr<string> Clone(string p)
     return ret;
 }
 
-void Practice_12_1_5()
+void ch_12_1_5()
 {
     //
     unique_ptr<string> p1(new string("hello world"));
@@ -367,7 +347,7 @@ void Practice_12_1_5()
     // ...
 }
 
-void Practice_12_1_6()
+void ch_12_1_6()
 {
     shared_ptr<int> isp = make_shared<int>(1024);
     weak_ptr<int>   wp(isp);
@@ -393,7 +373,7 @@ void Practice_12_1_6()
     }
 }
 
-void Homework_12_20(int argc, char **argv)
+void hw_12_20(int argc, char **argv)
 {
     //cout << argv[1] << endl;
     ifstream in(argv[1]);
@@ -416,7 +396,7 @@ void Homework_12_20(int argc, char **argv)
 /***************************12.2********************************/
 
 /* 12.2.1 new和数组 */
-void Practice_12_2_1()
+void ch_12_2_1()
 {
 
     typedef int IntArry[10];
@@ -443,7 +423,7 @@ void Practice_12_2_1()
     sp.reset();
 }
 
-void Homework_12_23()
+void hw_12_23()
 {
     const char *c1 = "Hello";
     const char *c2 = "World";
@@ -460,7 +440,7 @@ void Homework_12_23()
     delete [] nc;
 }
 
-void Homework_12_24()
+void hw_12_24()
 {
     char *nc = new char[20];
     int  pos = 0;
@@ -484,7 +464,7 @@ void Homework_12_24()
 }
 
 /* 12.2.2 allocator类 */
-void Practice_12_2_2()
+void ch_12_2_2()
 {
     //
 //    allocator<GZSalesData> gz_alloc;

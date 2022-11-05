@@ -11,6 +11,7 @@
 #include "chapter_09/chapter_09.h"
 #include "chapter_10/chapter_10.h"
 #include "chapter_11/chapter_11.h"
+#include "chapter_12/chapter_12.h"
 
 #include "lib_util/account.h"
 #include "lib_util/person.h"
@@ -19,10 +20,6 @@
 #include "lib_util/sales_data.h"
 #include "chapter_07/chapter_07.h"
 
-
-
-
-#include "chapter_12/chapter_12.h"
 #include "chapter_13/chapter_13.h"
 #include "chapter_14/chapter_14.h"
 #include "chapter_15/chapter_15.h"
@@ -45,7 +42,8 @@ int main(int argc, char **argv)
     //ch_08();
     //ch_09();
     //ch_10();
-    ch_11();
+    //ch_11();
+    ch_12(argc, argv);
 
     /* ������߹��� */
     //ch_15();
