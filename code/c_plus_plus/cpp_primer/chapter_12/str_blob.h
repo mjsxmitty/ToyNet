@@ -28,6 +28,9 @@ public:
 private:
     std::shared_ptr<std::vector<std::string>> data_;
     void CheckSize(size_type i, const std::string &msg) const;
+public:
+    const std::string& Front() const;
+    const std::string& Back() const;
 
     // homework 13.55
     //void        PushBack(const std::string &&s) { data_->push_back(std::move(s)); }
@@ -48,8 +51,7 @@ public:
     GZStrBlob& operator=(GZStrBlob &&rhs);
     //GZStrBlob(std::string *, std::string*);
 
-    const std::string& Front() const;
-    const std::string& Back() const;
+
 
     GZStrBlobPtr Begin();
     GZStrBlobPtr End();

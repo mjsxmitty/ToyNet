@@ -11,6 +11,10 @@ using namespace std;
 /*****************************************************************/
 /***************************12.1********************************/
 
+GZStrBlob::GZStrBlob() : data_(make_shared<vector<string>>()){}
+GZStrBlob::GZStrBlob(const initializer_list<string> &il) : data_(make_shared<vector<string>>(il)){}
+
+
 void GZStrBlob::CheckSize(size_type i, const string &msg) const
 {
     if (i >= data_->size())
@@ -23,19 +27,7 @@ string& GZStrBlob::Back()
     return data_->back();
 }
 
-const string& GZStrBlob::Back() const
-{
-    CheckSize(0, "back on empty GZStrBlob.");
-    return data_->back();
-}
-
 string& GZStrBlob::Front()
-{
-    CheckSize(0, "front on empty GZStrBlob.");
-    return data_->front();
-}
-
-const string& GZStrBlob::Front() const
 {
     CheckSize(0, "front on empty GZStrBlob.");
     return data_->front();
@@ -47,12 +39,27 @@ void GZStrBlob::PopBack()
     return data_->pop_back();
 }
 
+/* hw 12.3 */
+const string& GZStrBlob::Front() const
+{
+    CheckSize(0, "front on empty GZStrBlob.");
+    return data_->front();
+}
 
-GZStrBlob::GZStrBlob() : data_(make_shared<vector<string>>()){}
-GZStrBlob::GZStrBlob(const initializer_list<string> &il) : data_(make_shared<vector<string>>(il)){}
+const string& GZStrBlob::Back() const
+{
+    CheckSize(0, "back on empty GZStrBlob.");
+    return data_->back();
+}
+
+
+
+
+
+
 GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
 
-// homework 13.25行为像值
+// homework 13.25锟斤拷为锟斤拷值
 //GZStrBlob::GZStrBlob(const GZStrBlob &rhs)
 //{
 //    data_ = make_shared<vector<string>>(*rhs.data_);

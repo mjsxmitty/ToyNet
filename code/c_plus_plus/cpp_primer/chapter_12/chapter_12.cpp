@@ -28,7 +28,11 @@ void ch_12(int argc, char **argv)
 void ch_12_1()
 {
     /* shared_ptr类 */
-    ch_12_1_1();
+    //ch_12_1_1();
+    hw_12_1();
+
+    /* 直接管理内存 */
+    ch_12_1_2();
 }
 
 typedef int T;
@@ -83,6 +87,21 @@ void ch_12_1_1()
     auto p6 = make_shared<vector<int>>();
 }
 
+void hw_12_1()
+{
+    GZStrBlob b1;
+    {
+        GZStrBlob b2 = {"a", "an", "the"};
+        b1 = b2;
+        cout << "b1 size : " << b1.Size() << endl;
+        cout << "b2 size : " << b2.Size() << endl;
+        b2.PushBack("about");
+        cout << "b1 size : " << b1.Size() << endl;
+        cout << "b2 size : " << b2.Size() << endl;
+    }
+    cout << "b1 size : " << b1.Size() << endl;
+}
+
 void hw_12_2()
 {
     GZStrBlob b1;
@@ -103,59 +122,73 @@ void hw_12_2()
         cout << iter.Deref() << endl;
 }
 
-
-/* 12.1.2 直接管理内存 */
 void ch_12_1_2()
 {
-    // 使用new动态分配和管理对象
-//    int *pi = new int;
-//    string *ps = new string;
-//    int *pi2 = new int(10);
-//    string *ps2 = new string(10, 'c');
-//    vector<int> *pv = new vector<int>{'a', 'b', 'c'};
+    /* 使用new动态分配和管理对象 */ 
+    {
+        int *pi = new int;
+        string *ps = new string;
+        int *pi2 = new int(10);
+        string *ps2 = new string(10, 'c');
+        vector<int> *pv = new vector<int>{'a', 'b', 'c'};
+    }
 
-//    int i = 100;
-//    auto *pi = new auto (i);        //根据i推断
-//    auto *pi2 = new int(i);
-//    *pi = 10;
-//    string s = "nihao";
-//    auto *ps = new auto (s);
+    {
+        int i = 100;
+        auto *pi = new auto (i);        //根据i推断
+        auto *pi2 = new int(i);
+        *pi = 10;
+        string s = "hello";
+        auto *ps = new auto (s);
+    }
 
-    // 动态分配const对象
-//    const int *pci = new const int(1024);
-//    const string *pcs = new const string;
-
-    // 内存耗尽
-//    int *ip = new (nothrow) int;    //分配不成功,返回空指针
-
-    // 释放动态内存
-//    delete p;
-//    delete p2;
-//    delete pi;
-//    delete pi2;
-//    delete pci;
-//    delete pcs;
-
-    // 指针值和delete
-    int i2, *pi1 = &i2, *pi22 = nullptr;
-    double *pd = new double(1024), *pd2 = pd;
-
-//    delete  i2;
-//    delete pi1;
-    delete pd;
-//    delete pd2;
-    delete pi22;
+    /* 动态分配const对象 */ 
+    {
+        const int *pci = new const int(1024);
+        const string *pcs = new const string;
+    }
 
 
-    // ...这只是提供了有限的保护
-    int *p(new int(1024));
-    auto q = p;
+    /* 内存耗尽 */
+    {
+        int *ip = new (nothrow) int;    //分配不成功,返回空指针
+    } 
 
-    delete p;
-    p = nullptr;
+    /* 释放动态内存 */ 
+    {
+        // delete p;
+        // delete p2;
+        // delete pi;
+        // delete pi2;
+        // delete pci;
+        // delete pcs;
+    }
 
-    //*q = 0;
-    //delete q;
+    /* 指针值和delete */ 
+    {
+        int i2, *pi1 = &i2, *pi22 = nullptr;
+        double *pd = new double(1024), *pd2 = pd;
+
+    //    delete  i2;
+    //    delete pi1;
+        delete pd;
+    //    delete pd2;
+        delete pi22;
+    }
+
+
+
+    /*...这只是提供了有限的保护 */ 
+    {
+        int *p(new int(1024));
+        auto q = p;
+
+        delete p;
+        p = nullptr;
+
+        //*q = 0;
+        //delete q;
+    }
 }
 
 vector<int>* NewVector()
@@ -226,6 +259,7 @@ shared_ptr<int> Clone(int p)
 {
     // 不能将一个内置指针隐式转换为一个智能指针
     //return new int(p);
+
     //return make_shared<int>(p);
 
     return shared_ptr<int>(new int(p));
@@ -238,9 +272,11 @@ void Process(shared_ptr<int> ptr)
 
 void ch_12_1_3()
 {
-    //
-//    shared_ptr<int> sp = Clone(3);
-//    cout << *sp << endl;
+    {
+        shared_ptr<int> sp = Clone(3);
+        cout << *sp << endl;
+    }
+
 
     // 不要混用普通指针和智能指针
     // 正确的使用方法

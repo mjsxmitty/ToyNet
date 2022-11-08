@@ -9,6 +9,7 @@ extern void ch_12(int argc, char **argv);
 
 extern void ch_12_1();
 extern void ch_12_1_1();
+extern void hw_12_1();
 extern void hw_12_2();
 extern void ch_12_1_2();
 extern void hw_12_6();
