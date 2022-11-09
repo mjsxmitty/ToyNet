@@ -52,10 +52,7 @@ const string& GZStrBlob::Back() const
     return data_->back();
 }
 
-
-
-
-
+////
 
 GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
 

@@ -64,6 +64,7 @@ public:
 bool operator==(const GZStrBlob &lhs, const GZStrBlob &rhs);
 bool operator!=(const GZStrBlob &lhs, const GZStrBlob &rhs);
 
+
 /* 12.1.6 weak_ptr类 */
 class GZStrBlobPtr
 {
@@ -77,6 +78,7 @@ private:
     std::weak_ptr<std::vector<std::string>> wptr_;
     std::size_t                             curr_;
 
+public:
     friend bool Equal(const GZStrBlobPtr&, const GZStrBlobPtr&);
     friend bool NotEqual(const GZStrBlobPtr&, const GZStrBlobPtr&);
 

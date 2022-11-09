@@ -29,10 +29,22 @@ void ch_12_1()
 {
     /* shared_ptr类 */
     //ch_12_1_1();
-    hw_12_1();
+    //hw_12_1();
 
     /* 直接管理内存 */
-    ch_12_1_2();
+    //ch_12_1_2();
+
+    /* shared_ptr与类的结合 */
+    //ch_12_1_3();
+
+    /* 智能指针和异常 */
+    //ch_12_1_4();
+
+    /* unique_ptr*/
+    //ch_12_1_5();
+
+    /* weak_ptr */
+    ch_12_1_6();
 }
 
 typedef int T;
@@ -257,11 +269,10 @@ void hw_12_6()
 
 shared_ptr<int> Clone(int p)
 {
-    // 不能将一个内置指针隐式转换为一个智能指针
+    /* 不能将一个内置指针隐式转换为一个智能指针 */
     //return new int(p);
 
     //return make_shared<int>(p);
-
     return shared_ptr<int>(new int(p));
 }
 
@@ -278,52 +289,67 @@ void ch_12_1_3()
     }
 
 
-    // 不要混用普通指针和智能指针
-    // 正确的使用方法
-    shared_ptr<int> p(new int(42));
-    //Process(shared_ptr<int> (p));
-//    Process(p);
-//    int i = *p;
-//    cout << "i = " << i << endl;
+    /* 不要混用普通指针和智能指针 */
+    {
+        // 正确的使用方法
+        shared_ptr<int> p(new int(42));
+        //Process(shared_ptr<int> (p));
+        Process(p);
+        int i = *p;
+        cout << "i = " << i << endl;
 
-    // 错误的使用方法
-    int *x(new int(42));
-    //Process(new int());
-//    Process(x);   //只能直接初始化
-//    Process(shared_ptr<int> (x));
-//    int j = *x;
-//    cout << "j = " << j << endl;
+        // 错误的使用方法
+//        int *x(new int(42));
+//        Process(new int());
+//        Process(x);   //只能直接初始化
+//        Process(shared_ptr<int> (x));
+//        int j = *x;
+//        cout << "j = " << j << endl;
+    }
 
-    // 不要使用一个get初始化另一个智能指针或者为智能指针赋值
-//    {
-//        shared_ptr<int> q(p.get());
-//        cout << "*q = " << *q << endl;
-//    }
-//    int foo = *p;
-//    cout << "foo = " << foo << endl;
 
-    // shared_ptr其他操作
-    // shared_ptr<int> q = p;
-//    if (p.unique())
-//    {
-//        cout << "only one pointer!" << endl;
-//        p.reset(new int(1024));
-//        cout << "*p = " << *p << endl;
-//    }
+    /* 不要使用一个get初始化另一个智能指针或者为智能指针赋值 */
+    {
+//        shared_ptr<int> p(new int(42));
+//        {
+//            shared_ptr<int> q(p.get());
+//            cout << "*q = " << *q << endl;
+//        }
+//        int foo = *p;
+//        cout << "foo = " << foo << endl;
+    }
+
+    /* shared_ptr其他操作 */
+    {
+        shared_ptr<int> p(new int(42));
+        shared_ptr<int> q = p;
+        //cout << q.unique() << endl;
+        if (!p.unique())
+        {
+            cout << "only one pointer!" << endl;
+            p.reset(new int(1024));
+            cout << "*p = " << *p << endl;
+            *p += 1;
+            cout << "*p = " << *p << endl;
+        }
+    }
 }
 
 struct Destination {};
 // 没有析构
 struct Connection{};
+
 Connection Connect(Destination *dest)
 {
     cout << "open connect ..." << endl;
 }
-void DisConnection(Connection)
+
+void DisConnection(Connection c)
 {
     cout << "disconnect ..." << endl;
 }
-void EndConnection(Connection *p){DisConnection(*p);}
+
+void EndConnection(Connection *p) { DisConnection(*p); }
 
 void FuncConnect(Destination &dest)
 {
@@ -361,26 +387,34 @@ unique_ptr<string> Clone(string p)
 
 void ch_12_1_5()
 {
-    //
-    unique_ptr<string> p1(new string("hello world"));
-    cout << "p1 = " << *p1 <<  endl;
-//    unique_ptr<string> p2(p1);
-//    unique_ptr<string> p3;
-//    p3 =p1;
+    {
+        unique_ptr<string> p1(new string("hello world"));
+        cout << "p1 = " << *p1 <<  endl;
+//        unique_ptr<string> p2(p1);
+//        unique_ptr<string> p3;
+//        p3 =p1;
 
-    unique_ptr<string> p2(p1.release());
-    cout << "p2 = " << *p2 << endl;
+        unique_ptr<string> p2(p1.release());    // p1置空
+//        cout << "p2 = " << *p2 << endl;
 
-    unique_ptr<string> p3(new string("ni hao"));
-    p2.reset(p3.release());
-    cout << "p2 = " << *p2 << endl;
+        unique_ptr<string> p3(new string("ni hao"));
+        p2.reset(p3.release());                 // p2释放,指向p3
+//        cout << "p2 = " << *p2 << endl;
+    }
 
-    // 传递unique_ptr参数和返回unique_ptr
-    string s = "hello";
-    unique_ptr<string> ups = Clone(s);
+    /* 传递unique_ptr参数和返回unique_ptr */
+    {
+        string s = "hello";
+        unique_ptr<string> ups = Clone(s);
+    }
 
-    // 向unique_ptr传递删除器
-    // ...
+    /* 向unique_ptr传递删除器 */
+    {
+        Destination d;
+        Connection c = Connect(&d);
+
+        unique_ptr<Connection, decltype(EndConnection)*> p(&c, EndConnection);
+    }
 }
 
 void ch_12_1_6()
