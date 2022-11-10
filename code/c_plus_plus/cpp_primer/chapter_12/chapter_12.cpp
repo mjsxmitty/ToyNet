@@ -1,7 +1,8 @@
 
 #include "chapter_12.h"
 #include "../util/gz_str_blob.h"
-#include "../chapter_07/gz_sales_data.h"
+#include "../util/gz_text_query.h"
+#include "../util/gz_query_result.h"
 
 #include <iostream>
 #include <string>
@@ -10,6 +11,7 @@
 #include <vector>
 #include <fstream>
 #include <cstring>
+#include <sstream>
 
 using namespace std;
 
@@ -21,7 +23,7 @@ void ch_12(int argc, char **argv)
     /* 动态数组 */
     //ch_12_2();
 
-    ch_12_3();
+    ch_12_3(argc, argv);
 }
 
 /***************************************************************/
@@ -652,7 +654,80 @@ void hw_12_26()
 /***************************************************************/
 /***************************12.3********************************/
 
-void ch_12_3()
-{
+using line_no = vector<int>::size_type;
+vector<string>  file;
+map<string, set<line_no>> wm;
 
+string CleanupStr(const string &word)
+{
+    string ret;
+    for (auto it = word.begin(); it != word.end(); ++it)
+    {
+        if (!ispunct(*it))
+            ret += tolower(*it);
+    }
+
+    return ret;
+}
+
+void InputFile(ifstream &in)
+{
+    string text;
+    while (getline(in, text)) {
+        file.push_back(text);
+        int n = file.size() - 1;
+
+        istringstream line(text);
+        string word;
+        while (line >> word)
+            wm[CleanupStr(word)].insert(n);
+    }
+}
+
+void QueryAndPrint(const string &word, ostream &os)
+{
+    auto loc = wm.find(word);
+    if (loc == wm.end())
+    {
+        os << word << " occurs 0 times" << endl;
+        return ;
+    }
+
+    auto lines = loc->second;
+    os << word << " occurs " << lines.size() << " time(s)." << endl;
+    for (auto &it : lines)
+        os << "( " << it << " ) : " << *(file.begin() + it) << endl;
+}
+
+void RunQueries(ifstream &in)
+{
+    {
+        while (true)
+        {
+            cout << "enter a word to look for, q to quit!" << endl;
+            string s;
+            if (!(cin >> s) || s == "q") break;
+            QueryAndPrint(s, cout);
+        }
+    }
+//    TextQuery tq(in);
+//    while (true)
+//    {
+//        cout << "enter a word to look for, q to quit!" << endl;
+//        string s;
+//        if (!(cin >> s) || s == "q") break;
+//        //
+//    }
+}
+
+void ch_12_3(int argc, char **argv)
+{
+    ifstream in;
+    if (argc != 2 || !(in.open(argv[1]), in))
+    {
+        cerr << "open file failed!" << endl;
+        return;
+    }
+
+    RunQueries(in);
 }
