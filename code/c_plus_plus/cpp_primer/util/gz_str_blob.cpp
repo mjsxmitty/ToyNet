@@ -1,5 +1,5 @@
 
-#include "str_blob.h"
+#include "gz_str_blob.h"
 
 #include <vector>
 #include <string>

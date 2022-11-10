@@ -26,4 +26,6 @@ extern void hw_12_24();
 extern void ch_12_2_2();
 extern void hw_12_26();
 
+extern void ch_12_3();
+
 #endif //__CPP_PRIMER_CHAPTER_12_H__

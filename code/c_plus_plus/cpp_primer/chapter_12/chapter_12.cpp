@@ -1,6 +1,6 @@
 
 #include "chapter_12.h"
-#include "str_blob.h"
+#include "../util/gz_str_blob.h"
 #include "../chapter_07/gz_sales_data.h"
 
 #include <iostream>
@@ -19,7 +19,9 @@ void ch_12(int argc, char **argv)
     //ch_12_1(argc, argv);
 
     /* 动态数组 */
-    ch_12_2();
+    //ch_12_2();
+
+    ch_12_3();
 }
 
 /***************************************************************/
@@ -470,7 +472,7 @@ void hw_12_20(int argc, char **argv)
 void ch_12_2()
 {
     /* new和数组 */
-    ch_12_2_1();
+    //ch_12_2_1();
 
     /* allocator类 */
     ch_12_2_2();
@@ -649,4 +651,8 @@ void hw_12_26()
 
 /***************************************************************/
 /***************************12.3********************************/
-//TODO...RR
+
+void ch_12_3()
+{
+
+}
