@@ -52,10 +52,14 @@ const string& GZStrBlob::Back() const
     return data_->back();
 }
 
-////
+/* ch 12.1.6 */
 
 GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
 GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
+
+/* hw 12.22 */
+GZStrBlobPtr GZStrBlob::Begin() const { return GZStrBlobPtr(*this); }
+GZStrBlobPtr GZStrBlob::End() const { return GZStrBlobPtr(*this, data_->size()); }
 
 
 GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
@@ -80,8 +84,7 @@ GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
 }
 
 
-GZStrBlobPtr GZStrBlob::Begin() const { return GZStrBlobPtr(*this); }
-GZStrBlobPtr GZStrBlob::End() const { return GZStrBlobPtr(*this, data_->size()); }
+
 
 ////////////////////////////////////////////////////////
 
@@ -106,7 +109,7 @@ string& GZStrBlobPtr::Deref() const
 GZStrBlobPtr& GZStrBlobPtr::Incr()
 {
     Check(curr_, "increment past end GZStrBlobPtr");
-    ++curr_;
+    ++curr_;    // 此处无需在意,后续操作会进行校验
     return *this;
 }
 
@@ -127,7 +130,7 @@ bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
-        return (!r || lhs.curr_ == rhs.curr_);
+        return (!r || lhs.curr_ == rhs.curr_);  // 空指针或者指向相同的vector
     else
         return false;
 }

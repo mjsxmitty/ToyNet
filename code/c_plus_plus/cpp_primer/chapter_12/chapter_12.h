@@ -7,7 +7,7 @@
 
 extern void ch_12(int argc, char **argv);
 
-extern void ch_12_1();
+extern void ch_12_1(int argc, char **argv);
 extern void ch_12_1_1();
 extern void hw_12_1();
 extern void hw_12_2();
@@ -24,5 +24,6 @@ extern void ch_12_2_1();
 extern void hw_12_23();
 extern void hw_12_24();
 extern void ch_12_2_2();
+extern void hw_12_26();
 
 #endif //__CPP_PRIMER_CHAPTER_12_H__

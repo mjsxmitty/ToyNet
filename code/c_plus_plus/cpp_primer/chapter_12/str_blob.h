@@ -32,7 +32,11 @@ private:
 public:
     GZStrBlobPtr Begin();
     GZStrBlobPtr End();
-    
+public:
+    // hw 12.22
+    GZStrBlobPtr Begin() const;
+    GZStrBlobPtr End() const;
+
 public:
     const std::string& Front() const;
     const std::string& Back() const;
@@ -57,8 +61,7 @@ public:
     //GZStrBlob(std::string *, std::string*);
 
 
-    GZStrBlobPtr Begin() const;
-    GZStrBlobPtr End() const;
+
 
 };
 

@@ -16,16 +16,16 @@ using namespace std;
 void ch_12(int argc, char **argv)
 {
     /* 动态内存与智能指针 */
-    ch_12_1();
+    //ch_12_1(argc, argv);
 
     /* 动态数组 */
-    //ch_12_2();
+    ch_12_2();
 }
 
 /***************************************************************/
 /***************************12.1********************************/
 
-void ch_12_1()
+void ch_12_1(int argc, char **argv)
 {
     /* shared_ptr类 */
     //ch_12_1_1();
@@ -44,7 +44,8 @@ void ch_12_1()
     //ch_12_1_5();
 
     /* weak_ptr */
-    ch_12_1_6();
+    //ch_12_1_6();
+    hw_12_20(argc, argv);
 }
 
 typedef int T;
@@ -466,32 +467,64 @@ void hw_12_20(int argc, char **argv)
 /***************************************************************/
 /***************************12.2********************************/
 
-/* 12.2.1 new和数组 */
+void ch_12_2()
+{
+    /* new和数组 */
+    ch_12_2_1();
+
+    /* allocator类 */
+    ch_12_2_2();
+    hw_12_26();
+}
+
+int get_size() {}
+void Reset(int *p) {delete [] p;}
 void ch_12_2_1()
 {
-
-    typedef int IntArry[10];
-    int *parray = new IntArry;
-    delete [] parray;
-
-    int *pia = new int[10]{1,2,3};
-    for (int *q = pia; q != pia + 10; ++q)
     {
-        cout << *q << ' ';
+        //int array[get_size()];
+        int *pia = new int[get_size()];     // 不必是常量
+        delete [] pia;
+
+        typedef int IntArry[10];
+        int *parray = new IntArry;
+        delete [] parray;
     }
-    cout << endl;
-    delete [] pia;
 
-    // 智能指针和动态数组
-    unique_ptr<int []> upi(new int[10]);
-    for (int i = 0; i != 10; ++i)
-        upi[i] = i;
-    upi.release();
+    {
+        int *pi = new int[10]();
+        delete [] pi;
 
-    shared_ptr<int> sp(new int[10], [](int *p){delete [] p; });
-    for (int i = 0; i != 10; ++i)
-        *(sp.get() + i) = i;
-    sp.reset();
+        int *pia = new int[10]{1,2,3};
+        for (int *q = pia; q != pia + 10; ++q)
+        {
+            cout << *q << ' ';
+        }
+        cout << endl;
+        delete [] pia;
+    }
+
+    /* 动态分配一个空数组是合法的 */
+    {
+        //char arry[0];
+        char *pa = new char[0]; // 不可以解引用
+        delete [] pa;
+    }
+
+    /* 智能指针和动态数组 */
+    {
+        unique_ptr<int []> upi(new int[10]);
+        for (int i = 0; i != 10; ++i)
+            upi[i] = i;
+        upi.release();  //记得释放
+
+        // 需要自己定义删除器
+        shared_ptr<int> sp(new int[10], [](int *p){delete [] p; });
+        //shared_ptr<int> sp(new int[10], Reset);
+        for (int i = 0; i != 10; ++i)
+            *(sp.get() + i) = i;
+        sp.reset();
+    }
 }
 
 void hw_12_23()
@@ -529,12 +562,12 @@ void hw_12_24()
             break;
         }
     }
+
     nc[pos] = 0;
     cout << nc << endl;
     delete [] nc;
 }
 
-/* 12.2.2 allocator类 */
 void ch_12_2_2()
 {
     //
@@ -547,44 +580,70 @@ void ch_12_2_2()
 //    gz_alloc.destroy(gz_ptr);
 //    gz_alloc.deallocate(gz_ptr, 10);
 
-    // allocator类
-//    const size_t n = 100;
-//    allocator<string> alloc;
-//    auto p = alloc.allocate(n);
+    /* allocator类 */
+    {
+        const size_t n = 100;
+        allocator<string> alloc;
+        auto p = alloc.allocate(n);
 
-//    auto q = p;
-//    alloc.construct(q++);
-//    cout << *(q -1) << endl;
+        auto q = p;
+        alloc.construct(q++);
+        cout << *(q -1) << endl;
 
-//    alloc.construct(q++, 10, 'c');
-//    cout << *(q -1) << endl;
+        alloc.construct(q++, 10, 'c');
+        cout << *(q -1) << endl;
 
-//    alloc.construct(q++, "hi");
-//    cout << *(q -1) << endl;
+        alloc.construct(q++, "hi");
+        cout << *(q -1) << endl;
 
-//    while (q != p)
-//        alloc.destroy(--q);
+        while (q != p)
+            alloc.destroy(--q);
 
-//    alloc.deallocate(p, n);
+        alloc.deallocate(p, n);
+    }
 
-    vector<int> vi{1,2,3,4,5,6,7,8,9};
-    allocator<int> ialloc;
-    auto pi = ialloc.allocate(vi.size() * 2);
+    {
+        vector<int> vi{1,2,3,4,5,6,7,8,9};
+        allocator<int> ialloc;
+        auto pi = ialloc.allocate(vi.size() * 2);
 
-    auto qi = uninitialized_copy(vi.begin(), vi.end(), pi);
-    uninitialized_fill_n(qi, vi.size(), 100);
+        auto qi = uninitialized_copy(vi.begin(), vi.end(), pi);
+        uninitialized_fill_n(qi, vi.size(), 100);
 
-    for (int i = 0; i != vi.size(); ++i)
-        cout << *(pi + i) << ' ';
+        for (int i = 0; i != vi.size(); ++i)
+            cout << *(pi + i) << ' ';
+        cout << endl;
+
+        for (int i = 0; i != vi.size(); ++i)
+            cout << *(qi + i) << ' ';
+        cout << endl;
+
+        while (qi != pi)
+            ialloc.destroy(--qi);
+        ialloc.deallocate(pi, vi.size() * 2);
+    }
+}
+
+void hw_12_26()
+{
+    allocator<string> alloc;
+    auto p = alloc.allocate(10);
+
+    string s;
+    string *q = p;
+
+    while (cin >> s && q != p + 10)
+        alloc.construct(q++, s);
+    const size_t size = q - p;
+
+    for (size_t i = 0; i < size; ++i)
+        cout << p[i] << ' ';
     cout << endl;
 
-    for (int i = 0; i != vi.size(); ++i)
-        cout << *(qi + i) << ' ';
-    cout << endl;
+    while (q != p)
+        alloc.destroy(q--);
 
-    while (qi != pi)
-        ialloc.destroy(--qi);
-    ialloc.deallocate(pi, vi.size() * 2);
+    alloc.deallocate(p, 100);
 }
 
 
