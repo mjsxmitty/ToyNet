@@ -1,7 +1,7 @@
 
 
-#include "text_query.h"
-#include "query_result.h"
+#include "gz_text_query.h"
+#include "gz_query_result.h"
 
 #include <sstream>
 

@@ -16,8 +16,6 @@ add_executable(cpp_primer
                 chapter_09/chapter_09.h chapter_09/chapter_09.cpp
                 chapter_10/chapter_10.h chapter_10/chapter_10.cpp
                 chapter_11/chapter_11.h chapter_11/chapter_11.cpp
-				chapter_12/query_result.h chapter_12/query_result.cpp
-                chapter_12/text_query.h chapter_12/text_query.cpp
                 chapter_12/chapter_12.h chapter_12/chapter_12.cpp
                 lib_util/sales_data.h lib_util/sales_data.cpp
                 lib_util/person.h lib_util/person.cpp
@@ -44,6 +42,8 @@ add_executable(cpp_primer
                 object/blob.h
                 chapter_16/chapter_16.h chapter_16/chapter_16.cpp
 				util/gz_str_blob.h util/gz_str_blob.cpp
+				util/gz_query_result.h util/gz_query_result.cpp
+                util/gz_text_query.h util/gz_text_query.cpp
                 util/zg_quote.h util/zg_quote.cpp
                 util/zg_bulk_quote.h util/zg_bulk_quote.cpp
                 util/zg_base.h util/zg_base.cpp

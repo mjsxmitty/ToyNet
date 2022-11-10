@@ -1,6 +1,6 @@
 
 
-#include "query_result.h"
+#include "gz_query_result.h"
 
 using namespace std;
 
