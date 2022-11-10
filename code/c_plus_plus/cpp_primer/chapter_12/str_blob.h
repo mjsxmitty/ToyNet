@@ -28,6 +28,11 @@ public:
 private:
     std::shared_ptr<std::vector<std::string>> data_;
     void CheckSize(size_type i, const std::string &msg) const;
+
+public:
+    GZStrBlobPtr Begin();
+    GZStrBlobPtr End();
+    
 public:
     const std::string& Front() const;
     const std::string& Back() const;
@@ -52,9 +57,6 @@ public:
     //GZStrBlob(std::string *, std::string*);
 
 
-
-    GZStrBlobPtr Begin();
-    GZStrBlobPtr End();
     GZStrBlobPtr Begin() const;
     GZStrBlobPtr End() const;
 
@@ -71,6 +73,9 @@ class GZStrBlobPtr
 public:
     GZStrBlobPtr(): curr_(0) { }
     GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): wptr_(a.data_), curr_(sz) { }
+public:
+    GZStrBlobPtr&   Incr();
+    std::string&    Deref() const;
 private:
     std::shared_ptr<std::vector<std::string>>
         Check(std::size_t, const std::string&) const;
@@ -101,9 +106,9 @@ public:
     std::string& operator*() const;
     std::string* operator->() const;
 public:
-    std::string&    Deref() const;
+    
     std::string&    Deref(int index) const;
-    GZStrBlobPtr&     Incr();
+    
     GZStrBlobPtr&     Decr();
 };
 

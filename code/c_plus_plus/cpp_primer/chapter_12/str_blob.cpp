@@ -54,6 +54,10 @@ const string& GZStrBlob::Back() const
 
 ////
 
+GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
+GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
+
+
 GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
 
 // homework 13.25��Ϊ��ֵ
@@ -75,11 +79,11 @@ GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
     return *this;
 }
 
-GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
-GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
 
 GZStrBlobPtr GZStrBlob::Begin() const { return GZStrBlobPtr(*this); }
 GZStrBlobPtr GZStrBlob::End() const { return GZStrBlobPtr(*this, data_->size()); }
+
+////////////////////////////////////////////////////////
 
 shared_ptr<vector<string>> GZStrBlobPtr::Check(size_t i, const string &msg) const
 {
@@ -99,12 +103,6 @@ string& GZStrBlobPtr::Deref() const
     return (*p)[curr_];
 }
 
-string& GZStrBlobPtr::Deref(int index) const
-{
-    auto p = Check(curr_ + index, "dereference past end.");
-    return (*p)[curr_ + index];
-}
-
 GZStrBlobPtr& GZStrBlobPtr::Incr()
 {
     Check(curr_, "increment past end GZStrBlobPtr");
@@ -112,11 +110,31 @@ GZStrBlobPtr& GZStrBlobPtr::Incr()
     return *this;
 }
 
+string& GZStrBlobPtr::Deref(int index) const
+{
+    auto p = Check(curr_ + index, "dereference past end.");
+    return (*p)[curr_ + index];
+}
+
 GZStrBlobPtr& GZStrBlobPtr::Decr()
 {
     --curr_;
     Check(curr_, "decrement past begin of GZStrBlobPtr.");
     return *this;
+}
+
+bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+{
+    auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
+    if (l == r)
+        return (!r || lhs.curr_ == rhs.curr_);
+    else
+        return false;
+}
+
+bool NotEqual(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+{
+    return !Equal(lhs, rhs);
 }
 
 /****************************************************************/
@@ -198,21 +216,4 @@ string* GZStrBlobPtr::operator->() const
 {
     return &(this->operator*());
 }
-
-bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
-{
-    auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
-    if (l == r)
-        return (!r || lhs.curr_ == rhs.curr_);
-    else
-        return false;
-}
-
-bool NotEqual(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
-{
-    return !Equal(lhs, rhs);
-}
-
-
-
 

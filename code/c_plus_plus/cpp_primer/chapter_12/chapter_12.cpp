@@ -288,7 +288,6 @@ void ch_12_1_3()
         cout << *sp << endl;
     }
 
-
     /* 不要混用普通指针和智能指针 */
     {
         // 正确的使用方法
@@ -342,6 +341,8 @@ struct Connection{};
 Connection Connect(Destination *dest)
 {
     cout << "open connect ..." << endl;
+    static Connection *c = new Connection;
+    return *c;
 }
 
 void DisConnection(Connection c)
