@@ -12,8 +12,8 @@ using namespace std;
 /***************************12.1********************************/
 
 GZStrBlob::GZStrBlob() : data_(make_shared<vector<string>>()){}
-GZStrBlob::GZStrBlob(const initializer_list<string> &il) : data_(make_shared<vector<string>>(il)){}
-
+GZStrBlob::GZStrBlob(const initializer_list<string> &il) : 
+                    data_(make_shared<vector<string>>(il)) { }
 
 void GZStrBlob::CheckSize(size_type i, const string &msg) const
 {
@@ -83,9 +83,6 @@ GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
     return *this;
 }
 
-
-
-
 ////////////////////////////////////////////////////////
 
 shared_ptr<vector<string>> GZStrBlobPtr::Check(size_t i, const string &msg) const
@@ -109,7 +106,7 @@ string& GZStrBlobPtr::Deref() const
 GZStrBlobPtr& GZStrBlobPtr::Incr()
 {
     Check(curr_, "increment past end GZStrBlobPtr");
-    ++curr_;    // ´Ë´¦ÎÞÐèÔÚÒâ,ºóÐø²Ù×÷»á½øÐÐÐ£Ñé
+    ++curr_;    // ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½
     return *this;
 }
 
@@ -130,7 +127,7 @@ bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
-        return (!r || lhs.curr_ == rhs.curr_);  // ¿ÕÖ¸Õë»òÕßÖ¸ÏòÏàÍ¬µÄvector
+        return (!r || lhs.curr_ == rhs.curr_);  // ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½vector
     else
         return false;
 }

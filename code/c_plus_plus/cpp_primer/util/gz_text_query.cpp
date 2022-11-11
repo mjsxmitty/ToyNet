@@ -15,9 +15,13 @@ TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
     {
         //file_->PushBack(text);
         //int curr_line_num = file_->Size() - 1;
-        file_->push_back(text);
-        int curr_line_num = file_->size() - 1;  //下标-->行号
-        
+
+        // file_->push_back(text);
+        // int curr_line_num = file_->size() - 1;  //下标-->行号
+
+        file_.PushBack(text);
+        int curr_line_num = file_.Size() - 1;
+
         istringstream line(text);
         string word;
         while (line >> word)
@@ -28,6 +32,18 @@ TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
             lines->insert(curr_line_num);
         }
     }
+}
+
+string TextQuery::CleanupStr(const string &s)
+{
+    string ret;
+    for (auto it = s.begin(); it != s.end(); it++)
+    {
+        if (!ispunct(*it))
+            ret += tolower(*it);
+    }
+    
+    return ret;
 }
 
 QueryResult TextQuery::Query(const string &s) const

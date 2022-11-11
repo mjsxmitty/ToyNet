@@ -712,14 +712,15 @@ void RunQueries(ifstream &in)
             QueryAndPrint(s, cout);
         }
     }
-//    TextQuery tq(in);
-//    while (true)
-//    {
-//        cout << "enter a word to look for, q to quit!" << endl;
-//        string s;
-//        if (!(cin >> s) || s == "q") break;
-//        //
-//    }
+
+   TextQuery tq(in);
+   while (true)
+   {
+       cout << "enter a word to look for, q to quit!" << endl;
+       string s;
+       if (!(cin >> s) || s == "q") break;
+       Print(cout, tq.Query(s));
+   }
 }
 
 void ch_12_3(int argc, char **argv)

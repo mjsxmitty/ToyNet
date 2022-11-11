@@ -10,7 +10,9 @@
 #include <vector>
 #include <map>
 
-#include "../chapter_13/str_vec.h"
+//#include "../chapter_13/str_vec.h"
+
+#include "../util/gz_str_blob.h"
 
 class QueryResult;
 class TextQuery
@@ -20,10 +22,15 @@ public:
 public:
     TextQuery(std::ifstream &in);
     QueryResult Query(const std::string &s) const;
+
+    std::string CleanupStr(const std::string &s);
 private:
-    std::shared_ptr<std::vector<std::string>>   file_;  // 下标就是行号
-    //std::shared_ptr<StrVec> file_;                    // 文件内容与结果类公用
+    //std::shared_ptr<std::vector<std::string>>   file_;  // 下标就是行号
     std::map<std::string, std::shared_ptr<std::set<line_no>>>   wm_;
+
+    GZStrBlob       file_;
+
+        //std::shared_ptr<StrVec> file_;                    // 文件内容与结果类公用
 };
 
 #endif // __CPP_PRIMER_CHAPTER_12_TEXT_QUERY_H__

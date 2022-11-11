@@ -4,7 +4,7 @@
 
 using namespace std;
 
-ostream &PrintQueryResult(ostream &os, const QueryResult &result)
+ostream &Print(ostream &os, const QueryResult &result)
 {
     os  << result.sought_word_ << " occurs: " 
         << result.lines_->size()
@@ -16,9 +16,15 @@ ostream &PrintQueryResult(ostream &os, const QueryResult &result)
     //     cout << "\nline number: " << num + 1 << " : "
     //          << *(result.file_->Begin() + num) << endl;
 
+    // for (const auto &num : *result.lines_)
+    //     cout << " ( " << num + 1 << " ) : "
+    //          << *(result.file_->begin() + num) 
+    //          << endl;
+
     for (const auto &num : *result.lines_)
         cout << " ( " << num + 1 << " ) : "
-             << *(result.file_->begin() + num) 
+             << result.file_.Begin().Deref(num) 
              << endl;
+
     return os;
 }

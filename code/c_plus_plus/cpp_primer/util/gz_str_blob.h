@@ -60,22 +60,19 @@ public:
     GZStrBlob& operator=(GZStrBlob &&rhs);
     //GZStrBlob(std::string *, std::string*);
 
-
-
-
 };
 
 // homework 14.16
 bool operator==(const GZStrBlob &lhs, const GZStrBlob &rhs);
 bool operator!=(const GZStrBlob &lhs, const GZStrBlob &rhs);
 
-
 /* 12.1.6 weak_ptr类 */
 class GZStrBlobPtr
 {
 public:
     GZStrBlobPtr(): curr_(0) { }
-    GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): wptr_(a.data_), curr_(sz) { }
+    GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): 
+                wptr_(a.data_), curr_(sz) { }
 public:
     GZStrBlobPtr&   Incr();
     std::string&    Deref() const;
@@ -90,6 +87,8 @@ public:
     friend bool Equal(const GZStrBlobPtr&, const GZStrBlobPtr&);
     friend bool NotEqual(const GZStrBlobPtr&, const GZStrBlobPtr&);
 
+    std::string&    Deref(int index) const;
+public:
     friend bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
     friend bool operator!=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
 
@@ -110,7 +109,7 @@ public:
     std::string* operator->() const;
 public:
     
-    std::string&    Deref(int index) const;
+    
     
     GZStrBlobPtr&     Decr();
 };
