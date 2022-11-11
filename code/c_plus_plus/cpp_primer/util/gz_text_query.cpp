@@ -7,16 +7,16 @@
 
 using namespace std;
 
-//TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
-TextQuery::TextQuery(ifstream &in) : file_(new StrVec)
+TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
+//TextQuery::TextQuery(ifstream &in) : file_(new StrVec)
 {
     string text;
     while (getline(in, text))
     {
-        //file_->push_back(text);
-        file_->PushBack(text);
-        //int curr_line_num = file_->size() - 1;  //下标-->行号
-        int curr_line_num = file_->Size() - 1;
+        //file_->PushBack(text);
+        //int curr_line_num = file_->Size() - 1;
+        file_->push_back(text);
+        int curr_line_num = file_->size() - 1;  //下标-->行号
         
         istringstream line(text);
         string word;

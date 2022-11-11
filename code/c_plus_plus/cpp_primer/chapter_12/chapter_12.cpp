@@ -481,7 +481,7 @@ void ch_12_2()
     hw_12_26();
 }
 
-int get_size() {}
+int get_size() { return 0;}
 void Reset(int *p) {delete [] p;}
 void ch_12_2_1()
 {
@@ -654,7 +654,8 @@ void hw_12_26()
 /***************************************************************/
 /***************************12.3********************************/
 
-using line_no = vector<int>::size_type;
+//using line_no = vector<int>::size_type;
+typedef vector<int>::size_type line_no;
 vector<string>  file;
 map<string, set<line_no>> wm;
 
@@ -696,12 +697,13 @@ void QueryAndPrint(const string &word, ostream &os)
     auto lines = loc->second;
     os << word << " occurs " << lines.size() << " time(s)." << endl;
     for (auto &it : lines)
-        os << "( " << it << " ) : " << *(file.begin() + it) << endl;
+        os << "( " << it + 1 << " ) : " << *(file.begin() + it) << endl;
 }
 
 void RunQueries(ifstream &in)
 {
     {
+        InputFile(in);
         while (true)
         {
             cout << "enter a word to look for, q to quit!" << endl;
