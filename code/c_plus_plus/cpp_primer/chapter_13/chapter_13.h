@@ -5,7 +5,21 @@
 
 #include <cstddef>
 
-void Chapter_13();
+extern void ch_13();
+
+extern void ch_13_1();
+extern void ch_13_1_1();
+extern void hw_13_4();
+
+extern void hw_13_13();
+extern void hw_13_17();
+void ch_13_1_2();
+void hw_13_18();
+void hw_13_22();
+void ch_13_3();
+void hw_13_31();
+void ch_13_6_2();
+void ch_13_6_3();
 
 struct GZNoCopy
 {
@@ -30,28 +44,9 @@ public:
     ~GZPrivateCopy() = default;
 };
 
-void Practice_13_1_2();
-void Homework_13_13();
-void Homework_13_14();
-void Homework_13_18();
 
-void Homework_13_22();
 
-void Practice_13_3();
-void Homework_13_31();
 
-void Practice_13_6_2();
-void Practice_13_6_3();
-
-struct Numbered
-{
-    Numbered() :my_sn_(sn_++){}
-    // 13.15
-    Numbered(const Numbered &rhs) : my_sn_(sn_++) {}
-
-    static size_t   sn_;    // 用于生成唯一id
-    size_t          my_sn_;
-};
 
 
 #endif // __CPP_PRIMER_CHAPTER_13_H__

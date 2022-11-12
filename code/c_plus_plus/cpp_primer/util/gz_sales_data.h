@@ -49,11 +49,11 @@ public:
     GZSalesData(std::string &s) : GZSalesData(s, 0, 0) {}
     GZSalesData(std::istream &is) : GZSalesData() { Read(is, *this); }
 
-    /* 13.1.1 拷贝构造函数 */
-    GZSalesData(const GZSalesData &) = default;
+    /*************************************************************************/
 
-    /* 13.1.2 拷贝赋值运算符 */
+    GZSalesData(const GZSalesData &) = default;
     GZSalesData& operator=(const GZSalesData &);
+    ~GZSalesData() = default;
 
 public:
     // homework 14.2

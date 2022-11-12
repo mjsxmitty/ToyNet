@@ -18,12 +18,13 @@ add_executable(cpp_primer
                 chapter_10/chapter_10.h chapter_10/chapter_10.cpp
                 chapter_11/chapter_11.h chapter_11/chapter_11.cpp
                 chapter_12/chapter_12.h chapter_12/chapter_12.cpp
+                chapter_13/chapter_13.h chapter_13/chapter_13.cpp
+                chapter_13/ch_13.hpp
                 chapter_13/employee.h chapter_13/employee.cpp
                 chapter_13/str_vec.h chapter_13/str_vec.cpp
                 chapter_13/string.h chapter_13/string.cpp
                 chapter_13/has_ptr.h chapter_13/has_ptr.cpp
                 chapter_13/folder_message.h chapter_13/folder_message.cpp
-                chapter_13/chapter_13.h chapter_13/chapter_13.cpp
                 chapter_14/chapter_14.h chapter_14/chapter_14.cpp
                 chapter_15/quote.h chapter_15/quote.cpp
                 chapter_15/bulk_quote.h chapter_15/bulk_quote.cpp

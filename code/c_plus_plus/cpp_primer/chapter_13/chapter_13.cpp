@@ -1,4 +1,5 @@
 
+#include "ch_13.hpp"
 #include "chapter_13.h"
 #include "employee.h"
 #include "has_ptr.h"
@@ -8,99 +9,117 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
+#include <string>
 
 using namespace std;
 
-void Chapter_13()
+void ch_13()
 {
-    //Homework_13_13();
-    //Homework_13_14();
-    //Homework_13_18();
-
-    //Practice_13_3();
-    //Homework_13_22();
-
-    Practice_13_6_2();
-    //Homework_13_31();
+    /* 拷贝、赋值与销毁 */
+    ch_13_1();
 }
 
-/***************************************************************/
-/***************************13.1********************************/
-
-class X
+void ch_13_1()
 {
-public:
-    X() { cout << "construct func." << endl;}
-    X(const X &x) { cout << "copy construct func." << endl; }
-    X& operator= (const X &x) { cout << "assign construct func." << endl; return *this;}
-    ~X() { cout << "distruct func." << endl; }
-};
+    /* 拷贝构造函数 */
+    //ch_13_1_1();
+    //hw_13_4();
 
-void F1(X x)
-{
-    //cout << "pass by value func!" << endl;
+    hw_13_17();
 }
 
-void F2(X &x)
+void ch_13_1_1()
 {
-    //cout << "pass by refrence func!" << endl;
+    /* 编译器可以绕过拷贝构造函数 */
+    {
+        //string null_book = "9-99-999-9999";
+        string null_book("9-99-999-9999");
+
+//        string tmp = "9-99-999-9999";
+//        string null_book = tmp;
+    }
 }
 
-void Homework_13_13()
+Point foo_bar(Point arg)
+{
+    Point *head = new Point(arg);
+    Point pa[4] = {arg, *head};
+    return *head;
+}
+
+void hw_13_4()
+{
+    Point arg;
+    foo_bar(arg);
+}
+
+void F1(X x){}
+void F2(X &x){}
+
+void hw_13_13()
 {
     X object;
     cout << endl;
 
-//    cout << "pass value call" << endl;
-//    F1(object);
-//    cout << endl;
+    {
+        cout << "call func by pass value" << endl;
+        F1(object);
+        cout << endl;
+    }
 
-//    cout << "refrence call" << endl;
-//    F2(object);
-//    cout << endl;
+    {
+        cout << "call func by pass refrence" << endl;
+        F2(object);
+        cout << endl;
+    }
 
-//    cout << "malloc " << endl;
-//    X *p = new X;
-//    cout << endl;
+    {
+        cout << "malloc " << endl;
+        X *p = new X;
+        delete p;
+        cout << endl;
+    }
 
-//    cout << "vector push back val" << endl;
-//    vector<X> vec;  //vec析构的时候,会析构里边的对象
-//    vec.push_back(object);
-//    cout << endl;
+    {
+        cout << "vector push back val" << endl;
+        vector<X> vec;                  //vec析构的时候,会析构里边的对象
+        vec.push_back(object);
+        cout << endl;
+    }
 
-//    cout << "dis object" << endl;
-//    delete p;
-//    cout << endl;
+    {
+        cout << "create new object by copy construct func" << endl;
+        X y = object;
+        cout << endl;
+    }
 
-//    cout << "create new object" << endl;
-//    X y = object;
-//    cout << endl;
+    {
+        cout << "assign value" << endl;
+        X new_val;
+        new_val = object;
+        cout << endl;
+    }
 
-    cout << "assign value" << endl;
-    X new_val;
-    new_val = object;
+    cout << "end" << endl;
+}
+
+void f1(Numbered s){cout << s.my_sn_ << endl;}
+void f2(const Numbered &s){cout << s.my_sn_ << endl;}
+
+void hw_13_17()
+{
+    Numbered a, b = a, c = b;   // 0 1 2
+    f1(a);
+    f1(b);
+    f1(c);
     cout << endl;
-}
-
-size_t Numbered::sn_ = 0;
-
-// homework 13.16
-void f(const Numbered &s)
-//void f(Numbered s)
-{
-    cout << s.my_sn_ << endl;
-}
-
-void Homework_13_14()
-{
-    Numbered a, b = a, c = b;
-    f(a);
-    f(b);
-    f(c);
+    f2(a);
+    f2(b);
+    f2(c);
 }
 
 /* 13.1.6 阻止拷贝*/
-void Practice_13_1_2()
+void ch_13_1_2()
 {
     GZNoCopy no_object;
     //GZNoCopy no_object2 = no_object;
@@ -118,7 +137,7 @@ void Practice_13_1_2()
     //pri_object3 = pri_object;
 }
 
-void Homework_13_18()
+void hw_13_18()
 {
     GZEmployee a("a"), b = a, c;
     c = b;
@@ -131,7 +150,7 @@ void Homework_13_18()
 /***************************************************************/
 /***************************13.2********************************/
 
-void Homework_13_22()
+void hw_13_22()
 {
     HasPtr h1("hi");
     HasPtr h2(h1);
@@ -174,7 +193,7 @@ void swap(GZFoo &lhs, GZFoo &rhs)
     swap(lhs.hp_, rhs.hp_);
 }
 
-void Practice_13_3()
+void ch_13_3()
 {
 //    GZFoo foo1("foo1"), foo2("foo2");
 //    swap(foo1, foo2);
@@ -183,7 +202,7 @@ void Practice_13_3()
     h1 = h2;
 }
 
-void Homework_13_31()
+void hw_13_31()
 {
     srand(time(NULL));
     vector<HasPtr> vec;
@@ -273,7 +292,7 @@ Foo Foo::Sorted() const &
     return ret;
 }
 
-void Practice_13_6_2()
+void ch_13_6_2()
 {
     //
 //    StrVec sv1;
@@ -308,7 +327,7 @@ Foo RetVal()
 
 }
 
-void Practice_13_6_3()
+void ch_13_6_3()
 {
     StrVec sv;
     string s = "some thing";
