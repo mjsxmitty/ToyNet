@@ -1,7 +1,6 @@
 
 #include "ch_13.hpp"
 #include "chapter_13.h"
-#include "employee.h"
 #include "has_ptr.h"
 #include "str_vec.h"
 
@@ -25,7 +24,11 @@ void ch_13_1()
     //ch_13_1_1();
     //hw_13_4();
 
-    hw_13_17();
+    //hw_13_17();
+
+    /* 阻止拷贝 */
+    //ch_13_1_6();
+    hw_13_18();
 }
 
 void ch_13_1_1()
@@ -118,13 +121,10 @@ void hw_13_17()
     f2(c);
 }
 
-/* 13.1.6 阻止拷贝*/
-void ch_13_1_2()
+void ch_13_1_6()
 {
     GZNoCopy no_object;
     //GZNoCopy no_object2 = no_object;
-    GZNoCopy no_object3;
-    //no_object3 = no_object;
 
     //GZNoDtor no_dtor;
     //GZNoDtor *no_dtor_ptr = new GZNoDtor;
@@ -142,9 +142,9 @@ void hw_13_18()
     GZEmployee a("a"), b = a, c;
     c = b;
 
-    PrintGZEmployee(a);
-    PrintGZEmployee(b);
-    PrintGZEmployee(c);
+    PrintEmployee(a);
+    PrintEmployee(b);
+    PrintEmployee(c);
 }
 
 /***************************************************************/

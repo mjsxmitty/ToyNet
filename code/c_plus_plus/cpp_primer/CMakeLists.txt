@@ -20,7 +20,6 @@ add_executable(cpp_primer
                 chapter_12/chapter_12.h chapter_12/chapter_12.cpp
                 chapter_13/chapter_13.h chapter_13/chapter_13.cpp
                 chapter_13/ch_13.hpp
-                chapter_13/employee.h chapter_13/employee.cpp
                 chapter_13/str_vec.h chapter_13/str_vec.cpp
                 chapter_13/string.h chapter_13/string.cpp
                 chapter_13/has_ptr.h chapter_13/has_ptr.cpp
