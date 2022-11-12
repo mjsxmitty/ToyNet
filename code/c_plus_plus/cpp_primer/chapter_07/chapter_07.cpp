@@ -2,48 +2,100 @@
 #include <string>
 
 #include "chapter_07.h"
-#include "../lib_util/account.h"
-#include "../lib_util/sales_data.h"
-#include "../lib_util/screen.h"
-#include "gz_screen.h"
+#include "../util/gz_screen.h"
+#include "../util/gz_sales_data.h"
+
+//#include "../lib_util/account.h"
+//#include "../lib_util/sales_data.h"
+//#include "../lib_util/screen.h"
 
 using namespace std;
 
-/***************************7.3.4*********************************/
+void ch_07()
+{
+    /* 类的其他特性 */
+    ch_7_3();
+}
 
+void ch_7_3()
+{
+    /* 类成员再探 */
+    //ch_7_3_1();
+
+    /* 返回*this成员函数 */
+    ch_7_3_2();
+}
+
+void ch_7_3_1()
+{
+    /* 重载成员函数 */
+    {
+        GZScreen my_screen;
+        char ch = my_screen.Get();
+        cout << ch << endl;
+        //ch = my_screen.Get(i, j);
+        cout << ch << endl;
+    }
+
+    {
+        GZScreen my_screen;
+        my_screen.SomeNumber();
+        cout << my_screen.GetAccessCtr() << endl;
+        my_screen.SomeNumber();
+        cout << my_screen.GetAccessCtr() << endl;
+    }
+}
+
+void ch_7_3_2()
+{
+    {
+        GZScreen my_screen;
+        cout << my_screen.Get() << endl;
+        //my_screen.Move(1, 2).Set('*');
+        cout << my_screen.Get() << endl;
+    }
+
+    {
+        GZScreen my_screen(3, 5);
+        const GZScreen my_cscreen(1, 2);
+        my_screen.Set('#').Display(cout);
+        cout << endl;
+        //my_cscreen.Display(cout).set("*");
+        my_cscreen.Display(cout);
+    }
+}
+
+// 友元声明和作用域
+struct GZX
+{
+    friend void f() {}
+    //GZX() { f(); }
+
+    void g();
+    void h();
+};
+
+//void GZX::g() { return f(); }
+void f();
 void GZX::h() { return f(); }
+
+typedef double Money;
+class Acc
+{
+    //typedef int Money;  //未被使用 ---> 正确
+public:
+    Money balance() {return bal;}
+private:
+    /* 7-4-1 名字查找与类的作用域 */
+    //已使用不可以重新定义
+    //编译器不做检查,不报错
+    //typedef int Money;
+    Money bal;
+};
+
+
 /*****************************************************************/
-/****************************7.32*********************************/
-void ZGWindowMgr::clear()
-{
-    ZGScreen screen;
-    screen.contents_ = "";
-}
 
-void Homework_7_32()
-{
-    ZGWindowMgr w;
-    w.clear();
-}
-
-
-void Chapter_07()
-{
-    //GZPractice_7_3_2();
-    GZPractice_7_4_1();
-    //Homework_7_11();
-    //Practice_7_6();
-    //Practice_7();
-    //Homework_7_58();
-}
-
-void Homework_7_11()
-{
-    SalesData s1;
-    SalesData s2("gao");
-    SalesData s3("gao", 1, 3.3);
-    SalesData s4(cin);
-}
 
 
 NoDefault no(1);
@@ -51,47 +103,39 @@ C cc;
 C ccc(10);
 //B bbb;
 
-void Practice_7()
-{
-    Screen s;
-    s.SomeMember();
-    s.SomeMember();
-    cout << s.GetSomeNum() << endl;
-}
-
 /* 7-5-4 类型的隐式转换 */
-void Practice_7_5_4()
+void ch_7_5_4()
 {
     string null_book = "1-11-111-22";
-    SalesData item;
+    GZSalesData item;
     //item.Combine(null_book);                  //-->1
 
     //只允许一步转换
     //item.Combine("2-22-11-1111");
     //item.Combine(string("1-11-1111-222"));    //-->2
-    item.Combine(SalesData("111-222-111"));     //-->3
+    //item.Combine(GZSalesData("111-222-111"));     //-->3
     //item.Combine(cin);                        //-->4
     //SalesData item2 = string("1111");         //-->5
 
     //加上explicit之后，抑制隐式转换，1，2，4,5不成立
     //explicit只可以在函数声明处，单一参数的构造函数
     //此时必须 显示调用转换函数（显示调用构造函数）
-    item.Combine(static_cast<SalesData>(cin));
-    item.Combine(static_cast<SalesData>(null_book));
+    item.Combine(static_cast<GZSalesData>(cin));
+    item.Combine(static_cast<GZSalesData>(null_book));
 }
 
-void Practice_7_6()
+void ch_7_6()
 {
-    //使用静态成员
-    double r = Account::Rate();
+//    //使用静态成员
+//    double r = Account::Rate();
 
-    Account::Rate(5);
+//    Account::Rate(5);
 
-    Account ac1;
-    Account *ac2 = &ac1;
-    r = ac1.Rate();
-    r = ac2->Rate();
-    cout << "interest rate: " << r << endl;
+//    Account ac1;
+//    Account *ac2 = &ac1;
+//    r = ac1.Rate();
+//    r = ac2->Rate();
+//    cout << "interest rate: " << r << endl;
 }
 
 

@@ -15,7 +15,7 @@
 #include <unordered_set>
 #include <unordered_map>
 
-#include "../chapter_07/gz_sales_data.h"
+#include "../util/gz_sales_data.h"
 
 using namespace std;
 

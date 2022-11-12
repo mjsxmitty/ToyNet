@@ -4,10 +4,12 @@
 using namespace std;
 
 /***************************7.3.4*********************************/
+// TODO ... 成员函数单独声明
 void GZWindowMgr::Clear(ScreenIndex i)
 {
     GZScreen &s = screens_[i];
-    s.contents_ = string(s.height_ * s.width_, ' ');
+    //s.contents_ = string(s.height_ * s.width_, ' ');
+    s.contents_.clear();
 }
 
 /*****************************************************************/

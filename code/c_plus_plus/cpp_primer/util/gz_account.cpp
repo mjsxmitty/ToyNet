@@ -2,6 +2,8 @@
 
 #include "gz_account.h"
 
+double GZAccount::interest_rate_ = InitRate();
+
 /***************************7.6*********************************/
 
 void GZAccount::Rate(double new_rate)
@@ -14,7 +16,6 @@ double GZAccount::InitRate()
     return 0.0;
 }
 
-double GZAccount::interest_rate_ = 0.0;
 constexpr int GZAccount::period_;
 
 void GZPractice_7_6()

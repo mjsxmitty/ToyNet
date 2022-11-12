@@ -6,24 +6,16 @@ using namespace std;
 
 /***************************7.3.1*********************************/
 
-char GZScreen::Get(pos ht, pos wd) const
+char GZScreen::Get(pos r, pos c) const
 {
-    pos row = ht * width_ + wd;
+    pos row = r * width_ + c;
     return contents_[row];
 }
 
-inline GZScreen& GZScreen::Move(pos ht, pos wd)
+inline GZScreen& GZScreen::Move(pos r, pos c)
 {
-    cursur_ = ht * width_ + wd;
+    cursur_ = r * width_ + c;
     return *this;
-}
-
-void GZPractice_7_3_1()
-{
-    //重载成员函数
-    GZScreen my_screen;
-    char ch = my_screen.Get();
-    ch = my_screen.Get(1, 2);
 }
 
 void GZScreen::SomeNumber() const
@@ -44,20 +36,6 @@ GZScreen &GZScreen::Set(pos ht, pos wd, char c)
 {
     contents_[ht * width_ + wd] = c;
     return *this;
-}
-
-void GZPractice_7_3_2()
-{
-    GZScreen my_screen(10, 20, '#');
-    cout << my_screen.Get() << endl;
-    my_screen.Move(1, 2).Set('*');
-    cout << my_screen.Get() << endl;
-
-   GZScreen my_screen2(3, 5);
-   const GZScreen my_screen3(1, 2);
-   my_screen2.Set('#').Display(cout);
-   cout << endl;
-   my_screen3.Display(cout);
 }
 
 /*****************************************************************/
@@ -101,7 +79,8 @@ void GZPractice_7_4_1()
 }
 
 // Verify定义在类之后,却在函数之前
-GZScreen::pos Verify(GZScreen::pos p);
+GZScreen::pos Verify(GZScreen::pos p)
+{}
 void GZScreen::SetHeight(GZScreen::pos val)
 {
     height_ = Verify(val);

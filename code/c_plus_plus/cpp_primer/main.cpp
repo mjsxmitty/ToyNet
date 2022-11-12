@@ -12,13 +12,15 @@
 #include "chapter_10/chapter_10.h"
 #include "chapter_11/chapter_11.h"
 #include "chapter_12/chapter_12.h"
-
-#include "lib_util/account.h"
-#include "lib_util/person.h"
-#include "lib_util/screen.h"
-#include "lib_util/window_mgr.h"
-#include "lib_util/sales_data.h"
 #include "chapter_07/chapter_07.h"
+
+
+//#include "lib_util/account.h"
+//#include "lib_util/person.h"
+//#include "lib_util/screen.h"
+//#include "lib_util/window_mgr.h"
+//#include "lib_util/sales_data.h"
+
 
 #include "chapter_13/chapter_13.h"
 #include "chapter_14/chapter_14.h"
@@ -31,21 +33,22 @@ int main(int argc, char **argv)
 {
     cout << "================= Hello World ==================\n\n";
 
-    /* C++ ���� */
+    /* C++ 基础 */
     //ch_02();
     //ch_03();
     //ch_04();
     //ch_05();
     //ch_06();
+    ch_07();
 
-    /* C++ ��׼�� */
+    /* C++ 标准库 */
     //ch_08();
     //ch_09();
     //ch_10();
     //ch_11();
-    ch_12(argc, argv);
+    //ch_12(argc, argv);
 
-    /* ������߹��� */
+    /* 类设计者工具 */
     //ch_15();
 
     cout << "\n=== Amazing, and then everyone works quietly ===\n";
