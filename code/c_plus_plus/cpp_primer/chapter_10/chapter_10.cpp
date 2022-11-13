@@ -295,15 +295,15 @@ void ch_10_3_2()
     Biggies(svec, 3);
 }
 
-void Biggies(vector<string> &words, vector<string>::size_type sz,
-             ostream &os = cout, char c = ' ')
-{
-    // 隐式捕获
-    for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
-    for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
+// void Biggies(vector<string> &words, vector<string>::size_type sz,
+//              ostream &os = cout, char c = ' ')
+// {
+//     // 隐式捕获
+//     for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
+//     for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
 
-    for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
-}
+//     for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
+// }
 
 void ch_10_3_3()
 {
