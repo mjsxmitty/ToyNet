@@ -1,9 +1,9 @@
 
 #include "ch_13.hpp"
 #include "chapter_13.h"
-#include "../util/gz_has_ptr.h"
+#include "../common/gz_has_ptr.h"
 #include "str_vec.h"
-#include "../util/gz_str_blob.h"
+#include "../common/gz_str_blob.h"
 
 #include <algorithm>
 #include <iostream>

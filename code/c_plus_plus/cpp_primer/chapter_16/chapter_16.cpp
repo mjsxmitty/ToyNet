@@ -1,7 +1,7 @@
 
 
 #include "chapter_16.h"
-#include "../object/blob.h"
+#include "../common/blob.h"
 
 #include <iostream>
 #include <string>

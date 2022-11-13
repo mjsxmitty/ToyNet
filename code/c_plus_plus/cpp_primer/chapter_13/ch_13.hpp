@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "../util/gz_has_ptr.h"
+#include "../common/gz_has_ptr.h"
 
 using namespace std;
 

@@ -1,8 +1,8 @@
 
 #include "chapter_12.h"
-#include "../util/gz_str_blob.h"
-#include "../util/gz_text_query.h"
-#include "../util/gz_query_result.h"
+#include "../common/gz_str_blob.h"
+#include "../common/gz_text_query.h"
+#include "../common/gz_query_result.h"
 
 #include <iostream>
 #include <string>

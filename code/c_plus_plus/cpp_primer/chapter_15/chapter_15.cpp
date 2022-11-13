@@ -1,8 +1,8 @@
 
 #include "chapter_15.h"
-#include "../util/zg_quote.h"
-#include "../util/zg_bulk_quote.h"
-#include "../util/zg_base.h"
+#include "../common/zg_quote.h"
+#include "../common/zg_bulk_quote.h"
+#include "../common/zg_base.h"
 //
 #include "quote.h"
 #include "bulk_quote.h"

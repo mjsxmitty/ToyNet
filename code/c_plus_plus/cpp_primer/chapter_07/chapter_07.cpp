@@ -2,12 +2,12 @@
 #include <string>
 
 #include "chapter_07.h"
-#include "../util/gz_screen.h"
-#include "../util/gz_sales_data.h"
+#include "../common/gz_screen.h"
+#include "../common/gz_sales_data.h"
 
-//#include "../lib_util/account.h"
-//#include "../lib_util/sales_data.h"
-//#include "../lib_util/screen.h"
+//#include "../lib_common/account.h"
+//#include "../lib_common/sales_data.h"
+//#include "../lib_common/screen.h"
 
 using namespace std;
 

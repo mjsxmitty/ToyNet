@@ -29,22 +29,22 @@ add_executable(cpp_primer
                 chapter_15/disc_quote.h chapter_15/disc_quote.cpp
                 chapter_15/chapter_15.h chapter_15/chapter_15.cpp
                 chapter_16/chapter_16.h chapter_16/chapter_16.cpp
-                object/blob.h
-                util/gz_message.h util/gz_message.cpp
-                util/gz_folder.h util/gz_folder.cpp
-                util/gz_has_ptr.h util/gz_has_ptr.cpp
-                util/gz_sales_data.h util/gz_sales_data.cpp
-                util/gz_screen.h util/gz_screen.cpp
-                util/gz_window_mgr.h util/gz_window_mgr.cpp
-                util/gz_account.h util/gz_account.cpp
-                util/gz_str_blob.h util/gz_str_blob.cpp
-                util/gz_query_result.h util/gz_query_result.cpp
-                util/gz_text_query.h util/gz_text_query.cpp
-                util/zg_quote.h util/zg_quote.cpp
-                util/zg_bulk_quote.h util/zg_bulk_quote.cpp
-                util/zg_base.h util/zg_base.cpp
-                util/zg_disc_quote.h util/zg_disc_quote.cpp
-                util/zg_limited_quote.h util/zg_limited_quote.cpp
+                common/blob.h
+                common/gz_message.h common/gz_message.cpp
+                common/gz_folder.h common/gz_folder.cpp
+                common/gz_has_ptr.h common/gz_has_ptr.cpp
+                common/gz_sales_data.h common/gz_sales_data.cpp
+                common/gz_screen.h common/gz_screen.cpp
+                common/gz_window_mgr.h common/gz_window_mgr.cpp
+                common/gz_account.h common/gz_account.cpp
+                common/gz_str_blob.h common/gz_str_blob.cpp
+                common/gz_query_result.h common/gz_query_result.cpp
+                common/gz_text_query.h common/gz_text_query.cpp
+                common/zg_quote.h common/zg_quote.cpp
+                common/zg_bulk_quote.h common/zg_bulk_quote.cpp
+                common/zg_base.h common/zg_base.cpp
+                common/zg_disc_quote.h common/zg_disc_quote.cpp
+                common/zg_limited_quote.h common/zg_limited_quote.cpp
                 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
