@@ -1,4 +1,6 @@
 
+#include <utility>
+
 #include "gz_message.h"
 #include "gz_folder.h"
 
@@ -22,6 +24,18 @@ Message& Message::operator=(const Message &rhs)
     folders_ = rhs.folders_;
     contents_ = rhs.contents_;
     AddToFolders(rhs);
+    return *this;
+}
+
+Message& Message::operator=(Message&& rhs)
+{
+    if (this != &rhs)
+    {
+        RemoveFormFolders();
+        contents_ = std::move(rhs.contents_);
+        MoveFolders(&rhs);
+    }
+
     return *this;
 }
 

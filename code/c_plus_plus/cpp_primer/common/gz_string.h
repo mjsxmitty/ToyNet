@@ -18,7 +18,6 @@ class GZString
     friend GZString operator+(const GZString &lhs, const GZString &rhs);
     friend std::ostream& operator<=(std::ostream &os, const GZString &item);
 
-    // homeeork14.7
     friend std::ostream& operator<<(std::ostream &, const GZString &);
 public:
     GZString() = default;

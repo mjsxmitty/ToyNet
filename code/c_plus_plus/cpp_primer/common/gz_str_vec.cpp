@@ -50,6 +50,29 @@ GZStrVec::GZStrVec(const GZStrVec &rhs)
     first_free = cap = new_data.second;
 }
 
+GZStrVec::GZStrVec(GZStrVec &&rhs) noexcept : 
+                    elements(rhs.elements),
+                    first_free(rhs.first_free),
+                    cap(rhs.cap)
+{
+    cout << "GZStrVec move construct func." << endl;
+    elements = first_free = cap = nullptr;
+}
+
+GZStrVec& GZStrVec::operator=(GZStrVec &&rhs) noexcept
+{
+    cout << "GZStrVec move assign func." << endl;
+    if (this != &rhs)
+    {
+        Free();
+        elements = rhs.elements;
+        first_free = rhs.first_free;
+        cap = rhs.cap;
+        rhs.elements = rhs.first_free = rhs.cap = nullptr;
+    }
+    return *this;
+}
+
 GZStrVec::~GZStrVec()
 {
     Free();
@@ -66,15 +89,28 @@ GZStrVec& GZStrVec::operator=(const GZStrVec &rhs)
     return *this;
 }
 
+GZStrVec& GZStrVec::operator=(const initializer_list<string> &il)
+{
+    auto ret = AllocCopy(il.begin(), il.end());
+    Free();
+    elements = ret.first;
+    first_free = cap = ret.second;
+    return *this;
+}
+
 void GZStrVec::Reallocate()
 {
     auto new_size = (Size() > 0 ? Size() * 2 : 1);
     auto new_data = alloc.allocate(new_size);
 
-    auto dest = new_data;
-    auto elem = elements;
-    for (size_t i = 0; i != Size(); ++i)
-        alloc.construct(dest++, std::move(*elem++));    // 显示调用string的移动构造函数(避免copy)
+    // auto dest = new_data;
+    // auto elem = elements;
+    // for (size_t i = 0; i != Size(); ++i)
+    //     alloc.construct(dest++, std::move(*elem++));    // 显示调用string的移动构造函数(避免copy)
+
+    auto dest = uninitialized_copy(make_move_iterator(Begin()),
+                                    make_move_iterator(End()),
+                                    new_data);
 
     Free();  // 释放远内存
 
@@ -128,38 +164,6 @@ void GZStrVec::Resize(size_t n, const string &s)
             alloc.destroy(--first_free);
 }
 
-GZStrVec& GZStrVec::operator=(const initializer_list<string> &il)
-{
-    auto ret = AllocCopy(il.begin(), il.end());
-    Free();
-    elements = ret.first;
-    first_free = cap = ret.second;
-    return *this;
-}
-
-GZStrVec::GZStrVec(GZStrVec &&rhs) noexcept : 
-                    elements(rhs.elements),
-                    first_free(rhs.first_free),
-                    cap(rhs.cap)
-{
-    cout << "move construct ..." << endl;
-    elements = first_free = cap = nullptr;
-}
-
-GZStrVec& GZStrVec::operator=(GZStrVec &&rhs) noexcept
-{
-    cout << "move assgin ..." << endl;
-    if (this != &rhs)
-    {
-        Free();
-        elements = rhs.elements;
-        first_free = rhs.first_free;
-        cap = rhs.cap;
-        rhs.elements = rhs.first_free = rhs.cap = nullptr;
-    }
-    return *this;
-}
-
 /* 13.6.3 */
 void GZStrVec::PushBack(std::string &&s)
 {
@@ -190,11 +194,3 @@ bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs)
 {
     return !(lhs == rhs);
 }
-
-
-
-
-
-
-
-

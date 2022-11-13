@@ -14,6 +14,7 @@ public:
             ps_(new std::string(s)), i_(0) {}
     GZHasPtr(const GZHasPtr &p) : 
             ps_(new std::string(*p.ps_)), i_(p.i_) {}
+    GZHasPtr(GZHasPtr &&p) noexcept : ps_(p.ps_), i_(p.i_) { p.ps_ = 0; }
     //GZHasPtr& operator=(const GZHasPtr &p);
     GZHasPtr& operator=(GZHasPtr p);
     GZHasPtr& operator=(const std::string &s);

@@ -22,7 +22,10 @@ void ch_13()
     //ch_13_2();
 
     /* 交换操作 */
-    ch_13_3();
+    //ch_13_3();
+
+    /* 对象移动 */
+    ch_13_6();
 }
 
 void ch_13_1()
@@ -271,117 +274,78 @@ void hw_13_31()
     cout << endl;
 }
 
-// 编译器会为GZX和GZhasX合成移动构造函数
-struct GZX
+void ch_13_6()
 {
-    int     i;
-    string  s;
-};
+    /* 右值引用 */
+    //ch_13_6_1();
 
-struct GZhasX
-{
-    GZX mem;
-};
-
-struct GZY
-{
-    int     i;
-    string  s;
-    GZY(const GZY&){}
-};
-
-struct GZhasY
-{
-    GZhasY() = default;
-    GZhasY(GZhasY &&) = default;
-
-    GZY mem;
-};
-
-GZStrVec GetVec(istream &is)
-{
-
+    /* 移动构造函数和移动赋值运算符 */
+    ch_13_6_2();
 }
 
-class Foo
+void ch_13_6_1()
 {
-public:
-    Foo() {cout << "construct func." << endl;}
-    Foo(const Foo &rhs) { cout << "copy construct func." << endl; }
+    /* 变量是左值 */
+    {
+        int&& rr1 = 41;
+        //int&& rr2 = rr1;
+    }
 
-    /* 13.6.3 */
-    // 右值和左值成员函数
-    Foo& operator=(const Foo &) &;
-
-    // 重载和引用函数
-     Foo Sorted() &&;
-     Foo Sorted() const &;
-    ~Foo(){}
-private:
-    vector<int> data;
-};
-
-Foo& Foo::operator=(const Foo &rhs) &
-{
-    //
-    return *this;
+    /* 标准库move函数 */
+    {
+        int&& rr1 = 41;
+        int&& rr3 = std::move(rr1);
+        rr3 = 1024;
+        //int rr4 = rr3 * 1;
+        //cout << rr3 << endl;
+    }
 }
 
-Foo Foo::Sorted() &&
-{
-     sort(data.begin(), data.end());
-     return *this;
-}
-
-Foo Foo::Sorted() const &
-{
-    Foo ret(*this);
-    sort(ret.data.begin(), ret.data.end());
-    return ret;
-}
+GZStrVec GetVec(istream &is) { return GZStrVec();}
 
 void ch_13_6_2()
 {
-    //
-//    StrVec sv1;
-//    //StrVec sv2(sv1);
-//    StrVec sv3;
-//    sv3 = std::move(sv1);
+    /* 合成移动操作 */ 
+    {
+        GZX     x, x2 = std::move(x);
+        GZhasX  hx, hx2 = std::move(hx);
+    }
 
-    // 合成移动操作
-//    GZX x, x2 = std::move(x);
-//    GZhasX hx, hx2 = std::move(hx);
+    {
+        //GZhasY hy, hy2 = std::move(hy);
+    }
 
-    //GZhasY hy, hy2 = std::move(hy);
+    /* 移动右值,拷贝左值... */
+    {
+        GZStrVec v1, v2;
+        v1 = v2;
+        v2 = GetVec(cin);
+    } 
 
-    // 移动右值,拷贝左值...
-    GZStrVec v1, v2;
-    //v1 = v2;
-    //v2 = GetVec(cin);
-
-    // 没有移动构造函数，右值被拷贝
-    Foo x;
-    Foo y(x);
-    Foo z(std::move(x));    //Foo&& --> const Foo&
+    /* 没有移动构造函数，右值被拷贝 */
+    {
+        Foo x;
+        Foo y(x);
+        Foo z(std::move(x));    //Foo&& --> const Foo&
+    }
 }
 
-Foo& RetFoo()
-{
-
-}
-
-Foo RetVal()
-{
-
-}
+Foo& RetFoo(){ Foo *ret; return *ret;}
+Foo RetVal(){ return Foo();}
 
 void ch_13_6_3()
 {
-    GZStrVec sv;
-    string s = "some thing";
-    sv.PushBack(s);
-    sv.PushBack("other thing");
+    {
+        GZStrVec sv;
+        string s = "some thing";
+        sv.PushBack(s);
+        sv.PushBack("other thing");
+    }
 
-    RetFoo().Sorted();
-    RetVal().Sorted();
+    /* 重载和引用函数 */
+    {
+        RetFoo().Sorted();
+        RetVal().Sorted();
+    }
+
 }

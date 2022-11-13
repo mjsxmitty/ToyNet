@@ -12,6 +12,8 @@ public:
     GZStrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
     GZStrVec(const std::initializer_list<std::string> &il);
     GZStrVec(const GZStrVec &rhs);
+    GZStrVec(GZStrVec &&rhs) noexcept;
+    GZStrVec& operator=(GZStrVec &&rhs) noexcept;
     GZStrVec& operator=(const GZStrVec &rhs);
     ~GZStrVec();
 public:
@@ -38,11 +40,6 @@ private:
     std::string *elements;      // 首元素位置
     std::string *first_free;    // 第一个空闲位置
     std::string *cap;           // 容量
-public:
-    /* 13.6 */
-    GZStrVec(GZStrVec &&rhs) noexcept;
-    // �ƶ���ֵ�����
-    GZStrVec& operator=(GZStrVec &&rhs) noexcept;
 public:
     /* 13.6.3 ��ֵ���úͳ�Ա���� */
     void PushBack(std::string &&);

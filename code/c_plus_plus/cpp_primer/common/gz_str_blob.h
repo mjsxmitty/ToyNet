@@ -5,9 +5,9 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <utility>
 
 class GZStrBlobPtr;
-
 class GZStrBlob
 {
 // 定义类
@@ -23,6 +23,7 @@ public:
     size_type   Size() const { return data_->size(); }
     bool        Empty() const { return data_->empty(); }
     void        PushBack(const std::string &t) { data_->push_back(t); }
+    void        PushBack(std::string &&t) { data_->push_back(std::move(t)); }
     void        PopBack();
 
     std::string& Front();

@@ -22,8 +22,11 @@ extern void hw_13_27();
 extern void hw_13_30();
 extern void hw_13_31();
 
-void ch_13_3();
-void ch_13_6_2();
-void ch_13_6_3();
+extern void ch_13_3();
+
+extern void ch_13_6();
+extern void ch_13_6_1();
+extern void ch_13_6_2();
+extern void ch_13_6_3();
 
 #endif // __CPP_PRIMER_CHAPTER_13_H__

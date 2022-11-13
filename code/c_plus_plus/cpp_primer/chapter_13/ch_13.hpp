@@ -3,6 +3,7 @@
 #define __CPP_PRIMER_CH_13_H__
 
 #include <iostream>
+#include <algorithm>
 
 #include "../common/gz_has_ptr.h"
 
@@ -91,5 +92,64 @@ private:
     string s_;
     GZHasPtr hp_;
 };
+
+// 编译器会为GZX和GZhasX合成移动构造函数
+struct GZX
+{
+    int     i;
+    string  s;
+};
+
+struct GZhasX
+{
+    GZX mem;
+};
+
+struct GZY
+{
+    int     i;
+    string  s;
+    GZY(const GZY&){}
+};
+
+struct GZhasY
+{
+    GZhasY() = default;
+    GZhasY(GZhasY &&) = default;
+
+    GZY mem;
+};
+
+class Foo
+{
+public:
+    Foo() {cout << "Foo construct func." << endl;}
+    Foo(const Foo &rhs) { cout << "Foo copy construct func." << endl; }
+
+    Foo& operator=(const Foo &) &;
+    Foo AntherMem() const &;
+
+    // 重载和引用函数
+     Foo Sorted() &&;
+     Foo Sorted() const &;
+    ~Foo(){}
+private:
+    vector<int> data;
+};
+
+Foo& Foo::operator=(const Foo &rhs) & { return *this; }
+
+Foo Foo::Sorted() &&
+{
+     sort(data.begin(), data.end());
+     return *this;
+}
+
+Foo Foo::Sorted() const &
+{
+    Foo ret(*this);
+    sort(ret.data.begin(), ret.data.end());
+    return ret;
+}
 
 #endif // __CPP_PRIMER_CH_13_H__
