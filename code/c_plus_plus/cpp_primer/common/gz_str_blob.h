@@ -48,7 +48,6 @@ public:
 public:
     std::string& operator[](size_t n) { return (*data_)[n]; }
     const std::string& operator[](size_t n) const {return (*data_)[n]; }
-
 public:    
     GZStrBlob(GZStrBlob &&rhs);
     

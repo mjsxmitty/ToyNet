@@ -65,8 +65,6 @@ public:
 public:
     GZSalesData& operator+=(const GZSalesData &);
     GZSalesData& operator-=(const GZSalesData &);
-public:
-    // homework14.22
     GZSalesData& operator=(const std::string &isbn);
 };
 

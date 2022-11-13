@@ -12,7 +12,13 @@ using namespace std;
 
 void ch_14()
 {
-    
+    /* 函数调用运算符 */
+    ch_14_8();
+}
+
+void ch_14_8()
+{
+    hw_14_35();
 }
 
 void hw_14_35()
@@ -27,17 +33,14 @@ void hw_14_37()
     vector<int> vec;
 
     for (size_t i = 0; i < 10; i++)
-    {
         vec.push_back(rand() % 100);
-    }
-    
+    for_each(vec.begin(), vec.end(), [](int i) { cout << i << " ";});
+    cout << endl;
+
     const int old_val = 10;
     const int new_val = 20;
     
     IntCompare icmp(old_val);
-    for_each(vec.begin(), vec.end(), [](int i) { cout << i << " ";});
-    cout << endl;
-
     replace_if(vec.begin(), vec.end(), icmp, new_val);
     for_each(vec.begin(), vec.end(), [](int i) { cout << i << " ";});
     cout << endl;    
@@ -84,22 +87,25 @@ void hw_14_39()
 
 void ch_14_8_2()
 {
-    plus<int>   int_add;
-    negate<int> int_negate;
+    {
+        plus<int>   int_add;
+        negate<int> int_negate;
 
-    cout << "sum: " << int_add(1, 2) 
-         << ", negate: " << int_negate(int_add(1, 2))
-         << endl;
+        cout << "sum: " << int_add(1, 2) 
+            << ", negate: " << int_negate(int_add(1, 2))
+            << endl;
+    }
 
-    // char *p1 = "ni hao", *p2 = "hello", *p3 = "hi";
-    // vector<char *> vec;
-    // vec.push_back(p1);
-    // vec.push_back(p2);
-    // vec.push_back(p3);
-    // //error
-    // //sort(vec.begin(), vec.end(), [](char *a, char *b) { return a < b; });
+    {
+        char *p1 = "ni hao", *p2 = "hello", *p3 = "hi";
+        vector<char *> vec;
+        vec.push_back(p1);
+        vec.push_back(p2);
+        vec.push_back(p3);
+        //sort(vec.begin(), vec.end(), [](char *a, char *b) { return a < b; });
 
-    // sort(vec.begin(), vec.end(), less<char *>());
+        sort(vec.begin(), vec.end(), less<char *>());
+    }
 }
 
 int Add(int i, int j) { return i + j; }
@@ -118,7 +124,7 @@ void ch_14_8_3()
     function<int(int, int)> f2 = Mod;
     function<int(int, int)> f3 = [](int i ,int j) { return i * j; };
 
-    int (*p)(int, int) = Add;   //
+    int (*p)(int, int) = Add;   // 指针消除二义性
     map<string, function<int(int, int)>> binops = {
         {"+", p},
         {"-", minus<int>()},
@@ -136,6 +142,7 @@ void ch_14_8_3()
 
 void ch_14_9_1()
 {
+    /* 显示类型转换 */
     SmallInt i(100);
     //cout << "sum: " << i + 43 << endl;
     cout << "sum: " << static_cast<int>(i) + 43 << endl;

@@ -30,7 +30,8 @@ private:
 class ReadString
 {
 public:
-    ReadString(std::istream &in = std::cin) : in_(in) { std::cout << "Read construct." << std::endl;}
+    ReadString(std::istream &in = std::cin) : 
+                in_(in) { std::cout << "Read construct." << std::endl;}
     std::string operator()()
     {
         std::string line;
@@ -43,7 +44,6 @@ public:
 private:
     std::istream& in_;
 };
-
 
 class IntCompare
 {

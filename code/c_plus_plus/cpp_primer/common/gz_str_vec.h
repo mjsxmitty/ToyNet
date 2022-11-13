@@ -16,6 +16,9 @@ public:
     GZStrVec& operator=(GZStrVec &&rhs) noexcept;
     GZStrVec& operator=(const GZStrVec &rhs);
     ~GZStrVec();
+
+    GZStrVec& operator=(const std::initializer_list<std::string> &il);
+
 public:
     void            PushBack(const std::string &s);
     size_t          Size()  const { return first_free - elements; }
@@ -43,15 +46,9 @@ private:
 public:
     /* 13.6.3 ��ֵ���úͳ�Ա���� */
     void PushBack(std::string &&);
-
-    /* 14.4 */
-    GZStrVec& operator=(const std::initializer_list<std::string> &il);
-
 public:
-    // homework14.26
     std::string& operator[](std::size_t n) { return elements[n]; }
     const std::string& operator[](std::size_t n) const { return elements[n]; }
-
 public:
     friend bool operator==(const GZStrVec &lhs, const GZStrVec &rhs);
     friend bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs);

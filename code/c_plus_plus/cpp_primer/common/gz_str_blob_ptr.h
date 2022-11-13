@@ -40,11 +40,8 @@ public:
     friend GZStrBlobPtr operator+(const GZStrBlobPtr&, int);
     friend GZStrBlobPtr operator-(const GZStrBlobPtr&, int);
 public:
-    // homework14.26
     std::string& operator[](size_t n) { return (*wptr_.lock())[n]; }
     const std::string& operator[](size_t n) const { return  (*wptr_.lock())[n]; }
-public:
-    // homework14.27
     GZStrBlobPtr& operator++();
     GZStrBlobPtr& operator--();
     GZStrBlobPtr  operator++(int);
