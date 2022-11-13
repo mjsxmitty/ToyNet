@@ -11,20 +11,20 @@ ostream &Print(ostream &os, const QueryResult &result)
         << (result.lines_->size() > 1 ? " times" : " time") 
         << endl;
 
-    //已经处理了lines_为0的情况
-    // for (const auto &num : *result.lines_)
-    //     cout << "\nline number: " << num + 1 << " : "
-    //          << *(result.file_->Begin() + num) << endl;
-
     // for (const auto &num : *result.lines_)
     //     cout << " ( " << num + 1 << " ) : "
     //          << *(result.file_->begin() + num) 
     //          << endl;
 
+    // for (const auto &num : *result.lines_)
+    //     cout << " ( " << num + 1 << " ) : "
+    //          << result.file_.Begin().Deref(num) 
+    //          << endl;
+
+    //已经处理了lines_为0的情况
     for (const auto &num : *result.lines_)
-        cout << " ( " << num + 1 << " ) : "
-             << result.file_.Begin().Deref(num) 
-             << endl;
+        cout << "\nline number: " << num + 1 << " : "
+             << *(result.file_->Begin() + num) << endl;
 
     return os;
 }

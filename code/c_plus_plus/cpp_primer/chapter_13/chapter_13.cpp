@@ -2,7 +2,7 @@
 #include "ch_13.hpp"
 #include "chapter_13.h"
 #include "../common/gz_has_ptr.h"
-#include "str_vec.h"
+#include "../common/gz_str_vec.h"
 #include "../common/gz_str_blob.h"
 
 #include <algorithm>
@@ -298,7 +298,7 @@ struct GZhasY
     GZY mem;
 };
 
-StrVec GetVec(istream &is)
+GZStrVec GetVec(istream &is)
 {
 
 }
@@ -355,7 +355,7 @@ void ch_13_6_2()
     //GZhasY hy, hy2 = std::move(hy);
 
     // 移动右值,拷贝左值...
-    StrVec v1, v2;
+    GZStrVec v1, v2;
     //v1 = v2;
     //v2 = GetVec(cin);
 
@@ -377,7 +377,7 @@ Foo RetVal()
 
 void ch_13_6_3()
 {
-    StrVec sv;
+    GZStrVec sv;
     string s = "some thing";
     sv.PushBack(s);
     sv.PushBack("other thing");

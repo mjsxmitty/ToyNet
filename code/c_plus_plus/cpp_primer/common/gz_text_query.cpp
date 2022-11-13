@@ -7,8 +7,8 @@
 
 using namespace std;
 
-TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
-//TextQuery::TextQuery(ifstream &in) : file_(new StrVec)
+//TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
+TextQuery::TextQuery(ifstream &in) : file_(new GZStrVec)
 {
     string text;
     while (getline(in, text))
@@ -19,8 +19,11 @@ TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
         // file_->push_back(text);
         // int curr_line_num = file_->size() - 1;  //下标-->行号
 
-        file_.PushBack(text);
-        int curr_line_num = file_.Size() - 1;
+        // file_.PushBack(text);
+        // int curr_line_num = file_.Size() - 1;
+
+        file_->PushBack(text);
+        int curr_line_num = file_->Size() - 1;
 
         istringstream line(text);
         string word;

@@ -1,19 +1,20 @@
 
-
-#include "string.h"
+#include "gz_string.h"
 #include <iostream>
+#include <cstring>
+#include <string.h>
 
 using namespace std;
 
-allocator<char> String::alloc;
+allocator<char> GZString::alloc;
 
-ostream& operator<<(ostream &os, const String &rhs)
+ostream& operator<<(ostream &os, const GZString &rhs)
 {
     os << rhs.p_;
     return os;
 }
 
-String& String::operator=(const String &rhs)
+GZString& GZString::operator=(const GZString &rhs)
 {
     auto new_ptr = alloc.allocate(rhs.sz_);
     if (p_)
@@ -25,7 +26,7 @@ String& String::operator=(const String &rhs)
     return *this;
 }
 
-String& String::operator=(String &&rhs) noexcept
+GZString& GZString::operator=(GZString &&rhs) noexcept
 {
     if (this != &rhs)
     {
@@ -42,7 +43,7 @@ String& String::operator=(String &&rhs) noexcept
     return *this;   
 }
 
-String& String::operator=(const char *p)
+GZString& GZString::operator=(const char *p)
 {
     if (p_)
         alloc.deallocate(p_, sz_);
@@ -54,7 +55,7 @@ String& String::operator=(const char *p)
     return *this;
 }
 
-String& String::operator=(char c)
+GZString& GZString::operator=(char c)
 {
     if (p_)
         alloc.deallocate(p_, sz_);
@@ -66,7 +67,7 @@ String& String::operator=(char c)
     return *this;
 }
 
-String& String::operator=(const initializer_list<char> &il)
+GZString& GZString::operator=(const initializer_list<char> &il)
 {
     if (p_)
         alloc.deallocate(p_, sz_);
@@ -78,7 +79,7 @@ String& String::operator=(const initializer_list<char> &il)
     return *this;
 }
 
-void String::Swap(String &rhs)
+void GZString::Swap(GZString &rhs)
 {
     auto p = p_;
     p_ = rhs.p_;
@@ -90,16 +91,16 @@ void String::Swap(String &rhs)
 }
 
 
-String operator+(const String &lhs, const String &rhs)
+GZString operator+(const GZString &lhs, const GZString &rhs)
 {
-    String ret;
+    GZString ret;
     ret.sz_ = lhs.sz_ + rhs.sz_;
-    ret.p_ = String::alloc.allocate(ret.sz_);
+    ret.p_ = GZString::alloc.allocate(ret.sz_);
     uninitialized_copy(lhs.Begin(), lhs.End(), ret.p_);
     uninitialized_copy(rhs.Begin(), rhs.End(), ret.p_ + lhs.sz_);
     return ret;
 }
-std::ostream& operator<=(std::ostream &os, const String &item)
+std::ostream& operator<=(std::ostream &os, const GZString &item)
 {
     auto p = item.Begin();
     while (p != item.End())

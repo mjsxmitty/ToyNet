@@ -6,27 +6,24 @@
 #include <string>
 #include <memory>
 
-/* 13.5 ∂ØÃ¨ƒ⁄¥Êπ‹¿Ì¿‡ */
-class StrVec
+class GZStrVec
 {
-    // ∂®“ÂStrVec¿‡
 public:
-    StrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
-    StrVec(const StrVec &rhs);
-    StrVec& operator=(const StrVec &rhs);
-    ~StrVec();
+    GZStrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
+    GZStrVec(const std::initializer_list<std::string> &il);
+    GZStrVec(const GZStrVec &rhs);
+    GZStrVec& operator=(const GZStrVec &rhs);
+    ~GZStrVec();
 public:
     void            PushBack(const std::string &s);
     size_t          Size()  const { return first_free - elements; }
     size_t          Capacity() const { return cap - elements; }
     std::string*    Begin() const { return elements; }
     std::string*    End() const { return first_free; }
-private:
-    static std::allocator<std::string> alloc;
-
-    std::string *elements;
-    std::string *first_free;
-    std::string *cap;
+public:
+    void Reserve(size_t n);
+    void Resize(size_t n);
+    void Resize(size_t n, const std::string &s);
 private:
     void CheckAlloc() { if (Size() == Capacity()) Reallocate(); }
 
@@ -34,20 +31,24 @@ private:
     AllocCopy(const std::string *beg, const std::string *end);
     void Free();
     void Reallocate();
-public:
-    // homework 13.40
-    StrVec(const std::initializer_list<std::string> &il);
+    void Reallocate(size_t n);
+private:
+    static std::allocator<std::string> alloc;
+
+    std::string *elements;      // È¶ñÂÖÉÁ¥†‰ΩçÁΩÆ
+    std::string *first_free;    // Á¨¨‰∏Ä‰∏™Á©∫Èó≤‰ΩçÁΩÆ
+    std::string *cap;           // ÂÆπÈáè
 public:
     /* 13.6 */
-    StrVec(StrVec &&rhs) noexcept;
-    // “∆∂Ø∏≥÷µ‘ÀÀ„∑˚
-    StrVec& operator=(StrVec &&rhs) noexcept;
+    GZStrVec(GZStrVec &&rhs) noexcept;
+    // ÔøΩ∆∂ÔøΩÔøΩÔøΩ÷µÔøΩÔøΩÔøΩÔøΩÔøΩ
+    GZStrVec& operator=(GZStrVec &&rhs) noexcept;
 public:
-    /* 13.6.3 ”“÷µ“˝”√∫Õ≥…‘±∫Ø ˝ */
+    /* 13.6.3 ÔøΩÔøΩ÷µÔøΩÔøΩÔøΩ√∫Õ≥ÔøΩ‘±ÔøΩÔøΩÔøΩÔøΩ */
     void PushBack(std::string &&);
 
     /* 14.4 */
-    StrVec& operator=(const std::initializer_list<std::string> &il);
+    GZStrVec& operator=(const std::initializer_list<std::string> &il);
 
 public:
     // homework14.26
@@ -55,29 +56,19 @@ public:
     const std::string& operator[](std::size_t n) const { return elements[n]; }
 
 public:
-    friend bool operator==(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator<(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator<=(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator>(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
-
-
-
-public:
-    void Reserve(size_t n);
-    void Resize(size_t n);
-    void Resize(size_t n, const std::string &s);
-private:
-
-    void Reallocate(size_t n);
+    friend bool operator==(const GZStrVec &lhs, const GZStrVec &rhs);
+    friend bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs);
+    friend bool operator<(const GZStrVec &lhs, const GZStrVec &rhs);
+    friend bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs);
+    friend bool operator>(const GZStrVec &lhs, const GZStrVec &rhs);
+    friend bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs);
 };
 
 // homework14.16
-bool operator==(const StrVec &lhs, const StrVec &rhs);
-bool operator!=(const StrVec &lhs, const StrVec &rhs);
+bool operator==(const GZStrVec &lhs, const GZStrVec &rhs);
+bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs);
 
-// bool operator<(const StrVec &lhs, const StrVec &rhs)
+// bool operator<(const GZStrVec &lhs, const GZStrVec &rhs)
 // {
 //     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
 //     for (;
@@ -96,7 +87,7 @@ bool operator!=(const StrVec &lhs, const StrVec &rhs);
 //     return false; 
 // }
 
-// bool operator<=(const StrVec &lhs, const StrVec &rhs)
+// bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs)
 // {
 //     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
 //     for (;
@@ -115,7 +106,7 @@ bool operator!=(const StrVec &lhs, const StrVec &rhs);
 //     return false; 
 // }
 
-// bool operator>(const StrVec &lhs, const StrVec &rhs)
+// bool operator>(const GZStrVec &lhs, const GZStrVec &rhs)
 // {
 //     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
 //     for (;
@@ -134,7 +125,7 @@ bool operator!=(const StrVec &lhs, const StrVec &rhs);
 //     return false; 
 // }
 
-// bool operator>=(const StrVec &lhs, const StrVec &rhs)
+// bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs)
 // {
 //     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
 //     for (;
