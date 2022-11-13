@@ -1,5 +1,6 @@
 
 #include "chapter_14.h"
+#include "ch_14.hpp"
 
 #include <vector>
 #include <algorithm>
@@ -9,26 +10,26 @@
 
 using namespace std;
 
-void Chapter_14()
+void ch_14()
 {
 
-    //Homework_14_35();
-    //Homework_14_37();
-    //Homework_14_38();
-    //Homework_14_39();
+    //hw_14_35();
+    //hw_14_37();
+    //hw_14_38();
+    //hw_14_39();
 
-    //Partice_14_8_2();
-    //Partice_14_8_3();
-    Partice_14_9_1();
+    //ch_14_8_2();
+    //ch_14_8_3();
+    ch_14_9_1();
 }
 
-void Homework_14_35()
+void hw_14_35()
 {
     ReadString read;
     cout << "read: " << read() << endl;
 }
 
-void Homework_14_37()
+void hw_14_37()
 {
     srand(time(nullptr));
     vector<int> vec;
@@ -58,7 +59,7 @@ void ReadStr(istream &is, vector<string> &vec)
 }
 
 
-void Homework_14_38()
+void hw_14_38()
 {
     vector<string> words;
     ReadStr(cin, words);
@@ -74,7 +75,7 @@ void Homework_14_38()
     return ;
 }
 
-void Homework_14_39()
+void hw_14_39()
 {
     vector<string> words;
     ReadStr(cin, words);
@@ -89,7 +90,7 @@ void Homework_14_39()
 }
 
 
-void Partice_14_8_2()
+void ch_14_8_2()
 {
     plus<int>   int_add;
     negate<int> int_negate;
@@ -119,7 +120,7 @@ struct Divide
     }
 };
 
-void Partice_14_8_3()
+void ch_14_8_3()
 {
     function<int(int, int)> f1 = Add;
     function<int(int, int)> f2 = Mod;
@@ -141,7 +142,7 @@ void Partice_14_8_3()
 }
 
 
-void Partice_14_9_1()
+void ch_14_9_1()
 {
     SmallInt i(100);
     //cout << "sum: " << i + 43 << endl;

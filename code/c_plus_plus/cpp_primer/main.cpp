@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     //ch_12(argc, argv);
 
     /* 类设计者工具 */
-    ch_13();
+    //ch_13();
     //ch_15();
 
     cout << "\n=== Amazing, and then everyone works quietly ===\n";

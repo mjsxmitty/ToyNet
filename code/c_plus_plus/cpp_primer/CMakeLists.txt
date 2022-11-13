@@ -21,6 +21,7 @@ add_executable(cpp_primer
                 chapter_13/chapter_13.h chapter_13/chapter_13.cpp
                 chapter_13/ch_13.hpp
                 chapter_14/chapter_14.h chapter_14/chapter_14.cpp
+                chapter_14/ch_14.hpp
                 chapter_15/quote.h chapter_15/quote.cpp
                 chapter_15/bulk_quote.h chapter_15/bulk_quote.cpp
                 chapter_15/limit_quote.h chapter_15/limit_quote.cpp

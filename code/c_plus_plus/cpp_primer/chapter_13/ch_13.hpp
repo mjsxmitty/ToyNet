@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 #include "../common/gz_has_ptr.h"
 
@@ -114,7 +115,7 @@ struct GZY
 
 struct GZhasY
 {
-    GZhasY() = default;
+    //GZhasY() = default;
     GZhasY(GZhasY &&) = default;
 
     GZY mem;

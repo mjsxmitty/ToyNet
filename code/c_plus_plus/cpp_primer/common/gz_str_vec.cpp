@@ -181,7 +181,7 @@ bool operator==(const GZStrVec &lhs, const GZStrVec &rhs)
 
     for (auto iter1 = lhs.Begin(), iter2 = rhs.Begin();
          iter1 != lhs.End() && iter2 != rhs.End();
-         iter1++, iter2)
+         iter1++, iter2++)
     {
         if (*iter1 != *iter2)
         return false;
