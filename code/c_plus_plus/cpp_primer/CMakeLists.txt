@@ -39,6 +39,7 @@ add_executable(cpp_primer
                 common/gz_window_mgr.h common/gz_window_mgr.cpp
                 common/gz_account.h common/gz_account.cpp
                 common/gz_str_blob.h common/gz_str_blob.cpp
+                common/gz_str_blob_ptr.h common/gz_str_blob_ptr.cpp
                 common/gz_query_result.h common/gz_query_result.cpp
                 common/gz_text_query.h common/gz_text_query.cpp
                 common/zg_quote.h common/zg_quote.cpp

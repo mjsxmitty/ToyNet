@@ -82,15 +82,24 @@ GZSalesData& GZSalesData::operator=(const GZSalesData &) = default;
 
 ostream& operator<<(ostream &os, const GZSalesData &rhs)
 {
-    os << rhs.book_no_ << " "
-       << rhs.units_sold_  << " "
-       << rhs.revenue_ << " "
+    os << rhs.book_no_ << ", "
+       << rhs.units_sold_  << ", "
+       << rhs.revenue_ << ", "
        << rhs.revenue_;
     return os;
 }
 
-/****************************************************************/
-/***************************14.3*********************************/
+std::istream& operator>>(std::istream &in, GZSalesData &rhs)
+{
+    double price = 0.0;
+    in >> rhs.book_no_ >> rhs.units_sold_ >> price;
+    if (in)
+        rhs.revenue_ = rhs.units_sold_ * price;
+    else
+        rhs = GZSalesData();
+
+    return in;
+}
 
 GZSalesData& GZSalesData::operator+=(const GZSalesData &rhs)
 {

@@ -180,11 +180,11 @@ bool operator==(const GZStrVec &lhs, const GZStrVec &rhs)
         return false;
 
     for (auto iter1 = lhs.Begin(), iter2 = rhs.Begin();
-         iter1 != lhs.End() && iter2 != rhs.End();
-         iter1++, iter2++)
+        iter1 != lhs.End() && iter2 != rhs.End();
+        iter1++, iter2++)
     {
         if (*iter1 != *iter2)
-        return false;
+            return false;
     }
 
     return true;
@@ -193,4 +193,78 @@ bool operator==(const GZStrVec &lhs, const GZStrVec &rhs)
 bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs)
 {
     return !(lhs == rhs);
+}
+
+bool operator<(const GZStrVec &lhs, const GZStrVec &rhs)
+{
+    auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
+    for (;ps1 != lhs.End() && ps2 != rhs.End();
+        ps1++, ps2++)
+    {
+        if (*ps1 < *ps2)
+            return true;
+        else
+            return false;
+    }
+
+    if (ps1 == lhs.End() && ps2 != rhs.End()) 
+        return true;
+
+    return false; 
+}
+
+bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs)
+{
+    auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
+    for (;ps1 != lhs.End() && ps2 != rhs.End();
+        ps1++, ps2++)
+    {
+        if (*ps1 < *ps2)
+            return true;
+        else
+            return false;
+    }
+
+    if (ps1 == lhs.End()) 
+        return true;
+
+    return false; 
+}
+
+bool operator>(const GZStrVec &lhs, const GZStrVec &rhs)
+{
+    auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
+    for (;
+         ps1 != lhs.End() && ps2 != rhs.End();
+        ps1++, ps2++)
+    {
+        if (*ps1 > *ps2)
+            return true;
+        else
+            return false;
+    }
+
+    if (ps1 != lhs.End() || ps2 == rhs.End()) 
+        return true;
+
+    return false; 
+}
+
+bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs)
+{
+    auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
+    for (;
+         ps1 != lhs.End() && ps2 != rhs.End();
+        ps1++, ps2++)
+    {
+        if (*ps1 > *ps2)
+            return true;
+        else
+            return false;
+    }
+
+    if (ps2 == rhs.End()) 
+        return true;
+
+    return false; 
 }

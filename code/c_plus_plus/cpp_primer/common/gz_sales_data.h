@@ -56,18 +56,15 @@ public:
     ~GZSalesData() = default;
 
 public:
-    // homework 14.2
     friend std::ostream& operator<<(std::ostream &, const GZSalesData &);
     friend std::istream& operator>>(std::istream &, GZSalesData &);
-
-    // homework 14.13
-    GZSalesData& operator+=(const GZSalesData &);
-    GZSalesData& operator-=(const GZSalesData &);
-
     friend GZSalesData operator+(const GZSalesData &, const GZSalesData &);
     friend GZSalesData operator-(const GZSalesData &, const GZSalesData &);
     friend bool operator==(const GZSalesData &, const GZSalesData &);
     friend bool operator!=(const GZSalesData &, const GZSalesData &);
+public:
+    GZSalesData& operator+=(const GZSalesData &);
+    GZSalesData& operator-=(const GZSalesData &);
 public:
     // homework14.22
     GZSalesData& operator=(const std::string &isbn);

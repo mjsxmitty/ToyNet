@@ -61,84 +61,11 @@ public:
     friend bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs);
 };
 
-// homework14.16
 bool operator==(const GZStrVec &lhs, const GZStrVec &rhs);
 bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs);
-
-// bool operator<(const GZStrVec &lhs, const GZStrVec &rhs)
-// {
-//     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
-//     for (;
-//          ps1 != lhs.End() && ps2 != rhs.End();
-//         ps1++, ps2++)
-//     {
-//         if (*ps1 < *ps2)
-//             return true;
-//         else
-//             return false;
-//     }
-
-//     if (ps1 == lhs.End()) 
-//         return true;
-
-//     return false; 
-// }
-
-// bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs)
-// {
-//     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
-//     for (;
-//          ps1 != lhs.End() && ps2 != rhs.End();
-//         ps1++, ps2++)
-//     {
-//         if (*ps1 < *ps2)
-//             return true;
-//         else
-//             return false;
-//     }
-
-//     if (ps1 == lhs.End()) 
-//         return true;
-
-//     return false; 
-// }
-
-// bool operator>(const GZStrVec &lhs, const GZStrVec &rhs)
-// {
-//     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
-//     for (;
-//          ps1 != lhs.End() && ps2 != rhs.End();
-//         ps1++, ps2++)
-//     {
-//         if (*ps1 > *ps2)
-//             return true;
-//         else
-//             return false;
-//     }
-
-//     if (ps1 != lhs.End() || ps2 == rhs.End()) 
-//         return true;
-
-//     return false; 
-// }
-
-// bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs)
-// {
-//     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
-//     for (;
-//          ps1 != lhs.End() && ps2 != rhs.End();
-//         ps1++, ps2++)
-//     {
-//         if (*ps1 > *ps2)
-//             return true;
-//         else
-//             return false;
-//     }
-
-//     if (ps2 == rhs.End()) 
-//         return true;
-
-//     return false; 
-// }
+bool operator<(const GZStrVec &lhs, const GZStrVec &rhs);
+bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs);
+bool operator>(const GZStrVec &lhs, const GZStrVec &rhs);
+bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs);
 
 #endif // __CPP_PRIMER_CHAPTER_13_STR_VEC_H__

@@ -1,6 +1,7 @@
 
 #include "chapter_12.h"
 #include "../common/gz_str_blob.h"
+#include "../common/gz_str_blob_ptr.h"
 #include "../common/gz_text_query.h"
 #include "../common/gz_query_result.h"
 
