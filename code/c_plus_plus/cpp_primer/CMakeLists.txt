@@ -22,7 +22,6 @@ add_executable(cpp_primer
                 chapter_13/ch_13.hpp
                 chapter_13/str_vec.h chapter_13/str_vec.cpp
                 chapter_13/string.h chapter_13/string.cpp
-                chapter_13/folder_message.h chapter_13/folder_message.cpp
                 chapter_14/chapter_14.h chapter_14/chapter_14.cpp
                 chapter_15/quote.h chapter_15/quote.cpp
                 chapter_15/bulk_quote.h chapter_15/bulk_quote.cpp
@@ -31,6 +30,8 @@ add_executable(cpp_primer
                 chapter_15/chapter_15.h chapter_15/chapter_15.cpp
                 chapter_16/chapter_16.h chapter_16/chapter_16.cpp
                 object/blob.h
+                util/gz_message.h util/gz_message.cpp
+                util/gz_folder.h util/gz_folder.cpp
                 util/gz_has_ptr.h util/gz_has_ptr.cpp
                 util/gz_sales_data.h util/gz_sales_data.cpp
                 util/gz_screen.h util/gz_screen.cpp

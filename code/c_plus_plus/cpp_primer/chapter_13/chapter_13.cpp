@@ -19,7 +19,10 @@ void ch_13()
     //ch_13_1();
 
     /* 拷贝控制和资源管理 */
-    ch_13_2();
+    //ch_13_2();
+
+    /* 交换操作 */
+    ch_13_3();
 }
 
 void ch_13_1()
@@ -217,6 +220,21 @@ void hw_13_27()
     cout << "h2: " << *h2 << endl;
 }
 
+/* swap调用的应该是swap，而不是std::swap */ 
+void swap(GZFoo &lhs, GZFoo &rhs)
+{
+    using std::swap;
+    cout << "swap GZFoo object: " << lhs.PrintVal() <<
+            " and " << rhs.PrintVal() << endl;
+    swap(lhs.hp_, rhs.hp_);
+}
+
+void ch_13_3()
+{
+   GZFoo foo1("foo1"), foo2("foo2");
+   swap(foo1, foo2);
+}
+
 void hw_13_30()
 {
     GZHasPtr h("cpp primer");
@@ -252,29 +270,6 @@ void hw_13_31()
         cout << *it << " ";
     cout << endl;
 }
-
-// swap调用的应该是swap，而不是std::swap
-void swap(GZFoo &lhs, GZFoo &rhs)
-{
-    using std::swap;
-    cout << "swap GZFoo object: " << lhs.PrintVal() <<
-            " and " << rhs.PrintVal() << endl;
-    swap(lhs.hp_, rhs.hp_);
-}
-
-void ch_13_3()
-{
-//    GZFoo foo1("foo1"), foo2("foo2");
-//    swap(foo1, foo2);
-
-    //HasPtr h1("h1"), h2("h2");
-    //h1 = h2;
-}
-
-
-
-/***************************************************************/
-/***************************13.6********************************/
 
 // 编译器会为GZX和GZhasX合成移动构造函数
 struct GZX

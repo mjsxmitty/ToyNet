@@ -28,7 +28,7 @@ private:
 inline void swap(GZHasPtr &lhs, GZHasPtr &rhs)
 {
     using std::swap;
-    std::cout << "swap " << *lhs.ps_ 
+    std::cout << "swap GZHasPtr: " << *lhs.ps_ 
               << ", " << *rhs.ps_ 
               << std::endl;
 
@@ -52,7 +52,8 @@ private:
     int         i_;
     size_t      *use_;
 public:
-    GZHasPtrRef(GZHasPtrRef &&p) noexcept : ps_(p.ps_), use_(p.use_),i_(p.i_) {p.ps_ = 0; p.use_ = 0;}
+    GZHasPtrRef(GZHasPtrRef &&p) noexcept : 
+                ps_(p.ps_), use_(p.use_),i_(p.i_) { p.ps_ = 0; p.use_ = 0;}
     GZHasPtrRef& operator=(GZHasPtrRef &&rhs);  //hp = std::move(hp1)
 };
 
