@@ -44,6 +44,7 @@ GZScreen &GZScreen::Set(pos ht, pos wd, char c)
 ostream& StoreOn(ostream &os, GZScreen &s)
 {
     os << s.contents_ << endl;
+    return os;
 }
 
 //BitMap& StoreOn(BitMap &b, GZScreen &s)
@@ -79,8 +80,7 @@ void GZPractice_7_4_1()
 }
 
 // Verify定义在类之后,却在函数之前
-GZScreen::pos Verify(GZScreen::pos p)
-{}
+GZScreen::pos Verify(GZScreen::pos p) {  return 0; }
 void GZScreen::SetHeight(GZScreen::pos val)
 {
     height_ = Verify(val);

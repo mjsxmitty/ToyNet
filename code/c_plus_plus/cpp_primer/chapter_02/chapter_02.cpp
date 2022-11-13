@@ -56,9 +56,9 @@ void ch_2_1_2()
 
     //TODO:赋给无（有）符号类型超范围值？？？
     unsigned char   c = -1;
-    signed char     c2 = 256;
-    cout << "c = " << c << "\n"
-         << "c2 = " << c2 << "\n";
+    // signed char     c2 = 256;
+    // cout << "c = " << c << "\n"
+    //      << "c2 = " << c2 << "\n";
 }
 
 /********************************************************************************/
@@ -98,7 +98,7 @@ void ch_2_2_1()
          << endl;
 }
 
-extern int init1 = 1;   // 定义
+//extern int init1 = 1;   // 定义
 extern int init2;       // 声明
 int init2 = 2;          // 定义
 int init3 = 3;
