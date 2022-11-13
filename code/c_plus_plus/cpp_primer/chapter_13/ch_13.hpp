@@ -1,9 +1,10 @@
 
-
 #ifndef __CPP_PRIMER_CH_13_H__
 #define __CPP_PRIMER_CH_13_H__
 
 #include <iostream>
+
+#include "../util/gz_has_ptr.h"
 
 using namespace std;
 
@@ -64,7 +65,7 @@ public:
     GZEmployee() { my_sn_ = sn++; }
     GZEmployee(const std::string &s) : name_(s) { my_sn_ = sn++; }
     GZEmployee(const GZEmployee &e) { name_ = e.name_; my_sn_ = sn++; }
-    GZEmployee& operator=(const GZEmployee &e) { name_ = e.name_; return *this; }//
+    GZEmployee& operator=(const GZEmployee &e) { name_ = e.name_; my_sn_ = sn++; return *this; }//
 public:
     const std::string&  GetName() const { return name_; }
     int                 GetMySn() const { return my_sn_; }
@@ -79,5 +80,16 @@ void PrintEmployee(const GZEmployee &e)
 {
     cout << e.GetName() << ", " << e.GetMySn() << endl;
 }
+
+class GZFoo
+{
+    friend void swap(GZFoo &lhs, GZFoo &rhs);
+public:
+    explicit GZFoo(const string &s) : s_(s), hp_(s) {}
+    string PrintVal() const { return s_; }
+private:
+    string s_;
+    GZHasPtr hp_;
+};
 
 #endif // __CPP_PRIMER_CH_13_H__

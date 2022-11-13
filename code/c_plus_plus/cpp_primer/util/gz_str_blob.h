@@ -8,7 +8,6 @@
 
 class GZStrBlobPtr;
 
-/* 12.1.1 shared_ptr类 */
 class GZStrBlob
 {
 // 定义类
@@ -17,6 +16,9 @@ public:
 public:
     GZStrBlob();
     GZStrBlob(const std::initializer_list<std::string> &il);
+    GZStrBlob(std::vector<std::string> *p);
+    GZStrBlob(const GZStrBlob &rhs);
+    GZStrBlob& operator=(const GZStrBlob &rhs);
 public:
     size_type   Size() const { return data_->size(); }
     bool        Empty() const { return data_->empty(); }
@@ -25,22 +27,17 @@ public:
 
     std::string& Front();
     std::string& Back();
-private:
-    std::shared_ptr<std::vector<std::string>> data_;
-    void CheckSize(size_type i, const std::string &msg) const;
-
+    const std::string& Front() const;
+    const std::string& Back() const;
 public:
     GZStrBlobPtr Begin();
     GZStrBlobPtr End();
-public:
-    // hw 12.22
     GZStrBlobPtr Begin() const;
     GZStrBlobPtr End() const;
-
+private:
+    std::shared_ptr<std::vector<std::string>> data_;
+    void CheckSize(size_type i, const std::string &msg) const;
 public:
-    const std::string& Front() const;
-    const std::string& Back() const;
-
     // homework 13.55
     //void        PushBack(const std::string &&s) { data_->push_back(std::move(s)); }
 
@@ -53,10 +50,9 @@ public:
 public:    
     friend class GZStrBlobPtr;
 
-    GZStrBlob(std::vector<std::string> *p);
-    GZStrBlob(const GZStrBlob &rhs);
+
     GZStrBlob(GZStrBlob &&rhs);
-    GZStrBlob& operator=(const GZStrBlob &rhs);
+    
     GZStrBlob& operator=(GZStrBlob &&rhs);
     //GZStrBlob(std::string *, std::string*);
 

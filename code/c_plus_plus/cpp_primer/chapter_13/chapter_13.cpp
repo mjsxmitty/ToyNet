@@ -1,8 +1,9 @@
 
 #include "ch_13.hpp"
 #include "chapter_13.h"
-#include "has_ptr.h"
+#include "../util/gz_has_ptr.h"
 #include "str_vec.h"
+#include "../util/gz_str_blob.h"
 
 #include <algorithm>
 #include <iostream>
@@ -15,7 +16,10 @@ using namespace std;
 void ch_13()
 {
     /* 拷贝、赋值与销毁 */
-    ch_13_1();
+    //ch_13_1();
+
+    /* 拷贝控制和资源管理 */
+    ch_13_2();
 }
 
 void ch_13_1()
@@ -28,7 +32,7 @@ void ch_13_1()
 
     /* 阻止拷贝 */
     //ch_13_1_6();
-    hw_13_18();
+    //hw_13_18();
 }
 
 void ch_13_1_1()
@@ -147,14 +151,20 @@ void hw_13_18()
     PrintEmployee(c);
 }
 
-/***************************************************************/
-/***************************13.2********************************/
+void ch_13_2()
+{
+    //hw_13_22();
+    //hw_13_26();
+    //hw_13_27();
+    //hw_13_30();
+    hw_13_31();
+}
 
 void hw_13_22()
 {
-    HasPtr h1("hi");
-    HasPtr h2(h1);
-    HasPtr h3 = h1;
+    GZHasPtr h1("hi");
+    GZHasPtr h2(h1);
+    GZHasPtr h3 = h1;
 
     *h2 = "nihao";
     *h3 = "hello";
@@ -162,27 +172,86 @@ void hw_13_22()
     cout << "h1: " << *h1 << endl;
     cout << "h2: " << *h2 << endl;
     cout << "h3: " << *h3 << endl;
-    cout << endl;
+}
+
+void hw_13_26()
+{
+    GZStrBlob b1;
+    {
+        GZStrBlob b2 = {"a", "an", "the"};
+        b1 = b2;
+        cout << "b1 size: " << b1.Size() << endl;
+        cout << "b1 front: " << b1.Front() 
+             << ", b1 back: " << b1.Back() << endl;
+        cout << "b2 size: " << b2.Size() << endl;
+        cout << "b2 front: " << b2.Front() 
+             << ", b2 back: " << b2.Back() << endl;
+        b2.PushBack("about");
+        cout << "b1 size: " << b1.Size() << endl;
+        cout << "b1 front: " << b1.Front() 
+             << ", b1 back: " << b1.Back() << endl;
+        cout << "b2 size: " << b2.Size() << endl;
+        cout << "b2 front: " << b2.Front() 
+             << ", b2 back: " << b2.Back() << endl;
+    }
+    cout << "b1 size: " << b1.Size() << endl;
+    cout << "b1 front: " << b1.Front() 
+            << ", b1 back: " << b1.Back() << endl;
+    
+    GZStrBlob b3 = b1;
+    b3.PushBack("next");
+    cout << "b1 size: " << b1.Size() << endl;
+    cout << "b1 front: " << b1.Front() 
+            << ", b1 back: " << b1.Back() << endl;
+    cout << "b3 size: " << b3.Size() << endl;
+    cout << "b3 front: " << b3.Front() 
+            << ", b3 back: " << b3.Back() << endl;
+}
+
+void hw_13_27()
+{
+    GZHasPtrRef h("cpp primer");
+    GZHasPtrRef h2 = h;
+    h = "cpp";
+    cout << "h: " << *h << endl;
+    cout << "h2: " << *h2 << endl;
+}
+
+void hw_13_30()
+{
+    GZHasPtr h("cpp primer");
+    GZHasPtr h2(h);
+    GZHasPtr h3 = h;
+
+    h2 = "cpp";
+    h3 = "primer";
+
+    cout << "h: " << *h << endl;
+    cout << "h2: " << *h2 << endl;
+    cout << "h3: " << *h3 << endl;
 
     swap(h2, h3);
-    cout << "h1: " << *h1 << endl;
     cout << "h2: " << *h2 << endl;
     cout << "h3: " << *h3 << endl;
 }
 
-/***************************************************************/
-/***************************13.3********************************/
-
-class GZFoo
+void hw_13_31()
 {
-    friend void swap(GZFoo &lhs, GZFoo &rhs);
-public:
-    explicit GZFoo(const string &s) : s_(s), hp_(s) {}
-    string PrintVal() const { return s_; }
-private:
-    string s_;
-    HasPtr hp_;
-};
+    srand(time(NULL));
+    vector<GZHasPtr> vec;
+
+    for (int i = 0; i != 5; ++i)
+        vec.push_back(to_string(rand() % 100));
+
+    for (auto &it : vec)
+        cout << *it << " ";
+    cout << endl;
+
+    sort(vec.begin(), vec.end());
+    for (auto &it : vec)
+        cout << *it << " ";
+    cout << endl;
+}
 
 // swap调用的应该是swap，而不是std::swap
 void swap(GZFoo &lhs, GZFoo &rhs)
@@ -198,27 +267,11 @@ void ch_13_3()
 //    GZFoo foo1("foo1"), foo2("foo2");
 //    swap(foo1, foo2);
 
-    HasPtr h1("h1"), h2("h2");
-    h1 = h2;
+    //HasPtr h1("h1"), h2("h2");
+    //h1 = h2;
 }
 
-void hw_13_31()
-{
-    srand(time(NULL));
-    vector<HasPtr> vec;
 
-    for (int i = 0; i != 10; ++i)
-        vec.push_back(to_string(rand() % 1000));
-
-    for (auto &it : vec)
-        cout << *it << " ";
-    cout << endl;
-
-    sort(vec.begin(), vec.end());
-    for (auto &it : vec)
-        cout << *it << " ";
-
-}
 
 /***************************************************************/
 /***************************13.6********************************/

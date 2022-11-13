@@ -15,6 +15,24 @@ GZStrBlob::GZStrBlob() : data_(make_shared<vector<string>>()){}
 GZStrBlob::GZStrBlob(const initializer_list<string> &il) : 
                     data_(make_shared<vector<string>>(il)) { }
 
+GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
+
+// GZStrBlob::GZStrBlob(const GZStrBlob &rhs) : 
+//                     data_(make_shared<vector<string>>(*rhs.data_)){ }
+
+// GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
+// {
+//    data_ = make_shared<vector<string>>(*rhs.data_);
+//    return *this;
+// }
+
+GZStrBlob::GZStrBlob(const GZStrBlob &rhs) : data_(rhs.data_){}
+GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
+{
+    data_ = rhs.data_;
+    return *this;
+}
+
 void GZStrBlob::CheckSize(size_type i, const string &msg) const
 {
     if (i >= data_->size())
@@ -39,7 +57,6 @@ void GZStrBlob::PopBack()
     return data_->pop_back();
 }
 
-/* hw 12.3 */
 const string& GZStrBlob::Front() const
 {
     CheckSize(0, "front on empty GZStrBlob.");
@@ -52,36 +69,10 @@ const string& GZStrBlob::Back() const
     return data_->back();
 }
 
-/* ch 12.1.6 */
-
 GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
 GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
-
-/* hw 12.22 */
 GZStrBlobPtr GZStrBlob::Begin() const { return GZStrBlobPtr(*this); }
 GZStrBlobPtr GZStrBlob::End() const { return GZStrBlobPtr(*this, data_->size()); }
-
-
-GZStrBlob::GZStrBlob(vector<string> *p) : data_(p){}
-
-// homework 13.25��Ϊ��ֵ
-//GZStrBlob::GZStrBlob(const GZStrBlob &rhs)
-//{
-//    data_ = make_shared<vector<string>>(*rhs.data_);
-//}
-
-//GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
-//{
-//    data_ = make_shared<vector<string>>(*rhs.data_);
-//    return *this;
-//}
-
-GZStrBlob::GZStrBlob(const GZStrBlob &rhs) : data_(rhs.data_){}
-GZStrBlob& GZStrBlob::operator=(const GZStrBlob &rhs)
-{
-    data_ = rhs.data_;
-    return *this;
-}
 
 ////////////////////////////////////////////////////////
 
