@@ -3,6 +3,7 @@
 #include "chapter_16.h"
 #include "../common/gz_ch_16.hpp"
 #include "../common/gz_blob.hpp"
+#include "../common/gz_blob_ptr.hpp"
 
 #include <iostream>
 #include <string>
@@ -22,7 +23,13 @@ void ch_16_1()
     /* 函数模板 */
     //ch_16_1_1();
     //hw_16_4();
-    hw_16_7();
+    //hw_16_7();
+
+    /* 模板参数 */
+    //ch_16_1_3();
+
+    /* 成员模板 */
+    ch_16_1_4();
 }
 
 void ch_16_1_1()
@@ -66,6 +73,29 @@ void hw_16_7()
     Print(sarray);
 }
 
+/* 通用和特定的模板的友好关系 */
+template<typename T> class Pal;
+class GZC   // 非模板类
+{
+    friend class Pal<GZC>;
+    template<typename T> friend class Pal2;
+};
+
+template<typename T>
+class GZC2
+{
+    friend class Pal<T>;
+    template<typename X> friend class Pal2;
+    friend class Pal3;
+};
+
+/* 令模板自己的类型参数成为友元 */
+template <typename T>
+class GZBar
+{
+    friend T;
+};
+
 void ch_16_1_2()
 {
     /* 实例化类 */
@@ -85,15 +115,51 @@ void ch_16_1_2()
         cout << endl;
     }
 
-    
+    {
+        typedef Blob<string> StrBlob;
+        StrBlob sb;
 
-    typedef Blob<string> StrBlob;
-    StrBlob sb;
+        BLOB<string>    sbb;
+    }
 
-    BLOB<string>    sbb;
+    {
+        GZFoo<int> tf1, tf2;
+        cout << GZFoo<int>::Count() << ", "
+             << tf1.Count() << ", "
+             << tf2.Count() << endl;
+    }
+}
 
-    TFoo<int> tf1, tf2;
-    cout << TFoo<int>::Count() << ", " << tf1.Count() << ", " << tf2.Count() << endl;
+void ch_16_1_3()
+{
+    /* 使用类类型成员 */
+    {
+        vector<int> ivec;
+        cout << Top(ivec) << endl;
+    }
+
+    /* 模板默认实参与类模板 */
+    {
+        GZNumbers<long double> n1;
+        GZNumbers<> n2;
+    }
+}
+
+void ch_16_1_4()
+{
+    /* 普通（非模板）类的成员模板 */
+    {
+        double* p = new double;
+        GZDebugDelete d;
+        d(p);
+
+        unique_ptr<int, GZDebugDelete> up(new int, GZDebugDelete());
+    }
+
+    /* 类模板的成员模板 */
+    {
+        //vector
+    }
 }
 
 template <typename T>
