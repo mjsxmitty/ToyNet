@@ -7,17 +7,12 @@
 
 class ZGBase
 {
-    // 继承与静态成员
-//private:
 public:
     static void Statmem();
-
 protected:
     int prot_mem_;
-
 public:
     void pub_mem(){};
-
 private:
     char priv_mem_;
 
@@ -43,7 +38,6 @@ public:
     void f(const ZGDerived &);
 };
 
-/* 15.5 访问控制与继承 */
 class ZGSneaky : public ZGBase
 {
     friend void Clobber(ZGSneaky &);
@@ -56,13 +50,12 @@ class ZGSneaky : public ZGBase
 //    s.j = s.prot_mem_ = 0;
 //}
 
-//// 受保护的成员
+////// 受保护的成员
 //void Clobber(ZGBase &b)
 //{
-//    b.prot_mem_ = 0;
+//    //b.prot_mem_ = 0;
 //}
 
-// 公有、私有和受保护继承
 struct ZGPubDrev : public ZGBase
 {
     int     f() { return prot_mem_; }
@@ -154,4 +147,6 @@ public:
     void fcn2() {std::cout << "ZGD2::fcn2()" << std::endl;}    //覆盖了ZGD1::fcn()
 };
 
+//https://blog.csdn.net/norman_irsa/article/details/102873065
+//https://blog.csdn.net/feng__shuai/article/details/120253401
 #endif // __CPP_PRIMER_ZGBASE_H__

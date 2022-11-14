@@ -15,12 +15,13 @@ using namespace std;
 
 void ch_15()
 {
+    /* 定义基类和派生类 */
     //ch_15_2();
+
     //ch_15_5();
     ch_15_6();
 }
 
-/* 定义基类和派生类 */
 void ch_15_2()
 {
     ch_15_2_2();
@@ -29,9 +30,6 @@ void ch_15_2()
 /* 定义派生类 */
 void ch_15_2_2()
 {
-    // 派生类中的虚函数
-    // double NetPrice(std::size_t n) const override;
-
     // 派生类对象及派生类向基类的类型转换
     {
         ZGQuote     quote;
@@ -43,16 +41,7 @@ void ch_15_2_2()
         ZGQuote &r = bulk;
     }
 
-    // 派生类构造函数
-    // ZGBulkQuote(const std::string &, double, std::size_t, double);
-
-    // 派生类使用基类成员
-    // double ZGBulkQuote::NetPrice(std::size_t n) const
-
-    // 继承与静态成员
-    // void ZGDerived::f(const ZGDerived &derived_obj)
-
-    // 派生类声明
+    /* 派生类声明 */
     {
         //class ZGBulkQuote : public ZGQuote;
         class ZGBulkQuote;
@@ -64,7 +53,7 @@ void ch_15_2_2()
         class ZGD2 : public ZGD1 {};
     }
 
-    // 防止继承的发生
+    /* 防止继承的发生 */
     {
         class ZGNoDerived final {};
         //class ZGBad : public ZGNoDerived {};
@@ -94,6 +83,7 @@ void exer_15_7()
 
 void ch_15_5()
 {
+    /* 公有、私有和受保护继承 */
     ZGPubDrev d1;
     ZGProDrev d2;
     ZGPriDrev d3;
@@ -146,10 +136,6 @@ void ch_15_6()
     p3->fcn(3);
 }
 
-void Chapter_15()
-{
-    Practice_15_1();
-}
 
 void PrintTotal(ostream &os, const Quote &q, size_t n)
 {
@@ -157,16 +143,6 @@ void PrintTotal(ostream &os, const Quote &q, size_t n)
        << n << ", total due: " << q.NetPrice(n) << endl;
 }
 
-void Practice_15_1()
-{
-    Quote       q("gao", 10);
-    BulkQuote   bq("gao zhuo", 10, 10, 0.3);
-
-    //DiscQuote disc;
-
-    PrintTotal(cout, q, 20);
-    PrintTotal(cout, bq, 20);
-}
 
 void Base::statmem()
 {
@@ -192,12 +168,3 @@ void clobber(Sneaky &s)
 //     b.prot_mem = 0;
 // }
 
-void Practice_15_6()
-{
-    BulkQuote   bulk;
-    BulkQuote   *bulk_p = &bulk;
-    Quote       *item_p = &bulk;
-
-    bulk_p->DiscountPolicy();
-    //item_p->DiscountPolicy();
-}

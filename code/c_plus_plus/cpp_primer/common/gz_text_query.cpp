@@ -29,7 +29,7 @@ TextQuery::TextQuery(ifstream &in) : file_(new GZStrVec)
         string word;
         while (line >> word)
         {
-            auto &lines = wm_[word];
+            auto &lines = wm_[CleanupStr(word)];
             if (!lines)
                 lines.reset(new set<line_no>);
             lines->insert(curr_line_num);

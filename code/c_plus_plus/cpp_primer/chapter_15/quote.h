@@ -9,7 +9,8 @@ class Quote
 {
 public:
     Quote() = default;
-    Quote(const std::string &book, double sales_price) : book_no_(book), price_(sales_price) {}
+    Quote(const std::string &book, double sales_price) :
+            book_no_(book), price_(sales_price) {}
     virtual ~Quote() = default;
 public:
     std::string     isbn() const ;

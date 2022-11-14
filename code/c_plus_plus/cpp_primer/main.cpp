@@ -41,8 +41,11 @@ int main(int argc, char **argv)
 
     /* 类设计者工具 */
     //ch_13();
-    ch_14();
+    //ch_14();
     //ch_15();
+    ch_16();
+
+    /* 高级主题 */
 
     cout << "\n=== Amazing, and then everyone works quietly ===\n";
     return 0;

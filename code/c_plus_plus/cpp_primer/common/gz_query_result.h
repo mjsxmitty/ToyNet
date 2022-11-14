@@ -8,8 +8,8 @@
 #include <vector>
 #include <iostream>
 
-#include "../common/gz_str_blob.h"
-#include "../common/gz_str_vec.h"
+#include "gz_str_blob.h"
+#include "gz_str_vec.h"
 
 class QueryResult
 {
@@ -30,7 +30,10 @@ public:
                 std::shared_ptr<std::set<line_no>> p,
                 std::shared_ptr<GZStrVec> f) :
                 sought_word_(s), lines_(p), file_(f) {}
-
+public:
+    std::set<line_no>::iterator Begin() { return lines_->begin(); };
+    std::set<line_no>::iterator End() { return lines_->end(); };
+    //GZStrBlob GetFile() { return file_; }
 private:
     std::string                                 sought_word_;
     std::shared_ptr<std::set<line_no>>          lines_;
@@ -38,12 +41,6 @@ private:
     //std::shared_ptr<std::vector<std::string>>   file_;
     //GZStrBlob   file_;
     std::shared_ptr<GZStrVec> file_;
-
-public:
-    std::set<line_no>::iterator Begin() { return lines_->begin(); };
-    std::set<line_no>::iterator End() { return lines_->end(); };
-
-    //GZStrBlob GetFile() { return file_; }
 };
 
 std::ostream& Print(std::ostream &os, const QueryResult &result);

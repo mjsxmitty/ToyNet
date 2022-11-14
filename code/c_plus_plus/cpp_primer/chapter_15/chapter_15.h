@@ -11,11 +11,6 @@ void exer_15_7();
 void ch_15_5();
 void ch_15_6();
 
-void Chapter_15();
-
-void Practice_15_1();
-void Practice_15_6();
-
 class Base
 {
 public:

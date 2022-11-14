@@ -26,6 +26,7 @@ public:
     std::string*    Begin() const { return elements; }
     std::string*    End() const { return first_free; }
 public:
+    void PushBack(std::string &&);
     void Reserve(size_t n);
     void Resize(size_t n);
     void Resize(size_t n, const std::string &s);
@@ -43,9 +44,6 @@ private:
     std::string *elements;      // 首元素位置
     std::string *first_free;    // 第一个空闲位置
     std::string *cap;           // 容量
-public:
-    /* 13.6.3 ��ֵ���úͳ�Ա���� */
-    void PushBack(std::string &&);
 public:
     std::string& operator[](std::size_t n) { return elements[n]; }
     const std::string& operator[](std::size_t n) const { return elements[n]; }

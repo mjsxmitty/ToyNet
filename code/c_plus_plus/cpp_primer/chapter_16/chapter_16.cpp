@@ -1,6 +1,7 @@
 
 
 #include "chapter_16.h"
+#include "../common/gz_common.hpp"
 #include "../common/blob.h"
 
 #include <iostream>
@@ -10,43 +11,44 @@
 
 using namespace std;
 
-void Chapter_16()
+void ch_16()
 {
-    //Practice_16_1_1();
-    Practice_16_1_2();
-    
-    //Homework_16_4();
-    //Homework_16_5();
+    /* 定义模板 */
+    ch_16_1();
 }
 
-void Practice_16_1_1()
+void ch_16_1()
 {
-    //TODO
-    cout << Compare("hi", "hello") 
-         << ", " << strcmp("hi", "hello") 
-         << endl;
+    /* 函数模板 */
+    //ch_16_1_1();
+    //hw_16_4();
+    hw_16_7();
+}
 
-    cout << Compare(1, 3) << ", " 
-         << Compare(string("hi"), string("hello")) 
-         << endl;
+void ch_16_1_1()
+{
+    /* 实例化参数模板 */
+    {
+        cout << Compare(1, 0) << endl;
 
-    string s1("hi"), s2("hello");
-    cout << Compare(s1, s2) << endl;
+        vector<int> vec1{1,2,3}, vec2{4,5,6};
+        cout << Compare(vec1, vec2) << endl;
+    }
 }
 
 
-void Homework_16_4()
+void hw_16_4()
 {
     vector<int> vec = {1, 23 ,43 ,3, 45,6,11};
-    list<string> lst = {"hello", "hi", "nihao"};
 
     auto iter = Find(vec.begin(), vec.end(), 6);
     if (iter == vec.end())
-        cout << "can not find value." << endl;
+        cout << "not find value." << endl;
     else
         cout << "find value position: " 
              << iter - vec.begin() << endl;
 
+    list<string> lst = {"hello", "hi", "nihao"};
     auto iter1 = Find(lst.begin(), lst.end(), "!");
     if (iter1 == lst.end())
         cout << "can not find value." << endl;
@@ -55,26 +57,34 @@ void Homework_16_4()
              << iter - vec.begin() << endl;
 }
 
-void Homework_16_5()
+void hw_16_7()
 {
     int iarray[5] = {1, 3 ,5 ,23, 6};
-    string sarray[4] = {"nihao", "hi", "hello"};
-
     Print(iarray);
+
+    string sarray[4] = {"nihao", "hi", "hello"};
     Print(sarray);
 }
 
-void Practice_16_1_2()
+void ch_16_1_2()
 {
-    Blob<int>       ia = {1,2,3,4,5,6,7,8,9};
-    Blob<string>    sa = {"hello", "hi", "nihao"};
+    /* 实例化类模板 */
+    {
+        Blob<string>    sa = {"hello", "hi", "nihao"};
+    }
 
-    for (size_t i = 0; i != ia.Size(); i++)
-        ia[i] = i * i;
-    
-    for (size_t i = 0; i < ia.Size(); i++)
-        cout << ia[i] << " ";
-    cout << endl;
+    /* 类模板成员函数实例化 */
+    {
+        Blob<int>       ia = {1,2,3,4,5,6,7,8,9};
+
+        for (size_t i = 0; i != ia.Size(); i++)
+            ia[i] = i * i;
+
+        for (size_t i = 0; i < ia.Size(); i++)
+            cout << ia[i] << " ";
+        cout << endl;
+    }
+
     
 
     typedef Blob<string> StrBlob;
