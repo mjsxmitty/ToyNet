@@ -5,10 +5,10 @@ include(CTest)
 enable_testing()
 
 add_executable(cpp_primer
-    common/blob.h
     common/gz_ch_13.hpp
     common/gz_ch_14.hpp
     common/gz_ch_16.hpp
+	common/gz_blob.hpp common/gz_blob_ptr.hpp
     common/gz_math.h common/gz_math.cpp
     common/gz_string.h common/gz_string.cpp
     common/gz_str_vec.h common/gz_str_vec.cpp

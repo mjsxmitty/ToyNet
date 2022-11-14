@@ -19,11 +19,6 @@ extern void hw_16_7();
 extern void ch_16_1_2();
 
 
-
-
-
-
-
 //template <typename T, typename F = std::less<T>>
 //int Compare(const T &lhs, const T &rhs, F f = F())
 //{
@@ -31,11 +26,6 @@ extern void ch_16_1_2();
 //    if (f(lhs, rhs)) return 1;
 //    return 0;
 //}
-
-
-
-
-
 
 
 /*

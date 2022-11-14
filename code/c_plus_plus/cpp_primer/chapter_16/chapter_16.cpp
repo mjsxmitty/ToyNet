@@ -2,7 +2,7 @@
 
 #include "chapter_16.h"
 #include "../common/gz_ch_16.hpp"
-#include "../common/blob.h"
+#include "../common/gz_blob.hpp"
 
 #include <iostream>
 #include <string>
@@ -13,13 +13,13 @@ using namespace std;
 
 void ch_16()
 {
-    /* ����ģ�� */
+    /* 定义模板 */
     ch_16_1();
 }
 
 void ch_16_1()
 {
-    /* ����ģ�� */
+    /* 函数模板 */
     //ch_16_1_1();
     //hw_16_4();
     hw_16_7();
@@ -27,7 +27,7 @@ void ch_16_1()
 
 void ch_16_1_1()
 {
-    /* ʵ��������ģ�� */
+    /* 实例化函数 */
     {
         cout << Compare(1, 0) << endl;
 
@@ -68,12 +68,12 @@ void hw_16_7()
 
 void ch_16_1_2()
 {
-    /* ʵ������ģ�� */
+    /* 实例化类 */
     {
         Blob<string>    sa = {"hello", "hi", "nihao"};
     }
 
-    /* ��ģ���Ա����ʵ���� */
+    /* 实例化成员函数 */
     {
         Blob<int>       ia = {1,2,3,4,5,6,7,8,9};
 
