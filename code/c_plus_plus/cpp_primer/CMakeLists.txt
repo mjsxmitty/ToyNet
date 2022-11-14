@@ -9,6 +9,7 @@ add_executable(cpp_primer
     common/gz_ch_13.hpp
     common/gz_ch_14.hpp
     common/gz_ch_16.hpp
+    common/gz_math.h common/gz_math.cpp
     common/gz_string.h common/gz_string.cpp
     common/gz_str_vec.h common/gz_str_vec.cpp
     common/gz_message.h common/gz_message.cpp
@@ -32,7 +33,6 @@ add_executable(cpp_primer
     chapter_03/chapter_03.h chapter_03/chapter_03.cpp
     chapter_04/chapter_04.h chapter_04/chapter_04.cpp
     chapter_05/chapter_05.h chapter_05/chapter_05.cpp
-    chapter_06/local_math.h chapter_06/local_math.cpp
     chapter_06/chapter_06.h chapter_06/chapter_06.cpp
     chapter_07/chapter_07.h chapter_07/chapter_07.cpp
     chapter_08/chapter_08.h chapter_08/chapter_08.cpp

@@ -1,7 +1,7 @@
 
 
 #include "chapter_06.h"
-#include "local_math.h"
+#include "../common/gz_math.h"
 
 #include <iostream>
 #include <vector>

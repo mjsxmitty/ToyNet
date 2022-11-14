@@ -1,5 +1,5 @@
 
-#include "local_math.h"
+#include "gz_math.h"
 
 int Fact(int val)
 {
