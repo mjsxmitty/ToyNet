@@ -1,6 +1,6 @@
 
 #include "chapter_14.h"
-#include "ch_14.hpp"
+#include "../common/gz_ch_14.hpp"
 
 #include <vector>
 #include <algorithm>

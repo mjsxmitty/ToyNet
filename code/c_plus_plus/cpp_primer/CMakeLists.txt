@@ -6,7 +6,9 @@ enable_testing()
 
 add_executable(cpp_primer
     common/blob.h
-    common/gz_common.hpp
+    common/gz_ch_13.hpp
+    common/gz_ch_14.hpp
+    common/gz_ch_16.hpp
     common/gz_string.h common/gz_string.cpp
     common/gz_str_vec.h common/gz_str_vec.cpp
     common/gz_message.h common/gz_message.cpp
@@ -39,9 +41,7 @@ add_executable(cpp_primer
     chapter_11/chapter_11.h chapter_11/chapter_11.cpp
     chapter_12/chapter_12.h chapter_12/chapter_12.cpp
     chapter_13/chapter_13.h chapter_13/chapter_13.cpp
-    chapter_13/ch_13.hpp
     chapter_14/chapter_14.h chapter_14/chapter_14.cpp
-    chapter_14/ch_14.hpp
     chapter_15/chapter_15.h chapter_15/chapter_15.cpp
     chapter_16/chapter_16.h chapter_16/chapter_16.cpp
     chapter_15/quote.h chapter_15/quote.cpp

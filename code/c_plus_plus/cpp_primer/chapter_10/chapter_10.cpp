@@ -1,6 +1,6 @@
 
 #include "chapter_10.h"
-#include "../chapter_14/ch_14.hpp"
+#include "../common/gz_ch_14.hpp"
 
 #include <numeric>
 #include <iterator>
