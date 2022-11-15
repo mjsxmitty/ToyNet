@@ -10,6 +10,8 @@ void ShowMenu();
 int main()
 {
     AddressBooks abs;
+    abs.size = 0;
+
     int select = 0;
 
     while (true)
@@ -20,14 +22,19 @@ int main()
         switch (select)
         {
             case 1:  //添加联系人
+                AddPerson(&abs);
                 break;
             case 2:  //显示联系人
+                ShowPerson(&abs);
                 break;
             case 3:  //删除联系人
+                DeletePerson(&abs);
                 break;
             case 4:  //查找联系人
+                FindPerson(&abs);
                 break;
             case 5:  //修改联系人
+                ModifyPerson(&abs);
                 break;
             case 6:  //清空联系人
                 break;
