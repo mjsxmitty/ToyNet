@@ -179,7 +179,6 @@ int* func()
 int main()
 {
 	int *p = func();
-
 	cout << *p << endl;
 	cout << *p << endl;
 
@@ -187,7 +186,6 @@ int main()
 	delete p;
 	//cout << *p << endl; //报错，释放的空间不可访问
 
-	//system("pause");
 	return 0;
 }
 ```
@@ -211,7 +209,6 @@ int main()
 	//释放数组 delete 后加 []
 	delete[] arr;
 
-	//system("pause");
 	return 0;
 }
 
@@ -241,7 +238,6 @@ int main()
 	cout << "a = " << a << endl;
 	cout << "b = " << b << endl;
 
-	//system("pause");
 	return 0;
 }
 ```
@@ -472,7 +468,7 @@ C++中函数的形参列表里可以有占位参数，用来做占位，==调用
 
 **语法：** `返回值类型 函数名 (数据类型){}`
 
-~~在现阶段函数的占位参数存在意义不大，但是后面的课程中会用到该技术~~
+~~在现阶段函数的占位参数存在意义不大，但是后面会用到该技术~~
 
 **示例：**
 
@@ -768,7 +764,7 @@ int main()
 **区别：**
 
 * struct 默认权限为公共
-* class   默认权限为私有
+* class  默认权限为私有
 
 ```C++
 class C1
