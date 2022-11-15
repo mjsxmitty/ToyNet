@@ -66,6 +66,7 @@ void ShowPerson(AddressBooks* abs)
         cout << "年纪：" << abs->person_array[i].age << "\t";
         cout << "电话：" << abs->person_array[i].phone << "\t";
         cout << "地址：" << abs->person_array[i].addr << "\t";
+        cout << endl;
     }
 }
 
@@ -106,6 +107,7 @@ void FindPerson(AddressBooks* abs)
     cout << "年纪：" << abs->person_array[ret].age << "\t";
     cout << "电话：" << abs->person_array[ret].phone << "\t";
     cout << "地址：" << abs->person_array[ret].addr << "\t";
+    cout << endl;
 }
 
 void ModifyPerson(AddressBooks* abs)
@@ -162,7 +164,7 @@ void ModifyPerson(AddressBooks* abs)
 void CleanPerson(AddressBooks* abs)
 {
     abs->size = 0;
-    cout << "通讯录已清空" << endl;
+    cout << "通讯录已清空！" << endl;
 }
 
 int IsExist(AddressBooks* abs, string name)
