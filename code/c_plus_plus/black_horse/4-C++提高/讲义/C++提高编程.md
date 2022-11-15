@@ -1201,9 +1201,8 @@ int main() {
 }
 ```
 
-> 总结：
+> 总结：能够利用所学知识点实现通用的数组
 >
-> 能够利用所学知识点实现通用的数组
 
 ## 2 STL初识
 
@@ -1607,7 +1606,7 @@ int main() {
 * `string& append(const char *s); `                         //把字符串s连接到当前字符串结尾
 * `string& append(const char *s, int n);`                  //把字符串s的前n个字符连接到当前字符串结尾
 * `string& append(const string &s);`                       //同operator+=(const string& str)
-* `string& append(const string &s, int pos, int n);`//字符串s中从pos开始的n个字符连接到字符串结尾
+* `string& append(const string &s, int pos, int n);`        //字符串s中从pos开始的n个字符连接到字符串结尾
 
 
 **示例：**
@@ -1852,7 +1851,6 @@ int main() {
 **函数原型：**
 
 * `string substr(int pos = 0, int n = npos) const;`   //返回由pos开始的n个字符组成的字符串
-
 
 **示例：**
 
@@ -3168,7 +3166,7 @@ list的缺点：
 
 List有一个重要的性质，插入操作和删除操作都不会造成原有list迭代器的失效，这在vector是不成立的。
 
-总结：STL中**List和vector是两个最常被使用的容器**，各有优缺点
+> **总结**：STL中**List和vector是两个最常被使用的容器**，各有优缺点
 
 #### 3.7.2  list构造函数
 
@@ -5436,6 +5434,12 @@ void test01()
 	else {
 		cout << "找到相邻重复元素为:" << *it << endl;
 	}
+}
+
+int main()
+{
+    test01();
+    return 0;
 }
 ```
 
