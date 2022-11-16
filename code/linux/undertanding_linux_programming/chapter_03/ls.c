@@ -1,10 +1,4 @@
 
-
-/**
- * 读目录
- * 读取文件属性
-*/
-
 #ifndef __CHAPTER03_LS_H__
 #define __CHAPTER03_LS_H__
 
@@ -12,17 +6,9 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
-
+#include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
-
-void DoLs(char *dir_name);
-void testLs(int ac, char **av);
-void ModeToLetters(int mode, char *str);
-char* UidToName(uid_t uid);
-char* GidToName(gid_t gid);
-void ShowStatInfo(char *file_name, struct stat *buf);
-void DoStat(char *file_name);
 
 void DoLs(char *dir_name)
 {
