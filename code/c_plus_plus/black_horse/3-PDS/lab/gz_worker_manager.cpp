@@ -215,6 +215,7 @@ void GZWorkerManager::InitEmp()
         
         emp_array_[index++] = worker;
     }
+    ifs.close();
 }
 
 void GZWorkerManager::ShowEmp()
@@ -227,5 +228,138 @@ void GZWorkerManager::ShowEmp()
     {
         for (int i = 0; i != emp_num_; ++i)
             emp_array_[i]->ShowInfo();
+    }
+}
+
+int GZWorkerManager::IsExist (int id)
+{
+    int index = -1;
+    for (int i = 0; i != emp_num_; ++i)
+    {
+        if (emp_array_[i]->id_ == id)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+}
+
+void GZWorkerManager::DelEmp()
+{
+    if (file_is_empty)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+        return ;
+    }
+
+    //按职工编号删除
+    cout << "请输入想要删除的职工号：" << endl;
+    int id = 0;
+    cin >> id;
+
+    int index = IsExist(id);
+    if (index == -1)
+    {
+        cout << "删除失败，未找到该职工!" << endl;
+        return ;
+    }
+
+    for (int i = index; i != emp_num_; i++)
+        emp_array_[i] = emp_array_[i + 1];
+    emp_num_--;
+    Save();
+}
+
+void GZWorkerManager::ModEmp()
+{
+    if (file_is_empty)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+        return ;
+    }
+
+    //按职工编号修改
+    cout << "请输入想要修改的职工号：" << endl;
+    int id = 0;
+    cin >> id;
+
+    int index = IsExist(id);
+    if (index == -1)
+    {
+        cout << "删除失败，未找到该职工!" << endl;
+        return ;
+    }
+
+    delete emp_array_[index];
+
+    int new_id;
+    string new_name;
+    int select;
+
+    cout << "查到: " << id << " 号职工，请输入新职工号：" << endl;
+    cin >> new_id;
+
+    cout << "请输入新姓名： " << endl;
+    cin >> new_name;
+
+    cout << "请输入岗位： " << endl;
+    cout << "1、普通职工" << endl;
+    cout << "2、经理" << endl;
+    cout << "3、老板" << endl;
+    cin >> select;
+
+    GZworker *worker = NULL;
+    switch (select)
+    {
+        case 1:
+            worker = new GZEmployee(id, new_name, select);
+            break;
+        case 2:
+            worker = new GZManager(id, new_name, select);
+        case 3:
+            worker = new GZBoss(id, new_name, select);
+        default:
+            break;
+    }
+    emp_array_[index] = worker;
+    Save();
+    cout << "修改成功！" << endl;
+}
+
+int GZWorkerManager::IsExist(string name)
+{
+    int index = -1;
+    for (int i = 0; i != emp_num_; ++i)
+    {
+        if (emp_array_[i]->name_ == name)
+        {
+            index = i;
+            break;
+        }
+    }
+
+    return index;
+}
+
+void GZWorkerManager::FindEmp()
+{
+    if (file_is_empty)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+        return ;
+    }
+
+    cout << "请输入查找的方式：" << endl;
+    cout << "1、按职工编号查找" << endl;
+    cout << "2、按姓名查找" << endl;
+
+    int select = 0;
+    cin >> select;
+
+    if (select == 1)
+    {
+        
     }
 }

@@ -17,12 +17,22 @@ public:
     void AddEmp();
 
     void ShowEmp();
+
+    void DelEmp();
+
+    void ModEmp();
+
+    void FindEmp();
 private:
     void Save();
 
     int GetEmpNum();
 
     void InitEmp();
+
+    int IsExist(int id);
+
+    int IsExist(std::string name);
 private:
     int         emp_num_;
     GZworker    **emp_array_;
