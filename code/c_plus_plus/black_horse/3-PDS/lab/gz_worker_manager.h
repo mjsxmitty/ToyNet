@@ -23,6 +23,10 @@ public:
     void ModEmp();
 
     void FindEmp();
+
+    void SortEmp();
+
+    void CleanFile();
 private:
     void Save();
 

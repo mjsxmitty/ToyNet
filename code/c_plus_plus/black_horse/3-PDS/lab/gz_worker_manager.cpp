@@ -360,6 +360,111 @@ void GZWorkerManager::FindEmp()
 
     if (select == 1)
     {
-        
+        int id;
+        cout << "请输入查找的职工编号：" << endl;
+        cin >> id;
+
+        int ret = IsExist(id);
+        if (ret == -1)
+        {
+            cout << "查找失败，查无此人" << endl;
+            return ;
+        }
+
+        cout << "查找成功！该职工信息如下：" << endl;
+        emp_array_[ret]->ShowInfo();
+    }
+    else if (select == 2)
+    {
+        string name;
+        cout << "请输入查找的姓名：" << endl;
+        cin >> name;
+
+        int ret = IsExist(name);
+        if (ret == -1)
+        {
+            cout << "查找失败，查无此人" << endl;
+            return ;
+        }
+
+        cout << "查找成功！该职工信息如下：" << endl;
+        emp_array_[ret]->ShowInfo();
+    }
+}
+
+void GZWorkerManager::SortEmp()
+{
+    if (file_is_empty)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+        return ;
+    }
+
+    cout << "请选择排序方式： " << endl;
+    cout << "1、按职工号进行升序" << endl;
+    cout << "2、按职工号进行降序" << endl;
+
+    int select = 0;
+    cin >> select;
+
+    // 找到最大或者最小的索引,交换
+    for (int i = 0; i != emp_num_; ++i)
+    {
+        int min_or_max = i;
+        for (int j = i + 1; j != emp_num_; ++j)
+        {
+            if (select == 1)
+            {
+                if (emp_array_[min_or_max] > emp_array_[j])
+                    min_or_max = j;
+            }
+            else
+            {
+                if (emp_array_[min_or_max] < emp_array_[j])
+                    min_or_max = j;
+            }
+        }
+
+        if (min_or_max != i)
+        {
+            GZworker *temp = emp_array_[i];
+            emp_array_[i] = emp_array_[min_or_max];
+            emp_array_[min_or_max] = temp;
+        }
+    }
+
+    Save();
+    ShowEmp();
+}
+
+void GZWorkerManager::CleanFile()
+{
+    cout << "确认清空？" << endl;
+    cout << "1、确认" << endl;
+    cout << "2、返回" << endl;
+
+    int select = 0;
+    cin >> select;
+
+    if (select == 1)
+    {
+        ofstream ofs;
+        ofs.open(FILE_NAME, ios::trunc);
+
+        if (emp_array_ != NULL)
+        {
+            for (int i = 0; i != emp_num_; ++i)
+            {
+                if (emp_array_[i] != NULL)
+                    delete emp_array_;
+            }
+
+            emp_num_ = 0;
+            delete [] emp_array_;
+            emp_array_ = NULL;
+            file_is_empty = true;
+
+        }
+        cout << "清空成功！" << endl;
     }
 }

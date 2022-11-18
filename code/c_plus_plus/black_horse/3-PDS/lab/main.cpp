@@ -34,10 +34,13 @@ int main()
                 wm.ModEmp();
                 break;
             case 5: //查找职工
+                wm.FindEmp();
                 break;
             case 6: //排序职工
+                wm.SortEmp();
                 break;
             case 7: //清空文件
+                wm.CleanFile();
                 break;
             default:
                 break;

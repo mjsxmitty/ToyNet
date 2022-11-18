@@ -8,7 +8,7 @@ void AddPerson(AddressBooks *abs)
 {
     if (abs->size == MAX_NUM)
     {
-        cout << "" << endl;
+        cout << "person count reach max numbers." << endl;
         return ;
     }
 
