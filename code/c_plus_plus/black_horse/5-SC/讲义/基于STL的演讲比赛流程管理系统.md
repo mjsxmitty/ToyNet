@@ -27,16 +27,12 @@
 
 ![1548155966702](assets/1548155966702.png)
 
-
-
 ## 2、 项目创建
 
 创建项目步骤如下：
 
 - 创建新项目
 - 添加文件
-
-
 
 ### 2.1 创建项目
 
@@ -93,8 +89,6 @@
 
 ![1548123402593](assets/1548123402593.png)
 
-
-
 ### 3.2 头文件实现
 
 在speechManager.h中设计管理类
@@ -138,8 +132,6 @@ SpeechManager::~SpeechManager()
 
 * 至此演讲管理类以创建完毕
 
-
-
 ## 4、 菜单功能
 
 功能描述：与用户的沟通界面
@@ -149,10 +141,6 @@ SpeechManager::~SpeechManager()
 在管理类speechManager.h中添加成员函数  `void show_Menu();`
 
 ![1548123942072](assets/1548123942072.png)
-
- 
-
-
 
 ### 4.2 菜单功能实现
 
@@ -171,8 +159,6 @@ void SpeechManager::show_Menu()
 	cout << endl;
 }
 ```
-
-
 
 ### 4.3 测试菜单功能
 
@@ -202,8 +188,6 @@ int main() {
 ![1548124599641](assets/1548124599641.png)
 
 * 菜单界面搭建完毕
-
-
 
 ## 5、 退出功能
 
@@ -249,8 +233,6 @@ int main() {
 }
 ```
 
-
-
 ### 5.2 实现退出功能
 
 在speechManager.h中提供退出系统的成员函数 `	void exitSystem();`
@@ -266,8 +248,6 @@ void SpeechManager::exitSystem()
 }
 ```
 
-
-
 ### 5.3测试功能
 
 在main函数分支 0  选项中，调用退出程序的接口
@@ -280,8 +260,6 @@ void SpeechManager::exitSystem()
 
 ![1548124888578](assets/1548124888578.png)
 
-
-
 ## 6、演讲比赛功能
 
 ### 6.1 功能分析
@@ -291,8 +269,6 @@ void SpeechManager::exitSystem()
 抽签 → 开始演讲比赛 → 显示第一轮比赛结果 → 
 
 抽签 → 开始演讲比赛 → 显示前三名结果 → 保存分数
-
-
 
 ### 6.2 创建选手类
 
@@ -311,8 +287,6 @@ public:
 	double m_Score[2]; //分数  最多有两轮得分
 };
 ```
-
-
 
 ### 6.3 比赛
 
@@ -334,10 +308,6 @@ public:
 	map<int, Speaker> m_Speaker;
 ```
 
-
-
-
-
 #### 6.3.2 初始化属性
 
 - 在speechManager.h中提供开始比赛的的成员函数 `void initSpeech();`
@@ -346,8 +316,6 @@ public:
 	//初始化属性
 	void initSpeech();
 ```
-
-
 
 - 在speechManager.cpp中实现`void initSpeech();`
 
@@ -364,8 +332,6 @@ void SpeechManager::initSpeech()
 }
 ```
 
-
-
 - SpeechManager构造函数中调用`void initSpeech();`
 
 ```c++
@@ -376,10 +342,6 @@ SpeechManager::SpeechManager()
 }
 ```
 
-
-
-
-
 #### 6.3.3 创建选手
 
 * 在speechManager.h中提供开始比赛的的成员函数 `void createSpeaker();`
@@ -388,8 +350,6 @@ SpeechManager::SpeechManager()
 	//初始化创建12名选手
 	void createSpeaker();
 ```
-
-
 
 * 在speechManager.cpp中实现`void createSpeaker();`
 
@@ -418,8 +378,6 @@ void SpeechManager::createSpeaker()
 }
 ```
 
-
-
 * SpeechManager类的 构造函数中调用`void createSpeaker();`
 
 ```C++
@@ -432,8 +390,6 @@ SpeechManager::SpeechManager()
 	this->createSpeaker();
 }
 ```
-
-
 
 * 测试 在main函数中，可以在创建完管理对象后，使用下列代码测试12名选手初始状态
 
