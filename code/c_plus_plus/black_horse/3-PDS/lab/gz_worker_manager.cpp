@@ -187,8 +187,11 @@ int GZWorkerManager::GetEmpNum ()
     string name;
     int did;
     int num = 0;
-    while (ifs >> id && ifs >> name && ifs >> did)
-        num++;
+    //while (ifs >> id && ifs >> name && ifs >> did)
+    //    num++;
+	string line;
+	while(getline(ifs, line))
+		num++;
     ifs.close();
     return num;
 }
@@ -318,8 +321,10 @@ void GZWorkerManager::ModEmp()
             break;
         case 2:
             worker = new GZManager(id, new_name, select);
+			break;
         case 3:
             worker = new GZBoss(id, new_name, select);
+			break;
         default:
             break;
     }
