@@ -14,6 +14,7 @@ using namespace std;
 
 GZWorkerManager::GZWorkerManager()
 {
+    cout << "init " << endl;
     ifstream ifs;
     ifs.open(FILE_NAME, ios::in);
 
@@ -44,18 +45,11 @@ GZWorkerManager::GZWorkerManager()
 
     // 文件存在
     int num = GetEmpNum();
-    cout << "职工个数为：" << num << endl;  //
     emp_num_ = num;
 
     emp_array_ = new GZworker* [num];
     InitEmp();
-	for (int i = 0; i < emp_num_; i++)
-	{
-		cout << "职工号： " << this->emp_array_[i]->id_
-			<< " 职工姓名： " << this->emp_array_[i]->name_
-			<< " 部门编号： " << this->emp_array_[i]->dept_id_ 
-            << endl;
-	}
+    file_is_empty = false;
 }
 GZWorkerManager::~GZWorkerManager()
 {
@@ -131,13 +125,13 @@ void GZWorkerManager::AddEmp()
         switch (select)
         {
             case 1:
-                worker = new GZEmployee(id, name, select);
+                worker = new GZEmployee(id, name, 1);
                 break;
             case 2:
-                worker = new GZManager(id, name, select);
+                worker = new GZManager(id, name, 2);
                 break;
             case 3:
-                worker = new GZBoss(id, name, select);
+                worker = new GZBoss(id, name, 3);
                 break;
             default:
                 break;
@@ -151,7 +145,7 @@ void GZWorkerManager::AddEmp()
 
     // 更新
     emp_array_ = new_space;
-    emp_num_ = emp_num_ + new_size;
+    emp_num_ = new_size;
     Save();
     file_is_empty = false;
 
@@ -161,7 +155,7 @@ void GZWorkerManager::AddEmp()
 void GZWorkerManager::Save()
 {
     ofstream ofs;
-    ofs.open(FILE_NAME, ios::app);
+    ofs.open(FILE_NAME, ios::out);
     if (!ofs.is_open())
     {
         cerr << "open " << FILE_NAME << " failed." << endl;
@@ -317,13 +311,13 @@ void GZWorkerManager::ModEmp()
     switch (select)
     {
         case 1:
-            worker = new GZEmployee(id, new_name, select);
+            worker = new GZEmployee(id, new_name, 1);
             break;
         case 2:
-            worker = new GZManager(id, new_name, select);
+            worker = new GZManager(id, new_name, 2);
 			break;
         case 3:
-            worker = new GZBoss(id, new_name, select);
+            worker = new GZBoss(id, new_name, 3);
 			break;
         default:
             break;
@@ -461,7 +455,7 @@ void GZWorkerManager::CleanFile()
             for (int i = 0; i != emp_num_; ++i)
             {
                 if (emp_array_[i] != NULL)
-                    delete emp_array_;
+                    delete emp_array_[i];
             }
 
             emp_num_ = 0;
