@@ -21,11 +21,15 @@ public:
     void ShowMenu();
 
     void ExitSystem();
+
+    void StartSpeech();
 private:
     void InitSpeech();
 
     void CreateSpeaker();
-private:
+
+    void SpeechDraw();
+public:
     std::vector<int>            v1_;        // 第一轮
 
     std::vector<int>            v2_;        // 第二轮
@@ -33,6 +37,8 @@ private:
     std::vector<int>            victory_;   // 第三轮
 
     std::map<int, GZSpeaker>    speaker_;
+
+    int                         index_;
 };
 
 #endif // __GZ_SPEECH_MANAGER_H__
