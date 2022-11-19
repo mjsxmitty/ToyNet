@@ -4,6 +4,7 @@ project(lab VERSION 0.1.0)
 add_executable(lab
                 main.cpp
                 gz_speech_manager.h gz_speech_manager.cpp
+                utility/Logger.h utility/Logger.cpp
                 )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

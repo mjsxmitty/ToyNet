@@ -7,12 +7,15 @@
 #include <fstream>
 #include <time.h>
 
+#include "utility/Logger.h"
 #include "gz_speech_manager.h"
 
+using namespace yazi::utility;
 using namespace std;
 
 GZSpeechManager::GZSpeechManager()
 {
+    Logger::instance()->open("./test.log");
     InitSpeech();
 
     CreateSpeaker();
@@ -282,4 +285,5 @@ void GZSpeechManager::LoadRecord()
         recore_.insert(make_pair(index, v));
         index++;
     }
+    debug("index = %d\n", index);
 }
