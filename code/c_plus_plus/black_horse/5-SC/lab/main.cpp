@@ -7,6 +7,8 @@ using namespace std;
 
 int main()
 {
+    srand((unsigned int)time(NULL));
+
     GZSpeechManager sm;
     int choice = 0; //用来存储用户的选项
 

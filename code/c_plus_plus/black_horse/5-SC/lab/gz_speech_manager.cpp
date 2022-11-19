@@ -13,11 +13,11 @@ using namespace std;
 
 GZSpeechManager::GZSpeechManager()
 {
-    srand((unsigned int)time(NULL));
-
     InitSpeech();
 
     CreateSpeaker();
+
+    LoadRecord();
 }
 
 void GZSpeechManager::ShowMenu()
@@ -71,13 +71,15 @@ void GZSpeechManager::ShowRecord()
         cout << "文件不存在,或者记录为空!" << endl;
         return ;
     }
-
-    for (int i = 0; i < this->recore_.size(); i++)
+    else
     {
-        cout << "第" << i + 1 << "届 " <<
-            "冠军编号：" << this->recore_[i][0] << " 得分：" << this->recore_[i][1] << " "
-            "亚军编号：" << this->recore_[i][2] << " 得分：" << this->recore_[i][3] << " "
-            "季军编号：" << this->recore_[i][4] << " 得分：" << this->recore_[i][5] << endl;
+	for (int i = 0; i < recore_.size(); i++)
+	{
+		cout << "第" << i + 1 << "届 " <<
+			"冠军编号：" << recore_[i][0] << " 得分：" << recore_[i][1] << " "
+			"亚军编号：" << recore_[i][2] << " 得分：" << recore_[i][3] << " "
+			"季军编号：" << recore_[i][4] << " 得分：" << recore_[i][5] << endl;
+	}
     }
 }
 
@@ -98,7 +100,7 @@ void GZSpeechManager::ClearRecord()
 
         CreateSpeaker();
 
-        //LoadRecord();
+        LoadRecord();
     }
 }
 
@@ -189,7 +191,7 @@ void GZSpeechManager::SpeechContest()
 
             int count = 0;
             for (multimap<double, int, greater<>>::const_iterator cit = group_score.cbegin();
-                 cit != group_score.end(); ++cit, ++count)
+                 cit != group_score.end() && count < 3; ++cit, ++count)
             {
                 if (index_ == 1)
                     v2_.push_back((*cit).second);
@@ -198,6 +200,7 @@ void GZSpeechManager::SpeechContest()
             }
             group_score.clear();
             cout << endl;
+            //cout << "v1 size: " << v1_.size() << ", v2 size: " << v2_.size() << endl;
         }
     }
 
@@ -207,7 +210,7 @@ void GZSpeechManager::SpeechContest()
 void GZSpeechManager::ShowScore()
 {
     cout << "---------第" << index_ << "轮晋级选手信息如下：-----------" << endl;
-    vector<int> v = (index_ == 1 ? v2_ : victory_);
+    vector<int> v = ((index_ == 1) ? v2_ : victory_);
     for (vector<int>::iterator cit = v.begin(); cit != v.end(); cit++)
     {
         cout << "选手编号：" << *cit
@@ -224,9 +227,9 @@ void GZSpeechManager::SaveRecord()
 
     for (auto it = victory_.begin(); it != victory_.end(); ++it)
     {
-        ofs << *it << ", " << speaker_[*it].score_[1] << ",";
+        ofs << *it << "," << speaker_[*it].score_[1] << ",";
     }
-    cout << endl;
+    ofs << endl;
     ofs.close();
 
     cout << "记录已经保存!" << endl;
@@ -274,8 +277,9 @@ void GZSpeechManager::LoadRecord()
             v.push_back(tmp);
 
             start = pos + 1;
-            recore_.insert(make_pair(index, v));
-            index++;
         }
+        
+        recore_.insert(make_pair(index, v));
+        index++;
     }
 }
