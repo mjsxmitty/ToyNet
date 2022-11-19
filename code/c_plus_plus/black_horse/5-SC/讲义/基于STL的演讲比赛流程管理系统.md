@@ -453,15 +453,11 @@ void SpeechManager::startSpeech()
 
 ```
 
-
-
 #### 6.3.5 抽签
 
 **功能描述：**
 
 * 正式比赛前，所有选手的比赛顺序需要打乱，我们只需要将存放选手编号的容器  打乱次序即可
-
-
 
 * 在speechManager.h中提供抽签的的成员函数 `void speechDraw();`
 
@@ -469,8 +465,6 @@ void SpeechManager::startSpeech()
 	//抽签
 	void speechDraw();
 ```
-
-
 
 - 在speechManager.cpp中实现成员函数 `void speechDraw();`
 

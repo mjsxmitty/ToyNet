@@ -23,22 +23,32 @@ public:
     void ExitSystem();
 
     void StartSpeech();
+
+    void ShowRecord();
+
+    void ClearRecord();
 private:
     void InitSpeech();
 
     void CreateSpeaker();
 
     void SpeechDraw();
+
+    void SpeechContest();
+
+    void ShowScore();
+
+    void SaveRecord();
+
+    void LoadRecord();
 public:
     std::vector<int>            v1_;        // 第一轮
-
     std::vector<int>            v2_;        // 第二轮
-
     std::vector<int>            victory_;   // 第三轮
-
     std::map<int, GZSpeaker>    speaker_;
-
     int                         index_;
+    bool                        file_is_empty_;
+    std::map<int, std::vector<std::string>> recore_;
 };
 
 #endif // __GZ_SPEECH_MANAGER_H__
