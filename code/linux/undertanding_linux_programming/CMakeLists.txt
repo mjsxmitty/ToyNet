@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(uulp VERSION 0.1.0)
+project(ulp VERSION 0.1.0)
 
-add_executable(uulp 
+add_executable(ulp 
                 main.c
+                chapter_01/gz_ch_01.h chapter_01/gz_ch_01.c
+                chapter_01/gz_more.h chapter_01/gz_more.c
                 chapter_02/ch_02.h
                 chapter_02/cp.c
                 chapter_02/who.c
