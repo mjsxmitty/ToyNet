@@ -4,6 +4,9 @@
 
 #include <stdio.h>
 
+namespace gz_cpp_ch_01
+{
+
 struct GZHello
 {
     int         a;
@@ -20,6 +23,8 @@ struct GZF
 struct GZFTest : public GZF
 {
     void Hello(int a,int b) {}
+};
+
 };
 
 int ch_1();

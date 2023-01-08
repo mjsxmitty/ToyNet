@@ -1,6 +1,9 @@
 
 #include "ch_2.h"
 
+using namespace std;
+using namespace gz_cpp_ch_02;
+
 void ch_2()
 {
     {

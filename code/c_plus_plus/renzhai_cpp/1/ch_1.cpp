@@ -6,6 +6,7 @@
 #include "stdbool.h"    // C语言需要包含布尔
 
 using namespace std;
+using namespace gz_cpp_ch_01;
 
 void Fun(GZHello &cc)    // C++支持传引用,C语言不支持传引用
 {
@@ -51,7 +52,7 @@ int ch_1()
         GZHello &o2 = o;
         //GZHello &o3 = NULL;
 
-        sizeof(o1);
+        int a = sizeof(o1);
 
         // 引用的指向不变
         GZHello o333;

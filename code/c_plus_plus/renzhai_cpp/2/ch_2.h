@@ -7,6 +7,13 @@
 
 using namespace std;
 
+int GHello()
+{
+    return 1 + 3;
+}
+
+namespace gz_cpp_ch_02
+{
 struct GZHello
 {
     GZHello()
@@ -77,14 +84,9 @@ inline int GetA()
     return 0;
 }
 
-int GHello()
-{
-    return 1 + 3;
-}
-
 GZMonster::GZMonster()
 {
-    int cc = ::GHello();    // ʹ��ȫ�ֳ�Ա
+    int cc = ::GHello();    // 调用全局
     cout << cc << endl;
 }
 
@@ -98,6 +100,8 @@ private:
     void Work1() {/*/...*/ }
 protected:
     void Work3(){}
+};
+
 };
 
 void ch_2();

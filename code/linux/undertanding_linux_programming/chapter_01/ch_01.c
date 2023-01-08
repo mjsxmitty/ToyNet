@@ -1,7 +1,8 @@
 
-#include "gz_ch_01.h"
+#include "ch_01.h"
+#include "gz_more.h"
 
-void ch_01()
+void ch_01(int argc, char **argv)
 {
-    
+    More(argc, argv);
 }
