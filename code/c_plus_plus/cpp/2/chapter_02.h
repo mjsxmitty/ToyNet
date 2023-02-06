@@ -2,7 +2,6 @@
 #ifndef __CPP_CHAPTER_02_H__
 #define __CPP_CHAPTER_02_H__
 
-#include <winerror.h>
 #include <iostream>
 #include <string.h>
 #include <cstring>

@@ -14,11 +14,11 @@ namespace chapter_11
 
 int FuncHello(int a, int b);
 
-auto Lambda = [](int a, int b) -> int
-{
-    printf("Lambda->param: %d, %d\n", a, b);
-    return a + b;
-};
+// auto Lambda = [](int a, int b) -> int
+// {
+//     printf("Lambda->param: %d, %d\n", a, b);
+//     return a + b;
+// };
 
 class Hello
 {

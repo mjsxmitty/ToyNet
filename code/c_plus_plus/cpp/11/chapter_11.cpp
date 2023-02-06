@@ -29,9 +29,9 @@ void Test1()
     func(1, 2);
     Call(FuncHello);
 
-    function<int(int, int)> func1 = Lambda;
-    func1(1, 2);
-    Call(Lambda);
+    // function<int(int, int)> func1 = Lambda;
+    // func1(1, 2);
+    // Call(Lambda);
 
 //        FunctionPtr = FuncHello;
 //        function<int(int, int)> func2 = FunctionPtr;
