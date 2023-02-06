@@ -126,9 +126,7 @@ int main()
 
 **堆区：**
 
-​	由程序员分配释放,若程序员不释放,程序结束时由操作系统回收
-
-​	在C++中主要利用new在堆区开辟内存
+​	由程序员分配释放,若程序员不释放,程序结束时由操作系统回收，在C++中主要利用new在堆区开辟内存
 
 **示例：**
 
@@ -146,7 +144,6 @@ int main()
 	cout << *p << endl;
 	cout << *p << endl;
     
-	//system("pause");
 	return 0;
 }
 ```
@@ -1082,7 +1079,6 @@ void test03()
 	cout << (int *)&p << endl;
 }
 
-
 int main() {
 
 	//test01();
@@ -1714,7 +1710,6 @@ private:
 	Building *building;
 };
 
-
 class Building
 {
 	//告诉编译器 goodGay类是Building类的好朋友，可以访问到Building类中私有内容
@@ -1767,7 +1762,6 @@ class Building;
 class goodGay
 {
 public:
-
 	goodGay();
 	void visit(); //只让visit函数作为Building的好朋友，可以发访问Building中私有内容
 	void visit2(); 
@@ -1775,7 +1769,6 @@ public:
 private:
 	Building *building;
 };
-
 
 class Building
 {
@@ -1901,8 +1894,6 @@ int main() {
 }
 ```
 
-
-
 > 总结：
 >
 > 1. 对于内置的数据类型的表达式的的运算符是不可能改变的
@@ -1962,9 +1953,7 @@ int main() {
 ```C++
 class MyInteger
 {
-
 	friend ostream& operator<<(ostream& out, MyInteger myint);
-
 public:
 	MyInteger() {
 		m_Num = 0;
@@ -1989,17 +1978,15 @@ private:
 	int m_Num;
 };
 
-
 ostream& operator<<(ostream& out, MyInteger myint) {
 	out << myint.m_Num;
 	return out;
 }
 
-
 //前置++ 先++ 再返回
 void test01() {
 	MyInteger myInt;
-   cout << myInt << endl;
+    cout << myInt << endl;
 	cout << ++myInt << endl;
 	cout << myInt << endl;
 }
@@ -2008,7 +1995,7 @@ void test01() {
 void test02() {
 
 	MyInteger myInt;
-   cout << myInt << endl;
+    cout << myInt << endl;
 	cout << myInt++ << endl;
 	cout << myInt << endl;
 }
@@ -2063,7 +2050,6 @@ public:
 		return *this;
 	}
 
-
 	~Person() {
 		if (m_Age != NULL) {
 			delete m_Age;
@@ -2074,7 +2060,6 @@ public:
 	//年龄的指针
 	int *m_Age;
 };
-
 
 void test01()
 {
@@ -2362,7 +2347,6 @@ public:
 	{
 		cout << "Java,Python,C++...(公共分类列表)" << endl;
 	}
-
 };
 
 //Java页面
@@ -2709,7 +2693,7 @@ void test01()
 	Son s;
 
 	cout << "Son下的m_A = " << s.m_A << endl;
-	cout << "Base下的m_A = " << s.Base::m_A << endl;
+	cout << "Base下的m_A = " << s.Base::m_A << endl;	//
 
 	s.func();
 	s.Base::func();
@@ -2797,7 +2781,7 @@ void test02()
 
 	cout << "通过类名访问： " << endl;
 	Son::func();
-	Son::Base::func();
+	Son::Base::func();	//
 	//出现同名，子类会隐藏掉父类中所有同名成员函数，需要加作作用域访问
 	Son::Base::func(100);
 }
@@ -2859,7 +2843,6 @@ public:
 	int m_C;
 	int m_D;
 };
-
 
 //多继承容易产生成员同名的情况
 //通过使用类名作用域可以区分调用哪一个基类的成员
@@ -2984,7 +2967,6 @@ public:
 	{
 		cout << "小狗在说话" << endl;
 	}
-
 };
 
 //我们希望传入什么对象，那么就调用什么对象的函数
@@ -3074,8 +3056,6 @@ void test01()
 	cout << c.m_Num1 << " * " << c.m_Num2 << " = " << c.getResult("*") << endl;
 }
 
-
-
 //多态实现
 //抽象计算器类
 //多态优点：代码组织结构清晰，可读性强，利于前期和后期的扩展以及维护
@@ -3120,7 +3100,6 @@ public:
 		return m_Num1 * m_Num2;
 	}
 };
-
 
 void test02()
 {

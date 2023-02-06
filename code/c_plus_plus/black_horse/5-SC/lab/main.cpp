@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <map>
+#include <time.h>
 #include "gz_speech_manager.h"
 
 using namespace std;

@@ -11,8 +11,8 @@
 struct Person
 {
     std::string name;   //姓名
-    int sex;            //性别：1男 2女
-    int age;            //年龄
+    int         sex;    //性别：1男 2女
+    int         age;    //年龄
     std::string phone;  //电话
     std::string addr;   //住址
 };

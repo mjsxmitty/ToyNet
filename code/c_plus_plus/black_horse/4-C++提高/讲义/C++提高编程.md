@@ -416,7 +416,6 @@ bool myCompare(T& a, T& b)
 	}
 }
 
-
 //具体化，显示具体化的原型和定意思以template<>开头，并通过名称来指出类型
 //具体化优先于常规模板
 template<> 
@@ -783,7 +782,6 @@ void test02()
 	Son2<int, char> child1;
 }
 
-
 int main() {
 
 	test01();
@@ -861,7 +859,6 @@ int main() {
 
 * 解决方式1：直接包含.cpp源文件
 * 解决方式2：将声明和实现写到同一个文件中，并更改后缀名为.hpp，hpp是约定的名称，并不是强制
-
 
 **示例：**
 
@@ -4303,7 +4300,6 @@ void test01()
 		cout << "m的大小为： " << m.size() << endl;
 	}
 }
-
 
 //交换
 void test02()

@@ -85,6 +85,7 @@ void DeletePerson(AddressBooks* abs)
 
     for (int i = ret; i != abs->size; ++i)
         abs->person_array[i] = abs->person_array[i+1];
+
     abs->size--;
     cout << "删除成功" << endl;
 }
