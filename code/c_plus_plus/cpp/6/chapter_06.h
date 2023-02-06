@@ -6,6 +6,11 @@
 
 namespace chapter_06
 {
+
+void Test1();
+void Test2();
+void Test3();
+
 bool FileCopy(const char *in_file_name, const char *out_file_name);
 }
 

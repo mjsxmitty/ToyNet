@@ -14,68 +14,40 @@ namespace chapter_04
 void ch_4()
 {
     /* 函数模板与类模板 */
-    {
-        Vector<int>     ivec;
-        Vector<float>   fvec;
-        Vector<Test>    hvec;
-
-        CallArray(ivec);
-        CallArray(hvec);        // 可以自行推断
-        CallArray<float>(fvec); //
-    }
+    //Test11();
 
     /* 类模板匹配 */
-    {
-        Vector<Test> ct;
-        float *p = ct.Hello1<float>();
-    }
+    //Test22();
 
     /* 类模板和(虚)继承 */
-    {
-        Test1 t;                         // 普通继承模板
-        t.Hello();
-
-        Test2<Test> it;                  // 模板继承“普通”
-        it.Hello1<int>();
-
-        Test3<float, int, double> ft;    // 模板继承模板
-        ft.Hello2();
-
-        Test6 t1;                        // 虚继承
-        t1.Hello();
-
-        Test7 t2;                        // 友元
-        t2.Hello();
-    }
+    //Test33();
 
     /* 类模板和多态 */
-    {
-        hello1 a;
-        hello<int> *p = &a;
-        p->Init();
-
-        p->Hello();
-        p->Hello(1);
-
-        hello1 *p2 = &a;
-        p2->Hello(10);
-        p2->Hello(0, 1024);
-    }
+    //Test44();
 
     /* 高级宏 */
-    {
+    //TODO...
 
-    }
+    /* 可变参数函数模板 */
+    //Test66();
 
-    /*  */
-    {
-        int a1 = 1;
-        int a2 = 2;
-        int a3 = 4;
-        int a5 = 6;
-        int sum = FunValue<int>(a1, a2, a3, a5);
-        printf("sum = %d\n", sum);
-    }
+    /* 类的偏特化 */
+    //Test77();
+
+    /* 通过模板循环继承的防水来展开可变参数 */
+    //Test88();   // TODO..using
+
+    /* 通过工厂模式创建任意参数对象 */
+    //Test99();
+
+    /* 支持任意参数的简单代理 */
+    //Test101();
+
+    /* 模板元编程 */
+    // //TODO...
+
+    /* type_traits类型判断 */
+    Test102();
 }
 
 }

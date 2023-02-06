@@ -15,7 +15,10 @@ void ch_11()
     //Test1();
 
     /* bind函数应用 */
-    Test2();
+    //Test2();
+
+    Test3();
+
 }
 
 }

@@ -65,4 +65,35 @@ void Test2()
     cout << func1(20, 10) << endl;
     // ……
 }
+
+void Test3()
+{
+    Hello h;
+//    ObjectDelegate<Hello, int, int, int> ObjectDelegate(&h, &Hello::hello);
+//    ObjectDelegate.Excute(1,2);
+
+//    FuncDelegate<int, int, int> FuncDelegate(FuncHello);
+//    FuncDelegate.Excute(2,3);
+
+//    Delegate<int, int, int> d;
+//    d.Bind(FuncHello);
+//    d.Excute(1,2);
+
+//    d.Bind(&h, &Hello::hello);
+//    d.Excute(4,5);
+
+//    auto func = Delegate<int,int,int>::Create([](int i, int j) -> int
+//    {
+//        cout << i << j << endl;
+//        return 0;
+//    });
+//    func.Excute(1,2);
+
+    MultiDelegate<int, int, int> md;
+    md.AddDelegate(&h, &Hello::hello);
+    md.AddDelegate(FuncHello);
+
+    md.Broadcast(1,2);
+}
+
 }

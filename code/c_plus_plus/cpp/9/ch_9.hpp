@@ -15,7 +15,7 @@ namespace chapter_09
 void ch_9()
 {
     // vector
-    //TestVector();
+    TestVector();
 
     // string
     //TestString();

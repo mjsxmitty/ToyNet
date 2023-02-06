@@ -9,6 +9,12 @@ using namespace std;
 namespace chapter_08
 {
 
+void Test1();
+void Test2();
+void Test3();
+void Test4();
+void Test5();
+
 class Base
 {
 public:
@@ -50,6 +56,8 @@ private:
     char *ptr_;
 };
 
+
+void Test6();
 
 template <typename T>
 class PreDistribution

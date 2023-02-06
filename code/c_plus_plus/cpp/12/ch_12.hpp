@@ -10,10 +10,12 @@ namespace chapter_12
 void ch_12()
 {
     /* 裸指针和智能指针 */
-    //Test1();
+    Test1();
 
     /* 智能指针的释放和访问 */
-    //Test2();
+    Test2();
+
+    Test3();
 
     /* 弱指针 */
     Test4();

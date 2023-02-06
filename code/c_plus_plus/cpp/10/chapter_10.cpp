@@ -116,30 +116,38 @@ condition_variable cv;
 
 void LockTest()
 {
-    this_thread::sleep_for(chrono::seconds(5));
+    cout << "LockTest() start sleep ..." << endl;
+    this_thread::sleep_for(chrono::seconds(10));
     cout << "LockTest()" << endl;
     //cv.notify_one();
     cv.notify_all();
-    this_thread::sleep_for(chrono::seconds(2));
+    this_thread::sleep_for(chrono::seconds(5));
+    cout << "LockTest() end ..." << endl;
 }
 
 mutex loack;
 void LockTest1()
 {
+    cout << "LockTest1()" << endl;
     unique_lock<mutex> lock(loack);
+    cout << "LockTest1() lock" << endl;
     cv.wait(lock);
     cout << "LockTest1()" << endl;
     this_thread::sleep_for(chrono::seconds(2));
+    cout << "LockTest1() end" << endl;
 }
 void TestThread3()
 {
     thread t(LockTest);
     t.detach();
+    cout << "LockTest start ..." << endl;
 
     thread t1(LockTest1);
     t1.detach();
+    cout << "LockTest1 start ..." << endl;
 
     unique_lock<mutex> ul(s_mutex);
+    cout << "LockTest lock ..." << endl;
     cv.wait(ul);        // 主线程锁住
     cout << "test end ..." << endl;
 }

@@ -12,19 +12,21 @@ namespace chapter_10
 
 void ch_10()
 {
-    //TestThread();
+//    TestThread();
 
-    //TestThread1();
+//    TestThread1();
 
-    //TestThread2();
+//    TestThread2();
 
-    //TestThread3();
+    TestThread3();
 
-    //TestThread4();
+    TestThread4();
 
-    //TestThread5();
+    TestThread5();
 
     TestThread6();
+
+    // TODO...
 }
 
 

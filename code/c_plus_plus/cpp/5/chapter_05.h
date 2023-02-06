@@ -10,8 +10,12 @@ using namespace std;
 namespace chapter_05
 {
 
+void Test1();
+void Test2();
+
 void out_put_log(const char *format, ...);
 
+void Test3();
 class Exception : public exception
 {
 public:
@@ -29,6 +33,8 @@ public:
 private:
     string info_;
 };
+
+void Test4();
 
 class Hello
 {

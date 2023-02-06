@@ -47,6 +47,9 @@ public:
     void Func1(int a, int b, int c, int d) {}
 };
 
+void Test1();
+void Test2();
+
 class Interface
 {
 public:
@@ -85,6 +88,9 @@ public:
 //    void Destroy() override {};
 //};
 
+void Test3();
+void Test4();
+
 class HelloTest
 {
 public:
@@ -96,6 +102,8 @@ public:
     int b;
     float aa;
 };
+
+void Test5();
 
 class Hello
 {
@@ -124,6 +132,8 @@ public:
 };
 
 class HelloB :public HelloA {};
+
+void Test6();
 
 class Const
 {
@@ -177,6 +187,8 @@ public:
 private:
     int a;
 };
+
+void Test7();
 
 }
 

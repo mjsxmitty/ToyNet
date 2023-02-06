@@ -58,6 +58,8 @@ private:
     int p;
 };
 
+void Test1();
+
 class Monster
 {
 public:
@@ -80,6 +82,8 @@ public:
 private:
     int p;
 };
+
+void Test2();
 
 inline int GetA()
 {
@@ -141,6 +145,8 @@ public:
     }
 };
 
+void Test3();
+void Test4();
 class Object
 {
 public:
@@ -208,6 +214,10 @@ public:
     {
         cout << "HelloB::HelloB()" << endl;
     }
+
+    void Hello1(){}
+
+    static void Hello2(){}
 };
 
 class HelloC : virtual public HelloA
@@ -217,6 +227,9 @@ public:
     {
         cout << "HelloC::HelloC()" << endl;
     }
+    void Hello1(){}
+
+    static void Hello2(){}
 };
 
 class HelloD : public HelloB, public HelloC
@@ -227,6 +240,8 @@ public:
         cout << "HelloD::HelloD()" << endl;
     }
 };
+
+void Test5();
 
 class HelloTest
 {
@@ -251,6 +266,8 @@ public:
 private:
     HelloTest test;
 };
+
+void Test6();
 
 class Test
 {
@@ -281,6 +298,8 @@ private:
     int a;
     int b;
 };
+
+void Test7();
 
 class testA {};
 
@@ -325,6 +344,11 @@ public:
     Test *ptr;
 };
 
+void Test8();
+void Test9();
+void Test10();
+void Test11();
+void Test12();
 }
 
 namespace Operator
