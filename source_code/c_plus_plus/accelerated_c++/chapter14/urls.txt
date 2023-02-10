@@ -1,2 +1,0 @@
-Hello! Go to http://www.google.com today!
-C++ sucks: http://yosefk.com/c++fqa/

@@ -13,11 +13,11 @@ int main()
 {
     cout << "==================Hello World!==================" << endl;
     
-    //ch_2();
-    //ch_3();
-    //ch_4();
-    //ch_5();
-    ch_6();
+    ch_2();
+//    ch_3();
+//    ch_4();
+//    ch_5();
+//    ch_6();
     cout << "===Quietly try and amaze everyone's sentences===" << endl;
     
     return 0;
