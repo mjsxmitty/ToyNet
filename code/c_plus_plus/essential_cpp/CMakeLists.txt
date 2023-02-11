@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(essential 
                 main.cpp
+                chapter_02/ch_2.hpp
                 chapter_02/chapter_02.h chapter_02/chapter_02.cpp
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp

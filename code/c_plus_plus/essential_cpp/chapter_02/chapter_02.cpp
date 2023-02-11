@@ -8,25 +8,12 @@
 
 using namespace std;
 
-void ch_2()
+namespace chapter_02
 {
-    ch_2_1();
-    //hw_2_1();
-
-    //ch_2_3();
-
-    //ch_2_4();
-
-    //ch_2_8();
-
-    //hw_2_6();
-}
-
-/********************************************************************************************************/
-/*************************************************2.1****************************************************/
 
 bool FibonElem(int pos, int &elem)
 {
+    // 无效位置
     if (pos <= 0 || pos > 1024)
     {
         cerr << "invalid position" << pos
@@ -39,9 +26,10 @@ bool FibonElem(int pos, int &elem)
 
     elem = 1;
     int val1 = 1, val2 = 1;
+
     for (int i = 3; i <= pos; i++)
     {
-        elem = val1 + val2;
+        elem = val2 + val1;
         val2 = val1;
         val1 = elem;
     }
@@ -49,7 +37,6 @@ bool FibonElem(int pos, int &elem)
     return true;
 }
 
-// 鎵撳嵃
 bool PrintFibon(int pos)
 {
     if (pos <= 0 || pos > 1024)
@@ -57,6 +44,7 @@ bool PrintFibon(int pos)
         cerr << "invalid position: " << pos
              << " --- cannot handle request!"
              << endl;
+
         return false;
     }
 
@@ -84,11 +72,9 @@ bool PrintFibon(int pos)
     }
 
     cout << endl;
-    return false;
+    return true;
 }
 
-
-/* 2.1 濡備綍缂栧啓鍑芥暟 */
 void ch_2_1()
 {
     cout << "please enter a position: ";
@@ -138,21 +124,20 @@ void hw_2_1()
     }
 }
 
-/********************************************************************************************************/
-/*************************************************2.3****************************************************/
-
 void Display(const vector<int> *vec, ostream *out)
 {
+    ostream &os = (out == 0) ? cout : *out;
     if (vec == 0)
     {
-        *out << "display(): the vector pointer is 0\n";
+        os << "Display(): the vec point to 0.\n";
         return ;
     }
 
-    for (unsigned int i = 0; i < vec->size(); i++)
-        *out << (*vec)[i] << ' ';
 
-    *out << endl;
+    for (unsigned int i = 0; i < vec->size(); i++)
+        os << (*vec)[i] << ' ';
+
+    os << endl;
 }
 
 void Display(const vector<int> &vec, ostream &out)
@@ -171,7 +156,7 @@ void Swap(int &val1, int &val2, std::ostream &ofile)
     val1 = val2;
     val2 = temp;
 
-    ofile << "after swap(): val1: " << val1
+    ofile << "after swap: val1: " << val1
           << ", val2: " << val2 << endl;
 }
 
@@ -185,7 +170,7 @@ void Swap(int &val1, int &val2, std::ostream *ofile)
     val2 = temp;
 
     if (ofile != 0)
-        (*ofile) << "after swap(): val1: " << val1
+        (*ofile) << "after swap: val1: " << val1
                  << ", val2: " << val2 << endl;
 }
 
@@ -210,62 +195,69 @@ void BubbleSort(std::vector<int> &vec, std::ostream &ofile)
     }
 }
 
-void BubbleSort(std::vector<int> &vec, std::ostream *ofile)
-{
-    for (unsigned int i = 0; i < vec.size(); ++i)
+void BubbleSort(std::vector<int> *vec, std::ostream *out)
+{    
+    if (vec == 0)
     {
-        for (unsigned int j = i + 1; j < vec.size(); ++j)
+        cout << "Bubble(): the point to vec is 0.\n";
+        return ;
+    }
+
+    for (unsigned int i = 0; i < vec->size(); ++i)
+    {
+        for (unsigned int j = i + 1; j < vec->size(); ++j)
         {
             if (vec[i] > vec[j])
             {
-                if (ofile != 0)
-                    *ofile << "call swap()! positon : " << i
+                *out << (*vec)[i];
+                if (out != 0)
+                    *out << "call swap()! positon : " << i
                         << ", and position: " << j << " swapping: "
-                        << vec[i] << ", with: " << vec[j] << endl;
+                        << (*vec)[i] << ", with: " << (*vec)[j] << endl;
 
-                Swap(vec[i], vec[j], ofile);
-                *ofile << "after swap vector elemment: ";
-                Display(&vec, ofile);
+
+                Swap((*vec)[i], (*vec)[j], out);
+
+                if (out != 0)
+                {
+                    *out << "after swap vector elemment: ";
+                    Display(vec, out);
+                }
             }
         }
     }
 }
 
-
-/* 2.2 锟斤拷锟矫猴拷锟斤拷 */
-/* 2.3 使锟斤拷默锟较诧拷锟斤拷 */
 void ch_2_3()
 {
     int ia[ 8 ] = { 8, 34, 3, 13, 1, 21, 5, 2 };
     vector<int> vec(ia, ia + 8);
 
 //    Display(vec);
-//    BubbleSort(vec, cout);
-//    //BubbleSort(vec);
+//    //BubbleSort(vec, cout);
+//    BubbleSort(vec, 0);     // 0->避免二义性
 //    Display(vec);
 
-    ofstream    ofile("debug.txt");
-    Display(&vec, &ofile);
-    BubbleSort(vec, &ofile);
-    Display(&vec, &ofile);
+    ofstream    ofile("out.txt");
+    Display(vec, ofile);
+    BubbleSort(vec, ofile);
+    Display(vec, ofile);
 }
 
-const vector<int>* FibonSeq(int pos)
+const vector<int>* FibonSeq1(int size)
 {
     static vector<int>  elems;
-//    const int           max_elems = 512;
+    const int           max_elems = 1024;
 
-//    if (pos <= 0 || pos > max_elems)
-//    {
-//        std::cerr << "invalid position: " << pos
-//                  << "cannot handle request!\n";
-//        return 0;
-//    }
+    if (size <= 0 || size > max_elems)
+    {
+        cerr << "invalid size: " << size
+             << "cannot handle request!\n";
 
-    if (!IsSizeOk(pos))
         return 0;
+    }
 
-    for (int ix = elems.size(); ix < pos; ++ix)
+    for (int ix = elems.size(); ix < size; ++ix)
         if (ix == 0 || ix == 1)
             elems.push_back(1);
         else
@@ -274,7 +266,6 @@ const vector<int>* FibonSeq(int pos)
     return &elems;
 }
 
-/* 2.4 使锟矫局诧拷锟斤拷态锟斤拷锟斤拷 */
 void ch_2_4()
 {
     bool more = true;
@@ -285,7 +276,7 @@ void ch_2_4()
         cin >> pos;
 
         ofstream    ofile("debug.txt");
-        Display(FibonSeq(pos), &ofile);
+        Display(FibonSeq1(pos), &ofile);
 
         cout << "would you want to try again?(Y/N): ";
         char ch;
@@ -295,9 +286,25 @@ void ch_2_4()
     }
 }
 
+const vector<int>* FibonSeq2(int size)
+{
+    static vector<int>  elems;
+
+    if (!IsSizeOk1(size))
+        return 0;
+
+    for (int ix = elems.size(); ix < size; ++ix)
+        if (ix == 0 || ix == 1)
+            elems.push_back(1);
+        else
+            elems.push_back(elems[ix - 2] + elems[ix - 1]);
+
+    return &elems;
+}
+
 bool FibonElem2(int pos, int &elem)
 {
-    const vector<int> *pseq = FibonSeq(pos);
+    const vector<int> *pseq = FibonSeq2(pos);
     if (!pseq)
     {
         elem = 0;
@@ -307,6 +314,7 @@ bool FibonElem2(int pos, int &elem)
     elem = (*pseq)[pos - 1];
     return true;
 }
+
 
 void DisplayMsg(const std::string &msg)
 {
@@ -396,4 +404,6 @@ void hw_2_6()
     vector<float> fvec( farray, farray+5 );
     cout << "max fvec value: " << Max(fvec) << endl;
     cout << "max farray value: " << Max(farray, sizeof(farray) / sizeof (farray[0])) << endl;
+}
+
 }
