@@ -1,6 +1,6 @@
 
-#ifndef __ECCENTIAL_CPP_CH_2_HPP__
-#define __ECCENTIAL_CPP_CH_2_HPP__
+#ifndef __ESSENTIAL_CPP_CH_2_HPP__
+#define __ESSENTIAL_CPP_CH_2_HPP__
 
 #include "chapter_02.h"
 
@@ -26,4 +26,4 @@ void ch_2()
 
 }
 
-#endif // __ECCENTIAL_CPP_CH_2_HPP__
+#endif // __ESSENTIAL_CPP_CH_2_HPP__
