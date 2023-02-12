@@ -6,6 +6,8 @@
 
 using namespace std;
 
+namespace numeric_sequence
+{
 //pvec (*seq_array[])(int)
 pfunc seq_array[seq_cnt] = {
     0,
@@ -14,10 +16,10 @@ pfunc seq_array[seq_cnt] = {
     SquaSeq,    PentSeq
 };
 
-pvec FiboSeq(int pos)
+pvec FiboSeq(int size)
 {
     static vector<int> elems;
-    if (!CheckIntegrity(pos))
+    if (!CheckIntegrity(size))
         return 0;
     
     if (elems.empty())
@@ -26,14 +28,14 @@ pvec FiboSeq(int pos)
         elems.push_back(1);
     }
 
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
         int n1 = elems[ix - 1];
         int elem;
 
-        for (; ix < pos; ix++)
+        for (; ix < size; ix++)
         {
             elem = n2 + n1;
             elems.push_back(elem);
@@ -45,10 +47,10 @@ pvec FiboSeq(int pos)
     return &elems;
 }
 
-pvec PellSeq(int pos)
+pvec PellSeq(int size)
 {
     static vector<int> elems;
-    if(!CheckIntegrity(pos))
+    if(!CheckIntegrity(size))
         return 0;
     
     if (elems.empty())
@@ -57,14 +59,14 @@ pvec PellSeq(int pos)
         elems.push_back(2);
     }
 
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
         int n1 = elems[ix - 1];
         int elem;
 
-        for (; ix < pos; ix++)
+        for (; ix < size; ix++)
         {
             elem = n2 + 2 * n1;
             elems.push_back(elem);
@@ -76,10 +78,10 @@ pvec PellSeq(int pos)
     return &elems;
 }
 
-pvec LucaSeq(int pos)
+pvec LucaSeq(int size)
 {
     static vector<int> elems;
-    if(!CheckIntegrity(pos))
+    if(!CheckIntegrity(size))
         return 0;
     
     if (elems.empty())
@@ -88,14 +90,14 @@ pvec LucaSeq(int pos)
         elems.push_back(3);
     }
 
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
         int n1 = elems[ix - 1];
         int elem;
 
-        for (; ix <= pos; ix++)
+        for (; ix <= size; ix++)
         {
             elem = n2 + n1;
             elems.push_back(elem);
@@ -107,64 +109,66 @@ pvec LucaSeq(int pos)
     return &elems;
 }
 
-pvec TriaSeq(int pos)
+pvec TriaSeq(int size)
 {
     static vector<int> elems;
-    if(!CheckIntegrity(pos))
+    if(!CheckIntegrity(size))
         return 0;
     
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
-        for (; ix <= pos; ix++)
+        for (; ix <= size; ix++)
             elems.push_back(ix * (ix + 1) / 2);
     }
     
     return &elems;
 }
 
-pvec SquaSeq(int pos)
+pvec SquaSeq(int size)
 {
     static vector<int> elems;
-    if(!CheckIntegrity(pos))
+    if(!CheckIntegrity(size))
         return 0;
     
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
-        for (; ix <= pos; ix++)
+        for (; ix <= size; ix++)
             elems.push_back(ix * ix);
     }
     
     return &elems;
 }
 
-pvec PentSeq(int pos)
+pvec PentSeq(int size)
 {
     static vector<int> elems;
-    if(!CheckIntegrity(pos))
+    if(!CheckIntegrity(size))
         return 0;
     
-    if (elems.size() < pos)
+    if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
-        for (; ix <= pos; ix++)
+        for (; ix <= size; ix++)
             elems.push_back(ix * (3 * ix - 1) / 2);
     }
     
     return &elems;
 }
 
-/* 函数指针带来更大的弹性(call back) */
-bool SeqElem(int pos, int &elem, pfunc f)
+bool SeqElem(int size, int &elem, pfunc f)
 {
-    pvec pseq = f(pos);
+    pvec pseq = f(size);
     if (!pseq)
     {
         elem = 0;
         return false;
     }
     
-    elem = (*pseq)[pos - 1];
+    elem = (*pseq)[size - 1];
+    
     return true;
+}
+
 }

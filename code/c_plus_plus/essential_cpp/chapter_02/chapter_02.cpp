@@ -17,8 +17,8 @@ bool FibonElem(int pos, int &elem)
     if (pos <= 0 || pos > 1024)
     {
         cerr << "invalid position" << pos
-             << " ---> cannot handle request!"
-             << endl;
+            << " ---> cannot handle request!"
+            << endl;
 
         elem = 0;
         return false;
@@ -42,14 +42,14 @@ bool PrintFibon(int pos)
     if (pos <= 0 || pos > 1024)
     {
         cerr << "invalid position: " << pos
-             << " --- cannot handle request!"
-             << endl;
+            << " --- cannot handle request!"
+            << endl;
 
         return false;
     }
 
     cout << "the fibonacci sequence for "
-         << pos << " positions: \n";
+        << pos << " positions: \n";
 
     switch (pos)
     {
@@ -81,18 +81,18 @@ void ch_2_1()
     int pos;
     cin >> pos;
 
-   int elem;
-   if (FibonElem(pos, elem))
-   {
-       cout << "elemment at position # "
+    int elem;
+    if (FibonElem(pos, elem))
+    {
+        cout << "element at position # "
             << pos << " is: " << elem << endl;
-   }
-   else
-   {
-       cout << "sorry! cannot calculate position: "
+    }
+    else
+    {
+        cout << "sorry! cannot calculate position: "
             << pos << " elem."<< endl;
-       return ;
-   }
+        return ;
+    }
 
     PrintFibon(pos);
 }
@@ -109,7 +109,7 @@ void hw_2_1()
         int elem;
         if (FibonElem(pos, elem))
         {
-            cout << "elemment at position # " << pos
+            cout << "element at position # " << pos
                 << " value is: " << elem << endl;
         }
         else
@@ -148,33 +148,33 @@ void Display(const vector<int> &vec, ostream &out)
     out << endl;
 }
 
-void Swap(int &val1, int &val2, std::ostream &ofile)
+void Swap(int &val1, int &val2, ostream &out)
 {
-    ofile << "swap ( " << val1 << ", " << val2 << " )\n";
+    out << "swap ( " << val1 << ", " << val2 << " )\n";
 
     int temp = val1;
     val1 = val2;
     val2 = temp;
 
-    ofile << "after swap: val1: " << val1
-          << ", val2: " << val2 << endl;
+    out << "after swap: val1: " << val1
+        << ", val2: " << val2 << endl;
 }
 
-void Swap(int &val1, int &val2, std::ostream *ofile)
+void Swap(int &val1, int &val2, ostream *out)
 {
-    if (ofile != 0)
-        (*ofile) << "swap ( " << val1 << ", " << val2 << " )\n";
+    if (out != 0)
+        (*out) << "swap ( " << val1 << ", " << val2 << " )\n";
 
     int temp = val1;
     val1 = val2;
     val2 = temp;
 
-    if (ofile != 0)
-        (*ofile) << "after swap: val1: " << val1
-                 << ", val2: " << val2 << endl;
+    if (out != 0)
+        (*out) << "after swap: val1: " << val1
+                << ", val2: " << val2 << endl;
 }
 
-void BubbleSort(std::vector<int> &vec, std::ostream &ofile)
+void BubbleSort(vector<int> &vec, ostream &out)
 {
     for (unsigned int i = 0; i < vec.size(); ++i)
     {
@@ -182,20 +182,22 @@ void BubbleSort(std::vector<int> &vec, std::ostream &ofile)
         {
             if (vec[i] > vec[j])
             {
-                ofile << "call swap()! positon : " << i
-                      << ", and position: " << j << " swapping: "
-                      << vec[i] << ", with: " << vec[j] << endl;
+                out << "call swap()! position : " << i
+                    << ", and position: " << j 
+                    << " swapping: " << vec[i] 
+                    << ", with: " << vec[j] 
+                    << endl;
 
-                Swap(vec[i], vec[j], ofile);
+                Swap(vec[i], vec[j], out);
 
-                ofile << "after swap vector elemment: ";
-                Display(vec, ofile);
+                out << "after swap vector element: ";
+                Display(vec, out);
             }
         }
     }
 }
 
-void BubbleSort(std::vector<int> *vec, std::ostream *out)
+void BubbleSort(vector<int> *vec, ostream *out)
 {    
     if (vec == 0)
     {
@@ -211,7 +213,7 @@ void BubbleSort(std::vector<int> *vec, std::ostream *out)
             {
                 *out << (*vec)[i];
                 if (out != 0)
-                    *out << "call swap()! positon : " << i
+                    *out << "call swap()! position : " << i
                         << ", and position: " << j << " swapping: "
                         << (*vec)[i] << ", with: " << (*vec)[j] << endl;
 
@@ -220,7 +222,7 @@ void BubbleSort(std::vector<int> *vec, std::ostream *out)
 
                 if (out != 0)
                 {
-                    *out << "after swap vector elemment: ";
+                    *out << "after swap vector element: ";
                     Display(vec, out);
                 }
             }
@@ -238,10 +240,10 @@ void ch_2_3()
 //    BubbleSort(vec, 0);     // 0->避免二义性
 //    Display(vec);
 
-    ofstream    ofile("out.txt");
-    Display(vec, ofile);
-    BubbleSort(vec, ofile);
-    Display(vec, ofile);
+    ofstream    out("out.txt");
+    Display(vec, out);
+    BubbleSort(vec, out);
+    Display(vec, out);
 }
 
 const vector<int>* FibonSeq1(int size)
@@ -252,7 +254,7 @@ const vector<int>* FibonSeq1(int size)
     if (size <= 0 || size > max_elems)
     {
         cerr << "invalid size: " << size
-             << "cannot handle request!\n";
+            << "cannot handle request!\n";
 
         return 0;
     }
@@ -275,8 +277,8 @@ void ch_2_4()
         cout << "please enter a position: ";
         cin >> pos;
 
-        ofstream    ofile("debug.txt");
-        Display(FibonSeq1(pos), &ofile);
+        ofstream    out("debug.txt");
+        Display(FibonSeq1(pos), &out);
 
         cout << "would you want to try again?(Y/N): ";
         char ch;
@@ -302,67 +304,46 @@ const vector<int>* FibonSeq2(int size)
     return &elems;
 }
 
-bool FibonElem2(int pos, int &elem)
+bool FibonElem2(int size, int &elem)
 {
-    const vector<int> *pseq = FibonSeq2(pos);
+    const vector<int> *pseq = FibonSeq2(size);
     if (!pseq)
     {
         elem = 0;
         return false;
     }
 
-    elem = (*pseq)[pos - 1];
+    elem = (*pseq)[size - 1];
     return true;
 }
 
-
-void DisplayMsg(const std::string &msg)
+void DisplayMsg(const string &msg)
 {
-    cerr << msg;
+    cerr << msg << endl;
 }
 
-void DisplayMsg(const std::string &msg, int size)
+void DisplayMsg(const string &msg, int size)
 {
     cerr << msg << " size: " << size << endl;
 }
 
-/* 锟斤拷锟斤拷指锟斤拷锟斤拷锟斤拷锟斤拷锟侥碉拷锟斤拷 */
+bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int))
+{
+    const vector<int> *pseq = seq_ptr(size);
+    if (!pseq)
+    {
+        elem = 0;
+        DisplayMsg("Oops: seq ptr is point to null.");
+        return false;
+    }
+
+    elem = (*pseq)[size - 1];
+    return true;
+}
+
 void ch_2_8()
 {
-//    bool more = true;
-//    while (more)
-//    {
-//        cout << "please enter a sequence index(0~7): ";
-//        int index;
-//        cin >> index;
-//        pfunc pf = seq_array[index];
-//        if (!pf)
-//        {
-//            DisPlay("Internal error: func ptr is set to null.");
-
-//            cout << "would you want to try again?(Y/N): ";
-//            char ch;
-//            cin >> ch;
-//            if (ch != 'y' && ch != 'Y')
-//                more = false;
-//            continue;
-//        }
-
-//        int pos;
-//        cout << "please enter a position: ";
-//        cin >> pos;
-
-//        int elem;
-//        ofstream    ofile("debug.txt");
-//        SeqElem(pos, elem, pf);
-//        cout << "position: " << pos << " value is: " << elem << endl;
-
-//        cout << "would you want to try again?(Y/N): ";
-//        char ch;
-//        cin >> ch;
-//        if (ch != 'y' && ch != 'Y')
-//            more = false;
-//    }
+    using namespace numeric_sequence;
 
     bool more = true;
     while (more)
@@ -372,7 +353,7 @@ void ch_2_8()
         cin >> pos;
 
         int elem;
-        SeqElem(pos, elem, seq_array[NS_FIB]);
+        numeric_sequence::SeqElem(pos + 1, elem, seq_array[NS_FIB]);
         cout << "position: " << pos << " value is: " << elem << endl;
 
         cout << "would you want to try again?(Y/N): ";
@@ -387,8 +368,8 @@ void ch_2_8()
 void hw_2_6()
 {
     cout << "max int value: " << Max(34, 199) 
-         << ", max string value: " << Max("nihao", "hello") 
-         << endl;
+        << ", max string value: " << Max("nihao", "hello") 
+        << endl;
 
     int ia[ 8 ] = { 8, 34, 39, 13, 1, 21, 5, 2 };
     vector<int> vec(ia, ia + 8);
