@@ -13,6 +13,9 @@
 
 using namespace std;
 
+namespace chapter_03
+{
+
 const int s_int_size = 12;
 const int s_string_size = 4;
 
@@ -21,21 +24,6 @@ string  s_sa[s_string_size] = { "pooh", "piglet", "eeyore", "tigger" };
 
 vector<int>     s_ivec(s_ia, s_ia + s_int_size);
 vector<string>  s_svec(s_sa, s_sa + s_string_size);
-
-void ch_3()
-{
-    //ch_3_1();
-    //ch_3_2();
-    //ch_3_6();
-    //ch_3_9();
-    //ch_3_10();
-
-    hw_3_1();
-    //hw_3_2();
-}
-
-/********************************************************************************/
-/*****************************************3.1************************************/
 
 const int* FindVec(const vector<int> &vec, int val)
 {
@@ -130,8 +118,6 @@ void ch_3_1()
 
 }
 
-/********************************************************************************/
-/*****************************************3.2************************************/
 
 void ch_3_2()
 {
@@ -158,11 +144,8 @@ void ch_3_2()
         cout << *it << endl;
     else
         cout << "not find appoint val."
-             << endl;
+            << endl;
 }
-
-/********************************************************************************/
-/*****************************************3.6************************************/
 
 bool LessThan(int v1, int v2) { return v1 < v2 ? true : false; }
 bool GreaterThan(int v1, int v2) { return v1 > v2 ? true : false; }
@@ -213,7 +196,7 @@ vector<int> SubVec(const vector<int> &vec, int val)
 
     //找出第一满足要求值
     auto find_it = find_if(local_vec.begin(), local_vec.end(),
-                           bind2nd(greater<int>(), val));
+                        bind2nd(greater<int>(), val));
 
     //删除元素
     local_vec.erase(find_it, local_vec.end());
@@ -235,15 +218,15 @@ void ch_3_6()
 //    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' ';});
 //    cout << endl;
 
-//    int ia[s_int_size];
-//    auto ia2 = FilterVer3(s_ia, s_ia + s_int_size, ia, part_val, less<int>());
-//    for_each(ia, ia2, [](int i) { cout << i << ' ';});
-//    cout << endl;
+    int ia[s_int_size];
+    auto ia2 = FilterVer3(s_ia, s_ia + s_int_size, ia, part_val, less<int>());
+    for_each(ia, ia2, [](int i) { cout << i << ' ';});
+    cout << endl;
 
-//    vector<int> vec3;
-//    FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, greater<int>());
-//    for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' ';});
-//    cout << endl;
+    vector<int> vec3;
+    FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, greater<int>());
+    for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
 
 //    for_each(begin(s_sa), end(s_sa), [](const string &s) { cout << s << ' ';});
 //    cout << endl;
@@ -258,21 +241,14 @@ void ch_3_6()
 //    cout << endl;
 }
 
-/********************************************************************************/
-/*****************************************3.9************************************/
-
 void ch_3_9()
 {
-    vector<int> local_vec;
-    for_each(s_ivec.begin(), s_ivec.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-    Filter(s_ivec.begin(), s_ivec.end(), back_inserter(local_vec), 20, greater<int>());
-    for_each(local_vec.begin(), local_vec.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-}
+    int iarray[s_int_size];
+    FilterVer3(s_ia, s_ia + s_int_size, iarray, s_int_size, less<int>());
 
-/********************************************************************************/
-/*****************************************3.10************************************/
+    vector<int> ivec(s_int_size);
+    FilterVer3(s_ivec.begin(), s_ivec.end(), back_inserter(ivec), s_int_size, greater<int>());
+}
 
 void ch_3_10()
 {
@@ -326,12 +302,15 @@ void UserQuery(const map<string, int> &word_map)
     {
         auto it = word_map.find(word);
         if (it != word_map.end())
+        {
             cout << "found " << it->first
-                 << " occurs " << it->second
-                 << " times.\n";
+                << " occurs " << it->second
+                << " times.\n";
+            cout << "anther search?(q to quit)";
+        }
         else
             cout << word << " was not found in text.\n"
-                 << " anther search?(q to quit) ";
+                << " anther search?(q to quit) ";
         cin >> word;
     }
 }
@@ -349,11 +328,11 @@ void DisplayWordCount(const map<string, int> &word_map, ostream &out)
 }
 
 void ProcessFile(map<string, int> &word_map,
-                 const set<string> &exclude_set,
-                 ifstream &ifile)
+                const set<string> &exclude_set,
+                ifstream &in)
 {
     string word;
-    while (ifile >> word)
+    while (in >> word)
     {
         if (exclude_set.count(word))
             continue;
@@ -389,22 +368,11 @@ void hw_3_1()
     set<string> exclude_set;
     InitExclusionSet(exclude_set);
 
-    map<string, int>    word_count;
+    map<string, int> word_count;
     ProcessFile(word_count, exclude_set, in_file);
-
-    //DisplayWordCount(word_count);
 
     UserQuery(word_count);
 }
-
-class StrSizeComp
-{
-public:
-    bool operator()(const string &s1, const string &s2)
-    {
-        return s1.size() < s2.size();
-    }
-};
 
 void hw_3_2()
 {
@@ -461,14 +429,14 @@ void InitFamilyMap(ifstream &in, map<string, vstring> &family)
             childs.push_back(child_name);
 
         cout << "family name: " << fam_name
-             << ", childrens count: " << childs.size()
-             << endl;
+            << ", childrens count: " << childs.size()
+            << endl;
 
         if (!family.count(fam_name))
             family[fam_name] = childs;
         else
             cerr << "family: " << fam_name
-                 << " already in our map!\n";
+                << " already in our map!\n";
     }
 }
 
@@ -500,7 +468,7 @@ void QueryMap(const string &family, svec_map familes)
     if (cit == familes.cend())
     {
         cerr << "sorry, family: " << family
-             << " is not occurs int current map\n";
+            << " is not occurs int current map\n";
         return ;
     }
 
@@ -546,26 +514,16 @@ void hw_3_3()
     DisplayMap(familes, cout);
 }
 
-class EvenElem
-{
-public:
-    bool operator()(const string &s)
-    {
-        return s.size() % 2 ? false : true;
-    }
-};
-
 void hw_3_4()
 {
-    ifstream    name_file("families.txt");
+    ifstream name_file("Makefile");
     if (!name_file)
     {
         cerr << "open input name file failed.\n";
         return ;
     }
 
-    ofstream even_file("even_file"),
-             odd_file("odd_file");
+    ofstream even_file("even_file"), odd_file("odd_file");
     if (!even_file || !odd_file)
     {
         cerr << "open out file failed.\n";
@@ -578,9 +536,10 @@ void hw_3_4()
     copy(in, eof, back_inserter(input));
     vector<string>::iterator div = partition(input.begin(), input.end(), EvenElem());
 
-    ostream_iterator<string> even_it(even_file, "\n"),
-                             odd_it(odd_file, "\t");
+    ostream_iterator<string> even_it(even_file, "\n"), odd_it(odd_file, "\t");
 
     copy(input.begin(), div, even_it);
     copy(div, input.end(), odd_it);
+}
+
 }
