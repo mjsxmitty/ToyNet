@@ -26,8 +26,9 @@ add_executable(essential
                 util/num_sequence_ver3.h util/num_sequence_ver3.cpp
                 util/num_sequence_ver4.h util/num_sequence_ver4.cpp
                 util/stack.h util/stack.cpp
-                util/triangular.h util/triangular.cpp
+                util/user_profile.h util/user_profile.cpp
                 util/triangular_iterator.h util/triangular_iterator.cpp
+                util/triangular.h util/triangular.cpp
                 util/bt_node.h util/bt_node.cpp
                 util/binary_tree.h util/binary_tree.cpp
                 )

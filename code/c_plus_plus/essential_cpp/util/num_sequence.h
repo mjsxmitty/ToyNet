@@ -11,7 +11,8 @@ namespace numeric_sequence
 {
 
 typedef const std::vector<int>* pvec; 
-typedef const std::vector<int>* (*pfunc)(int);
+//typedef const std::vector<int>* (*pfunc)(int);
+typedef pvec (*pfunc)(int);
 
 /* 函数数组 */
 const int       seq_cnt = 7;

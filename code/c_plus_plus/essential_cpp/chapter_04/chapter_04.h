@@ -8,6 +8,9 @@
 
 #include "../util/stack.h"
 
+namespace chapter_04
+{
+
 void ch_4();
 
 extern void FillStack(Stack &stack, std::istream &is = std::cin);
@@ -44,10 +47,14 @@ inline bool LessThan::operator()(int val) const
 extern int CountLessThan(const std::vector<int> &vec, int comp);
 extern int SumLessThan(const std::vector<int> &vec, int comp);
 extern void PrintLessThan(const std::vector<int> &vec, int comp, 
-                          std::ostream &os = std::cout);
+                            std::ostream &os = std::cout);
 
 extern void ch_4_9();
 extern void ch_4_10();
 extern void ch_4_11();
 
+extern void hw_4_4();
+extern void hw_4_5();
+
+}
 #endif // __ESSENTIAL_CPP_CHAPTER_04_H__

@@ -8,7 +8,7 @@
 using namespace std;
 
 const int NumSequenceVer1::seq_cnt_;
-const int NumSequenceVer1::max_seq_ = 64;
+const int NumSequenceVer1::max_seq_ = 1024;
 vector<vector<int>> NumSequenceVer1::seq_(seq_cnt_);
 map<string, NumSequenceVer1::NUM_SEQ> NumSequenceVer1::seq_map_;
 
@@ -33,10 +33,10 @@ NumSequenceVer1::NumSequenceVer1(int beg, int len, NumSequenceVer1::NUM_SEQ nst)
 void NumSequenceVer1::FiboSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->empty() )
-       {  elem_->push_back( 1 ); elem_->push_back( 1 ); }
+        {  elem_->push_back( 1 ); elem_->push_back( 1 ); }
 
     if ( elem_->size() <= pos )
     {
@@ -50,16 +50,18 @@ void NumSequenceVer1::FiboSeq(int pos)
                     elem_->push_back( val );
                     n_2 = n_1; n_1 = val;
             }
-     }
+    }
+
+    length_ = pos;
 }
 
 void NumSequenceVer1::PellSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->empty() )
-       {  elem_->push_back( 1 ); elem_->push_back( 2 ); }
+        {  elem_->push_back( 1 ); elem_->push_back( 2 ); }
 
     if ( elem_->size() <= pos )
     {
@@ -73,16 +75,18 @@ void NumSequenceVer1::PellSeq(int pos)
                     elem_->push_back( val );
                     n_2 = n_1; n_1 = val;
             }
-     }
+    }
+
+    length_ = pos;
 }
 
 void NumSequenceVer1::LucaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->empty() )
-       {  elem_->push_back( 1 ); elem_->push_back( 3 ); }
+        {  elem_->push_back( 1 ); elem_->push_back( 3 ); }
 
     if ( elem_->size() <= pos )
     {
@@ -96,50 +100,54 @@ void NumSequenceVer1::LucaSeq(int pos)
                     elem_->push_back( elem );
                     n_2 = n_1; n_1 = elem;
             }
-     }
+    }
+    length_ = pos;
 }
 
 void NumSequenceVer1::TriaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->size() <= pos )
     {
         int end_pos = pos+1;
         int ix = elem_->size()+1;
-        cout << "tri: ix: " << ix << " pos: " << pos << endl;
+        //cout << "tri: ix: " << ix << " pos: " << pos << endl;
         for ( ; ix <= end_pos; ++ix )
-              elem_->push_back( ix*(ix+1)/2 );
+            elem_->push_back( ix*(ix+1)/2 );
     }
+    length_ = pos;
 }
 
 void NumSequenceVer1::SquaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->size() <= pos )
     {
         int end_pos = pos + 1;
         int ix = elem_->size()+1;
         for ( ; ix <= end_pos; ++ix )
-              elem_->push_back( ix*ix );
+            elem_->push_back( ix*ix );
     }
+    length_ = pos;
 }
 
 void NumSequenceVer1::PentSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
-         return;
+        return;
 
     if ( elem_->size() <= pos )
     {
         int end_pos = pos + 1;
         int ix = elem_->size()+1;
         for ( ; ix <= end_pos; ++ix )
-              elem_->push_back( ix*(3*ix-1)/2 );
+            elem_->push_back( ix*(3*ix-1)/2 );
     }
+    length_ = pos;
 }
 
 void NumSequenceVer1::SetBegPos(int pos)
@@ -147,7 +155,7 @@ void NumSequenceVer1::SetBegPos(int pos)
     if (pos <= 0 || pos > max_seq_)
     {
         cerr << "invalid begin position: " << pos
-             << " setting default position value of 1\n";
+            << " setting default position value of 1\n";
         pos = 1;
     }
 
@@ -159,7 +167,7 @@ void NumSequenceVer1::SetLength(int len)
     if (len <= 0 || len + beg_pos_ - 1 > max_seq_)
     {
         cerr << "invalid length: " << len
-             << " setting default length value of 1\n";
+            << " setting default length value of 1\n";
         len = 1;
     }
 
@@ -195,14 +203,14 @@ bool NumSequenceVer1::CheckIntegrity(int pos) const
     if (pos <= 0 || pos > max_seq_)
     {
         cerr << "invalid position: " << pos
-             << " can not handle request!\n";
+                << " can not handle request!\n";
         return false;
     }
 
     if (isa_ == NS_UNK)
     {
         cerr << "object is not select a sequence."
-             << " please select a sequence, try again!\n";
+                << " please select a sequence, try again!\n";
         return false;
     }
 
@@ -214,12 +222,11 @@ ostream &NumSequenceVer1::Print(ostream &os)
     if (!CheckIntegrity(length_ + beg_pos_ - 1))
         return os;
 
-    //TODO ... 需要处理
-    int len = beg_pos_ + length_ - 1;
-    if (elem_->size() < len)
-        (this->*pmf_)(len);
+    int size = beg_pos_ + length_ - 1;
+    if (elem_->size() < size)
+        (this->*pmf_)(size);
 
-    for (int ix = beg_pos_ - 1; ix < len; ++ix)
+    for (int ix = beg_pos_ - 1; ix < size; ++ix)
         os << (*elem_)[ix] << ' ';
 
     return os;
@@ -232,8 +239,9 @@ int NumSequenceVer1::Elem(int pos)
 
     if (pos > elem_->size())
     {
-        cout << "check integrity: calculating "
-             << pos - elem_->size() << " additional elem_ents\n";
+        // cout << "check integrity: calculating "
+        //         << pos - elem_->size() 
+        //         << " additional elem_ents\n";
 
         //指定队列生产元素
         (this->*pmf_)(pos);//
@@ -260,7 +268,7 @@ bool NumSequenceVer1::End(iterator &iter)
     return true;
 }
 
-const std::vector<int> *NumSequenceVer1::Sequence() const
+const std::vector<int>* NumSequenceVer1::Sequence() const
 {
     if (!CheckIntegrity(length_ + beg_pos_ -1))
         return 0;
@@ -282,16 +290,16 @@ int NumSequenceVer1::CalcPos(int elem)
 {
     int pos = elem_->size() - 1;
     cout << "calc_pos() elem: " << elem
-         << " pos: " << pos
-         << " at: " << (*elem_)[pos]
-         << "\n";
+            << " pos: " << pos
+            << " at: " << (*elem_)[pos]
+            << "\n";
 
     while ((pos < max_seq_) && ((*elem_)[pos]< elem))
     {
         (this->*pmf_)(++pos);
         cout << " pos: " << pos
-             << " at: " << (*elem_)[pos]
-             << endl;
+                << " at: " << (*elem_)[pos]
+                << endl;
     }
     
     return ((pos < max_seq_) && (*elem_)[pos] == elem) ? 
@@ -300,7 +308,7 @@ int NumSequenceVer1::CalcPos(int elem)
 
 int NumSequenceVer1::PosElem(int elem)
 {
-    cout << "pos_elem( " << elem << ")\n";
+    cout << "position elem ( " << elem << ")\n";
     if (!CheckIntegrity(1))
         return 0;
     

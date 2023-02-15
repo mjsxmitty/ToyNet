@@ -7,29 +7,15 @@
 
 using namespace std;
 
-/********************************************************************************************************/
-/*************************************************4.2****************************************************/
-
 Triangular::Triangular(int len, int bp) :
     beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
 {
     next_ = beg_pos_ - 1;
     unsigned int elem_cnt = length_ + beg_pos_ + 1;
 
-    /* 4.5 */
     if (elems_.size() < elem_cnt)
         GenElements(elem_cnt);
 }
-
-// Triangular::Triangular(int len) : length_(len > 1 ? len : 1)
-// {
-//     beg_pos_ = 1;
-//     next_ = 0;
-
-//     unsigned int elem_cnt = length_ + beg_pos_ + 1;
-//     if (elems_.size() < elem_cnt)
-//         GenElements(elem_cnt);
-// }
 
 Triangular::Triangular(const Triangular &rhs) :
                         beg_pos_(rhs.beg_pos_),
@@ -37,15 +23,24 @@ Triangular::Triangular(const Triangular &rhs) :
                         next_(rhs.beg_pos_ - 1)
 { }
 
-/********************************************************************************************************/
-/*************************************************4.3****************************************************/
-
 int Sum(const Triangular &item)
 {
-    if (!item.Length()) return 0;
+    // int beg_pos = item.BegPos();
+    // int len = item.Length();
+    // int sum = 0;
+
+    // for (int i = 0; i < len; ++i)
+    // {
+    //     sum += item.Elem(beg_pos + i);
+    // }
+    // return sum;
+
+    if (!item.Length()) 
+        return 0;
+
+    item.NextReset();
 
     int val = 0, sum = 0;
-    item.NextReset();
     while (item.Next(val))
         sum += val;
 
@@ -63,9 +58,6 @@ bool Triangular::Next(int &val) const
     next_ = 0;
     return false;
 }
-
-/********************************************************************************************************/
-/*************************************************4.4****************************************************/
 
 Triangular& Triangular::Copy(const Triangular &rhs)
 {
@@ -91,32 +83,29 @@ Triangular& Triangular::operator=(const Triangular &rhs)
     return *this;
 }
 
-/********************************************************************************************************/
-/*************************************************4.5****************************************************/
-
 vector<int> Triangular::elems_;
 int         Triangular::init_size_ = 1024;
 
 void Triangular::GenElemsToValue(int value)
 {
-    int ix = elems_.size();
-    if (!ix)
+    int size = elems_.size();
+    if (!size)
     {
         elems_.push_back(1);
-        ix = 1;
+        size = 1;
     }
 
-    while (elems_[ix - 1] < value && ix < max_size_)
+    while (elems_[size - 1] < value && size < max_size_)
     {
-        ++ix;
-        elems_.push_back(ix * (ix + 1) / 2);
+        ++size;
+        elems_.push_back(size * (size + 1) / 2);
     }
 
-    if (ix == max_size_)
+    if (size == max_size_)
     {
         cerr << "Triangular sequence: value to large: "
-             << value << " --- exceeds max size of "
-             << max_size_ << endl;
+                << value << " --- exceeds max size of "
+                << max_size_ << endl;
     }
 }
 
@@ -133,14 +122,14 @@ void Triangular::GenElements(int length)
     if (length < 0 || length > max_size_)
     {
         cerr << "Triangular sequence: invalid size: "
-             << length << " --- max size is: " << max_size_
-             << endl;
+                << length << " --- max size is: " << max_size_
+                << endl;
         return;
     }
 
-    int ix = elems_.size() ? elems_.size() + 1 : 1;
-    for (; ix <= length; ++ix)
-        elems_.push_back(ix * (ix + 1) / 2);
+    int size = elems_.size() ? elems_.size() + 1 : 1;
+    for (; size <= length; ++size)
+        elems_.push_back(size * (size + 1) / 2);
 }
 
 void Triangular::Display(int len, int bp, ostream &os)
@@ -148,7 +137,7 @@ void Triangular::Display(int len, int bp, ostream &os)
     if (len <= 0 || bp <= 0)
     {
         cerr << "invalid parameters, can't handle request: "
-             << len << ", " << bp << endl;
+                << len << ", " << bp << endl;
         return ;
     }
 
@@ -158,11 +147,7 @@ void Triangular::Display(int len, int bp, ostream &os)
 
     for (unsigned int ix = bp - 1; ix < elems; ++ix)
         os << elems_[ix] << ' ';
-    os << endl;
 }
-
-/********************************************************************************************************/
-/*************************************************4.6****************************************************/
 
 Triangular::Iterator Triangular::Begin() const
 {
@@ -174,9 +159,6 @@ Triangular::Iterator Triangular::End() const
     return Iterator(beg_pos_ + length_);    // 不需要-1
 }
 
-/********************************************************************************************************/
-/*************************************************4.10***************************************************/
-
 ostream &operator<<(ostream &os, const Triangular &rhs)
 {
     os << "( " << rhs.length_ << ", " << rhs.beg_pos_ << " ) ";
@@ -187,7 +169,6 @@ ostream &operator<<(ostream &os, const Triangular &rhs)
 
 istream& operator>>(istream& in, Triangular& rhs)
 {
-    char ch1, ch2;
     int bp, len;
 
     in >> bp >> len;
@@ -197,5 +178,3 @@ istream& operator>>(istream& in, Triangular& rhs)
 
     return in;
 }
-
-/********************************************************************************************************/

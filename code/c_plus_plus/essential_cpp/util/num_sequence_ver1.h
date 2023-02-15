@@ -1,6 +1,4 @@
 
-/* ÊýÁÐÀàÖÐ·â×°¶à¸öÊýÁÐ */
-
 #ifndef __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 #define __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
 
@@ -18,7 +16,7 @@ public:
 
     enum NUM_SEQ
     {
-        NS_UNK,
+        NS_UNK = 0,
         NS_FIB,
         NS_PELL,
         NS_LUCAS,
@@ -65,33 +63,31 @@ public:
         return names[isa_];
     }
 
-     static void InitSeqMap()
-     {
+    static void InitSeqMap()
+    {
+        
         seq_map_[ "fibonacci" ] = NS_FIB;
         seq_map_[ "pell" ] = NS_PELL;
         seq_map_[ "lucus" ] = NS_LUCAS;
         seq_map_[ "triangular" ] = NS_TRI;
         seq_map_[ "square" ] = NS_SQ;
         seq_map_[ "pentagonal" ] = NS_PENT;
-     }
+    }
 
     static NUM_SEQ SeqType(int num)
     {
-        // if (seq_map_.empty())
-        //     InitSeqMap();
-        
-        // std::string nm(name);
-        // return (seq_map_.count(nm)) ? 
-        //         seq_map_(nm) : NS_UNK;
+        if (seq_map_.empty())
+            InitSeqMap();
 
         return num <= 0 || num >= seq_cnt_ ?
-                NS_UNK : static_cast<NUM_SEQ>(num);
+                NS_UNK : NUM_SEQ(num);
     }
 public:
     bool operator==(const NumSequenceVer1 &rhs) const
     {
         return (beg_pos_ == rhs.beg_pos_) &&
-                (length_ == rhs.length_);
+                (length_ == rhs.length_) &&
+                (pmf_ == rhs.pmf_);
     }
 
     inline bool operator!=(const NumSequenceVer1 &rhs) const
@@ -108,20 +104,20 @@ private:
 
     int CalcPos(int elem);
 private:
-    int                 beg_pos_;       // ÆðÊ¼Î»ÖÃ
-    int                 length_;        // ÊýÁÐ³¤¶È
-    NUM_SEQ             isa_;           // ÊýÁÐÀàÐÍ
-    PtrType             pmf_;           // Ö¸Ïòµ±Ç°ÊýÁÐµÄÖ¸Õë
-    std::vector<int>    *elem_;         // Ö¸Ïòµ±Ç°ÊýÁÐµÄÊý×é
+    int                 beg_pos_;       // ï¿½ï¿½Ê¼Î»ï¿½ï¿½
+    int                 length_;        // ï¿½ï¿½ï¿½Ð³ï¿½ï¿½ï¿½
+    NUM_SEQ             isa_;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    PtrType             pmf_;           // Ö¸ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ðµï¿½Ö¸ï¿½ï¿½
+    std::vector<int>    *elem_;         // Ö¸ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
     //enum {seq_cnt_ = 7};
     static const int                        seq_cnt_ = 7;
-    static const int                        max_seq_;                   // ÊýÁÐ×î´óÔªËØ¸öÊý
-    static PtrType                          func_tbl_[seq_cnt_];        // ËùÓÐÊýÁÐº¯ÊýÖ¸Õë
-    static std::vector<std::vector<int>>    seq_;                       // ËùÓÐÊýÁÐ
-    static std::map<std::string, NUM_SEQ>   seq_map_;                   // Ã¿¸öÊýÁÐÓ³Éä
+    static const int                        max_seq_;                   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
+    static PtrType                          func_tbl_[seq_cnt_];        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðºï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+    static std::vector<std::vector<int>>    seq_;                       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    static std::map<std::string, NUM_SEQ>   seq_map_;                   // Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½
 };
 
-std::ostream& operator<<(std::ostream &os, const NumSequenceVer1 &ns);
+std::ostream& operator<<(std::ostream &os, NumSequenceVer1 &ns);
 
 #endif // __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__

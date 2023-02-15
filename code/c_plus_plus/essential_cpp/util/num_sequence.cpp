@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "num_sequence.h"
 
@@ -165,6 +166,12 @@ bool SeqElem(int size, int &elem, pfunc f)
         elem = 0;
         return false;
     }
+    
+    vector<int> ivec(*pseq);
+    for_each(ivec.begin(), ivec.end(), [](int i) {
+        cout << i << " ";
+    });
+    cout << endl;
     
     elem = (*pseq)[size - 1];
     

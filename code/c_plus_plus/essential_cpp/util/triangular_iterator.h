@@ -3,7 +3,6 @@
 #ifndef __ESSENTIAL_CPP_CHAPTER_04_TRIANGULARITERATOR_H__
 #define __ESSENTIAL_CPP_CHAPTER_04_TRIANGULARITERATOR_H__
 
-/* 4.6 打造一个指针类 */
 class TriangularIterator
 {
 public:

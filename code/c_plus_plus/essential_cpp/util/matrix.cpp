@@ -20,6 +20,19 @@ Matrix::~Matrix()
     delete [] pmat_;
 }
 
+Matrix& Matrix::operator+=(const Matrix &rhs)
+{
+    for (int i = 0; i < rhs.col(); ++i)
+    {
+        for (int j = 0; j < rhs.row(); ++j)
+        {
+            //pmat_[i][j] += rhs.pmat_[i][j];
+        }
+    }
+
+    return *this;
+}
+
 Matrix& Matrix::operator=(const Matrix &rhs)
 {
     if (this != &rhs)

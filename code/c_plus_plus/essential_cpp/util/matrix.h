@@ -10,6 +10,11 @@ public:
     Matrix(int row, int col);
     Matrix(const Matrix &rhs);
     ~Matrix();
+
+    Matrix& operator+=(const Matrix &rhs);
+
+    int col() const {return col_; }
+    int row() const { return row_; }
 public:
     Matrix& operator=(const Matrix &rhs);
 private:
@@ -17,4 +22,4 @@ private:
     double  *pmat_;
 };
 
-#endif // MATRIX_H
+#endif // __ESSENTIAL_CPP_CHAPTER_04_MATRIX_H__

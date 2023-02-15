@@ -352,8 +352,12 @@ void ch_2_8()
         cout << "please enter a position: ";
         cin >> pos;
 
+        int select;
+        cout << "please enter a seq(1~7): ";
+        cin >> select;
+
         int elem;
-        numeric_sequence::SeqElem(pos + 1, elem, seq_array[NS_FIB]);
+        numeric_sequence::SeqElem(pos + 1, elem, seq_array[select]);
         cout << "position: " << pos << " value is: " << elem << endl;
 
         cout << "would you want to try again?(Y/N): ";
