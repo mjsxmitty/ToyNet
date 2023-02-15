@@ -40,15 +40,15 @@ void ch_5_5()
 {
     FibonacciVer2 fib;
     cout << "fib: the begging at element 1 for 1 element: "
-         << fib << endl;
+        << fib << endl;
 
     FibonacciVer2 fib2(16);
     cout << "fib: the begging at element 1 for 16 element: "
-         << fib2 << endl;
+        << fib2 << endl;
 
     FibonacciVer2 fib3(8, 12);
     cout << "fib: the begging at element 12 for 8 element: "
-         << fib3 << endl;
+        << fib3 << endl;
 }
 
 void ch_5_6()
@@ -57,7 +57,9 @@ void ch_5_6()
     
     FibonacciVer2 fib;
     Display(cout, fib, postion);
-    // TODO 需要修改一下print函数
+
+    FibonacciVer2 fib2(8);
+    cout << fib2 << endl;
 }
 
 void Print1(LibMat lib, const LibMat *p1, const LibMat &r1)

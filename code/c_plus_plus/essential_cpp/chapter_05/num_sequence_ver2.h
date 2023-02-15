@@ -30,10 +30,8 @@ std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns);
 inline void Display(std::ostream &os, const NumSequenceVer2 &ns, int pos)
 {
     os << "the element at position: " << pos
-       << " for the " << ns.WhatAmI() << " sequence is "
-       << ns.Elem(pos) << std::endl;
-
-    ns.Print();
+        << " for the " << ns.WhatAmI() << " sequence is "
+        << ns.Elem(pos) << std::endl;
 }
 
 #endif //

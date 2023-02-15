@@ -37,10 +37,6 @@ int FibonacciVer2::Elem(int pos) const
 {
     if (!CheckIntegrity(pos, elems_.size()))
         return 0;
-
-    // 跳过虚函数机制
-    if (pos > elems_.size())
-        FibonacciVer2::GenElems(pos);
     
     return elems_[pos - 1];
 }
@@ -62,7 +58,5 @@ ostream& FibonacciVer2::Print(ostream &os) const
         os << elems_[elem_pos++] 
             << ' ';
 
-    os << endl;
-    
     return os;
 }
