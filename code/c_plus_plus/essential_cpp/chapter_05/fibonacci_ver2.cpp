@@ -30,7 +30,7 @@ void FibonacciVer2::GenElems(int pos) const
         }
     }
 
-    // 是否应该调整一下pos length ???
+    //length_ = elems_.size();
 }
 
 int FibonacciVer2::Elem(int pos) const
@@ -39,8 +39,8 @@ int FibonacciVer2::Elem(int pos) const
         return 0;
 
     // 跳过虚函数机制
-    // if (pos > elems_.size())
-    //     FibonacciVer2::GenElems(pos);
+    if (pos > elems_.size())
+        FibonacciVer2::GenElems(pos);
     
     return elems_[pos - 1];
 }
@@ -60,7 +60,7 @@ ostream& FibonacciVer2::Print(ostream &os) const
 
     while (elem_pos < elem_cnt)
         os << elems_[elem_pos++] 
-           << ' ';
+            << ' ';
 
     os << endl;
     

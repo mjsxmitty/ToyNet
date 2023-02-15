@@ -4,10 +4,10 @@
 #include <algorithm>
 
 #include "chapter_04.h"
-#include "../util/triangular.h"
-#include "../util/triangular_iterator.h"
-#include "../util/num_sequence_ver1.h"
-#include "../util/user_profile.h"
+#include "triangular.h"
+#include "triangular_iterator.h"
+#include "num_sequence_ver1.h"
+#include "user_profile.h"
 
 using namespace std;
 namespace chapter_04

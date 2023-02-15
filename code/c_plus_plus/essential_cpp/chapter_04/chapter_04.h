@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../util/stack.h"
+#include "stack.h"
 
 namespace chapter_04
 {

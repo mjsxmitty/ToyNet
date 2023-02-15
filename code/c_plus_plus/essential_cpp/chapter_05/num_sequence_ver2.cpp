@@ -16,8 +16,8 @@ bool NumSequenceVer2::CheckIntegrity(int pos, int size) const
     if (pos <=0 || pos >= max_elems_)
     {
         cerr << "invalid position: " << pos
-             << " can not handle request!!"
-             << endl;
+                << " can not handle request!!"
+                << endl;
         return false;
     }
 

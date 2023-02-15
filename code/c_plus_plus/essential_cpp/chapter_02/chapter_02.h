@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "../util/num_sequence.h"
+#include "num_sequence.h"
 
 namespace chapter_02
 {

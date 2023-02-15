@@ -2,8 +2,8 @@
 #include <string>
 
 #include "chapter_06.h"
-#include "../util/binary_tree.h"
-#include "../util/fibonacci_ver4.h"
+#include "binary_tree.h"
+#include "../chapter_05/fibonacci_ver4.cpp"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 
-#ifndef __CHAPTER_05_FibonacciVer2ACCI_H__
-#define __CHAPTER_05_FibonacciVer2ACCI_H__
+#ifndef __CHAPTER_05_FIBONACCIVER2_H__
+#define __CHAPTER_05_FIBONACCIVER2_H__
 
 #include <vector>
 #include <iostream>

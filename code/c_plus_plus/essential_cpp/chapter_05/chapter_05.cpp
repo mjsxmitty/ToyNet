@@ -2,24 +2,19 @@
 #include <iostream>
 
 #include "chapter_05.h"
-#include "../util/libmat.h"
-#include "../util/book.h"
-#include "../util/audio_book.h"
-#include "../util/num_sequence_ver2.h"
-#include "../util/fibonacci_ver2.h"
-#include "../util/num_sequence_ver3.h"
-#include "../util/fibonacci_ver3.h"
+#include "libmat.h"
+#include "book.h"
+#include "audio_book.h"
+#include "num_sequence_ver2.h"
+#include "fibonacci_ver2.h"
+#include "num_sequence_ver3.h"
+#include "fibonacci_ver3.h"
 
 using namespace std;
 
-void ch_5()
+
+namespace chapter_05
 {
-    //ch_5_2();
-    //ch_5_5();
-    //ch_5_6();
-    //ch_5_9();
-    ch_5_10();
-}
 
 void ch_5_2()
 {
@@ -105,4 +100,6 @@ void ch_5_10()
     
     if (FibonacciVer3 *pf = dynamic_cast<FibonacciVer3 *>(ps))
         cout << pf->WhatAmI() << endl;
+}
+
 }

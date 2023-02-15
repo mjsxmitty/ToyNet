@@ -1,8 +1,6 @@
 
-/* �������������� */
-
-#ifndef __CHAPTER_05_NumSequenceVer2_H__
-#define __CHAPTER_05_NumSequenceVer2_H__
+#ifndef __CHAPTER_05_NUMSEQUENCEVER2_H__
+#define __CHAPTER_05_NUMSEQUENCEVER2_H__
 
 #include <iostream>
 
