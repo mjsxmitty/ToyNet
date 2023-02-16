@@ -5,7 +5,8 @@
 
 #include <functional>
 
-extern void ch_6();
+namespace chapter_06
+{
 
 extern void ch_6_4();
 extern void ch_6_6();
@@ -74,5 +75,7 @@ private:
 };
 
 extern void ch_6_8();
+
+}
 
 #endif // __ESSENTIAL_CPP_CHAPTER_06_H__

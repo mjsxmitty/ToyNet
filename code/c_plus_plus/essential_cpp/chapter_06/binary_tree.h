@@ -6,6 +6,9 @@
 
 #include "bt_node.h"
 
+namespace chapter_06
+{
+
 template <typename ElemType>
 class BinaryTree
 {
@@ -141,6 +144,8 @@ template<typename ElemType>
 void BinaryTree<ElemType>::Postorder()
 {
     root_->Postorder(root_, std::cout);
+}
+
 }
 
 #endif //__ESSENTIAL_CPP_UTIL_BINARY_TREE_H__

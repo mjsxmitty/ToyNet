@@ -9,7 +9,7 @@ add_executable(essential
                 main.cpp
                 chapter_02/ch_2.hpp
                 chapter_02/chapter_02.h chapter_02/chapter_02.cpp
-				chapter_02/num_sequence.h chapter_02/num_sequence.cpp
+                chapter_02/num_sequence.h chapter_02/num_sequence.cpp
                 chapter_03/ch_3.hpp
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
                 chapter_04/ch_4.hpp
@@ -34,6 +34,7 @@ add_executable(essential
                 chapter_05/peek_back_stack.h chapter_05/peek_back_stack.cpp
                 chapter_06/num_sequence_ver4.h chapter_06/num_sequence_ver4.cpp
                 chapter_06/fibonacci_ver4.h chapter_06/fibonacci_ver4.cpp
+                chapter_06/ch_6.hpp
                 chapter_06/chapter_06.h chapter_06/chapter_06.cpp
                 chapter_06/bt_node.h chapter_06/bt_node.cpp
                 chapter_06/binary_tree.h chapter_06/binary_tree.cpp

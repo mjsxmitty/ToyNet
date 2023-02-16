@@ -4,6 +4,9 @@
 
 #include <ostream>
 
+namespace chapter_06
+{
+
 template <typename Type>
 class BinaryTree;
 
@@ -14,7 +17,7 @@ public:
     BTnode(const ValType &);
 private:
     ValType     val_;
-    int         cnt_;
+    int         cnt_;   // 重复次数
     BTnode      *lchild_;
     BTnode      *rchild_;
 private:
@@ -32,7 +35,7 @@ private:
 };
 
 template<typename ValType>
-BTnode<ValType>::BTnode(const ValType &val) : val_(val)
+BTnode<ValType>::BTnode(const ValType &val) : val_(val) //
 {
     cnt_ = 1;
     lchild_ = rchild_ = 0;
@@ -147,5 +150,6 @@ void BTnode<ValType>::DisplayVal(BTnode *pt, std::ostream &os)
     os << pt->val_ << ' ';
 }
 
+}
 
 #endif //__ESSENTIAL_CPP_UTIL_BT_NODE_H__

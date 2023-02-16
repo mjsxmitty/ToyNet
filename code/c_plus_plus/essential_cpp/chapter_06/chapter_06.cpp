@@ -7,12 +7,8 @@
 
 using namespace std;
 
-void ch_6()
+namespace chapter_06
 {
-    //ch_6_4();
-    //ch_6_6();
-    ch_6_8();
-}
 
 void ch_6_4()
 {
@@ -40,12 +36,15 @@ void ch_6_4()
 
 void ch_6_6()
 {
-    FibonacciVer4<8>        fib1;
-    FibonacciVer4<8, 8>     fib2;
-    FibonacciVer4<12, 8>    fib3;
+    using namespace ver3;
 
-    //cout << "fib1: " << fib1 << endl;
+    Fibonacci<8>        fib1;
+    Fibonacci<8, 8>     fib2;
+    Fibonacci<12, 8>    fib3;
 
+    cout << "fib1: " << fib1 << endl;
+    cout << "fib2: " << fib2 << endl;
+    cout << "fib3: " << fib3 << endl;
 }
 
 void ch_6_8()
@@ -53,4 +52,6 @@ void ch_6_8()
     PrintIt<ostream> to_standard_out(cout);
     to_standard_out.Print("Hello");
     to_standard_out.Print(1024);
+}
+
 }

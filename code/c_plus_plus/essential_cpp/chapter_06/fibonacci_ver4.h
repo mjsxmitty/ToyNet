@@ -6,12 +6,18 @@
 
 #include "num_sequence_ver4.h"
 
+namespace chapter_06
+{
+
+namespace ver3
+{
+
+
 template<int len, int beg_pos = 1>
-class FibonacciVer4 : public NumSequenceVer4<len, beg_pos>
+class Fibonacci : public NumSequence<len, beg_pos>
 {
 public:
-    FibonacciVer4() : NumSequenceVer4<len, beg_pos>(&elems_) { }
-    // TODO ...copy
+    Fibonacci() : NumSequence<len, beg_pos>(&elems_) { }
 protected:
     void    GenElems(int pos) const;
 private:
@@ -19,10 +25,10 @@ private:
 };
 
 template<int len, int beg_pos>
-std::vector<int>  FibonacciVer4<len, beg_pos>::elems_;
+std::vector<int>  Fibonacci<len, beg_pos>::elems_;
 
 template<int len, int beg_pos>
-void FibonacciVer4<len, beg_pos>::GenElems(int pos) const
+void Fibonacci<len, beg_pos>::GenElems(int pos) const
 {
     if (elems_.empty())
     {
@@ -46,5 +52,8 @@ void FibonacciVer4<len, beg_pos>::GenElems(int pos) const
     }
 }
 
+}
+
+}
 
 #endif // __ESSENTIAL_CPP_CHAPTER_UTIL_FIBONACCI_4_H__
