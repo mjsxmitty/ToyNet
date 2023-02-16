@@ -7,8 +7,12 @@
 
 using namespace std;
 
-namespace numeric_sequence
+namespace chapter_02
 {
+
+namespace ver0
+{
+
 //pvec (*seq_array[])(int)
 pfunc seq_array[seq_cnt] = {
     0,
@@ -178,4 +182,5 @@ bool SeqElem(int size, int &elem, pfunc f)
     return true;
 }
 
+}
 }

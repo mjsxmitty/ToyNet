@@ -343,7 +343,7 @@ bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int))
 
 void ch_2_8()
 {
-    using namespace numeric_sequence;
+    using namespace ver0;
 
     bool more = true;
     while (more)
@@ -357,7 +357,7 @@ void ch_2_8()
         cin >> select;
 
         int elem;
-        numeric_sequence::SeqElem(pos + 1, elem, seq_array[select]);
+        ver0::SeqElem(pos + 1, elem, seq_array[select]);
         cout << "position: " << pos << " value is: " << elem << endl;
 
         cout << "would you want to try again?(Y/N): ";

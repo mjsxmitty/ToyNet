@@ -1,6 +1,6 @@
 
-#ifndef __CHAPTER_05_Fibonacci_H__
-#define __CHAPTER_05_Fibonacci_H__
+#ifndef __ESSENTIAL_CPP_CHAPTER_05_FIBONACCI_VER1_H__
+#define __ESSENTIAL_CPP_CHAPTER_05_FIBONACCI_VER1_H__
 
 #include <vector>
 #include <iostream>

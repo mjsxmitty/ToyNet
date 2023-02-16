@@ -1,6 +1,6 @@
 
-#ifndef __CHAPTER_05_NumSequence_H__
-#define __CHAPTER_05_NumSequence_H__
+#ifndef __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER1_H__
+#define __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER1_H__
 
 #include <iostream>
 

@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQ3_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQ3_H__
+#ifndef __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER2_H__
+#define __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER2_H__
 
 #include <vector>
 #include <iostream>

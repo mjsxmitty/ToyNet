@@ -7,19 +7,21 @@
 #include <iostream>
 #include <fstream>
 
-namespace numeric_sequence
+namespace chapter_02
 {
+
+namespace ver0 {
 
 typedef const std::vector<int>* pvec; 
 //typedef const std::vector<int>* (*pfunc)(int);
 typedef pvec (*pfunc)(int);
 
-/* 函数数组 */
+/* 鍑芥暟鏁扮粍 */
 const int       seq_cnt = 7;
 extern pfunc    seq_array[seq_cnt];
 //extern const std::vector<int>* (*seq_array[])(int);
 
-/* 类型 */
+/* 绫诲瀷 */
 enum NS_TYPE
 {
     NS_UNK, 
@@ -31,7 +33,7 @@ enum NS_TYPE
     NS_PENT
 };
 
-/* 各种函数 */
+/* 鍚勭鍑芥暟 */
 extern pvec FiboSeq(int size);
 extern pvec PellSeq(int size);
 extern pvec LucaSeq(int size);
@@ -59,5 +61,6 @@ inline bool CheckIntegrity(int size)
     return true;
 }
 
+}
 }
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__
