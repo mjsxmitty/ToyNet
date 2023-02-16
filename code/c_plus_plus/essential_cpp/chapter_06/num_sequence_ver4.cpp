@@ -7,10 +7,13 @@ using namespace std;
 namespace chapter_06
 {
 
-namespace ver3
+namespace ver4
 {
 
-
+void fibonacci(int pos, std::vector<int> &seq)
+{
+    
+}
 
 }
 

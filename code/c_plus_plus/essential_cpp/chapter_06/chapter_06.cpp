@@ -3,7 +3,8 @@
 
 #include "chapter_06.h"
 #include "binary_tree.h"
-#include "fibonacci_ver4.cpp"
+#include "fibonacci_ver3.cpp"
+#include "num_sequence_ver4.h"
 
 using namespace std;
 
@@ -45,6 +46,21 @@ void ch_6_6()
     cout << "fib1: " << fib1 << endl;
     cout << "fib2: " << fib2 << endl;
     cout << "fib3: " << fib3 << endl;
+
+    {
+        ver4::NumSequence<ver4::fibonacci> nf1(1);
+        ver4::NumSequence<ver4::fibonacci> nf2(12, 1);
+    }
+}
+
+void ch_6_7()
+{
+    {
+        LessThanPred<int> ltpi(1024);
+        LessThanPred<string, StringLess> ltps("1024");
+
+        cout << ltpi(1) << endl;
+    }
 }
 
 void ch_6_8()

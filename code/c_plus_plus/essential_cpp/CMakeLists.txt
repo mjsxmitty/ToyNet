@@ -32,8 +32,10 @@ add_executable(essential
                 chapter_05/stack_ver1.h chapter_05/stack_ver1.cpp
                 chapter_05/lifo_stack.h chapter_05/lifo_stack.cpp
                 chapter_05/peek_back_stack.h chapter_05/peek_back_stack.cpp
+                chapter_06/num_sequence_ver3.h chapter_06/num_sequence_ver3.cpp
                 chapter_06/num_sequence_ver4.h chapter_06/num_sequence_ver4.cpp
-                chapter_06/fibonacci_ver4.h chapter_06/fibonacci_ver4.cpp
+                chapter_06/fibonacci_ver3.h chapter_06/fibonacci_ver3.cpp
+                chapter_06/num_sequence_ver5.h
                 chapter_06/ch_6.hpp
                 chapter_06/chapter_06.h chapter_06/chapter_06.cpp
                 chapter_06/bt_node.h chapter_06/bt_node.cpp
