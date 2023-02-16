@@ -9,6 +9,7 @@
 #include "num_sequence_ver1.h"
 #include "fibonacci_ver2.h"
 #include "fibonacci_ver1.h"
+#include "lifo_stack.h"
 
 using namespace std;
 
@@ -76,20 +77,40 @@ void Print1(LibMat lib, const LibMat *p1, const LibMat &r1)
     r1.Print();
 }
 
+void ch_5_8()
+{
+    using namespace ver2;
+
+    Fibonacci a;
+    Fibonacci b;
+    a = b;
+
+    Fibonacci c = b;
+}
+
 void ch_5_9()
 {
     using namespace ver2;
 
-    // AudioBook a("1", "2", "3");
-    // Print1(a, &a, a);
+    {
+        Fibonacci b;
+        Fibonacci *ptr = b.Clone();
+        cout << ptr->WhatAmI() << endl;
 
-    Fibonacci b;
-    cout << b.WhatAmI() << endl;
+        NumSequence *p = b.Clone();
+        p->WhatAmI();
 
-    Fibonacci *ptr = b.Clone();
-    cout << ptr->WhatAmI() << endl;
-    // TODO 完善其他类型接着测试一下
+    }
 
+    /* 虚函数静态解析 */
+    {
+//         AudioBook a("1", "2", "3");
+//         Print1(a, &a, a);
+    }
+
+    {
+//        NumSequence *ptr = new Fibonacci();
+    }
 }
 
 //RTII
@@ -99,16 +120,39 @@ void ch_5_10()
 
     Fibonacci fib;
     NumSequence *ps = &fib;
+    //cout << ps->WhatAmI() << endl;
+    //ps->GenElems(64);
+    //ps->Fibonacci::GenElems(64);   //error
 
     if (typeid(*ps) == typeid(Fibonacci))
     {
-        //cout << ps->WhatAmI() << endl;
-        //ps->GenElems(64);
-        //ps->Fibonacci::GenElems(64);   //error
+        Fibonacci *p = static_cast<Fibonacci *>(ps);
+        ps->WhatAmI();
     }
     
-    if (Fibonacci *pf = dynamic_cast<Fibonacci *>(ps))
-        cout << pf->WhatAmI() << endl;
+        if (Fibonacci *pf = dynamic_cast<Fibonacci *>(ps))
+            cout << pf->WhatAmI() << endl;
+}
+
+extern void hw_5_2()
+{
+    using namespace ver1;
+
+    LifoStack ls;
+    string str;
+    while (cin >> str && !ls.full())
+    {
+        ls.push(str);
+    }
+
+    cout << ls << endl;
+    cout << ls.top() << endl;
+
+    string s;
+    ls.pop(s);
+    cout << s << endl;
+    ls.peek(ls.top() - 1, s);
+    cout << s << endl;
 }
 
 }

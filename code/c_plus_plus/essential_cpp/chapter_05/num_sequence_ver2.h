@@ -31,8 +31,7 @@ protected:
     virtual void        GenElems(int pos) const = 0;                // 
     bool                CheckIntegrity(int pos, int size) const;
 
-    NumSequence(int len, int beg, std::vector<int> &re, const std::string &s) :
-                    length_(len), beg_pos_(beg), relems_(re), name_(s) { }
+    NumSequence(int len, int beg, std::vector<int> &re, const std::string &s);
 protected:
     int                 length_;
     int                 beg_pos_;
@@ -41,6 +40,7 @@ protected:
     std::string         name_;
 
     NumSequence& operator=(const NumSequence &rhs);
+    NumSequence(const NumSequence &rhs);
 
 public:
     virtual NumSequence* Clone() = 0;

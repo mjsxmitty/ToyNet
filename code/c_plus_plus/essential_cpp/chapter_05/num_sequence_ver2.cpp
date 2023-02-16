@@ -1,5 +1,6 @@
 
 
+#include <iostream>
 #include "num_sequence_ver2.h"
 
 using namespace std;
@@ -12,6 +13,7 @@ namespace ver2
 
 NumSequence& NumSequence::operator=(const NumSequence &rhs)
 {
+    cout << "NumSequence::operator=(const NumSequence &r)" << endl;
     if (this != &rhs)
     {
         length_ = rhs.length_;
@@ -22,6 +24,13 @@ NumSequence& NumSequence::operator=(const NumSequence &rhs)
     }
 
     return *this;
+}
+
+NumSequence::NumSequence(const NumSequence &rhs) :
+    relems_(rhs.relems_), beg_pos_(rhs.beg_pos_),
+    length_(rhs.length_), name_(rhs.name_)
+{
+    //cout << "NumSequence::NumSequence(const NumSequence &r)" << endl;
 }
 
 bool NumSequence::CheckIntegrity(int pos, int size) const
@@ -38,6 +47,13 @@ bool NumSequence::CheckIntegrity(int pos, int size) const
         GenElems(pos);
 
     return true;
+}
+
+NumSequence::NumSequence(int len, int beg, std::vector<int> &re, const string &s) :
+    length_(len), beg_pos_(beg), relems_(re), name_(s)
+{
+    //cout << "NumSequence::NumSequence(int, int, std::vector<int> &, const string &) " << endl;
+    //cout << WhatAmI() << endl; // ¾²Ì¬½âÎö
 }
 
 int NumSequence::Elem(int pos) const

@@ -18,7 +18,6 @@ class Fibonacci : public NumSequence
 public:
     Fibonacci(int len = 1, int beg = 1);
     // const char* WhatAmI() const { return "fibonacci"; }
-    // const char* WhatAmI() { return "fibonacci"; }
 protected:
     void    GenElems(int pos) const;
 private:
@@ -28,7 +27,7 @@ public:
     Fibonacci& operator=(const Fibonacci &rhs);
 
 public:    
-    Fibonacci* Clone() { return new Fibonacci(*this); }
+    Fibonacci* Clone() { return new Fibonacci(*this); } // 调用拷贝构造
 };
 
 }

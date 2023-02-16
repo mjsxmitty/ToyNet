@@ -14,9 +14,9 @@ add_executable(essential
                 chapter_03/chapter_03.h chapter_03/chapter_03.cpp
                 chapter_04/ch_4.hpp
                 chapter_04/chapter_04.h chapter_04/chapter_04.cpp
-				chapter_04/matrix.h chapter_04/matrix.cpp
-				chapter_04/num_sequence_ver1.h chapter_04/num_sequence_ver1.cpp
-				chapter_04/stack.h chapter_04/stack.cpp
+                chapter_04/matrix.h chapter_04/matrix.cpp
+                chapter_04/num_sequence_ver1.h chapter_04/num_sequence_ver1.cpp
+                chapter_04/stack.h chapter_04/stack.cpp
                 chapter_04/user_profile.h chapter_04/user_profile.cpp
                 chapter_04/triangular_iterator.h chapter_04/triangular_iterator.cpp
                 chapter_04/triangular.h chapter_04/triangular.cpp
@@ -29,9 +29,12 @@ add_executable(essential
                 chapter_05/libmat.h chapter_05/libmat.cpp
                 chapter_05/num_sequence_ver1.h chapter_05/num_sequence_ver1.cpp
                 chapter_05/num_sequence_ver2.h chapter_05/num_sequence_ver2.cpp
+                chapter_05/stack_ver1.h chapter_05/stack_ver1.cpp
+                chapter_05/lifo_stack.h chapter_05/lifo_stack.cpp
+                chapter_05/peek_back_stack.h chapter_05/peek_back_stack.cpp
                 chapter_06/num_sequence_ver4.h chapter_06/num_sequence_ver4.cpp
-				chapter_06/fibonacci_ver4.h chapter_06/fibonacci_ver4.cpp
-				chapter_06/chapter_06.h chapter_06/chapter_06.cpp
+                chapter_06/fibonacci_ver4.h chapter_06/fibonacci_ver4.cpp
+                chapter_06/chapter_06.h chapter_06/chapter_06.cpp
                 chapter_06/bt_node.h chapter_06/bt_node.cpp
                 chapter_06/binary_tree.h chapter_06/binary_tree.cpp
                 )
