@@ -7,6 +7,9 @@
 #include <string>
 #include "libmat.h"
 
+namespace chapter_05
+{
+
 class Book : public LibMat
 {
 public:
@@ -33,4 +36,5 @@ protected:
     std::string     author_;
 };
 
+}
 #endif // __ESSENTIAL_CPP_CHAPTER_03_BOOK_H__

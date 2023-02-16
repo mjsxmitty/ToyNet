@@ -1,37 +1,52 @@
 
-#ifndef __CHAPTER_05_NUMSEQUENCEVER2_H__
-#define __CHAPTER_05_NUMSEQUENCEVER2_H__
 
+#ifndef __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQ3_H__
+#define __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQ3_H__
+
+#include <vector>
 #include <iostream>
+#include <typeinfo>
 
-class NumSequenceVer2
+namespace chapter_05
 {
-    friend std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns);
-public:
-    virtual ~NumSequenceVer2(){}
-public:
-    virtual int             Length() const = 0;
-    virtual int             BegPos() const = 0;
-    virtual int             Elem(int pos) const = 0;
-    virtual const char*     WhatAmI() const = 0;
-    virtual std::ostream&   Print(std::ostream &os = std::cout) const = 0;
 
-    static int              max_elems() { return max_elems_; }
+namespace ver2
+{
+
+class NumSequence
+{
+public:
+    virtual ~NumSequence() { }
+public:
+    //virtual const char* WhatAmI() const = 0;
+    virtual const char* WhatAmI() const { return typeid(*this).name(); }
+    int                 Elem(int pos) const;
+    std::ostream&       Print(std::ostream &os = std::cout) const;
+
+    int                 Length() const { return length_; }
+    int                 BegPos() const { return beg_pos_; }
+    
+    static int          MaxElems() { return 64; }
 protected:
-    virtual void            GenElems(int pos) const = 0;
-    virtual bool            CheckIntegrity(int pos, int size) const;
+    virtual void        GenElems(int pos) const = 0;                // 
+    bool                CheckIntegrity(int pos, int size) const;
+
+    NumSequence(int len, int beg, std::vector<int> &re, const std::string &s) :
+                    length_(len), beg_pos_(beg), relems_(re), name_(s) { }
 protected:
-    //const static int max_elems_ = 1024;
-    enum { max_elems_ = 1024 };
+    int                 length_;
+    int                 beg_pos_;
+    std::vector<int>    &relems_;   // 另一种实现（指针）
+protected:
+    std::string         name_;
+
+    NumSequence& operator=(const NumSequence &rhs);
+
+public:
+    virtual NumSequence* Clone() = 0;
 };
 
-std::ostream& operator<<(std::ostream &os, const NumSequenceVer2 &ns);
-
-inline void Display(std::ostream &os, const NumSequenceVer2 &ns, int pos)
-{
-    os << "the element at position: " << pos
-        << " for the " << ns.WhatAmI() << " sequence is "
-        << ns.Elem(pos) << std::endl;
 }
 
+}
 #endif //

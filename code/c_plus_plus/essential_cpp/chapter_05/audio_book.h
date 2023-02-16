@@ -6,6 +6,9 @@
 #include <string>
 #include "book.h"
 
+namespace chapter_05
+{
+
 class AudioBook : public Book
 {
 public:
@@ -30,4 +33,5 @@ private:
     std::string narrator_;
 };
 
+}
 #endif // __ESSENTIAL_CPP_CHAPTER_05_AUDIOBOOK_H__

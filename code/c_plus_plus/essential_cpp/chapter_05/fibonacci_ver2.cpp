@@ -1,13 +1,33 @@
 
 #include <vector>
-#include <iostream>
 #include "fibonacci_ver2.h"
 
 using namespace std;
+namespace chapter_05
+{
 
-vector<int> FibonacciVer2::elems_;
+namespace ver2
+{
 
-void FibonacciVer2::GenElems(int pos) const
+vector<int> Fibonacci::elems_;
+
+//显示调用基类
+Fibonacci::Fibonacci(int len, int beg) :
+                // NumSequence(len, beg, elems_){}
+                NumSequence(len, beg, elems_, "Fibonacci"){}
+
+Fibonacci::Fibonacci(const Fibonacci &rhs):
+                                NumSequence(rhs) { }
+
+Fibonacci& Fibonacci::operator=(const Fibonacci &rhs)
+{
+    if (this != &rhs)
+        NumSequence::operator=(rhs);    //显示调用基类的copy assign
+    
+    return *this;
+}
+
+void Fibonacci::GenElems(int pos) const
 {
     if (elems_.empty())
     {
@@ -29,34 +49,8 @@ void FibonacciVer2::GenElems(int pos) const
             n1 = elem;
         }
     }
-
-    //length_ = elems_.size();
 }
 
-int FibonacciVer2::Elem(int pos) const
-{
-    if (!CheckIntegrity(pos, elems_.size()))
-        return 0;
-    
-    return elems_[pos - 1];
 }
 
-const char* FibonacciVer2::WhatAmI() const
-{
-    return "Fibonacci";
-}
-
-ostream& FibonacciVer2::Print(ostream &os) const
-{
-    size_t elem_pos = beg_pos_ - 1;
-    size_t elem_cnt = elem_pos + length_;
-
-    if (elem_cnt > elems_.size())
-        FibonacciVer2::GenElems(elem_cnt);
-
-    while (elem_pos < elem_cnt)
-        os << elems_[elem_pos++] 
-            << ' ';
-
-    return os;
 }

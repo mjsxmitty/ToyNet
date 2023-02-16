@@ -7,11 +7,14 @@
 #include <map>
 #include <string>
 
-class NumSequenceVer1
+namespace chapter_04
 {
-    friend std::ostream& operator<<(std::ostream &os, NumSequenceVer1 &ns);
+
+class NumSequence
+{
+    friend std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 public:
-    typedef void (NumSequenceVer1::*PtrType)(int);
+    typedef void (NumSequence::*PtrType)(int);
     typedef std::vector<int>::iterator  iterator;
 
     enum NUM_SEQ
@@ -40,7 +43,7 @@ public:
     const std::vector<int>* Sequence() const;
 
 public:
-    NumSequenceVer1(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
+    NumSequence(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
 
     void SetBegPos(int pos);
     void SetLength(int pos);
@@ -83,14 +86,14 @@ public:
                 NS_UNK : NUM_SEQ(num);
     }
 public:
-    bool operator==(const NumSequenceVer1 &rhs) const
+    bool operator==(const NumSequence &rhs) const
     {
         return (beg_pos_ == rhs.beg_pos_) &&
                 (length_ == rhs.length_) &&
                 (pmf_ == rhs.pmf_);
     }
 
-    inline bool operator!=(const NumSequenceVer1 &rhs) const
+    inline bool operator!=(const NumSequence &rhs) const
     {
         return !(*this == rhs);
     }
@@ -104,20 +107,21 @@ private:
 
     int CalcPos(int elem);
 private:
-    int                 beg_pos_;       // ��ʼλ��
-    int                 length_;        // ���г���
-    NUM_SEQ             isa_;           // ��������
-    PtrType             pmf_;           // ָ��ǰ���е�ָ��
-    std::vector<int>    *elem_;         // ָ��ǰ���е�����
+    int                 beg_pos_;
+    int                 length_;
+    NUM_SEQ             isa_;
+    PtrType             pmf_;
+    std::vector<int>    *elem_;
 
     //enum {seq_cnt_ = 7};
     static const int                        seq_cnt_ = 7;
-    static const int                        max_seq_;                   // �������Ԫ�ظ���
-    static PtrType                          func_tbl_[seq_cnt_];        // �������к���ָ��
-    static std::vector<std::vector<int>>    seq_;                       // ��������
-    static std::map<std::string, NUM_SEQ>   seq_map_;                   // ÿ������ӳ��
+    static const int                        max_seq_;
+    static PtrType                          func_tbl_[seq_cnt_];
+    static std::vector<std::vector<int>>    seq_;
+    static std::map<std::string, NUM_SEQ>   seq_map_;
 };
 
-std::ostream& operator<<(std::ostream &os, NumSequenceVer1 &ns);
+std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 
+}
 #endif // __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__

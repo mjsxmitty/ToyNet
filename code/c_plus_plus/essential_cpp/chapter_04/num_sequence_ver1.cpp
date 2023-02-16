@@ -7,30 +7,33 @@
 
 using namespace std;
 
-const int NumSequenceVer1::seq_cnt_;
-const int NumSequenceVer1::max_seq_ = 1024;
-vector<vector<int>> NumSequenceVer1::seq_(seq_cnt_);
-map<string, NumSequenceVer1::NUM_SEQ> NumSequenceVer1::seq_map_;
+namespace chapter_04
+{
 
-typedef NumSequenceVer1::PtrType PtrType;
-PtrType NumSequenceVer1::func_tbl_[seq_cnt_] = {
+const int NumSequence::seq_cnt_;
+const int NumSequence::max_seq_ = 1024;
+vector<vector<int>> NumSequence::seq_(seq_cnt_);
+map<string, NumSequence::NUM_SEQ> NumSequence::seq_map_;
+
+typedef NumSequence::PtrType PtrType;
+PtrType NumSequence::func_tbl_[seq_cnt_] = {
     0,
-    &NumSequenceVer1::FiboSeq,
-    &NumSequenceVer1::LucaSeq,
-    &NumSequenceVer1::PellSeq,
-    &NumSequenceVer1::PentSeq,
-    &NumSequenceVer1::SquaSeq,
-    &NumSequenceVer1::TriaSeq
+    &NumSequence::FiboSeq,
+    &NumSequence::LucaSeq,
+    &NumSequence::PellSeq,
+    &NumSequence::PentSeq,
+    &NumSequence::SquaSeq,
+    &NumSequence::TriaSeq
 };
 
-NumSequenceVer1::NumSequenceVer1(int beg, int len, NumSequenceVer1::NUM_SEQ nst)
+NumSequence::NumSequence(int beg, int len, NumSequence::NUM_SEQ nst)
 {
     SetBegPos(beg);
     SetLength(len);
     SetSequence(nst);
 }
 
-void NumSequenceVer1::FiboSeq(int pos)
+void NumSequence::FiboSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -55,7 +58,7 @@ void NumSequenceVer1::FiboSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::PellSeq(int pos)
+void NumSequence::PellSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -80,7 +83,7 @@ void NumSequenceVer1::PellSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::LucaSeq(int pos)
+void NumSequence::LucaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -104,7 +107,7 @@ void NumSequenceVer1::LucaSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::TriaSeq(int pos)
+void NumSequence::TriaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -120,7 +123,7 @@ void NumSequenceVer1::TriaSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::SquaSeq(int pos)
+void NumSequence::SquaSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -135,7 +138,7 @@ void NumSequenceVer1::SquaSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::PentSeq(int pos)
+void NumSequence::PentSeq(int pos)
 {
     if ( pos <= 0 || pos > max_seq_ )
         return;
@@ -150,7 +153,7 @@ void NumSequenceVer1::PentSeq(int pos)
     length_ = pos;
 }
 
-void NumSequenceVer1::SetBegPos(int pos)
+void NumSequence::SetBegPos(int pos)
 {
     if (pos <= 0 || pos > max_seq_)
     {
@@ -162,7 +165,7 @@ void NumSequenceVer1::SetBegPos(int pos)
     beg_pos_ = pos;
 }
 
-void NumSequenceVer1::SetLength(int len)
+void NumSequence::SetLength(int len)
 {
     if (len <= 0 || len + beg_pos_ - 1 > max_seq_)
     {
@@ -174,7 +177,7 @@ void NumSequenceVer1::SetLength(int len)
     length_ = len;
 }
 
-void NumSequenceVer1::SetSequence(NUM_SEQ nst)
+void NumSequence::SetSequence(NUM_SEQ nst)
 {
     switch (nst)
     {
@@ -198,7 +201,7 @@ void NumSequenceVer1::SetSequence(NUM_SEQ nst)
     }
 }
 
-bool NumSequenceVer1::CheckIntegrity(int pos) const
+bool NumSequence::CheckIntegrity(int pos) const
 {
     if (pos <= 0 || pos > max_seq_)
     {
@@ -217,7 +220,7 @@ bool NumSequenceVer1::CheckIntegrity(int pos) const
     return true;
 }
 
-ostream &NumSequenceVer1::Print(ostream &os)
+ostream &NumSequence::Print(ostream &os)
 {
     if (!CheckIntegrity(length_ + beg_pos_ - 1))
         return os;
@@ -232,7 +235,7 @@ ostream &NumSequenceVer1::Print(ostream &os)
     return os;
 }
 
-int NumSequenceVer1::Elem(int pos)
+int NumSequence::Elem(int pos)
 {
     if (!CheckIntegrity(pos))
         return 0;
@@ -250,7 +253,7 @@ int NumSequenceVer1::Elem(int pos)
     return (*elem_)[pos - 1];
 }
 
-bool NumSequenceVer1::Begin(iterator &iter)
+bool NumSequence::Begin(iterator &iter)
 {
     if (!CheckIntegrity(length_ + beg_pos_ -1))
         return false;
@@ -259,7 +262,7 @@ bool NumSequenceVer1::Begin(iterator &iter)
     return true;
 }
 
-bool NumSequenceVer1::End(iterator &iter)
+bool NumSequence::End(iterator &iter)
 {
     if (!CheckIntegrity(length_ + beg_pos_ -1))
         return false;
@@ -268,7 +271,7 @@ bool NumSequenceVer1::End(iterator &iter)
     return true;
 }
 
-const std::vector<int>* NumSequenceVer1::Sequence() const
+const std::vector<int>* NumSequence::Sequence() const
 {
     if (!CheckIntegrity(length_ + beg_pos_ -1))
         return 0;
@@ -276,7 +279,7 @@ const std::vector<int>* NumSequenceVer1::Sequence() const
     return elem_;
 }
 
-bool NumSequenceVer1::IsElem(int elem)
+bool NumSequence::IsElem(int elem)
 {
     if (!CheckIntegrity(length_ + beg_pos_ - 1))
         return false;
@@ -286,7 +289,7 @@ bool NumSequenceVer1::IsElem(int elem)
     return binary_search(bit, eit, elem);
 }
 
-int NumSequenceVer1::CalcPos(int elem)
+int NumSequence::CalcPos(int elem)
 {
     int pos = elem_->size() - 1;
     cout << "calc_pos() elem: " << elem
@@ -306,7 +309,7 @@ int NumSequenceVer1::CalcPos(int elem)
             pos + 1 : 0;
 }
 
-int NumSequenceVer1::PosElem(int elem)
+int NumSequence::PosElem(int elem)
 {
     cout << "position elem ( " << elem << ")\n";
     if (!CheckIntegrity(1))
@@ -323,8 +326,10 @@ int NumSequenceVer1::PosElem(int elem)
         return distance(elem_->begin(), it);
 }
 
-ostream &operator<<(ostream &os, NumSequenceVer1 &ns)
+ostream &operator<<(ostream &os, NumSequence &ns)
 {
     ns.Print(os);
     return os;
+}
+
 }

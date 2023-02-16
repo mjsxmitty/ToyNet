@@ -5,6 +5,9 @@
 
 #include <iostream>
 
+namespace chapter_05
+{
+
 class LibMat
 {
 public:
@@ -16,4 +19,5 @@ public:
 
 void Print(const LibMat &mat);
 
+}
 #endif // __ESSENTIAL_CPP_CHAPTER_04_LIBMAT_H__

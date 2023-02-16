@@ -7,8 +7,8 @@
 #include "audio_book.h"
 #include "num_sequence_ver2.h"
 #include "fibonacci_ver2.h"
-#include "num_sequence_ver3.h"
-#include "fibonacci_ver3.h"
+#include "num_sequence_ver1.h"
+#include "fibonacci_ver1.h"
 
 using namespace std;
 
@@ -38,27 +38,30 @@ void ch_5_2()
 
 void ch_5_5()
 {
-    FibonacciVer2 fib;
+    using namespace ver1;
+
+    Fibonacci fib;
     cout << "fib: the begging at element 1 for 1 element: "
         << fib << endl;
 
-    FibonacciVer2 fib2(16);
+    Fibonacci fib2(16);
     cout << "fib: the begging at element 1 for 16 element: "
         << fib2 << endl;
 
-    FibonacciVer2 fib3(8, 12);
+    Fibonacci fib3(8, 12);
     cout << "fib: the begging at element 12 for 8 element: "
         << fib3 << endl;
 }
 
 void ch_5_6()
 {
+    using namespace ver1;
     const int postion = 8;
     
-    FibonacciVer2 fib;
+    Fibonacci fib;
     Display(cout, fib, postion);
 
-    FibonacciVer2 fib2(8);
+    Fibonacci fib2(8);
     cout << fib2 << endl;
 }
 
@@ -75,13 +78,15 @@ void Print1(LibMat lib, const LibMat *p1, const LibMat &r1)
 
 void ch_5_9()
 {
+    using namespace ver2;
+
     // AudioBook a("1", "2", "3");
     // Print1(a, &a, a);
 
-    FibonacciVer3 b;
+    Fibonacci b;
     cout << b.WhatAmI() << endl;
 
-    FibonacciVer3 *ptr = b.Clone();
+    Fibonacci *ptr = b.Clone();
     cout << ptr->WhatAmI() << endl;
     // TODO 完善其他类型接着测试一下
 
@@ -90,17 +95,19 @@ void ch_5_9()
 //RTII
 void ch_5_10()
 {
-    FibonacciVer3 fib;
-    NumSequenceVer3 *ps = &fib;
+    using namespace ver2;
 
-    if (typeid(*ps) == typeid(FibonacciVer3))
+    Fibonacci fib;
+    NumSequence *ps = &fib;
+
+    if (typeid(*ps) == typeid(Fibonacci))
     {
         //cout << ps->WhatAmI() << endl;
         //ps->GenElems(64);
-        //ps->FibonacciVer3::GenElems(64);   //error
+        //ps->Fibonacci::GenElems(64);   //error
     }
     
-    if (FibonacciVer3 *pf = dynamic_cast<FibonacciVer3 *>(ps))
+    if (Fibonacci *pf = dynamic_cast<Fibonacci *>(ps))
         cout << pf->WhatAmI() << endl;
 }
 

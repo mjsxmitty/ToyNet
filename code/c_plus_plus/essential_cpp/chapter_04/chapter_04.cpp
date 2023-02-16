@@ -160,7 +160,7 @@ void ch_4_10()
     cout << tri2 << endl;
 }
 
-void Display(ostream &os, NumSequenceVer1 &ns,
+void Display(ostream &os, NumSequence &ns,
                 int pos, int elem_val)
 {
     os << ns << endl;
@@ -172,15 +172,15 @@ void Display(ostream &os, NumSequenceVer1 &ns,
 
 void ch_4_11()
 {
-    NumSequenceVer1 ns;
+    NumSequence ns;
     int elem_val = 0;
     int pos;
     cout << "enter a position: ";
     cin >> pos;
 
-    for (int ix = 1; ix < NumSequenceVer1::NumOfSequence(); ++ix)
+    for (int ix = 1; ix < NumSequence::NumOfSequence(); ++ix)
     {
-        ns.SetSequence(NumSequenceVer1::SeqType(ix));
+        ns.SetSequence(NumSequence::SeqType(ix));
         elem_val = ns.Elem(pos);
         Display(cout, ns, pos, elem_val);
     }
