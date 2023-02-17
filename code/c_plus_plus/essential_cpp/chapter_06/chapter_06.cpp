@@ -60,6 +60,7 @@ void ch_6_7()
         LessThanPred<string, StringLess> ltps("1024");
 
         cout << ltpi(1) << endl;
+        cout << ltps("abc") << endl;
     }
 }
 

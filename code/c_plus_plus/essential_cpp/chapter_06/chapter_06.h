@@ -19,7 +19,7 @@ public:
 
     bool operator()(const ElemType &val) const
     {
-        return Comp(val, val_);
+        return Comp()(val, val_);
     }
 
     ElemType val() const
