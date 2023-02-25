@@ -9,7 +9,7 @@ namespace chapter_02 {
 
 void ch_2()
 {
-    //Greeting();
+    Greeting();
 }
 
 }

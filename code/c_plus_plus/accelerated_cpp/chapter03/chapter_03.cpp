@@ -1,7 +1,5 @@
 
-
-#ifndef __CHAPTER_03_MED_H__
-#define __CHAPTER_03_MED_H__
+#include "chapter_03.h"
 
 #include <iomanip>
 #include <iostream>
@@ -11,7 +9,9 @@
 
 using namespace std;
 
-int Chapter03Med()
+namespace chapter_03 {
+
+int CalcStudentGrade()
 {
     cout << "Please enter your first name: ";
     string name;
@@ -33,17 +33,18 @@ int Chapter03Med()
     typedef vector<double>::size_type vec_sz;
     vec_sz size = homework.size();
 
-    if (size == 0) {
+    if (size == 0)
+    {
         cout << endl << "You must enter your grades.  "
-                        "Please try again." 
-                     << endl;	
-        return 1;
+                        "Please try again."
+                     << endl;
+        return -1;
     }
 
     sort(homework.begin(), homework.end());
 
     vec_sz mid = size/2;
-    double median = size % 2 == 0 ? (homework[mid] + homework[mid-1]) / 2 : homework[mid];
+    double median = (size % 2 == 0 ? (homework[mid] + homework[mid-1]) / 2 : homework[mid]);
 
     streamsize prec = cout.precision();
     cout << "Your final grade is " << setprecision(3)
@@ -53,7 +54,6 @@ int Chapter03Med()
     return 0;
 }
 
-typedef vector<int>::size_type VecSz;
 double Median(const vector<int> &integers, VecSz begin, VecSz end)
 {
     VecSz size = begin + end;
@@ -61,48 +61,51 @@ double Median(const vector<int> &integers, VecSz begin, VecSz end)
     return size % 2 == 0 ? (integers[mid] + integers[mid - 1]) / 2.0 : integers[mid];
 }
 
-int Chapter03Homework02()
+int Homework_2()
 {
-	cout << "Integers: ";
+    cout << "Integers: ";
 
-	vector<int> integers;
-	int x;
-	while (cin >> x)
-	    integers.push_back(x);
+    vector<int> integers;
+    int x;
+    while (cin >> x)
+        integers.push_back(x);
 
-	if (integers.size() == 0) {
+    if (integers.size() == 0)
+    {
         cout << endl << "No integers!" << endl;
         return 1;
-	}
+    }
 
-	sort(integers.begin(), integers.end());
+    sort(integers.begin(), integers.end());
 
-	VecSz mid = integers.size() / 2;
-	VecSz lower_half_end;
-	VecSz upper_half_begin;
+    VecSz mid = integers.size() / 2;
+    VecSz lower_half_end;
+    VecSz upper_half_begin;
 
-	if (integers.size() % 2 != 0) {
+    if (integers.size() % 2 != 0)
+    {
         lower_half_end = mid;
         upper_half_begin = mid + 1;
-	} else {
+    }
+    else
+    {
         lower_half_end = mid;
-        upper_half_begin = mid;
-	}
+        upper_half_begin = mid - 1;
+    }
 
-	cout << "Q1" << endl;
-	cout << Median(integers, 0, lower_half_end) << endl;
+    cout << "Q1" << endl;
+    cout << Median(integers, 0, lower_half_end) << endl;
 
-	cout << "Q2" << endl;
-	cout << Median(integers, 0, integers.size()) << endl;
+    cout << "Q2" << endl;
+    cout << Median(integers, 0, integers.size()) << endl;
 
-	cout << "Q3" << endl;
-	cout << Median(integers, upper_half_begin, integers.size()) << endl;
+    cout << "Q3" << endl;
+    cout << Median(integers, upper_half_begin, integers.size()) << endl;
 
     return 0;
 }
 
-
-int Chapter03Homework03()
+int Homework_3()
 {
     typedef vector<string>::size_type vec_sz;
 
@@ -111,31 +114,35 @@ int Chapter03Homework03()
     vector<string>  words;
     vector<int>     counts;
 
-    while (cin >> s) {
+    while (cin >> s)
+    {
         bool found = false;
-        for (vec_sz i = 0; i < words.size(); ++i) {
-            if (s == words[i]) {
+        for (vec_sz i = 0; i < words.size(); ++i)
+        {
+            if (s == words[i])
+            {
                 ++counts[i];
                 found = true;
             }
         }
 
-        //ä¸å­˜åœ¨
-        if (!found) {
+        //²»´æÔÚ
+        if (!found)
+        {
             words.push_back(s);
             counts.push_back(1);
         }
     }
 
     for (vec_sz i = 0; i < words.size(); ++i)
-        cout << words[i] << " appeared " 
-             << counts[i] << " times" 
+        cout << words[i] << " appeared "
+             << counts[i] << " times"
              << endl;
 
     return 0;
 }
 
-int Chapter03Homework04()
+int Homework_4()
 {
     typedef string::size_type str_sz;
 
@@ -147,20 +154,23 @@ int Chapter03Homework04()
     cout << "Words: ";
     string s;
 
-    while (cin >> s) {
-        if (longest_length == 0 || s.size() > longest_length) {
+    while (cin >> s)
+    {
+        if (longest_length == 0 || s.size() > longest_length)
+        {
             longest = s;
             longest_length = s.size();
-        } 
+        }
 
-        if (shortest_length == 0 || s.size() < shortest_length) {
+        if (shortest_length == 0 || s.size() < shortest_length)
+        {
             shortest = s;
             shortest_length = s.size();
         }
     }
 
-    cout << "Longest: " << longest << endl;
-    cout << "Shortest: " << shortest << endl;
+    cout << "longest: " << longest << endl;
+    cout << "shortest: " << shortest << endl;
 
     return 0;
 
@@ -168,13 +178,14 @@ int Chapter03Homework04()
 
 #define NUM_HOMEWORK 2
 
-int Chapter03Homework05()
+int Homework_5()
 {
     vector<string> names;
     vector<double> final_grades;
     bool done = false;
 
-    while (!done) {
+    while (!done)
+    {
         cout << "Please enter your first name: ";
         string name;
         cin >> name;
@@ -192,7 +203,8 @@ int Chapter03Homework05()
         double  sum = 0;
 
         double  x;
-        while (count < NUM_HOMEWORK) {
+        while (count < NUM_HOMEWORK)
+        {
             ++count;
             cin >> x;
             sum += x;
@@ -209,7 +221,8 @@ int Chapter03Homework05()
             done = true;
     }
 
-    for (vector<string>::size_type i = 0; i < names.size(); ++i) {
+    for (vector<string>::size_type i = 0; i < names.size(); ++i)
+    {
         streamsize prec = cout.precision();
         cout << names[i] << "'s final grade is " << setprecision(3)
             << final_grades[i]
@@ -218,4 +231,4 @@ int Chapter03Homework05()
 
     return 0;
 }
-#endif //__CHAPTER_03_MED_H__
+}

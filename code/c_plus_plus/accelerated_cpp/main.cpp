@@ -2,27 +2,17 @@
 
 #include <iostream>
 
-#include "chapter02/chapter_02_greeting.hpp"
-#include "chapter03/chapter_03_med.hpp"
+#include "chapter02/ch_2.hpp"
+#include "chapter03/ch_3.hpp"
 #include "chapter04/chapter04.hpp"
-
-using namespace std;
 
 int main()
 {
-    std::cout << "test begin ..." << endl;
+    std::cout << "==================Hello World!==================" << std::endl;
 
-    //chapter02
-    //Chapter02Greeting();
+    chapter_02::ch_2();
 
-    //chapter03
-    //Chapter03Med();
-    //Chapter03Homework05();
+    std::cout << "===Quietly try and amaze everyone's sentences===" << std::endl;
 
-    //chapter04
-    //Chapter04::testChapter04();
-    //Chapter04::testChapter04Homework03();
-
-    std::cout << "test end ..." << endl;
     return 0;
 }

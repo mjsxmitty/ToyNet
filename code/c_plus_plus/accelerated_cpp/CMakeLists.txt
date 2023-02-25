@@ -6,8 +6,10 @@ enable_testing()
 
 add_executable(accelerated_cpp 
                 main.cpp
-                chapter02/chapter_02_greeting.hpp
-                chapter03/chapter_03_med.hpp
+                chapter02/ch_2.hpp
+                chapter02/chapter_02.h chapter02/chapter_02.cpp
+                chapter03/ch_3.hpp
+                chapter03/chapter_03.h chapter03/chapter_03.cpp
                 chapter04/chapter04_student_info.h chapter04/chapter04_student_info.cpp
                 chapter04/chapter04_grade.h chapter04/chapter04_grade.cpp
                 chapter04/chapter04_median.h chapter04/chapter04_median.cpp
