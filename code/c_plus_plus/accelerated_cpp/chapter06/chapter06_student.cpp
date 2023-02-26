@@ -1,6 +1,6 @@
 
-#include "../chapter04/chapter04_grade.h"
-#include "../chapter04/chapter04_median.h"
+#include "../chapter_04/grade.h"
+#include "../chapter_04/median.h"
 #include "chapter06_student.h"
 
 #include <algorithm>
@@ -11,17 +11,17 @@ using std::accumulate;
 using std::back_inserter;
 using std::vector;
 
-using Chapter04::StudentInfo;
+using chapter_04::StudentInfo;
 
 namespace Chapter06
 {
     double GradeAux(const StudentInfo &s)
     {
         try {
-            return Chapter04::Grade(s);
+            return chapter_04::Grade(s);
         } catch(const std::exception& e) {
             //std::cerr << e.what() << '\n';
-            return Chapter04::Grade(s.midterm, s.final, 0);
+            return chapter_04::Grade(s.midterm, s.final, 0);
         }
     }
 
@@ -29,7 +29,7 @@ namespace Chapter06
     {   
         vector<double> ret;
         transform(students.begin(), students.end(), back_inserter(ret), GradeAux);
-        return Chapter04::Median(ret);
+        return chapter_04::Median(ret);
     }
 
     double Average(const vector<double>& v)
@@ -39,13 +39,13 @@ namespace Chapter06
 
     double AverageGrade(const StudentInfo& s)
     {
-        return Chapter04::Grade(s.midterm, s.final, Average(s.homework));
+        return chapter_04::Grade(s.midterm, s.final, Average(s.homework));
     }
 
     double AverageAnalysis(const vector<StudentInfo>& students)
     {
         vector<double> ret;
         transform(students.begin(), students.end(), back_inserter(ret), AverageGrade);
-        return Chapter04::Median(ret);
+        return chapter_04::Median(ret);
     }
 } // namespace Chapter06

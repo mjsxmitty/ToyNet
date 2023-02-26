@@ -6,12 +6,18 @@
 
 namespace chapter_03 {
 
-void ch_3()
+void ch_03()
 {
 
-}
+    CalcStudentGrade();
+    Homework_2();
+    Homework_3();
+    Homework_4();
+    Homework_5();
 
 }
+
+} // namespace chapter_03 
 
 
 #endif

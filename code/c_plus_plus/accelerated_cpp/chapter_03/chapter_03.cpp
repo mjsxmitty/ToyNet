@@ -36,8 +36,7 @@ int CalcStudentGrade()
     if (size == 0)
     {
         cout << endl << "You must enter your grades.  "
-                        "Please try again."
-                     << endl;
+                        "Please try again.\n";
         return -1;
     }
 
@@ -126,7 +125,7 @@ int Homework_3()
             }
         }
 
-        //²»´æÔÚ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (!found)
         {
             words.push_back(s);
@@ -136,8 +135,8 @@ int Homework_3()
 
     for (vec_sz i = 0; i < words.size(); ++i)
         cout << words[i] << " appeared "
-             << counts[i] << " times"
-             << endl;
+                << counts[i] << " times"
+                << endl;
 
     return 0;
 }
@@ -231,4 +230,5 @@ int Homework_5()
 
     return 0;
 }
-}
+
+}   // namespace chapter_03 

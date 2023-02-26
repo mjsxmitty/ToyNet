@@ -13,7 +13,6 @@ using namespace std;
 
 namespace chapter_03 {
 
-
 int CalcStudentGrade();
 
 typedef vector<int>::size_type VecSz;
@@ -23,6 +22,7 @@ int Homework_2();
 int Homework_3();
 int Homework_4();
 int Homework_5();
-}
+
+}   // namespace chapter_03 
 
 #endif //__ACCELERATED_CPP_CHAPTER_3_H__

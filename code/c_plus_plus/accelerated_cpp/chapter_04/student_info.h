@@ -1,13 +1,13 @@
 
 
-#ifndef __STUDENT_INFO_H__
-#define __STUDENT_INFO_H__
+#ifndef __ACCELERATED_CPP_STUDENT_INFO_H__
+#define __ACCELERATED_CPP_STUDENT_INFO_H__
 
 #include <iostream>
 #include <string>
 #include <vector>
 
-namespace Chapter04
+namespace chapter_04
 {
 struct StudentInfo
 {
@@ -16,20 +16,18 @@ struct StudentInfo
     std::vector<double> homework;
 };
 
+bool Compare(const StudentInfo &, const StudentInfo &);
+std::istream& ReadHw(std::istream &, std::vector<double> &);
+
 struct StudentInfoHw
 {
     std::string     name;
     double          grade;
 };
 
-bool Compare(const StudentInfo &, const StudentInfo &);
 std::istream& Read(std::istream &, StudentInfo &);
-std::istream& ReadHw(std::istream &, std::vector<double> &);
 
-} // namespace Chapter04
-
+} // namespace chapter_04
 
 
-
-
-#endif //__STUDENT_INFO_H__
+#endif //__ACCELERATED_CPP_STUDENT_INFO_H__

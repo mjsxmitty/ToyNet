@@ -7,12 +7,12 @@
 
 namespace chapter_02 {
 
-void ch_2()
+void ch_02()
 {
     Greeting();
 }
 
-}
+} // namespace chapter_02
 
 
 #endif // __ACCELERATED_CPP_CHAPTER_2_HPP__

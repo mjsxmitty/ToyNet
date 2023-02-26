@@ -16,7 +16,7 @@ int Greeting()
 
     const string greeting = "Hello " + name + "!";
 
-    cout <<"Please enter pad: ";        // ¿Õ¸ñÊý
+    cout <<"Please enter pad: ";        // ï¿½Õ¸ï¿½ï¿½ï¿½
     int pad;
     cin >> pad;
 
@@ -54,4 +54,4 @@ int Greeting()
     return 0;
 }
 
-}
+} // namespace chapter_02
