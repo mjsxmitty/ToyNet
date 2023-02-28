@@ -13,7 +13,7 @@ double Grade(double, double, const std::vector<double>&);
 double Grade(const StudentInfo &);
 
 bool FGrade(const StudentInfo &);
-
+bool PGrade(const StudentInfo &);
 } // namespace chapter_04
 
 

@@ -35,4 +35,9 @@ bool FGrade(const StudentInfo &s)
     return Grade(s) < SCORE;
 }
 
+bool PGrade(const StudentInfo &s)
+{
+    return !FGrade(s);
+}
+
 } // namespace chapter_04

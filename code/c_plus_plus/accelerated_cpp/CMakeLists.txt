@@ -17,8 +17,9 @@ add_executable(accelerated
                 chapter_04/median.h chapter_04/median.cpp
                 chapter_05/extract_fails.h chapter_05/extract_fails.cpp
                 chapter_05/str.h chapter_05/str.cpp
-                chapter06/chapter06_str.h chapter06/chapter06_str.cpp
-                chapter06/chapter06_student.h chapter06/chapter06_student.cpp
+                chapter_06/ch_06.hpp
+                chapter_06/str.h chapter_06/str.cpp
+                chapter_06/student.h chapter_06/student.cpp
                 chapter11/chapter11_vec.h chapter11/chapter11_vec.cpp
                 chapter12/chapter12_str.h chapter12/chapter12_str.cpp)
 
