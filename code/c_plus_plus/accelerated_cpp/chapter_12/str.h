@@ -2,7 +2,7 @@
 #ifndef __CHAPTER12_STR_H__
 #define __CHAPTER12_STR_H__
 
-#include "../chapter_11/Vec.hpp"
+#include "../chapter_11/vec.hpp"
 
 #include <iostream>
 #include <algorithm>
@@ -14,6 +14,8 @@ namespace chapter_12
 
 class Str
 {
+    friend std::ostream& operator<<(std::ostream &, const Str&);
+    friend std::istream& operator>>(std::istream &, Str &);
 public:
     typedef chapter_11::Vec<char>::size_type size_type;
 
@@ -26,10 +28,27 @@ public:
 public:
     char& operator[](size_type i) { return data[i]; }
     const char& operator[](size_type i) const { return data[i]; }
+
+    size_type Size() const { return data.Size(); }
+public:
+    Str& operator+=(const Str &s)
+    {
+        std::copy(s.data.Begin(), s.data.End(), std::back_inserter(data));
+        return *this;
+    }
+
+    operator void*()
+    {
+        return data.Begin();
+    }
 private:
     chapter_11::Vec<char>   data;
 };
 
-} // namespace chapter12
+std::ostream& operator<<(std::ostream &, const Str&);
+std::istream& operator>>(std::istream &, Str &);
+Str operator+(const Str &lhs, const Str &rhs);
+
+} // namespace chapter_12
 
 #endif //__CHAPTER12_STR_H__

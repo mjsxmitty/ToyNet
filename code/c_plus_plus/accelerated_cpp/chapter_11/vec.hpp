@@ -34,7 +34,8 @@ public:
     iterator        End() { return limit; }
     const_iterator  End() const { return limit; }
 
-    void PushBack(const T &val);
+    void Clear() { UnCreate(); }
+    void push_back(const T &val);
 private:
     void Create();
     void Create(size_type n, const T &val);
@@ -63,12 +64,12 @@ Vec<T>& Vec<T>::operator=(const Vec &rhs)
 }
 
 template<typename T>
-void Vec<T>::PushBack(const T &val)
+void Vec<T>::push_back(const T &val)
 {
     if (avail == limit)
         Grow();
 
-    UncheckedAppend();
+    UncheckedAppend(val);
 }
 
 template<typename T>
@@ -102,7 +103,7 @@ void Vec<T>::UnCreate()
         {
             Alloc.destroy(--it);
         }
-        Alloc.destroy(data, limit - data);
+        Alloc.deallocate(data, limit - data);
     }
     data = avail = limit = 0;
 }
@@ -110,7 +111,7 @@ void Vec<T>::UnCreate()
 template<typename T>
 void Vec<T>::Grow()
 {
-    size_type new_size = max(2 * (limit - data), ptrdiff_t(1));
+    size_type new_size = std::max(2 * (limit - data), ptrdiff_t(1));
     iterator new_data = Alloc.allocate(new_size);
     iterator new_avail = std::uninitialized_copy(data, avail, new_data);
 
