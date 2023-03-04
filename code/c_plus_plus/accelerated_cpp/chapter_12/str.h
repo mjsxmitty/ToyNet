@@ -1,23 +1,21 @@
 
-
 #ifndef __CHAPTER12_STR_H__
 #define __CHAPTER12_STR_H__
 
-#include "../chapter11/chapter11_vec.h"
+#include "../chapter_11/Vec.hpp"
 
 #include <iostream>
 #include <algorithm>
 #include <string>
 #include <string.h>
 
-using chapter11::Vec;
-
-namespace chapter12
+namespace chapter_12
 {
+
 class Str
 {
 public:
-    typedef Vec<char>::size_type size_type;
+    typedef chapter_11::Vec<char>::size_type size_type;
 
     Str(){}
     Str(size_type n, char c) : data(n, c){}
@@ -25,12 +23,13 @@ public:
 
     template<typename In>
     Str(In b, In e) { std::copy(b, e, std::back_inserter(data)); }
+public:
+    char& operator[](size_type i) { return data[i]; }
+    const char& operator[](size_type i) const { return data[i]; }
 private:
-    Vec<char>   data;
-};     
+    chapter_11::Vec<char>   data;
+};
+
 } // namespace chapter12
-
-
-
 
 #endif //__CHAPTER12_STR_H__

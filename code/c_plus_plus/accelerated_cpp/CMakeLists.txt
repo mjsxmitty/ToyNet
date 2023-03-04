@@ -23,7 +23,7 @@ add_executable(accelerated
                 chapter_07/ch_07.hpp
                 chapter_07/chapter_07.h chapter_07/chapter_07.cpp
                 chapter_09/student_info.h chapter_09/student_info.cpp
-                chapter_11/vec.h chapter_11/vec.cpp
+                chapter_11/vec.hpp
                 chapter_12/str.h chapter_12/str.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
