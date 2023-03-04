@@ -10,9 +10,11 @@
 namespace chapter_06
 {
 
+typedef double (*Analysis)(const std::vector<chapter_04::StudentInfo> &);
+
 bool DidAllHW(const chapter_04::StudentInfo &s);
 void WriteAnalysis(std::ostream &os, const std::string &name, 
-                    double (*Analysis)(const std::vector<chapter_04::StudentInfo> &),
+                    Analysis,
                     std::vector<chapter_04::StudentInfo> &did,
                     std::vector<chapter_04::StudentInfo> &didnt);
 double MedianAnalysis(const std::vector<chapter_04::StudentInfo> &students);

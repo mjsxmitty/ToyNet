@@ -12,9 +12,6 @@ using std::search;
 
 namespace chapter_06
 {
-bool IsSpace(char c) { return isspace(c); }
-
-bool NotSpace(char c) { return !IsSpace(c); }
 
 vector<string> Split(const string& str)
 {
