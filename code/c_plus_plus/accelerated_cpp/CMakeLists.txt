@@ -27,7 +27,12 @@ add_executable(accelerated
                 chapter_12/str.h chapter_12/str.cpp
                 chapter_13/core.h chapter_13/core.cpp
                 chapter_13/grad.h chapter_13/grad.cpp
-                chapter_13/student_info.h chapter_13/student_info.cpp)
+                chapter_13/student_info.h chapter_13/student_info.cpp
+                chapter_14/handle.hpp
+                chapter_14/ref_handle.hpp
+                chapter_14/ptr.hpp
+                chapter_14/student_info.h chapter_14/student_info.cpp
+                chapter_14/str.h chapter_14/str.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

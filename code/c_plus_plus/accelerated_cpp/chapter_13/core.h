@@ -19,8 +19,9 @@ public:
     virtual std::istream &Read(std::istream &in);
     virtual double Grade() const;
     virtual void Regrade(double d, double = 0) { final_ = d; }
-protected:
+public:
     virtual Core* clone() { return new Core(*this); }
+protected:
     std::istream& ReadCommon(std::istream &in);
     double              midterm_, final_;
     std::vector<double> homework_;
