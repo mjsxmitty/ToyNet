@@ -7,9 +7,9 @@
 
 int main(int argc, char **argv)
 {
-    printf("test begin...\n");
+    printf("==================Hello World!==================\n");
 
     ch_01(argc, argv);
 
-    printf("test end...\n");
+    printf("===Quietly try and amaze everyone's sentences===\n");
 }
