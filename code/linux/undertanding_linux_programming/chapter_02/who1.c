@@ -3,11 +3,8 @@
  * 测试读文件内容 
  */
 
-#ifndef __CHAPTER02_WHO_H__
-#define __CHAPTER02_WHO_H__
+#include "who1.h"
 
-
-#include <utmp.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -15,10 +12,7 @@
 
 #define SHOWHOST
 
-void ShowInfo(struct utmp *);
-void ShowTime(long);
-
-int Who()
+int who1()
 {
     struct utmp current_record;
     int         utmp_fd;
@@ -33,7 +27,6 @@ int Who()
         ShowInfo(&current_record);
 
     close(utmp_fd);
-    
     return 0;
 }
 
@@ -62,5 +55,3 @@ void ShowInfo(struct utmp *ut_buf)
     printf("\n");        
 }
 
-
-#endif //__CHAPTER02_WHO_H__

@@ -9,7 +9,8 @@ int main(int argc, char **argv)
 {
     printf("==================Hello World!==================\n");
 
-    ch_01(argc, argv);
-
+    //ch_01(argc, argv);
+    ch_02(argc, argv);
+    
     printf("===Quietly try and amaze everyone's sentences===\n");
 }

@@ -3,9 +3,6 @@
  * 读写文件
  */
 
-#ifndef __CHAPTER02_CP_H__
-#define __CHAPTER02_CP_H__
-
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -13,10 +10,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define BUFF_SIZE   4096
+#define BUFF_SIZE   4096    //4k
 #define COPY_MODE   0644    
 
-int Cp(int ac, char **av)
+int cp(int ac, char **av)
 {
     int     in_fd, out_fd, n_chars;
     char    buf[BUFF_SIZE];
@@ -62,5 +59,3 @@ int Cp(int ac, char **av)
     return 0;   
 }
 
-
-#endif //__CHAPTER02_WHO_H__

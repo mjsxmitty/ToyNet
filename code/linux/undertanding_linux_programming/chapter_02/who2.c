@@ -4,9 +4,6 @@
  * 缓冲读文件
 */
 
-#ifndef __CHAPTER02_WHO2_H__
-#define __CHAPTER02_WHO2_H__
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -14,7 +11,7 @@
 #include <utmp.h>
 #include <unistd.h>
 
-#include "who.h"
+#include "who1.h"
 
 #define CACHE_NUM   16
 #define UTMP_SIZE   (sizeof(struct utmp))
@@ -81,4 +78,3 @@ int testCacheWho()
     }
     
 }
-#endif //__CHAPTER02_WHO2_H__
