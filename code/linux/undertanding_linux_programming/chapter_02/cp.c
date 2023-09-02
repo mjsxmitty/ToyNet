@@ -13,6 +13,12 @@
 #define BUFF_SIZE   4096    //4k
 #define COPY_MODE   0644    
 
+void oops(char* s1, char* s2) {
+    fprintf(stderr, "ERROR: %s\n", s1);
+    perror(s2);
+    exit(1);
+}
+
 int cp(int ac, char **av)
 {
     int     in_fd, out_fd, n_chars;
