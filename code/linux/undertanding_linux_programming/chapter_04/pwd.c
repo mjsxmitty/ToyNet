@@ -21,7 +21,7 @@ void print_path_to(ino_t this_node)
 
     if (get_inode("..") != this_node) {
         chdir("..");
-        inum_to_name(this_node, its_name, BUFF_SIZE);       // 获取当前目录
+        inum_to_name(this_node, its_name, BUFF_SIZE);       // 鑾峰彇褰撳墠鐩綍
         my_node = get_inode(".");
         print_path_to(my_node);
         printf("/%s", its_name);

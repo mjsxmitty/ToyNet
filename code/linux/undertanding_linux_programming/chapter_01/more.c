@@ -7,6 +7,9 @@
 
 void More(int argc, char **argv)
 {
+    // printf("cnt:%d\n", argc);
+    // return;
+
     FILE    *fp;
     if (argc == 1)
         DoMore(stdin);
