@@ -9,8 +9,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <time.h>
+#include <stdlib.h>
 
-#define SHOWHOST
+#define SHOW_HOST
 
 int who1()
 {
@@ -48,10 +49,12 @@ void ShowInfo(struct utmp *ut_buf)
     //printf("%10ld", ut_buf->ut_time);
     ShowTime(ut_buf->ut_time);
     printf(" ");
-#ifdef SHOWHOST
+
+#ifdef SHOW_HOST
     if (ut_buf->ut_host[0] != '\0')
         printf("(%s)", ut_buf->ut_host);
 #endif
+
     printf("\n");        
 }
 

@@ -24,25 +24,21 @@ int cp(int ac, char **av)
     int     in_fd, out_fd, n_chars;
     char    buf[BUFF_SIZE];
 
-    //printf("%d, %s", ac, av);
     if (ac != 3) {
         fprintf(stderr, "Usage: %s source destination.\n", *av);
         exit(-1);
     }
     
-    //printf("open source .. ");
     if ((in_fd = open(av[1], O_RDONLY)) == -1) {
         fprintf(stderr, "open source file %s error.\n", av[1]);
         exit(-1);
     }
 
-    //printf("create dest .. ");
     if ((out_fd = creat(av[2], COPY_MODE)) == -1) {
         fprintf(stderr, "create destination %s file error.\n", av[2]);
         exit(-1);
     }
     
-    //printf("read and write .. ");
     while ((n_chars = read(in_fd, buf, BUFF_SIZE)) > 0) {
         if (write(out_fd, buf, n_chars) != n_chars) {
             fprintf(stderr, "write file  content error.\n");
@@ -50,13 +46,11 @@ int cp(int ac, char **av)
         }
     }
     
-    //printf("read and write .. ");
     if (n_chars == -1) {
         fprintf(stderr, "read file content error.\n");
         exit(-1);
     }
 
-    //printf("close .. ");
     if (close(in_fd) == -1 || close(out_fd) == -1) {
         fprintf(stderr, "close file error.\n");
         exit(-1);

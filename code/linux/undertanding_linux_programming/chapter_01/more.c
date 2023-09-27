@@ -32,17 +32,17 @@ void DoMore(FILE *fp)
     int     num_of_lines = 0;
     int     reply = 0;
 
-    FILE *fp_tty = fopen("/dev/tty2", "r");
+    FILE *fp_tty = fopen("/dev/tty", "r");
     if (fp_tty == NULL)
         exit(1);
 
     while (fgets(line, LINE_LEN, fp)) {
-
         if (num_of_lines == PAGE_LEN) {
-            
+
             reply = SeeMore(fp_tty);
             if (reply == 0)
                 break;
+
             printf("reply: %d", reply);
             num_of_lines -= reply;
         }

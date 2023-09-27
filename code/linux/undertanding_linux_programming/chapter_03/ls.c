@@ -1,7 +1,4 @@
 
-#ifndef __CHAPTER03_LS_H__
-#define __CHAPTER03_LS_H__
-
 #include <sys/types.h>
 #include <dirent.h>
 #include <stdio.h>
@@ -10,41 +7,55 @@
 #include <pwd.h>
 #include <grp.h>
 
+#include "ls.h"
+
 void DoLs(char *dir_name)
 {
     DIR             *dir_ptr;
     struct dirent   *dir_entp;
 
     if ((dir_ptr = opendir(dir_name)) == NULL) {
-        perror("open dir error.");
+        fprintf(stderr, "open dir:%s failed.", dir_name);
+        perror(dir_name);
     } else {
         while ((dir_entp = readdir(dir_ptr)) != NULL) {
-            //printf("%s\n", dir_entp->d_name);
-            DoStat(dir_entp->d_name);
+            printf("name:%s\n", dir_entp->d_name);
+            //DoStat(dir_entp->d_name);
         }
         closedir(dir_ptr);
     }
-    
 }
 
-
-void testLs(int ac, char **av)
+void DoStat(char *file_name)
 {
-    if (ac == 1) 
-        DoLs(".");
-    else {
-        while (--ac) {
-            printf("%s:\n", * ++av);
-            DoLs(*av);
-        }
+    struct stat info;
+    if (stat(file_name, &info) != -1) {
+        ShowStatInfo(file_name, &info);
+    } else {
+        perror(file_name);
     }
+    return ;
+}
+
+void ShowStatInfo(char *file_name, struct stat *buf)
+{
+    char str[11];
+    ModeToLetters(buf->st_mode, str);
+    printf("%s ", str);
+
+    printf("%d ", (int)buf->st_nlink);
+    printf("%-8s ", UidToName(buf->st_uid));
+    printf("%-8s ", GidToName(buf->st_gid));
+    printf("%8ld ", (long)buf->st_size);
+    printf("%.12s ", 4 + ctime(&buf->st_mtime));
+    printf("%s\n", file_name);
 }
 
 void ModeToLetters(int mode, char *str)
 {
     strcpy(str, "----------");
     if (S_ISDIR(mode)) str[0] = 'd';
-    if (S_ISCHR(mode)) str[0] = 'C';
+    if (S_ISCHR(mode)) str[0] = 'c';
     if (S_ISBLK(mode)) str[0] = 'b';
 
     if (mode & S_IRUSR) str[1] = 'r';
@@ -63,7 +74,7 @@ void ModeToLetters(int mode, char *str)
 char* UidToName(uid_t uid)
 {
     struct passwd *pwd_ptr;
-    static char num_str[11];
+    static char num_str[10];
 
     if ((pwd_ptr = getpwuid(uid)) == NULL) {
         sprintf(num_str, "%d", uid);
@@ -76,7 +87,7 @@ char* UidToName(uid_t uid)
 char* GidToName(gid_t gid)
 {
     struct group *gid_ptr;
-    static char num_str[11];
+    static char num_str[10];
 
     if ((gid_ptr = getgrgid(gid)) == NULL) {
         sprintf(num_str, "%d", gid);
@@ -86,31 +97,6 @@ char* GidToName(gid_t gid)
     }
 }
 
-void ShowStatInfo(char *file_name, struct stat *buf)
-{
-    char str[11];
-    ModeToLetters(buf->st_mode, str);
-    printf("%s ", str);
 
-    printf("%d ", (int)buf->st_nlink);
-    printf("%-8s ", UidToName(buf->st_uid));
-    printf("%-8s ", GidToName(buf->st_gid));
-    printf("%8ld ", (long)buf->st_size);
-    printf("%.12s ", 4 + ctime(&buf->st_mtime));
-    printf("%s\n", file_name);
-}
 
-void DoStat(char *file_name)
-{
-    struct stat info;
-    if (stat(file_name, &info) != -1) {
-        ShowStatInfo(file_name, &info);
-        //return -1;
-    } else {
-        perror(file_name);
-        return ;
-    }
-    return ;
-}
 
-#endif //__CHAPTER03_LS_H__
