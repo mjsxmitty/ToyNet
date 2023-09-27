@@ -11,7 +11,7 @@
 #include <utmp.h>
 #include <unistd.h>
 
-#include "who1.h"
+#include "who2.h"
 
 #define CACHE_NUM   16
 #define UTMP_SIZE   (sizeof(struct utmp))
@@ -65,7 +65,7 @@ int CloseUtmp()
     
 }
 
-int testCacheWho()
+int Who2()
 {
     struct utmp *ut_buf;
     if (OpenUtmp(UTMP_FILE) == -1) {

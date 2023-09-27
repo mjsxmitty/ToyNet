@@ -20,7 +20,7 @@ int who1()
 
     if ((utmp_fd = open(UTMP_FILE, O_RDONLY)) == -1) {
         perror(UTMP_FILE);
-        _exit(-1);
+        exit(-1);
     }
         
     while (read(utmp_fd, &current_record, read_size) == read_size)

@@ -32,33 +32,33 @@ int cp(int ac, char **av)
     
     //printf("open source .. ");
     if ((in_fd = open(av[1], O_RDONLY)) == -1) {
-        fprintf(stderr, "Open source file %s error.\n", av[1]);
+        fprintf(stderr, "open source file %s error.\n", av[1]);
         exit(-1);
     }
 
     //printf("create dest .. ");
     if ((out_fd = creat(av[2], COPY_MODE)) == -1) {
-        fprintf(stderr, "Create destination %s file error.\n", av[2]);
+        fprintf(stderr, "create destination %s file error.\n", av[2]);
         exit(-1);
     }
     
     //printf("read and write .. ");
     while ((n_chars = read(in_fd, buf, BUFF_SIZE)) > 0) {
         if (write(out_fd, buf, n_chars) != n_chars) {
-            fprintf(stderr, "Write file  content error.\n");
+            fprintf(stderr, "write file  content error.\n");
             exit(-1);
         }
     }
     
     //printf("read and write .. ");
     if (n_chars == -1) {
-        fprintf(stderr, "Read file content error.\n");
+        fprintf(stderr, "read file content error.\n");
         exit(-1);
     }
 
     //printf("close .. ");
     if (close(in_fd) == -1 || close(out_fd) == -1) {
-        fprintf(stderr, "Close file error.\n");
+        fprintf(stderr, "close file error.\n");
         exit(-1);
     }
 

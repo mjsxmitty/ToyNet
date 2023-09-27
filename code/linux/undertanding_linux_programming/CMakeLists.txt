@@ -8,7 +8,7 @@ add_executable(ulp
                 chapter_02/ch_02.h chapter_02/ch_02.c
                 chapter_02/who1.h chapter_02/who1.c
                 chapter_02/cp.h chapter_02/cp.c
-                chapter_02/who2.c
+                chapter_02/who2.h chapter_02/who2.c
                 chapter_03/ch_03.h
                 chapter_03/ls.c)
 
