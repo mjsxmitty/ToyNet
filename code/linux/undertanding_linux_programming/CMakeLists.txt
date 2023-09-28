@@ -12,7 +12,9 @@ add_executable(ulp
                 chapter_03/ch_03.h chapter_03/ch_03.c
                 chapter_03/ls.h chapter_03/ls.c
                 chapter_04/ch_04.h chapter_04/ch_04.c
-                chapter_04/pwd.h chapter_04/pwd.c)
+                chapter_04/pwd.h chapter_04/pwd.c
+                chapter_05/ch_05.h chapter_05/ch_05.c
+                chapter_05/play_again.h chapter_05/play_again.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
