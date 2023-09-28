@@ -41,13 +41,13 @@ void ShowStatInfo(char *file_name, struct stat *buf)
 {
     char str[11];
     ModeToLetters(buf->st_mode, str);
-    printf("%s ", str);
+    printf("%12s", str);
 
-    printf("%d ", (int)buf->st_nlink);
+    printf("%4d", (int)buf->st_nlink);
     printf("%-8s ", UidToName(buf->st_uid));
     printf("%-8s ", GidToName(buf->st_gid));
     printf("%8ld ", (long)buf->st_size);
-    printf("%.12s ", 4 + ctime(&buf->st_mtime));
+    //printf("%.12s ", 4 + ctime(&buf->st_mtime));
     printf("%s\n", file_name);
 }
 
