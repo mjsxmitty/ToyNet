@@ -10,7 +10,9 @@ add_executable(ulp
                 chapter_02/cp.h chapter_02/cp.c
                 chapter_02/who2.h chapter_02/who2.c
                 chapter_03/ch_03.h chapter_03/ch_03.c
-                chapter_03/ls.h chapter_03/ls.c)
+                chapter_03/ls.h chapter_03/ls.c
+                chapter_04/ch_04.h chapter_04/ch_04.c
+                chapter_04/pwd.h chapter_04/pwd.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
