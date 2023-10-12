@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-
-
 class MyClass
 {
 public:

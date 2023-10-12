@@ -98,7 +98,7 @@ void ch_2_2_1()
          << endl;
 }
 
-//extern int init1 = 1;   // 定义
+extern int init1 = 1;   // 定义
 extern int init2;       // 声明
 int init2 = 2;          // 定义
 int init3 = 3;
@@ -399,6 +399,7 @@ void ch_2_4_4()
         constexpr int *iptr = &g_ival;
         *iptr = 100;
         constexpr const int *jptr = &g_jval;
+        constexpr const int *jptr2 = &g_ival;
 
         //constexpr int i = 1024;
         //constexpr int *pi = &i;
@@ -439,7 +440,6 @@ void ch_2_5_1()
 
         using ptrd = double *;
         ptrd pdd = &dval;
-
     }
 
     /* 指针、常量和类型别名 */
