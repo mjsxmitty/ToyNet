@@ -14,7 +14,9 @@ public:
 public:
     void Clear(ScreenIndex);
 
-    ScreenIndex AddScreen(const Screen &);
+    ScreenIndex AddScreen(const Screen &s);
+
+
 private:
     std::vector<Screen>   screens_{Screen(10, 20, '*')};
 };

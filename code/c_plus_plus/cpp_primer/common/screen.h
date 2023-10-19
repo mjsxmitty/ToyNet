@@ -11,22 +11,22 @@ class Screen
 {
     friend class WindowMgr;
 public:
-    //typedef std::string::size_type  unsigned;
-    //using unsigned = std::string::size_type;
+    //typedef std::string::size_type  pos;
+    using pos = std::string::size_type;
 public:
     Screen() = default;
-    Screen(unsigned ht, unsigned wd, char c = '*') :
+    Screen(pos ht, pos wd, char c = '*') :
         height_(ht), width_(wd), contents_(ht * wd, c) {}
 public:
-    char        Get() const { return contents_[cursur_]; }
-    char        Get(unsigned ht, unsigned wd) const;
-    Screen&   Move(unsigned ht, unsigned wd);
+    char Get() const { return contents_[cursur_]; }
+    char Get(pos ht, pos wd) const;
+    Screen& Move(pos ht, pos wd);
 
-    int     GetAccessCtr() const { return access_ctr_; }
-    void    SomeNumber() const;
+    int GetAccessCtr() const { return access_ctr_; }
+    void SomeNumber() const;
 
-    Screen&   Set(char);
-    Screen&   Set(unsigned, unsigned, char);
+    Screen& Set(char);
+    Screen& Set(pos, pos, char);
 
     Screen& Display(std::ostream &os)
     {
@@ -41,41 +41,31 @@ public:
 private:
     void DoDisplay(std::ostream &os) const { os << contents_; }
 private:
-    unsigned             cursur_ = 0;
-    unsigned             height_ = 0;
-    unsigned             width_ = 0;
+    pos             cursur_ = 0;
+    pos             height_ = 0;
+    pos             width_ = 0;
     std::string     contents_;
     mutable size_t  access_ctr_ = 0;
 
 public:
-    /* 7.3.4 友元再探 */
-    //类之间的友元关系
-    friend class GZWindowMgr;
-
-    // 函数重载和友元
     friend std::ostream& StoreOn(std::ostream &, Screen &);
     //friend BitMap& StoreOn(BitMap &, Screen &);
-
-    //homework 7.33
-    unsigned Size() const;
 public:
-    // 7.4.1名字查找与作用域
-    // 成员定义中的普通块作用域的名字查找
-    void DummyFcn(unsigned height_)
+    pos Size() const;
+public:
+    void DummyFcn(pos height_)
     {
         cursur_ = width_ * height_;
         std::cout << cursur_ << std::endl;
     }
-    void DummyFcn2(unsigned height_)
+    void DummyFcn2(pos height_)
     {
         //cursur_ = width_ * this->height_;
         cursur_ = width_ * Screen::height_;
-        std::cout << cursur_ << std::endl;
     }
-    void DummyFcn3(unsigned height_);
+    void DummyFcn3(pos height_);
 
-    //当文件中名字的出现处对其进行解析
-    void SetHeight(unsigned);
+    void SetHeight(pos);
 
     // 7.6
     //Screen& Clear(char c = bkground_);
@@ -90,6 +80,6 @@ public:
     std::ostream os;
 };
 extern std::ostream& StoreOn(std::ostream &, Screen &);
-//extern BitMap& StoreOn(BitMap &, Screen &);
+extern BitMap& StoreOn(BitMap &, Screen &);
 
 #endif // __CPP_PRIMER_SCREEN_H__

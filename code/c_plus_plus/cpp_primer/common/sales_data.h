@@ -6,9 +6,9 @@
 #include <iostream>
 
 class SalesData;
-std::istream&   Read(std::istream &is, SalesData &item);              // >>
-std::ostream&   Print(std::ostream &os, SalesData &item);             // <<
-SalesData     Add(const SalesData& lhs, const SalesData &rhs);    //+
+std::istream&   Read(std::istream &is, SalesData &item);                // >>
+std::ostream&   Print(std::ostream &os, SalesData &item);               // <<
+SalesData     Add(const SalesData& lhs, const SalesData &rhs);          //+
 
 class SalesData
 {
@@ -18,9 +18,14 @@ class SalesData
     friend SalesData     Add(const SalesData& lhs, const SalesData &rhs);
 public:
     //SalesData() = default;
+    //SalesData(std::istream &is = std::cin);
+    //SalesData(const std::string &s = "") : book_no_(s) {}
     SalesData(const std::string &s, unsigned n, double p) :
         book_no_(s), units_sold_(n), revenue_(p) {}
-    //SalesData(std::istream &is = std::cin);
+
+    SalesData() : SalesData("", 0, 0){}
+    SalesData(std::string &s) : SalesData(s, 0, 0) {}
+    SalesData(std::istream &is) : SalesData() { Read(is, *this); }
 public:
     std::string Isbn() const { return book_no_; }
     SalesData& Combine(const SalesData &rhs);   // +=
@@ -31,14 +36,6 @@ private:
     unsigned int    units_sold_ = 0;
     double          revenue_ = 0.0;
 public:
-
-    // 7.5.2 委托构造函数
-    SalesData() : SalesData("", 0, 0){}
-    SalesData(std::string &s) : SalesData(s, 0, 0) {}
-    SalesData(std::istream &is) : SalesData() { Read(is, *this); }
-
-    /*************************************************************************/
-
     SalesData(const SalesData &) = default;
     SalesData& operator=(const SalesData &);
     ~SalesData() = default;

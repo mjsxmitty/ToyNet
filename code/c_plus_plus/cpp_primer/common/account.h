@@ -1,7 +1,7 @@
 
 
-#ifndef __GZ_ACCOUNT_H__
-#define __GZ_ACCOUNT_H__
+#ifndef __CPP_PRIMER_ACCOUNT_H__
+#define __CPP_PRIMER_ACCOUNT_H__
 
 #include <string>
 
@@ -28,4 +28,4 @@ private:
     double daily_tbl_[period_];
 };
 
-#endif // __GZ_ACCOUNT_H__
+#endif // __CPP_PRIMER_ACCOUNT_H__

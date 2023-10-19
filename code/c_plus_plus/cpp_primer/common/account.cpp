@@ -1,10 +1,9 @@
 
 
-#include "gz_account.h"
+#include "account.h"
 
 double GZAccount::interest_rate_ = InitRate();
 
-/***************************7.6*********************************/
 
 void GZAccount::Rate(double new_rate)
 {
@@ -27,8 +26,6 @@ void GZPractice_7_6()
     GZAccount *ac2 = &ac1;
     r = ac1.Rate();
     r = ac2->Rate();
-
-
 }
 
 
