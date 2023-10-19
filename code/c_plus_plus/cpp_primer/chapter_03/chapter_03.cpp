@@ -190,7 +190,7 @@ void ch_3_3_3()
 
 void hw_3_20()
 {
-    vector<int> vInt;
+    vector<int> vint;
     //int         iVal;
 
     srand((unsigned) time(NULL));
@@ -201,66 +201,78 @@ void hw_3_20()
     unsigned index = 0; 
     while (index < arr_size)
     {
-        vInt.push_back(rand() % NUM);
+        vint.push_back(rand() % NUM);
         index++;
     }
 
-    if (vInt.empty())
+    if (vint.empty())
     {
         cout << "容器内没有元素!" << endl;
         return;
     }
-    cout << vInt.size() << endl;
+    cout << vint.size() << endl;
 
     cout << "随机数组元素为: " << endl;
-    for (const auto &item : vInt)
+    for (const auto &item : vint)
     {
         cout << item << " ";
     }
     cout << endl;
 
-    cout << "相邻两项的和依次是: " << endl;
-    // for (decltype (vInt.size()) i = 0; i < vInt.size() - 1; i += 2)
-    // {
-    //     cout << vInt[i] + vInt[i + 1] << " ";
-    //     if ((i + 2) % 10 == 0)
-    //         cout << endl;
-    // }
-    for (auto it = vInt.cbegin(); it <= vInt.cend() - 1; it++)
+    cout << "(索引)相邻两项的和依次是: " << endl;
+    for (decltype (vint.size()) i = 0; i < vint.size() - 1; i += 2)
     {
-        cout << (*it + *(++it)) << " ";
-        if ((it - vInt.cbegin() + 1) % 10 == 0)
+        cout << vint[i] + vint[i + 1] << " ";
+        if ((i + 2) % 10 == 0)
             cout << endl;
     }
 
-    if (vInt.size() % 2 != 0)
-        //cout << vInt[vInt.size() - 1];
-        cout << *(vInt.cend() - 1);
+    if (vint.size() % 2 != 0)
+        cout << vint[vint.size() - 1];
     cout << endl;
 
-    cout << "首尾和依次是: " << endl;
-    // for (decltype (vInt.size()) i = 0; i < vInt.size() / 2; i++)
-    // {
-    //     cout << vInt[i] + vInt[vInt.size() - 1 - i] << " ";
-    //     if ((i + 1) % 5 == 0)
-    //         cout << endl;
-    // }
-    auto beg = vInt.begin();
-    auto end = vInt.end();
+    cout << "(迭代器)相邻两项的和依次是: " << endl;
+    for (auto it = vint.cbegin(); it <= vint.cend() - 1; it++)
+    {
+        cout << (*it + *(++it)) << " ";
+
+        if ((it - vint.cbegin() + 1) % 10 == 0)
+            cout << endl;
+    }
+
+    if (vint.size() % 2 != 0)
+        cout << *(vint.cend() - 1);
+    cout << endl;
+
+    cout << "(索引)首尾之和依次是: " << endl;
+    for (decltype (vint.size()) i = 0; i < vint.size() / 2; i++)
+    {
+        cout << vint[i] + vint[vint.size() - 1 - i] << " ";
+
+        if ((i + 1) % 5 == 0)
+            cout << endl;
+    }
+
+    //奇数个
+    if (vint.size() % 2 != 0)
+        cout << vint[vint.size() / 2];
+    cout << endl;
+
+    auto beg = vint.begin();
+    auto end = vint.end();
+    cout << "(迭代器)首尾之和依次是: " << endl;
     for (auto it = beg; it != beg + (end - beg) / 2; ++it)
     {
         cout << (*it + *(beg + (end - it) - 1)) << " ";
+
         if ((it - beg + 1) % 5 == 0)
             cout << endl;
     }
 
     //奇数个
-    if (vInt.size() % 2 != 0)
-        //cout << vInt[vInt.size() / 2];
+    if (vint.size() % 2 != 0)
         cout << *(beg + (end - beg) / 2);
     cout << endl;
-
-    return;
 }
 
 void ch_3_4()
