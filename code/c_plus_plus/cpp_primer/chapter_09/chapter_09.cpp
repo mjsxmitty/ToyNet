@@ -28,12 +28,13 @@ void ch_09()
 
     /* vector对象是如何增长的 */
     //ch_9_4();
+    //hw_9_39();
 
     /* 额外string操作 */
-    //ch_9_5();
+    ch_9_5();
 
     /* 容器适配器 */
-    ch_9_6();
+    //ch_9_6();
 }
 
 void ch_9_2()
@@ -69,7 +70,6 @@ void ch_9_2_4()
         //array<int, 5>   copy = digits;  //error大小不同
         array<int, 10> copy = digits;
         copy = digits;
-    //    copy = {0,1,2,3,4,5,6,7,8};
     //    for_each(copy.begin(), copy.end(), [](int i){ cout << i << ' ';});
     //    cout << endl << endl;
 
@@ -99,7 +99,18 @@ void ch_9_2_5()
         cout << *it1 << ", " << *it2 << endl;
         swap(svec1, svec2);
         cout << svec1.size() << ", " << svec2.size() << endl;
-        cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的容器
+        cout << *it1 << ", " << *it2 << endl;           // 指向交换之前的元素
+    }
+
+    {
+        array<string, 5> a1 = {"aaa", "aaa", "aaa"};
+        array<string, 5> a2 = {"b", "b", "b"};
+        auto it1 = a1.begin() + 2, it2 = a2.begin() + 2;
+        cout << a1.size() << ", " << a2.size() << endl;
+        cout << *it1 << ", " << *it2 << endl;
+        swap(a1, a2);
+        cout << a1.size() << ", " << a2.size() << endl;
+        cout << *it1 << ", " << *it2 << endl;           // 指向交换之后的元素
     }
 }
 
@@ -172,9 +183,6 @@ void hw_9_16()
          << endl;
 }
 
-/***************************************************************/
-/***************************9.3*********************************/
-
 /*
  * vector, list, deque, forward_list, array, string
  *
@@ -189,13 +197,13 @@ void ch_9_3()
     ch_9_3_1();
 
     /* 访问元素 */
-    ch_9_3_2();
+    //ch_9_3_2();
 
     /* 改变容器大小 */
-    ch_9_3_5();
+    //ch_9_3_5();
 
     /* 容器操作可能使迭代器失效 */
-    ch_9_3_6();
+    //ch_9_3_6();
 }
 
 void PrintVec(const vector<int> &vi)
@@ -211,9 +219,9 @@ void ch_9_3_1()
     list<int>   ilist = {1,2,3,4,5};
     vector<int> ivec;
 
-    ivec.insert(ivec.begin(), ilist.begin(), ilist.end());
+    auto it = ivec.insert(ivec.begin(), ilist.begin(), ilist.end());
     PrintVec(ivec);
-    cout << endl;
+    cout << "value:" << *it << endl;
     //ivec.push_front(1);
 
     // 插入范围元素
@@ -222,9 +230,9 @@ void ch_9_3_1()
     cout << endl;
 
     // 初始化列表
-    ivec.insert(ivec.begin(), {7,8,9});
+    auto it2 = ivec.insert(ivec.begin(), {7,8,9});
     PrintVec(ivec);
-    cout << endl;
+    cout << "value2:" << *it2 << endl;
 
     //ivec.insert(ivec.begin(), ivec.begin(), ivec.end());  // error
 
@@ -249,7 +257,6 @@ void ch_9_3_1()
     sales_data_vec.push_back(SalesData("test1", 2, 3));
 }
 
-/* 9.3.2 访问元素 */
 void ch_9_3_2()
 {
     list<string>   slist = {"aaa", "abc", "123"};
@@ -301,7 +308,6 @@ void ch_9_3_2()
     }
 }
 
-/* 9.3.3 删除元素*/
 void ch_9_3_3()
 {
     list<int> lst = {0,1,2,3,4,5,6,7,8,9};
@@ -524,10 +530,6 @@ void hw_9_31()
     for_each(iflist.begin(), iflist.end(), [](int i){cout << i << endl;});
 }
 
-/*****************************************************************/
-/***************************9.4*********************************/
-
-//vector对象是如何增长的
 void ch_9_4()
 {
     vector<int> ivec;
@@ -542,7 +544,7 @@ void ch_9_4()
          << endl;
 
     //ivec.reserve(25);
-    ivec.reserve(5);
+    ivec.reserve(5);        // 需求小于当前容量什么都不做
     cout << "ivec size: " << ivec.size()
          << ", capacity: " << ivec.capacity()
          << endl;
@@ -582,9 +584,6 @@ void hw_9_39()
          << ", capacity: " << ivec.capacity()
          << endl;
 }
-
-/***************************************************************/
-/***************************9.5*********************************/
 
 void ch_9_5()
 {
@@ -877,12 +876,6 @@ void hw_9_50()
     cout << "sum: " << sum << endl;
 }
 
-// TODO...
-// hw_9_51
-
-/***************************************************************/
-/***************************9.6*********************************/
-
 void ch_9_6()
 {
     // 定义适配器
@@ -907,12 +900,4 @@ void ch_9_6()
         istack.pop();
     }
 }
-
-//TODO ...
-// hw_9_52()
-
-
-
-
-
 

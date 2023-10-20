@@ -15,7 +15,7 @@ using namespace std;
 void ch_08()
 {
     /* IO 类 */
-    ch_8_1();
+    //ch_8_1();
 
     /* string 流 */
     ch_8_3();
@@ -24,9 +24,9 @@ void ch_08()
 void ch_8_1()
 {
     /* 条件状态 */
-    //ch_8_1_2();
+    ch_8_1_2();
 
-    hw_8_1();
+    //hw_8_1();
 }
 
 //条件状态
@@ -37,7 +37,6 @@ void Read()
 
 void Off()
 {
-    // clear带参数版本表示设置新的标志位
     cin.clear(cin.rdstate() & ~cin.failbit & ~cin.badbit);
 }
 
@@ -48,8 +47,8 @@ void ch_8_1_2()
     if (cin.bad())  cout << "cin's bad"     << endl;
     if (cin.fail()) cout << "cin's fail"    << endl;
     if (cin.eof())  cout << "cin's eof"     << endl;
+    auto old_state = cin.rdstate();
     cout << cin.rdstate() << endl;
-//    cout << cout.rdstate() << endl;
     cout << endl;
 
     Read();
@@ -59,9 +58,9 @@ void ch_8_1_2()
     if (cin.fail()) cout << "cin's fail"    << endl;
     if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
-//    cout << cout.rdstate() << endl;
     cout << endl;
 
+    cin.clear();
     Off();
     cout << "after off: " << endl;
     if (cin.good()) cout << "cin's good"    << endl;
@@ -69,7 +68,7 @@ void ch_8_1_2()
     if (cin.fail()) cout << "cin's fail"    << endl;
     if (cin.eof())  cout << "cin's eof"     << endl;
     cout << cin.rdstate() << endl;
-//    cout << cout.rdstate() << endl;
+    cin.setstate(old_state);
 }
 
 istream& ReadData(istream &in)
@@ -111,7 +110,7 @@ void ch_8_3()
 {
     ch_8_3_2();
 
-    hw_8_2();
+    //hw_8_2();
 }
 
 struct PersonInfo
@@ -159,9 +158,9 @@ ostream& Process(ostream &os, vector<PersonInfo> peoples)
         ostringstream formatted, bad_nums;
         for (const auto &nums : entry.phones)
             if (!Valid(nums))
-                bad_nums << " " << nums;
+                bad_nums << "-" << nums;
             else
-                formatted << " " << Format(nums);
+                formatted << "->" << Format(nums);
         
         if (bad_nums.str().empty())
             os << entry.name << " "
