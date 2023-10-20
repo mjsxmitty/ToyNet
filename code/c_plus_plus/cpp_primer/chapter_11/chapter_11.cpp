@@ -15,7 +15,7 @@
 #include <unordered_set>
 #include <unordered_map>
 
-#include "../common/gz_sales_data.h"
+#include "../common/sales_data.h"
 
 using namespace std;
 
@@ -167,14 +167,14 @@ void hw_11_9()
     }
 }
 
-bool CompareIsbn(const GZSalesData &lhs, const GZSalesData &rhs)
+bool CompareIsbn(const SalesData &lhs, const SalesData &rhs)
 {
     return lhs.Isbn().size() < rhs.Isbn().size();
 }
 
 void ch_11_2_2()
 {
-    //multiset<string, decltype(GZSalesData)*> bookstore(CompareIsbn);
+    //multiset<string, decltype(SalesData)*> bookstore(CompareIsbn);
 }
 
 typedef pair<string, string> Author;
@@ -513,19 +513,19 @@ void ch_11_3_6()
 /***************************************************************/
 /***************************11.4********************************/
 
-size_t Hasher(const GZSalesData &sd)
+size_t Hasher(const SalesData &sd)
 {
     return hash<string>()(sd.Isbn());
 }
 
-bool EqualOption(const GZSalesData &lhs, const GZSalesData &rhs)
+bool EqualOption(const SalesData &lhs, const SalesData &rhs)
 {
     return lhs.Isbn() == rhs.Isbn();
 }
 
-//using SDMultiset = unordered_multiset<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*>;
-typedef unordered_multiset<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultiset;
-typedef unordered_multimap<GZSalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultimap;
+//using SDMultiset = unordered_multiset<SalesData, decltype(Hasher)*, decltype(EqualOption)*>;
+typedef unordered_multiset<SalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultiset;
+typedef unordered_multimap<SalesData, decltype(Hasher)*, decltype(EqualOption)*> SDMultimap;
 SDMultiset book(100, Hasher, EqualOption);
 
 

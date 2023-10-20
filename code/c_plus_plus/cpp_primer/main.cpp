@@ -30,7 +30,7 @@ int main(int argc, char **argv)
     //ch_04();
     //ch_05();
     //ch_06();
-    //ch_07();
+    ch_07();
 
     /* C++ 标准库 */
     //ch_08();
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     //ch_13();
     //ch_14();
     //ch_15();
-    ch_16();
+    //ch_16();
 
     /* 高级主题 */
 

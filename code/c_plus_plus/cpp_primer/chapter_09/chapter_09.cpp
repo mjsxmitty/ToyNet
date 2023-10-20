@@ -2,7 +2,7 @@
 
 #include "chapter_09.h"
 //#include "../lib_common/sales_data.h"
-#include "../common/gz_sales_data.h"
+#include "../common/sales_data.h"
 
 #include <forward_list>
 #include <algorithm>
@@ -240,13 +240,13 @@ void ch_9_3_1()
     cout << endl;
 
     // 使用emplace操作
-    list<GZSalesData> sales_data_list;
+    list<SalesData> sales_data_list;
     sales_data_list.emplace_front("test", 1, 2);
     sales_data_list.emplace_back("test1", 2, 3);
     sales_data_list.emplace(sales_data_list.begin(), "test2", 2, 3);
 
-    vector<GZSalesData> sales_data_vec;
-    sales_data_vec.push_back(GZSalesData("test1", 2, 3));
+    vector<SalesData> sales_data_vec;
+    sales_data_vec.push_back(SalesData("test1", 2, 3));
 }
 
 /* 9.3.2 访问元素 */

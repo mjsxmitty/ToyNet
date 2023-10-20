@@ -2,19 +2,16 @@
 #include <string>
 
 #include "chapter_07.h"
-#include "../common/gz_screen.h"
-#include "../common/gz_sales_data.h"
-
-//#include "../lib_common/account.h"
-//#include "../lib_common/sales_data.h"
-//#include "../lib_common/screen.h"
-
-using namespace std;
+#include "../common/screen.h"
+#include "../common/sales_data.h"
 
 void ch_07()
 {
     /* 类的其他特性 */
-    ch_7_3();
+    //ch_7_3();
+
+    /*构造函数再探*/
+    ch_7_5();
 }
 
 void ch_7_3()
@@ -30,98 +27,159 @@ void ch_7_3_1()
 {
     /* 重载成员函数 */
     {
-        GZScreen my_screen;
+        Screen my_screen(10,10);
         char ch = my_screen.Get();
-        cout << ch << endl;
-        //ch = my_screen.Get(i, j);
-        cout << ch << endl;
+        std::cout << ch << std::endl;
+
+        ch = my_screen.Get(2, 3);
+        std::cout << ch << std::endl;
     }
 
+    /* 可变数据成员 */
     {
-        GZScreen my_screen;
+        Screen my_screen;
         my_screen.SomeNumber();
-        cout << my_screen.GetAccessCtr() << endl;
+        std::cout << my_screen.GetAccessCtr() << std::endl;
         my_screen.SomeNumber();
-        cout << my_screen.GetAccessCtr() << endl;
+        std::cout << my_screen.GetAccessCtr() << std::endl;
     }
 }
 
 void ch_7_3_2()
 {
     {
-        GZScreen my_screen;
-        cout << my_screen.Get() << endl;
-        //my_screen.Move(1, 2).Set('*');
-        cout << my_screen.Get() << endl;
+        Screen my_screen;
+        std::cout << my_screen.Get() << std::endl;
+        my_screen.Move(1, 2).Set('*');
+        std::cout << my_screen.Get() << std::endl;
     }
 
+    /* 从const成员返回this */
+    /* 基于const重载 */
     {
-        GZScreen my_screen(3, 5);
-        const GZScreen my_cscreen(1, 2);
-        my_screen.Set('#').Display(cout);
-        cout << endl;
-        //my_cscreen.Display(cout).set("*");
-        my_cscreen.Display(cout);
+        Screen my_screen(3, 5);
+        my_screen.Move(1,2).Set('#').Display(std::cout);
+        std::cout << std::endl;
+
+        const Screen my_cscreen(1, 2, '$');
+        //my_cscreen.Display(std::cout).Set("*");
+        my_cscreen.Display(std::cout);
     }
 }
 
-// 友元声明和作用域
-struct GZX
+namespace chapter_07 {
+
+/*7.3.4 友元再探*/
+
+/*友元声明和作用域*/
+//void f();
+struct X
 {
     friend void f() {}
-    //GZX() { f(); }
-
-    void g();
+    //X() { f(); }
+    //void g();
     void h();
 };
 
-//void GZX::g() { return f(); }
+//void X::g() { return f(); }
 void f();
-void GZX::h() { return f(); }
+void X::h() { return f(); }
 
-typedef double Money;
-class Acc
-{
-    //typedef int Money;  //未被使用 ---> 正确
-public:
-    Money balance() {return bal;}
-private:
-    /* 7-4-1 名字查找与类的作用域 */
-    //已使用不可以重新定义
-    //编译器不做检查,不报错
-    //typedef int Money;
-    Money bal;
 };
 
+void ch_7_5()
+{
+    /* 7.5.4 类型的隐式转换 */
+    ch_7_5_4();
 
-/*****************************************************************/
+}
 
+namespace chapter_07 {
+
+/*7.5.1 构造函数初始值列表*/
+
+/*构造函数初始值必不可少*/
+class ConstRef
+{
+public:
+#if 0
+    ConstRef(int i)
+    {
+        ci = i;
+        ri = i;
+    }
+#endif
+    ConstRef(int i) : ci(i), ri(i) {}
+private:
+    const int   ci;
+    int         ri;
+};
+
+/*成员初始化顺序*/
+class x
+{
+public:
+    //x(int val) : j(val), i(j) {}   //error
+    x(int val) : i(val), j(val) {}     //尽可能用参数初始化
+private:
+    int i, j;
+};
+
+/*7.5.3 默认构造函数的作用*/
+class NoDefault
+{
+public:
+    NoDefault(int i){}
+};
+
+struct A
+{
+    NoDefault my_mem;
+};
+
+//A aaa;
+
+struct B
+{
+    //B(){}
+    NoDefault no;
+};
+
+class C
+{
+public:
+    NoDefault nd;
+    C(int i = 0) : nd(i){}
+};
 
 
 NoDefault no(1);
 C cc;
 C ccc(10);
 //B bbb;
+};
 
-/* 7-5-4 类型的隐式转换 */
 void ch_7_5_4()
 {
-    string null_book = "1-11-111-22";
-    GZSalesData item;
+    std::string null_book = "1-11-111-22";
+    SalesData item;
     //item.Combine(null_book);                  //-->1
 
     //只允许一步转换
-    //item.Combine("2-22-11-1111");
-    //item.Combine(string("1-11-1111-222"));    //-->2
-    //item.Combine(GZSalesData("111-222-111"));     //-->3
-    //item.Combine(cin);                        //-->4
-    //SalesData item2 = string("1111");         //-->5
-
-    //加上explicit之后，抑制隐式转换，1，2，4,5不成立
-    //explicit只可以在函数声明处，单一参数的构造函数
-    //此时必须 显示调用转换函数（显示调用构造函数）
-    item.Combine(static_cast<GZSalesData>(cin));
-    item.Combine(static_cast<GZSalesData>(null_book));
+#if 0
+    item.Combine("2-22-11-1111");
+    item.Combine(string("1-11-1111-222"));    //-->2
+    item.Combine(SalesData("111-222-111"));   //-->3
+    item.Combine(cin);                        //-->4
+    SalesData item2 = string("1111");         //-->5
+#endif
+#if 0
+    加上explicit之后，抑制隐式转换，1,2,4,5不成立
+    explicit只可以在函数声明处，单一参数的构造函数
+    此时必须 显示调用转换函数（显示调用构造函数）
+#endif
+    item.Combine(static_cast<SalesData>(std::cin));
+    item.Combine(static_cast<SalesData>(null_book));
 }
 
 void ch_7_6()
@@ -135,7 +193,7 @@ void ch_7_6()
 //    Account *ac2 = &ac1;
 //    r = ac1.Rate();
 //    r = ac2->Rate();
-//    cout << "interest rate: " << r << endl;
+//    std::cout << "interest rate: " << r << std::endl;
 }
 
 
@@ -146,5 +204,5 @@ const std::vector<int> Example::ivec(vec_size);
 
 void Homework_7_58()
 {
-    cout << Example::rate << ", " << Example::vec_size << endl;
+    std::cout << Example::rate << ", " << Example::vec_size << std::endl;
 }
