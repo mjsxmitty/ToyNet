@@ -4,6 +4,7 @@
 #include "chapter_07.h"
 #include "../common/screen.h"
 #include "../common/sales_data.h"
+#include "../common/account.h"
 
 void ch_07()
 {
@@ -163,10 +164,10 @@ void ch_7_5_4()
 {
     std::string null_book = "1-11-111-22";
     SalesData item;
+#if 0
     //item.Combine(null_book);                  //-->1
 
     //只允许一步转换
-#if 0
     item.Combine("2-22-11-1111");
     item.Combine(string("1-11-1111-222"));    //-->2
     item.Combine(SalesData("111-222-111"));   //-->3
@@ -184,25 +185,22 @@ void ch_7_5_4()
 
 void ch_7_6()
 {
-//    //使用静态成员
-//    double r = Account::Rate();
+    //使用静态成员
+    double r = Account::Rate();
 
-//    Account::Rate(5);
+    Account::Rate(5);
 
-//    Account ac1;
-//    Account *ac2 = &ac1;
-//    r = ac1.Rate();
-//    r = ac2->Rate();
-//    std::cout << "interest rate: " << r << std::endl;
+    Account ac1;
+    Account *ac2 = &ac1;
+    r = ac1.Rate();
+    r = ac2->Rate();
+    std::cout << "interest rate: " << r << std::endl;
 }
 
+namespace chapter_07 {
 
 constexpr double Example::rate;
 const int Example::vec_size;
 const std::vector<int> Example::ivec(vec_size);
-//constexpr ???
 
-void Homework_7_58()
-{
-    std::cout << Example::rate << ", " << Example::vec_size << std::endl;
-}
+};
