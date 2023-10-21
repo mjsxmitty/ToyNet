@@ -1,10 +1,10 @@
 
 #include <iostream>
-#include "gz_has_ptr.h"
+#include "has_ptr.h"
 
 using namespace std;
 
-// GZHasPtr& GZHasPtr::operator=(const GZHasPtr &rhs)
+// HasPtr& HasPtr::operator=(const HasPtr &rhs)
 // {
 //     auto new_ptr = new string(*rhs.ps_);
 //     delete ps_;
@@ -15,29 +15,29 @@ using namespace std;
 //     return *this;
 // }
 
-GZHasPtr& GZHasPtr::operator=(GZHasPtr h)
+HasPtr& HasPtr::operator=(HasPtr h)
 {
     swap(*this, h);
     return *this;
 }
 
-GZHasPtr& GZHasPtr::operator=(const string &s)
+HasPtr& HasPtr::operator=(const string &s)
 {
     *ps_ = s;
     return *this;
 }
 
-string &GZHasPtr::operator*()
+string &HasPtr::operator*()
 {
     return *ps_;
 }
 
-bool GZHasPtr::operator<(const GZHasPtr &rhs) const
+bool HasPtr::operator<(const HasPtr &rhs) const
 {
     return *ps_ < *rhs.ps_;
 }
 
-GZHasPtr::~GZHasPtr()
+HasPtr::~HasPtr()
 {
     cout << *ps_ << " destruction func." << endl;
     delete ps_;
@@ -45,7 +45,7 @@ GZHasPtr::~GZHasPtr()
 
 /************************************************************/
 
-GZHasPtrRef &GZHasPtrRef::operator=(const GZHasPtrRef &p)
+HasPtrRef &HasPtrRef::operator=(const HasPtrRef &p)
 {
     ++*p.use_;
     if (--*use_ == 0)
@@ -61,18 +61,18 @@ GZHasPtrRef &GZHasPtrRef::operator=(const GZHasPtrRef &p)
     return *this;
 }
 
-GZHasPtrRef& GZHasPtrRef::operator=(const string &rhs)
+HasPtrRef& HasPtrRef::operator=(const string &rhs)
 {
     *ps_ = rhs;
     return *this;
 }
 
-string& GZHasPtrRef::operator*()
+string& HasPtrRef::operator*()
 {
     return *ps_;
 }
 
-GZHasPtrRef::~GZHasPtrRef()
+HasPtrRef::~HasPtrRef()
 {
     if (--*use_ == 0)
     {
@@ -82,7 +82,7 @@ GZHasPtrRef::~GZHasPtrRef()
     }
 }
 
-GZHasPtrRef& GZHasPtrRef::operator=(GZHasPtrRef &&rhs)
+HasPtrRef& HasPtrRef::operator=(HasPtrRef &&rhs)
 {
     if (this != &rhs)
     {

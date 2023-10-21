@@ -1,10 +1,10 @@
 
 
 #include "chapter_13.h"
-#include "../common/gz_has_ptr.h"
+#include "../common/has_ptr.h"
 #include "../common/gz_str_vec.h"
 #include "../common/str_blob.h"
-#include "../common/gz_ch_13.hpp"
+#include "ch_13.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -134,23 +134,23 @@ void hw_13_17()
 
 void ch_13_1_6()
 {
-    GZNoCopy no_object;
-    //GZNoCopy no_object2 = no_object;
+    NoCopy no_object;
+    //NoCopy no_object2 = no_object;
 
     //GZNoDtor no_dtor;
     //GZNoDtor *no_dtor_ptr = new GZNoDtor;
     //delete no_dtor_ptr;
 
-    GZPrivateCopy pri_object;
-    //GZPrivateCopy pri_object2 = pri_object;
+    PrivateCopy pri_object;
+    //PrivateCopy pri_object2 = pri_object;
 
-    //GZPrivateCopy pri_object3;
+    //PrivateCopy pri_object3;
     //pri_object3 = pri_object;
 }
 
 void hw_13_18()
 {
-    GZEmployee a("a"), b = a, c;
+    Employee a("a"), b = a, c;
     c = b;
 
     PrintEmployee(a);
@@ -169,9 +169,9 @@ void ch_13_2()
 
 void hw_13_22()
 {
-    GZHasPtr h1("hi");
-    GZHasPtr h2(h1);
-    GZHasPtr h3 = h1;
+    HasPtr h1("hi");
+    HasPtr h2(h1);
+    HasPtr h3 = h1;
 
     *h2 = "nihao";
     *h3 = "hello";
@@ -217,8 +217,8 @@ void hw_13_26()
 
 void hw_13_27()
 {
-    GZHasPtrRef h("cpp primer");
-    GZHasPtrRef h2 = h;
+    HasPtrRef h("cpp primer");
+    HasPtrRef h2 = h;
     h = "cpp";
     cout << "h: " << *h << endl;
     cout << "h2: " << *h2 << endl;
@@ -241,9 +241,9 @@ void ch_13_3()
 
 void hw_13_30()
 {
-    GZHasPtr h("cpp primer");
-    GZHasPtr h2(h);
-    GZHasPtr h3 = h;
+    HasPtr h("cpp primer");
+    HasPtr h2(h);
+    HasPtr h3 = h;
 
     h2 = "cpp";
     h3 = "primer";
@@ -260,7 +260,7 @@ void hw_13_30()
 void hw_13_31()
 {
     srand(time(NULL));
-    vector<GZHasPtr> vec;
+    vector<HasPtr> vec;
 
     for (int i = 0; i != 5; ++i)
         vec.push_back(to_string(rand() % 100));

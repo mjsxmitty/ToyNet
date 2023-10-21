@@ -5,7 +5,6 @@ include(CTest)
 enable_testing()
 
 add_executable(cpp_primer
-    common/gz_ch_13.hpp
     common/gz_ch_14.hpp
     common/gz_ch_16.hpp
     common/blob.hpp common/gz_blob_ptr.hpp
@@ -14,7 +13,7 @@ add_executable(cpp_primer
     common/gz_str_vec.h common/gz_str_vec.cpp
     common/gz_message.h common/gz_message.cpp
     common/gz_folder.h common/gz_folder.cpp
-    common/gz_has_ptr.h common/gz_has_ptr.cpp
+    common/has_ptr.h common/has_ptr.cpp
     common/sales_data.h common/sales_data.cpp
     common/screen.h common/screen.cpp
     common/window_mgr.h common/window_mgr.cpp
@@ -41,6 +40,7 @@ add_executable(cpp_primer
     chapter_11/chapter_11.h chapter_11/chapter_11.cpp
     chapter_12/chapter_12.h chapter_12/chapter_12.cpp
     chapter_13/chapter_13.h chapter_13/chapter_13.cpp
+    chapter_13/ch_13.hpp
     chapter_14/chapter_14.h chapter_14/chapter_14.cpp
     chapter_15/chapter_15.h chapter_15/chapter_15.cpp
     chapter_16/chapter_16.h chapter_16/chapter_16.cpp

@@ -1,12 +1,12 @@
 
-#ifndef __CPP_PRIMER_CH_13_H__
-#define __CPP_PRIMER_CH_13_H__
+#ifndef __CPP_PRIMER_CH_13_HPP__
+#define __CPP_PRIMER_CH_13_HPP__
 
 #include <iostream>
 #include <algorithm>
 #include <vector>
 
-#include "../common/gz_has_ptr.h"
+#include "../common/has_ptr.h"
 
 using namespace std;
 
@@ -37,37 +37,37 @@ struct Numbered
 
 size_t Numbered::sn_ = 0;
 
-struct GZNoCopy
+struct NoCopy
 {
-    GZNoCopy() = default;
-    GZNoCopy(const GZNoCopy &) = delete;
-    GZNoCopy& operator=(const GZNoCopy &) = delete;
+    NoCopy() = default;
+    NoCopy(const NoCopy &) = delete;
+    NoCopy& operator=(const NoCopy &) = delete;
     void Print() = delete;
-    ~GZNoCopy() = default;
+    ~NoCopy() = default;
 };
 
-struct GZNoDtor
+struct NoDtor
 {
-    GZNoDtor() = default;
-    ~GZNoDtor() = delete;
+    NoDtor() = default;
+    ~NoDtor() = delete;
 };
 
-class GZPrivateCopy
+class PrivateCopy
 {
-    GZPrivateCopy(const GZPrivateCopy &);
-    GZPrivateCopy& operator=(const GZPrivateCopy &);
+    PrivateCopy(const PrivateCopy &);
+    PrivateCopy& operator=(const PrivateCopy &);
 public:
-    GZPrivateCopy() = default;
-    ~GZPrivateCopy() = default;
+    PrivateCopy() = default;
+    ~PrivateCopy() = default;
 };
 
-class GZEmployee
+class Employee
 {
 public:
-    GZEmployee() { my_sn_ = sn++; }
-    GZEmployee(const std::string &s) : name_(s) { my_sn_ = sn++; }
-    GZEmployee(const GZEmployee &e) { name_ = e.name_; my_sn_ = sn++; }
-    GZEmployee& operator=(const GZEmployee &e) { name_ = e.name_; my_sn_ = sn++; return *this; }//
+    Employee() { my_sn_ = sn++; }
+    Employee(const std::string &s) : name_(s) { my_sn_ = sn++; }
+    Employee(const Employee &e) { name_ = e.name_; my_sn_ = sn++; }
+    Employee& operator=(const Employee &e) { name_ = e.name_; my_sn_ = sn++; return *this; }//
 public:
     const std::string&  GetName() const { return name_; }
     int                 GetMySn() const { return my_sn_; }
@@ -77,8 +77,8 @@ private:
     static int  sn;
 };
 
-int GZEmployee::sn = 0;
-void PrintEmployee(const GZEmployee &e)
+int Employee::sn = 0;
+void PrintEmployee(const Employee &e)
 {
     cout << e.GetName() << ", " << e.GetMySn() << endl;
 }
@@ -91,7 +91,7 @@ public:
     string PrintVal() const { return s_; }
 private:
     string s_;
-    GZHasPtr hp_;
+    HasPtr hp_;
 };
 
 // 编译器会为GZX和GZhasX合成移动构造函数
@@ -153,4 +153,4 @@ Foo Foo::Sorted() const &
     return ret;
 }
 
-#endif // __CPP_PRIMER_CH_13_H__
+#endif // __CPP_PRIMER_CH_13_HPP__
