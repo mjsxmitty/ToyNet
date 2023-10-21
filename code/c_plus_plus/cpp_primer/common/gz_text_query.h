@@ -10,7 +10,7 @@
 #include <vector>
 #include <map>
 
-#include "../common/gz_str_blob.h"
+#include "../common/str_blob.h"
 #include "../common/gz_str_vec.h"
 
 class QueryResult;

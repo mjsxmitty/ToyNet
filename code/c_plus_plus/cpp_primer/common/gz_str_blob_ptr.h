@@ -7,16 +7,16 @@
 #include <vector>
 #include <utility>
 
-#include "gz_str_blob.h"
+#include "str_blob.h"
 
-class GZStrBlobPtr
+class StrBlobPtr
 {
 public:
-    GZStrBlobPtr(): curr_(0) { }
-    GZStrBlobPtr(const GZStrBlob &a, size_t sz = 0): 
+    StrBlobPtr(): curr_(0) { }
+    StrBlobPtr(const StrBlob &a, size_t sz = 0):
                 wptr_(a.data_), curr_(sz) { }
 public:
-    GZStrBlobPtr&   Incr();
+    StrBlobPtr&   Incr();
     std::string&    Deref() const;
 private:
     std::shared_ptr<std::vector<std::string>>
@@ -26,44 +26,44 @@ private:
     std::size_t                             curr_;
 
 public:
-    friend bool Equal(const GZStrBlobPtr&, const GZStrBlobPtr&);
-    friend bool NotEqual(const GZStrBlobPtr&, const GZStrBlobPtr&);
+    friend bool Equal(const StrBlobPtr&, const StrBlobPtr&);
+    friend bool NotEqual(const StrBlobPtr&, const StrBlobPtr&);
 
     std::string&    Deref(int index) const;
 public:
-    friend bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend bool operator!=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend bool operator<(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend bool operator<=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend bool operator>(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend bool operator>=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-    friend GZStrBlobPtr operator+(const GZStrBlobPtr&, int);
-    friend GZStrBlobPtr operator-(const GZStrBlobPtr&, int);
+    friend bool operator==(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend bool operator!=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend bool operator<(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend bool operator<=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend bool operator>(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend bool operator>=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+    friend StrBlobPtr operator+(const StrBlobPtr&, int);
+    friend StrBlobPtr operator-(const StrBlobPtr&, int);
 public:
     std::string& operator[](size_t n) { return (*wptr_.lock())[n]; }
     const std::string& operator[](size_t n) const { return  (*wptr_.lock())[n]; }
-    GZStrBlobPtr& operator++();
-    GZStrBlobPtr& operator--();
-    GZStrBlobPtr  operator++(int);
-    GZStrBlobPtr  operator--(int);
+    StrBlobPtr& operator++();
+    StrBlobPtr& operator--();
+    StrBlobPtr  operator++(int);
+    StrBlobPtr  operator--(int);
 
     std::string& operator*() const;
     std::string* operator->() const;
 public:
-    GZStrBlobPtr&     Decr();
+    StrBlobPtr&     Decr();
 };
 
-bool Equal(const GZStrBlobPtr&, const GZStrBlobPtr&);
-bool NotEqual(const GZStrBlobPtr&, const GZStrBlobPtr&);
+bool Equal(const StrBlobPtr&, const StrBlobPtr&);
+bool NotEqual(const StrBlobPtr&, const StrBlobPtr&);
 
-bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-bool operator!=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-bool operator<(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-bool operator<=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-bool operator>(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
-bool operator>=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs);
+bool operator==(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+bool operator!=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+bool operator<(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+bool operator<=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+bool operator>(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
+bool operator>=(const StrBlobPtr &lhs, const StrBlobPtr &rhs);
 
-GZStrBlobPtr operator+(const GZStrBlobPtr&, int);
-GZStrBlobPtr operator-(const GZStrBlobPtr&, int);
+StrBlobPtr operator+(const StrBlobPtr&, int);
+StrBlobPtr operator-(const StrBlobPtr&, int);
 
 #endif //

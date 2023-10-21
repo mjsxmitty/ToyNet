@@ -3,7 +3,7 @@
 #include "chapter_13.h"
 #include "../common/gz_has_ptr.h"
 #include "../common/gz_str_vec.h"
-#include "../common/gz_str_blob.h"
+#include "../common/str_blob.h"
 #include "../common/gz_ch_13.hpp"
 
 #include <algorithm>
@@ -183,9 +183,9 @@ void hw_13_22()
 
 void hw_13_26()
 {
-    GZStrBlob b1;
+    StrBlob b1;
     {
-        GZStrBlob b2 = {"a", "an", "the"};
+        StrBlob b2 = {"a", "an", "the"};
         b1 = b2;
         cout << "b1 size: " << b1.Size() << endl;
         cout << "b1 front: " << b1.Front() 
@@ -205,7 +205,7 @@ void hw_13_26()
     cout << "b1 front: " << b1.Front() 
             << ", b1 back: " << b1.Back() << endl;
     
-    GZStrBlob b3 = b1;
+    StrBlob b3 = b1;
     b3.PushBack("next");
     cout << "b1 size: " << b1.Size() << endl;
     cout << "b1 front: " << b1.Front() 

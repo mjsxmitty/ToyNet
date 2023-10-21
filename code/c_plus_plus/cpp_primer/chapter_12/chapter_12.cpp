@@ -1,6 +1,6 @@
 
 #include "chapter_12.h"
-#include "../common/gz_str_blob.h"
+#include "../common/str_blob.h"
 #include "../common/gz_str_blob_ptr.h"
 #include "../common/gz_text_query.h"
 #include "../common/gz_query_result.h"
@@ -27,14 +27,12 @@ void ch_12(int argc, char **argv)
     //ch_12_3(argc, argv);
 }
 
-/***************************************************************/
-/***************************12.1********************************/
-
 void ch_12_1(int argc, char **argv)
 {
     /* shared_ptr类 */
-    ch_12_1_1();
+    //ch_12_1_1();
     //hw_12_1();
+    hw_12_2();
 
     /* 直接管理内存 */
     //ch_12_1_2();
@@ -50,7 +48,7 @@ void ch_12_1(int argc, char **argv)
 
     /* weak_ptr */
     //ch_12_1_6();
-    hw_12_20(argc, argv);
+    //hw_12_20(argc, argv);
 }
 
 typedef int T;
@@ -107,9 +105,9 @@ void ch_12_1_1()
 
 void hw_12_1()
 {
-    GZStrBlob b1;
+    StrBlob b1;
     {
-        GZStrBlob b2 = {"a", "an", "the"};
+        StrBlob b2 = {"a", "an", "the"};
         b1 = b2;
         cout << "b1 size : " << b1.Size() << endl;
         cout << "b2 size : " << b2.Size() << endl;
@@ -122,9 +120,9 @@ void hw_12_1()
 
 void hw_12_2()
 {
-    GZStrBlob b1;
+    StrBlob b1;
     {
-        GZStrBlob b2 = {"a", "an", "the"};
+        StrBlob b2 = {"a", "an", "the"};
         b1 = b2;
         cout << "b1 size: " << b1.Size() << ", b2 size: " << b2.Size() << endl;
         b2.PushBack("hi");
@@ -133,11 +131,12 @@ void hw_12_2()
     cout << "b1 size: " << b1.Size() << endl;
     cout << "b1 front: " << b1.Front() << ", b1 back: " << b1.Back() << endl;
 
-    GZStrBlob b3 = b1;
+    const StrBlob b3 = b1;
     cout << "b1 size: " << b1.Size() << ", b3 size: " << b3.Size() << endl;
+    cout <<  b3.Front() << endl;
 
-    for (auto iter = b1.Begin(); NotEqual(iter, b1.End()); iter.Incr())
-        cout << iter.Deref() << endl;
+//    for (auto iter = b1.Begin(); NotEqual(iter, b1.End()); iter.Incr())
+//        cout << iter.Deref() << endl;
 }
 
 void ch_12_1_2()
@@ -460,7 +459,7 @@ void hw_12_20(int argc, char **argv)
         return ;
     }
     
-    GZStrBlob sb;
+    StrBlob sb;
     string s;
     while (getline(in, s))
         sb.PushBack(s);

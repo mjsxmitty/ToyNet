@@ -8,7 +8,7 @@
 #include <vector>
 #include <iostream>
 
-#include "gz_str_blob.h"
+#include "str_blob.h"
 #include "gz_str_vec.h"
 
 class QueryResult

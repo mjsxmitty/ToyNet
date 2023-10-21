@@ -8,16 +8,16 @@
 
 using namespace std;
 
-GZStrBlobPtr GZStrBlob::Begin() { return GZStrBlobPtr(*this); }
-GZStrBlobPtr GZStrBlob::End() { return GZStrBlobPtr(*this, data_->size()); }
-GZStrBlobPtr GZStrBlob::Begin() const { return GZStrBlobPtr(*this); }
-GZStrBlobPtr GZStrBlob::End() const { return GZStrBlobPtr(*this, data_->size()); }
+StrBlobPtr StrBlob::Begin() { return StrBlobPtr(*this); }
+StrBlobPtr StrBlob::End() { return StrBlobPtr(*this, data_->size()); }
+StrBlobPtr StrBlob::Begin() const { return StrBlobPtr(*this); }
+StrBlobPtr StrBlob::End() const { return StrBlobPtr(*this, data_->size()); }
 
-shared_ptr<vector<string>> GZStrBlobPtr::Check(size_t i, const string &msg) const
+shared_ptr<vector<string>> StrBlobPtr::Check(size_t i, const string &msg) const
 {
     auto ret = wptr_.lock();
     if (!ret)
-        throw runtime_error("unbound GZStrBlobPtr");
+        throw runtime_error("unbound StrBlobPtr");
 
     if (i >= ret->size())
         throw out_of_range(msg);
@@ -25,33 +25,33 @@ shared_ptr<vector<string>> GZStrBlobPtr::Check(size_t i, const string &msg) cons
     return ret;
 }
 
-string& GZStrBlobPtr::Deref() const
+string& StrBlobPtr::Deref() const
 {
     auto p = Check(curr_, "dereference past end.");
     return (*p)[curr_];
 }
 
-GZStrBlobPtr& GZStrBlobPtr::Incr()
+StrBlobPtr& StrBlobPtr::Incr()
 {
-    Check(curr_, "increment past end GZStrBlobPtr");
+    Check(curr_, "increment past end StrBlobPtr");
     ++curr_;    // �˴���������,�������������У��
     return *this;
 }
 
-string& GZStrBlobPtr::Deref(int index) const
+string& StrBlobPtr::Deref(int index) const
 {
     auto p = Check(curr_ + index, "dereference past end.");
     return (*p)[curr_ + index];
 }
 
-GZStrBlobPtr& GZStrBlobPtr::Decr()
+StrBlobPtr& StrBlobPtr::Decr()
 {
     --curr_;
-    Check(curr_, "decrement past begin of GZStrBlobPtr.");
+    Check(curr_, "decrement past begin of StrBlobPtr.");
     return *this;
 }
 
-bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool Equal(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -60,7 +60,7 @@ bool Equal(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
         return false;
 }
 
-bool NotEqual(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool NotEqual(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     return !Equal(lhs, rhs);
 }
@@ -68,32 +68,32 @@ bool NotEqual(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
 /****************************************************************/
 /***************************14.3*********************************/
 
-GZStrBlobPtr operator+(const GZStrBlobPtr &lhs, int n)
+StrBlobPtr operator+(const StrBlobPtr &lhs, int n)
 {
-    GZStrBlobPtr ret(lhs);
+    StrBlobPtr ret(lhs);
     ret.curr_ += n;
     return ret;
 }
 
 
-GZStrBlobPtr operator-(const GZStrBlobPtr &lhs, int n)
+StrBlobPtr operator-(const StrBlobPtr &lhs, int n)
 {
-    GZStrBlobPtr ret = lhs;
+    StrBlobPtr ret = lhs;
     ret.curr_ -= n;
     return ret;
 }
 
-bool operator==(const GZStrBlob &lhs, const GZStrBlob &rhs)
+bool operator==(const StrBlob &lhs, const StrBlob &rhs)
 {
     return lhs.data_ == rhs.data_;
 }
 
-bool operator!=(const GZStrBlob &lhs, const GZStrBlob &rhs)
+bool operator!=(const StrBlob &lhs, const StrBlob &rhs)
 {
     return !(lhs == rhs);
 }
 
-bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator==(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -101,12 +101,12 @@ bool operator==(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
     return false;
 }
 
-bool operator!=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator!=(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     return !(lhs == rhs);
 }
 
-bool operator<(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator<(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -118,7 +118,7 @@ bool operator<(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
     else
         return false;
 }
-bool operator<=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator<=(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -126,7 +126,7 @@ bool operator<=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
     else
         return false;
 }
-bool operator>(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator>(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -138,7 +138,7 @@ bool operator>(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
     else
         return false;
 }
-bool operator>=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
+bool operator>=(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
@@ -147,41 +147,41 @@ bool operator>=(const GZStrBlobPtr &lhs, const GZStrBlobPtr &rhs)
         return false;
 }
 
-GZStrBlobPtr& GZStrBlobPtr::operator++()
+StrBlobPtr& StrBlobPtr::operator++()
 {
-    Check(curr_, "increment past end GZStrBlobPtr");
+    Check(curr_, "increment past end StrBlobPtr");
     ++curr_;
     return *this;
 }
 
-GZStrBlobPtr& GZStrBlobPtr::operator--()
+StrBlobPtr& StrBlobPtr::operator--()
 {
     --curr_;
-    Check(curr_, "decrement past begin of GZStrBlobPtr.");
+    Check(curr_, "decrement past begin of StrBlobPtr.");
     return *this;
 }
 
-GZStrBlobPtr GZStrBlobPtr::operator++(int)
+StrBlobPtr StrBlobPtr::operator++(int)
 {
-    GZStrBlobPtr ret = *this;
+    StrBlobPtr ret = *this;
     ++(*this);
     return ret;
 }
 
-GZStrBlobPtr GZStrBlobPtr::operator--(int)
+StrBlobPtr StrBlobPtr::operator--(int)
 {
-    GZStrBlobPtr ret = *this;
+    StrBlobPtr ret = *this;
     --(*this);
     return ret;
 }
 
-string& GZStrBlobPtr::operator*() const
+string& StrBlobPtr::operator*() const
 {
     auto ret = Check(curr_, "xxxxx");
     return (*ret)[curr_];
 }
 
-string* GZStrBlobPtr::operator->() const
+string* StrBlobPtr::operator->() const
 {
     return &(this->operator*());
 }
