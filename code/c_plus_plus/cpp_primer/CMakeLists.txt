@@ -20,7 +20,7 @@ add_executable(cpp_primer
     common/window_mgr.h common/window_mgr.cpp
     common/account.h common/account.cpp
     common/str_blob.h common/str_blob.cpp
-    common/gz_str_blob_ptr.h common/gz_str_blob_ptr.cpp
+    common/str_blob_ptr.h common/str_blob_ptr.cpp
     common/gz_query_result.h common/gz_query_result.cpp
     common/gz_text_query.h common/gz_text_query.cpp
     common/zg_quote.h common/zg_quote.cpp

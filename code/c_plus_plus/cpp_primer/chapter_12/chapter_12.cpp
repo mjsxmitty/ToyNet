@@ -1,7 +1,7 @@
 
 #include "chapter_12.h"
 #include "../common/str_blob.h"
-#include "../common/gz_str_blob_ptr.h"
+#include "../common/str_blob_ptr.h"
 #include "../common/gz_text_query.h"
 #include "../common/gz_query_result.h"
 
@@ -276,7 +276,6 @@ shared_ptr<int> Clone(int p)
 {
     /* 不能将一个内置指针隐式转换为一个智能指针 */
     //return new int(p);
-
     //return make_shared<int>(p);
     return shared_ptr<int>(new int(p));
 }
@@ -303,24 +302,28 @@ void ch_12_1_3()
         cout << "i = " << i << endl;
 
         // 错误的使用方法
-//        int *x(new int(42));
-//        Process(new int());
-//        Process(x);   //只能直接初始化
-//        Process(shared_ptr<int> (x));
-//        int j = *x;
-//        cout << "j = " << j << endl;
+#if 0
+       int *x(new int(42));
+       //Process(new int());
+       //Process(x);   //只能直接初始化
+       Process(shared_ptr<int> (x));
+       int j = *x;
+       cout << "j = " << j << endl;
+#endif
     }
 
 
     /* 不要使用一个get初始化另一个智能指针或者为智能指针赋值 */
     {
-//        shared_ptr<int> p(new int(42));
-//        {
-//            shared_ptr<int> q(p.get());
-//            cout << "*q = " << *q << endl;
-//        }
-//        int foo = *p;
-//        cout << "foo = " << foo << endl;
+#if 0
+       shared_ptr<int> p(new int(42));
+       {
+           shared_ptr<int> q(p.get());
+           cout << "*q = " << *q << endl;
+       }
+       int foo = *p;
+       cout << "foo = " << foo << endl;
+#endif
     }
 
     /* shared_ptr其他操作 */
@@ -371,9 +374,8 @@ void FuncConnect1(Destination &dest)
     Connection c = Connect(&dest);
 
     shared_ptr<Connection> p(&c, EndConnection);
-    //shared_ptr<Connection> p1(&c, [](Connection *p){DisConnection(*p);});
     //shared_ptr<Connection> p(&c, DisConnection); //error
-
+    //shared_ptr<Connection> p1(&c, [](Connection *p){DisConnection(*p);});
     //unique_ptr<Connection, decltype(EndConnection)*> up(&c, EndConnection);
 }
 
@@ -422,6 +424,7 @@ void ch_12_1_5()
         unique_ptr<Connection, decltype(EndConnection)*> p(&c, EndConnection);
     }
 }
+
 
 void ch_12_1_6()
 {
