@@ -2,8 +2,8 @@
 #include "chapter_12.h"
 #include "../common/str_blob.h"
 #include "../common/str_blob_ptr.h"
-#include "../common/gz_text_query.h"
-#include "../common/gz_query_result.h"
+#include "../common/text_query.h"
+#include "../common/query_result.h"
 
 #include <iostream>
 #include <string>
@@ -471,9 +471,6 @@ void hw_12_20(int argc, char **argv)
         cout << it.Deref() << endl;
 }
 
-/***************************************************************/
-/***************************12.2********************************/
-
 void ch_12_2()
 {
     /* new和数组 */
@@ -577,16 +574,16 @@ void hw_12_24()
 
 void ch_12_2_2()
 {
-    //
-//    allocator<GZSalesData> gz_alloc;
-//    auto gz_ptr = gz_alloc.allocate(10);
-//    string isbn("gz_test");
-//    gz_alloc.construct(gz_ptr, isbn);
-//    cout << gz_ptr->Isbn() << endl;
+#if 0
+    allocator<SalesData> gz_alloc;
+    auto gz_ptr = gz_alloc.allocate(10);
+    string isbn("gz_test");
+    gz_alloc.construct(gz_ptr, isbn);
+    cout << gz_ptr->Isbn() << endl;
 
-//    gz_alloc.destroy(gz_ptr);
-//    gz_alloc.deallocate(gz_ptr, 10);
-
+    gz_alloc.destroy(gz_ptr);
+    gz_alloc.deallocate(gz_ptr, 10);
+#endif
     /* allocator类 */
     {
         const size_t n = 100;
@@ -652,10 +649,6 @@ void hw_12_26()
 
     alloc.deallocate(p, 100);
 }
-
-
-/***************************************************************/
-/***************************12.3********************************/
 
 //using line_no = vector<int>::size_type;
 typedef vector<int>::size_type line_no;

@@ -8,16 +8,11 @@
 
 using namespace std;
 
-StrBlobPtr StrBlob::Begin() { return StrBlobPtr(*this); }
-StrBlobPtr StrBlob::End() { return StrBlobPtr(*this, data_->size()); }
-StrBlobPtr StrBlob::Begin() const { return StrBlobPtr(*this); }
-StrBlobPtr StrBlob::End() const { return StrBlobPtr(*this, data_->size()); }
-
 shared_ptr<vector<string>> StrBlobPtr::Check(size_t i, const string &msg) const
 {
     auto ret = wptr_.lock();
     if (!ret)
-        throw runtime_error("unbound StrBlobPtr");
+        throw runtime_error("unbound StrBlob.");
 
     if (i >= ret->size())
         throw out_of_range(msg);
@@ -34,7 +29,14 @@ string& StrBlobPtr::Deref() const
 StrBlobPtr& StrBlobPtr::Incr()
 {
     Check(curr_, "increment past end StrBlobPtr");
-    ++curr_;    // �˴���������,�������������У��
+    ++curr_;
+    return *this;
+}
+
+StrBlobPtr& StrBlobPtr::Decr()
+{
+    --curr_;
+    Check(curr_, "decrement past end StrBlobPtr");
     return *this;
 }
 
@@ -44,18 +46,11 @@ string& StrBlobPtr::Deref(int index) const
     return (*p)[curr_ + index];
 }
 
-StrBlobPtr& StrBlobPtr::Decr()
-{
-    --curr_;
-    Check(curr_, "decrement past begin of StrBlobPtr.");
-    return *this;
-}
-
 bool Equal(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
     if (l == r)
-        return (!r || lhs.curr_ == rhs.curr_);  // ��ָ�����ָ����ͬ��vector
+        return (!r || lhs.curr_ == rhs.curr_);
     else
         return false;
 }

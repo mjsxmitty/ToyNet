@@ -68,9 +68,6 @@ SalesData& SalesData::operator=(const SalesData &orig)
 
 SalesData& SalesData::operator=(const SalesData &) = default;
 
-/****************************************************************/
-/***************************14.2*********************************/
-
 ostream& operator<<(ostream &os, const SalesData &rhs)
 {
     os << rhs.book_no_ << ", "

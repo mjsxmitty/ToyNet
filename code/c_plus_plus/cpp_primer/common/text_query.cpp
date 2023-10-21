@@ -1,7 +1,7 @@
 
 
-#include "gz_text_query.h"
-#include "gz_query_result.h"
+#include "text_query.h"
+#include "query_result.h"
 
 #include <sstream>
 
@@ -13,15 +13,16 @@ TextQuery::TextQuery(ifstream &in) : file_(new GZStrVec)
     string text;
     while (getline(in, text))
     {
-        //file_->PushBack(text);
-        //int curr_line_num = file_->Size() - 1;
+#if 0
+        file_->PushBack(text);
+        int curr_line_num = file_->Size() - 1;
 
-        // file_->push_back(text);
-        // int curr_line_num = file_->size() - 1;  //下标-->行号
+         file_->push_back(text);
+         int curr_line_num = file_->size() - 1;  //
 
-        // file_.PushBack(text);
-        // int curr_line_num = file_.Size() - 1;
-
+         file_.PushBack(text);
+         int curr_line_num = file_.Size() - 1;
+#endif
         file_->PushBack(text);
         int curr_line_num = file_->Size() - 1;
 

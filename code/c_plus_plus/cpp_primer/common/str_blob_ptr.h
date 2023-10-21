@@ -16,7 +16,8 @@ public:
     StrBlobPtr(const StrBlob &a, size_t sz = 0):
                 wptr_(a.data_), curr_(sz) { }
 public:
-    StrBlobPtr&   Incr();
+    StrBlobPtr&     Incr();
+    StrBlobPtr&     Decr();
     std::string&    Deref() const;
 private:
     std::shared_ptr<std::vector<std::string>>
@@ -49,8 +50,6 @@ public:
 
     std::string& operator*() const;
     std::string* operator->() const;
-public:
-    StrBlobPtr&     Decr();
 };
 
 bool Equal(const StrBlobPtr&, const StrBlobPtr&);

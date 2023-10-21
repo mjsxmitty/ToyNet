@@ -1,5 +1,6 @@
 
 #include "str_blob.h"
+#include "str_blob_ptr.h"
 
 #include <vector>
 #include <string>
@@ -70,6 +71,11 @@ const string& StrBlob::Back() const
     return data_->back();
 }
 
+StrBlobPtr StrBlob::Begin() { return StrBlobPtr(*this); }
+StrBlobPtr StrBlob::Begin() const { return StrBlobPtr(*this); }
+StrBlobPtr StrBlob::End() { return StrBlobPtr(*this, data_->size()); }
+StrBlobPtr StrBlob::End() const { return StrBlobPtr(*this, data_->size()); }
+
 bool operator<(const StrBlob &lhs, const StrBlob &rhs)
 {
     return *lhs.data_ < *rhs.data_;
@@ -87,5 +93,3 @@ bool operator>=(const StrBlob &lhs, const StrBlob &rhs)
 {
     return *lhs.data_ >= *rhs.data_;
 }
-////////////////////////////////////////////////////////
-

@@ -21,8 +21,8 @@ add_executable(cpp_primer
     common/account.h common/account.cpp
     common/str_blob.h common/str_blob.cpp
     common/str_blob_ptr.h common/str_blob_ptr.cpp
-    common/gz_query_result.h common/gz_query_result.cpp
-    common/gz_text_query.h common/gz_text_query.cpp
+    common/query_result.h common/query_result.cpp
+    common/text_query.h common/text_query.cpp
     common/zg_quote.h common/zg_quote.cpp
     common/zg_bulk_quote.h common/zg_bulk_quote.cpp
     common/zg_base.h common/zg_base.cpp

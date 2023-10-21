@@ -25,7 +25,7 @@ public:
     std::string CleanupStr(const std::string &s);
 private:
     std::map<std::string, std::shared_ptr<std::set<line_no>>>   wm_;
-    //std::shared_ptr<std::vector<std::string>>   file_;  // 下标就是行号
+    //std::shared_ptr<std::vector<std::string>>   file_;  //
     //GZStrBlob       file_;
     std::shared_ptr<GZStrVec> file_;                    // 文件内容与结果类公用
 };
