@@ -2,7 +2,7 @@
 
 #include "chapter_16.h"
 #include "../common/gz_ch_16.hpp"
-#include "../common/gz_blob.hpp"
+#include "../common/blob.hpp"
 #include "../common/gz_blob_ptr.hpp"
 
 #include <iostream>

@@ -2,7 +2,7 @@
 #ifndef __CPP_PRIMER_COMMON_GZ_BLOB_PTR_H__
 #define __CPP_PRIMER_COMMON_GZ_BLOB_PTR_H__
 
-#include "gz_blob.hpp"
+#include "blob.hpp"
 
 template <typename T>
 class BlobPtr

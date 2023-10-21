@@ -25,22 +25,19 @@ void ch_11()
     //ch_11_1();
 
     /* 关联容器概述 */
-    //ch_11_2();
+    ch_11_2();
 
     /* 关联容器操作 */
-    ch_11_3();
+    //ch_11_3();
 }
 
-/***************************************************************/
-/***************************11.1********************************/
-
-// hw 11.4
 string& Trans(string &s)
 {
     for (size_t i = 0; i != s.size(); ++i)
     {
         if (s[i] >= 'A' && s[i] <= 'Z')
-            s[i] -= ('A' - 'a');
+            //s[i] -= ('A' - 'a');            //
+            s[i] = tolower(s[i]);
         else if (s[i] == ',' || s[i] == '.')
             s.erase(i, 1);
     }
@@ -64,18 +61,15 @@ void ch_11_1()
                     ((w.second > 1) ? " times" : " time") << endl;
 }
 
-/***************************************************************/
-/***************************11.2********************************/
-
 void ch_11_2()
 {
     /* 定义关联容器 */
-    //ch_11_2_1();
+    ch_11_2_1();
 
     /* 关键字类型要求 */
     //ch_11_2_2();
-    //hw_11_8();
-    hw_11_9();
+    //hw_11_7();
+    //hw_11_9();
 
     /* pair类型 */
     //ch_11_2_3();
@@ -111,7 +105,7 @@ void AddChild(map<string, vector<string>> &families,
     families[family].push_back(child);
 }
 
-void hw_11_8()
+void hw_11_7()
 {
     map<string, vector<string>> families;
 
@@ -155,7 +149,7 @@ void hw_11_9()
             word_line[word].push_back(lineno);
         }
     }
-    cout << "test" << endl;
+
     for (const auto &w : word_line)
     {
         cout << w.first << " line: " << endl;
@@ -174,7 +168,7 @@ bool CompareIsbn(const SalesData &lhs, const SalesData &rhs)
 
 void ch_11_2_2()
 {
-    //multiset<string, decltype(SalesData)*> bookstore(CompareIsbn);
+    multiset<SalesData, decltype(CompareIsbn)*> bookstore(CompareIsbn);
 }
 
 typedef pair<string, string> Author;
@@ -195,8 +189,6 @@ pair<string, int> Process(const vector<string> &vec)
 void ch_11_2_3()
 {
     vector<string>  v;
-
-    /* 创建 pair 对象 */ 
     istream_iterator<string>    in_iter(cin), eof;
     copy(in_iter, eof, back_inserter(v));
     sort(v.begin(), v.end(), [](const string &s1, const string &s2) {return s1.size() < s2.size();});
@@ -235,9 +227,6 @@ void hw_11_14()
         cout << endl;
     }
 }
-
-/***************************************************************/
-/***************************11.3********************************/
 
 void ch_11_3()
 {
@@ -422,7 +411,6 @@ void ch_11_3_5()
              pos.first != pos.second; ++pos.first)
             cout << pos.first->second << endl;
     }
-
 
     // hw 11.31
     {

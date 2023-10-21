@@ -29,9 +29,6 @@ void ch_10()
     ch_10_4();
 }
 
-/***************************************************************/
-/***************************10.1********************************/
-
 void hw_10_1()
 {
     srand(time(NULL));
@@ -49,9 +46,6 @@ void hw_10_1()
     cin >> num;
     cout << "the array include " << count(ivec.begin(), ivec.end(), num) << " number(s) " << num << endl;
 }
-
-/***************************************************************/
-/***************************10.2********************************/
 
 void ch_10_2()
 {
@@ -98,7 +92,7 @@ void hw_10_5()
 void ch_10_2_2()
 {
     vector<int> ivec(5, 1024);
-    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' ';});    //临时测试用...
+    for_each(ivec.begin(), ivec.end(), [](int i) { cout << i << ' ';});    //
     cout << endl;
 
     //fill
@@ -170,7 +164,6 @@ void ElimDups(vector<string> &words)
     cout << endl;
 }
 
-/* 10.2.3 重排容器元素 */
 void ch_10_2_3()
 {
     vector<string>  svec;
@@ -182,9 +175,6 @@ void ch_10_2_3()
 
     ElimDups(svec);
 }
-
-/***************************************************************/
-/***************************10.3********************************/
 
 void ch_10_3()
 {
@@ -266,7 +256,6 @@ void Biggies(vector<string> &words, vector<string>::size_type sz)
     cout << endl;
 
     // 使用捕获列表
-    // 调用find_if
     //auto wc = find_if(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
     //auto wc = partition(words.begin(), words.end(), [sz](const string &s){return s.size() > sz;});
     auto wc = stable_partition(words.begin(), words.end(), [sz] (const string &s) { return s.size() > sz; });
@@ -295,15 +284,14 @@ void ch_10_3_2()
     Biggies(svec, 3);
 }
 
-// void Biggies(vector<string> &words, vector<string>::size_type sz,
-//              ostream &os = cout, char c = ' ')
-// {
-//     // 隐式捕获
-//     for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
-//     for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
-
-//     for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
-// }
+void Biggies(vector<string> &words, vector<string>::size_type sz,
+          ostream &os = cout, char c = ' ')
+{
+    // 隐式捕获
+    for_each(words.begin(), words.end(), [&, c] (const string &s){ os << s << c; });
+    for_each(words.begin(), words.end(), [=, &os] (const string &s) { os << s << c; });
+    for_each(words.begin(), words.end(), [&, c, sz] (const string &s) {os << s << c << sz << c; });
+}
 
 void ch_10_3_3()
 {
@@ -418,15 +406,16 @@ void ch_10_3_4()
 
         for_each(words.begin(), words.end(), bind(PrintVer1, ref(cout), _1, ' '));
         cout << endl;
+#if 0
+        ofstream os("../out_file1");
+        for_each(words.begin(), words.end(), bind(Print, ref(os), _1, ' '));
+        cout << endl;
 
-//        ofstream os("../out_file1");
-//        for_each(words.begin(), words.end(), bind(Print, ref(os), _1, ' '));
-//        cout << endl;
-
-//        ifstream in("../chapter_10/chapter_10.cpp");
-//        istream_iterator<string> is(in), eof;
-//        for_each(is, eof, bind(Print, ref(cout), _1, ' '));
-//        cout << endl;
+        ifstream in("../chapter_10/chapter_10.cpp");
+        istream_iterator<string> is(in), eof;
+        for_each(is, eof, bind(Print, ref(cout), _1, ' '));
+        cout << endl;
+#endif
     }
 }
 
@@ -519,12 +508,13 @@ void ch_10_4_2()
 {
     vector<int> vec;
     {
-//        vector<int> vec;
-//        istream_iterator<int> in_iter(cin), eof;
-//        while (in_iter != eof)
-//            vec.push_back(*in_iter++);
-//        for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
-
+#if 0
+        vector<int> vec;
+        istream_iterator<int> in_iter(cin), eof;
+        while (in_iter != eof)
+            vec.push_back(*in_iter++);
+        for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
+#endif
         istream_iterator<int> in_iter(cin), eof;
         vector<int> vec(in_iter, eof);
         for_each(vec.begin(), vec.end(), [](int i) { cout << i << ' '; });
@@ -543,9 +533,9 @@ void ch_10_4_2()
     /* ostream_iterator 操作 */
     {
         ostream_iterator<int> out_iter(cout, "\n");
-    //    for (const auto& e : vec)
-    //        //out_iter = e;
-    //        *out_iter++ = e;
+//        for (const auto& e : vec)
+//            //out_iter = e;
+//            *out_iter++ = e;
         copy(vec.begin(), vec.end(), out_iter);
     }
 
@@ -673,7 +663,7 @@ void hw_10_36()
 
 void hw_10_37()
 {
-    vector<int> vec = {0,1,2,3,4,5,6,7,8,9};
+    vector<int> vec = {0,1,2,3,4,5,6,7,8,9}; // [vec[2], vec[7])
 
     ostream_iterator<int> out_iter(cout, " ");
     copy(vec.begin(), vec.end(), out_iter);
@@ -685,9 +675,6 @@ void hw_10_37()
     copy(rb, re, back_inserter(li));
     copy(li.begin(), li.end(), out_iter);
 }
-
-/***************************************************************/
-/***************************10.5********************************/
 
 void ch_10_5_3()
 {
@@ -732,45 +719,42 @@ void ch_10_5_3()
 //    cout << endl;
 }
 
-/***************************************************************/
-/***************************10.6********************************/
-
 void ch_10_6()
 {
     list<int>   ilist1 = {0, 1, 2, 3};
     list<int>   ilist2 = {6, 7, 8, 9};
+#if 0
+    ilist1.merge(ilist2);
+    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+    cout << endl;
+    for_each(ilist2.begin(), ilist2.end(), [](int i){cout << i << " ";});
+    cout << endl;
 
-//    ilist1.merge(ilist2);
-//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-//    for_each(ilist2.begin(), ilist2.end(), [](int i){cout << i << " ";});
-//    cout << endl;
+    ilist1.reverse();
+    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+    cout << endl;
 
-//    ilist1.reverse();
-//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
+    ilist1.remove(0);
+    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+    cout << endl;
 
-//    ilist1.remove(0);
-//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
+    ilist1.insert(ilist1.end(), 1);
+    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+    cout << endl;
 
-//    ilist1.insert(ilist1.end(), 1);
-//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
-//    ilist1.unique();
-//    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
+    ilist1.unique();
+    for_each(ilist1.begin(), ilist1.end(), [](int i){cout << i << " ";});
+    cout << endl;
+#endif
     list<int>   ilist3 = {0, 1, 2, 3};
     list<int>   ilist4 = {6, 7, 8, 9};
-
-//    ilist3.splice(--ilist3.end(), ilist4);
-//    for_each(ilist3.begin(), ilist3.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-//    for_each(ilist4.begin(), ilist4.end(), [](int i){cout << i << " ";});
-//    cout << endl;
-
+#if 0
+    ilist3.splice(--ilist3.end(), ilist4);
+    for_each(ilist3.begin(), ilist3.end(), [](int i){cout << i << " ";});
+    cout << endl;
+    for_each(ilist4.begin(), ilist4.end(), [](int i){cout << i << " ";});
+    cout << endl;
+#endif
     ilist3.splice(--ilist3.end(), ilist4, ilist4.begin(), ilist4.end());
     for_each(ilist3.begin(), ilist3.end(), [](int i){cout << i << " ";});
     cout << endl;

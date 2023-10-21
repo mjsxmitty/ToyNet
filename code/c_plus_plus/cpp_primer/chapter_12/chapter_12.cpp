@@ -19,12 +19,12 @@ using namespace std;
 void ch_12(int argc, char **argv)
 {
     /* 动态内存与智能指针 */
-    //ch_12_1(argc, argv);
+    ch_12_1(argc, argv);
 
     /* 动态数组 */
     //ch_12_2();
 
-    ch_12_3(argc, argv);
+    //ch_12_3(argc, argv);
 }
 
 /***************************************************************/
@@ -33,7 +33,7 @@ void ch_12(int argc, char **argv)
 void ch_12_1(int argc, char **argv)
 {
     /* shared_ptr类 */
-    //ch_12_1_1();
+    ch_12_1_1();
     //hw_12_1();
 
     /* 直接管理内存 */
@@ -90,9 +90,9 @@ void ch_12_1_1()
     shared_ptr<list<int>>   p2;
     if (p1)
         cout << "pi ptr is empty." << endl;
-    // if (p1 && p1->empty())
-    //     *p1 = "hi";
-    // cout << *p1 << endl;
+//     if (p1 && p1->empty())
+//         *p1 = "hi";
+//     cout << *p1 << endl;
 
     // make_shared 函数
     shared_ptr<int> p3 = make_shared<int>(42);
