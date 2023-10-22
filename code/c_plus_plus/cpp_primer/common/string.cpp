@@ -107,3 +107,32 @@ std::ostream& operator<=(std::ostream &os, const String &item)
         os << *p++;
     return os;
 }
+
+bool operator==(const String &lhs, const String &rhs)
+{
+    return strcmp(lhs.p_, rhs.p_);
+}
+
+bool operator!=(const String &lhs, const String &rhs)
+{
+    return !(lhs == rhs);
+}
+
+bool operator>(const String &lhs, const String &rhs)
+{
+    return !(lhs < rhs);
+}
+bool operator>=(const String &lhs, const String &rhs)
+{
+    return !(lhs <= rhs);
+}
+
+bool operator<(const String &lhs, const String &rhs)
+{
+    return strcmp(lhs.p_, rhs.p_) < 0;
+}
+
+bool operator<=(const String &lhs, const String &rhs)
+{
+    return strcmp(lhs.p_, rhs.p_) <= 0;
+}

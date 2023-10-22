@@ -58,8 +58,6 @@ private:
 class ShorterString
 {
 public:
-    // ShorterString(/* args */);
-    // ~ShorterString();
     bool operator()(const std::string &lhs, const std::string &rhs)
     {
         return lhs.size() < rhs.size();
@@ -69,8 +67,6 @@ public:
 class SzieComp
 {
 public:
-    // SzieComp(/* args */);
-    // ~SzieComp();
     SzieComp(std::size_t n) : sz_(n) {}
     bool operator()(const std::string &s) const { return s.size() >= sz_; }
 private:
@@ -82,7 +78,6 @@ class StrLenIs
 public:
     StrLenIs(int l) : len(l) {}
     bool operator()(const std::string &s) { return s.size() == len; }
-    //~StrLenIs();
 private:
     int len;
 };
@@ -95,7 +90,6 @@ public:
     {
         return str.length() >= min_len_ && str.length() <= max_len_;
     }
-    //~StrLenBetween();
 private:
     int min_len_;
     int max_len_;
@@ -106,7 +100,6 @@ class StrLongerThan
 public:
     StrLongerThan(int len) : min_len(len) {}
     bool operator()(const std::string &s) { return s.length() >= min_len; }
-    //~StrLongerThan();
 private:
     int     min_len;
 };
@@ -116,10 +109,8 @@ class SmallInt
 public:
     SmallInt(std::size_t v) : val(v) {}
     explicit operator int() const { return val; }
-    //~SmallInt();
 private:
     std::size_t val;
 };
-
 
 #endif // __CPP_PRIMER_CH_14_H__

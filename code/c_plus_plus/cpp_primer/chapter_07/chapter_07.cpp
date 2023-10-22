@@ -179,8 +179,12 @@ void ch_7_5_4()
     explicit只可以在函数声明处，单一参数的构造函数
     此时必须 显示调用转换函数（显示调用构造函数）
 #endif
+#if 0
     item.Combine(static_cast<SalesData>(std::cin));
     item.Combine(static_cast<SalesData>(null_book));
+#endif
+    item += static_cast<SalesData>(std::cin);
+    item += static_cast<SalesData>(null_book);
 }
 
 void ch_7_6()

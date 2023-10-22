@@ -1,5 +1,4 @@
 
-
 #ifndef __CPP_PRIMER_STR_VEC_H__
 #define __CPP_PRIMER_STR_VEC_H__
 
@@ -8,6 +7,12 @@
 
 class StrVec
 {
+    friend bool operator==(const StrVec &lhs, const StrVec &rhs);
+    friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
+    friend bool operator<(const StrVec &lhs, const StrVec &rhs);
+    friend bool operator<=(const StrVec &lhs, const StrVec &rhs);
+    friend bool operator>(const StrVec &lhs, const StrVec &rhs);
+    friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
 public:
     StrVec() : elements(nullptr), first_free(nullptr), cap(nullptr) {}
     StrVec(const std::initializer_list<std::string> &il);
@@ -16,9 +21,11 @@ public:
     StrVec& operator=(StrVec &&rhs) noexcept;
     StrVec& operator=(const StrVec &rhs);
     ~StrVec();
-
+public:
     StrVec& operator=(const std::initializer_list<std::string> &il);
 
+    std::string& operator[](std::size_t n) { return elements[n]; }
+    const std::string& operator[](std::size_t n) const { return elements[n]; }
 public:
     void            PushBack(const std::string &s);
     void            PushBack(std::string &&);
@@ -44,16 +51,6 @@ private:
     std::string *elements;      // 首元素位置
     std::string *first_free;    // 第一个空闲位置
     std::string *cap;           // 容量
-public:
-    std::string& operator[](std::size_t n) { return elements[n]; }
-    const std::string& operator[](std::size_t n) const { return elements[n]; }
-public:
-    friend bool operator==(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator!=(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator<(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator<=(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator>(const StrVec &lhs, const StrVec &rhs);
-    friend bool operator>=(const StrVec &lhs, const StrVec &rhs);
 };
 
 bool operator==(const StrVec &lhs, const StrVec &rhs);

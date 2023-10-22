@@ -1,6 +1,6 @@
 
 #include "chapter_14.h"
-#include "../common/gz_ch_14.hpp"
+#include "ch_14.hpp"
 
 #include <vector>
 #include <algorithm>
@@ -77,11 +77,11 @@ void hw_14_39()
 
     StrLenBetween len_between(1, 9);
     cout << "len 1~9: " << count_if(words.begin(), words.end(), len_between)
-         << endl;
+        << endl;
 
     StrLongerThan len_long(10);
     cout << "len longer 10: " << count_if(words.begin(), words.end(), len_long)
-         << endl;
+        << endl;
 }
 
 

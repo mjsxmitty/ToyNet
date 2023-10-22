@@ -3,6 +3,7 @@
 
 using namespace std;
 
+#if 0
 istream& Read(istream &is, SalesData &item)
 {
     double price = 0;
@@ -24,6 +25,7 @@ SalesData Add(const SalesData &lhs, const SalesData &rhs)
     sum.Combine(rhs);
     return sum;
 }
+#endif
 
 double SalesData::AvgPrice() const
 {
@@ -33,13 +35,14 @@ double SalesData::AvgPrice() const
         return 0;
 }
 
+#if 0
 SalesData& SalesData::Combine(const SalesData &rhs)
 {
     units_sold_ += rhs.units_sold_;
     revenue_    += rhs.revenue_;
     return *this;
 }
-
+#endif
 #if 0
 SalesData::SalesData(istream &is)
 {
@@ -71,9 +74,9 @@ SalesData& SalesData::operator=(const SalesData &) = default;
 ostream& operator<<(ostream &os, const SalesData &rhs)
 {
     os << rhs.book_no_ << ", "
-       << rhs.units_sold_  << ", "
-       << rhs.revenue_ << ", "
-       << rhs.revenue_;
+        << rhs.units_sold_  << ", "
+        << rhs.revenue_ << ", "
+        << rhs.revenue_;
     return os;
 }
 

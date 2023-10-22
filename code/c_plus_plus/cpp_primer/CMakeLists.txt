@@ -1,11 +1,7 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(cpp_primer VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
-
 add_executable(cpp_primer
-    common/gz_ch_14.hpp
     common/gz_ch_16.hpp
     common/blob.hpp common/gz_blob_ptr.hpp
     common/gz_math.h common/gz_math.cpp
@@ -42,6 +38,7 @@ add_executable(cpp_primer
     chapter_13/chapter_13.h chapter_13/chapter_13.cpp
     chapter_13/ch_13.hpp
     chapter_14/chapter_14.h chapter_14/chapter_14.cpp
+    chapter_14/ch_14.hpp
     chapter_15/chapter_15.h chapter_15/chapter_15.cpp
     chapter_16/chapter_16.h chapter_16/chapter_16.cpp
     chapter_15/quote.h chapter_15/quote.cpp

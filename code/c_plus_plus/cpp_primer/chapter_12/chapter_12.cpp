@@ -467,8 +467,10 @@ void hw_12_20(int argc, char **argv)
     while (getline(in, s))
         sb.PushBack(s);
 
-    for (auto it = sb.Begin(); NotEqual(it, sb.End()); it.Incr())
-        cout << it.Deref() << endl;
+    // for (auto it = sb.Begin(); NotEqual(it, sb.End()); it.Incr())
+    //     cout << it.Deref() << endl;
+    for (auto it = sb.Begin(); it == sb.End(); ++it)
+        cout << *it << endl;
 }
 
 void ch_12_2()

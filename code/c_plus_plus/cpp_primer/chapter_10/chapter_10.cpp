@@ -1,6 +1,6 @@
 
 #include "chapter_10.h"
-#include "../common/gz_ch_14.hpp"
+#include "../chapter_14/ch_14.hpp"
 
 #include <numeric>
 #include <iterator>
@@ -284,7 +284,7 @@ void ch_10_3_2()
     Biggies(svec, 3);
 }
 
-void Biggies(vector<string> &words, vector<string>::size_type sz,
+void Biggies2(vector<string> &words, vector<string>::size_type sz,
           ostream &os = cout, char c = ' ')
 {
     // 隐式捕获

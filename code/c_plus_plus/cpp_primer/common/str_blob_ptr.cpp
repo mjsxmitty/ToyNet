@@ -19,7 +19,7 @@ shared_ptr<vector<string>> StrBlobPtr::Check(size_t i, const string &msg) const
 
     return ret;
 }
-
+#if 0
 string& StrBlobPtr::Deref() const
 {
     auto p = Check(curr_, "dereference past end.");
@@ -45,7 +45,8 @@ string& StrBlobPtr::Deref(int index) const
     auto p = Check(curr_ + index, "dereference past end.");
     return (*p)[curr_ + index];
 }
-
+#endif
+#if 0
 bool Equal(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     auto l = lhs.wptr_.lock(), r = rhs.wptr_.lock();
@@ -59,9 +60,7 @@ bool NotEqual(const StrBlobPtr &lhs, const StrBlobPtr &rhs)
 {
     return !Equal(lhs, rhs);
 }
-
-/****************************************************************/
-/***************************14.3*********************************/
+#endif
 
 StrBlobPtr operator+(const StrBlobPtr &lhs, int n)
 {
@@ -180,5 +179,3 @@ string* StrBlobPtr::operator->() const
 {
     return &(this->operator*());
 }
-
-
