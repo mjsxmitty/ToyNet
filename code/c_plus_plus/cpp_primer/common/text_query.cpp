@@ -8,7 +8,7 @@
 using namespace std;
 
 //TextQuery::TextQuery(ifstream &in) : file_(new vector<string>)
-TextQuery::TextQuery(ifstream &in) : file_(new GZStrVec)
+TextQuery::TextQuery(ifstream &in) : file_(new StrVec)
 {
     string text;
     while (getline(in, text))

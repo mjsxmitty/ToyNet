@@ -1,29 +1,29 @@
 
 
-#include "gz_str_vec.h"
+#include "str_vec.h"
 #include <iostream>
 #include <memory>
 #include <algorithm>
 
 using namespace std;
 
-allocator<string> GZStrVec::alloc;
+allocator<string> StrVec::alloc;
 
-void GZStrVec::PushBack(const string &s)
+void StrVec::PushBack(const string &s)
 {
     CheckAlloc();
     alloc.construct(first_free++, s);
 }
 
 pair<string*, string *>
-GZStrVec::AllocCopy(const string *beg, const string *end)
+StrVec::AllocCopy(const string *beg, const string *end)
 {
     auto data = alloc.allocate(end - beg);
     //return {data, uninitialized_copy(beg, end, data)};
     return make_pair(data, uninitialized_copy(beg, end, data));
 }
 
-void GZStrVec::Free()
+void StrVec::Free()
 {
     if (!elements)
         return ;
@@ -35,33 +35,33 @@ void GZStrVec::Free()
     alloc.deallocate(elements, cap - elements);
 }
 
-GZStrVec::GZStrVec(const std::initializer_list<string> &il)
+StrVec::StrVec(const std::initializer_list<string> &il)
 {
     auto new_data = AllocCopy(il.begin(), il.end());
     elements = new_data.first;
     cap = first_free = new_data.second;
 }
 
-GZStrVec::GZStrVec(const GZStrVec &rhs)
+StrVec::StrVec(const StrVec &rhs)
 {
-    cout << "GZStrVec copy construct func." << endl;
+    cout << "StrVec copy construct func." << endl;
     auto new_data = AllocCopy(rhs.Begin(), rhs.End());
     elements = new_data.first;
     first_free = cap = new_data.second;
 }
 
-GZStrVec::GZStrVec(GZStrVec &&rhs) noexcept : 
+StrVec::StrVec(StrVec &&rhs) noexcept : 
                     elements(rhs.elements),
                     first_free(rhs.first_free),
                     cap(rhs.cap)
 {
-    cout << "GZStrVec move construct func." << endl;
+    cout << "StrVec move construct func." << endl;
     elements = first_free = cap = nullptr;
 }
 
-GZStrVec& GZStrVec::operator=(GZStrVec &&rhs) noexcept
+StrVec& StrVec::operator=(StrVec &&rhs) noexcept
 {
-    cout << "GZStrVec move assign func." << endl;
+    cout << "StrVec move assign func." << endl;
     if (this != &rhs)
     {
         Free();
@@ -73,12 +73,12 @@ GZStrVec& GZStrVec::operator=(GZStrVec &&rhs) noexcept
     return *this;
 }
 
-GZStrVec::~GZStrVec()
+StrVec::~StrVec()
 {
     Free();
 }
 
-GZStrVec& GZStrVec::operator=(const GZStrVec &rhs)
+StrVec& StrVec::operator=(const StrVec &rhs)
 {
     cout << "copy construct ..."<< endl;
     auto new_data = AllocCopy(rhs.Begin(), rhs.End());
@@ -89,7 +89,7 @@ GZStrVec& GZStrVec::operator=(const GZStrVec &rhs)
     return *this;
 }
 
-GZStrVec& GZStrVec::operator=(const initializer_list<string> &il)
+StrVec& StrVec::operator=(const initializer_list<string> &il)
 {
     auto ret = AllocCopy(il.begin(), il.end());
     Free();
@@ -98,7 +98,7 @@ GZStrVec& GZStrVec::operator=(const initializer_list<string> &il)
     return *this;
 }
 
-void GZStrVec::Reallocate()
+void StrVec::Reallocate()
 {
     auto new_size = (Size() > 0 ? Size() * 2 : 1);
     auto new_data = alloc.allocate(new_size);
@@ -119,8 +119,7 @@ void GZStrVec::Reallocate()
     cap = elements + new_size;
 }
 
-
-void GZStrVec::Reallocate(size_t n)
+void StrVec::Reallocate(size_t n)
 {
     auto new_data = alloc.allocate(n);
 
@@ -136,7 +135,7 @@ void GZStrVec::Reallocate(size_t n)
     cap = elements + n;
 }
 
-void GZStrVec::Reserve(size_t n)
+void StrVec::Reserve(size_t n)
 {
     if (Capacity() > n)
         return ;
@@ -144,7 +143,7 @@ void GZStrVec::Reserve(size_t n)
     Reallocate(n);
 }
 
-void GZStrVec::Resize(size_t n)
+void StrVec::Resize(size_t n)
 {
     if (n > Size())
         while (n > Size())
@@ -154,7 +153,7 @@ void GZStrVec::Resize(size_t n)
             alloc.destroy(--first_free);    // 析构对象
 }
 
-void GZStrVec::Resize(size_t n, const string &s)
+void StrVec::Resize(size_t n, const string &s)
 {
     if (n > Size())
         while (n > Size())
@@ -164,17 +163,13 @@ void GZStrVec::Resize(size_t n, const string &s)
             alloc.destroy(--first_free);
 }
 
-/* 13.6.3 */
-void GZStrVec::PushBack(std::string &&s)
+void StrVec::PushBack(std::string &&s)
 {
     CheckAlloc();
     alloc.construct(first_free++, std::move(s));
 }
 
-/***************************************************************/
-/***************************14.2********************************/
-
-bool operator==(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator==(const StrVec &lhs, const StrVec &rhs)
 {
     if (lhs.Size() != rhs.Size())
         return false;
@@ -190,12 +185,12 @@ bool operator==(const GZStrVec &lhs, const GZStrVec &rhs)
     return true;
 }
 
-bool operator!=(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator!=(const StrVec &lhs, const StrVec &rhs)
 {
     return !(lhs == rhs);
 }
 
-bool operator<(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator<(const StrVec &lhs, const StrVec &rhs)
 {
     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
     for (;ps1 != lhs.End() && ps2 != rhs.End();
@@ -213,7 +208,7 @@ bool operator<(const GZStrVec &lhs, const GZStrVec &rhs)
     return false; 
 }
 
-bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator<=(const StrVec &lhs, const StrVec &rhs)
 {
     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
     for (;ps1 != lhs.End() && ps2 != rhs.End();
@@ -231,7 +226,7 @@ bool operator<=(const GZStrVec &lhs, const GZStrVec &rhs)
     return false; 
 }
 
-bool operator>(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator>(const StrVec &lhs, const StrVec &rhs)
 {
     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
     for (;
@@ -250,7 +245,7 @@ bool operator>(const GZStrVec &lhs, const GZStrVec &rhs)
     return false; 
 }
 
-bool operator>=(const GZStrVec &lhs, const GZStrVec &rhs)
+bool operator>=(const StrVec &lhs, const StrVec &rhs)
 {
     auto ps1 = lhs.Begin(), ps2 = rhs.Begin();
     for (;

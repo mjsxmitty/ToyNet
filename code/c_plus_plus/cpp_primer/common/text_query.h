@@ -11,7 +11,7 @@
 #include <map>
 
 #include "../common/str_blob.h"
-#include "../common/gz_str_vec.h"
+#include "../common/str_vec.h"
 
 class QueryResult;
 class TextQuery
@@ -27,7 +27,7 @@ private:
     std::map<std::string, std::shared_ptr<std::set<line_no>>>   wm_;
     //std::shared_ptr<std::vector<std::string>>   file_;  //
     //GZStrBlob       file_;
-    std::shared_ptr<GZStrVec> file_;                    // 文件内容与结果类公用
+    std::shared_ptr<StrVec> file_;                    // 文件内容与结果类公用
 };
 
 #endif // __CPP_PRIMER_CHAPTER_12_TEXT_QUERY_H__

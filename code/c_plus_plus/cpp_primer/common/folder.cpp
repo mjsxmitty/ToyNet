@@ -1,6 +1,6 @@
 
-#include "gz_folder.h"
-#include "gz_message.h"
+#include "folder.h"
+#include "message.h"
 
 void Folder::RemoveFromMessage()
 {

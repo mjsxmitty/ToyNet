@@ -1,7 +1,7 @@
 
 
-#ifndef __CPP_PRIMER_CHAPTER_13_FOLDER_MESSAGE_H__
-#define __CPP_PRIMER_CHAPTER_13_FOLDER_MESSAGE_H__
+#ifndef __CPP_PRIMER_FOLDER_MESSAGE_H__
+#define __CPP_PRIMER_FOLDER_MESSAGE_H__
 
 #include <string>
 #include <set>
@@ -16,7 +16,6 @@ public:
     Message(Message &&rhs);
     Message& operator=(Message &&rhs);
     Message& operator=(const Message &rhs);
-    
     ~Message();
 public:
     void Save(Folder &folder);
@@ -25,7 +24,6 @@ public:
     void AddFolder(Folder *f) { folders_.insert(f); }
     void RemFolder(Folder *f) { folders_.erase(f); }
 private:
-    /*更新folders*/
     void AddToFolders(const Message &m);
     void RemoveFormFolders();
 
@@ -37,4 +35,4 @@ private:
 
 void Swap(Message &lhs, Message &rhs);
 
-#endif //
+#endif // __CPP_PRIMER_FOLDER_MESSAGE_H__

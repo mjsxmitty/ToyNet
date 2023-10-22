@@ -1,7 +1,7 @@
 
 
-#ifndef __CPP_PRIMER_CHAPTER_13_HASPTR_H__
-#define __CPP_PRIMER_CHAPTER_13_HASPTR_H__
+#ifndef __CPP_PRIMER_HASPTR_H__
+#define __CPP_PRIMER_HASPTR_H__
 
 #include <string>
 #include <iostream>
@@ -11,7 +11,7 @@ class HasPtr
     friend void swap(HasPtr &lhs, HasPtr &rhs);
 public:
     HasPtr(const std::string &s = std::string()) : 
-            ps_(new std::string(s)), i_(0) {}
+            ps_(new std::string(s)), i_(0) {}       // 调用s的拷贝构造函数
     HasPtr(const HasPtr &p) : 
             ps_(new std::string(*p.ps_)), i_(p.i_) {}
     HasPtr(HasPtr &&p) noexcept : ps_(p.ps_), i_(p.i_) { p.ps_ = 0; }
@@ -31,7 +31,7 @@ inline void swap(HasPtr &lhs, HasPtr &rhs)
     using std::swap;
     std::cout << "swap HasPtr: " << *lhs.ps_ 
               << ", " << *rhs.ps_ 
-              << std::endl;
+            << std::endl;
 
     swap(lhs.ps_, rhs.ps_);
     swap(lhs.i_, rhs.i_);
@@ -58,4 +58,4 @@ public:
     HasPtrRef& operator=(HasPtrRef &&rhs);  //hp = std::move(hp1)
 };
 
-#endif // __CPP_PRIMER_CHAPTER_13_HASPTR_H__
+#endif // __CPP_PRIMER_HASPTR_H__

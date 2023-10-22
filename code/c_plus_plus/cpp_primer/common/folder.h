@@ -1,8 +1,8 @@
 
-#ifndef __CPP_PRIMER_UTIL_FLODER_H__
-#define __CPP_PRIMER_UTIL_FLODER_H__
+#ifndef __CPP_PRIMER_FLODER_H__
+#define __CPP_PRIMER_FLODER_H__
 
-#include "gz_message.h"
+#include "message.h"
 
 class Folder
 {
@@ -27,4 +27,4 @@ private:
     std::set<Message*>   messages_;
 };
 
-#endif //__CPP_PRIMER_UTIL_FLODER_H__
+#endif //__CPP_PRIMER_FLODER_H__

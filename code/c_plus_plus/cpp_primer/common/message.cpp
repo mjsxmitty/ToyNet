@@ -1,8 +1,8 @@
 
 #include <utility>
 
-#include "gz_message.h"
-#include "gz_folder.h"
+#include "message.h"
+#include "folder.h"
 
 using namespace std;
 
@@ -65,7 +65,7 @@ void Message::AddToFolders(const Message &m)
 void Message::RemoveFormFolders()
 {
     for (auto &f : folders_)
-       f->RemMsg(this);
+        f->RemMsg(this);
 }
 
 void Message::MoveFolders(Message *m)

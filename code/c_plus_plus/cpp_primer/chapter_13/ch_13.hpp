@@ -83,74 +83,77 @@ void PrintEmployee(const Employee &e)
     cout << e.GetName() << ", " << e.GetMySn() << endl;
 }
 
-class GZFoo
+class Foo
 {
-    friend void swap(GZFoo &lhs, GZFoo &rhs);
+    friend void swap(Foo &lhs, Foo &rhs);
 public:
-    explicit GZFoo(const string &s) : s_(s), hp_(s) {}
+    explicit Foo(const string &s) : s_(s), hp_(s) {}
     string PrintVal() const { return s_; }
 private:
     string s_;
     HasPtr hp_;
 };
 
-// 编译器会为GZX和GZhasX合成移动构造函数
-struct GZX
+namespace chapter_13{
+
+// 编译器会为X和hasX合成移动构造函数
+struct X
 {
     int     i;
     string  s;
 };
 
-struct GZhasX
+struct hasX
 {
-    GZX mem;
+    X mem;
 };
 
-struct GZY
+struct Y
 {
     int     i;
     string  s;
-    GZY(const GZY&){}
+    Y(const Y&){}
 };
 
-struct GZhasY
+struct hasY
 {
-    //GZhasY() = default;
-    GZhasY(GZhasY &&) = default;
+    //hasY() = default;
+    hasY(hasY &&) = default;
 
-    GZY mem;
+    Y mem;
 };
 
-class Foo
+class Foo2
 {
 public:
-    Foo() {cout << "Foo construct func." << endl;}
-    Foo(const Foo &rhs) { cout << "Foo copy construct func." << endl; }
+    Foo2() {cout << "Foo construct func." << endl;}
+    Foo2(const Foo2 &rhs) { cout << "Foo copy construct func." << endl; }
 
-    Foo& operator=(const Foo &) &;
-    Foo AntherMem() const &;
+    Foo2& operator=(const Foo2 &) &;
+    //Foo AntherMem() const &;
 
     // 重载和引用函数
-     Foo Sorted() &&;
-     Foo Sorted() const &;
-    ~Foo(){}
+    Foo2 Sorted() &&;
+    Foo2 Sorted() const &;
+    ~Foo2(){}
 private:
     vector<int> data;
 };
 
-Foo& Foo::operator=(const Foo &rhs) & { return *this; }
+Foo2& Foo2::operator=(const Foo2 &rhs) & { return *this; }
 
-Foo Foo::Sorted() &&
+Foo2 Foo2::Sorted() &&
 {
-     sort(data.begin(), data.end());
-     return *this;
+    sort(data.begin(), data.end());
+    return *this;
 }
 
-Foo Foo::Sorted() const &
+Foo2 Foo2::Sorted() const &
 {
-    Foo ret(*this);
+    Foo2 ret(*this);
     sort(ret.data.begin(), ret.data.end());
     return ret;
 }
 
+};
 #endif // __CPP_PRIMER_CH_13_HPP__

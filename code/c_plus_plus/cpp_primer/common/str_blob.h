@@ -16,10 +16,10 @@ public:
 public:
     StrBlob();
     StrBlob(const std::initializer_list<std::string> &il);
-
-    StrBlob(std::vector<std::string> *p);
+    
     StrBlob(const StrBlob &rhs);
     StrBlob& operator=(const StrBlob &rhs);
+    StrBlob(std::vector<std::string> *p);
 public:
     size_type   Size() const { return data_->size(); }
     bool        Empty() const { return data_->empty(); }

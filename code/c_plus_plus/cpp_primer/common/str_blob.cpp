@@ -17,7 +17,7 @@ StrBlob::StrBlob(vector<string> *p) : data_(p){}
 
 #if 0
 StrBlob::StrBlob(const StrBlob &rhs) :
-                 data_(make_shared<vector<string>>(*rhs.data_)){ }
+                data_(make_shared<vector<string>>(*rhs.data_)){ }
 
 StrBlob& StrBlob::operator=(const StrBlob &rhs)
 {

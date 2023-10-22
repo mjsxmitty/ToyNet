@@ -4,19 +4,22 @@
 
 using namespace std;
 
-// HasPtr& HasPtr::operator=(const HasPtr &rhs)
-// {
-//     auto new_ptr = new string(*rhs.ps_);
-//     delete ps_;
+#if 0
+HasPtr& HasPtr::operator=(const HasPtr &rhs)
+{
+    auto new_ptr = new string(*rhs.ps_);
+    delete ps_;
 
-//     ps_ = new_ptr;
-//     i_ = rhs.i_;
+    ps_ = new_ptr;
+    i_ = rhs.i_;
 
-//     return *this;
-// }
+    return *this;
+}
+#endif
 
 HasPtr& HasPtr::operator=(HasPtr h)
 {
+    cout << "HasPtr operator= func" << endl;
     swap(*this, h);
     return *this;
 }
@@ -39,11 +42,9 @@ bool HasPtr::operator<(const HasPtr &rhs) const
 
 HasPtr::~HasPtr()
 {
-    cout << *ps_ << " destruction func." << endl;
+    cout << *ps_ << " HasPtr destruction func." << endl;
     delete ps_;
 }
-
-/************************************************************/
 
 HasPtrRef &HasPtrRef::operator=(const HasPtrRef &p)
 {

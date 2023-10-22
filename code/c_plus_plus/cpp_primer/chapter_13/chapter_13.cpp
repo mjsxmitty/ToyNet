@@ -2,7 +2,7 @@
 
 #include "chapter_13.h"
 #include "../common/has_ptr.h"
-#include "../common/gz_str_vec.h"
+#include "../common/str_vec.h"
 #include "../common/str_blob.h"
 #include "ch_13.hpp"
 
@@ -23,10 +23,10 @@ void ch_13()
     //ch_13_2();
 
     /* 交换操作 */
-    //ch_13_3();
+    ch_13_3();
 
     /* 对象移动 */
-    ch_13_6();
+    //ch_13_6();
 }
 
 void ch_13_1()
@@ -137,8 +137,8 @@ void ch_13_1_6()
     NoCopy no_object;
     //NoCopy no_object2 = no_object;
 
-    //GZNoDtor no_dtor;
-    //GZNoDtor *no_dtor_ptr = new GZNoDtor;
+    //NoDtor no_dtor;
+    //NoDtor *no_dtor_ptr = new NoDtor;
     //delete no_dtor_ptr;
 
     PrivateCopy pri_object;
@@ -225,18 +225,21 @@ void hw_13_27()
 }
 
 /* swap调用的应该是swap，而不是std::swap */ 
-void swap(GZFoo &lhs, GZFoo &rhs)
+void swap(Foo &lhs, Foo &rhs)
 {
     using std::swap;
-    cout << "swap GZFoo object: " << lhs.PrintVal() <<
+    cout << "swap Foo object: " << lhs.PrintVal() <<
             " and " << rhs.PrintVal() << endl;
     swap(lhs.hp_, rhs.hp_);
 }
 
 void ch_13_3()
 {
-   GZFoo foo1("foo1"), foo2("foo2");
-   swap(foo1, foo2);
+#if 0
+    Foo foo1("foo1"), foo2("foo2");
+    swap(foo1, foo2);
+#endif
+    hw_13_30();
 }
 
 void hw_13_30()
@@ -247,6 +250,7 @@ void hw_13_30()
 
     h2 = "cpp";
     h3 = "primer";
+    //h3 = h;
 
     cout << "h: " << *h << endl;
     cout << "h2: " << *h2 << endl;
@@ -302,42 +306,42 @@ void ch_13_6_1()
     }
 }
 
-GZStrVec GetVec(istream &is) { return GZStrVec();}
+StrVec GetVec(istream &is) { return StrVec();}
 
 void ch_13_6_2()
 {
     /* 合成移动操作 */ 
     {
-        GZX     x, x2 = std::move(x);
-        GZhasX  hx, hx2 = std::move(hx);
+        X     x, x2 = std::move(x);
+        chapter_13::hasX  hx, hx2 = std::move(hx);
     }
 
     {
-        //GZhasY hy, hy2 = std::move(hy);
+        //hasY hy, hy2 = std::move(hy);
     }
 
     /* 移动右值,拷贝左值... */
     {
-        GZStrVec v1, v2;
+        StrVec v1, v2;
         v1 = v2;
         v2 = GetVec(cin);
     } 
 
     /* 没有移动构造函数，右值被拷贝 */
     {
-        Foo x;
-        Foo y(x);
-        Foo z(std::move(x));    //Foo&& --> const Foo&
+        chapter_13::Foo2 x;
+        chapter_13::Foo2 y(x);
+        chapter_13::Foo2 z(std::move(x));    //Foo&& --> const Foo&
     }
 }
 
-Foo& RetFoo(){ Foo *ret; return *ret;}
-Foo RetVal(){ return Foo();}
+chapter_13::Foo2& RetFoo(){ chapter_13::Foo2 *ret; return *ret;}
+chapter_13::Foo2 RetVal(){ return chapter_13::Foo2();}
 
 void ch_13_6_3()
 {
     {
-        GZStrVec sv;
+        StrVec sv;
         string s = "some thing";
         sv.PushBack(s);
         sv.PushBack("other thing");

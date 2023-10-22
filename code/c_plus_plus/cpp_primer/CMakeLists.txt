@@ -9,10 +9,10 @@ add_executable(cpp_primer
     common/gz_ch_16.hpp
     common/blob.hpp common/gz_blob_ptr.hpp
     common/gz_math.h common/gz_math.cpp
-    common/gz_string.h common/gz_string.cpp
-    common/gz_str_vec.h common/gz_str_vec.cpp
-    common/gz_message.h common/gz_message.cpp
-    common/gz_folder.h common/gz_folder.cpp
+    common/string.h common/string.cpp
+    common/str_vec.h common/str_vec.cpp
+    common/message.h common/message.cpp
+    common/folder.h common/folder.cpp
     common/has_ptr.h common/has_ptr.cpp
     common/sales_data.h common/sales_data.cpp
     common/screen.h common/screen.cpp
