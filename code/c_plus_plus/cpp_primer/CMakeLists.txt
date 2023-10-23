@@ -18,11 +18,10 @@ add_executable(cpp_primer
     common/str_blob_ptr.h common/str_blob_ptr.cpp
     common/query_result.h common/query_result.cpp
     common/text_query.h common/text_query.cpp
-    common/zg_quote.h common/zg_quote.cpp
-    common/zg_bulk_quote.h common/zg_bulk_quote.cpp
-    common/zg_base.h common/zg_base.cpp
-    common/zg_disc_quote.h common/zg_disc_quote.cpp
-    common/zg_limited_quote.h common/zg_limited_quote.cpp
+    common/quote.h common/quote.cpp
+    common/bulk_quote.h common/bulk_quote.cpp
+    common/disc_quote.h common/disc_quote.cpp
+    common/limited_quote.h common/limited_quote.cpp
     main.cpp
     chapter_02/chapter_02.h chapter_02/chapter_02.cpp
     chapter_03/chapter_03.h chapter_03/chapter_03.cpp
@@ -40,11 +39,8 @@ add_executable(cpp_primer
     chapter_14/chapter_14.h chapter_14/chapter_14.cpp
     chapter_14/ch_14.hpp
     chapter_15/chapter_15.h chapter_15/chapter_15.cpp
+    chapter_15/ch_15.hpp
     chapter_16/chapter_16.h chapter_16/chapter_16.cpp
-    chapter_15/quote.h chapter_15/quote.cpp
-    chapter_15/bulk_quote.h chapter_15/bulk_quote.cpp
-    chapter_15/limit_quote.h chapter_15/limit_quote.cpp
-    chapter_15/disc_quote.h chapter_15/disc_quote.cpp
     )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
