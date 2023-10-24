@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-namespace cha_15 {
+namespace chapter_15 {
 
 class Base
 {

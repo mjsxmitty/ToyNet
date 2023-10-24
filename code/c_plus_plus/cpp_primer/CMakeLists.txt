@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5.0)
 project(cpp_primer VERSION 0.1.0)
 
 add_executable(cpp_primer
-    common/gz_ch_16.hpp
-    common/blob.hpp common/gz_blob_ptr.hpp
+    common/blob.hpp
+    common/blob_ptr.hpp
     common/gz_math.h common/gz_math.cpp
     common/string.h common/string.cpp
     common/str_vec.h common/str_vec.cpp
@@ -41,6 +41,7 @@ add_executable(cpp_primer
     chapter_15/chapter_15.h chapter_15/chapter_15.cpp
     chapter_15/ch_15.hpp
     chapter_16/chapter_16.h chapter_16/chapter_16.cpp
+    chapter_16/ch_16.hpp
     )
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

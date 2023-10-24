@@ -1,9 +1,9 @@
 
 
 #include "chapter_16.h"
-#include "../common/gz_ch_16.hpp"
+#include "ch_16.hpp"
 #include "../common/blob.hpp"
-#include "../common/gz_blob_ptr.hpp"
+#include "../common/blob_ptr.hpp"
 
 #include <iostream>
 #include <string>
@@ -11,6 +11,7 @@
 #include <list>
 
 using namespace std;
+using namespace chapter_16;
 
 void ch_16()
 {
@@ -34,6 +35,7 @@ void ch_16_1()
 
 void ch_16_1_1()
 {
+    using namespace chapter_16;
     /* 实例化函数 */
     {
         cout << Compare(1, 0) << endl;
@@ -123,8 +125,8 @@ void ch_16_1_2()
     }
 
     {
-        GZFoo<int> tf1, tf2;
-        cout << GZFoo<int>::Count() << ", "
+        Foo<int> tf1, tf2;
+        cout << Foo<int>::Count() << ", "
              << tf1.Count() << ", "
              << tf2.Count() << endl;
     }
@@ -140,8 +142,8 @@ void ch_16_1_3()
 
     /* 模板默认实参与类模板 */
     {
-        GZNumbers<long double> n1;
-        GZNumbers<> n2;
+        Numbers<long double> n1;
+        Numbers<> n2;
     }
 }
 
@@ -150,10 +152,10 @@ void ch_16_1_4()
     /* 普通（非模板）类的成员模板 */
     {
         double* p = new double;
-        GZDebugDelete d;
+        DebugDelete d;
         d(p);
 
-        unique_ptr<int, GZDebugDelete> up(new int, GZDebugDelete());
+        unique_ptr<int, DebugDelete> up(new int, DebugDelete());
     }
 
     /* 类模板的成员模板 */

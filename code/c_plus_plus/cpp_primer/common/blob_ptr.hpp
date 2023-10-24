@@ -1,6 +1,6 @@
 
-#ifndef __CPP_PRIMER_COMMON_GZ_BLOB_PTR_H__
-#define __CPP_PRIMER_COMMON_GZ_BLOB_PTR_H__
+#ifndef __CPP_PRIMER_BLOB_PTR_HPP__
+#define __CPP_PRIMER_BLOB_PTR_HPP__
 
 #include "blob.hpp"
 
@@ -70,4 +70,4 @@ BlobPtr<T> BlobPtr<T>::operator++(int)
 }
 
 
-#endif //
+#endif // __CPP_PRIMER_BLOB_PTR_HPP__

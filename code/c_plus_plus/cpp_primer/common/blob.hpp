@@ -1,13 +1,12 @@
 
 
-#ifndef __CPP_PRIMER_OBJECT_BLOB_H__
-#define __CPP_PRIMER_OBJECT_BLOB_H__
+#ifndef __CPP_PRIMER_BLOB_HPP__
+#define __CPP_PRIMER_BLOB_HPP__
 
 #include <vector>
 #include <memory>
 #include <vector>
 #include <stdexcept>
-
 
 template <typename> class Blob;
 template <typename T>
@@ -26,7 +25,7 @@ public:
     Blob();
     Blob(const std::initializer_list<T> &il);
     template<typename It>
-    Blob(It b, It e) : data_(std::make_shared<std::vector<T>>(b, e)) {}
+    Blob(It b, It e);
 public:
     SizeType    Size() const { return data_->size(); }
     bool        Empty() const { return data_->empty(); }
@@ -44,13 +43,15 @@ private:
 
 template <typename T>
 using BLOB = Blob<T>;
+//typedef Blob<int> BLOB;
 
-//template <typename T>
-//bool operator==(const Blob<T> &lhs, const Blob<T> &rhs)
-//{
-//    return lhs.data_ == rhs.data_;
-//}
-
+#if 0
+template <typename T>
+bool operator==(const Blob<T> &lhs, const Blob<T> &rhs)
+{
+    return lhs.data_ == rhs.data_;
+}
+#endif
 template <typename T>
 Blob<T>::Blob() : data_(std::make_shared<std::vector<T>>()){}
 
@@ -85,5 +86,8 @@ void Blob<T>::PopBack()
     data_->pop_back();
 }
 
+template<typename T>
+template<typename It>
+Blob<T>::Blob(It b, It e) : data_(std::make_shared<std::vector<T>>(b, e)) {}
 
-#endif //
+#endif // __CPP_PRIMER_BLOB_HPP__

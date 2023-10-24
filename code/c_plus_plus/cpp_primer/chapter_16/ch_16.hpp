@@ -1,32 +1,35 @@
 
-#ifndef __CPP_PRIMER_GZ_COMMON_H__
-#define __CPP_PRIMER_GZ_COMMON_H__
+#ifndef __CPP_PRIMER_CH_16_HPP__
+#define __CPP_PRIMER_CH_16_HPP__
 
 #include <functional>
 #include <iostream>
 
-//template <typename T>
-//int Compare(const T &v1, const T &v2)
-//{
-//    if (v1 < v2) return -1;
-//    if (v1 > v2) return 1;
-//    return 0;
-//}
+#if 0
+template <typename T>
+int Compare(const T &v1, const T &v2)
+{
+    if (v1 < v2) return -1;
+    if (v1 > v2) return 1;
+    return 0;
+}
+#endif
 
-// 特定类型名;表示一个值;常量表达式初始化
 template <unsigned N, unsigned M>
 int Compare(const char (&p1)[N], const char (&p2)[M])
 {
     return strcmp(p1, p2);
 }
 
-//template <typename T>
-//int Compare(const T &v1, const T &v2)
-//{
-//    if (std::less<T>()(v1, v2)) return -1;
-//    if (std::less<T>()(v2, v1)) return 1;
-//    return 0;
-//}
+#if 0
+template <typename T>
+int Compare(const T &v1, const T &v2)
+{
+    if (std::less<T>()(v1, v2)) return -1;
+    if (std::less<T>()(v2, v1)) return 1;
+    return 0;
+}
+#endif
 
 template <typename I, typename T>
 I Find(I b, I e, const T &v)
@@ -58,17 +61,21 @@ constexpr size_t ArrSize(const T (&a)[N])
 template <typename T, size_t N>
 void Print(const T (&a)[N])
 {
-//     for (auto iter = std::begin(a); iter != std::end(a); iter++)
-//     for (auto iter = Begin(a) ;iter != End(a); iter++)
-//         std::cout << *iter << " ";
+    for (auto iter = std::begin(a); iter != std::end(a); iter++)
+    for (auto iter = Begin(a) ;iter != End(a); iter++)
+        std::cout << *iter << " ";
+    std::cout << std::endl;
+
 
     for (size_t i = 0; i != ArrSize(a); i++)
-        std::cout << a[i] << "\n";
+        std::cout << a[i] << " ";
     std::cout << std::endl;
 }
 
+namespace chapter_16 {
+
 template <typename T>
-class GZFoo
+class Foo
 {
 public:
     static std::size_t Count() { return ctr; }
@@ -77,15 +84,7 @@ private:
 };
 
 template <typename T>
-std::size_t GZFoo<T>::ctr = 0;
-
-template <typename T, typename F = std::less<T>>
-int Compare(const T &lhs, const T &rhs, F f = F())
-{
-    if (f(lhs, rhs)) return -1;
-    if (f(lhs, rhs)) return 1;
-    return 0;
-}
+std::size_t Foo<T>::ctr = 0;
 
 template <typename T>
 typename T::value_type Top(const T& c)
@@ -96,19 +95,27 @@ typename T::value_type Top(const T& c)
         return typename T::value_type();
 }
 
+template <typename T, typename F = std::less<T>>
+int Compare(const T &lhs, const T &rhs, F f = F())
+{
+    if (f(lhs, rhs)) return -1;
+    if (f(lhs, rhs)) return 1;
+    return 0;
+}
+
 template <typename T = int>
-class GZNumbers
+class Numbers
 {
 public:
-    GZNumbers(T v = 0) : val_(v) {}
+    Numbers(T v = 0) : val_(v) {}
 private:
     T   val_;
 };
 
-class GZDebugDelete
+class DebugDelete
 {
 public:
-    GZDebugDelete(std::ostream &os = std::cerr) : os_(os) {}
+    DebugDelete(std::ostream &os = std::cerr) : os_(os) {}
 
     template<typename T>
     void operator()(T *p) const {
@@ -119,4 +126,6 @@ private:
     std::ostream &os_;
 };
 
-#endif //__CPP_PRIMER_GZ_COMMON_H__
+};
+
+#endif //__CPP_PRIMER_CH_16_HPP__

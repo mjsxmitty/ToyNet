@@ -7,6 +7,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace chapter_15;
 
 void ch_15()
 {
@@ -38,8 +39,8 @@ void ch_15_2_2()
 
     /*继承与静态函数*/
     {
-         cha_15::Derived d;
-         d.f(cha_15::Derived());
+         Derived d;
+         d.f(Derived());
     }
 
     /* 派生类声明 */
@@ -50,7 +51,7 @@ void ch_15_2_2()
 
     // 被用作基类的类
     {
-        class D1 : public cha_15::Base {};
+        class D1 : public Base {};
         class D2 : public D1 {};
     }
 
@@ -58,7 +59,7 @@ void ch_15_2_2()
     {
         class NoDerived final {};
         //class Bad : public NoDerived {};
-        class Last final : public cha_15::Base {};
+        class Last final : public Base {};
         //class Bad2 : public Last {};
     }
 }
@@ -66,9 +67,9 @@ void ch_15_2_2()
 void ch_15_5()
 {
     /* 公有、私有和受保护继承 */
-    cha_15::PubDrev d1;
-    cha_15::ProDrev d2;
-    cha_15::PriDrev d3;
+    PubDrev d1;
+    ProDrev d2;
+    PriDrev d3;
     d1.f();
     d1.pub_mem();
     d2.f();
