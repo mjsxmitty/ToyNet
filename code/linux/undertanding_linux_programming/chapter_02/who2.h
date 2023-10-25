@@ -19,7 +19,4 @@ struct utmp* NextUtmp();
 /*关闭utmp文件*/
 void CloseUtmp();
 
-/*注销登录账号*/
-int LogoutTTY(char *name);
-
 #endif // __NUP_CHAPTER02_WHO2_H__

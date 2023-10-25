@@ -46,7 +46,7 @@ void DoMore(FILE *fp)
             if (reply == 0)
                 break;
 
-            printf("reply: %d", reply);
+            //printf("reply: %d", reply);
             num_of_lines -= reply;
         }
 

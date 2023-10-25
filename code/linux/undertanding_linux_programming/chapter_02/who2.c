@@ -18,13 +18,13 @@
 #include "who1.h"
 
 #define CACHE_NUM   16
-#define UTMP_SIZE   (sizeof(struct utmp))
+#define UTMP_SIZE   (sizeof(struct utmp))       // 缓存大小
 #define UTMP_NULL   ((struct utmp *)NULL)
 
-static char utmp_buf[CACHE_NUM * UTMP_SIZE];
-static int  num_recs;
-static int  cur_recs;
-static int  utmp_fd = -1;
+static char utmp_buf[CACHE_NUM * UTMP_SIZE];    // 缓存
+static int  num_recs;                           // 读取数量
+static int  cur_recs;                           // 当前索引
+static int  utmp_fd = -1;                       // 文件描述符
 
 int OpenUtmp(char *file)
 {
@@ -83,34 +83,4 @@ int who2()
     }
 }
 
-// lseek
-int LogoutTTY(char *name)
-{
-    int         fd;
-    struct utmp ret;
-    int         utmp_len = sizeof(struct utmp);
-    int         ret_val = -1;
 
-    if ((fd = OpenUtmp(UTMP_FILE)) == -1) {
-        return -1;
-    }
-
-    while (read(fd, &ret, utmp_len) == utmp_len) {
-        if (strncmp(ret.ut_user, name, sizeof(ret.ut_user)) == 0) {
-            ret.ut_type = DEAD_PROCESS;
-            //if (time(&ret.ut_tv.tv_sec) != -1) {
-                if (lseek(fd, -utmp_len, SEEK_CUR) != -1) {
-                    if (write(fd, &ret, utmp_len) == utmp_len) {
-                        ret_val = 0;
-                    }
-                }
-            //}
-
-            break;
-        }
-    }
-    
-    CloseUtmp(fd);
-
-    return ret_val;
-}

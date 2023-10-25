@@ -42,7 +42,7 @@ void ShowInfo(struct utmp *ut_buf)
     if (ut_buf->ut_type != USER_PROCESS)
         return ;
     
-    printf("%-8.8s", ut_buf->ut_name);
+    printf("%-8.8s", ut_buf->ut_name);      // 总宽为8,输出宽度为8
     printf(" ");
     printf("%-8.8s", ut_buf->ut_line);
     printf(" ");

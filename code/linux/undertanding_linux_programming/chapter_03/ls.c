@@ -19,8 +19,8 @@ void DoLs(char *dir_name)
         perror(dir_name);
     } else {
         while ((dir_entp = readdir(dir_ptr)) != NULL) {
-            printf("name:%s\n", dir_entp->d_name);
-            //DoStat(dir_entp->d_name);
+            //printf("name:%s\n", dir_entp->d_name);
+            DoStat(dir_entp->d_name);
         }
         closedir(dir_ptr);
     }
