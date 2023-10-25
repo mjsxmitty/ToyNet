@@ -4,6 +4,6 @@
 
 void ch_01(int argc, char **argv)
 {
-    More(argc, argv);
+    more(argc, argv);
 }
 

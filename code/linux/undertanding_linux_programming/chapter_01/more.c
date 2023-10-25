@@ -5,7 +5,7 @@
 #define PAGE_LEN    24
 #define LINE_LEN    512
 
-void More(int argc, char **argv)
+void more(int argc, char **argv)
 {
 #if 0
     printf("cnt:%d\n", argc);
@@ -13,12 +13,12 @@ void More(int argc, char **argv)
 #endif
     FILE    *fp;
     if (argc == 1)
-        DoMore(stdin);
+        do_more(stdin);
     else {
         int i = 1;
         for (; i < argc; ++i) {
             if ((fp = fopen(argv[i], "r")) != NULL) {
-                DoMore(fp);
+                do_more(fp);
                 fclose(fp);
             } else {
                 exit(1);
@@ -29,7 +29,7 @@ void More(int argc, char **argv)
     return ;
 }
 
-void DoMore(FILE *fp)
+void do_more(FILE *fp)
 {
     char    line[LINE_LEN];
     int     num_of_lines = 0;
@@ -42,7 +42,7 @@ void DoMore(FILE *fp)
     while (fgets(line, LINE_LEN, fp)) {
         if (num_of_lines == PAGE_LEN) {
 
-            reply = SeeMore(fp_tty);
+            reply = see_more(fp_tty);
             if (reply == 0)
                 break;
 
@@ -57,7 +57,7 @@ void DoMore(FILE *fp)
     }
 }
 
-int SeeMore(FILE *fp)
+int see_more(FILE *fp)
 {
     printf("\033[7m more? \033[m");
 

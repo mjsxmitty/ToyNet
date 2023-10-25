@@ -8,9 +8,9 @@
 int who1();
 
 /*显示utmp结构信息*/
-void ShowInfo(struct utmp *);
+void show_info(struct utmp *);
 
 /*格式化时间*/
-void  ShowTime(long);
+void  show_time(long);
 
 #endif //__ULP_CHAPTER_02_WHO_H__

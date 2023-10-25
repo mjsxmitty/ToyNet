@@ -9,7 +9,7 @@
 
 #include "ls.h"
 
-void DoLs(char *dir_name)
+void do_ls(char *dir_name)
 {
     DIR             *dir_ptr;
     struct dirent   *dir_entp;
@@ -20,38 +20,38 @@ void DoLs(char *dir_name)
     } else {
         while ((dir_entp = readdir(dir_ptr)) != NULL) {
             //printf("name:%s\n", dir_entp->d_name);
-            DoStat(dir_entp->d_name);
+            do_stat(dir_entp->d_name);
         }
         closedir(dir_ptr);
     }
 }
 
-void DoStat(char *file_name)
+void do_stat(char *file_name)
 {
     struct stat info;
     if (stat(file_name, &info) != -1) {
-        ShowStatInfo(file_name, &info);
+        show_stat_info(file_name, &info);
     } else {
         perror(file_name);
     }
     return ;
 }
 
-void ShowStatInfo(char *file_name, struct stat *buf)
+void show_stat_info(char *file_name, struct stat *buf)
 {
     char str[11];
-    ModeToLetters(buf->st_mode, str);
+    model_to_letters(buf->st_mode, str);
     printf("%12s", str);
 
-    printf("%4d", (int)buf->st_nlink);
-    printf("%-8s ", UidToName(buf->st_uid));
-    printf("%-8s ", GidToName(buf->st_gid));
+    printf("%4d ", (int)buf->st_nlink);
+    printf("%-8s ", uid_to_name(buf->st_uid));
+    printf("%-8s ", gid_to_name(buf->st_gid));
     printf("%8ld ", (long)buf->st_size);
     //printf("%.12s ", 4 + ctime(&buf->st_mtime));
     printf("%s\n", file_name);
 }
 
-void ModeToLetters(int mode, char *str)
+void model_to_letters(int mode, char *str)
 {
     strcpy(str, "----------");
     if (S_ISDIR(mode)) str[0] = 'd';
@@ -71,20 +71,20 @@ void ModeToLetters(int mode, char *str)
     if (mode & S_IXOTH) str[9] = 'x';
 }
 
-char* UidToName(uid_t uid)
+char* uid_to_name(uid_t uid)
 {
-    struct passwd *pwd_ptr;
+    struct passwd *pw_ptr;
     static char num_str[10];
 
-    if ((pwd_ptr = getpwuid(uid)) == NULL) {
+    if ((pw_ptr = getpwuid(uid)) == NULL) {
         sprintf(num_str, "%d", uid);
         return num_str;
     } else {
-        return pwd_ptr->pw_name;
+        //return pw_ptr->pw_name;       // TODO...
     }
 }
 
-char* GidToName(gid_t gid)
+char* gid_to_name(gid_t gid)
 {
     struct group *gid_ptr;
     static char num_str[10];

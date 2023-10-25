@@ -5,13 +5,11 @@
 void ch_03(int argc, char **argv)
 {
     if (argc == 1) 
-        DoLs(".");
-        //DoStat(".");
+        do_ls(".");
     else {
         int i = 1;
         for (; i < argc; ++i) {
-            DoLs(argv[i]);
-            //DoStat(argv[i]);
+            do_ls(argv[i]);
         }
     }
 }

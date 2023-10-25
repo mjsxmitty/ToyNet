@@ -3,7 +3,7 @@
 #include "who1.h"
 #include "who2.h"
 #include "cp.h"
-#include "logout.h"
+//#include "logout.h"
 
 void ch_02(int argc, char** argv) {
 
@@ -12,6 +12,4 @@ void ch_02(int argc, char** argv) {
     //cp(argc, argv);
 
     who2();
-
-    logout(argv[1]);
 }
