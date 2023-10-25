@@ -8,7 +8,8 @@ void ch_03(int argc, char **argv)
         //DoLs(".");
         DoStat(".");
     else {
-        for (int i = 1; i < argc; ++i) {
+        int i = 1;
+        for (; i < argc; ++i) {
             //DoLs(argv[i]);
             DoStat(argv[i]);
         }

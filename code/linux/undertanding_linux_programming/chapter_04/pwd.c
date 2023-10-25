@@ -5,6 +5,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define BUFF_SIZE   512
 

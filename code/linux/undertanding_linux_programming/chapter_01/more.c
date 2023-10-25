@@ -7,14 +7,16 @@
 
 void More(int argc, char **argv)
 {
-    // printf("cnt:%d\n", argc);
-    // return;
-
+#if 0
+    printf("cnt:%d\n", argc);
+    return;
+#endif
     FILE    *fp;
     if (argc == 1)
         DoMore(stdin);
-    else
-        for (int i = 1; i < argc; ++i) {
+    else {
+        int i = 1;
+        for (; i < argc; ++i) {
             if ((fp = fopen(argv[i], "r")) != NULL) {
                 DoMore(fp);
                 fclose(fp);
@@ -22,6 +24,7 @@ void More(int argc, char **argv)
                 exit(1);
             }
         }
+    }
     
     return ;
 }

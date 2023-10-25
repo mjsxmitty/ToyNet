@@ -3,6 +3,7 @@
 #define __NLP_CHAPTER_03_LS_H__
 
 #include <sys/types.h>
+#include <sys/stat.h>
 
 /*ls 命令*/
 void DoLs(char *dir_name);
