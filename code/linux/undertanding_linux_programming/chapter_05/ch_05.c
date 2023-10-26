@@ -1,8 +1,9 @@
 
 #include "ch_05.h"
-#include "play_again.h"
+#include "echo.h"
 
 void ch_05(int argc, char **argv)
 {
-    get_response();
+    set_echo(argc, argv);
+    echo_state(0);
 }

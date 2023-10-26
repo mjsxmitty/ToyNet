@@ -13,7 +13,7 @@ void pwd()
 {
     print_path_to(get_inode("."));
     putchar('\n');
-    exit(1);
+    return ;
 }
 
 void print_path_to(ino_t this_node)
@@ -24,7 +24,7 @@ void print_path_to(ino_t this_node)
     if (get_inode("..") != this_node) {
         chdir("..");
         inum_to_name(this_node, its_name, BUFF_SIZE);
-        my_node = get_inode(".");
+        my_node = get_inode(".");   // 获取切换后目录的节点
         print_path_to(my_node);
         printf("/%s", its_name);
     }
@@ -46,7 +46,7 @@ void inum_to_name(ino_t inode_to_find, char *name_buf, int buf_len)
     DIR             *dir_ptr;
     struct dirent   *dirent_ptr;
 
-    // 打开当前目录
+    // 打开当前目录(输入节点的上一级目录)
     dir_ptr = opendir(".");
     if (dir_ptr == NULL) {
         perror(".");
