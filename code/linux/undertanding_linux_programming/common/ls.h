@@ -1,9 +1,11 @@
 
-#ifndef __NLP_CHAPTER_03_LS_H__
-#define __NLP_CHAPTER_03_LS_H__
+#ifndef __NLP_LS_H__
+#define __NLP_LS_H__
 
 #include <sys/types.h>
 #include <sys/stat.h>
+
+int ls(int argc, char **argv);
 
 /*ls 命令*/
 void do_ls(char *dir_name);
@@ -20,4 +22,4 @@ void model_to_letters(int mode, char *str);
 char* uid_to_name(uid_t uid);
 char* gid_to_name(gid_t gid);
 
-#endif //__NLP_CHAPTER_03_LS_H__
+#endif //__NLP_LS_H__

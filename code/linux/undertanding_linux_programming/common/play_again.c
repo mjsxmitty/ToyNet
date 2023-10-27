@@ -1,12 +1,15 @@
 
 #include <stdio.h>
 #include <termios.h>
-
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include "play_again.h"
 
 #define QUESTION    "do you want another transaction?"
 #define SLEEP_TIME  1
-#define MAX_TRIES   3
 
 int play_again()
 {
@@ -16,7 +19,7 @@ int play_again()
     set_crmode();
     set_nodelay_mode();
     
-    res = get_response();
+    res = get_response(5);
     tty_mode(1);
 
     return res;
@@ -30,7 +33,7 @@ char get_ok_char()
     return c;
 }
 
-int get_response()
+int get_response(int max_tries)
 {
     int c;
     printf("%s (y/n)?\n", QUESTION);
@@ -43,10 +46,10 @@ int get_response()
             return 0;
         if (c == 'n')
             return 1;
-        if (MAX_TRIES-- == 0)
+        if (max_tries-- == 0)
             return 2;
 
-        putchar("\a");
+        putchar('\a');
     }
 }
 
@@ -68,7 +71,7 @@ void set_nodelay_mode()
     int term_flags = 0;
     term_flags = fcntl(0, F_GETFL);
 
-    term_flags |= O_NODELAY;        // 非阻塞模式
+    term_flags |= O_NDELAY;        // 非阻塞模式
     fcntl(0, F_SETFL, term_flags);
 }
 

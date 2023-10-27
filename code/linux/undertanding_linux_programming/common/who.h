@@ -1,12 +1,11 @@
 
-#ifndef __ULP_CHAPTER_WHO_H__
-#define __ULP_CHAPTER_WHO_H__
+#ifndef __ULP_WHO_H__
+#define __ULP_WHO_H__
 
 #include <utmp.h>
 
 /*who命令第一个版本*/
 int who1();
-
 
 /*who命令升级版*/
 int who2();

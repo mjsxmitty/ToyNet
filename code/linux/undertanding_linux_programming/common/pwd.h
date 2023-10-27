@@ -1,19 +1,19 @@
 
-#ifndef __NLP_CHAPTER_04_PWD_H__
-#define __NLP_CHAPTER_04_PWD_H__
+#ifndef __NLP_PWD_H__
+#define __NLP_PWD_H__
 
 #include <sys/stat.h>
 
-/*pwd ÃüÁîÊµÏÖ*/
+/*pwd ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½*/
 void pwd();
 
-/*Êä³öÈ«Â·¾¶*/
+/*ï¿½ï¿½ï¿½È«Â·ï¿½ï¿½*/
 void print_path_to(ino_t this_node);
 
-/*»ñÈ¡Ö¸¶¨ÎÄ¼þµÄinode*/
+/*ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½inode*/
 ino_t get_inode(char *fname);
 
-/*»ñÈ¡Ö¸¶¨inodeµÄÎÄ¼þÃû*/
+/*ï¿½ï¿½È¡Ö¸ï¿½ï¿½inodeï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½*/
 void inum_to_name(ino_t inode_to_find, char *name_buf, int buf_len);
 
-#endif // __NLP_CHAPTER_04_PWD_H__
+#endif // __NLP_PWD_H__

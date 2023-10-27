@@ -31,6 +31,12 @@ int who1()
     return 0;
 }
 
+int who2()
+{
+    struct utmp *utmp_buf;
+    return 0;
+}
+
 void show_time(long time_val)
 {
     char *cp = ctime(&time_val);

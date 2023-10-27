@@ -1,6 +1,6 @@
 
-#ifndef __NLP_CHAPTER_01_MORE_H__
-#define __NLP_CHAPTER_01_MORE_H__
+#ifndef __NLP_MORE_H__
+#define __NLP_MORE_H__
 
 #include <stdio.h>
 
@@ -14,4 +14,4 @@ void do_more(FILE *fp);
 // int see_more();
 int see_more(FILE *fp);
 
-#endif //__NLP_CHAPTER_01_MORE_H__
+#endif //__NLP_MORE_H__

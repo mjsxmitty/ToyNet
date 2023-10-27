@@ -9,6 +9,18 @@
 
 #include "ls.h"
 
+int ls(int argc, char **argv)
+{
+    if (argc == 1)
+        do_ls(".");
+    else {
+        int i = 1;
+        for (; i < argc; ++i) {
+            do_ls(argv[i]);
+        }
+    }
+}
+
 void do_ls(char *dir_name)
 {
     DIR             *dir_ptr;

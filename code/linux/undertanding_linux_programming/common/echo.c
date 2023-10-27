@@ -3,8 +3,9 @@
 
 #include <stdio.h>
 #include <termios.h>
+#include <stdlib.h>
 
-#define oops(x, y) {perror(s); exit(y);}
+#define oops(s, y) {perror(s); exit(y);}
 
 int echo_state(int nid)
 {
@@ -18,14 +19,13 @@ int echo_state(int nid)
     }
 
     if (info.c_lflag & ECHO) {
-       printf("echo is on!\n");
+        printf("echo is on!\n");
     } else {
         printf("echo is off!\n");
     }
 
     return 0;
 }
-
 
 int set_echo(int argc, char **argv)
 {
