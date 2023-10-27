@@ -3,7 +3,7 @@
  * 测试读文件内容 
  */
 
-#include "who1.h"
+#include "who.h"
 
 #include <stdio.h>
 #include <fcntl.h>
