@@ -12,6 +12,14 @@
 #include <stdlib.h>
 
 #define SHOW_HOST
+#define CACHE_NUM   16
+#define UTMP_SIZE   (sizeof(struct utmp))       // 缓存大小
+#define UTMP_NULL   ((struct utmp *)NULL)
+
+static char utmp_buf[CACHE_NUM * UTMP_SIZE];    // 缓存
+static int  num_recs;                           // 读取数量
+static int  cur_recs;                           // 当前索引
+static int  utmp_fd = -1;                       // 文件描述符
 
 int who1()
 {
@@ -33,8 +41,15 @@ int who1()
 
 int who2()
 {
-    struct utmp *utmp_buf;
-    return 0;
+    struct utmp *ut_buf;
+    if (open_utmp(UTMP_FILE) == -1) {
+        perror(UTMP_FILE);
+        exit(-1);
+    }
+    
+    while ((ut_buf = next_utmp()) != UTMP_NULL) {
+        show_info(ut_buf);
+    }
 }
 
 void show_time(long time_val)
@@ -63,4 +78,48 @@ void show_info(struct utmp *ut_buf)
 
     printf("\n");        
 }
+
+int open_utmp(char *file)
+{
+    utmp_fd = open(file, O_RDONLY);
+    if (utmp_fd == -1) {
+        perror(UTMP_FILE);
+        return utmp_fd;
+    }
+    
+    cur_recs = num_recs = 0;
+    return utmp_fd;
+}
+
+int reload_utmp()
+{
+    int read_num = read(utmp_fd, utmp_buf, CACHE_NUM * UTMP_SIZE);
+    num_recs = read_num / UTMP_SIZE;
+    cur_recs = 0;
+    return num_recs;
+}
+
+struct utmp* next_utmp()
+{
+    struct utmp *ret;
+    if (utmp_fd == -1)
+        return UTMP_NULL;
+    
+    if (cur_recs == num_recs && reload_utmp() == 0)
+        return UTMP_NULL;
+
+    ret = (struct utmp *)&utmp_buf[cur_recs * UTMP_SIZE];
+    cur_recs++;
+    
+    return ret;
+}
+
+
+void close_utmp()
+{
+    if (utmp_fd != -1)
+        close(utmp_fd);
+    
+}
+
 
