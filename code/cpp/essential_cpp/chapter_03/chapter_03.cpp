@@ -38,56 +38,56 @@ void ch_3_1()
 {
     const int       *iptr = nullptr;
     const string    *sptr = nullptr;
+#if 0
+    iptr = FindVec(s_ivec, s_ivec[5]);
+    if (iptr == &s_ivec[5])
+        cout << *iptr << endl;
+    else
+        cout << "test no template func failed, ret: "
+             << *iptr << endl;
 
-//    iptr = FindVec(s_ivec, s_ivec[5]);
-//    if (iptr == &s_ivec[5])
-//        cout << *iptr << endl;
-//    else
-//        cout << "test no template func failed, ret: "
-//             << *iptr << endl;
+    iptr = FindVer1(s_ivec, s_ivec[6]);
+    if (iptr == &s_ivec[6])
+        cout << *iptr << endl;
+    else
+        cout << "test FindVer1 with int array type func failed, ret: "
+             << *iptr << endl;
 
-//    iptr = FindVer1(s_ivec, s_ivec[6]);
-//    if (iptr == &s_ivec[6])
-//        cout << *iptr << endl;
-//    else
-//        cout << "test FindVer1 with int array type func failed, ret: "
-//             << *iptr << endl;
+    sptr = FindVer1(s_svec, s_svec[0]);
+    if (sptr == &s_svec[0])
+        cout << *sptr << endl;
+    else
+        cout << "test FindVer1 with char array type func failed, ret: "
+             << *sptr << endl;
 
-//    sptr = FindVer1(s_svec, s_svec[0]);
-//    if (sptr == &s_svec[0])
-//        cout << *sptr << endl;
-//    else
-//        cout << "test FindVer1 with char array type func failed, ret: "
-//             << *sptr << endl;
+    iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
+    if (iptr == &s_ia[7])
+        cout << *iptr << endl;
+    else
+        cout << "test FindVer2 with int array type func failed, ret: "
+             << *iptr << endl;
 
-//    iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
-//    if (iptr == &s_ia[7])
-//        cout << *iptr << endl;
-//    else
-//        cout << "test FindVer2 with int array type func failed, ret: "
-//             << *iptr << endl;
+    sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
+    if (sptr == &s_sa[2])
+        cout << *sptr << endl;
+    else
+        cout << "test FindVer2 with char array type func failed, ret: "
+             << *sptr << endl;
 
-//    sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
-//    if (sptr == &s_sa[2])
-//        cout << *sptr << endl;
-//    else
-//        cout << "test FindVer2 with char array type func failed, ret: "
-//             << *sptr << endl;
+    iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
+    if (iptr == &s_ia[7])
+        cout << *iptr << endl;
+    else
+        cout << "test FindVer3 with int array type func failed, ret: "
+             << *iptr << endl;
 
-//    iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
-//    if (iptr == &s_ia[7])
-//        cout << *iptr << endl;
-//    else
-//        cout << "test FindVer3 with int array type func failed, ret: "
-//             << *iptr << endl;
-
-//    sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
-//    if (sptr == &s_sa[2])
-//        cout << *sptr << endl;
-//    else
-//        cout << "test FindVer3 with char array type func failed, ret: "
-//             << *sptr << endl;
-
+    sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
+    if (sptr == &s_sa[2])
+        cout << *sptr << endl;
+    else
+        cout << "test FindVer3 with char array type func failed, ret: "
+             << *sptr << endl;
+#endif
     iptr = FindVer4(s_ia, s_ia + s_int_size, s_ia[8]);
     if (iptr == &s_ia[8])
         cout << *iptr << endl;
@@ -209,15 +209,15 @@ void ch_3_6()
 
     for_each(s_ivec.begin(), s_ivec.end(), [](int i) { cout << i << ' ';});
     cout << endl;
+#if 0
+    vector<int> vec1 = FilterVer1(s_ivec, part_val, GreaterThan);
+    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
 
-//    vector<int> vec1 = FilterVer1(s_ivec, part_val, GreaterThan);
-//    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});
-//    cout << endl;
-
-//    vector<int> vec2 = FilterVer2(s_ivec, part_val, less<int>());
-//    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' ';});
-//    cout << endl;
-
+    vector<int> vec2 = FilterVer2(s_ivec, part_val, less<int>());
+    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
+#endif
     int ia[s_int_size];
     auto ia2 = FilterVer3(s_ia, s_ia + s_int_size, ia, part_val, less<int>());
     for_each(ia, ia2, [](int i) { cout << i << ' ';});
@@ -227,24 +227,25 @@ void ch_3_6()
     FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, greater<int>());
     for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' ';});
     cout << endl;
+#if 0
+    for_each(begin(s_sa), end(s_sa), [](const string &s) { cout << s << ' ';});
+    cout << endl;
 
-//    for_each(begin(s_sa), end(s_sa), [](const string &s) { cout << s << ' ';});
-//    cout << endl;
+    list<string> slist;
+    FilterVer3(s_sa, s_sa + s_string_size, back_inserter(slist), "piglet", greater<string>());
+    for_each(slist.begin(), slist.end(), [](const string &s) { cout << s << ' ';});
+    cout << endl;
 
-//    list<string> slist;
-//    FilterVer3(s_sa, s_sa + s_string_size, back_inserter(slist), "piglet", greater<string>());
-//    for_each(slist.begin(), slist.end(), [](const string &s) { cout << s << ' ';});
-//    cout << endl;
-
-//    auto ret_vec = SubVec(s_ivec, part_val);
-//    for_each(ret_vec.begin(), ret_vec.end(), [](int i) { cout << i << ' ';});
-//    cout << endl;
+    auto ret_vec = SubVec(s_ivec, part_val);
+    for_each(ret_vec.begin(), ret_vec.end(), [](int i) { cout << i << ' ';});
+    cout << endl;
+#endif
 }
 
 void ch_3_9()
 {
     int iarray[s_int_size];
-    FilterVer3(s_ia, s_ia + s_int_size, iarray, s_int_size, less<int>());
+    FilterVer3(s_ia, s_ia + s_int_size, iarray, s_int_size, less<int>());   // 数组不支持安插操作
 
     vector<int> ivec(s_int_size);
     FilterVer3(s_ivec.begin(), s_ivec.end(), back_inserter(ivec), s_int_size, greater<int>());
@@ -252,19 +253,20 @@ void ch_3_9()
 
 void ch_3_10()
 {
-//    {
-//         istream_iterator<string>    is(cin);
-//         istream_iterator<string>    eof;
+#if 0
+    {
+         istream_iterator<string>    is(cin);
+         istream_iterator<string>    eof;
 
-//         vector<string>  local_vec;
-//         copy(is, eof, back_inserter(local_vec));
-//         sort(local_vec.begin(), local_vec.end());
+         vector<string>  local_vec;
+         copy(is, eof, back_inserter(local_vec));
+         sort(local_vec.begin(), local_vec.end());
 
-//         ostream_iterator<string>    os(cout, "\n");
-//         copy(local_vec.begin(), local_vec.end(), os);
-//         cout <<endl;
-//    }
-
+         ostream_iterator<string>    os(cout, "\n");
+         copy(local_vec.begin(), local_vec.end(), os);
+         cout <<endl;
+    }
+#endif
     {
         fstream     in_file("Makefile");
         ofstream    out_file("test.txt");

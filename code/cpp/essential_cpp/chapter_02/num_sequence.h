@@ -13,15 +13,13 @@ namespace chapter_02
 namespace ver0 {
 
 typedef const std::vector<int>* pvec; 
-//typedef const std::vector<int>* (*pfunc)(int);
 typedef pvec (*pfunc)(int);
+//typedef const std::vector<int>* (*pfunc)(int);        // 函数指针
 
-/* 鍑芥暟鏁扮粍 */
 const int       seq_cnt = 7;
 extern pfunc    seq_array[seq_cnt];
 //extern const std::vector<int>* (*seq_array[])(int);
 
-/* 绫诲瀷 */
 enum NS_TYPE
 {
     NS_UNK, 
@@ -33,7 +31,6 @@ enum NS_TYPE
     NS_PENT
 };
 
-/* 鍚勭鍑芥暟 */
 extern pvec FiboSeq(int size);
 extern pvec PellSeq(int size);
 extern pvec LucaSeq(int size);
