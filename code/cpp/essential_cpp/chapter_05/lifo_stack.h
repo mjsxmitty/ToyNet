@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_LIFO_STACK_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_LIFO_STACK_H__
+#ifndef __ESSENTIAL_CPP_LIFO_STACK_H__
+#define __ESSENTIAL_CPP_LIFO_STACK_H__
 
 #include <string>
 #include <iostream>
@@ -11,7 +11,6 @@
 
 namespace chapter_05
 {
-
 namespace ver1
 {
 
@@ -23,18 +22,19 @@ public:
         if (i)
             elem_.reserve(i);
     }
-    virtual ~LifoStack(){}
 
-    virtual bool pop(std::string &val);
-    virtual bool push(const std::string &val);
-    virtual bool peek(int index, std::string &val);
+    ~LifoStack(){}
 
-    virtual int size() const { return elem_.size();};
-    virtual int top() const {return top_; };
+    bool pop(std::string &val);
+    bool push(const std::string &val);
+    bool peek(int index, std::string &val);
 
-    virtual bool empty() const {return elem_.empty(); };
-    virtual bool full() const {return size() >= elem_.max_size(); };
-    virtual void print(std::ostream &os = std::cout) const;
+    int size() const { return elem_.size();};
+    int top() const {return top_; };
+
+    bool empty() const {return elem_.empty(); };
+    bool full() const {return size() >= elem_.max_size(); };
+    void print(std::ostream &os = std::cout) const;
 
 private:
     std::vector<std::string> elem_;
@@ -42,7 +42,6 @@ private:
 };
 
 }
-
 }
 
-#endif // __ESSENTIAL_CPP_CHAPTER_05_LIFO_STACK_H__
+#endif // __ESSENTIAL_CPP_LIFO_STACK_H__

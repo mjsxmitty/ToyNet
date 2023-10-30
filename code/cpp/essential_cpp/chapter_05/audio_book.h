@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_AUDIOBOOK_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_AUDIOBOOK_H__
+#ifndef __ESSENTIAL_CPP_AUDIO_BOOK_H__
+#define __ESSENTIAL_CPP_AUDIO_BOOK_H__
 
 #include <string>
 #include "book.h"
@@ -34,4 +34,4 @@ private:
 };
 
 }
-#endif // __ESSENTIAL_CPP_CHAPTER_05_AUDIOBOOK_H__
+#endif // __ESSENTIAL_CPP_AUDIO_BOOK_H__

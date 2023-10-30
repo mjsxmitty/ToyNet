@@ -3,9 +3,9 @@
 #include "fibonacci_ver2.h"
 
 using namespace std;
+
 namespace chapter_05
 {
-
 namespace ver2
 {
 
@@ -15,18 +15,16 @@ Fibonacci::Fibonacci(int len, int beg) :
                 // NumSequence(len, beg, elems_){}
                 NumSequence(len, beg, elems_, "Fibonacci")
 {
-    //cout << "Fibonacci::Fibonacci(int, int)" << endl;
-    //cout << WhatAmI() << endl;
+
 }
 
 Fibonacci::Fibonacci(const Fibonacci &rhs) : NumSequence(rhs) // 基类没有会自动调用默认
 {
-    //cout << "Fibonacci::Fibonacci(const NumSequence &r)" << endl;
+
 }
 
 Fibonacci& Fibonacci::operator=(const Fibonacci &rhs)
 {
-    //cout << "Fibonacci::operator=(const NumSequence &r)" << endl;
     if (this != &rhs)
         NumSequence::operator=(rhs);    // 必须手动调用
     
@@ -58,5 +56,4 @@ void Fibonacci::GenElems(int pos) const
 }
 
 }
-
 }

@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_UTIL_USER_PROFILE_H__
-#define __ESSENTIAL_CPP_UTIL_USER_PROFILE_H__
+#ifndef __ESSENTIAL_CPP_USER_PROFILE_H__
+#define __ESSENTIAL_CPP_USER_PROFILE_H__
 
 #include <string>
 #include <iostream>
@@ -64,4 +64,4 @@ private:
 
 std::ostream& operator<<(std::ostream &os, const UserProfile &rhs);
 
-#endif //__ESSENTIAL_CPP_UTIL_USER_PROFILE_H__
+#endif //__ESSENTIAL_CPP_USER_PROFILE_H__

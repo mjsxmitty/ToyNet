@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_STACK_VER1_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_STACK_VER1_H__
+#ifndef __ESSENTIAL_CPP_STACK_VER1_H__
+#define __ESSENTIAL_CPP_STACK_VER1_H__
 
 #include <string>
 #include <iostream>
@@ -32,8 +32,6 @@ public:
 std::ostream& operator<<(std::ostream &os, const Stack &rhs);
 
 }
-
 }
 
-
-#endif // __ESSENTIAL_CPP_CHAPTER_05_STACK_VER1_H__
+#endif // __ESSENTIAL_CPP_STACK_VER1_H__

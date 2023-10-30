@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_3_H__
-#define __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_3_H__
+#ifndef __ESSENTIAL_CPP_NUM_SEQUENCE_3_H__
+#define __ESSENTIAL_CPP_NUM_SEQUENCE_3_H__
 
 #include <vector>
 #include <iostream>
@@ -80,13 +80,13 @@ bool NumSequence<len, beg_pos>::CheckIntegrity(int pos, int size) const
         return false;
     }
 
-    if (pos > size) GenElems(pos);
+    if (pos > size)
+        GenElems(pos);
 
     return true;
 }
 
 }
-
 }
 
-#endif // __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_4_H__
+#endif // __ESSENTIAL_CPP_NUM_SEQUENCE_3_H__

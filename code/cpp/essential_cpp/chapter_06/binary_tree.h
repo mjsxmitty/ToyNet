@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_UTIL_BINARY_TREE_H__
-#define __ESSENTIAL_CPP_UTIL_BINARY_TREE_H__
+#ifndef __ESSENTIAL_CPP_BINARY_TREE_H__
+#define __ESSENTIAL_CPP_BINARY_TREE_H__
 
 #include <iostream>
 
@@ -20,20 +20,19 @@ public:
 public:
     bool Empty() const { return root_ == 0; }
     void Clear();
-private:
-    void Copy(BTnode<ElemType> *tar, BTnode<ElemType> *src);    //
-private:
-    BTnode<ElemType>    *root_;
-public:
     void Insert(const ElemType &elem);
     void Remove(const ElemType &elem);
-private:
-    void RemoveRoot();
-    void Clear(BTnode<ElemType> *pt);
-public:
+
     void Preorder();
     void Inorder();
     void Postorder();
+private:
+    void RemoveRoot();
+    void Clear(BTnode<ElemType> *pt);
+
+    void Copy(BTnode<ElemType> *tar, BTnode<ElemType> *src);    //
+private:
+    BTnode<ElemType>    *root_;
 };
 
 template<typename ElemType>
@@ -125,6 +124,7 @@ void BinaryTree<ElemType>::Clear(BTnode<ElemType> *pt)
         Clear(pt->lchild_);
         Clear(pt->rchild_);
         delete pt;
+        pt = 0;
     }
 }
 

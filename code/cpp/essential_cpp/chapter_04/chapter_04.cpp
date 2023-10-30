@@ -163,11 +163,13 @@ void ch_4_10()
 void Display(ostream &os, NumSequence &ns,
                 int pos, int elem_val)
 {
+    os << "--------------------------------" << endl;
     os << ns << endl;
     os << "The element at position: " << pos
         << " for the: " << ns.WhatAmI()
         << " sequence is: " << elem_val 
         << endl;
+    os << "--------------------------------" << endl;
 }
 
 void ch_4_11()

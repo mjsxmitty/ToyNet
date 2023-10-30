@@ -1,17 +1,14 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_4_H__
-#define __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_4_H__
+#ifndef __ESSENTIAL_CPP_SEQUENCE4_H__
+#define __ESSENTIAL_CPP_SEQUENCE4_H__
 
 #include <vector>
 #include <iostream>
 
 namespace chapter_06
 {
-
 namespace ver4
 {
-
-void fibonacci(int pos, std::vector<int> &seq);
 
 template <void (*pf)(int pos, std::vector<int> &seq)>
 class NumSequence
@@ -36,4 +33,4 @@ protected:
 
 }
 
-#endif // __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_4_H__
+#endif // __ESSENTIAL_CPP_SEQUENCE4_H__

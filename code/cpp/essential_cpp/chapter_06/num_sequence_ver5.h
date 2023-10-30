@@ -1,13 +1,12 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_5_H__
-#define __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_5_H__
+#ifndef __ESSENTIAL_CPP_NUM_SEQUENCE_5_H__
+#define __ESSENTIAL_CPP_NUM_SEQUENCE_5_H__
 
 #include <vector>
 #include <iostream>
 
 namespace chapter_06
 {
-
 namespace ver5
 {
 
@@ -22,8 +21,8 @@ protected:
     NumSeq    ns_;
     //NumSeq    *ptr_;
 };
-}
 
 }
+}
 
-#endif // __ESSENTIAL_CPP_CHAPTER_UTIL_NUM_SEQUENCE_4_H__
+#endif // __ESSENTIAL_CPP_NUM_SEQUENCE_5_H__

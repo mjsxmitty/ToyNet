@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
-#define __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
+#ifndef __ESSENTIAL_CPP_TRIANGULAR_H__
+#define __ESSENTIAL_CPP_TRIANGULAR_H__
 
 #include <string>
 #include <vector>
@@ -60,4 +60,4 @@ extern int Sum(const Triangular &item);
 extern std::istream& operator>>(std::istream& in, Triangular& rhs);
 extern std::ostream& operator<<(std::ostream& os, const Triangular& rhs);
 
-#endif // __ESSENTIAL_CPP_UTIL_TRIANGULAR_H__
+#endif // __ESSENTIAL_CPP_TRIANGULAR_H__

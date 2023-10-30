@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_BOOK_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_BOOK_H__
+#ifndef __ESSENTIAL_CPP_BOOK_H__
+#define __ESSENTIAL_CPP_BOOK_H__
 
 #include <iostream>
 #include <string>
@@ -37,4 +37,4 @@ protected:
 };
 
 }
-#endif // __ESSENTIAL_CPP_CHAPTER_03_BOOK_H__
+#endif // __ESSENTIAL_CPP_BOOK_H__

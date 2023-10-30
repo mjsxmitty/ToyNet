@@ -42,15 +42,15 @@ void ch_5_5()
     using namespace ver1;
 
     Fibonacci fib;
-    cout << "fib: the begging at element 1 for 1 element: "
+    cout << "fib: the begging at element 1 for 1 element: \n"
         << fib << endl;
 
     Fibonacci fib2(16);
-    cout << "fib: the begging at element 1 for 16 element: "
+    cout << "fib: the begging at element 1 for 16 element: \n"
         << fib2 << endl;
 
     Fibonacci fib3(8, 12);
-    cout << "fib: the begging at element 12 for 8 element: "
+    cout << "fib: the begging at element 12 for 8 element: \n"
         << fib3 << endl;
 }
 
@@ -120,18 +120,19 @@ void ch_5_10()
 
     Fibonacci fib;
     NumSequence *ps = &fib;
-    //cout << ps->WhatAmI() << endl;
-    //ps->GenElems(64);
-    //ps->Fibonacci::GenElems(64);   //error
-
+//    cout << ps->WhatAmI() << endl;
+//    ps->GenElems(64);
+//    ps->Fibonacci::GenElems(64);   //error
+#if 0
     if (typeid(*ps) == typeid(Fibonacci))
     {
         Fibonacci *p = static_cast<Fibonacci *>(ps);
         ps->WhatAmI();
     }
-    
-        if (Fibonacci *pf = dynamic_cast<Fibonacci *>(ps))
-            cout << pf->WhatAmI() << endl;
+#endif
+
+    if (Fibonacci *pf = dynamic_cast<Fibonacci *>(ps))
+        cout << pf->WhatAmI() << endl;
 }
 
 extern void hw_5_2()

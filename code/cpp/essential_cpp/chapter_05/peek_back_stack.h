@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_PEEK_BACK_STACK_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_PEEK_BACK_STACK_H__
+#ifndef __ESSENTIAL_CPP_PEEKBACK_STACK_H__
+#define __ESSENTIAL_CPP_PEEKBACK_STACK_H__
 
 #include <string>
 #include <iostream>
@@ -9,7 +9,6 @@
 
 namespace chapter_05
 {
-
 namespace ver2
 {
 
@@ -22,18 +21,19 @@ public:
         if (capacity)
             elem_.reserve(capacity);
     }
-    virtual ~Stack(){}
 
-    virtual bool pop(T &val);
-    virtual bool push(const T &val);
-    virtual bool peek(int index, T &val);
+    ~Stack(){}
 
-    virtual int size() const { return elem_.size();}
-    virtual int top() const { return top_; }
+    bool pop(T &val);
+    bool push(const T &val);
+    bool peek(int index, T &val);
 
-    virtual bool empty() const { return elem_.empty(); }
-    virtual bool full() const {return size() >= elem_.max_size(); }
-    virtual void print(std::ostream &os = std::cout) const;
+    int size() const { return elem_.size();}
+    int top() const { return top_; }
+
+    bool empty() const { return elem_.empty(); }
+    bool full() const {return size() >= elem_.max_size(); }
+    void print(std::ostream &os = std::cout) const;
 
 private:
     std::vector<T> elem_;
@@ -88,4 +88,4 @@ void Stack<T>::print(std::ostream &os) const
 
 }
 
-#endif // __ESSENTIAL_CPP_CHAPTER_05_PEEK_BACK_STACK_H__
+#endif // __ESSENTIAL_CPP_PEEKBACK_STACK_H__

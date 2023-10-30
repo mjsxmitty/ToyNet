@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_FIBONACCI_VER1_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_FIBONACCI_VER1_H__
+#ifndef __ESSENTIAL_CPP_FIBONACCI_VER1_H__
+#define __ESSENTIAL_CPP_FIBONACCI_VER1_H__
 
 #include <vector>
 #include <iostream>
@@ -31,6 +31,7 @@ protected:
     int                     length_;
     int                     beg_pos_;    
 };
+
 }
 }
-#endif //
+#endif // __ESSENTIAL_CPP_FIBONACCI_VER1_H__

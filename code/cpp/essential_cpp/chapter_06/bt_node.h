@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_UTIL_BT_NODE_H__
-#define __ESSENTIAL_CPP_UTIL_BT_NODE_H__
+#ifndef __ESSENTIAL_CPP_BT_NODE_H__
+#define __ESSENTIAL_CPP_BT_NODE_H__
 
 #include <ostream>
 
@@ -13,16 +13,10 @@ class BinaryTree;
 template <typename ValType>
 class BTnode
 {
+    friend class BinaryTree<ValType>;
 public:
     BTnode(const ValType &);
 private:
-    ValType     val_;
-    int         cnt_;   // 重复次数
-    BTnode      *lchild_;
-    BTnode      *rchild_;
-private:
-    friend class BinaryTree<ValType>;
-
     void InsertValue(const ValType &val);
     void RemoveValue(const ValType &val, BTnode *&prev);
     static void LchildLeaf(BTnode *leaf, BTnode *sub_tree);
@@ -32,6 +26,11 @@ private:
     void Postorder(BTnode *pt, std::ostream &);
 
     void DisplayVal(BTnode *pt, std::ostream &os);
+private:
+    ValType     val_;
+    int         cnt_;   // 重复次数
+    BTnode      *lchild_;
+    BTnode      *rchild_;
 };
 
 template<typename ValType>
@@ -152,4 +151,4 @@ void BTnode<ValType>::DisplayVal(BTnode *pt, std::ostream &os)
 
 }
 
-#endif //__ESSENTIAL_CPP_UTIL_BT_NODE_H__
+#endif //__ESSENTIAL_CPP_BT_NODE_H__

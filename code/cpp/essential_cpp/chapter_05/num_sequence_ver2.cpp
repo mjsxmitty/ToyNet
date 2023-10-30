@@ -52,8 +52,7 @@ bool NumSequence::CheckIntegrity(int pos, int size) const
 NumSequence::NumSequence(int len, int beg, std::vector<int> &re, const string &s) :
     length_(len), beg_pos_(beg), relems_(re), name_(s)
 {
-    //cout << "NumSequence::NumSequence(int, int, std::vector<int> &, const string &) " << endl;
-    //cout << WhatAmI() << endl; // ¾²Ì¬½âÎö
+
 }
 
 int NumSequence::Elem(int pos) const
@@ -81,5 +80,4 @@ ostream &NumSequence::Print(ostream &os) const
 }
 
 }
-
 }

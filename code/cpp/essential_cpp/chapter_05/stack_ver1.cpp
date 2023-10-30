@@ -5,7 +5,6 @@ using namespace std;
 
 namespace chapter_05
 {
-
 namespace ver1
 {
 
@@ -16,5 +15,4 @@ ostream& operator<<(ostream &os, const Stack &rhs)
 }
 
 }
-
 }

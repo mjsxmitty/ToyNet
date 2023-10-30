@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_04_MATRIX_H__
-#define __ESSENTIAL_CPP_CHAPTER_04_MATRIX_H__
+#ifndef __ESSENTIAL_CPP__MATRIX_H__
+#define __ESSENTIAL_CPP__MATRIX_H__
 
 #include <iostream>
 class Matrix
@@ -34,4 +34,4 @@ private:
 std::ostream& operator<<(std::ostream &os, const Matrix &rhs);
 Matrix operator+(const Matrix &lhs, const Matrix &rhs);
 
-#endif // __ESSENTIAL_CPP_CHAPTER_04_MATRIX_H__
+#endif // __ESSENTIAL_CPP__MATRIX_H__

@@ -5,7 +5,6 @@ using namespace std;
 
 namespace chapter_05
 {
-
 namespace ver1
 {
 
@@ -49,5 +48,4 @@ void LifoStack::print(ostream &os) const
 }
 
 }
-
 }

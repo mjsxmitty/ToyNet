@@ -1,17 +1,14 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_UTIL_FIBONACCI_4_H__
-#define __ESSENTIAL_CPP_CHAPTER_UTIL_FIBONACCI_4_H__
+#ifndef __ESSENTIAL_CPP_FIBONACCI4_H__
+#define __ESSENTIAL_CPP_FIBONACCI4_H__
 
 #include <vector>
-
 #include "num_sequence_ver3.h"
 
 namespace chapter_06
 {
-
 namespace ver3
 {
-
 
 template<int len, int beg_pos = 1>
 class Fibonacci : public NumSequence<len, beg_pos>
@@ -53,7 +50,6 @@ void Fibonacci<len, beg_pos>::GenElems(int pos) const
 }
 
 }
-
 }
 
-#endif // __ESSENTIAL_CPP_CHAPTER_UTIL_FIBONACCI_4_H__
+#endif // __ESSENTIAL_CPP_FIBONACCI4_H__

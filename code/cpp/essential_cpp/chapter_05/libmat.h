@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_04_LIBMAT_H__
-#define __ESSENTIAL_CPP_CHAPTER_04_LIBMAT_H__
+#ifndef __ESSENTIAL_CPP_LIBMAT_H__
+#define __ESSENTIAL_CPP_LIBMAT_H__
 
 #include <iostream>
 
@@ -20,4 +20,4 @@ public:
 void Print(const LibMat &mat);
 
 }
-#endif // __ESSENTIAL_CPP_CHAPTER_04_LIBMAT_H__
+#endif // __ESSENTIAL_CPP_LIBMAT_H__

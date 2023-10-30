@@ -1,7 +1,7 @@
 
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_04_TRIANGULARITERATOR_H__
-#define __ESSENTIAL_CPP_CHAPTER_04_TRIANGULARITERATOR_H__
+#ifndef __ESSENTIAL_CPP_TRIANGULAR_ITERATOR_H__
+#define __ESSENTIAL_CPP_TRIANGULAR_ITERATOR_H__
 
 class TriangularIterator
 {
@@ -20,4 +20,4 @@ private:
     unsigned int     index_;    //索引值
 };
 
-#endif // __ESSENTIAL_CPP_CHAPTER_04_TRIANGULARITERATOR_H__
+#endif // __ESSENTIAL_CPP_TRIANGULAR_ITERATOR_H__

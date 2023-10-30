@@ -3,7 +3,8 @@
 
 #include "chapter_06.h"
 #include "binary_tree.h"
-#include "fibonacci_ver3.cpp"
+#include "fibonacci_ver3.h"
+#include "num_sequence_ver3.h"
 #include "num_sequence_ver4.h"
 
 using namespace std;
@@ -34,6 +35,10 @@ void ch_6_4()
     bt.Postorder();
     cout << endl;
 }
+void fibonacci(int pos, std::vector<int> &seq)
+{
+
+}
 
 void ch_6_6()
 {
@@ -48,8 +53,8 @@ void ch_6_6()
     cout << "fib3: " << fib3 << endl;
 
     {
-        ver4::NumSequence<ver4::fibonacci> nf1(1);
-        ver4::NumSequence<ver4::fibonacci> nf2(12, 1);
+        ver4::NumSequence<fibonacci> nf1(1);
+        ver4::NumSequence<fibonacci> nf2(12, 1);
     }
 }
 

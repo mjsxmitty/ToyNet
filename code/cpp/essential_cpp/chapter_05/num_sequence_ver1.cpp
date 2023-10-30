@@ -13,7 +13,7 @@ namespace ver1
 
 std::ostream& operator<<(std::ostream &os, const NumSequence &ns)
 {
-    cout << " ( " << ns.Length() << ", " << ns.BegPos() << " ) "; 
+    cout << " ( " << ns.Length() << ", " << ns.BegPos() << " ) ";
     return  ns.Print(os);
 }
 
@@ -28,7 +28,7 @@ bool NumSequence::CheckIntegrity(int pos, int size) const
     }
 
     if (pos > size)
-        GenElems(pos);  //虚拟机制调用
+        GenElems(pos);  //
 
     return true;
 }

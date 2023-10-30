@@ -242,12 +242,12 @@ int NumSequence::Elem(int pos)
 
     if (pos > elem_->size())
     {
-        // cout << "check integrity: calculating "
-        //         << pos - elem_->size() 
-        //         << " additional elem_ents\n";
-
-        //鎸囧畾闃熷垪鐢熶骇鍏冪礌
-        (this->*pmf_)(pos);//
+#if 0
+         cout << "check integrity: calculating "
+                 << pos - elem_->size()
+                 << " additional elem_ents\n";
+#endif
+        (this->*pmf_)(pos);
     }
 
     return (*elem_)[pos - 1];
@@ -291,7 +291,7 @@ bool NumSequence::IsElem(int elem)
 
 int NumSequence::CalcPos(int elem)
 {
-    int pos = elem_->size() - 1;
+    int pos = elem_->size() - 1;        // 此时的pos表明的事下标索引
     cout << "calc_pos() elem: " << elem
             << " pos: " << pos
             << " at: " << (*elem_)[pos]

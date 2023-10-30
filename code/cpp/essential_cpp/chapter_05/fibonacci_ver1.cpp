@@ -40,9 +40,12 @@ void Fibonacci::GenElems(int pos) const
 
 int Fibonacci::Elem(int pos) const
 {
-    if (!CheckIntegrity(pos, elems_.size()))
+    if (!CheckIntegrity(pos, elems_.size()))    // 使用继承来的函数
         return 0;
     
+//    if (pos > elems_.size())
+//        Fibonacci::GenElems(pos);
+
     return elems_[pos - 1];
 }
 

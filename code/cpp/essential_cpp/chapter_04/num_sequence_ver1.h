@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
-#define __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
+#ifndef __ESSENTIAL_CPP_NUMSEQ_VER1_H__
+#define __ESSENTIAL_CPP_NUMSEQ_VER1_H__
 
 #include <vector>
 #include <iostream>
@@ -27,13 +27,10 @@ public:
         NS_SQ,
         NS_PENT
     };
-private:
-    void FiboSeq(int pos);
-    void PellSeq(int pos);
-    void LucaSeq(int pos);
-    void TriaSeq(int pos);
-    void SquaSeq(int pos);
-    void PentSeq(int pos);
+public:
+    NumSequence(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
+
+    bool IsElem(int elem);
 public:
     int                     Elem(int pos);
     bool                    Begin(iterator &iter);
@@ -42,14 +39,9 @@ public:
     int                     Length() const { return length_; };
     const std::vector<int>* Sequence() const;
 
-public:
-    NumSequence(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
-
     void SetBegPos(int pos);
     void SetLength(int pos);
     void SetSequence(NUM_SEQ nst);
-    
-    bool IsElem(int elem);
 public:
     char const* WhatAmI() const
     {
@@ -65,7 +57,7 @@ public:
 
         return names[isa_];
     }
-
+private:
     static void InitSeqMap()
     {
         
@@ -76,7 +68,7 @@ public:
         seq_map_[ "square" ] = NS_SQ;
         seq_map_[ "pentagonal" ] = NS_PENT;
     }
-
+public:
     static NUM_SEQ SeqType(int num)
     {
         if (seq_map_.empty())
@@ -102,9 +94,15 @@ public:
 public:
     static int NumOfSequence() { return seq_cnt_; }
 private:
+    void FiboSeq(int pos);
+    void PellSeq(int pos);
+    void LucaSeq(int pos);
+    void TriaSeq(int pos);
+    void SquaSeq(int pos);
+    void PentSeq(int pos);
+private:
     bool CheckIntegrity(int pos) const;
     std::ostream& Print(std::ostream &os = std::cout);
-
     int CalcPos(int elem);
 private:
     int                 beg_pos_;
@@ -124,4 +122,4 @@ private:
 std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 
 }
-#endif // __ESSENTIAL_CPP_CHAPTER_04_NUMSEQ_H__
+#endif // __ESSENTIAL_CPP_NUMSEQ_VER1_H__

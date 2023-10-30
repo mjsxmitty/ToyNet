@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER1_H__
-#define __ESSENTIAL_CPP_CHAPTER_05_NUM_SEQUENCE_VER1_H__
+#ifndef __ESSENTIAL_CPP_NUM_SEQUENCE_VER1_H__
+#define __ESSENTIAL_CPP_NUM_SEQUENCE_VER1_H__
 
 #include <iostream>
 
@@ -25,7 +25,7 @@ public:
     static int              max_elems() { return max_elems_; }
 protected:
     virtual void            GenElems(int pos) const = 0;
-    virtual bool            CheckIntegrity(int pos, int size) const;
+    bool                    CheckIntegrity(int pos, int size) const;
 protected:
     //const static int max_elems_ = 1024;
     enum { max_elems_ = 1024 };
@@ -39,6 +39,7 @@ inline void Display(std::ostream &os, const NumSequence &ns, int pos)
         << " for the " << ns.WhatAmI() << " sequence is "
         << ns.Elem(pos) << std::endl;
 }
+
 }
 }
-#endif //
+#endif // __ESSENTIAL_CPP_NUM_SEQUENCE_VER1_H__
