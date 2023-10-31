@@ -16,7 +16,7 @@ int Greeting()
 
     const string greeting = "Hello " + name + "!";
 
-    cout <<"Please enter pad: ";        // �ո���
+    cout <<"Please enter pad: ";        //
     int pad;
     cin >> pad;
 

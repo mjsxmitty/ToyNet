@@ -17,7 +17,6 @@ std::vector<std::string> Split(const std::string& str);
 bool IsPalindram(const std::string &s);
 std::vector<std::string> FindUrls(const std::string& s);
 
-
 template<typename Out>
 void Split(const std::string& str, Out out)
 {

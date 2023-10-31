@@ -63,11 +63,11 @@ vector<string> Frame(const vector<string>& v)
 vector<string> Vcat(const vector<string>& top, const vector<string>& bottom)
 {
     vector<string> ret = top;
-
-    // for (vector<string>::size_type i = 0; i != bottom.size(); i++) {
-    //     ret.push_back(bottom[i]);
-    // }
-
+#if 0
+     for (vector<string>::size_type i = 0; i != bottom.size(); i++) {
+         ret.push_back(bottom[i]);
+     }
+#endif
     ret.insert(ret.end(), bottom.begin(), bottom.end());
     return ret;
 }

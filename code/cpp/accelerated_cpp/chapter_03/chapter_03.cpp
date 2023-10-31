@@ -125,7 +125,6 @@ int Homework_3()
             }
         }
 
-        //������
         if (!found)
         {
             words.push_back(s);

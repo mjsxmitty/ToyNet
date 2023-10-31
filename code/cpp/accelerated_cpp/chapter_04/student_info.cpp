@@ -37,7 +37,6 @@ std::istream& ReadHw(std::istream &in, std::vector<double> &hw)
                 break;
         }
             
-
         in.clear();
     }
     
