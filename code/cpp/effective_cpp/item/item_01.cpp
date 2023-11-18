@@ -22,10 +22,15 @@ void Item01()
 #if 0
     cout << aspect_ratio << endl;
 #endif
+#if 0
+    int a = 5, b = 0;
+    CALL_WITH_MAX(++a,b);       // a ++两次
+    CALL_WITH_MAX(++a,b+10);    // a ++一次
+#endif
 #if 1
     int a = 5, b = 0;
-    CALL_WITH_MAX(++a,b);
-    CALL_WITH_MAX(++a,b+10);
+    CallWithMax(++a, b);
+    CallWithMax(++a, b + 10);
 #endif
     cout << "***************************" << endl;
 }

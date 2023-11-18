@@ -1,0 +1,5 @@
+
+#ifndef __EFFECTIVE_CPP_ITEM_02_H__
+#define __EFFECTIVE_CPP_ITEM_02_H__
+
+#endif // __EFFECTIVE_CPP_ITEM_02_H__
