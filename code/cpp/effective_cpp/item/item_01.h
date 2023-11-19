@@ -9,17 +9,17 @@ void Item01();
 #define ASPECT_RATIO    1.653
 const double aspect_ratio = 1.654;
 
-const char * const author_name = "Gauo";        // µÚ¶þ¸öconst
-const std::string author_name2("Gauo");         // ×îÓÅ
+const char * const author_name = "Gauo";        // ç¬¬äºŒä¸ªconst
+const std::string author_name2("Gauo");         // æœ€ä¼˜
 
 class GamePlayer
 {
 private:
     /*
-     * ¸ö±ð±àÒëÆ÷²»Ö§³Ö;
-     * Éæ¼°µ½È¡µØÖ·ÐèÒªÊµÏÖÎÄ¼þ¶¨Òå;
-     * ±àÒëÆÚ¼äÖªµÀÖµ;
-     * Ö»Õë¶ÔÕûÐÍ³£Á¿
+     * ä¸ªåˆ«ç¼–è¯‘å™¨ä¸æ”¯æŒ;
+     * æ¶‰åŠåˆ°å–åœ°å€éœ€è¦å®žçŽ°æ–‡ä»¶å®šä¹‰;
+     * ç¼–è¯‘æœŸé—´çŸ¥é“å€¼;
+     * åªé’ˆå¯¹æ•´åž‹å¸¸é‡
      */
     static const int num_turns_ = 1024;
     int scores_[num_turns_];
@@ -34,9 +34,9 @@ public:
 class GamePlayer2
 {
 private:
-    // ²»ÄÜÈ¡µØÖ·
-    enum {num_turns2_ = 5};
-    int scores_[num_turns2_];
+    // ä¸èƒ½å–åœ°å€
+    enum {num_turns_ = 5};
+    int scores_[num_turns_];
 };
 
 #define CALL_WITH_MAX(a, b) f((a) > (b) ? (a) : (b))
