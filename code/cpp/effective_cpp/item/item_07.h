@@ -14,12 +14,12 @@ class TimeKeeper
 public:
     TimeKeeper()
     {
-        std::cout << "TimeKeeper default constructor fcuntion." << std::endl;
+        std::cout << "TimeKeeper default constructor fuction." << std::endl;
     }
 
     virtual ~TimeKeeper()
     {
-        std::cout << "TimeKeeper destructor fcuntion." << std::endl;
+        std::cout << "TimeKeeper destructor fuction." << std::endl;
     }
 };
 
@@ -28,12 +28,12 @@ class AtomicClock : public TimeKeeper
 public:
     AtomicClock()
     {
-        std::cout << "AtomicClock default constructor fcuntion." << std::endl;
+        std::cout << "AtomicClock default constructor fuction." << std::endl;
     }
 
     ~AtomicClock()
     {
-        std::cout << "AtomicClock destructor fcuntion." << std::endl;
+        std::cout << "AtomicClock destructor fuction." << std::endl;
     }
 };
 

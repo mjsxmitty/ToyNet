@@ -1,75 +1,77 @@
 
-
 #ifndef __EFFECTIVE_CPP_ITEM_03_H__
 #define __EFFECTIVE_CPP_ITEM_03_H__
 
-#include <string>
-#include <list>
+#include <string.h>
 #include <iostream>
 
 void Item03();
 
 namespace effective_item_03 {
 
-class PhoneNumber{};
-class ABEntry
-{
-public:
-    // 调用成员的default函数
-    ABEntry() : the_name_(), the_address_(), the_phones_()//, num_times_consulted_(0)
-    {
-        InitNumTimesConsulted(0);
-    }
+class Rational{};
+const Rational operator*(const Rational &lhs, const Rational &rhs);
 
-    // 注意顺序
-    ABEntry(const std::string &name, const std::string &addr,
-            const std::list<PhoneNumber> &phones, int num_times_consulted)
-        : the_name_(name), the_address_(addr), the_phones_(phones)//, num_times_consulted_(0)
-    {
-        InitNumTimesConsulted(num_times_consulted);
-    }
+#include <string>
+class TextBook
+{
 private:
-    void InitNumTimesConsulted(int num)
+    std::string text_;
+public:
+    TextBook(const std::string &s) : text_(s) {}
+    ~TextBook(){}
+public:
+    const char& operator[](std::size_t position) const
     {
-        num_times_consulted_ = num;
+        return text_[position];
     }
-private:
-    std::string             the_name_;
-    std::string             the_address_;
-    std::list<PhoneNumber>  the_phones_;
-    int                     num_times_consulted_;
+
+    char& operator[](std::size_t position)
+    {
+        //return text_[position];
+        return const_cast<char &>(static_cast<const TextBook &>(*this)[position]);
+    }
 };
 
-class FileSystem
+void Print(const TextBook &ctb);
+
+class CTextBook
 {
 public:
-    FileSystem()
+    char                *ptext_;
+    mutable std::size_t text_length_;
+    mutable bool        length_is_valid_;
+public:
+    CTextBook(const char *s) : ptext_(new char[strlen(s) + 1]) 
     {
-        std::cout << "FileSystem default construct function." << std::endl;
+        strcpy(ptext_, s); 
+        ptext_[strlen(s)] = '\0';
+    } 
+    ~CTextBook()
+    {
+        if (ptext_ != nullptr)
+        {
+            delete [] ptext_;
+            ptext_ = nullptr;
+        }
     }
 public:
-    std::size_t NumDisks()const
+    char& operator[](std::size_t position) const
     {
-        return 0;
+        return ptext_[position];
     }
-};
-
-//extern FileSystem tfs;
-FileSystem& tfs();
-
-// 另一个独立文件内
-class Directory
-{
 public:
-    Directory()
+    std::size_t Length() const
     {
-        std::cout << "Directory default construct function" << std::endl;
-        //std::size_t disks = tfs.NumDisks();
-        std::size_t disks = tfs().NumDisks();
+        if (!length_is_valid_)
+        {
+            text_length_ = strlen(ptext_);
+            length_is_valid_ = true;
+        }
+
+        return text_length_;
     }
 };
-
-Directory& dir();
 
 }
 

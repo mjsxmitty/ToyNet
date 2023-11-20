@@ -2,77 +2,55 @@
 #ifndef __EFFECTIVE_CPP_ITEM_02_H__
 #define __EFFECTIVE_CPP_ITEM_02_H__
 
-#include <string.h>
-#include <iostream>
+#include <string>
 
 void Item02();
 
 namespace effective_item_02 {
 
-class Rational{};
-const Rational operator*(const Rational &lhs, const Rational &rhs);
+#define ASPECT_RATIO    1.653
+const double aspect_ratio = 1.654;
 
-#include <string>
-class TextBook
+const char * const author_name = "Gauo";        // 第二个const
+const std::string author_name2("Gauo");         // 最优
+
+class GamePlayer
 {
 private:
-    std::string text_;
-public:
-    TextBook(const std::string &s) : text_(s) {}
-    ~TextBook(){}
-public:
-    const char& operator[](std::size_t position) const
-    {
-        return text_[position];
-    }
-
-    char& operator[](std::size_t position)
-    {
-        //return text_[position];
-        return const_cast<char &>(static_cast<const TextBook &>(*this)[position]);
-    }
+    /*
+     * 个别编译器不支持;
+     * 涉及到取地址需要实现文件定义;
+     * 编译期间知道值;
+     * 只针对整型常量
+     */
+    static const int num_turns_ = 1024;
+    int scores_[num_turns_];
 };
 
-void Print(const TextBook &ctb);
-
-class CTextBook
+class CostEstimate
 {
 public:
-    char                *ptext_;
-    mutable std::size_t text_length_;
-    mutable bool        length_is_valid_;
-public:
-    CTextBook(const char *s) : ptext_(new char[strlen(s) + 1]) 
-    {
-        strcpy(ptext_, s); 
-        ptext_[strlen(s)] = '\0';
-    } 
-    ~CTextBook()
-    {
-        if (ptext_ != nullptr)
-        {
-            delete [] ptext_;
-            ptext_ = nullptr;
-        }
-    }
-public:
-    char& operator[](std::size_t position) const
-    {
-        return ptext_[position];
-    }
-public:
-    std::size_t Length() const
-    {
-        if (!length_is_valid_)
-        {
-            text_length_ = strlen(ptext_);
-            length_is_valid_ = true;
-        }
-
-        return text_length_;
-    }
+    static const double fudge_factor_;
 };
+
+class GamePlayer2
+{
+private:
+    // 不能取地址
+    enum {num_turns_ = 5};
+    int scores_[num_turns_];
+};
+
+#define CALL_WITH_MAX(a, b) f((a) > (b) ? (a) : (b))
+void f(int i);
+
+template<typename T>
+inline void CallWithMax(const T &lhs, const T &rhs)
+{
+    f(lhs > rhs ? lhs : rhs);
+}
 
 }
 
-#endif // __EFFECTIVE_CPP_ITEM_02_H__
+#endif // #define __EFFECTIVE_CPP_ITEM_02_H__
+

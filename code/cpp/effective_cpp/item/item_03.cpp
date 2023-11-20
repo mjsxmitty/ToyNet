@@ -1,40 +1,58 @@
 
 #include "item_03.h"
+#include <vector>
 #include <iostream>
 
 using namespace std;
-using namespace effective_item_03;
 
 namespace effective_item_03 {
 
-//FileSystem tfs;
-
-// 问题得以显现: 构造函数执行的时候不能保证tfs对象已经被初始化
-//Directory temp_dir;
-
-FileSystem& tfs()
+const Rational operator*(const Rational &lhs, const Rational &rhs)
 {
-    std::cout << "tfs static func" << std::endl;
-    static FileSystem fs;
-    return fs;
+    Rational r;
+    return r;
 }
 
-Directory& dir()
+void Print(const TextBook &ctb)
 {
-    std::cout << "dir static func" << std::endl;
-    static Directory td;
-    return td;
+    cout << ctb[0] << endl;
 }
 
 }
+
+using namespace effective_item_03;
 
 void Item03()
 {
     cout << "**********item 03**********" << endl;
 #if 0
-    //Directory d;
-    //dir();
-    tfs();
+    std::vector<int> ivec(10, 1024);
+    const std::vector<int>::iterator iter = ivec.begin();
+    *iter = 0;
+    //++iter;
+
+    std::vector<int>::const_iterator citer = ivec.cbegin();
+    //*citer = 10;
+    ++citer;
+#endif
+#if 1
+    Rational a, b, c;
+    //(a * b) = c;
+#endif
+#if 0
+    TextBook tb("Hello");
+    cout << tb[0] << endl;
+    tb[1] = 'a';
+
+    const TextBook ctb("World");
+    cout << ctb[0] << endl;
+    //ctb[1] ='b';
+#endif
+#if 1
+    CTextBook ctb("Hello World");
+    char *pc = &ctb[1];
+    *pc = 'j';
+    cout << ctb.ptext_ << endl;
 #endif
     cout << "***************************" << endl;
 }

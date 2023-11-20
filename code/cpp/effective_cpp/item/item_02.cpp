@@ -1,21 +1,18 @@
 
-#include "item_02.h"
-#include <vector>
 #include <iostream>
+#include "item_02.h"
 
 using namespace std;
 
 namespace effective_item_02 {
 
-const Rational operator*(const Rational &lhs, const Rational &rhs)
-{
-    Rational r;
-    return r;
-}
+//const int GamePlayer::num_turns_;
 
-void Print(const TextBook &ctb)
+const double CostEstimate::fudge_factor_ = 1.24;
+
+void f(int i)
 {
-    cout << ctb[0] << endl;
+    cout << "val: " << i << endl;
 }
 
 }
@@ -24,35 +21,22 @@ using namespace effective_item_02;
 
 void Item02()
 {
-    cout << "**********item 02**********" << endl;
+    cout << "**********item 03**********" << endl;
 #if 0
-    std::vector<int> ivec(10, 1024);
-    const std::vector<int>::iterator iter = ivec.begin();
-    *iter = 0;
-    //++iter;
-
-    std::vector<int>::const_iterator citer = ivec.cbegin();
-    //*citer = 10;
-    ++citer;
-#endif
-#if 1
-    Rational a, b, c;
-    //(a * b) = c;
+    cout << ASPECT_RATIO << endl;
 #endif
 #if 0
-    TextBook tb("Hello");
-    cout << tb[0] << endl;
-    tb[1] = 'a';
-
-    const TextBook ctb("World");
-    cout << ctb[0] << endl;
-    //ctb[1] ='b';
+    cout << aspect_ratio << endl;
+#endif
+#if 0
+    int a = 5, b = 0;
+    CALL_WITH_MAX(++a,b);       // a ++����
+    CALL_WITH_MAX(++a,b+10);    // a ++һ��
 #endif
 #if 1
-    CTextBook ctb("Hello World");
-    char *pc = &ctb[1];
-    *pc = 'j';
-    cout << ctb.ptext_ << endl;
+    int a = 5, b = 0;
+    CallWithMax(++a, b);
+    CallWithMax(++a, b + 10);
 #endif
     cout << "***************************" << endl;
 }

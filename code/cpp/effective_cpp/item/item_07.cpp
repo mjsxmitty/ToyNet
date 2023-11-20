@@ -8,15 +8,15 @@ using namespace effective_item_07;
 void Item07()
 {
     cout << "**********item 07**********" << endl;
-#if 1
-    //TimeKeeper *tk = new TimeKeeper();
-    //delete tk;
+#if 0
+    // TimeKeeper *tk = new TimeKeeper();
+    // delete tk;
 
     TimeKeeper *tk2 = new AtomicClock();
     delete tk2;
 #endif
-#if 0
-    // 不做基类令其析构函数为虚函数--->不佳
+#if 1
+    // 涓嶅仛鍩虹被浠ゅ叾鏋愭瀯鍑芥暟涓鸿櫄鍑芥暟--->涓嶄匠
     cout << "Point size: " << sizeof (Point) << endl;
 #endif
     cout << "***************************" << endl;
