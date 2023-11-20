@@ -4,6 +4,8 @@
 
 using namespace std;
 
+namespace effective_item_01 {
+
 //const int GamePlayer::num_turns_;
 
 const double CostEstimate::fudge_factor_ = 1.24;
@@ -12,6 +14,10 @@ void f(int i)
 {
     cout << "val: " << i << endl;
 }
+
+}
+
+using namespace effective_item_01;
 
 void Item01()
 {

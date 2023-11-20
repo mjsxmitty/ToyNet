@@ -3,7 +3,11 @@
 #define __EFFECTIVE_CPP_ITEM_02_H__
 
 #include <string.h>
+#include <iostream>
+
 void Item02();
+
+namespace effective_item_02 {
 
 class Rational{};
 const Rational operator*(const Rational &lhs, const Rational &rhs);
@@ -24,13 +28,13 @@ public:
 
     char& operator[](std::size_t position)
     {
-        return text_[position];
+        //return text_[position];
+        return const_cast<char &>(static_cast<const TextBook &>(*this)[position]);
     }
 };
 
 void Print(const TextBook &ctb);
 
-#include <iostream>
 class CTextBook
 {
 public:
@@ -69,8 +73,6 @@ public:
     }
 };
 
-
-
-
+}
 
 #endif // __EFFECTIVE_CPP_ITEM_02_H__

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+namespace effective_item_02 {
+
 const Rational operator*(const Rational &lhs, const Rational &rhs)
 {
     Rational r;
@@ -15,6 +17,10 @@ void Print(const TextBook &ctb)
 {
     cout << ctb[0] << endl;
 }
+
+}
+
+using namespace effective_item_02;
 
 void Item02()
 {
