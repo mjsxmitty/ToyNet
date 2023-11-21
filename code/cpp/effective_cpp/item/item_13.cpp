@@ -5,6 +5,7 @@
 
 using namespace effective_item_13;
 
+/* 以对象管理资源 */
 void Item13()
 {
     std::cout << "**********item 13**********" << std::endl;
@@ -16,20 +17,18 @@ void Item13()
 
 namespace effective_item_13 {
 
-Investment* CreaterInvestment()
-{
-
-}
+Investment* CreateInvestment(){}
 
 void f()
 {
-    //Investment *pi = CreaterInvestment();
+    //Investment *pi = CreateInvestment();
+    // ……
     //delete pi;
-    std::auto_ptr<Investment> api(CreaterInvestment());
+    std::auto_ptr<Investment> api(CreateInvestment());
     std::auto_ptr<Investment> api2(api);                // api 为NULL
     api2 = api;
 
-    std::shared_ptr<Investment> spi(CreaterInvestment());
+    std::shared_ptr<Investment> spi(CreateInvestment());
     std::shared_ptr<Investment> spi2(spi);
     spi2 = spi;
 }

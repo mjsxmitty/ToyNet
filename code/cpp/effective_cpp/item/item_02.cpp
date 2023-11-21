@@ -3,22 +3,9 @@
 #include "item_02.h"
 
 using namespace std;
-
-namespace effective_item_02 {
-
-//const int GamePlayer::num_turns_;
-
-const double CostEstimate::fudge_factor_ = 1.24;
-
-void f(int i)
-{
-    cout << "val: " << i << endl;
-}
-
-}
-
 using namespace effective_item_02;
 
+/* 尽可能以const, enum, inline替换#define */
 void Item02()
 {
     cout << "**********item 03**********" << endl;
@@ -39,4 +26,17 @@ void Item02()
     CallWithMax(++a, b + 10);
 #endif
     cout << "***************************" << endl;
+}
+
+namespace effective_item_02 {
+
+//const int GamePlayer::num_turns_;
+
+const double CostEstimate::fudge_factor_ = 1.24;
+
+void f(int i)
+{
+    cout << "val: " << i << endl;
+}
+
 }

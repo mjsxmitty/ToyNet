@@ -4,24 +4,9 @@
 #include <iostream>
 
 using namespace std;
-
-namespace effective_item_03 {
-
-const Rational operator*(const Rational &lhs, const Rational &rhs)
-{
-    Rational r;
-    return r;
-}
-
-void Print(const TextBook &ctb)
-{
-    cout << ctb[0] << endl;
-}
-
-}
-
 using namespace effective_item_03;
 
+/* 尽可能使用const */
 void Item03()
 {
     cout << "**********item 03**********" << endl;
@@ -55,4 +40,19 @@ void Item03()
     cout << ctb.ptext_ << endl;
 #endif
     cout << "***************************" << endl;
+}
+
+namespace effective_item_03 {
+
+const Rational operator*(const Rational &lhs, const Rational &rhs)
+{
+    Rational r;
+    return r;
+}
+
+void Print(const TextBook &ctb)
+{
+    cout << ctb[0] << endl;
+}
+
 }

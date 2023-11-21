@@ -5,6 +5,7 @@
 using namespace std;
 using namespace effective_item_07;
 
+/* 为多态基类生命virtual析构函数 */
 void Item07()
 {
     cout << "**********item 07**********" << endl;
@@ -34,7 +35,6 @@ void Item07()
 #endif
     cout << "***************************" << endl;
 }
-
 
 namespace effective_item_07 {
 

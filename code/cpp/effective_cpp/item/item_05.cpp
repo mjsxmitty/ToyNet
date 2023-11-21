@@ -6,6 +6,7 @@
 using namespace std;
 using namespace effective_item_05;
 
+/* 了解C++默默编写并调用那些函数 */
 void Item05()
 {
     cout << "**********item 05**********" << endl;

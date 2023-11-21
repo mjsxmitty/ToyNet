@@ -8,7 +8,7 @@ void Item13();
 namespace effective_item_13 {
 
 class Investment{};
-Investment* CreaterInvestment();
+Investment* CreateInvestment();
 void f();
 }
 

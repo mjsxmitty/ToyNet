@@ -5,6 +5,18 @@
 using namespace std;
 using namespace effective_item_04;
 
+/* 确定对象被使用前已被初始化 */
+void Item04()
+{
+    cout << "**********item 04**********" << endl;
+#if 0
+    //Directory d;
+    //dir();
+    tfs();
+#endif
+    cout << "***************************" << endl;
+}
+
 namespace effective_item_04 {
 
 //FileSystem tfs;
@@ -28,13 +40,3 @@ Directory& dir()
 
 }
 
-void Item04()
-{
-    cout << "**********item 04**********" << endl;
-#if 0
-    //Directory d;
-    //dir();
-    tfs();
-#endif
-    cout << "***************************" << endl;
-}

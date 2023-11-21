@@ -3,6 +3,8 @@
 #include <iostream>
 
 using namespace effective_item_12;
+
+/* 赋值对象勿忘其每一部分 */
 void Item12()
 {
     std::cout << "**********item 12**********" << std::endl;

@@ -4,6 +4,7 @@
 
 using namespace effective_item_09;
 
+/* 绝不能在构造和析构过程中发调用virtual函数 */
 void Item09()
 {
     std::cout << "**********item 09**********" << std::endl;
