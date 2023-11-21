@@ -30,8 +30,8 @@ void Item02()
 #endif
 #if 0
     int a = 5, b = 0;
-    CALL_WITH_MAX(++a,b);       // a ++����
-    CALL_WITH_MAX(++a,b+10);    // a ++һ��
+    CALL_WITH_MAX(++a,b);       // a ++执行2次
+    CALL_WITH_MAX(++a,b+10);    // a ++执行1次
 #endif
 #if 1
     int a = 5, b = 0;

@@ -15,20 +15,32 @@ void Item07()
     TimeKeeper *tk2 = new AtomicClock();
     delete tk2;
 #endif
-#if 1
+#if 0
     // 不做基类令其析构函数为虚函数--->不佳
     cout << "Point size: " << sizeof (Point) << endl;
+#endif
+#if 1
+//    SpecialString *pss = new SpecialString;
+//    std::string     *ps;
+//    ps = pss;
+
+//    delete ps;
+
+    AtomicClock *pac = new AtomicClock;
+    TimeKeeper *tk = new TimeKeeper;
+
+    tk = pac;
+    delete tk;      // 无虚函数
 #endif
     cout << "***************************" << endl;
 }
 
+
 namespace effective_item_07 {
 
-TimeKeeper* GetTimeKeeper()
+AMOV::~AMOV()
 {
-    static TimeKeeper stk;
-    return &stk;
-}
 
 }
 
+}

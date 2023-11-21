@@ -37,8 +37,6 @@ public:
     }
 };
 
-TimeKeeper* GetTimeKeeper();
-
 class Point
 {
 public:
@@ -46,6 +44,17 @@ public:
     virtual ~Point() {}
 private:
     int x_, y_;
+};
+
+class SpecialString : public std::string     // string 不存在虚函数
+{
+
+};
+
+class AMOV
+{
+public:
+    virtual ~AMOV() = 0;
 };
 
 }
