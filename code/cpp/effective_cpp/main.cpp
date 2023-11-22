@@ -13,6 +13,10 @@
 #include "item/item_12.h"
 #include "item/item_13.h"
 #include "item/item_14.h"
+#include "item/item_15.h"
+#include "item/item_16.h"
+
+#include "item/item_20.h"
 
 using namespace std;
 
@@ -33,7 +37,12 @@ int main()
 
     /* 资源管理 */
     // Item13();
-    Item14();
+    // Item14();
+    // Item15();
+    // Item16();
+
+    /* 设计与声明 */
+    Item20();
 
     return 0;
 }

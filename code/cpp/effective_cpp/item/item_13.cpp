@@ -17,17 +17,22 @@ void Item13()
 
 namespace effective_item_13 {
 
-Investment* CreateInvestment(){}
+Investment* CreateInvestment()
+{
+    static Investment *pi = new Investment();
+    return pi;
+}
 
 void f()
 {
     //Investment *pi = CreateInvestment();
     // ……
     //delete pi;
+#if 0
     std::auto_ptr<Investment> api(CreateInvestment());
     std::auto_ptr<Investment> api2(api);                // api 为NULL
     api2 = api;
-
+#endif
     std::shared_ptr<Investment> spi(CreateInvestment());
     std::shared_ptr<Investment> spi2(spi);
     spi2 = spi;

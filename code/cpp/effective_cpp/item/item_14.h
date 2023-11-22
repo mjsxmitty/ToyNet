@@ -19,7 +19,7 @@ public:
     explicit Lock(std::mutex *pm) : mutex_ptr_(pm, unlock)
     {
         std::cout << "Lock::Lock()" << std::endl;
-        lock(pm);
+        lock(mutex_ptr_.get());
     }
 private:
     std::shared_ptr<std::mutex> mutex_ptr_;

@@ -12,7 +12,8 @@ class DBConnection
 public:
     static DBConnection create()
     {
-
+        static DBConnection db;
+        return db;
     }
 
     // 抛出某种异常
