@@ -9,7 +9,8 @@
 #include "echo.h"
 #include "mapping.h"
 #include "play_again.h"
-
+#include "sigdemo1.h"
+#include "curses_hello.h"
 
 
 int main(int argc, char **argv)
@@ -17,27 +18,31 @@ int main(int argc, char **argv)
     printf("==================Hello World!==================\n");
 
     // chapter 01
-    more(argc, argv);
+    //more(argc, argv);
 
     // chapter 02
-    who1();
+    //who1();
     //cp(argc, argv);
-    who2();
+    //who2();
 
     // chapter 03
-    ls(argc, argv);
+    //ls(argc, argv);
 
     // chapter 04
-    pwd();
+    //pwd();
 
     // chapter 05
-    set_echo(argc, argv);
-    echo_state(0);
+    //set_echo(argc, argv);
+    //echo_state(0);
 
     // chapter 06
-    mapping();
+    //mapping();
     //get_response();
+    //sigdemo1();
+    //play_again();
 
-
+    // chapter 07
+    hello();
+    
     printf("===Quietly try and amaze everyone's sentences===\n");
 }

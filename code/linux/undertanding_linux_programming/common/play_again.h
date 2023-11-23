@@ -14,5 +14,6 @@ void set_nodelay_mode();
 
 void tty_mode(int how);
 
+void ctrl_chander(int sig);
 
 #endif // __NLP_PLAY_AGAIN_H__

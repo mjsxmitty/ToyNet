@@ -6,6 +6,9 @@
 #include <time.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <signal.h>
+#include <stdlib.h>
+
 #include "play_again.h"
 
 #define QUESTION    "do you want another transaction?"
@@ -18,6 +21,9 @@ int play_again()
     tty_mode(0);
     set_crmode();
     set_nodelay_mode();
+
+    signal(SIGINT, ctrl_chander);
+    signal(SIGQUIT, SIG_IGN);
     
     res = get_response(5);
     tty_mode(1);
@@ -88,5 +94,12 @@ void tty_mode(int how)
         fcntl(0, F_SETFL, org_flags);
     }
 }
+
+void ctrl_chander(int sig)
+{
+    tty_mode(1);
+    exit(1);
+}
+
 
 
