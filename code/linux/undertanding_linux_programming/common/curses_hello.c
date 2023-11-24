@@ -50,7 +50,7 @@ void hello2()
 
 #define LEFT_EDGE   10
 #define RIGHT_EDGE  30
-#define ROW         10;
+#define ROW         10
 
 void hello()
 {

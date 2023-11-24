@@ -1,5 +1,5 @@
 
-#include "sigdemo1.h"
+#include "signal_demo.h"
 
 #include <stdio.h>
 #include <signal.h>

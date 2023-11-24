@@ -11,6 +11,7 @@
 #include "play_again.h"
 #include "sigdemo1.h"
 #include "curses_hello.h"
+#include "sleep1.h"
 
 
 int main(int argc, char **argv)
@@ -42,7 +43,8 @@ int main(int argc, char **argv)
     //play_again();
 
     // chapter 07
-    hello();
+    //hello();
+    sleep1();
     
     printf("===Quietly try and amaze everyone's sentences===\n");
 }
