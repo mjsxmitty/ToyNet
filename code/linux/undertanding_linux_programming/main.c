@@ -9,10 +9,10 @@
 #include "echo.h"
 #include "mapping.h"
 #include "play_again.h"
-#include "sigdemo1.h"
+#include "signal_demo.h"
 #include "curses_hello.h"
-#include "sleep1.h"
-
+#include "sleep_demo.h"
+#include "ticker_demo.h"
 
 int main(int argc, char **argv)
 {
@@ -39,12 +39,12 @@ int main(int argc, char **argv)
     // chapter 06
     //mapping();
     //get_response();
-    //sigdemo1();
+    //signal_demo();
     //play_again();
 
     // chapter 07
     //hello();
-    sleep1();
+    //sleep_demo();
     
     printf("===Quietly try and amaze everyone's sentences===\n");
 }

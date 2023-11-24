@@ -1,9 +1,9 @@
 
-#include "sleep.h"
+#include "sleep_demo.h"
 #include <signal.h>
 #include <stdio.h>
 
-void sleep1()
+void sleep_demo()
 {
     printf("about 4s send signal.\n");
     signal(SIGALRM, wake_up);
