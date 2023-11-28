@@ -3,80 +3,21 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <getopt.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define _GUN_SOURCE
 
 void ch_04(int argc, char **argv)
 {
     /* 程序参数 */
-    //ch_4_1(argc, argv);
+    //argopt(argc, argv);
 
-    /* 环境变量 */
-    //ch_4_2(argc, argv);
-
-    /* 时间和日期 */
-    //ch_4_3(argc, argv);
-
-    /* 临时文件 */
-    ch_4_4(argc, argv);
+    environ_demo(argc, argv);
 }
 
-void ch_4_1(int argc, char **argv)
-{
-    /* 短参数 */
-    //ch_4_1_1(argc, argv);
-
-    /* 长参数 */
-    ch_4_1_2(argc, argv);
-}
-
-void ch_4_1_1(int argc, char **argv)
-{
-    int opt;
-
-    while ((opt = getopt(argc, argv, ":if:lr")) != -1)      // ":"
-    {
-        switch (opt)
-        {
-            case 'i':
-            case 'l':
-            case 'r':
-                printf("option: %c\n", opt);
-                break;
-            case 'f':
-                printf("option: %c, param val: %s\n", opt, optarg);
-                break;
-            case ':':
-                {
-                    printf("option need a value\n");
-                    printf("optarg: %s\n", optarg);
-                    printf("optopt: %d\n", optopt);
-                    printf("opterr: %d\n", opterr);
-                }
-                break;
-            case '?':
-                {
-                    printf("unknown option: %s\n", argv[optind - 1] + 1);
-                    printf("optarg: %s\n", optarg);
-                    printf("optopt: %d\n", optopt);
-                    printf("opterr: %d\n", opterr);
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    
-    for ( ; optind < argc; optind++)
-    {
-        printf("argument: %s\n", argv[optind]);
-    }
-    
-    return;
-}
-
-#define _GUN_SOURCE
-#include <getopt.h>
-
-void ch_4_1_2(int argc, char **argv)
+void argopt(int argc, char **argv)
 {
     int opt;
 
@@ -88,10 +29,9 @@ void ch_4_1_2(int argc, char **argv)
         {0, 0, 0, 0}
     };
 
-    while ((opt = getopt_long(argc, argv, ":if:lr", longopts, NULL)) != -1)
-    {
-        switch (opt)
-        {
+    //while ((opt = getopt(argc, argv, ":if:lr")) != -1) {
+    while ((opt = getopt_long(argc, argv, ":if:lr", longopts, NULL)) != -1) {
+        switch (opt) {
             case 'i':
             case 'l':
             case 'r':
@@ -100,41 +40,27 @@ void ch_4_1_2(int argc, char **argv)
             case 'f':
                 printf("option: %c, param val: %s\n", opt, optarg);
                 break;
-            case ':':
-                {
-                    printf("option need a value\n");
-                    printf("optarg: %s\n", optarg);
-                    printf("optopt: %d\n", optopt);
-                    printf("opterr: %d\n", opterr);
-                }
+            case ':':   // 未提供值
+                printf("option need a value, option: %c\n", optopt);
                 break;
             case '?':
-                {
-                    printf("unknown option: %c\n", optopt);
-                    printf("optarg: %s\n", optarg);
-                    printf("optopt: %d\n", optopt);
-                    printf("opterr: %d\n", opterr);
-                }
+                printf("unknown option: %c\n", optopt); // --w
                 break;
             default:
                 break;
         }
     }
-    
-    for ( ; optind < argc; optind++)
-    {
+
+    for ( ; optind < argc; optind++) {
         printf("argument: %s\n", argv[optind]);
     }
     
     return;
 }
 
-#include <stdlib.h>
-#include <string.h>
-
 extern char **environ;
 
-void ch_4_2(int argc, char **argv)
+void environ_demo(int argc, char **argv)
 {
     char    *val, *value;
 
@@ -151,8 +77,9 @@ void ch_4_2(int argc, char **argv)
         printf("variable %s has no value\n", val);
 
     if (argc == 3) {
+        char *string;
         value = argv[2];
-        char *string = malloc(strlen(val) + strlen(value) + 2);
+        string = malloc(strlen(val) + strlen(value) + 2);
         if (!string) {
             fprintf(stderr, "out of memory.\n");
             return ;
@@ -175,7 +102,7 @@ void ch_4_2(int argc, char **argv)
         else
             printf("variable %s has no value\n", val);
     }
-
+#if 0
     // 输出环境变量
     char **env = environ;
     while (*env)
@@ -183,8 +110,7 @@ void ch_4_2(int argc, char **argv)
         printf("%s\n", *env);
         env++;
     }
-    
-    return ;
+#endif
 }
 
 #include <time.h>

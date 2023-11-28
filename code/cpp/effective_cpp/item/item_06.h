@@ -19,6 +19,8 @@ private:
 
 class HomeForSale : private Uncopyable
 {
+public:
+    //HomeForSale() : Uncopyable(){}
 private:
     //HomeForSale(const HomeForSale &);
     //HomeForSale& operator=(const HomeForSale &);

@@ -14,34 +14,32 @@
 void ch_03(int argc, char **argv)
 {
     /* 底层文件访问 */
-    ch_3_4();
+    //write_demo();
+    //read_write();
+    //copy_demo();
 
     /* 格式化输入和输出 */
-    ch_3_6();
+    //scanf_demo();
 
-    /* 扫描目录 */
-    //ch_3_8(argc, argv);
+#if 0
+    test_format_output();
+    return ;
+#endif
+
+    /* 扫描文件 */
+    //scan_file(argc, argv);
 
     /* 高级主题 */
-    ch_3_11();
+    mmap_demo();
 }
 
-void ch_3_4()
+void write_demo()
 {
-    //ch_3_4_1();
-
-    //ch_3_4_2();
-
-    //ch_3_4_3();
-}
-
-void ch_3_4_1()
-{
-    if (write(1, "Here is some data\n", 18) != 18) 
+    if (write(1, "here is some data\n", 18) != 18) 
         write(2, "a write error has occurred on file descriptor 1 \n", 50);
 }
 
-void ch_3_4_2()
+void read_write()
 {
     char buf[128];
     int nread;
@@ -56,7 +54,7 @@ void ch_3_4_2()
 }
 
 /* 文件复制程序 */
-void ch_3_4_3()
+void copy_demo()
 {
     char    c;
     int     in_fd, out_fd;
@@ -81,30 +79,22 @@ void ch_3_4_3()
     exit(0);
 }
 
-void ch_3_6()
-{
-    //ch_3_6_2();
-
-    //ch_3_6_3();
-}
-
-void ch_3_6_2()
+void scanf_demo()
 {
     char    s[256];
     int     n;
     float   f;
     char    c;
 
-    // scanf("hello, %d,%g, %c, %[^\n]", &n, &f, &c, s);
-    // printf("%d\n%g\n%c\n%s\n", n, f, c, s);
+    scanf("hello, %d, %g, %c, %[^\n]", &n, &f, &c, s);
+    //printf("%d\n%g\n%c\n%s\n", n, f, c, s);
 
-    char sss[256];
-    //sprintf(sss, "%s-%d-%g-%c\n", s, n, f, c);
-    sprintf(sss, "%s-%d-%g-%c\n", "ss123", 9, 3.14, 'a');
-    printf("%s\n", sss);
+    char out[256];
+    sprintf(out, "%s-%d-%g-%c\n", s, n, f, c);
+    printf("%s\n", out);
 }
 
-void ch_3_6_3()
+void ffunc_demo()
 {
     int c;
     FILE *in, *out;
@@ -121,58 +111,53 @@ void ch_3_6_3()
     exit(0);
 }
 
-void PrintDir(char *dir, int depth)
+void print_dir(char *dir, int depth)
 {
     DIR             *dp;
     struct dirent   *entry;
     struct stat     stat_buf;
 
     // 打开目录
-    if ((dp = opendir(dir)) == NULL)
-    {
+    if ((dp = opendir(dir)) == NULL) {
         fprintf(stderr, "cannot open direntry: %s\n", dir);
         return ;
     }
 
     chdir(dir);
-    while ((entry = readdir(dp)) != NULL)
-    {
+    while ((entry = readdir(dp)) != NULL) {
         lstat(entry->d_name, &stat_buf);
-        if (S_ISDIR(stat_buf.st_mode))
-        {
+        if (S_ISDIR(stat_buf.st_mode)) {
             if (strcmp(".", entry->d_name) == 0 ||
                 strcmp("..", entry->d_name) == 0)
                     continue;
             
             printf("%*s%s/\n", depth, "", entry->d_name);
-            PrintDir(entry->d_name, depth + 4);
-        }
-        else
+            print_dir(entry->d_name, depth + 4);
+        } else {
             printf("%*s%s\n", depth, "", entry->d_name);
+        }
     }
 }
 
 void test_format_output()
 {
-    // printf("str=%*s%s/\n", 0, "", "gao");
-    // printf("str=%*s%s/\n", 4, "", "zhuo");
-    // printf("str=%*s, %s\n", 10, "hello", "gz");
-    // printf("str=%*s, %*s\n", -10, "hello", 20, "gz");
-    // printf("str=%.*s, %s\n", 10, "hello", "gz");
-    // printf("str=%.*s, %s\n", 3, "hello", "gz");
+    printf("str=|%*s|%s|\n", 0, "***", "###");
+    printf("str=|%*s|%s|\n", 4, "***", "###");
+    printf("str=|%*s|%s|\n", 10, "***", "###");
+    printf("str=|%*s|%*s|\n", -10, "***", 20, "###");
+    printf("str=|%4.4s|%s|\n", "***", "###");
+    printf("str=|%s|%2.4s|\n", "***", "###");
 }
 
-void ch_3_8(int argc, char **argv)
+void scan_file(int argc, char **argv)
 {
-    //test_format_output();
-
     char *top_dir = ".";
     if (argc >= 2)
         top_dir = argv[1];
 
-    printf("Dir scan of %s\n", top_dir);
-    PrintDir(top_dir, 0);
-    printf(".done\n");
+    printf("dir scan of %s\n", top_dir);
+    print_dir(top_dir, 0);
+    printf("done\n");
 
     exit(0);
 }
@@ -185,53 +170,52 @@ typedef struct
 
 #define NRECORDS    (10)
 
-void PrintFile(const char *s)
+void print_file(const char *s)
 {
+    int i;
     RECORD record;
 
     FILE *fp = fopen(s, "r+");
-    if (fp == NULL) 
-    {
+     if (fp == NULL){
         fprintf(stderr, "open file failed.\n");
         return ;
     }
 
-    for (int i = 0; i < NRECORDS; ++i) 
-    {
+    for (i = 0; i < NRECORDS; ++i) {
         fread(&record, sizeof (RECORD), 1, fp);
-        printf("%d - %s\n", record.integer, record.str);
+        printf("%*s\n", record.str);
     }
+    
     printf("\n");
     fclose(fp);
 }
 
-void ch_3_11()
+void mmap_demo()
 {
     RECORD  record, *mapped;
     FILE    *fp;
     int     f;
+    int     i;
 
     fp = fopen("record.dat", "w+");
-    if (fp == NULL) 
-    {
+    if (fp == NULL) {
         fprintf(stderr, "can not open record file!");
         return ;
     }
 
     //写文件
-    for (int i = 0; i < NRECORDS; ++i) 
-    {
+    for (i = 0; i < NRECORDS; ++i) {
         record.integer = i;
         sprintf(record.str, "RECORE-%d", i);
         fwrite(&record, sizeof (RECORD), 1, fp);
     }
     fclose(fp);
-    PrintFile("record.dat");
+    
+    print_file("record.dat");
 
     //修改文件
     fp = fopen("record.dat", "r+");
-    if (fp == NULL) 
-    {
+    if (fp == NULL) {
         fprintf(stderr, "can not open record file!");
         return ;
     }
@@ -244,7 +228,8 @@ void ch_3_11()
     fseek(fp, 3 * sizeof(RECORD), SEEK_SET);
     fwrite(&record, sizeof (RECORD), 1, fp);
     fclose(fp);
-    PrintFile("record.dat");
+    
+    print_file("record.dat");
 
     //映射
     f = open("record.dat", O_RDWR);
@@ -256,12 +241,15 @@ void ch_3_11()
     mapped = (RECORD *)mmap(0, NRECORDS * sizeof (RECORD), 
             PROT_READ | PROT_WRITE, MAP_SHARED, f, 0);
 
-    mapped[3].integer = 0;
-    sprintf(mapped[3].str, "RECORD-%d", mapped[3].integer);
+    mapped[7].integer = 0;
+    sprintf(mapped[7].str, "RECORD-%d", mapped[7].integer);
+    
     msync((void *)mapped, NRECORDS * sizeof(RECORD), MS_ASYNC);
     munmap((void *)mapped, NRECORDS * sizeof(RECORD));
+    
     close(f);
-    PrintFile("record.dat");
+    
+    print_file("record.dat");
 
     exit(0);
 }

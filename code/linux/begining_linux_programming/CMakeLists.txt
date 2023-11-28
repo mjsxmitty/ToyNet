@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(blp VERSION 0.1.0)
 
-include(CTest)
-enable_testing()
+aux_source_directory(chapter_03 LIB_SRC)
+aux_source_directory(chapter_04 LIB_SRC)
+list(REMOVE_ITEM LIB_SRC "main.c")
 
-add_executable(blp main.c
-                    chapter_03/chapter_03.h chapter_03/chapter_03.c
-                    chapter_04/chapter_04.h chapter_04/chapter_04.c)
+add_library(blp SHARED ${LIB_SRC})
+set_target_properties(blp PROPERTIES VERSION "0.0.1")
+
+add_executable(main "main.c")
+target_link_libraries(main blp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
