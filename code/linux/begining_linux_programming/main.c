@@ -4,6 +4,7 @@
 
 #include "chapter_03/chapter_03.h"
 #include "chapter_04/chapter_04.h"
+#include "chapter_07/chapter_07.h"
 
 int main(int argc, char **argv)
 {
@@ -11,7 +12,7 @@ int main(int argc, char **argv)
 
     //ch_03(argc, argv);
 
-    ch_04(argc, argv);
+    //ch_04(argc, argv);
 
 	printf("===Quietly try and amaze everyone's sentences===\n");
     return 0;

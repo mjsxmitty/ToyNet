@@ -11,21 +11,22 @@
 
 void pwd()
 {
-    print_path_to(get_inode("."));
+    print_path_to();
     putchar('\n');
     return ;
 }
 
-void print_path_to(ino_t this_node)
+void print_path_to()
 {
     ino_t my_node;
     char its_name[BUFF_SIZE];
 
-    if (get_inode("..") != this_node) {
+    my_node = get_inode(".");
+
+    if (get_inode("..") != my_node) {
         chdir("..");
-        inum_to_name(this_node, its_name, BUFF_SIZE);
-        my_node = get_inode(".");   // 获取切换后目录的节点
-        print_path_to(my_node);
+        inum_to_name(my_node, its_name, BUFF_SIZE);
+        print_path_to();
         printf("/%s", its_name);
     }
 }

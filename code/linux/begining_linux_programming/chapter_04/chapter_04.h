@@ -8,8 +8,12 @@ extern void argopt(int argc, char **argv);
 
 extern void environ_demo(int argc, char **argv);
 
-extern void ch_4_3(int argc, char **argv);
+extern void time_demo(int argc, char **argv);
 
-extern void ch_4_4(int argc, char **argv);
+extern void tmp_file(int argc, char **argv);
+
+extern void hostget();
+
+extern void limits();
 
 #endif // __BLG_CHAPTER_04_H__
