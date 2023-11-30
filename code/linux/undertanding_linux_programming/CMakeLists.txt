@@ -3,7 +3,9 @@ project(ulp VERSION 0.1.0)
 
 include_directories(.)
 include_directories(common)
+include_directories(example)
 
+aux_source_directory(example LIB_SRC)
 aux_source_directory(common LIB_SRC)
 list(REMOVE_ITEM LIB_SRC "main.c")
 
@@ -11,7 +13,7 @@ add_library(ulp SHARED ${LIB_SRC})
 set_target_properties(ulp PROPERTIES VERSION "0.0.1")
 
 add_executable(main "main.c")
-target_link_libraries(main ulp)
+target_link_libraries(main ulp curses)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

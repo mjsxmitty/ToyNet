@@ -8,5 +8,7 @@ void init_handle(int sig_num);
 
 void quit_handle(int sig_num);
 
+void sigact_demo();
+
 #endif //__ULP_SIG_H__
 

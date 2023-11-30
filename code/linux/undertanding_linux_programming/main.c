@@ -14,6 +14,7 @@
 #include "sleep_demo.h"
 #include "ticker_demo.h"
 
+#include "exec_demo.h"
 int main(int argc, char **argv)
 {
     printf("==================Hello World!==================\n");
@@ -45,6 +46,8 @@ int main(int argc, char **argv)
     // chapter 07
     //hello();
     //sleep_demo();
-    
+
+    // chapter 08
+    exec_demo();
     printf("===Quietly try and amaze everyone's sentences===\n");
 }

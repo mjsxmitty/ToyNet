@@ -46,15 +46,41 @@ void signal_demo()
 void init_handle(int sig_num)
 {
     printf("received sig: %d, waiting\n", sig_num);
-    sleep(1);
+    sleep(sig_num);
     printf("leving init handle.\n");
 }
 
 void quit_handle(int sig_num)
 {
     printf("received sig: %d, waiting\n", sig_num);
-    sleep(2);
+    sleep(sig_num);
     printf("leving quit handle.\n");
+}
+
+#define INPUT_LEN 100
+
+void sigact_demo()
+{
+    struct sigaction    new_handler;
+    sigset_t            blocked;
+    char                x[INPUT_LEN];
+
+    new_handler.sa_handler = init_handle;
+    new_handler.sa_flags = SA_RESETHAND | SA_RESETART;
+
+    sigemptyset(&blocked);
+    sigaddset(&blocked, SIGQUIT);
+    new_handler.sa_mask = blocked;
+
+    if (sigaction(SIGINT, &new_handler, NULL) == -1) {
+        perror("sigaction");
+    } else {
+        while (1)
+        {
+            fgets(x, INPUT_LEN, stdin);
+            printf("input: %s\n", x);
+        }
+    }
 }
 
 
