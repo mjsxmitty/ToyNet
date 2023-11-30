@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <signal.h>
+#include <string.h>
+#include <time.h>
 
 #define INPUT_LEN   100
 
@@ -66,7 +68,7 @@ void sigact_demo()
     char                x[INPUT_LEN];
 
     new_handler.sa_handler = init_handle;
-    new_handler.sa_flags = SA_RESETHAND | SA_RESETART;
+    new_handler.sa_flags = SA_RESETHAND | SA_RESTART;
 
     sigemptyset(&blocked);
     sigaddset(&blocked, SIGQUIT);
