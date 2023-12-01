@@ -100,7 +100,7 @@ void parent_code(int child_pid) {
 void wait_demo() {
     int new_pid;
 
-    printf("before, my pid is: %d\n", my_pid);
+    printf("before, my pid is: %d\n", getpid());
     if ((new_pid = fork()) == -1) {
         perror("fork()");
     } else if (new_pid == 0){
