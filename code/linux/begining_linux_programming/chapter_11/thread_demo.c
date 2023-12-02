@@ -214,3 +214,193 @@ void thread_demo3() {
     return;
 }
 
+int thread_finished = 0;
+
+void* thread_func4(void *arg) {
+    printf("thread func is runing ... \n");
+    sleep(3);
+    printf("thread func is done.\n");
+    thread_finished = 1;
+    pthread_exit(NULL);
+}
+
+
+void thread_demo4() {
+    pthread_t thread_id;
+    int res = 0;
+    pthread_attr_t thread_attr;
+    
+    res = pthread_attr_init(&thread_attr);
+    if (res != 0) {
+        perror("pthread attr");
+        exit(-1);
+    }
+
+    res = pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
+    if (res != 0) {
+        perror("pthread attr setdetachstate");
+        exit(-1);
+    }
+
+    res = pthread_create(&thread_id, NULL, thread_func4, (void *)msg);
+    if (res != 0) {
+        perror("pthread create");
+        exit(-1);
+    }
+    pthread_attr_destroy(&thread_attr);
+    
+    while (!thread_finished) {
+        printf("waiting for thread finished.\n");
+        sleep(1);
+    }
+    printf("main thread finished.\n");
+    
+    return;
+}
+
+void thread_demo5() {
+    pthread_t thread_id;
+    int res = 0;
+    pthread_attr_t thread_attr;
+    int max_priority;
+    int min_priority;
+    struct sched_param scheduling_value;
+    
+    res = pthread_attr_init(&thread_attr);
+    if (res != 0) {
+        perror("pthread attr");
+        exit(-1);
+    }
+
+    res = pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
+    if (res != 0) {
+        perror("pthread attr setdetachstate");
+        exit(-1);
+    }
+
+    res = pthread_attr_setshedpolicy(&thread_attr, SCHED_OTHER);
+    if (res != 0) {
+        perror("pthread attr setshedpolicy");
+        exit(-1);
+    }
+
+    max_priority = sched_get_priority_max(SCHED_OTHER);
+    min_priority = sched_get_priority_min(SCHED_OTHER);
+    scheduling_value.sched_priority = min_priority;
+
+    res = pthread_attr_setshedparam(&thread_attr, &scheduling_value);
+    if (res != 0) {
+        perror("pthread attr setshedparam");
+        exit(-1);
+    }
+    
+    res = pthread_create(&thread_id, NULL, thread_func4, (void *)msg);
+    if (res != 0) {
+        perror("pthread create");
+        exit(-1);
+    }
+    pthread_attr_destroy(&thread_attr);
+    
+    while (!thread_finished) {
+        printf("waiting for thread finished.\n");
+        sleep(1);
+    }
+    printf("main thread finished.\n");
+    
+    return;
+}
+
+void* thread_func6(void *arg) {
+    int res, i;
+    res = pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+    if (res != 0) {
+        perror("pthread setcancelstate");
+        exit(-1);
+    }
+
+    res = pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, NULL);
+    if (res != 0) {
+        perror("pthread setcanceltype");
+        exit(-1);
+    }
+
+    for (i = 0; i < 10; ++i) {
+        printf("thread is still runing (%d).\n", i);
+        sleep(1);
+    }
+
+    pthread_exit("thread exit");
+}
+
+
+void thread_demo6() {
+    pthread_t thread_id;
+    int res = 0;
+    void *thread_result;
+
+    res = pthread_create(&thread_id, NULL, thread_func6, NULL);
+    if (res != 0) {
+        perror("pthread create");
+        exit(-1);
+    }
+
+    sleep(3);
+    printf("canceling thread ... \n");
+    res = pthread_cancel(thread_id);
+    if (res != 0) {
+        perror("pthread cancel");
+        exit(-1);
+    }
+
+
+    printf("waiting for thread exit ...\n");
+    res = pthread_join(thread_id, &thread_result);
+    if (res != 0) {
+        perror("pthread join");
+        exit(-2);
+    }
+    
+    printf("thread joined, result: %s\n", (char *)thread_result);
+    printf("msg: %s\n", msg);
+
+    return;
+}
+
+void* thread_func7(void *arg) {
+    int my_number = *(int *)arg;
+    printf("thread func runing, num: %s\n", my_number);
+    sleep(my_number);
+    printf("bye, num: %s\n", my_number);
+    pthread_exit(NULL);
+}
+
+#define THREAD_CNT  10
+
+void thread_demo7() {
+    pthread_t thread_ids[THREAD_CNT];
+    int res = 0;
+    int index = 0;
+
+    for (index = 0; index < THREAD_CNT; ++index) {
+        res = pthread_create(&(thread_id[index]), NULL, thread_func7, (void *)(&index));
+        if (res != 0) {
+            perror("pthread create");
+            exit(-1);
+        }
+        sleep(1);
+    }
+
+    printf("waiting for thread exit ...\n");
+    for (index = THREAD_CNT - 1; index >= 0; --index) {
+        res = pthread_join(thread_id[index], &thread_result);
+        if (res != 0) {
+            perror("pthread join");
+            exit(-2);
+        }
+        printf("thread joined, result: %s\n", (char *)thread_result);
+    }
+
+    printf("all done.\n");
+    return;
+}
+
