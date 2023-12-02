@@ -48,6 +48,9 @@ int main(int argc, char **argv)
     //sleep_demo();
 
     // chapter 08
-    exec_demo();
+    // exec_demo();
+    // wait_demo();
+    psh_demo();
+
     printf("===Quietly try and amaze everyone's sentences===\n");
 }

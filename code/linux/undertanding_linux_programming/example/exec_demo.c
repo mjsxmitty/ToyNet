@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 void exec_demo() {
 
@@ -20,9 +22,29 @@ void exec_demo() {
 }
 
 int execute(char *arg_list[]) {
+#if 0
     execvp(arg_list[0], arg_list);  // 成功不返回
     perror("execvp failed");
     exit(-1);
+#endif
+    int pid, exit_status;
+
+    pid = fork();
+    switch (pid)
+    {
+        case -1:
+            perror("fork");
+            break;
+        case 0:
+            execvp(arg_list[0], arg_list);
+            perror("execvp failed.");
+            exit(-1);
+        default:
+            while (wait(&exit_status) != pid)
+                ;
+            printf("child exited with status: %d\n", exit_status >> 8);
+            break;
+    }
 }
 
 char* make_string(char *buf) {
@@ -39,7 +61,7 @@ char* make_string(char *buf) {
     return cp;
 }
 
-#define MAX_ARGS    20
+#define MAX_ARGS    3
 #define ARG_LEN     100
 
 void psh_demo() {
@@ -68,13 +90,12 @@ void fork_demo() {
     my_pid = getpid();
     printf("before, my pid is: %d\n", my_pid);
 
-    // 父进程f返回子进程id;子进程返回0；出错返回-1
+    // 父进程返回子进程id;子进程返回0；出错返回-1
     ret_from_fork = fork();     
     sleep(1);
 
     printf("after, my pid is: %d, frok() said: %d\n\n", getpid(), ret_from_fork);
 }
-
 
 void child_code(int delay) {
     printf("child %d here, will sleep for %d seconds.\n", getpid(), delay);
