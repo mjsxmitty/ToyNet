@@ -7,7 +7,6 @@
 #include "chapter_07/chapter_07.h"
 #include "chapter_11/thread_demo.h"
 
-
 int main(int argc, char **argv)
 {
     printf("==================Hello World!==================\n");
@@ -16,6 +15,7 @@ int main(int argc, char **argv)
 
     //ch_04(argc, argv);
 
+    thread_demo3();
 	printf("===Quietly try and amaze everyone's sentences===\n");
     return 0;
 }
