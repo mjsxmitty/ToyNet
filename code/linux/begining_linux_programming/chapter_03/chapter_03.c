@@ -183,7 +183,7 @@ void print_file(const char *s)
 
     for (i = 0; i < NRECORDS; ++i) {
         fread(&record, sizeof (RECORD), 1, fp);
-        printf("%*s\n", record.str);
+        printf("%s\n", record.str);
     }
     
     printf("\n");

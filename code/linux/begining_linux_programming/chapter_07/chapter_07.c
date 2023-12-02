@@ -1,6 +1,7 @@
 
 
 #include "chapter_07.h"
+#include <unistd.h>
 
 void ch_07(int argc, char **argv)
 {
@@ -49,6 +50,7 @@ void lock_demo3() {
     const char *byte_to_write = "*";
     struct flock region_1;
     struct flock region_2;
+    int res = 0;
     
     file_desc = open(lock_file, O_RDWR|O_CREAT, 0666);
     if (file_desc == -1) {
@@ -57,7 +59,7 @@ void lock_demo3() {
     }
 
     for (byte_cnt = 0; byte_cnt < 100; ++byte_cnt) {
-        wtite(file_desc, byte_to_write, 1);
+        write(file_desc, byte_to_write, 1);
     }
 
     // 10~30 共享锁
@@ -89,12 +91,14 @@ void lock_demo3() {
     exit(0);
 }
 
-void show_lock_info(const struct lock *to_show) {
+void show_lock_info(const struct flock *to_show) {
+#if 0
     printf("\tl_type: %s, l_whence: %d, l_start: %d, l_len: %d, l_pid: %d\n", 
             to_show->l_type ? "RDLOCK" : "WRLOCK",
             to_show->l_whence,
             to_show->l_start,
             to_show->l_len);
+#endif
 }
 
 #define SIZE_TO_MOVE    5
@@ -102,7 +106,7 @@ void show_lock_info(const struct lock *to_show) {
 void lock_demo4() {
     int file_desc;
     int start_byte;
-    struct lock region_to_test;
+    struct flock region_to_test;
     int res = 0;
 
     file_desc = open(lock_file, O_RDWR|O_CREAT,0666);
@@ -152,8 +156,9 @@ void lock_demo4() {
 
 void lock_demo5() {
     int file_desc;
-    struct lock region_to_lock;
+    struct flock region_to_lock;
     int res;
+    int start_byte;
 
     file_desc = open(lock_file, O_RDWR|O_CREAT,0666);
     if (file_desc == -1) {
@@ -172,7 +177,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLK, &region_to_test);
+    res = fcntl(file_desc, F_SETLK, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to lock region.\n", getpid());
     } else {
@@ -190,7 +195,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLK, &region_to_test);
+    res = fcntl(file_desc, F_SETLK, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to unlock region.\n", getpid());
     } else {
@@ -208,7 +213,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLK, &region_to_test);
+    res = fcntl(file_desc, F_SETLK, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to unlock region.\n", getpid());
     } else {
@@ -226,7 +231,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLK, &region_to_test);
+    res = fcntl(file_desc, F_SETLK, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to lock region.\n", getpid());
     } else {
@@ -244,7 +249,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLK, &region_to_test);
+    res = fcntl(file_desc, F_SETLK, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to lock region.\n", getpid());
     } else {
@@ -262,7 +267,7 @@ void lock_demo5() {
             (int)region_to_lock.l_start, 
             (int)(region_to_lock.l_start+region_to_lock.l_len));
 
-    res = fcntl(file_desc, F_SETLKW, &region_to_test);
+    res = fcntl(file_desc, F_SETLKW, &region_to_lock);
     if (res == -1) {
         printf("processing %d - failed to lock region.\n", getpid());
     } else {

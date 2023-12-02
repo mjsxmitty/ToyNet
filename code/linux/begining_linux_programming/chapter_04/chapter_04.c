@@ -147,17 +147,17 @@ void time_demo(int argc, char **argv)
     
     printf("current time is: %ld\n", the_time);
     printf("date: %02d/%02d/%02d\n", tm_ptr->tm_year,
-                                     tm_ptr->tm_mon + 1,
-                                     tm_ptr->tm_mday);
+                                    tm_ptr->tm_mon + 1,
+                                    tm_ptr->tm_mday);
     printf("time: %02d:%02d:%02d\n", tm_ptr->tm_hour,
-                                     tm_ptr->tm_min,
-                                     tm_ptr->tm_sec);
+                                    tm_ptr->tm_min,
+                                    tm_ptr->tm_sec);
 
     printf("the astime is: %s\n", asctime(tm_ptr));
     printf("the cime is: %s\n", ctime(&the_time));
 
 
-    strftime(buf, 128, "%A %d % B : %I %S %p\n", tm_ptr);
+    strftime(buf, 128, "%A %d %B : %I %S %p\n", tm_ptr);
     printf("the strftime is: %s\n", buf);
 }
 
@@ -166,9 +166,9 @@ void tmp_file(int argc, char **argv)
     char tmpname[L_tmpnam] = "tmp_file_XXXXXX";
     int fd;
     
-    char *filename = tmpnam(tmpname);
-    char *filename1 = mktemp(tmpname);
-    printf("temporary file name is: %s - %s\n", filename, filename1);
+    //char *filename = tmpnam(tmpname);
+    //char *filename1 = mktemp(tmpname);
+    //printf("temporary file name is: %s\n", filename);
 
     FILE *tmpfp = tmpfile();
     if (tmpfp) {

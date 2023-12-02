@@ -87,7 +87,7 @@ void* thread_func(void *arg) {
     sleep(1);
     pthread_mutex_lock(&work_mutex);
     while (strncmp("end", work_area, 3) != 0) {
-        printf("you enter %d charaters.\n", strlen(work_area) - 1);
+        printf("you enter %ld charaters.\n", strlen(work_area) - 1);
         work_area[0] = '\0';
         pthread_mutex_unlock(&work_mutex);
         sleep(1);
@@ -132,7 +132,6 @@ void thread_demo2() {
         sem_post(&bin_sem);
     }
 
-    
     printf("waiting for thread exit ...\n");
     //res = pthread_join(thread_id, &thread_result);
     res = pthread_join(thread_id, NULL);
@@ -144,9 +143,9 @@ void thread_demo2() {
     
     //printf("thread joined, result: %s\n", (char *)thread_result);
     //printf("msg: %s\n", msg);
-    sem_destory(&bin_sem);
-    return;
+    sem_destroy(&bin_sem);
 
+    return;
 }
 
 void thread_demo3() {
@@ -165,7 +164,6 @@ void thread_demo3() {
         perror("pthread create");
         exit(-1);
     }
-
     
     pthread_mutex_lock(&work_mutex);
     printf("enter s series of number, 'end' to quit.\n");
@@ -193,8 +191,7 @@ void thread_demo3() {
     }
     printf("thread joined.\n");
     
-    pthread_mutex_destory(&work_mutex);
+    pthread_mutex_destroy(&work_mutex);
     return;
-
 }
 
