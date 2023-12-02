@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define DEL_PROMPT  ">"
 
@@ -23,7 +25,6 @@ void smsh() {
     }
 }
 
-
 void set_up() {
     signal(SIGINT, SIG_IGN);
     signal(SIGQUIT, SIG_IGN);
@@ -33,7 +34,6 @@ void fatal(const char *s1, const char *s2, int n) {
     fprintf(stderr, "error: %s, %s\n", s1, s2);
     exit(n);
 }
-
 
 int execute_cmd(char *arg_list[]) {
     int pid;

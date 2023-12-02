@@ -2,9 +2,13 @@
 #include "stdin_redir.h"
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 void stdin_redir() {
-    int fd, mew_fd;
+    int fd, new_fd;
     char line[100];
 
     fgets(line, 100, stdin); printf("%s\n", line);

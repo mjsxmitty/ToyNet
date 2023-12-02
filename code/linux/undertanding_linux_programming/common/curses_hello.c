@@ -3,7 +3,7 @@
 #include "curses_hello.h"
 #include <stdio.h>
 #include <curses.h>
-
+#include <unistd.h>
 
 void hello1()
 {

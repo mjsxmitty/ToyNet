@@ -5,6 +5,7 @@
 #include <signal.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 #define INPUT_LEN   100
 

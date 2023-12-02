@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <pwd.h>
 #include <grp.h>
+#include <unistd.h>
 
 #include "ls.h"
 

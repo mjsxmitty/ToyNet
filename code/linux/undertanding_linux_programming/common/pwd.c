@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define BUFF_SIZE   512
 
@@ -64,6 +65,6 @@ void inum_to_name(ino_t inode_to_find, char *name_buf, int buf_len)
         }
     }
 
-    fprintf(stderr, "error looking for inum: %d\n", inode_to_find);
+    fprintf(stderr, "error looking for inum: %ld\n", inode_to_find);
     exit(-1);
 }
