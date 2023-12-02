@@ -278,9 +278,9 @@ void thread_demo5() {
         exit(-1);
     }
 
-    res = pthread_attr_setshedpolicy(&thread_attr, SCHED_OTHER);
+    res = pthread_attr_setschedpolicy(&thread_attr, SCHED_OTHER);
     if (res != 0) {
-        perror("pthread attr setshedpolicy");
+        perror("pthread attr set policy");
         exit(-1);
     }
 
@@ -288,9 +288,9 @@ void thread_demo5() {
     min_priority = sched_get_priority_min(SCHED_OTHER);
     scheduling_value.sched_priority = min_priority;
 
-    res = pthread_attr_setshedparam(&thread_attr, &scheduling_value);
+    res = pthread_attr_setschedparam(&thread_attr, &scheduling_value);
     if (res != 0) {
-        perror("pthread attr setshedparam");
+        perror("pthread attr set param");
         exit(-1);
     }
     
@@ -368,9 +368,9 @@ void thread_demo6() {
 
 void* thread_func7(void *arg) {
     int my_number = *(int *)arg;
-    printf("thread func runing, num: %s\n", my_number);
+    printf("thread func runing, num: %d\n", my_number);
     sleep(my_number);
-    printf("bye, num: %s\n", my_number);
+    printf("bye, num: %d\n", my_number);
     pthread_exit(NULL);
 }
 
@@ -380,9 +380,10 @@ void thread_demo7() {
     pthread_t thread_ids[THREAD_CNT];
     int res = 0;
     int index = 0;
+    void *thread_result;
 
     for (index = 0; index < THREAD_CNT; ++index) {
-        res = pthread_create(&(thread_id[index]), NULL, thread_func7, (void *)(&index));
+        res = pthread_create(&(thread_ids[index]), NULL, thread_func7, (void *)(&index));
         if (res != 0) {
             perror("pthread create");
             exit(-1);
@@ -392,7 +393,7 @@ void thread_demo7() {
 
     printf("waiting for thread exit ...\n");
     for (index = THREAD_CNT - 1; index >= 0; --index) {
-        res = pthread_join(thread_id[index], &thread_result);
+        res = pthread_join(thread_ids[index], thread_result);
         if (res != 0) {
             perror("pthread join");
             exit(-2);
