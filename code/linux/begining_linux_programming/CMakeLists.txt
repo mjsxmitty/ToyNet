@@ -1,16 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(blp VERSION 0.1.0)
+project(begining_linux_programming VERSION 0.1.0)
 
-aux_source_directory(chapter_03 LIB_SRC)
-aux_source_directory(chapter_04 LIB_SRC)
-aux_source_directory(chapter_07 LIB_SRC)
-list(REMOVE_ITEM LIB_SRC "main.c")
+aux_source_directory(chapter_03 SRC)
+aux_source_directory(chapter_04 SRC)
+aux_source_directory(chapter_07 SRC)
+aux_source_directory(chapter_11 SRC)
 
-add_library(blp SHARED ${LIB_SRC})
-set_target_properties(blp PROPERTIES VERSION "0.0.1")
-
-add_executable(main "main.c")
-target_link_libraries(main blp m)
+add_definitions(-D_REENTRANT) 
+add_executable(blp "main.c" ${SRC})
+target_link_libraries(blp m pthread)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
