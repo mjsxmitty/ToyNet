@@ -13,8 +13,9 @@
 #include "curses_hello.h"
 #include "sleep_demo.h"
 #include "ticker_demo.h"
-
 #include "exec_demo.h"
+#include "select_demo.h"
+
 int main(int argc, char **argv)
 {
     printf("==================Hello World!==================\n");
@@ -51,6 +52,7 @@ int main(int argc, char **argv)
     // exec_demo();
     // wait_demo();
     // psh_demo();
+    select_demo(argc, argv);
 
     printf("===Quietly try and amaze everyone's sentences===\n");
 }
