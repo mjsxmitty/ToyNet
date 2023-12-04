@@ -2,6 +2,10 @@
 #include "who_to_file.h"
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 void who_to_file() {
     int fd;

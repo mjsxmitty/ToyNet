@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     // chapter 08
     // exec_demo();
     // wait_demo();
-    psh_demo();
+    // psh_demo();
 
     printf("===Quietly try and amaze everyone's sentences===\n");
 }
