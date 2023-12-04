@@ -27,10 +27,14 @@ void stdin_redir() {
         perror("dup");
         exit(-1);
     }
-    close(fd);
 #endif
     new_fd = dup2(fd, 0);
-
+    if (new_fd != 0) {
+        perror("dup");
+        return ;
+    }
+    close(fd);
+    
     fgets(line, 100, stdin); printf("%s\n", line);
     fgets(line, 100, stdin); printf("%s\n", line);
     fgets(line, 100, stdin); printf("%s\n", line);
