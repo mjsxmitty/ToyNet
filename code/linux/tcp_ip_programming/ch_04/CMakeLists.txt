@@ -1,5 +1,5 @@
 
 include_directories(.)
 
-add_executable(eserv "echo_server.c")
-add_executable(eclnt "echo_client.c")
+add_executable(echo_server "echo_server.c")
+add_executable(echo_client "echo_client.c")

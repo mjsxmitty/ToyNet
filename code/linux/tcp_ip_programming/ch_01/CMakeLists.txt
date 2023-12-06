@@ -1,5 +1,5 @@
 
 include_directories(.)
 
-add_executable(hell_serv "hello_server.c")
-add_executable(hell_clnt "hello_client.c")
+add_executable(hello_server "hello_server.c")
+add_executable(hello_client "hello_client.c")
