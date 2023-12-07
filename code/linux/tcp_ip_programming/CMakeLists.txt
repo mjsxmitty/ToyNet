@@ -5,6 +5,7 @@ add_subdirectory(ch_01)
 add_subdirectory(ch_02)
 add_subdirectory(ch_04)
 add_subdirectory(ch_06)
+add_subdirectory(ch_07)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
