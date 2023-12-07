@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     int     str_len;
 
     if (argc != 3) {
-        fprintf(stderr, "usage: %s <groupip> <port>\n", argv[0]);
+        fprintf(stderr, "usage: %s <groupid> <port>\n", argv[0]);
         exit(-1);
     }
 

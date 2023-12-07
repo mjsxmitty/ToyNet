@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     }
 
     while (!feof(fp)) {
-        fgets(buf, BUFF_SIZE, fp);
+        fgets(buffer, BUFF_SIZE, fp);
         sendto(send_sock, buffer, strlen(buffer), 0, (struct sockaddr *)&mul_addr, sizeof(mul_addr));
         sleep(2);
     }
