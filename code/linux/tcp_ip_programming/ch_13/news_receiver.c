@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <netinet/in.h>
 
 #define BUFF_SIZE 512
 

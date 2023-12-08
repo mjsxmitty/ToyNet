@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     FILE    *fp;
 
     if (argc != 4) {
-        fprintf(stderr, "usage: %s <ip> <port> %s\n", argv[0], argv[3]);
+        fprintf(stderr, "usage: %s <ip> <port> <file>\n", argv[0]);
         exit(-1);
     }
 

@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <sys/socketet.h>
+#include <sys/socket.h>
 #include <sys/types.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    sock = socket(PF_INET, socket_STREAM, 0);
+    sock = socket(PF_INET, SOCK_STREAM, 0);
     if (sock == -1) {
         perror("socket");
         exit(-1);
