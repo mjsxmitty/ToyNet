@@ -38,7 +38,7 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    str_len = read(sock,msg, sizeof(msg) - 1);
+    str_len = read(sock, msg, sizeof(msg) - 1);
     if (str_len == -1) {
         perror("read");
         exit(-1);

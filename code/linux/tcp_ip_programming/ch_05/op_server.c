@@ -7,24 +7,45 @@
 #include <string.h>
 #include <arpa/inet.h>
 
-#define BUFF_SIZE   1024
-#define CLNT_NUM    5
+#define BUFF_SIZE       1024
+#define CLNT_NUM        5
+#define OPERAND_SIZE    4
+
+int calcuate(int opnum, int opmsg[], char op) 
+{
+    int result = opmsg[0], i;
+    switch (op) {
+        case '+':
+            for (i = 1; i < opnum; ++i)
+                result += opmsg[i];
+            break;
+        case '-':
+            for (i = 1; i < opnum; ++i)
+                result -= opmsg[i];
+            break;
+        case '*':
+            for (i = 1; i < opnum; ++i)
+                result *= opmsg[i];
+            break;
+        default:
+            result = -1;
+    }
+    return result;
+}
 
 int main(int argc, char **argv) 
 {
-    int server_sock;
-    int client_sock;
-
+    int                 server_sock;
+    int                 client_sock;
     struct sockaddr_in  server_addr;
     struct sockaddr_in  client_addr;
+    socklen_t           client_addr_size;    
 
-    socklen_t client_addr_size;    
-
-    int     i = 0, str_len;
-    char    message[BUFF_SIZE];
+    int     i = 0, recv_len, result = 0;
+    char    operand_info[BUFF_SIZE];
 
     if (argc != 2) {
-        fprintf(stderr, "param error.");
+        fprintf(stderr, "usage: %s <port>.\n", argv[0]);
         exit(-1);
     }
 
@@ -57,9 +78,15 @@ int main(int argc, char **argv)
             break;
         }
         printf("connect client: %d\n", i);
-        
-        while ((str_len = read(client_sock, message, BUFF_SIZE)) != 0)
-            write(client_sock, message, str_len);
+
+        recv_len = read(client_sock, operand_info, BUFF_SIZE);
+        if (recv_len == -1) {
+            perror("read");
+            break;
+        }
+
+        result = calcuate(operand_cnt[0], (int *)(operand_info + 1), operand_info[recv_len - 1]);
+        write(client_sock, (char *)&result, sizeof(result));
 
         close(client_sock);
     }

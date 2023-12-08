@@ -7,6 +7,7 @@
 #include <string.h>
 #include <arpa/inet.h>
 
+/*验证数据没有边界性*/
 int main(int argc, char **argv) 
 {
     int sock;

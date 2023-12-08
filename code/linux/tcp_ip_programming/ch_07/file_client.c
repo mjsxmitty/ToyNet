@@ -12,15 +12,21 @@
 int main(int argc, char **argv) 
 {
     int                 sock;
-    struct sockaddr_in  serv_addr;
-    socklen_t           clnt_addr_size;
+    struct sockaddr_in  server_addr;
+    socklen_t           client_addr_size;
     
     char    buf    [64];
     int     read_cnt = 0;
     FILE    *fp;
 
     if (argc != 4) {
-        fprintf(stderr, "usage: ./file_client ip port file");
+        fprintf(stderr, "usage: %s <ip> <port> %s\n", argv[0], argv[3]);
+        exit(-1);
+    }
+
+    fp = fopen(argv[3], "w+");
+    if (fp == NULL) {
+        perror("fopen");
         exit(-1);
     }
 
@@ -30,27 +36,21 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-    serv_addr.sin_port = htons(atoi(argv[2]));
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    server_addr.sin_port = htons(atoi(argv[2]));
 
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+    if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("connect");
         exit(-1);
     }
-
-    fp = fopen(argv[3], "wb");
-    if (fp == NULL) {
-        perror("fopen");
-        exit(-1);
-    }
-
+    
     while ((read_cnt = read(sock, buf, BUFF_SIZE)) != 0) {
-        fwrite((void *)buf, 1, read_cnt, fp);
+        fwrite((void *)buf, 1, read_cnt, fp);   //???
     }
 
-    puts("received data ...\n");
+    puts("received data.\n");
     write(sock, "Thank you", 10);
 
     fclose(fp);

@@ -11,15 +11,14 @@
 
 int main(int argc, char **argv) 
 {
-    int sock;
-
-    struct sockaddr_in  serv_addr;
+    int                 sock;
+    struct sockaddr_in  server_addr;
     
-    char msg[BUFF_SIZE];
-    int str_len = 0, recv_len = 0, recv_cnt = 0;
+    char    msg[BUFF_SIZE];
+    int     str_len = 0;
 
     if (argc != 3) {
-        fprintf(stderr, "param error.");
+        fprintf(stderr, "usage: %s <ip> <port>\n", argv[0]);
         exit(-1);
     }
 
@@ -29,12 +28,12 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-    serv_addr.sin_port = htons(atoi(argv[2]));
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    server_addr.sin_port = htons(atoi(argv[2]));
 
-    connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+    connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     while (1) {
         fputs("input a series of number(q to quit): ", stdout);
@@ -46,7 +45,7 @@ int main(int argc, char **argv)
         write(sock, msg, strlen(msg));
         str_len = read(sock, msg, sizeof(msg));
        
-        msg[str_len] = '\0';
+        msg[str_len] = 0;
         printf("msg form server: %s\n", msg);
     }
 
