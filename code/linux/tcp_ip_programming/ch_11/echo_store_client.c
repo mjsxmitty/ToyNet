@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     pid_t pid;
 
     if (argc != 3) {
-        fprintf(stderr, "param error.");
+        fprintf(stderr, "usage: %s <ip> <port>\n", argv[0]);
         exit(-1);
     }
 

@@ -11,16 +11,15 @@
 
 int main(int argc, char **argv) 
 {
-    int sock;
-
-    struct sockaddr_in  serv_addr;
-    socklen_t clnt_addr_size;
+    int                 sock;
+    struct sockaddr_in  server_addr;
+    socklen_t           client_addr_size;
     
-    char msg[BUFF_SIZE];
-    int str_len = 0, recv_len = 0, recv_cnt = 0;
+    char    msg[BUFF_SIZE];
+    int     str_len = 0, recv_len = 0, recv_cnt = 0;
 
     if (argc != 3) {
-        fprintf(stderr, "param error.");
+        fprintf(stderr, "usage: %s <ip> <port>\n", argv[0]);
         exit(-1);
     }
 
@@ -30,12 +29,12 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-    serv_addr.sin_port = htons(atoi(argv[2]));
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    server_addr.sin_port = htons(atoi(argv[2]));
 
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+    if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("connect");
         exit(-1);
     }
