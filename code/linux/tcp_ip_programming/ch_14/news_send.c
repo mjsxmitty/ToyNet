@@ -16,13 +16,13 @@ int main(int argc, char **argv)
     struct sockaddr_in  mul_addr;
     
     int     time_live = TTL;
-    char    buffer[BUFF_SIZE];
+    char    buf[BUFF_SIZE];
     FILE    *fp;
 
     int so_bro = 1;
     
     if (argc != 4) {
-        fprintf(stderr, "usage: %s <groupip> <port> <file>\n", argv[0]);
+        fprintf(stderr, "usage: %s <ip> <port> <file>\n", argv[0]);
         exit(-1);
     }
 
@@ -40,16 +40,20 @@ int main(int argc, char **argv)
     mul_addr.sin_addr.s_addr = inet_addr(argv[1]);
     mul_addr.sin_port = htons(atoi(argv[2]));
 
-    if (fopen(argv[3], "rb") == NULL) {
+    if ((fp = fopen(argv[3], "r+")) == NULL) {
         perror("fopen");
         exit(-1);
     }
 
-    while (!feof(fp)) {
-        fgets(buffer, BUFF_SIZE, fp);
-        sendto(send_sock, buffer, strlen(buffer), 0, (struct sockaddr *)&mul_addr, sizeof(mul_addr));
+    printf("send...\n");
+
+    while (!feof(fp))
+    {
+        fgets(buf, BUFF_SIZE, fp);
+        sendto(send_sock, buf, strlen(buf), 0, (struct sockaddr *)&mul_addr, sizeof(mul_addr));
         sleep(2);
     }
+    
 
     fclose(fp);
     close(send_sock);
