@@ -36,12 +36,12 @@ void write_routine(int sock, char *buf) {
 /*分割IO*/
 int main(int argc, char **argv) 
 {
-    int sock;
-
-    struct sockaddr_in  serv_addr;
-    socklen_t clnt_addr_size;
+    int                 sock;
+    struct sockaddr_in  server_addr;
+    socklen_t           client_addr_size;
 
     char buf[BUFF_SIZE];
+
     pid_t pid;
 
     if (argc != 3) {
@@ -55,12 +55,12 @@ int main(int argc, char **argv)
         exit(-1);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-    serv_addr.sin_port = htons(atoi(argv[2]));
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    server_addr.sin_port = htons(atoi(argv[2]));
 
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+    if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("connect");
         exit(-1);
     }
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     pid = fork();
     if (pid == -1) {
         close(sock);
-        perror("frok");
+        perror("fork");
         exit(-1);
     }
 

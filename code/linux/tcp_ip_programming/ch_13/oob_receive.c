@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     int     str_len;
     char    msg[BUFF_SIZE];
 
-    struct signaction act;
+    struct sigaction act;
 
     if (argc != 2) {
         fprintf(stderr, "usage: %s <port>\n", argv[0]);

@@ -9,31 +9,30 @@
 #include <signal.h>
 
 #define BUFF_SIZE   512
-#define CLNT_NUM    5
 
 void read_child_proc(int sig) {
     pid_t   pid;
     int     status;
 
-    pid = waitpid(-1, &status, WNOHANG);
+    pid = waitpid(-1, &status, WNOHANG);    //不阻塞
     printf("remove proc id: %d\n", pid);
 }
 
 /*多进程*/
 int main(int argc, char **argv) 
 {
-    int serv_sock;
-    int clnt_sock;
-
-    struct sockaddr_in  serv_addr;
-    struct sockaddr_in  clnt_addr;
-
-    socklen_t clnt_addr_size;    
+    int                 server_sock;
+    int                 client_sock;
+    struct sockaddr_in  server_addr;
+    struct sockaddr_in  client_addr;
+    socklen_t           client_addr_size;    
 
     int i = 0, str_len;
+
     char msg[BUFF_SIZE];
 
     pid_t pid;
+
     struct sigaction act;
 
     if (argc != 2) {
@@ -46,31 +45,31 @@ int main(int argc, char **argv)
     act.sa_flags = 0;
     sigaction(SIGCHLD, &act, 0);
 
-    serv_sock = socket(PF_INET, SOCK_STREAM, 0);
-    if (serv_sock == -1) {
+    server_sock = socket(PF_INET, SOCK_STREAM, 0);
+    if (server_sock == -1) {
         perror("socket");
         exit(-1);
     }
 
-    memset(&serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    serv_addr.sin_port = htons(atoi(argv[1]));
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    server_addr.sin_port = htons(atoi(argv[1]));
 
-    if (bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
+    if (bind(server_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
         perror("bind");
         exit(-1);
     }
 
-    if (listen(serv_sock, 5) == -1) {
+    if (listen(server_sock, 5) == -1) {
         perror("listen");
         exit(-1);
     }
 
     while (1) {
-        clnt_addr_size = sizeof(clnt_addr);
-        clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
-        if (clnt_sock == -1) {
+        client_addr_size = sizeof(client_addr);
+        client_sock = accept(server_sock, (struct sockaddr *)&client_addr, &client_addr_size);
+        if (client_sock == -1) {
             perror("accept");
             continue;
         }
@@ -78,27 +77,27 @@ int main(int argc, char **argv)
 
         pid = fork();
         if (pid == -1) {
-            close(clnt_sock);
-            perror("frok");
+            close(client_sock);
+            perror("fork");
             continue;
         }
 
         if (pid == 0) {
-            close(serv_sock);
-            while ((str_len = read(clnt_sock, msg, BUFF_SIZE)) != 0) {
-                write(clnt_sock, msg, str_len);
+            close(server_sock);
+            while ((str_len = read(client_sock, msg, BUFF_SIZE)) != 0) {
+                write(client_sock, msg, str_len);
             }
             
-            close(clnt_sock);
+            close(client_sock);
             puts("client disconnected...");
-            return 0;
+            return 0;
+
         } else {
-            close(clnt_sock);
+            close(client_sock);
         }
     }
 
-
-    close(serv_sock);
+    close(server_sock);
     return 0;
 }
 

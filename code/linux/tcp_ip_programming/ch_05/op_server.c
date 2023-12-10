@@ -11,7 +11,7 @@
 #define CLNT_NUM        5
 #define OPERAND_SIZE    4
 
-int calcuate(int opnum, int opmsg[], char op) 
+int calculate(int opnum, int opmsg[], char op) 
 {
     int result = opmsg[0], i;
     switch (op) {
@@ -85,7 +85,7 @@ int main(int argc, char **argv)
             break;
         }
 
-        result = calcuate(operand_cnt[0], (int *)(operand_info + 1), operand_info[recv_len - 1]);
+        result = calculate(operand_info[0], (int *)(operand_info + 1), operand_info[recv_len - 1]);
         write(client_sock, (char *)&result, sizeof(result));
 
         close(client_sock);
