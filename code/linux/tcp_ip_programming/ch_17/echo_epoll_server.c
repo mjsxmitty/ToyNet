@@ -7,13 +7,16 @@
 #include <sys/types.h>
 #include <sys/epoll.h>
 #include <sys/socket.h>
+#include <errno.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 #define BUFF_SIZE   4
 #define EPOLL_SIZE  50
 
 void set_noblock_mode(int fd) {
     int flag = fcntl(fd, F_GETFL, 0);
-    fcntl(fd, F_SETFL, flag | O_NOBLOCK);
+    fcntl(fd, F_SETFL, flag | O_NONBLOCK);
 }
 
 int main(int argc, char **argv) 
