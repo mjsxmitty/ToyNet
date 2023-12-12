@@ -6,7 +6,7 @@ using namespace std;
 using namespace chapter_02;
 
 /* chapter 2.1 */
-int main1()
+int main()
 {
     cout << "please enter a position: ";
     int pos;
@@ -16,8 +16,8 @@ int main1()
     if (FibonElem(pos, elem))
     {
         cout << "element at position # "
-             << pos << " is: " << elem
-             << endl;
+            << pos << " is: " << elem
+            << endl;
     }
     else
     {
@@ -27,10 +27,11 @@ int main1()
     }
 
     PrintFibon(pos);
+    return 0;
 }
 
 /* practice 2.1 */
-int main()
+int main2()
 {
     bool more = true;
     while (more)
@@ -55,4 +56,6 @@ int main()
         if (ch != 'y' && ch != 'Y')
             more = false;
     }
+
+    return 0;
 }
