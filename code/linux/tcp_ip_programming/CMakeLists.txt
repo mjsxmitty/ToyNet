@@ -16,6 +16,7 @@ add_subdirectory(ch_15)
 add_subdirectory(ch_16)
 add_subdirectory(ch_17)
 add_subdirectory(ch_18)
+add_subdirectory(ch_24)
 
 add_compile_options(-std=c++11 -pthread -g  -ggdb -O0 -Wall   -fstack-protector-all -march=native -fnon-call-exceptions)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall -core")
