@@ -15,7 +15,6 @@ namespace chapter_02
 /* 2.1 */
 extern bool FibonElem(int pos, int &elem);
 extern bool PrintFibon(int pos);
-extern void ch_2_1();
 extern void hw_2_1();
 
 /* 2.3 */

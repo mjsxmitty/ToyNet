@@ -16,9 +16,7 @@ bool FibonElem(int pos, int &elem)
     // 无效位置
     if (pos <= 0 || pos > 1024)
     {
-        cerr << "invalid position" << pos
-            << " ---> cannot handle request!"
-            << endl;
+        cerr << "invalid position" << pos << endl;
 
         elem = 0;
         return false;
@@ -97,32 +95,7 @@ void ch_2_1()
     PrintFibon(pos);
 }
 
-void hw_2_1()
-{
-    bool more = true;
-    while (more)
-    {
-        int pos;
-        cout << "please enter a position: ";
-        cin >> pos;
 
-        int elem;
-        if (FibonElem(pos, elem))
-        {
-            cout << "element at position # " << pos
-                << " value is: " << elem << endl;
-        }
-        else
-            cout << "sorry! cannot calculate position # "
-                << pos << " elem "<< endl;
-
-        cout << "would you want to try again?(Y/N): ";
-        char ch;
-        cin >> ch;
-        if (ch != 'y' && ch != 'Y')
-            more = false;
-    }
-}
 
 void Display(const vector<int> *vec, ostream *out)
 {
@@ -356,9 +329,9 @@ void ch_2_8()
         cout << "please enter a seq(1~7): ";
         cin >> select;
 
-        int elem;
-        ver0::SeqElem(pos + 1, elem, seq_array[select]);
-        cout << "position: " << pos << " value is: " << elem << endl;
+        //int elem;
+        //ver0::SeqElem(pos + 1, elem, seq_array[select]);
+        //cout << "position: " << pos << " value is: " << elem << endl;
 
         cout << "would you want to try again?(Y/N): ";
         char ch;
