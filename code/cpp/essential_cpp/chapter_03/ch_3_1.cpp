@@ -5,7 +5,7 @@
 
 using namespace chapter_03;
 
-int main1()
+int main()
 {
     const int       *iptr = nullptr;
     const std::string    *sptr = nullptr;
