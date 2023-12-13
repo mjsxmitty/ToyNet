@@ -1,5 +1,5 @@
 
-#include "chapter_03.h"
+#include "common.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -16,9 +16,6 @@ using namespace std;
 namespace chapter_03
 {
 
-const int s_int_size = 12;
-const int s_string_size = 4;
-
 int     s_ia[s_int_size] = { 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 };
 string  s_sa[s_string_size] = { "pooh", "piglet", "eeyore", "tigger" };
 
@@ -34,126 +31,13 @@ const int* FindVec(const vector<int> &vec, int val)
     return 0;
 }
 
-void ch_3_1()
-{
-    const int       *iptr = nullptr;
-    const string    *sptr = nullptr;
-#if 0
-    iptr = FindVec(s_ivec, s_ivec[5]);
-    if (iptr == &s_ivec[5])
-        cout << *iptr << endl;
-    else
-        cout << "test no template func failed, ret: "
-             << *iptr << endl;
-
-    iptr = FindVer1(s_ivec, s_ivec[6]);
-    if (iptr == &s_ivec[6])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer1 with int array type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer1(s_svec, s_svec[0]);
-    if (sptr == &s_svec[0])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer1 with char array type func failed, ret: "
-             << *sptr << endl;
-
-    iptr = FindVer2(s_ia, s_int_size, s_ia[7]);
-    if (iptr == &s_ia[7])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer2 with int array type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer2(s_sa, s_string_size, s_sa[2]);
-    if (sptr == &s_sa[2])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer2 with char array type func failed, ret: "
-             << *sptr << endl;
-
-    iptr = FindVer3(s_ia, s_int_size, s_ia[7]);
-    if (iptr == &s_ia[7])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer3 with int array type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer3(s_sa, s_string_size, s_sa[2]);
-    if (sptr == &s_sa[2])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer3 with char array type func failed, ret: "
-             << *sptr << endl;
-#endif
-    iptr = FindVer4(s_ia, s_ia + s_int_size, s_ia[8]);
-    if (iptr == &s_ia[8])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer4 with int array type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer4(s_sa, s_sa + s_string_size, s_sa[3]);
-    if (sptr == &s_sa[3])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer4 with char array type func failed, ret: "
-             << *sptr << endl;
-
-    iptr = FindVer4(Begin(s_ivec), End(s_ivec), s_ivec[9]);
-    if (iptr == &s_ivec[9])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer4 with int vector type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer4(Begin(s_svec), End(s_svec), s_svec[3]);
-    if (sptr == &s_svec[3])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer4 with char vector type func failed, ret: "
-             << *sptr << endl;
-
-}
-
-
-void ch_3_2()
-{
-    const int       *iptr = nullptr;
-    const string    *sptr = nullptr;
-
-    iptr = FindVer5(s_ia, s_ia + s_int_size, s_ia[10]);
-    if (iptr == &s_ivec[10])
-        cout << *iptr << endl;
-    else
-        cout << "test FindVer5 with int array type func failed, ret: "
-             << *iptr << endl;
-
-    sptr = FindVer5(Begin(s_svec), End(s_svec), s_svec[1]);
-    if (sptr == &s_svec[1])
-        cout << *sptr << endl;
-    else
-        cout << "test FindVer5 with char vector type func failed, ret: "
-             << *sptr << endl;
-
-    list<int>    slist(s_ia, s_ia + s_int_size);
-    list<int>::iterator it = FindVer5(slist.begin(), slist.end(), 1024);
-    if (it != slist.end())
-        cout << *it << endl;
-    else
-        cout << "not find appoint val."
-            << endl;
-}
-
 bool LessThan(int v1, int v2) { return v1 < v2 ? true : false; }
 bool GreaterThan(int v1, int v2) { return v1 > v2 ? true : false; }
 
 vector<int> FilterVer1(const vector<int> &vec, int filter_val, bool (*pred)(int, int))
 {
     vector<int> nvec;
-    for (int ix = 0; ix < vec.size(); ++ix)
+    for (size_t ix = 0; ix < vec.size(); ++ix)
         if (pred(vec[ix], filter_val))
             nvec.push_back(vec[ix]);
 

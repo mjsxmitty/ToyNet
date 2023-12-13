@@ -10,8 +10,6 @@
 namespace chapter_02
 {
 
-namespace ver0 {
-
 typedef const std::vector<int>* pvec; 
 typedef pvec (*pfunc)(int);
 //typedef const std::vector<int>* (*pfunc)(int);        // 函数指针
@@ -50,8 +48,7 @@ inline bool CheckIntegrity(int size)
     const int max_elems = 1024;
     if (size <= 0 || size > max_elems)
     {
-        std::cerr << "invalid size: " << size
-                << " cannot handle request!\n";
+        std::cerr << "invalid size: " << size << std::endl;
         return false;
     }
     
@@ -59,5 +56,5 @@ inline bool CheckIntegrity(int size)
 }
 
 }
-}
+
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__

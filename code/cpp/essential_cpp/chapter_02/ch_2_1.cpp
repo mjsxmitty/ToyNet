@@ -1,28 +1,27 @@
 
 #include <iostream>
-#include "chapter_02.h"
+#include "common.h"
 
-using namespace std;
 using namespace chapter_02;
 
 /* chapter 2.1 */
-int main()
+int main1()
 {
-    cout << "please enter a position: ";
+    std::cout << "please enter a position: ";
     int pos;
-    cin >> pos;
+    std::cin >> pos;
 
     int elem;
     if (FibonElem(pos, elem))
     {
-        cout << "element at position # "
-            << pos << " is: " << elem
-            << endl;
+        std::cout << "element at position: "
+                    << pos << " is: " << elem
+                    << std::endl;
     }
     else
     {
-        cout << "sorry! cannot calculate position: "
-            << pos << " elem."<< endl;
+        std::cout << "sorry! cannot calculate position: "
+                    << pos << " elem."<< std::endl;
         return -1;
     }
 
@@ -31,28 +30,28 @@ int main()
 }
 
 /* practice 2.1 */
-int main2()
+int main()
 {
     bool more = true;
     while (more)
     {
         int pos;
-        cout << "please enter a position: ";
-        cin >> pos;
+        std::cout << "please enter a position: ";
+        std::cin >> pos;
 
         int elem;
         if (FibonElem(pos, elem))
         {
-            cout << "element at position # " << pos
-                << " value is: " << elem << endl;
+            std::cout << "element at position: " << pos
+                << " value is: " << elem << std::endl;
         }
         else
-            cout << "sorry! cannot calculate position # "
-                << pos << " elem "<< endl;
+            std::cout << "sorry! cannot calculate position: "
+                        << pos << " elem "<< std::endl;
 
-        cout << "would you want to try again?(Y/N): ";
+        std::cout << "would you want to try again?(Y/N): ";
         char ch;
-        cin >> ch;
+        std::cin >> ch;
         if (ch != 'y' && ch != 'Y')
             more = false;
     }

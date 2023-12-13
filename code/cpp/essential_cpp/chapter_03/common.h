@@ -13,7 +13,14 @@
 namespace chapter_03
 {
 
-extern void ch_3_1();
+const int s_int_size = 12;
+const int s_string_size = 4;
+
+extern int     s_ia[s_int_size];
+extern std::string  s_sa[s_string_size];
+
+extern std::vector<int>     s_ivec;
+extern std::vector<std::string>  s_svec;
 
 extern const int* FindVec(const std::vector<int> &vec, int val);
 
@@ -77,8 +84,6 @@ inline const T* End(const std::vector<T> &vec)
 {
     return vec.empty() ? 0 : &vec[vec.size()];
 }
-
-extern void ch_3_2();
 
 template <typename T, typename Y>
 T FindVer5(T first, T last, const Y &val)

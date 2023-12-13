@@ -12,33 +12,26 @@
 namespace chapter_02
 {
 
-/* 2.1 */
 extern bool FibonElem(int pos, int &elem);
 extern bool PrintFibon(int pos);
-extern void hw_2_1();
 
-/* 2.3 */
 extern void Swap(int &val1, int &val2, std::ostream &out = std::cout);
-extern void Swap(int &val1, int &val2, std::ostream *out = 0);
 extern void BubbleSort(std::vector<int> &vec, std::ostream &out = std::cout);
-extern void BubbleSort(std::vector<int> *vec, std::ostream *out = 0);
 extern void Display(const std::vector<int> &vec, std::ostream &out = std::cout);
+
+extern void Swap(int &val1, int &val2, std::ostream *out = 0);
+extern void BubbleSort(std::vector<int> *vec, std::ostream *out = 0);
 extern void Display(const std::vector<int> *vec, std::ostream *out = 0);
-extern void ch_2_3();
 
-/* 2.4 */
 extern const std::vector<int>* FibonSeq1(int size);
-extern void ch_2_4();
 
-/* 2.5 */
 inline bool IsSizeOk1(int size)
 {
     const int max_elems = 1024;
 
     if (size <= 0 || size > max_elems)
     {
-        std::cerr << "oops: invalid size: " << size
-                    << "cannot handle request!\n";
+        std::cerr << "oops: invalid size: " << size << std::endl;
         return false;
     }
 
@@ -87,7 +80,7 @@ inline T Max(T t1, T t2) { return t1 > t2 ? t1 : t2; }
 template <typename T>
 inline T Max(const std::vector<T> &vec)
 {
-    return *std::max_element(vec.begin(), vec.end());
+    return *std::max_element(vec.begin(), vec.end());   // max_element返回的是位置
 }
 
 template <typename T>
