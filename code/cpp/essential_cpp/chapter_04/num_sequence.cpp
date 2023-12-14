@@ -243,9 +243,9 @@ int NumSequence::Elem(int pos)
     if (pos > elem_->size())
     {
 #if 0
-         cout << "check integrity: calculating "
-                 << pos - elem_->size()
-                 << " additional elem_ents\n";
+        cout << "check integrity: calculating "
+                << pos - elem_->size()
+                << " additional elem_ents\n";
 #endif
         (this->*pmf_)(pos);
     }

@@ -24,7 +24,7 @@ public:
     void NextReset() const { next_ = beg_pos_ - 1; }
     bool Next(int &val) const;
 public:
-    Triangular& Copy(const Triangular &rhs);
+    // Triangular& Copy(const Triangular &rhs);
     Triangular& operator=(const Triangular &rhs);
 private:
     static std::vector<int>     elems_;

@@ -39,7 +39,7 @@ UserProfile::UserProfile(const string login, ULevel level) :
     snprintf(buffer, 16, "%s-%d", login_.c_str(), id++);
     login_ = buffer;
 
-    //id++;
+    id++;
 }
 
 bool UserProfile::operator==(const UserProfile &rhs) const

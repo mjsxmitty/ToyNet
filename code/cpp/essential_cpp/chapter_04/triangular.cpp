@@ -26,15 +26,15 @@ Triangular::Triangular(const Triangular &rhs) :
 int Sum(const Triangular &item)
 {
 #if 0
-     int beg_pos = item.BegPos();
-     int len = item.Length();
-     int sum = 0;
+    int beg_pos = item.BegPos();
+    int len = item.Length();
+    int sum = 0;
 
-     for (int i = 0; i < len; ++i)
-     {
-         sum += item.Elem(beg_pos + i);
-     }
-     return sum;
+    for (int i = 0; i < len; ++i)
+    {
+        sum += item.Elem(beg_pos + i);
+    }
+    return sum;
 #endif
     if (!item.Length()) 
         return 0;
@@ -59,7 +59,7 @@ bool Triangular::Next(int &val) const
     next_ = 0;
     return false;
 }
-
+#if 0
 Triangular& Triangular::Copy(const Triangular &rhs)
 {
     if (this != &rhs)
@@ -71,7 +71,7 @@ Triangular& Triangular::Copy(const Triangular &rhs)
 
     return *this;
 }
-
+#endif
 Triangular& Triangular::operator=(const Triangular &rhs)
 {
     if (this != &rhs)

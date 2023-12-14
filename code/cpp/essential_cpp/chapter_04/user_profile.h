@@ -33,12 +33,14 @@ public:
         return level_table[level_];
     }
 
+    // 取值
     std::string login() const { return login_; }
     int times_logged() const { return times_logged_; }
     int guesses() const { return guesses_; }
     int correct_guesses() const { return correct_guesses_; }
     double guess_average() const;
 
+    // 设值
     void reset_login(const std::string &val);
     void reset_login_count(int val) { times_logged_ = val; }
     void reset_guess_count(int val) { guesses_ = val; }
