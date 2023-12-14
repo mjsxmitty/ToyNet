@@ -86,7 +86,7 @@ inline const T* End(const std::vector<T> &vec)
 }
 
 template <typename T, typename Y>
-T FindVer5(T first, T last, const Y &val)
+T Find(T first, T last, const Y &val)
 {
     for (; first != last; ++first)
         if (val == *first)
@@ -95,13 +95,11 @@ T FindVer5(T first, T last, const Y &val)
     return last;
 }
 
-extern void ch_3_6();
-
 extern std::vector<int> FilterVer1(const std::vector<int> &vec, int filter_val, bool (*pred)(int, int));
 extern std::vector<int> FilterVer2(const std::vector<int> &vec, int val, const std::less<int> &lt);
 
 template <typename It, typename Ot, typename ElemType,typename Comp>
-Ot FilterVer3( It first, It last, Ot at, const ElemType &val, Comp pred )
+Ot Filter( It first, It last, Ot at, const ElemType &val, Comp pred )
 {
     while ((first = find_if(first, last, bind2nd(pred, val))) != last)
     //while (( first = find_if( first, last, not1(bind2nd( pred, val )))) != last )
@@ -115,8 +113,18 @@ Ot FilterVer3( It first, It last, Ot at, const ElemType &val, Comp pred )
 
 extern std::vector<int> SubVec(const std::vector<int> &vec, int val);
 
-extern void ch_3_9();
-extern void ch_3_10();
+template <typename T, typename V, typename Comp>
+void SubVec(T beg, T end, V val, Comp cmp, T &first, T &last)
+{
+    //排序
+    sort(beg, end); // 有局限性
+
+    //找出第一满足要求值
+    auto find_it = std::find_if(beg, end, std::bind2nd(cmp, val));
+
+    first = beg;
+    last = find_it;
+}
 
 extern void InitExclusionSet(std::set<std::string> &exs);
 extern void ProcessFile(std::map<std::string, int> &word_map,
@@ -125,7 +133,6 @@ extern void ProcessFile(std::map<std::string, int> &word_map,
 extern void DisplayWordCount(const std::map<std::string, int> &word_map,
                             std::ostream &out = std::cout);
 extern void UserQuery(const std::map<std::string, int> &word_map);
-extern void hw_3_1();
 
 class StrSizeComp
 {
@@ -135,7 +142,7 @@ public:
         return s1.size() < s2.size();
     }
 };
-extern void hw_3_2();
+
 
 typedef std::vector<std::string> vstring;
 typedef std::string::size_type ssize_type;
@@ -144,7 +151,6 @@ typedef std::map<std::string, vstring> svec_map;
 extern void InitFamilyMap(std::ifstream &in, std::map<std::string, vstring> &family);
 extern void DisplayMap(const std::map<std::string, vstring> &familes, std::ostream &out);
 extern void QueryMap(const std::string &family, svec_map familes);
-extern void hw_3_3();
 
 class EvenElem
 {
@@ -154,7 +160,6 @@ public:
         return s.size() % 2 ? false : true;
     }
 };
-extern void hw_3_4();
 
 }
 

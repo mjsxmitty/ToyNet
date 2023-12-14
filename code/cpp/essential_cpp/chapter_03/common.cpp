@@ -11,6 +11,8 @@
 #include <set>
 #include <sstream>
 
+#include <map>
+
 using namespace std;
 
 namespace chapter_03
@@ -87,97 +89,6 @@ vector<int> SubVec(const vector<int> &vec, int val)
     return local_vec;
 }
 
-void ch_3_6()
-{
-    const int part_val = 10;
-
-    for_each(s_ivec.begin(), s_ivec.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-#if 0
-    vector<int> vec1 = FilterVer1(s_ivec, part_val, GreaterThan);
-    for_each(vec1.begin(), vec1.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-
-    vector<int> vec2 = FilterVer2(s_ivec, part_val, less<int>());
-    for_each(vec2.begin(), vec2.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-#endif
-    int ia[s_int_size];
-    auto ia2 = FilterVer3(s_ia, s_ia + s_int_size, ia, part_val, less<int>());
-    for_each(ia, ia2, [](int i) { cout << i << ' ';});
-    cout << endl;
-
-    vector<int> vec3;
-    FilterVer3(s_ia, s_ia + s_int_size, back_inserter(vec3), part_val, greater<int>());
-    for_each(vec3.begin(), vec3.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-#if 0
-    for_each(begin(s_sa), end(s_sa), [](const string &s) { cout << s << ' ';});
-    cout << endl;
-
-    list<string> slist;
-    FilterVer3(s_sa, s_sa + s_string_size, back_inserter(slist), "piglet", greater<string>());
-    for_each(slist.begin(), slist.end(), [](const string &s) { cout << s << ' ';});
-    cout << endl;
-
-    auto ret_vec = SubVec(s_ivec, part_val);
-    for_each(ret_vec.begin(), ret_vec.end(), [](int i) { cout << i << ' ';});
-    cout << endl;
-#endif
-}
-
-void ch_3_9()
-{
-    int iarray[s_int_size];
-    FilterVer3(s_ia, s_ia + s_int_size, iarray, s_int_size, less<int>());   // 数组不支持安插操作
-
-    vector<int> ivec(s_int_size);
-    FilterVer3(s_ivec.begin(), s_ivec.end(), back_inserter(ivec), s_int_size, greater<int>());
-}
-
-void ch_3_10()
-{
-#if 0
-    {
-         istream_iterator<string>    is(cin);
-         istream_iterator<string>    eof;
-
-         vector<string>  local_vec;
-         copy(is, eof, back_inserter(local_vec));
-         sort(local_vec.begin(), local_vec.end());
-
-         ostream_iterator<string>    os(cout, "\n");
-         copy(local_vec.begin(), local_vec.end(), os);
-         cout <<endl;
-    }
-#endif
-    {
-        fstream     in_file("Makefile");
-        ofstream    out_file("test.txt");
-
-        if (!in_file || !out_file)
-        {
-            cout << "open input/output file failed." << endl;
-            return ;
-        }
-
-        istream_iterator<string>    is(in_file);
-        istream_iterator<string>    eof;
-
-        vector<string>  vec;
-        copy(is, eof, back_inserter(vec));
-
-        sort(vec.begin(), vec.end());
-
-        ostream_iterator<string>    os(out_file, "\n");
-        copy(vec.begin(), vec.end(), os);
-    }
-}
-
-#include <iostream>
-#include <fstream>
-#include <map>
-
 void UserQuery(const map<string, int> &word_map)
 {
     cout << " please enter a search word: ";
@@ -240,49 +151,6 @@ void InitExclusionSet(set<string> &exs)
     exs.insert(begin(exclusion_words), end(exclusion_words));
 }
 
-void hw_3_1()
-{
-    ifstream    in_file("Makefile");
-    ofstream    out_file("moo_cat.map");
-
-    if (!in_file || !out_file)
-    {
-        cerr << "open input/output file failed!" << endl;
-        return ;
-    }
-    
-    set<string> exclude_set;
-    InitExclusionSet(exclude_set);
-
-    map<string, int> word_count;
-    ProcessFile(word_count, exclude_set, in_file);
-
-    UserQuery(word_count);
-}
-
-void hw_3_2()
-{
-    ifstream    in_file("Makefile");
-    ofstream    out_file("moo_cat.out");
-
-    if (!in_file || !out_file)
-    {
-        cerr << "unalbe to open file!" << endl;
-        return ;
-    }
-
-    vector<string>  text;
-    istream_iterator<string> is(in_file);
-    istream_iterator<string> eof;
-    copy(is, eof, back_inserter(text));
-
-    sort(text.begin(), text.end(), StrSizeComp());
-    //sort(text.begin(), text.end(), less<string>());
-
-    ostream_iterator<string> os(out_file, "\n");
-    copy(text.begin(), text.end(), os);
-}
-
 void InitFamilyMap(ifstream &in, map<string, vstring> &family)
 {
     string line;
@@ -290,23 +158,24 @@ void InitFamilyMap(ifstream &in, map<string, vstring> &family)
     {
         string  fam_name;
         vstring childs;
-//        ssize_type pos = 0, prev_pos = 0, line_size = line.size();
+#if 0
+        ssize_type pos = 0, prev_pos = 0, line_size = line.size();
 
-//        cout << "text line: " << line << endl;
-//        while ((pos = line.find_first_of(' ', pos)) != string::npos)
-//        {
-//            if (!prev_pos)
-//                fam_name = line.substr(prev_pos, pos - prev_pos);
-//            else
-//                childs.push_back(line.substr(prev_pos, pos - prev_pos));
+        cout << "text line: " << line << endl;
+        while ((pos = line.find_first_of(' ', pos)) != string::npos)
+        {
+            if (!prev_pos)
+                fam_name = line.substr(prev_pos, pos - prev_pos);
+            else
+                childs.push_back(line.substr(prev_pos, pos - prev_pos));
 
-//            prev_pos = ++pos;
-//        }
+            prev_pos = ++pos;
+        }
 
-//        //最后一个名字
-//        if (prev_pos < line_size)
-//            childs.push_back(line.substr(prev_pos, pos - prev_pos));
-
+        //最后一个名字
+        if (prev_pos < line_size)
+            childs.push_back(line.substr(prev_pos, pos - prev_pos));
+#endif
         stringstream ss(line);
         ss >> fam_name;
 
@@ -372,60 +241,6 @@ void QueryMap(const string &family, svec_map familes)
             ++citer;
         }
     }
-}
-
-void hw_3_3()
-{
-    ifstream    name_file("families.txt");
-    if (!name_file)
-    {
-        cerr << "open name file failed.\n";
-        return ;
-    }
-
-    svec_map    familes;
-    InitFamilyMap(name_file, familes);
-
-    string      name;
-    while (1)
-    {
-        cout << "please enter a family name or q to quit: ";
-        cin >> name;
-        if (name == "q")
-            break;
-
-        QueryMap(name, familes);
-    }
-
-    DisplayMap(familes, cout);
-}
-
-void hw_3_4()
-{
-    ifstream name_file("Makefile");
-    if (!name_file)
-    {
-        cerr << "open input name file failed.\n";
-        return ;
-    }
-
-    ofstream even_file("even_file"), odd_file("odd_file");
-    if (!even_file || !odd_file)
-    {
-        cerr << "open out file failed.\n";
-        return ;
-    }
-
-    istream_iterator<string>    in(name_file), eof;
-    vector<string>  input;
-
-    copy(in, eof, back_inserter(input));
-    vector<string>::iterator div = partition(input.begin(), input.end(), EvenElem());
-
-    ostream_iterator<string> even_it(even_file, "\n"), odd_it(odd_file, "\t");
-
-    copy(input.begin(), div, even_it);
-    copy(div, input.end(), odd_it);
 }
 
 }
