@@ -29,10 +29,11 @@ public:
 private:
     static std::vector<int>     elems_;
     static int                  init_size_;
-
+#if 1
     //enum { max_size_ = 1024 };
     static const int max_size_ = 1024;
     int buf[max_size_];
+#endif
 public:
     static bool IsElem(int val);
     static void GenElements(int length);

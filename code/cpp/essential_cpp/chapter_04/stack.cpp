@@ -5,6 +5,15 @@
 
 using namespace std;
 
+void FillStack(Stack &stack, std::istream &is)
+{
+    string str;
+    if (is >> str && !stack.Empty())
+        stack.Push(str);
+
+    cout << "read in " << stack.Size() << " elements\n";
+}
+
 bool Stack::Push(const std::string &elem)
 {
     if (Full())

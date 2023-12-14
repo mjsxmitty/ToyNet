@@ -25,16 +25,17 @@ Triangular::Triangular(const Triangular &rhs) :
 
 int Sum(const Triangular &item)
 {
-    // int beg_pos = item.BegPos();
-    // int len = item.Length();
-    // int sum = 0;
+#if 0
+     int beg_pos = item.BegPos();
+     int len = item.Length();
+     int sum = 0;
 
-    // for (int i = 0; i < len; ++i)
-    // {
-    //     sum += item.Elem(beg_pos + i);
-    // }
-    // return sum;
-
+     for (int i = 0; i < len; ++i)
+     {
+         sum += item.Elem(beg_pos + i);
+     }
+     return sum;
+#endif
     if (!item.Length()) 
         return 0;
 
@@ -97,8 +98,8 @@ void Triangular::GenElemsToValue(int value)
 
     while (elems_[size - 1] < value && size < max_size_)
     {
-        ++size;
         elems_.push_back(size * (size + 1) / 2);
+        ++size;
     }
 
     if (size == max_size_)

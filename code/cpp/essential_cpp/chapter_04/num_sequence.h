@@ -119,7 +119,8 @@ private:
     static std::map<std::string, NUM_SEQ>   seq_map_;
 };
 
-std::ostream& operator<<(std::ostream &os, NumSequence &ns);
+std::ostream& operator<<(std::ostream &os, const NumSequence &ns);
 
+extern void Display(std::ostream &os, NumSequence &ns, int pos, int elem_val);
 }
 #endif // __ESSENTIAL_CPP_NUMSEQ_VER1_H__

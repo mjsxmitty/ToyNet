@@ -5,11 +5,11 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 class Stack
 {
 public:
-    //Stack();
     bool    Empty() const { return elems_.empty(); }
     bool    Full() const { return  elems_.size() == elems_.max_size(); }
     int     Size() const { return  elems_.size(); }
@@ -23,5 +23,7 @@ public:
 private:
     std::vector<std::string>    elems_;
 };
+
+extern void FillStack(Stack &stack, std::istream &is = std::cin);
 
 #endif // __ESSENTIAL_CPP_STACK_H__

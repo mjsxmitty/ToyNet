@@ -3,7 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "num_sequence_ver1.h"
+#include "num_sequence.h"
 
 using namespace std;
 
@@ -291,7 +291,7 @@ bool NumSequence::IsElem(int elem)
 
 int NumSequence::CalcPos(int elem)
 {
-    int pos = elem_->size() - 1;        // 此时的pos表明的事下标索引
+    int pos = elem_->size() - 1;        // 姝ゆ椂鐨刾os琛ㄦ槑鐨勪簨涓嬫爣绱㈠紩
     cout << "calc_pos() elem: " << elem
             << " pos: " << pos
             << " at: " << (*elem_)[pos]
@@ -330,6 +330,17 @@ ostream &operator<<(ostream &os, NumSequence &ns)
 {
     ns.Print(os);
     return os;
+}
+
+void Display(std::ostream &os, NumSequence &ns, int pos, int elem_val)
+{
+    os << "--------------------------------" << std::endl;
+    os << ns << std::endl;
+    os << "The element at position: " << pos
+        << " for the: " << ns.WhatAmI()
+        << " sequence is: " << elem_val
+        << std::endl;
+    os << "--------------------------------" << std::endl;
 }
 
 }

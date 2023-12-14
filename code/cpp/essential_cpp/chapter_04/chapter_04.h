@@ -11,11 +11,6 @@
 namespace chapter_04
 {
 
-void ch_4();
-
-extern void FillStack(Stack &stack, std::istream &is = std::cin);
-extern void ch_4_1();
-
 class ValClass
 {
 public:
@@ -25,10 +20,6 @@ public:
 private:
     std::string val_;
 };
-
-extern void ch_4_3();
-extern void ch_4_5();
-extern void ch_4_7();
 
 class LessThan
 {

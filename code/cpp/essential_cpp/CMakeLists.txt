@@ -10,3 +10,4 @@ set(CMAKE_BUILD_TYPE "Debug")
 
 add_subdirectory(chapter_02)
 add_subdirectory(chapter_03)
+add_subdirectory(chapter_04)
