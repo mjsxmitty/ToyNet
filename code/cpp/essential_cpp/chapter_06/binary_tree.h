@@ -12,6 +12,7 @@ namespace chapter_06
 template <typename ElemType>
 class BinaryTree
 {
+    friend std::ostream& operator<<(std::ostream &os, const BinaryTree<ElemType> &bt);
 public:
     BinaryTree();
     BinaryTree(const BinaryTree &);
@@ -34,6 +35,13 @@ private:
 private:
     BTnode<ElemType>    *root_;
 };
+
+template<typename ElemType>
+inline std::ostream& operator<<(std::ostream &os, const BinaryTree<ElemType> &bt)
+{
+    os << "Tree ...\n";
+
+}
 
 template<typename ElemType>
 BinaryTree<ElemType>::BinaryTree() : root_(0)

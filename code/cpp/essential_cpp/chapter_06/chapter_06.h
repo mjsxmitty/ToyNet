@@ -5,12 +5,9 @@
 
 #include <functional>
 #include <string>
+
 namespace chapter_06
 {
-
-extern void ch_6_4();
-extern void ch_6_6();
-
 template<typename ElemType, typename Comp = std::less<ElemType> >
 class LessThanPred
 {
@@ -45,8 +42,6 @@ public:
     }
 };
 
-extern void ch_6_7();
-
 template <typename OutStream>
 class PrintIt
 {
@@ -61,8 +56,6 @@ public:
 private:
     OutStream   &os_;
 };
-
-extern void ch_6_8();
 
 }
 

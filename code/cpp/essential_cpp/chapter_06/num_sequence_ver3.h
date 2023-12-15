@@ -64,7 +64,7 @@ std::ostream &NumSequence<len, beg_pos>::Print(std::ostream &os) const
     os << " (" << len << ", " << beg_pos << "): ";
     while (elem_pos < elem_cnt)
         os << (*pelems_)[elem_pos++] << ' ';
-    os << std::endl;
+
 
     return os;
 }

@@ -19,7 +19,6 @@ public:
     bool IsElem(int pos) const { return ns_.IsElem(pos); }
 protected:
     NumSeq    ns_;
-    //NumSeq    *ptr_;
 };
 
 }

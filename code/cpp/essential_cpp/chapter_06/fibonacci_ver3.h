@@ -22,7 +22,7 @@ private:
 };
 
 template<int len, int beg_pos>
-std::vector<int>  Fibonacci<len, beg_pos>::elems_;
+std::vector<int> Fibonacci<len, beg_pos>::elems_;
 
 template<int len, int beg_pos>
 void Fibonacci<len, beg_pos>::GenElems(int pos) const
