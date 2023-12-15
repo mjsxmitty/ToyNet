@@ -27,7 +27,6 @@ protected:
     virtual void            GenElems(int pos) const = 0;
     bool                    CheckIntegrity(int pos, int size) const;
 protected:
-    //const static int max_elems_ = 1024;
     enum { max_elems_ = 1024 };
 };
 

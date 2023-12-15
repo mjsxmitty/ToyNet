@@ -1,11 +1,9 @@
 
-#include "stack_ver1.h"
+#include "stack.h"
 
 using namespace std;
 
 namespace chapter_05
-{
-namespace ver1
 {
 
 ostream& operator<<(ostream &os, const Stack &rhs)
@@ -15,4 +13,4 @@ ostream& operator<<(ostream &os, const Stack &rhs)
 }
 
 }
-}
+

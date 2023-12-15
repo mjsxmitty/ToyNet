@@ -18,7 +18,7 @@ Fibonacci::Fibonacci(int len, int beg) :
 
 }
 
-Fibonacci::Fibonacci(const Fibonacci &rhs) : NumSequence(rhs) // »ùÀàÃ»ÓĞ»á×Ô¶¯µ÷ÓÃÄ¬ÈÏ
+Fibonacci::Fibonacci(const Fibonacci &rhs) : NumSequence(rhs) // åŸºç±»æ²¡æœ‰ä¼šè‡ªåŠ¨è°ƒç”¨é»˜è®¤
 {
 
 }
@@ -26,7 +26,7 @@ Fibonacci::Fibonacci(const Fibonacci &rhs) : NumSequence(rhs) // »ùÀàÃ»ÓĞ»á×Ô¶¯µ
 Fibonacci& Fibonacci::operator=(const Fibonacci &rhs)
 {
     if (this != &rhs)
-        NumSequence::operator=(rhs);    // ±ØĞëÊÖ¶¯µ÷ÓÃ
+        NumSequence::operator=(rhs);    // å¿…é¡»æ‰‹åŠ¨è°ƒç”¨
     
     return *this;
 }

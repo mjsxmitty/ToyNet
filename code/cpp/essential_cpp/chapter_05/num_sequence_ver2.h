@@ -21,10 +21,10 @@ public:
     virtual NumSequence* Clone() = 0;
 public:
     //virtual const char* WhatAmI() const = 0;
+    //const char* WhatAmI() const {return name_.c_str();}
     virtual const char* WhatAmI() const
     {
         return typeid(*this).name();
-        //return name_.c_str();
     }
     int                 Elem(int pos) const;
     std::ostream&       Print(std::ostream &os = std::cout) const;
@@ -38,7 +38,7 @@ protected:
 protected:
     int                 length_;
     int                 beg_pos_;
-    std::vector<int>    &relems_;   // ÁíÒ»ÖÖÊµÏÖ(Ö¸Õë);µ«ÊÇĞèÒª¼ì²éÖ¸ÕëÊÇ·ñÎª¿Õ;ÒıÓÃ²»ĞèÒª¼ì²é
+    std::vector<int>    &relems_;   // å¦ä¸€ç§å®ç°(æŒ‡é’ˆ);ä½†æ˜¯éœ€è¦æ£€æŸ¥æŒ‡é’ˆæ˜¯å¦ä¸ºç©º;å¼•ç”¨ä¸éœ€è¦æ£€æŸ¥
 protected:
     std::string         name_;
 

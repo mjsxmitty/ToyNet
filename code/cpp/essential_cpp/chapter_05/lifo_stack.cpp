@@ -5,8 +5,6 @@ using namespace std;
 
 namespace chapter_05
 {
-namespace ver1
-{
 
 bool LifoStack::pop(string &val)
 {
@@ -47,5 +45,4 @@ void LifoStack::print(ostream &os) const
     cout << endl;
 }
 
-}
 }

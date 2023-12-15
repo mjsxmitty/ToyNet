@@ -9,9 +9,6 @@
 namespace chapter_05
 {
 
-namespace ver1
-{
-
 class Stack
 {
 public:
@@ -31,7 +28,6 @@ public:
 
 std::ostream& operator<<(std::ostream &os, const Stack &rhs);
 
-}
 }
 
 #endif // __ESSENTIAL_CPP_STACK_VER1_H__

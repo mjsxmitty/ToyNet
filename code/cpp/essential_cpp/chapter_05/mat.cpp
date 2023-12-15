@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "libmat.h"
+#include "mat.h"
 
 using namespace std;
 

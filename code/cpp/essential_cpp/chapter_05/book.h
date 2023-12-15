@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <string>
-#include "libmat.h"
+#include "mat.h"
 
 namespace chapter_05
 {

@@ -31,8 +31,8 @@ void UserProfile::init_level_map()
 }
 
 UserProfile::UserProfile(const string login, ULevel level) : 
-                            login_(login), level_(level), times_logged_(1),
-                            guesses_(0), correct_guesses_(0)
+                            login_(login), times_logged_(1),
+                            guesses_(0), correct_guesses_(0), level_(level)
 {
     char buffer[16] = {0};
 

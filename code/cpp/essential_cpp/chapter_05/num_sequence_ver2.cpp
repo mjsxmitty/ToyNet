@@ -18,7 +18,7 @@ NumSequence& NumSequence::operator=(const NumSequence &rhs)
     {
         length_ = rhs.length_;
         beg_pos_ = rhs.beg_pos_;
-        relems_ = rhs.relems_;
+        relems_ = rhs.relems_;          // ?
 
         name_ = rhs.name_;
     }

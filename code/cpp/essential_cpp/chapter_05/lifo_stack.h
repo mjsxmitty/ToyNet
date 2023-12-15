@@ -1,5 +1,4 @@
 
-
 #ifndef __ESSENTIAL_CPP_LIFO_STACK_H__
 #define __ESSENTIAL_CPP_LIFO_STACK_H__
 
@@ -7,11 +6,9 @@
 #include <iostream>
 #include <vector>
 
-#include "stack_ver1.h"
+#include "stack.h"
 
 namespace chapter_05
-{
-namespace ver1
 {
 
 class LifoStack : public Stack
@@ -41,7 +38,6 @@ private:
     int top_;
 };
 
-}
 }
 
 #endif // __ESSENTIAL_CPP_LIFO_STACK_H__

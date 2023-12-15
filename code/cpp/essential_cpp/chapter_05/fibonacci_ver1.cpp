@@ -40,12 +40,13 @@ void Fibonacci::GenElems(int pos) const
 
 int Fibonacci::Elem(int pos) const
 {
-    if (!CheckIntegrity(pos, elems_.size()))    // ʹ�ü̳����ĺ���
+    if (!CheckIntegrity(pos, elems_.size()))    // 使用继承来的函数
         return 0;
-    
-//    if (pos > elems_.size())
-//        Fibonacci::GenElems(pos);
-
+#if 0
+    // 跳过虚函数机制
+    if (pos > elems_.size())
+        Fibonacci::GenElems(pos);
+#endif
     return elems_[pos - 1];
 }
 
@@ -63,8 +64,7 @@ ostream& Fibonacci::Print(ostream &os) const
         Fibonacci::GenElems(elem_cnt);
 
     while (elem_pos < elem_cnt)
-        os << elems_[elem_pos++] 
-            << ' ';
+        os << elems_[elem_pos++] << ' ';
 
     return os;
 }

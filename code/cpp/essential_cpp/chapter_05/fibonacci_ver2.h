@@ -1,5 +1,4 @@
 
-
 #ifndef __ESSENTIAL_CPP_FIBONACCI_VER2_H__
 #define __ESSENTIAL_CPP_FIBONACCI_VER2_H__
 
@@ -19,7 +18,7 @@ public:
     Fibonacci(const Fibonacci &rhs);
     Fibonacci& operator=(const Fibonacci &rhs);
 public:
-    Fibonacci* Clone() { return new Fibonacci(*this); } // µ˜”√øΩ±¥ππ‘Ï
+    Fibonacci* Clone() { return new Fibonacci(*this); } // Ë∞ÉÁî®Êã∑Ë¥ùÊûÑÈÄ†
     // const char* WhatAmI() const { return "fibonacci"; }
 protected:
     void    GenElems(int pos) const;
