@@ -24,7 +24,7 @@ int main()
 {
     int file_desc;
     int start_byte = 0;
-    int end_byte = 0;
+    int end_byte = 99;
     struct flock region_to_test;
     int res = 0;
 
@@ -34,7 +34,7 @@ int main()
         exit(-1);
     }
 
-    for (start_byte = 0; start_byte < 99; start_byte = end_byte) {
+    for (start_byte = 0; start_byte < end_byte; ) {
 #if 0       
         region_to_test.l_type = F_RDLCK;
         region_to_test.l_whence = SEEK_SET;
@@ -50,7 +50,7 @@ int main()
         region_to_test.l_start = start_byte;
         region_to_test.l_len = 5;
         region_to_test.l_pid = -1;
-        end_byte = start_byte + SIZE_TO_MOVE;
+        start_byte = start_byte + SIZE_TO_MOVE;
         printf("testing F_WRLCK on region from %d to %d\n", start_byte, end_byte);
 #endif
         res = fcntl(file_desc, F_GETLK, &region_to_test);
