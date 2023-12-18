@@ -1,5 +1,4 @@
 
-#include "who_to_file.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -14,7 +13,7 @@ int main()
 
     if ((pid = fork()) == -1) {
         perror("fork");
-        return ;
+        return -1;
     }
 
     if (pid == 0) {
@@ -22,17 +21,19 @@ int main()
         fd = open("who_test", O_CREAT  | O_EXCL | O_APPEND, 0644);
         if (fd == -1) {
             perror("create");
-            return ;
+            return -1;
         }
 
         execlp("who", "who", NULL);
         perror("execlp");
-        return ;
+        return -1;
     }
 
     if (pid != 0) {
         wait(NULL);
-        printf("done runing who ...\n");
+        printf("done running who ...\n");
     }
+
+    return 0;
 }
 

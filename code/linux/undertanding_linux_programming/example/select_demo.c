@@ -24,7 +24,7 @@ void select_demo(int argc, char **argv) {
         exit(-1);
     }
 
-    if ((fd1 = open(argv[1], O_RDONLY)) == -1) {
+    if ((fd = open(argv[1], O_RDONLY)) == -1) {
         perror("open");
         exit(-2);
     }
@@ -32,7 +32,7 @@ void select_demo(int argc, char **argv) {
     max_fd = 1 + fd;
     while (1) {
         FD_ZERO(&read_fds);
-        FD_SET(fd1, &read_fds);
+        FD_SET(fd, &read_fds);
 
         time_out.tv_sec = atoi(argv[2]);
         time_out.tv_usec = 0;

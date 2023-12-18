@@ -1,24 +1,22 @@
 
-#include "pipe_demo.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 
-#define BUFF_SIZE   512
-
-int main() {
+int main1() 
+{
 
     int i, len, apipe[2];
-    char buf[BUFF_SIZE];
+    char buf[BUFSIZ];
 
     if (pipe(apipe) == -1) {
         perror("pipe");
-        return ;
+        return -1;
     }
-    printf("create pipe succeed, file sescription: { %d, %d }\n", apipe[0], apipe[1]);
+    printf("create pipe succeed, file description: { %d, %d }\n", apipe[0], apipe[1]);
 
-    while (fgets(buf, BUFF_SIZE, stdin)) {
+    while (fgets(buf, BUFSIZ, stdin)) {
         len = strlen(buf);
 
         if (write(apipe[1], buf, len) != len) {
@@ -41,6 +39,8 @@ int main() {
             break;
         }
     }
+
+    return 0;
 }
 
 #define CHILD_CACHE     "i'm child!"
@@ -50,11 +50,11 @@ int main2()
 {
     int pipe_arr[2];
     int len;
-    char buf[BUFF_SIZE];
+    char buf[BUFSIZ];
 
     if (pipe(pipe_arr) == -1) {
         perror("pipe");
-        return ;
+        return -1;
     }
 
     switch(fork()) {
@@ -72,13 +72,14 @@ int main2()
             sleep(2);
         default:
             while (1) {
+#if 0
                 len = strlen(PARENT_CACHE);
-                if (write(pipe_arr[1], buf, len) != len) {
+                if (write(pipe_arr[1], PARENT_CACHE, len) != len) {
                     perror("parent write");
                     exit(-3);
                 }
-                
-                len = read(pipe_arr[0], buf, BUFF_SIZE);
+#endif
+                len = read(pipe_arr[0], buf, BUFSIZ);
                 if(len < 0) {
                     perror("parent read");
                     exit(-3);
@@ -104,7 +105,7 @@ int main(int argc, char **argv)
 
     if (pipe(pipe_arr) == -1) {
         perror("pipe");
-        return ;
+        return -1;
     }
 
     switch(fork()) {

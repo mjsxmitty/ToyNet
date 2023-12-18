@@ -1,5 +1,4 @@
 
-#include "stdin_redir.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -7,7 +6,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int main() {
+int main() 
+{
     int fd, new_fd;
     char line[100];
 
@@ -15,7 +15,7 @@ int main() {
     fgets(line, 100, stdin); printf("%s\n", line);
     fgets(line, 100, stdin); printf("%s\n", line);
 
-    fd = open("./Makefile", O_RDONLY);    
+    fd = open("Makefile", O_RDONLY);    
     if(fd < 0) {
         fprintf(stderr, "open file failed.\n");
         return -1;
