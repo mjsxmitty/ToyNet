@@ -7,7 +7,7 @@
 
 #define BUFF_SIZE   512
 
-void pipe_demo1() {
+int main() {
 
     int i, len, apipe[2];
     char buf[BUFF_SIZE];
@@ -46,7 +46,8 @@ void pipe_demo1() {
 #define CHILD_CACHE     "i'm child!"
 #define PARENT_CACHE    "i'm parent!"
 
-void pipe_demo2() {
+int main2() 
+{
     int pipe_arr[2];
     int len;
     char buf[BUFF_SIZE];
@@ -70,21 +71,30 @@ void pipe_demo2() {
             }
             sleep(2);
         default:
-            len = read(pipe_arr[0], buf, BUFF_SIZE);
-            if(len < 0) {
-                perror("parent read");
-                exit(-3);
-            }
-            sleep(3);
+            while (1) {
+                len = strlen(PARENT_CACHE);
+                if (write(pipe_arr[1], buf, len) != len) {
+                    perror("parent write");
+                    exit(-3);
+                }
+                
+                len = read(pipe_arr[0], buf, BUFF_SIZE);
+                if(len < 0) {
+                    perror("parent read");
+                    exit(-3);
+                }
+                sleep(3);
 
-            if (write(1, buf, len) != len) {
-                perror("parent write");
-                exit(-4);
-            }
+                if (write(1, buf, len) != len) {
+                    perror("parent write");
+                    exit(-4);
+                }
+            }      
     }
 }
 
-void pipe_demo3(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
     int pipe_arr[2];
 
     if (argc != 3) {
@@ -120,7 +130,7 @@ void pipe_demo3(int argc, char **argv) {
                 perror("child dup");
                 exit(-4);
             }
-            close(pipe_arr[0]);
+            close(pipe_arr[0]); // 0（标准输入）重定向到管道的输入
 
             execlp(argv[2], argv[2], NULL);
             perror("parent execlp");

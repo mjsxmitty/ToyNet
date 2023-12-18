@@ -7,7 +7,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-void who_to_file() {
+int main() 
+{
     int fd;
     int pid;
 
@@ -18,7 +19,7 @@ void who_to_file() {
 
     if (pid == 0) {
         close(1);
-        fd = creat("usertest", 0644);
+        fd = open("who_test", O_CREAT  | O_EXCL | O_APPEND, 0644);
         if (fd == -1) {
             perror("create");
             return ;
