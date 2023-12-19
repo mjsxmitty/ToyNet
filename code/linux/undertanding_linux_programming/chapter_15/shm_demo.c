@@ -64,7 +64,8 @@ void shm_tc() {
     exit(0);
 }
 
-void shm_demo() {
+int main(int argc, char *argv[])
+ {
     int new_pid;
 
     if ((new_pid = fork()) == -1) {
