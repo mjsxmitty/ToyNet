@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <ctype.h>
 
 #define HOST_LEN    128
 #define PORT        2000
@@ -105,12 +108,12 @@ int main(int argc, char **argv)
         }
 
         while ((c = getc(pfp)) != EOF) {
-            putc(fpo);
+            putc(c,fpo);
         }
 
-        pclose(fpi);
-        pclose(fpo);
-        pclose(pfp);
+        fclose(fpi);
+        fclose(fpo);
+        fclose(pfp);
         close(server_sock);
     }
 

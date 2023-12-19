@@ -5,7 +5,7 @@
 #define READ    0
 #define WRITE   1
 
-FILE* my_popen(char *commond, cha *mode)
+FILE* my_popen(char *commond, char *mode)
 {
     int pfd[2], pid;
     int parrent_end, children_end;

@@ -9,3 +9,6 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 add_subdirectory(chapter_10)
 add_subdirectory(chapter_11)
+add_subdirectory(chapter_12)
+add_subdirectory(chapter_14)
+add_subdirectory(chapter_15)
