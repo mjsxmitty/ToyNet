@@ -1,6 +1,13 @@
 
-#include "sock.c"
+#include "sock.h"
 #include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <sys/types.h> 
+#include <sys/socket.h>
 
 #define PORT_NUM   8888
 
@@ -23,11 +30,11 @@ void process_request(int fd)
     }
 }
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
     int sock, fd;
 
-    signal(SIGCHLD, child_waiter;
+    signal(SIGCHLD, child_waiter);
 
     if ((sock = make_server_socket(PORT_NUM)) == -1) {
         perror("make sock");
@@ -35,7 +42,8 @@ int main(int argc, char *argv)
     }
 
     while (1) {
-        fd = accept(sock, NULL, NULL) {
+        fd = accept(sock, NULL, NULL);
+        if (fd == -1) {
             perror("accept");
             break;
         }

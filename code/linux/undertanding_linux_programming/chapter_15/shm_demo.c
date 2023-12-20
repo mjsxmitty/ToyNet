@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define TIME_MEM_KEY    99
 #define SEG_SIZE        ((size_t)100)
@@ -56,14 +57,15 @@ void shm_tc() {
 
     for (n = 0; n < 20; ++n) {
         printf("the time, directory form memory: %s\n", mem_ptr);
-        sleep(1):
+        sleep(1);
     }
     
     shmdt(mem_ptr);
     exit(0);
 }
 
-void shm_demo() {
+int main(int argc, char *argv[])
+ {
     int new_pid;
 
     if ((new_pid = fork()) == -1) {

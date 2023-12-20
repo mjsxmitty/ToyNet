@@ -6,6 +6,10 @@
 #include <unistd.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <netdb.h>
+#include <signal.h>
+
+#include "sock.h"
 
 #define HOST_LEN    128
 #define BLOCK_LOG   5
@@ -42,7 +46,7 @@ int make_server_socket_q(int port_num, int block_log)
         return -1;
     }
 
-    if (listen(server_sock, block_log) == -1) {
+    if (listen(sock, block_log) == -1) {
         perror("listen");
         return -1;
     }
