@@ -1,6 +1,4 @@
 
-#include "shm_demo.h"
-
 #include <sys/shm.h>
 #include <sys/time.h>
 #include <stdio.h>
