@@ -7,9 +7,6 @@ using std::sort;
 using std::domain_error;
 using std::vector;
 
-namespace chapter_04
-{
-    
 double Median(std::vector<double> vec)
 {
     typedef vector<double>::size_type vec_sz;
@@ -25,4 +22,3 @@ double Median(std::vector<double> vec)
     return size % 2 == 0 ? (vec[mid] + vec[mid - 1]) / 2 : vec[mid];
 }
 
-} // namespace chapter_04

@@ -5,9 +5,6 @@
 
 using std::domain_error;
 
-namespace chapter_04
-{
-
 double Grade(double midterm, double final, double homework)
 {
     return 0.2 * midterm + 0.4 * final + 0.4 * homework;
@@ -40,4 +37,3 @@ bool PGrade(const StudentInfo &s)
     return !FGrade(s);
 }
 
-} // namespace chapter_04

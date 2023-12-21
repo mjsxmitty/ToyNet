@@ -5,26 +5,13 @@
 #include <iomanip>
 #include <cmath>
 
-#include "chapter_04.h"
-
 #include "grade.h"
 #include "median.h"
 #include "student_info.h"
 
-using std::vector;
-using std::string;
-using std::cin;
-using std::cout;
-using std::endl;
-using std::max;
-using std::sort;
-using std::setw;
-using std::streamsize;
-using std::setprecision;
+using namespace std;
 
-namespace chapter_04
-{
-int ch_4_5()
+int main()
 {
     vector<StudentInfo>  students;
     StudentInfo          record;
@@ -75,4 +62,3 @@ int Homework_4_3()
     return 0;
 }
 
-}   // namespace chapter_04

@@ -7,8 +7,6 @@
 
 using std::vector;
 
-namespace chapter_04
-{
 bool Compare(const StudentInfo &lhs, const StudentInfo &rhs)
 {
     return lhs.name < rhs.name;
@@ -43,23 +41,21 @@ std::istream& ReadHw(std::istream &in, std::vector<double> &hw)
     return in;
 }
 
-std::istream& ReadHW(std::istream &is, StudentInfoHw &s)
-{
-    double midterm, final;
-    // read and store the student's name and midterm and final exam grades
-    is >> s.name >> midterm >> final;
+//std::istream& ReadHW(std::istream &is, StudentInfoHw &s)
+//{
+//    double midterm, final;
+//    // read and store the student's name and midterm and final exam grades
+//    is >> s.name >> midterm >> final;
 
-    vector<double> homework;
-    ReadHw(is, homework);
+//    vector<double> homework;
+//    ReadHw(is, homework);
     
-    if (is) {
-        s.grade = Grade(midterm, final, homework);
-    }
+//    if (is) {
+//        s.grade = Grade(midterm, final, homework);
+//    }
     
-    return is;
-}
+//    return is;
+//}
 
 
-
-} // namespace chapter_04
 

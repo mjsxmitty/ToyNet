@@ -5,11 +5,7 @@
 
 #include <vector>
 
-namespace chapter_04
-{
-
 double Median(std::vector<double>);
 
-} // namespace chapter_04
 
 #endif //__ACCELERATED_CPP_MEDIAN_H__

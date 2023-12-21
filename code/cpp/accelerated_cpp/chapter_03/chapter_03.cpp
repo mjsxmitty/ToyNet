@@ -1,5 +1,4 @@
 
-#include "chapter_03.h"
 
 #include <iomanip>
 #include <iostream>
@@ -9,9 +8,7 @@
 
 using namespace std;
 
-namespace chapter_03 {
-
-int CalcStudentGrade()
+int main()
 {
     cout << "Please enter your first name: ";
     string name;
@@ -52,6 +49,8 @@ int CalcStudentGrade()
 
     return 0;
 }
+
+typedef vector<int>::size_type VecSz;
 
 double Median(const vector<int> &integers, VecSz begin, VecSz end)
 {
@@ -230,4 +229,3 @@ int Homework_5()
     return 0;
 }
 
-}   // namespace chapter_03 
