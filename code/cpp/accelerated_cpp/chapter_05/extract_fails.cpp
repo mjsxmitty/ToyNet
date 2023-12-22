@@ -1,10 +1,9 @@
 
 
 #include "extract_fails.h"
-#include "../chapter_04/grade.h"
+#include "grade.h"
 
 using std::list;
-using chapter_04::StudentInfo;
 
 namespace chapter_05
 {
@@ -16,7 +15,7 @@ list<StudentInfo> ExtractFails(list<StudentInfo> &students)
 
     while (iter != students.end()) 
     {
-        if (chapter_04::FGrade(*iter)) 
+        if (FGrade(*iter))
         {
             fail.push_back(*iter);
             iter = students.erase(iter);

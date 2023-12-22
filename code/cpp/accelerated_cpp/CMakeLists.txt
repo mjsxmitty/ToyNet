@@ -10,6 +10,8 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall")
 set(CMAKE_BUILD_TYPE "Debug")
 
+add_subdirectory(common)
 add_subdirectory(chapter_02)
 add_subdirectory(chapter_03)
 add_subdirectory(chapter_04)
+add_subdirectory(chapter_05)
