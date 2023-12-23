@@ -1,95 +1,38 @@
 
-#include <exception>
-#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <stdio.h>
+#include "grammar.h"
 
-#include "chapter_07.h"
+using namespace std;
 
-namespace chapter_07 {
-
-std::map<std::string, std::vector<int>> Xref(std::istream &in,
-                std::vector<std::string> (*FindWords)(const std::string &str))
+int main(int argc, char *argv[])
 {
-    std::string line;
-    std::map<std::string, std::vector<int>> ret;
-    int line_number = 0;
-
-    while (std::getline(in, line))
+    if (argc != 2)
     {
-        ++line_number;
-
-        std::vector<std::string> words = FindWords(line);
-        for (auto &word : words)
-        {
-            ret[word].push_back(line_number);
-        }
+        fprintf(stderr, "usage: %s <file path>.\n", argv[0]);
+        return -1;
     }
 
-    return ret;
-}
-
-Grammer ReadGrammer(std::istream &in)
-{
-    Grammer ret;
-    std::string line;
-
-    while (std::getline(in, line))
+    ifstream ifs(argv[1]);
+    if (!ifs.is_open())
     {
-        std::vector<std::string> entry = chapter_06::Split(line);
-        if (!entry.empty())
-        {
-            ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end()));
-        }
+        cerr << "open file failed, path: " << argv[1] << endl;
+        return -1;
     }
 
-    return ret;
-}
+    vector<string> sentence = GenSentence(ReadGrammar(ifs));
+    if (!sentence.empty())
+        cout << sentence[0] << "\t";
 
-std::vector<std::string> GenSentence(const Grammer &g)
-{
-    std::vector<std::string> ret;
-    GenAux(g, "<sentence>", ret);
-    return ret;
-}
-
-bool bracteted(const std::string &s)
-{
-    return (s.size() > 0 && s[0] == '<' && s[s.size() - 1] == '>');
-}
-
-void GenAux(const Grammer &g, const std::string &s, std::vector<std::string> &ret)
-{
-    if (!bracteted(s))
+    for (vector<string>::const_iterator cit = sentence.begin() + 1;
+        cit != sentence.end(); ++cit)
     {
-        ret.push_back(s);
-        return ;
+        cout << *cit << " ";
     }
+    cout << endl;
 
-    Grammer::const_iterator citer = g.find(s);
-    if (citer == g.end())
-        throw std::logic_error("empty rule.");
-
-    const RuleCollection rc = citer->second;
-    const Rule &r = rc[Nrand(rc.size())];
-
-    for (Rule::const_iterator cit = r.begin(); cit != r.end(); ++cit)
-    {
-        GenAux(g, *cit, ret);
-    }
-}
-
-int Nrand(int n)
-{
-    if (n <= 0 || n > RAND_MAX)
-        throw std::domain_error("out of range.");
-
-    const int bucket_size = RAND_MAX / n;
-
-    int r = 0;
-    do
-        r = rand() / bucket_size;
-    while (r >= n);
-
-    return r;
-}
-
+    return 0;
 }

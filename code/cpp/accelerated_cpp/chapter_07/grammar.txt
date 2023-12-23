@@ -1,0 +1,13 @@
+<noun>	cat
+<noun>	dog
+<noun>	table
+<nounphrase>	<noun>
+<nounphrase>	<adjective> <noun phrase>
+<adjective>	large
+<adjective>	absurd
+<adjective>	brown
+<vreb>	jnmps
+<vreb>	sits
+<position>	on the stairs
+<position>	under the sky
+<sentences>	the <nounphrase> <vreb> <position>

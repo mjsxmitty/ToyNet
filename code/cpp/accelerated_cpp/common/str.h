@@ -6,6 +6,9 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <vector>
+#include <map>
+#include <iostream>
 
 std::vector<std::string> Split(const std::string &s);
 std::string::size_type Width(const std::vector<std::string>& v);
@@ -42,5 +45,9 @@ void Split(const std::string& str, Out out)
         i = j;
     }
 }
+
+std::map<std::string, std::vector<int>> Xref(std::istream &in,
+        std::vector<std::string> (*FindWords)(const std::string &str) = Split);
+
 
 #endif //__ACCELERATED_CPP_STR_H__

@@ -7,6 +7,6 @@ set(COMMON_LIST str.cpp
 				student_info.cpp
 				extract_fails.cpp)
 				
-add_library(common ${COMMON_LIST})
+add_library(common SHARED ${COMMON_LIST})
 
 

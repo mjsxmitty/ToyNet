@@ -1,6 +1,8 @@
 
-
 #include <algorithm>
+#include <exception>
+#include <cstdlib>
+
 #include "str.h"
 
 using std::vector;
@@ -173,5 +175,26 @@ vector<string> FindUrls(const string &s)
         }
     }
     
+    return ret;
+}
+
+std::map<std::string, std::vector<int>> Xref(std::istream &in,
+                std::vector<std::string> (*FindWords)(const std::string &str))
+{
+    std::string line;
+    std::map<std::string, std::vector<int>> ret;
+    int line_number = 0;
+
+    while (std::getline(in, line))
+    {
+        ++line_number;
+
+        std::vector<std::string> words = FindWords(line);
+        for (auto &word : words)
+        {
+            ret[word].push_back(line_number);
+        }
+    }
+
     return ret;
 }
