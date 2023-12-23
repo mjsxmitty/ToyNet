@@ -5,9 +5,6 @@
 
 using std::list;
 
-namespace chapter_05
-{
-
 list<StudentInfo> ExtractFails(list<StudentInfo> &students)
 {
     list<StudentInfo> fail;
@@ -27,5 +24,4 @@ list<StudentInfo> ExtractFails(list<StudentInfo> &students)
     return fail;
 }
 
-} // namespace Chapter05
 

@@ -2,5 +2,4 @@
 include_directories(.)
 
 include_directories(../common)
-add_executable(extract_fails extract_fails.cpp)
-add_executable(str str.cpp)
+add_executable(ch_05 chapter_05.cpp)

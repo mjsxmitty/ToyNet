@@ -7,9 +7,6 @@ using std::vector;
 using std::string;
 using std::max;
 
-namespace chapter_05
-{
-
 vector<string> Split(const string &s)
 {
     vector<string> ret;
@@ -95,5 +92,4 @@ vector<string> Hcat(const vector<string>& left, const vector<string>& right)
     return ret;
 }
 
-} // namespace chapter_05
 

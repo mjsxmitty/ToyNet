@@ -6,9 +6,6 @@
 #include <vector>
 #include <string>
 
-namespace chapter_05
-{
-
 std::vector<std::string> Split(const std::string &s);
 std::string::size_type Width(const std::vector<std::string>& v);
 std::vector<std::string> Frame(const std::vector<std::string>& v);
@@ -17,7 +14,5 @@ std::vector<std::string> Vcat(const std::vector<std::string> &top,
                                 const std::vector<std::string> &bottom);
 std::vector<std::string> Hcat(const std::vector<std::string> &left, 
                                 const std::vector<std::string> &right);
-
-} // namespace chapter_05
 
 #endif //__ACCELERATED_CPP_STR_H__
