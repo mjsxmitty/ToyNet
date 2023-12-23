@@ -17,7 +17,7 @@ int main()
     StudentInfo          record;
     string::size_type    max_len = 0;
 
-    while (Read(cin, record))
+    while (Read(cin, 3, record))
     {
         max_len = max(max_len, record.name.size());
         students.push_back(record);
@@ -51,14 +51,3 @@ int GetWidth(double n)
 {
     return log10(n) + 1;
 }
-
-int Homework_4_3()
-{
-    double max = 1000.0;
-    for (double i = 1.0; i != max; i++)
-    {
-        std::cout << setw(GetWidth(max)) << i << setw(GetWidth(max * max) + 1) << i * i << endl;
-    }
-    return 0;
-}
-

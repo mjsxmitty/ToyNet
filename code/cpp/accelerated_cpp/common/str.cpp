@@ -6,9 +6,14 @@
 using std::vector;
 using std::string;
 using std::max;
+using std::find_if;
+using std::equal;
+using std::find;
+using std::search;
 
 vector<string> Split(const string &s)
 {
+#if 0
     vector<string> ret;
     typedef string::size_type StrSz;
 
@@ -30,6 +35,24 @@ vector<string> Split(const string &s)
 
     }
 
+    return ret;
+#endif
+    typedef string::const_iterator iter;
+    vector<string>  ret;
+
+    iter i = s.begin();
+    while (i != s.end()) 
+    {
+        i = find_if(i, s.end(), NotSpace);
+
+        iter j = find_if(i, s.end(), IsSpace);
+
+        if (i != s.end()) 
+            ret.push_back(string(i, j));
+
+        i = j;
+    }
+    
     return ret;
 }
 
@@ -61,9 +84,9 @@ vector<string> Vcat(const vector<string>& top, const vector<string>& bottom)
 {
     vector<string> ret = top;
 #if 0
-     for (vector<string>::size_type i = 0; i != bottom.size(); i++) {
-         ret.push_back(bottom[i]);
-     }
+    for (vector<string>::size_type i = 0; i != bottom.size(); i++) {
+        ret.push_back(bottom[i]);
+    }
 #endif
     ret.insert(ret.end(), bottom.begin(), bottom.end());
     return ret;
@@ -92,4 +115,63 @@ vector<string> Hcat(const vector<string>& left, const vector<string>& right)
     return ret;
 }
 
+bool IsPalindrome(const string &s)
+{
+    return equal(s.begin(), s.end(), s.rbegin());
+}
 
+bool NotUrlChar(char c)
+{
+    static const string url_ch = "~;/?:@=&$-_.+!*'(),";
+    return !(isalnum(c) || find(url_ch.begin(), url_ch.end(), c) != url_ch.end());
+}
+
+string::const_iterator UrlEnd(string::const_iterator b, string::const_iterator e)
+{
+    return find_if(b, e, NotUrlChar);
+}
+
+string::const_iterator UrlBeg(string::const_iterator b, string::const_iterator e)
+{
+    static const string seq = "://";
+    typedef string::const_iterator iter;
+
+    iter i = b;
+    while ((i = search(i, e, seq.begin(), seq.end())) != e) 
+    {
+        if (i != b && i + seq.size() != e) 
+        {
+            iter beg = i;
+            while (beg != b && isalpha(beg[-1]))
+                --beg;
+            
+            if (beg != i && i + seq.size() != e && !NotUrlChar(i[seq.size()]))
+                return beg;
+        }
+
+        if (i != e)
+            i += seq.size();
+    }
+    
+    return e;
+}
+
+vector<string> FindUrls(const string &s)
+{
+    vector<string> ret;
+    typedef string::const_iterator iter;
+    iter b = s.begin(), e = s.end();
+
+    while (b != e)
+    {
+        b = UrlBeg(b, e);
+        if (b != e)
+        {
+            iter after = UrlEnd(b, e);
+            ret.push_back(string(b, e));
+            b = after;
+        }
+    }
+    
+    return ret;
+}
