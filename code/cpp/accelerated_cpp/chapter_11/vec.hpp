@@ -6,9 +6,6 @@
 #include <cstddef>
 #include <memory>
 
-namespace chapter_11
-{
-
 template<typename T>
 class Vec
 {
@@ -46,7 +43,7 @@ private:
     void Grow();
     void UncheckedAppend(const T &val);
 
-    std::allocator<T>   Alloc;
+    std::allocator<T>   alloc;
 private:
     T*  data;
     T*  avail;
@@ -81,7 +78,7 @@ void Vec<T>::Create()
 template<typename T>
 void Vec<T>::Create(size_type n, const T &val)
 {
-    data = Alloc.allocate(n);
+    data = alloc.allocate(n);
     limit = avail = data + n;
     std::uninitialized_fill(data, limit, val);
 }
@@ -89,7 +86,7 @@ void Vec<T>::Create(size_type n, const T &val)
 template<typename T>
 void Vec<T>::Create(const_iterator i, const_iterator j)
 {
-    data = Alloc.allocate(j - i);
+    data = alloc.allocate(j - i);
     limit = avail = std::uninitialized_copy(i, j, data);
 }
 
@@ -101,9 +98,9 @@ void Vec<T>::UnCreate()
         iterator it = avail;
         while (it != data)
         {
-            Alloc.destroy(--it);
+            alloc.destroy(--it);
         }
-        Alloc.deallocate(data, limit - data);
+        alloc.deallocate(data, limit - data);
     }
     data = avail = limit = 0;
 }
@@ -112,7 +109,7 @@ template<typename T>
 void Vec<T>::Grow()
 {
     size_type new_size = std::max(2 * (limit - data), ptrdiff_t(1));
-    iterator new_data = Alloc.allocate(new_size);
+    iterator new_data = alloc.allocate(new_size);
     iterator new_avail = std::uninitialized_copy(data, avail, new_data);
 
     UnCreate();
@@ -125,10 +122,7 @@ void Vec<T>::Grow()
 template<typename T>
 void Vec<T>::UncheckedAppend(const T &val)
 {
-    Alloc.construct(avail++, val);
+    alloc.construct(avail++, val);
 }
-
-} // namespace chapter_11
-
 
 #endif //__CHAPTER11_VEC_H__

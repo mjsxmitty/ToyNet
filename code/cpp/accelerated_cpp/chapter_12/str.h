@@ -17,7 +17,7 @@ class Str
     friend std::ostream& operator<<(std::ostream &, const Str&);
     friend std::istream& operator>>(std::istream &, Str &);
 public:
-    typedef chapter_11::Vec<char>::size_type size_type;
+    typedef Vec<char>::size_type size_type;
 
     Str(){}
     Str(size_type n, char c) : data(n, c){}
@@ -42,7 +42,7 @@ public:
         return data.Begin();
     }
 private:
-    chapter_11::Vec<char>   data;
+    Vec<char>   data;
 };
 
 std::ostream& operator<<(std::ostream &, const Str&);

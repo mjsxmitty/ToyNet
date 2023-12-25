@@ -7,8 +7,7 @@
 #include <string>
 #include <vector>
 
-namespace chapter_09
-{
+namespace ver2 {
 
 class StudentInfo
 {
@@ -26,7 +25,6 @@ private:
     std::vector<double> homework_;
 };
 
-} // namespace chapter_08
-
+}
 
 #endif //__ACCELERATED_CPP_STUDENT_INFO_H__

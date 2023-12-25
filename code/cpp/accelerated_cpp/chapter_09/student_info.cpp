@@ -3,24 +3,21 @@
 #include <vector>
 
 #include "student_info.h"
-#include "../chapter_04/student_info.h"
-#include "../chapter_04/grade.h"
+#include "../common/student_info.h"
+#include "grade.h"
 
 using std::vector;
 
-namespace chapter_09
-{
+namespace ver2 {
 
 std::istream &StudentInfo::Read(std::istream &in)
 {
-    return chapter_04::ReadHw(in, homework_);
+    return ReadHw(in, 3, homework_);
 }
 
 double StudentInfo::Grade() const
 {
-    return chapter_04::Grade(midterm_, final_, homework_);
+    return ::Grade(midterm_, final_, homework_);
 }
 
-
-} // namespace chapter_04
-
+}
