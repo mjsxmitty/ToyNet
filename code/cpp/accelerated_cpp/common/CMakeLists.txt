@@ -2,6 +2,7 @@
 include_directories(.)
 
 set(COMMON_LIST str.cpp
+				str_util.cpp
 				grade.cpp
 				median.cpp
 				student_info.cpp

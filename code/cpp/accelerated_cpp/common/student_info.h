@@ -31,4 +31,20 @@ double OptimisticAnalysis(const std::vector<StudentInfo> &students);
 
 std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students);
 
+class StudentInfo2
+{
+public:
+    StudentInfo2() : midterm_(0.0), final_(0.0) {}
+    StudentInfo2(std::istream &in) { Read(in); }
+public:
+    std::string name() const { return name_; }
+    bool Valid() const { return !homework_.empty(); }
+    std::istream &Read(std::istream &in);
+    double Grade() const;
+private:
+    std::string         name_;
+    double              midterm_, final_;
+    std::vector<double> homework_;
+};
+
 #endif //__ACCELERATED_CPP_STUDENT_INFO_H__

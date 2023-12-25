@@ -130,3 +130,13 @@ std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students)
     
     return fail;
 }
+
+std::istream &StudentInfo2::Read(std::istream &in)
+{
+    return ReadHw(in, 3, homework_);
+}
+
+double StudentInfo2::Grade() const
+{
+    return ::Grade(midterm_, final_, homework_);
+}

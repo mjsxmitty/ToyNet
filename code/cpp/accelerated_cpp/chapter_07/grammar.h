@@ -7,7 +7,7 @@
 #include <map>
 #include <iostream>
 
-#include "str.h"
+#include "str_util.h"
 
 typedef std::vector<std::string> Rule;
 typedef std::vector<Rule> RuleCollection;

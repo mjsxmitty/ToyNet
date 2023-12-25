@@ -1,7 +1,7 @@
 
 
-#ifndef __CHAPTER11_VEC_H__
-#define __CHAPTER11_VEC_H__
+#ifndef __ACCELERATED_CPP_VEC_H__
+#define __ACCELERATED_CPP_VEC_H__
 
 #include <cstddef>
 #include <memory>
@@ -22,7 +22,7 @@ public:
     Vec& operator=(const Vec &v);
     ~Vec() { UnCreate(); }
 public:
-    size_type   Size() const { return limit - data;}
+    size_type   Size() const { return avail - data;}
     T&          operator[](size_type i) { return data[i]; }
     const T&    operator[](size_type i) const { return data[i]; }
 
@@ -45,9 +45,9 @@ private:
 
     std::allocator<T>   alloc;
 private:
-    T*  data;
-    T*  avail;
-    T*  limit;
+    T*  data;       // 开始位置
+    T*  avail;      // 最后一个元素之后
+    T*  limit;      // 容量位置
 };
 
 template<typename T>
@@ -125,4 +125,4 @@ void Vec<T>::UncheckedAppend(const T &val)
     alloc.construct(avail++, val);
 }
 
-#endif //__CHAPTER11_VEC_H__
+#endif //__ACCELERATED_CPP_VEC_H__

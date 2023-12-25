@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "str.h"
+#include "str_util.h"
 #include "grammar.h"
 
 Grammar ReadGrammar(std::istream &in)
@@ -13,7 +13,6 @@ Grammar ReadGrammar(std::istream &in)
 
     while (std::getline(in, line))
     {
-        std::cout << "line: " << line << std::endl;
         std::vector<std::string> entry = Split(line);
         if (!entry.empty())
             ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end())); 
@@ -52,7 +51,6 @@ void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &re
     const Rule &r = rc[Nrand(rc.size())];
     for (Rule::const_iterator cit = r.begin(); cit != r.end(); ++cit)
     {
-        //std::cout << "rule:" << *cit << std::endl;
         GenAux(g, *cit, ret);
     }
 
