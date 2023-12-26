@@ -208,9 +208,9 @@ T* clone(T* tp)
     //return tp->clone();
 }
 
-//Vec<char>* clone(const Vec<char>* vp)
-//{
-//    return new Vec<char>(*vp);
-//}
+// Vec<char>* clone(const Vec<char>* vp)
+// {
+//     return new Vec<char>(*vp);
+// }
 
 #endif // __ACCELERATED_CPP_HANDLE_H__
