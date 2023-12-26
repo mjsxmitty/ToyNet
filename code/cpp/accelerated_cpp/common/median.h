@@ -7,5 +7,4 @@
 
 double Median(std::vector<double>);
 
-
 #endif //__ACCELERATED_CPP_MEDIAN_H__

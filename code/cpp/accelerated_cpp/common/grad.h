@@ -7,8 +7,6 @@
 
 #include "core.h"
 
-namespace chapter_13 {
-
 class Grad : public Core
 {
 public:
@@ -28,6 +26,5 @@ private:
     double thesis_;
 };
 
-}
 
 #endif //__ACCELERATED_CPP_Grad_H__

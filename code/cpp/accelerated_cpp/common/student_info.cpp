@@ -131,6 +131,8 @@ std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students)
     return fail;
 }
 
+/***************************************************************************************************/
+
 std::istream &StudentInfo2::Read(std::istream &in)
 {
     return ReadHw(in, 3, homework_);
@@ -139,4 +141,73 @@ std::istream &StudentInfo2::Read(std::istream &in)
 double StudentInfo2::Grade() const
 {
     return ::Grade(midterm_, final_, homework_);
+}
+
+/***************************************************************************************************/
+
+#include "grad.h"
+
+std::istream& StudentInfo3::Read(std::istream &in)
+{
+    delete cp_;
+
+    char c;
+    in >> c;
+    std::cout << "1" << std::endl;
+    if (c == 'u')
+    {
+        cp_ = new Core(in);
+    }
+    else
+    {
+        cp_ = new Grad(in);
+    }
+
+
+    return in;
+}
+
+StudentInfo3::StudentInfo3(const StudentInfo3 &s) : cp_(0)
+{
+    if (s.cp_)
+        cp_ = s.cp_->clone();
+}
+
+StudentInfo3& StudentInfo3::operator=(const StudentInfo3 &s)
+{
+    if (this != &s)
+    {
+        delete cp_;
+
+        if (s.cp_)
+            cp_ = s.cp_->clone();
+        else
+            cp_ = 0;
+    }
+
+    return *this;
+}
+
+/***************************************************************************************************/
+
+std::istream& StudentInfo4::Read(std::istream &in)
+{
+    char ch;
+    in >> ch;
+
+    if (ch == 'U')
+        cp_ = new Core(in);
+    else
+        cp_ = new Grad(in);
+
+    return in;
+}
+
+void StudentInfo4::ReGrade(double final, double thesis)
+{
+    cp_.make_unique();  // 控制是否复制
+    if (cp_)
+        cp_->Regrade(final, thesis);
+    else
+        throw std::runtime_error("regrade of unknow student.");
 }

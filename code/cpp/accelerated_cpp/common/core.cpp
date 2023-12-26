@@ -1,13 +1,10 @@
 
 #include "core.h"
-#include "../chapter_04/grade.h"
-
-
-namespace chapter_13 {
+#include "grade.h"
 
 double Core::Grade() const
 {
-    return chapter_04::Grade(midterm_, final_, homework_);
+    return ::Grade(midterm_, final_, homework_);
 }
 
 std::istream& Core::ReadCommon(std::istream &in)
@@ -19,7 +16,6 @@ std::istream& Core::ReadCommon(std::istream &in)
 std::istream& Core::Read(std::istream &in)
 {
     ReadCommon(in);
-    chapter_04::ReadHw(in, homework_);
+    ReadHw(in, 3, homework_);
     return in;
-}
 }

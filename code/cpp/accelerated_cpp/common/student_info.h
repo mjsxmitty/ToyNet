@@ -47,4 +47,77 @@ private:
     std::vector<double> homework_;
 };
 
+#include "core.h"
+
+class StudentInfo3
+{
+public:
+    StudentInfo3() : cp_(0) {}
+    StudentInfo3(std::istream &in) : cp_(0) { Read(in); }
+    StudentInfo3(const StudentInfo3 &rhs);
+    StudentInfo3& operator=(const StudentInfo3 &rhs);
+    ~StudentInfo3() { delete cp_; }
+public:
+    std::istream& Read(std::istream &in);
+    std::string name() const
+    {
+        if (cp_)
+            return cp_->name();
+        else
+            throw std::domain_error("uninit student.");
+    }
+
+    double grade() const
+    {
+        if (cp_)
+            return cp_->Grade();
+        else
+            throw std::domain_error("uninit student.");
+    }
+
+    static bool compare(const StudentInfo3 &lhs,
+                        const StudentInfo3 &rhs)
+    {
+        return lhs.name() < rhs.name();
+    }
+private:
+    Core* cp_;
+};
+
+#include "handle.hpp"
+
+class StudentInfo4
+{
+public:
+    StudentInfo4() {}
+    StudentInfo4(std::istream &in) { Read(in); }
+public:
+    std::istream& Read(std::istream &in);
+    std::string name() const
+    {
+        if (cp_)
+            return cp_->name();
+        else
+            throw std::domain_error("uninit student.");
+    }
+
+    double grade() const
+    {
+        if (cp_)
+            return cp_->Grade();
+        else
+            throw std::domain_error("uninit student.");
+    }
+
+    static bool compare(const StudentInfo4 &lhs,
+                        const StudentInfo4 &rhs)
+    {
+        return lhs.name() < rhs.name();
+    }
+
+    void ReGrade(double final, double thesis);
+private:
+    Ptr<Core> cp_;
+};
+
 #endif //__ACCELERATED_CPP_STUDENT_INFO_H__
