@@ -7,10 +7,6 @@
 #include <list>
 #include <iostream>
 
-void Item04();
-
-namespace effective_item_04 {
-
 class PhoneNumber{};
 class ABEntry
 {
@@ -70,7 +66,5 @@ public:
 };
 
 Directory& dir();
-
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_04_H__

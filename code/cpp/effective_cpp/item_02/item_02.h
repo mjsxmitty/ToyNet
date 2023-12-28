@@ -4,10 +4,6 @@
 
 #include <string>
 
-void Item02();
-
-namespace effective_item_02 {
-
 #define ASPECT_RATIO    1.653
 const double aspect_ratio = 1.654;
 
@@ -48,8 +44,6 @@ template<typename T>
 inline void CallWithMax(const T &lhs, const T &rhs)
 {
     f(lhs > rhs ? lhs : rhs);
-}
-
 }
 
 #endif // #define __EFFECTIVE_CPP_ITEM_02_H__

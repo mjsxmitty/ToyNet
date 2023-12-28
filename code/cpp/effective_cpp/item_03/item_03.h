@@ -5,10 +5,6 @@
 #include <string.h>
 #include <iostream>
 
-void Item03();
-
-namespace effective_item_03 {
-
 class Rational{};
 const Rational operator*(const Rational &lhs, const Rational &rhs);
 
@@ -72,7 +68,5 @@ public:
         return text_length_;
     }
 };
-
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_03_H__

@@ -1,16 +1,15 @@
 
+/* 尽可能使用const */
+
 #include "item_03.h"
 #include <vector>
 #include <iostream>
 
 using namespace std;
-using namespace effective_item_03;
 
-/* 尽可能使用const */
-void Item03()
+int main()
 {
-    cout << "**********item 03**********" << endl;
-#if 0
+#if 1
     std::vector<int> ivec(10, 1024);
     const std::vector<int>::iterator iter = ivec.begin();
     *iter = 0;
@@ -39,10 +38,8 @@ void Item03()
     *pc = 'j';
     cout << ctb.ptext_ << endl;
 #endif
-    cout << "***************************" << endl;
+    return 0;
 }
-
-namespace effective_item_03 {
 
 const Rational operator*(const Rational &lhs, const Rational &rhs)
 {
@@ -53,6 +50,4 @@ const Rational operator*(const Rational &lhs, const Rational &rhs)
 void Print(const TextBook &ctb)
 {
     cout << ctb[0] << endl;
-}
-
 }
