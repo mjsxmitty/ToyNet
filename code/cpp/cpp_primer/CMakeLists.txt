@@ -1,52 +1,13 @@
-cmake_minimum_required(VERSION 3.5.0)
-project(cpp_primer VERSION 0.1.0)
-
-add_executable(cpp_primer
-    common/blob.hpp
-    common/blob_ptr.hpp
-    common/gz_math.h common/gz_math.cpp
-    common/string.h common/string.cpp
-    common/str_vec.h common/str_vec.cpp
-    common/message.h common/message.cpp
-    common/folder.h common/folder.cpp
-    common/has_ptr.h common/has_ptr.cpp
-    common/sales_data.h common/sales_data.cpp
-    common/screen.h common/screen.cpp
-    common/window_mgr.h common/window_mgr.cpp
-    common/account.h common/account.cpp
-    common/str_blob.h common/str_blob.cpp
-    common/str_blob_ptr.h common/str_blob_ptr.cpp
-    common/query_result.h common/query_result.cpp
-    common/text_query.h common/text_query.cpp
-    common/quote.h common/quote.cpp
-    common/bulk_quote.h common/bulk_quote.cpp
-    common/disc_quote.h common/disc_quote.cpp
-    common/limited_quote.h common/limited_quote.cpp
-    main.cpp
-    chapter_02/chapter_02.h chapter_02/chapter_02.cpp
-    chapter_03/chapter_03.h chapter_03/chapter_03.cpp
-    chapter_04/chapter_04.h chapter_04/chapter_04.cpp
-    chapter_05/chapter_05.h chapter_05/chapter_05.cpp
-    chapter_06/chapter_06.h chapter_06/chapter_06.cpp
-    chapter_07/chapter_07.h chapter_07/chapter_07.cpp
-    chapter_08/chapter_08.h chapter_08/chapter_08.cpp
-    chapter_09/chapter_09.h chapter_09/chapter_09.cpp
-    chapter_10/chapter_10.h chapter_10/chapter_10.cpp
-    chapter_11/chapter_11.h chapter_11/chapter_11.cpp
-    chapter_12/chapter_12.h chapter_12/chapter_12.cpp
-    chapter_13/chapter_13.h chapter_13/chapter_13.cpp
-    chapter_13/ch_13.hpp
-    chapter_14/chapter_14.h chapter_14/chapter_14.cpp
-    chapter_14/ch_14.hpp
-    chapter_15/chapter_15.h chapter_15/chapter_15.cpp
-    chapter_15/ch_15.hpp
-    chapter_16/chapter_16.h chapter_16/chapter_16.cpp
-    chapter_16/ch_16.hpp
-    )
+cmake_minimum_required(VERSION 3.0.0)
+project(accelerated_cpp VERSION 0.1.0)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall")
+set(CMAKE_BUILD_TYPE "Debug")
 
-include(CPack)
+add_subdirectory(chapter_02)
