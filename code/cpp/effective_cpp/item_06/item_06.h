@@ -3,10 +3,6 @@
 #ifndef __EFFECTIVE_CPP_ITEM_06_H__
 #define __EFFECTIVE_CPP_ITEM_06_H__
 
-void Item06();
-
-namespace effective_item_06 {
-
 class Uncopyable
 {
 protected:
@@ -25,7 +21,5 @@ private:
     //HomeForSale(const HomeForSale &);
     //HomeForSale& operator=(const HomeForSale &);
 };
-
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_06_H__

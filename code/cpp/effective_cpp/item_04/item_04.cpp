@@ -7,20 +7,14 @@ using namespace std;
 /* 确定对象被使用前已被初始化 */
 int main()
 {
-#if 0
+#if 1
     //Directory d;
-    //dir();
-    tfs();
+    dir();
 #endif
     return 0;
 }
 
-
-//FileSystem tfs;
-
-// 
-//Directory temp_dir;
-
+// 讲非本地静态对象放在一个专属处理函数中
 FileSystem& tfs()
 {
     std::cout << "tfs static func" << std::endl;

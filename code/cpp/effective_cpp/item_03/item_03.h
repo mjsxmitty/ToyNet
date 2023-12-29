@@ -51,6 +51,12 @@ public:
             ptext_ = nullptr;
         }
     }
+
+    void TestPtr() const
+    {
+        *ptext_ = '\0';
+        //++ptext_;
+    }
 public:
     char& operator[](std::size_t position) const
     {

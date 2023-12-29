@@ -4,13 +4,10 @@
 #include <iostream>
 
 using namespace std;
-using namespace effective_item_05;
 
 /* 了解C++默默编写并调用那些函数 */
-void Item05()
+int main()
 {
-    cout << "**********item 05**********" << endl;
-#if 1
     std::string name1("abc");
     NameObject<int> no1(name1, 12);
 
@@ -19,8 +16,7 @@ void Item05()
 
     no2.name_value_ = "ddd";
     cout << no1.name_value_ << no1.object_value_ << endl;
-
     //no2 = no1;
-#endif
-    cout << "***************************" << endl;
+
+    return 0;
 }

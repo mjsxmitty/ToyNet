@@ -5,10 +5,6 @@
 
 #include <iostream>
 
-void Item07();
-
-namespace effective_item_07 {
-
 class TimeKeeper
 {
 public:
@@ -56,7 +52,5 @@ class AMOV
 public:
     virtual ~AMOV() = 0;
 };
-
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_07_H__

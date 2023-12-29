@@ -3,9 +3,8 @@
 #ifndef __EFFECTIVE_CPP_ITEM_08_H__
 #define __EFFECTIVE_CPP_ITEM_08_H__
 
-void Item08();
 
-namespace effective_item_08 {
+class Exceptional{};
 
 class DBConnection
 {
@@ -19,7 +18,7 @@ public:
     // 抛出某种异常
     void close()
     {
-
+        throw Exceptional();
     }
 };
 
@@ -57,6 +56,5 @@ private:
     DBConnection db;
     bool closed = false;
 };
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_08_H__

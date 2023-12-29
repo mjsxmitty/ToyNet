@@ -4,9 +4,6 @@
 
 #include <string>
 
-void Item05();
-
-namespace effective_item_05 {
 
 template<typename T>
 class NameObject
@@ -18,7 +15,5 @@ public:
     std::string &name_value_;
     const T     object_value_;
 };
-
-}
 
 #endif // __EFFECTIVE_CPP_ITEM_05_H__

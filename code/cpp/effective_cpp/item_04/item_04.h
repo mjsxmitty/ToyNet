@@ -25,6 +25,7 @@ public:
         InitNumTimesConsulted(num_times_consulted);
     }
 private:
+    // 多个构造函数共有,与初始化表现一样好
     void InitNumTimesConsulted(int num)
     {
         num_times_consulted_ = num;
