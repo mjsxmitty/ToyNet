@@ -1,5 +1,4 @@
 
-#include "chapter_03.h"
 
 #include <iostream>
 #include <vector>
@@ -14,39 +13,9 @@ using namespace std;
 
 const int NUM = 100;
 
-void ch_03()
-{
-    /* 3.2 标准库类型 string */
-    //ch_3_2();
-
-    /* 3.3 标准库类型 vector */
-    ch_3_3();
-
-    /* 3.4 迭代器介绍 */
-    ch_3_4();
-
-    /* 3.5 数组 */
-    ch_3_5();
-
-    /* 3.6 多维数组 */
-    ch_3_6();
-}
-
-/********************************************************************************/
-/*****************************************3.2************************************/
-
-void ch_3_2()
-{
-    /* 3.2.3 处理string对象中的字符 */
-    ch_3_2_3();
-
-    hw_3_8();
-
-    hw_3_10();
-}
 
 
-void ch_3_2_3()
+int main1()
 {
     string s("Hello World!!!");
 
@@ -83,6 +52,8 @@ void ch_3_2_3()
         if (n < hex_digits.size())
             result += hex_digits[n];
     cout << "You hex number is: " << result;
+
+    return 0;
 }
 
 void hw_3_8()
@@ -125,29 +96,18 @@ void hw_3_10()
     return;
 }
 
-void ch_3_3()
-{
-    /* 定义和初始化vector */
-    ch_3_3_1();
-
-    /* 其他vector操作 */
-    ch_3_3_3();
-
-    hw_3_20();
-}
-
-void ch_3_3_1()
+int main2()
 {
     /* 列表初始值还是元素数量？ */
-    {
-        //使用了{},但是提供的值不能执行列表初始化-->构造
-        vector<string>  v1{10};
-        vector<string>  v2{5, "hi"};
-        cout << v1.size() << ", " << v2.size() << endl;
-    }
+    //使用了{},但是提供的值不能执行列表初始化-->构造
+    vector<string>  v1{10};
+    vector<string>  v2{5, "hi"};
+    cout << v1.size() << ", " << v2.size() << endl;
+
+    return 0;
 }
 
-void ch_3_3_3()
+int main3()
 {
     vector<unsigned>    grades;
     unsigned            grade;
@@ -165,7 +125,7 @@ void ch_3_3_3()
         }
     } while (grades.size() != 11);
     
-        // 索引
+    // 索引
     // while (grades.size() != 11)
     // {
     //     grade = rand() % 1000;
@@ -186,12 +146,13 @@ void ch_3_3_3()
     for (auto i : scores)
         cout << i << " ";
     cout << endl;
+
+    return 0;
 }
 
 void hw_3_20()
 {
     vector<int> vint;
-    //int         iVal;
 
     srand((unsigned) time(NULL));
     unsigned arr_size;
@@ -275,17 +236,7 @@ void hw_3_20()
     cout << endl;
 }
 
-void ch_3_4()
-{
-    /* 使用迭代器 */
-    ch_3_4_1();
-
-    hw_3_22();
-
-    hw_2_23();
-}
-
-void ch_3_4_1()
+int main4()
 {
     string str("some string"), orig = str;
     if (!str.empty())
@@ -357,6 +308,8 @@ void ch_3_4_1()
     for (auto beg = str.begin(); beg != str.end(); ++beg)
         *beg = '*';
     cout << "auto for loop assign a new value to str: " << str  << endl;
+
+    return 0;
 }
 
 void hw_3_22()
@@ -402,26 +355,7 @@ void hw_2_23()
     }
 }
 
-void ch_3_5()
-{
-    /* 定义和初始化数组 */
-    ch_3_5_1();
-
-    /* 指针和数组 */
-    ch_3_5_3();
-
-    hw_3_36();
-
-    /* C风格字符串 */
-    ch_3_5_4();
-
-    /* 与旧代码的接口 */
-    ch_3_5_5();
-
-    hw_3_42();
-}
-
-void ch_3_5_1()
+int main5()
 {
     /* 字符数组的特殊性 */
     char a[] = "C++";   //最后一个0
@@ -434,10 +368,11 @@ void ch_3_5_1()
     int (&rarray)[10] = arr;
 
     int* (&rparr)[10] = parr;
+    return 0;
 }
 
 /* 指针和数组 */
-void ch_3_5_3()
+int main6()
 {
     {
         int a[] = {10,1,2,3,4,5};
