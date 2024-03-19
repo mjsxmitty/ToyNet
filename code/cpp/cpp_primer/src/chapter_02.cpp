@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 
 using namespace std;
@@ -91,51 +90,51 @@ int main4()
 int main5()
 {
     /* 空指针 */
-    {
-        int val = 0;
-        //int *ptr = val;       // 类型不一致
-    }
+#if 0
+    int val = 0;
+    //int *ptr = val;       // 类型不一致
+#endif
 
-    {
-        int *ptr1 = 0;
-        int *ptr2 = nullptr;
-        int *ptr3 = NULL;
+#if 0
+    int *ptr1 = 0;
+    int *ptr2 = nullptr;
+    int *ptr3 = NULL;
 
-        int zero = 0;
-        //int *ptr4 = zero;
-    }
+    int zero = 0;
+    //int *ptr4 = zero;
+#endif
 
     /* 其他指针操作 */
-    {
-        int ival = 1024;
-        int *pi = 0;
-        int *pi2 = &ival;
+#if 0
+    int ival = 1024;
+    int *pi = 0;
+    int *pi2 = &ival;
 
-        if (pi)
-            cout << "pi is empty!" << endl;
-        if (pi2)
-            cout << "pi is empty!" << endl;
+    if (pi)
+        cout << "pi is empty!" << endl;
+    if (pi2)
+        cout << "pi is empty!" << endl;
 
-        //
-        //pi2 = 0;
-        //pi = &ival;
-        cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
-        pi = &ival + 1;
-        pi2 += 1;
-        cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
-        if (pi == pi2)
-            cout << "pi equal tp pi2." << endl;
-    }
+    //
+    //pi2 = 0;
+    //pi = &ival;
+    cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
+    pi = &ival + 1;
+    pi2 += 1;
+    cout << "pi = " << pi << ", pi2 = " << pi2 << endl;
+    if (pi == pi2)
+        cout << "pi equal tp pi2." << endl;
+#endif
 
     /* void* 指针 */
-    {
-        double obj = 3.14, *pd = &obj;
-        void *pv = &obj;
-        pv = pd;                            // 可以指向其他类型
-        //pd = pv;
-        //*pv = 3.333;                      // 不能访问数据
-        cout << (pv < pd ? "pv" : "pb");    // 可以比较
-    }
+#if 1
+    double obj = 3.14, *pd = &obj;
+    void *pv = &obj;
+    pv = pd;                            // 可以指向其他类型
+    //pd = pv;
+    //*pv = 3.333;                      // 不能访问数据
+    cout << (pv < pd ? "pv" : "pb");    // 可以比较
+#endif
 
     return 0;
 }
@@ -143,26 +142,26 @@ int main5()
 int main6()
 {
     /* 指向指针的指针 */
-    {
-        int ival = 1024;
-        int *pi = &ival;
-        int **ppi = &pi;
-        cout << "The value of ival\n"
-             << "direct value: " << ival << "\n"
-             << "indirect value: " << *pi << "\n"
-             << "doubly indirect value: " << **ppi
-             << endl;
-    }
+#if 0
+    int ival = 1024;
+    int *pi = &ival;
+    int **ppi = &pi;
+    cout << "The value of ival\n"
+         << "direct value: " << ival << "\n"
+         << "indirect value: " << *pi << "\n"
+         << "doubly indirect value: " << **ppi
+         << endl;
+#endif
 
-    {
-        int i = 2;
-        int *p1 = &i;
-        *p1 = *p1 * *p1;
-        cout << "i  = " << i << endl;
+#if 0
+    int i = 2;
+    int *p1 = &i;
+    *p1 = *p1 * *p1;
+    cout << "i  = " << i << endl;
 
-        *p1 *= *p1;
-        cout << "i  = " << i << endl;
-    }
+    *p1 *= *p1;
+    cout << "i  = " << i << endl;
+#endif
 
     /* 指向指针的引用 */
     {
@@ -179,68 +178,68 @@ int main6()
 
 int main7()
 {
-    {
-        const int ci = 1024;
-        const int &rci = ci;
-        //int &ri = ci;
-        //rci = 1025;
-    }
+#if 0
+    const int ci = 1024;
+    const int &rci = ci;
+    //int &ri = ci;
+    //rci = 1025;
+#endif
 
     /* 初始化和对const的引用 */
-    {
-        int i = 1024;
-        const int &r1 = i;          // 普通变量
-        const int &r2 = 1024;       // 字面值
-        const int &r3 = i * 1024;   // 算数表达式
-        //int &r4 = i * 1024;
-    }
+#if 0
+    int i = 1024;
+    const int &r1 = i;          // 普通变量
+    const int &r2 = 1024;       // 字面值
+    const int &r3 = i * 1024;   // 算数表达式
+    //int &r4 = i * 1024;
+#endif
 
-    {
-        double dval = 3.14;
-        const int &rd = dval;       // 绑定临时变量
-        /*
-        const int temp = dval;
-        const int &rd = temp;
+#if 0
+    double dval = 3.14;
+    const int &rd = dval;       // 绑定临时变量
+    /*
+    const int temp = dval;
+    const int &rd = temp;
         */
-    }
+#endif
 
     /* const引用可能是一个非const对象 */
-    {
-        int i = 1024;
-        int &r1 = i;
-        const int &r2 = i;
+#if 0
+    int i = 1024;
+    int &r1 = i;
+    const int &r2 = i;
 
-        r1 = 0;
-        //r2 = 0;
-    }
+    r1 = 0;
+    //r2 = 0;
+#endif
 
     return 0;
 }
 
 int main8()
 {
-    {
-        const double cd = 3.14;
-        //double *pd = &cd;
-        const double *pcd = &cd;
-        //*pcd = 0.0;
+#if 0
+    const double cd = 3.14;
+    //double *pd = &cd;
+    const double *pcd = &cd;
+    //*pcd = 0.0;
 
-        double dval = 3.33;
-        pcd = &dval;
-    }
+    double dval = 3.33;
+    pcd = &dval;
+#endif
 
     /* const 指针 */
-    {
-        int err_numb = 0;
-        int * const cur_err = &err_numb;
-        *cur_err = 1024;
-        int err_numb2 = 1024;
-        //cur_err = &err_numb2;
+#if 0
+    int err_numb = 0;
+    int * const cur_err = &err_numb;
+    *cur_err = 1024;
+    int err_numb2 = 1024;
+    //cur_err = &err_numb2;
 
-        const double pi = 3.14;
-        const double * const pip = &pi;
-        //*pip = 0.0;
-    }
+    const double pi = 3.14;
+    const double * const pip = &pi;
+    //*pip = 0.0;
+#endif
 
     return 0;
 }
@@ -278,176 +277,176 @@ constexpr int   GetSize() {return 1000;}
 int main10()
 {
     // 常量表达式是由类型和初始值决定
-    {
-        const int max_files = 1023;
-        const int limit = max_files + 1;
+#if 0
+    const int max_files = 1023;
+    const int limit = max_files + 1;
 
-        int staff_size = 27;
-        const int sz = GetSize(staff_size);
-        //int iarray[sz] = {0};
+    int staff_size = 27;
+    const int sz = GetSize(staff_size);
+    //int iarray[sz] = {0};
 
-        int i = 1;
-        const int ci = i;   //不是常量表达式
-        //int iarray[ci] = {0};
-    }
+    int i = 1;
+    const int ci = i;   //不是常量表达式
+    //int iarray[ci] = {0};
+#endif
 
     /* constexptr 变量 */
-    {
-        constexpr int mf = 1021;
-        constexpr int limit = mf + 1;
-        constexpr int sz = GetSize();
+#if 0
+    constexpr int mf = 1021;
+    constexpr int limit = mf + 1;
+    constexpr int sz = GetSize();
 
-        constexpr int j = 2;
-        int jarray[j] = {0};
+    constexpr int j = 2;
+    int jarray[j] = {0};
 
-        int ival = 1000;
-        //constexpr int ci = ival;
-        const int cval = 20;
-        constexpr int ci = cval;
+    int ival = 1000;
+    //constexpr int ci = ival;
+    const int cval = 20;
+    constexpr int ci = cval;
 
-        constexpr int ccci = cval + 1;
-        //constexpr int cccci = ival + 1;
+    constexpr int ccci = cval + 1;
+    //constexpr int cccci = ival + 1;
 
-        const int ival2 = 10;
-        constexpr int icc = ival2 + 1;
+    const int ival2 = 10;
+    constexpr int icc = ival2 + 1;
 
-        //constexpr int sz2 = GetSize(ival);
-        //constexpr int sz3 = GetSize(ival2);
-    }
+    //constexpr int sz2 = GetSize(ival);
+    //constexpr int sz3 = GetSize(ival2);
+#endif
 
     /* 字面值类型 */
-    {
-        int i = 1024;
-        //constexpr int *ptr = &i;
-        constexpr int *iptr = &g_ival;
-    }
+# if 0
+    int i = 1024;
+    //constexpr int *ptr = &i;
+    constexpr int *iptr = &g_ival;
+#endif
 
     /* 指针和constexptr */
-    {
-        const int *p = nullptr;
-        p = &g_ival;
-        constexpr int *q = nullptr;
-        //q = &g_jval;
-        *q = 1024;
+# if 1
+    const int *p = nullptr;
+    p = &g_ival;
+    constexpr int *q = nullptr;
+    //q = &g_jval;
+    *q = 1024;
 
-        // 只能指向固定地址
-        constexpr int *iptr = &g_ival;
-        *iptr = 100;
-        constexpr const int *jptr = &g_jval;
-        constexpr const int *jptr2 = &g_ival;
+    // 只能指向固定地址
+    constexpr int *iptr = &g_ival;
+    *iptr = 100;
+    constexpr const int *jptr = &g_jval;
+    constexpr const int *jptr2 = &g_ival;
 
-        //constexpr int i = 1024;
-        //constexpr int *pi = &i;
-    }
+    //constexpr int i = 1024;
+    //constexpr int *pi = &i;
+#endif
 
     return 0;
 }
 
 int main11()
 {
-    {
-        typedef double wages;
-        typedef wages base, *p;
+#if 0
+    typedef double wages;
+    typedef wages base, *p;
 
-        base dval = 3.14;
-        p pd = &dval;
-        cout << dval << ", " << *pd << endl;
+    base dval = 3.14;
+    p pd = &dval;
+    cout << dval << ", " << *pd << endl;
 
-        using Int = int;
-        Int ival = 1024;
-        cout << ival << endl;
+    using Int = int;
+    Int ival = 1024;
+    cout << ival << endl;
 
-        using ptrd = double *;
-        ptrd pdd = &dval;
-    }
+    using ptrd = double *;
+    ptrd pdd = &dval;
+#endif
 
     /* 指针、常量和类型别名 */
-    {
-        typedef char *pchar;
+#if 0
+    typedef char *pchar;
 
-        char ch1 = 'a';
-        char ch2 = 'b';
+    char ch1 = 'a';
+    char ch2 = 'b';
 
-        pchar pc = &ch1;
-        pc = &ch2;
-        *pc = 'c';
+    pchar pc = &ch1;
+    pc = &ch2;
+    *pc = 'c';
 
-        const pchar cpc = &ch1;
-        //cpc = &ch2;
-        *cpc = 'd';
+    const pchar cpc = &ch1;
+    //cpc = &ch2;
+    *cpc = 'd';
 
-        pchar pc2 = &ch2;
-        pchar *pcp = &pc;
-        pcp = &pc2;
-        *pcp = &ch1;
-        **pcp = 'e';
+    pchar pc2 = &ch2;
+    pchar *pcp = &pc;
+    pcp = &pc2;
+    *pcp = &ch1;
+    **pcp = 'e';
 
-        const pchar *cpcp = &pc2;
-        cpcp = &pc;
-        **cpcp = 'f';
-        //*cpcp = &pcp;
+    const pchar *cpcp = &pc2;
+    cpcp = &pc;
+    **cpcp = 'f';
+    //*cpcp = &pcp;
 
-        char *cptr = &ch1;
-        pchar *pstr = &cptr;
+    char *cptr = &ch1;
+    pchar *pstr = &cptr;
 
-        pchar pstr2 = cptr;
-        **pstr = 'e';
-    }
+    pchar pstr2 = cptr;
+    **pstr = 'e';
+#endif
 
     return 0;
 }
 
 int main12()
 {
-    {
-        auto i = 0, *pi = &i;
-        //auto c = 'a', b = 3.123;
-    }
+#if 0
+    auto i = 0, *pi = &i;
+    //auto c = 'a', b = 3.123;
+#endif
 
     /* 复合类型、常量和auto */
-    {
-        int i = 1024, &r = i;
-        auto a = r;                     //int
-        cout << "a = " << a << endl;
+# if 1
+    int i = 1024, &r = i;
+    auto a = r;                     //int
+    cout << "a = " << a << endl;
 
-        //常量和引用
-        const int ci = i, &cr = ci;
-        auto b = ci;                    //int
-        b = 1;
-        cout << "b = " << b << endl;
+    //常量和引用
+    const int ci = i, &cr = ci;
+    auto b = ci;                    //int
+    b = 1;
+    cout << "b = " << b << endl;
 
-        auto c = cr;                    // auto 忽略顶层const(ci)
-        c = 2;
-        cout << "c = " << c << endl;
+    auto c = cr;                    // auto 忽略顶层const(ci)
+    c = 2;
+    cout << "c = " << c << endl;
 
-        auto d = &i;                    // int *
-        *d = 3;
-        cout << "d = " << d << endl;
+    auto d = &i;                    // int *
+    *d = 3;
+    cout << "d = " << d << endl;
 
-        auto e = &ci;                   // const int*(底层)
-        //*e = 1;
-        e = &i;
-        cout << "e = " << e << endl;
+    auto e = &ci;                   // const int*(底层)
+    //*e = 1;
+    e = &i;
+    cout << "e = " << e << endl;
 
-        const auto f = ci;              // 明确指出const类型
-        //f = 1;
-        cout << "f = " << f << endl;
+    const auto f = ci;              // 明确指出const类型
+    //f = 1;
+    cout << "f = " << f << endl;
 
-        auto &g = ci;   //const引用保留顶层属性
-        //g = 10;
-        cout << "g = " << g << endl;
+    auto &g = ci;                   //const引用保留顶层属性
+    //g = 10;
+    cout << "g = " << g << endl;
 
-        //auto &h = 42;
+    //auto &h = 42;
 
-        const auto &j = 42;
-        //j = 0;
-        cout << "j = " << j << endl;
+    const auto &j = 42;
+    //j = 0;
+    cout << "j = " << j << endl;
 
-        //*、&属于声明符;多个变量要保持基本类型一致
-        auto k = ci, &l = i;        // int
-        auto &m = ci, *n = &ci;     // const int
-        //auto &o = i, *pp = &ci;
-    }
+    //*、&属于声明符;多个变量要保持基本类型一致
+    auto k = ci, &l = i;        // int
+    auto &m = ci, *n = &ci;     // const int
+    //auto &o = i, *pp = &ci;
+#endif
 
     return 0;
 }
@@ -484,33 +483,32 @@ void hw_2_35()
 
 int main()
 {
-    {
-        const int ci = 1, &cj = ci;
-        decltype (ci) x = 0;
-        //x = 1;
+#if 0
+    const int ci = 1, &cj = ci;
+    decltype (ci) x = 0;
+    //x = 1;
 
-        decltype (cj) y = ci;
-        //y = 101;
-
-       // decltype (cj) z;
-    }
+    decltype (cj) y = ci;
+    //y = 101;
+    // decltype (cj) z;
+#endif
 
     /* decltype 和 引用 */
-    {
-        int i = 1024, *p = &i, &r = i;
-        decltype (r) a = i;
-        a = 1;
-        cout << "i = " << i << ", a = " << a << endl;
+#if 0
+    int i = 1024, *p = &i, &r = i;
+    decltype (r) a = i;
+    a = 1;
+    cout << "i = " << i << ", a = " << a << endl;
 
-        decltype (r + 0) b;
-        b = 2;
-        cout << "i = " << i << ", b = " << b << endl;
+    decltype (r + 0) b;
+    b = 2;
+    cout << "i = " << i << ", b = " << b << endl;
 
-        //decltype (*p) c;
-        decltype (*p) c = i;
-        c = 3;
-        cout << "i = " << i << ", c = " << c << endl;
-    }
+    //decltype (*p) c;
+    decltype (*p) c = i;
+    c = 3;
+    cout << "i = " << i << ", c = " << c << endl;
+#endif
 
     int a = 0;
     decltype(a) c = a;
