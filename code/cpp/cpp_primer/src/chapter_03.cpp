@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -12,8 +11,6 @@
 using namespace std;
 
 const int NUM = 100;
-
-
 
 int main1()
 {
