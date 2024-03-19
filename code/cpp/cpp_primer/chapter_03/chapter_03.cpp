@@ -372,7 +372,7 @@ int main5()
 }
 
 /* 指针和数组 */
-int main6()
+int main()
 {
     {
         int a[] = {10,1,2,3,4,5};
