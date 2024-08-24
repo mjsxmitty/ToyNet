@@ -10,15 +10,15 @@ int main1()
     i = 3.14;
     double  pi = i;
     cout << "b = " << b << "\n"
-         << "i = " << i << "\n"
-         << "pi = " << pi << "\n"
-         << endl;
+        << "i = " << i << "\n"
+        << "pi = " << pi << "\n"
+        << endl;
 
     cout << "each type size: " << endl;
     cout << "b: " << sizeof (b) << "\n"
-         << "i: " << sizeof (i) << "\n"
-         << "pi: " << sizeof (pi) << "\n"
-         << endl;
+        << "i: " << sizeof (i) << "\n"
+        << "pi: " << sizeof (pi) << "\n"
+        << endl;
 
     //TODO:赋给无（有）符号类型超范围值？？？
     unsigned char   c = -1;

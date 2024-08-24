@@ -5,7 +5,7 @@ set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)     #强制使用新特性
 set(CMAKE_VERBOSE_MAKEFILE ON)          #输出详细的编译和链接信息
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 -Wall")
 set(CMAKE_BUILD_TYPE "Debug")
 
 #子目录编译
