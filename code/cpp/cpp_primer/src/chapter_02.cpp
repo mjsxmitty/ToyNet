@@ -51,11 +51,12 @@ int main2()
     return 0;
 }
 
-extern int init1 = 1;   // 定义
-extern int init2;       // 声明
-int init2 = 2;          // 定义
-int init3 = 3;
-int main3()
+#include "chapter_02.h"
+
+//extern int init1 = 1;   // 定义
+//extern int init2;       // 声明
+
+int main()
 {
     //extern int init = 2;  // 函数内部初始化extern变量报错
 
@@ -481,7 +482,7 @@ void hw_2_35()
     cout << typeid(k3).name() << endl;
 }
 
-int main()
+int main13()
 {
 #if 0
     const int ci = 1, &cj = ci;
