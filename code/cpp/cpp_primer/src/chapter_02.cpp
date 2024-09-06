@@ -51,17 +51,17 @@ int main2()
     return 0;
 }
 
-#include "chapter_02.h"
+#include "header.h"
 
 //extern int init1 = 1;   // 定义
-//extern int init2;       // 声明
+extern int init2;       // 声明
 
 int main()
 {
     //extern int init = 2;  // 函数内部初始化extern变量报错
 
     extern int init2;       // 可以声明多次
-    cout << "init2 = " << init2 << endl;
+    cout << "init1 = " << init1 << endl;
     init2 = 1;
     cout << "init2 = " << init2 << endl;
 
