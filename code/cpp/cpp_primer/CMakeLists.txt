@@ -14,6 +14,3 @@ add_subdirectory(src)
 #打包
 #set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 #set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-
-#信息输出(用于测试)
-#message("the value:" ${PROJECT_SOURCE_DIR})
