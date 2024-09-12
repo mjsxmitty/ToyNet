@@ -56,7 +56,7 @@ int main2()
 //extern int init1 = 1;   // 定义
 extern int init2;       // 声明
 
-int main()
+int main3()
 {
     //extern int init = 2;  // 函数内部初始化extern变量报错
 
@@ -88,7 +88,7 @@ int main4()
 
 #include <cstdlib>
 
-int main5()
+int main()
 {
     /* 空指针 */
 #if 0
@@ -106,7 +106,7 @@ int main5()
 #endif
 
     /* 其他指针操作 */
-#if 0
+#if 1
     int ival = 1024;
     int *pi = 0;
     int *pi2 = &ival;
@@ -128,7 +128,7 @@ int main5()
 #endif
 
     /* void* 指针 */
-#if 1
+#if 0
     double obj = 3.14, *pd = &obj;
     void *pv = &obj;
     pv = pd;                            // 可以指向其他类型
