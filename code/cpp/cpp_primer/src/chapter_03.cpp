@@ -121,18 +121,20 @@ int main3()
             ++*(it + grade / 10);
         }
     } while (grades.size() != 11);
-    
+
     // 索引
-    // while (grades.size() != 11)
-    // {
-    //     grade = rand() % 1000;
-    //     if (grade <= 100)
-    //     {
-    //         ++scores[grade / 10];
-    //         grades.push_back(grade);
-    //     }
-    // }    
+#if 0
+    while (grades.size() != 11)
+    {
+        grade = rand() % 1000;
+        if (grade <= 100)
+        {
+            ++scores[grade / 10];
+            grades.push_back(grade);
+        }
+    }
     cout << "grades size: " << grades.size() << endl;
+#endif
 
     cout << "grades: ";
     for (auto g : grades)
