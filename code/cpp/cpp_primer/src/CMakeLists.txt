@@ -11,4 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(ch_01 chapter_01.cpp)
 add_executable(ch_02 chapter_02.cpp)
+# 链接动态库
+target_link_libraries(ch_02 header)
+
 add_executable(ch_03 chapter_03.cpp)

@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include "header.h"
 
 using namespace std;
 
@@ -69,7 +70,7 @@ int main3()
     cout << "init3 = " << init3 << endl;
 
     return 0;
-}                                                                                                                                           
+}
 
 int reused = 1024;
 int main4()
@@ -88,7 +89,7 @@ int main4()
 
 #include <cstdlib>
 
-int main()
+int main5()
 {
     /* 空指针 */
 #if 0
@@ -140,7 +141,7 @@ int main()
     return 0;
 }
 
-int main6()
+int main()
 {
     /* 指向指针的指针 */
 #if 0
@@ -164,16 +165,21 @@ int main6()
     cout << "i  = " << i << endl;
 #endif
 
+#if 0
     /* 指向指针的引用 */
-    {
-        int val = 1024, val2 = 0, *ptr = &val;
-        int *&pref = ptr;       //从右向左理解声明
-        cout << "*pref: " << *pref << endl;
+    int val = 1024, val2 = 0, *ptr = &val;
+    int *&pref = ptr;       //从右向左理解声明
+    cout << "*pref: " << *pref << endl;
 
-        pref = &val2;
-        cout << "*pref: " << *pref << endl;
-    }
+    pref = &val2;
+    cout << "*pref: " << *pref << endl;
+#endif
 
+#if 1
+
+    cout << "buf size: " << buf_size << endl;
+
+#endif
     return 0;
 }
 

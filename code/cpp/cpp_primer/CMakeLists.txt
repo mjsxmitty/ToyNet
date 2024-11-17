@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall -ggdb -fPIC")
 set(CMAKE_BUILD_TYPE "Debug")
 
 #子目录编译
+add_subdirectory(include)
 add_subdirectory(src)
 
 #打包
