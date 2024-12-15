@@ -141,7 +141,7 @@ int main5()
     return 0;
 }
 
-int main()
+int main6()
 {
     /* 指向指针的指针 */
 #if 0
