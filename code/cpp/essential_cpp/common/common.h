@@ -1,6 +1,6 @@
 
-#ifndef __ESSENTIAL_CPP_CHAPTER_02_H__
-#define __ESSENTIAL_CPP_CHAPTER_02_H__
+#ifndef __ESSENTIAL_CPP_COMMON_H__
+#define __ESSENTIAL_CPP_COMMON_H__
 
 #include <iostream>
 #include <vector>
@@ -9,7 +9,7 @@
 
 #include "num_sequence.h"
 
-namespace chapter_02
+namespace common
 {
 
 extern bool FibonElem(int pos, int &elem);
@@ -89,8 +89,8 @@ inline T Max(const T *arr, int size)
     return *std::max_element(arr, arr + size);
 }
 
-extern void hw_2_6();
+//extern void hw_2_6();
 
 }
 
-#endif //__ESSENTIAL_CPP_CHAPTER_02_H__
+#endif //__ESSENTIAL_CPP_COMMON_H__

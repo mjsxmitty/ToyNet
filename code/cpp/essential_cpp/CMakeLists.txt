@@ -9,8 +9,15 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall -ggdb -fPIC")
 set(CMAKE_BUILD_TYPE "Debug")
 
-add_subdirectory(chapter_02)
-add_subdirectory(chapter_03)
-add_subdirectory(chapter_04)
-add_subdirectory(chapter_05)
-add_subdirectory(chapter_06)
+# 添加 Cppcheck 分析目标
+add_custom_target(cppcheck_all
+    COMMAND cppcheck
+        --check-level=exhaustive
+        --enable=all
+        --project=${CMAKE_BINARY_DIR}/compile_commands.json
+        --error-exitcode=1
+    COMMENT "Running exhaustive Cppcheck analysis..."
+)
+
+add_subdirectory(common)
+add_subdirectory(src)

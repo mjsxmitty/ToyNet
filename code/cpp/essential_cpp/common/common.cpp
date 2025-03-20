@@ -1,12 +1,11 @@
 
-
 #include "common.h"
 #include "num_sequence.h"
 
 #include <ostream>
 #include <vector>
 
-namespace chapter_02
+namespace common
 {
 
 bool FibonElem(int pos, int &elem)
@@ -14,7 +13,7 @@ bool FibonElem(int pos, int &elem)
     // 无效位置
     if (pos <= 0 || pos > 1024)
     {
-        std::cerr << "invalid position" << pos << std::endl;
+        std::cerr << "invalid position: " << pos << std::endl;
 
         elem = 0;
         return false;
@@ -142,7 +141,7 @@ void BubbleSort(std::vector<int> &vec, std::ostream &out)
 }
 
 void BubbleSort(std::vector<int> *vec, std::ostream *out)
-{    
+{
     if (vec == 0)
     {
         std::cout << "Bubble(): the point to vec is 0.\n";

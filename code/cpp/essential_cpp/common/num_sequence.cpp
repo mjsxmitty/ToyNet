@@ -10,9 +10,6 @@ using namespace std;
 namespace chapter_02
 {
 
-namespace ver0
-{
-
 //pvec (*seq_array[])(int)
 pfunc seq_array[seq_cnt] = {
     0,
@@ -26,7 +23,7 @@ pvec FiboSeq(int size)
     static vector<int> elems;
     if (!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.empty())
     {
         elems.push_back(1);
@@ -170,17 +167,17 @@ bool SeqElem(int size, int &elem, pfunc f)
         elem = 0;
         return false;
     }
-    
+
     vector<int> ivec(*pseq);
     for_each(ivec.begin(), ivec.end(), [](int i) {
         cout << i << " ";
     });
     cout << endl;
-    
+
     elem = (*pseq)[size - 1];
-    
+
     return true;
 }
 
-}
+
 }

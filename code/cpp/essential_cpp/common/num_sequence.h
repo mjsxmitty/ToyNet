@@ -10,7 +10,7 @@
 namespace chapter_02
 {
 
-typedef const std::vector<int>* pvec; 
+typedef const std::vector<int>* pvec;
 typedef pvec (*pfunc)(int);
 //typedef const std::vector<int>* (*pfunc)(int);        // 函数指针
 
@@ -20,7 +20,7 @@ extern pfunc    seq_array[seq_cnt];
 
 enum NS_TYPE
 {
-    NS_UNK, 
+    NS_UNK,
     NS_FIB,
     NS_LUCAS,
     NS_PELL,
@@ -51,7 +51,7 @@ inline bool CheckIntegrity(int size)
         std::cerr << "invalid size: " << size << std::endl;
         return false;
     }
-    
+
     return true;
 }
 

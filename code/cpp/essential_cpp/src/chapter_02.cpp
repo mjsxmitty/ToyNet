@@ -2,9 +2,6 @@
 #include <iostream>
 #include "common.h"
 
-using namespace chapter_02;
-
-/* chapter 2.1 */
 int main1()
 {
     std::cout << "please enter a position: ";
@@ -12,7 +9,7 @@ int main1()
     std::cin >> pos;
 
     int elem;
-    if (FibonElem(pos, elem))
+    if (common::FibonElem(pos, elem))
     {
         std::cout << "element at position: "
                     << pos << " is: " << elem
@@ -25,11 +22,10 @@ int main1()
         return -1;
     }
 
-    PrintFibon(pos);
+    common::PrintFibon(pos);
     return 0;
 }
 
-/* practice 2.1 */
 int main()
 {
     bool more = true;
@@ -40,7 +36,7 @@ int main()
         std::cin >> pos;
 
         int elem;
-        if (FibonElem(pos, elem))
+        if (common::FibonElem(pos, elem))
         {
             std::cout << "element at position: " << pos
                 << " value is: " << elem << std::endl;
