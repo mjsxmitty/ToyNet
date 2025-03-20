@@ -235,6 +235,7 @@ void DisplayMsg(const std::string &msg, int size)
     std::cerr << msg << ", size: " << size << std::endl;
 }
 
+#if 0
 bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int))
 {
     const std::vector<int> *pseq = seq_ptr(size);
@@ -248,5 +249,5 @@ bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int))
     elem = (*pseq)[size - 1];
     return true;
 }
-
+#endif
 }

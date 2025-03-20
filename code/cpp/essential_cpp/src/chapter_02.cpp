@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "common.h"
+#include "num_sequence.h"
 
 int main1()
 {
@@ -79,11 +80,18 @@ int main()
     while (more)
     {
         int cnt;
-        std::cout << "enter a servies size: ";
+        std::cout << "enter a servies position: ";
         std::cin >> cnt;
 
-        std::ofstream out("debug.txt");
-        common::Display(common::FibonSeq(cnt), &out);
+        int elem;
+        for (int i = common::NS_FIB; i < common::seq_cnt; ++i)
+        {
+            if (common::SeqElem(cnt, elem, common::seq_array[i]))
+            {
+                std::cout << common::seq_name[i] << " element at position: " << cnt
+                            << " value is: " << elem << std::endl;
+            }
+        }
 
         std::cout << "would you want to try again?(Y/N): ";
         char ch;

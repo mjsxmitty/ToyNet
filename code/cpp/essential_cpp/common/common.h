@@ -72,7 +72,7 @@ void DisplayMessage(const std::string &msg, const std::vector<ElemType> &vec)
     std::cout << std::endl;
 }
 
-extern bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int));
+//extern bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int));
 
 template <typename T>
 inline T Max(T t1, T t2) { return t1 > t2 ? t1 : t2; }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace chapter_02
+namespace common
 {
 
 //pvec (*seq_array[])(int)
@@ -16,6 +16,13 @@ pfunc seq_array[seq_cnt] = {
     FiboSeq,    PellSeq,
     LucaSeq,    TriaSeq,
     SquaSeq,    PentSeq
+};
+
+const char* seq_name[seq_cnt] = {
+    "none",
+    "FiboSeq",    "PellSeq",
+    "LucaSeq",    "TriaSeq",
+    "SquaSeq",    "PentSeq"
 };
 
 pvec FiboSeq(int size)
@@ -161,6 +168,7 @@ pvec PentSeq(int size)
 
 bool SeqElem(int size, int &elem, pfunc f)
 {
+    //std::cout << 1 << std::endl;
     pvec pseq = f(size);
     if (!pseq)
     {

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 
-namespace chapter_02
+namespace common
 {
 
 typedef const std::vector<int>* pvec;
@@ -18,6 +18,8 @@ const int       seq_cnt = 7;
 extern pfunc    seq_array[seq_cnt];
 //extern const std::vector<int>* (*seq_array[])(int);
 //typedef const std::vector<int>* (*seq_array[])(int);
+
+extern const char* seq_name[seq_cnt];
 
 enum NS_TYPE
 {
