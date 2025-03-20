@@ -7,7 +7,7 @@
 
 namespace common
 {
-
+#if 0
 bool FibonElem(int pos, int &elem)
 {
     // 无效位置
@@ -31,6 +31,7 @@ bool FibonElem(int pos, int &elem)
 
     return true;
 }
+#endif
 
 bool PrintFibon(int pos)
 {
@@ -42,7 +43,7 @@ bool PrintFibon(int pos)
     }
 
     std::cout << "the fibonacci sequence for "
-                << pos << " positions: \n";
+                << pos << " positions: \n\t";
 
     switch (pos)
     {
@@ -61,7 +62,7 @@ bool PrintFibon(int pos)
         elem = val1 + val2;
         val2 = val1;
         val1 = elem;
-        std::cout << elem << (!(i % 10) ? "\n" : " ");
+        std::cout << elem << (!(i % 10) ? "\n\t" : " ");
     }
 
     std::cout << std::endl;
@@ -126,9 +127,9 @@ void BubbleSort(std::vector<int> &vec, std::ostream &out)
             if (vec[i] > vec[j])
             {
                 out << "call swap()! position : " << i
-                    << ", and position: " << j 
-                    << " swapping: " << vec[i] 
-                    << ", with: " << vec[j] 
+                    << ", and position: " << j
+                    << " swapping: " << vec[i]
+                    << ", with: " << vec[j]
                     << std::endl;
 
                 Swap(vec[i], vec[j], out);
@@ -154,7 +155,6 @@ void BubbleSort(std::vector<int> *vec, std::ostream *out)
         {
             if (vec[i] > vec[j])
             {
-                *out << (*vec)[i];
                 if (out != 0)
                     *out << "call swap()! position : " << i
                         << ", and position: " << j << " swapping: "
@@ -173,6 +173,7 @@ void BubbleSort(std::vector<int> *vec, std::ostream *out)
     }
 }
 
+#if 0
 const std::vector<int>* FibonSeq1(int size)
 {
     static std::vector<int> elems;
@@ -193,11 +194,13 @@ const std::vector<int>* FibonSeq1(int size)
     return &elems;
 }
 
-const std::vector<int>* FibonSeq2(int size)
+#endif
+
+const std::vector<int>* FibonSeq(int size)
 {
     static std::vector<int>  elems;
 
-    if (!IsSizeOk1(size))
+    if (!IsSizeOk(size))
         return 0;
 
     for (int ix = elems.size(); ix < size; ++ix)
@@ -209,9 +212,9 @@ const std::vector<int>* FibonSeq2(int size)
     return &elems;
 }
 
-bool FibonElem2(int size, int &elem)
+bool FibonElem(int size, int &elem)
 {
-    const std::vector<int> *pseq = FibonSeq2(size);
+    const std::vector<int> *pseq = FibonSeq(size);
     if (!pseq)
     {
         elem = 0;

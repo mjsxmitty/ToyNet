@@ -12,7 +12,7 @@
 namespace common
 {
 
-extern bool FibonElem(int pos, int &elem);
+//extern bool FibonElem(int pos, int &elem);
 extern bool PrintFibon(int pos);
 
 extern void Swap(int &val1, int &val2, std::ostream &out = std::cout);
@@ -23,6 +23,7 @@ extern void Swap(int &val1, int &val2, std::ostream *out = 0);
 extern void BubbleSort(std::vector<int> *vec, std::ostream *out = 0);
 extern void Display(const std::vector<int> *vec, std::ostream *out = 0);
 
+#if 0
 extern const std::vector<int>* FibonSeq1(int size);
 
 inline bool IsSizeOk1(int size)
@@ -37,14 +38,15 @@ inline bool IsSizeOk1(int size)
 
     return true;
 }
-extern const std::vector<int>* FibonSeq2(int size);
-extern bool FibonElem2(int size, int &elem);
+#endif
 
-/* 2.6 */
-extern void DisplayMsg(char );
+extern const std::vector<int>* FibonSeq(int size);
+extern bool FibonElem(int size, int &elem);
+
+//extern void DisplayMsg(char );
 extern void DisplayMsg(const std::string &);
 extern void DisplayMsg(const std::string &, int);
-extern void DisplayMsg(const std::string &, int, int);
+//extern void DisplayMsg(const std::string &, int, int);
 
 inline bool IsSizeOk(int size)
 {
@@ -66,12 +68,10 @@ void DisplayMessage(const std::string &msg, const std::vector<ElemType> &vec)
     std::cout << msg << " : ";
     for (auto &tmp : vec)
         std::cout << tmp << ' ';
-    
+
     std::cout << std::endl;
 }
 
-/* 2.8 */
-extern void ch_2_8();
 extern bool SeqElem(int size, int &elem, const std::vector<int>* (*seq_ptr)(int));
 
 template <typename T>

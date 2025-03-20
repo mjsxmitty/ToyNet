@@ -54,7 +54,7 @@ pvec PellSeq(int size)
     static vector<int> elems;
     if(!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.empty())
     {
         elems.push_back(1);
@@ -76,7 +76,7 @@ pvec PellSeq(int size)
             n1 = elem;
         }
     }
-    
+
     return &elems;
 }
 
@@ -85,7 +85,7 @@ pvec LucaSeq(int size)
     static vector<int> elems;
     if(!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.empty())
     {
         elems.push_back(1);
@@ -107,7 +107,7 @@ pvec LucaSeq(int size)
             n1 = elem;
         }
     }
-    
+
     return &elems;
 }
 
@@ -116,14 +116,14 @@ pvec TriaSeq(int size)
     static vector<int> elems;
     if(!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
             elems.push_back(ix * (ix + 1) / 2);
     }
-    
+
     return &elems;
 }
 
@@ -132,14 +132,14 @@ pvec SquaSeq(int size)
     static vector<int> elems;
     if(!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
             elems.push_back(ix * ix);
     }
-    
+
     return &elems;
 }
 
@@ -148,14 +148,14 @@ pvec PentSeq(int size)
     static vector<int> elems;
     if(!CheckIntegrity(size))
         return 0;
-    
+
     if (elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
             elems.push_back(ix * (3 * ix - 1) / 2);
     }
-    
+
     return &elems;
 }
 

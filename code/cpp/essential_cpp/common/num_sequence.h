@@ -17,6 +17,7 @@ typedef pvec (*pfunc)(int);
 const int       seq_cnt = 7;
 extern pfunc    seq_array[seq_cnt];
 //extern const std::vector<int>* (*seq_array[])(int);
+//typedef const std::vector<int>* (*seq_array[])(int);
 
 enum NS_TYPE
 {
