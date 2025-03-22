@@ -89,7 +89,27 @@ inline T Max(const T *arr, int size)
     return *std::max_element(arr, arr + size);
 }
 
-//extern void hw_2_6();
+template <typename T>
+inline const T* Begin(const std::vector<T> &vec)
+{
+    return vec.empty() ? 0 : &vec[0];
+}
+
+template <typename T>
+inline const T* End(const std::vector<T> &vec)
+{
+    return vec.empty() ? 0 : &vec[vec.size()];
+}
+
+template <typename T, typename Y>
+T Find(T first, T last, const Y &val)
+{
+    for (; first != last; ++first)
+        if (val == *first)
+            return first;
+
+    return last;
+}
 
 }
 
