@@ -14,7 +14,6 @@
 #include "common.h"
 
 using namespace std;
-using namespace chapter_03;
 
 int main()
 {
@@ -32,7 +31,7 @@ int main()
     istream_iterator<string> eof;
     copy(is, eof, back_inserter(text));
 
-    sort(text.begin(), text.end(), StrSizeComp());
+    sort(text.begin(), text.end(), common::StrSizeComp());
     //sort(text.begin(), text.end(), less<string>());
 
     ostream_iterator<string> os(out_file, "\n");

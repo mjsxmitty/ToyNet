@@ -14,7 +14,6 @@
 #include <map>
 
 using namespace std;
-using namespace chapter_03;
 
 int main()
 {
@@ -36,7 +35,7 @@ int main()
     vector<string>  input;
 
     copy(in, eof, back_inserter(input));
-    vector<string>::iterator div = partition(input.begin(), input.end(), EvenElem());
+    vector<string>::iterator div = partition(input.begin(), input.end(), common::EvenElem());
 
     ostream_iterator<string> even_it(even_file, "\n"), odd_it(odd_file, "\t");
 

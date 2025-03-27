@@ -21,4 +21,4 @@ add_custom_target(cppcheck_all
 
 add_subdirectory(common)
 add_subdirectory(src)
-add_subdirectory(homework)
+add_subdirectory(exercise)
