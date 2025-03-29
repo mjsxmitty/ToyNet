@@ -8,7 +8,7 @@ using namespace std;
 void FillStack(Stack &stack, std::istream &is)
 {
     string str;
-    if (is >> str && !stack.Empty())
+    while (is >> str && !stack.Full())
         stack.Push(str);
 
     cout << "read in " << stack.Size() << " elements\n";
@@ -53,7 +53,7 @@ bool Stack::Find(const std::string &elem)
 
 int Stack::Count(const string &elem)
 {
-    if (Empty()) return false;
+    if (Empty()) return 0;
 
     return count(elems_.begin(), elems_.end(), elem);
 }

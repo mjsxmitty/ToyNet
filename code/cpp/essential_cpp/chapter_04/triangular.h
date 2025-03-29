@@ -9,10 +9,6 @@
 
 class Triangular
 {
-private:
-    int             beg_pos_;
-    int             length_;
-    mutable int     next_;
 public:
     Triangular(int len = 1, int bp = 1);
     Triangular(const Triangular &rhs);
@@ -23,6 +19,10 @@ public:
 
     void NextReset() const { next_ = beg_pos_ - 1; }
     bool Next(int &val) const;
+private:
+    int             beg_pos_;
+    int             length_;
+    mutable int     next_;
 public:
     // Triangular& Copy(const Triangular &rhs);
     Triangular& operator=(const Triangular &rhs);
