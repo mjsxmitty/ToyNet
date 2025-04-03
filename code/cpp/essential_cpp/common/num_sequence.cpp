@@ -168,7 +168,7 @@ pvec PentSeq(int size)
 
 bool SeqElem(int size, int &elem, pfunc f)
 {
-    //std::cout << 1 << std::endl;
+    //cout << 1 << endl;
     pvec pseq = f(size);
     if (!pseq)
     {

@@ -14,6 +14,7 @@
 #include <map>
 
 using namespace std;
+using namespace common;
 
 int main()
 {
@@ -24,8 +25,8 @@ int main()
         return -1;
     }
 
-    common::svec_map    familes;
-    common::InitFamilyMap(name_file, familes);
+    svec_map    familes;
+    InitFamilyMap(name_file, familes);
 
     string      name;
     while (1)
@@ -35,10 +36,10 @@ int main()
         if (name == "q")
             break;
 
-        common::QueryMap(name, familes);
+        QueryMap(name, familes);
     }
 
-    common::DisplayMap(familes, cout);
+    DisplayMap(familes, cout);
 
     return 0;
 }

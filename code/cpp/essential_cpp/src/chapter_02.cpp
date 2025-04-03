@@ -1,29 +1,33 @@
 
 #include <iostream>
+
 #include "common.h"
 #include "num_sequence.h"
 
+using namespace std;
+using namespace common;
+
 int main1()
 {
-    std::cout << "please enter a position: ";
+    cout << "please enter a position: ";
     int pos;
-    std::cin >> pos;
+    cin >> pos;
 
     int elem;
-    if (common::FibonElem(pos, elem))
+    if (FibonElem(pos, elem))
     {
-        std::cout << "element at position: "
+        cout << "element at position: "
                     << pos << " is: " << elem
-                    << std::endl;
+                    << endl;
     }
     else
     {
-        std::cout << "sorry! cannot calculate position "
-                    << pos << " elem."<< std::endl;
+        cout << "sorry! cannot calculate position "
+                    << pos << " elem."<< endl;
         return -1;
     }
 
-    common::PrintFibon(pos);
+    PrintFibon(pos);
     return 0;
 }
 
@@ -33,22 +37,22 @@ int main2()
     while (more)
     {
         int pos;
-        std::cout << "please enter a position: ";
-        std::cin >> pos;
+        cout << "please enter a position: ";
+        cin >> pos;
 
         int elem;
-        if (common::FibonElem(pos, elem))
+        if (FibonElem(pos, elem))
         {
-            std::cout << "element at position: " << pos
-                << " value is: " << elem << std::endl;
+            cout << "element at position: " << pos
+                << " value is: " << elem << endl;
         }
         else
-            std::cout << "sorry! cannot calculate position "
-                        << pos << " elem "<< std::endl;
+            cout << "sorry! cannot calculate position "
+                        << pos << " elem "<< endl;
 
-        std::cout << "would you want to try again?(Y/N): ";
+        cout << "would you want to try again?(Y/N): ";
         char ch;
-        std::cin >> ch;
+        cin >> ch;
         if (ch != 'y' && ch != 'Y')
             more = false;
     }
@@ -59,17 +63,17 @@ int main2()
 int main3()
 {
     int ia[8] = { 8, 34, 3, 13, 1, 21, 5, 2 };
-    std::vector<int> vec(ia, ia + 8);
+    vector<int> vec(ia, ia + 8);
 #if 0
-    common::Display(vec);
-    common::BubbleSort(vec, NULL);     // 0->避免二义性
-    common::Display(vec);
+    Display(vec);
+    BubbleSort(vec, NULL);     // 0->避免二义性
+    Display(vec);
 #endif
 #if 1
-    std::ofstream out("out.txt");
-    common::Display(vec, out);
-    common::BubbleSort(vec, out);
-    common::Display(vec, out);
+    ofstream out("out.txt");
+    Display(vec, out);
+    BubbleSort(vec, out);
+    Display(vec, out);
 #endif
     return 0;
 }
@@ -80,22 +84,22 @@ int main()
     while (more)
     {
         int cnt;
-        std::cout << "enter a servies position: ";
-        std::cin >> cnt;
+        cout << "enter a servies position: ";
+        cin >> cnt;
 
         int elem;
-        for (int i = common::NS_FIB; i < common::seq_cnt; ++i)
+        for (int i = NS_FIB; i < seq_cnt; ++i)
         {
-            if (common::SeqElem(cnt, elem, common::seq_array[i]))
+            if (SeqElem(cnt, elem, seq_array[i]))
             {
-                std::cout << common::seq_name[i] << " element at position: " << cnt
-                            << " value is: " << elem << std::endl;
+                cout << seq_name[i] << " element at position: " << cnt
+                            << " value is: " << elem << endl;
             }
         }
 
-        std::cout << "would you want to try again?(Y/N): ";
+        cout << "would you want to try again?(Y/N): ";
         char ch;
-        std::cin >> ch;
+        cin >> ch;
         if (ch != 'y' && ch != 'Y')
             more = false;
     }

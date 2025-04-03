@@ -14,6 +14,7 @@
 #include "common.h"
 
 using namespace std;
+using namespace common;
 
 int main()
 {
@@ -27,12 +28,12 @@ int main()
     }
 
     set<string> exclude_set;
-    common::InitExclusionSet(exclude_set);
+    InitExclusionSet(exclude_set);
 
     map<string, int> word_count;
-    common::ProcessFile(word_count, exclude_set, in_file);
+    ProcessFile(word_count, exclude_set, in_file);
 
-    common::UserQuery(word_count);
+    UserQuery(word_count);
 
     return 0;
 }

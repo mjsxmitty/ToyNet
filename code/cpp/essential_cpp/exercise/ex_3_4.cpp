@@ -1,5 +1,4 @@
 
-#include "common.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -10,10 +9,12 @@
 #include <fstream>
 #include <set>
 #include <sstream>
-
 #include <map>
 
+#include "common.h"
+
 using namespace std;
+using namespace common;
 
 int main()
 {
@@ -35,7 +36,7 @@ int main()
     vector<string>  input;
 
     copy(in, eof, back_inserter(input));
-    vector<string>::iterator div = partition(input.begin(), input.end(), common::EvenElem());
+    vector<string>::iterator div = partition(input.begin(), input.end(), EvenElem());
 
     ostream_iterator<string> even_it(even_file, "\n"), odd_it(odd_file, "\t");
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void FillStack(Stack &stack, std::istream &is)
+void FillStack(Stack &stack, istream &is)
 {
     string str;
     while (is >> str && !stack.Full())
@@ -14,7 +14,7 @@ void FillStack(Stack &stack, std::istream &is)
     cout << "read in " << stack.Size() << " elements\n";
 }
 
-bool Stack::Push(const std::string &elem)
+bool Stack::Push(const string &elem)
 {
     if (Full())
     {
@@ -26,7 +26,7 @@ bool Stack::Push(const std::string &elem)
     return true;
 }
 
-bool Stack::Pop(std::string &elem)
+bool Stack::Pop(string &elem)
 {
     if (Empty()) return false;
 
@@ -35,7 +35,7 @@ bool Stack::Pop(std::string &elem)
     return true;
 }
 
-bool Stack::Peek(std::string &elem)
+bool Stack::Peek(string &elem)
 {
     if (Empty()) return false;
 
@@ -44,7 +44,7 @@ bool Stack::Peek(std::string &elem)
     return true;
 }
 
-bool Stack::Find(const std::string &elem)
+bool Stack::Find(const string &elem)
 {
     if (Empty()) return false;
 
