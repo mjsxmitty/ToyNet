@@ -37,7 +37,7 @@ pvec FiboSeq(int size)
         elems.push_back(1);
     }
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
@@ -68,7 +68,7 @@ pvec PellSeq(int size)
         elems.push_back(2);
     }
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
@@ -99,7 +99,7 @@ pvec LucaSeq(int size)
         elems.push_back(3);
     }
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size();
         int n2 = elems[ix - 2];
@@ -124,7 +124,7 @@ pvec TriaSeq(int size)
     if(!CheckIntegrity(size))
         return 0;
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
@@ -140,7 +140,7 @@ pvec SquaSeq(int size)
     if(!CheckIntegrity(size))
         return 0;
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
@@ -156,7 +156,7 @@ pvec PentSeq(int size)
     if(!CheckIntegrity(size))
         return 0;
 
-    if (elems.size() < size)
+    if ((int)elems.size() < size)
     {
         int ix = elems.size() ? elems.size() + 1 : 1;
         for (; ix <= size; ix++)
