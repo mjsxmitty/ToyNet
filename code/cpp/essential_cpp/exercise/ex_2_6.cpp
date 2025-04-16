@@ -8,7 +8,7 @@ using namespace common;
 int main()
 {
     cout << "max int value: " << Max(34, 199)
-        << ", max string value: " << Max("nihao", "hello")
+        << ", max string value: " << Max("hi", "hello")
         << endl;
 
     int ia[8] = { 8, 34, 39, 13, 1, 21, 5, 2 };
