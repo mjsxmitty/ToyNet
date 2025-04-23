@@ -13,32 +13,30 @@ public:
     Triangular(int len = 1, int bp = 1);
     Triangular(const Triangular &rhs);
 public:
+    Triangular& Copy(const Triangular &rhs);
+    Triangular& operator=(const Triangular &rhs);
+public:
     int Length() const { return length_; }
     int BegPos() const { return beg_pos_; }
     int Elem(int pos) const { return elems_[pos - 1]; }
 
     void NextReset() const { next_ = beg_pos_ - 1; }
     bool Next(int &val) const;
-private:
-    int             beg_pos_;
-    int             length_;
-    mutable int     next_;
-public:
-    // Triangular& Copy(const Triangular &rhs);
-    Triangular& operator=(const Triangular &rhs);
-private:
-    static std::vector<int>     elems_;
-    static int                  init_size_;
-#if 1
-    //enum { max_size_ = 1024 };
-    static const int max_size_ = 1024;
-    int buf[max_size_];
-#endif
 public:
     static bool IsElem(int val);
     static void GenElements(int length);
     static void GenElemsToValue(int val);
     static void Display(int len, int bp, std::ostream &os = std::cout);
+private:
+    int             beg_pos_;
+    int             length_;
+    mutable int     next_;
+
+    static std::vector<int>     elems_;
+    //static int                  init_size_;
+    //enum { max_size_ = 1024 };
+    static const int max_size_ = 1024;
+    //int buf[max_size_];
 public:
     typedef TriangularIterator Iterator;
 

@@ -124,13 +124,9 @@ void SubVec(T beg, T end, V val, Comp cmp, T &first, T &last)
 }
 
 extern void InitExclusionSet(std::set<std::string> &exs);
-extern void ProcessFile(std::map<std::string, int> &word_map,
-                        const std::set<std::string> &exclude_set,
-                        std::ifstream &ifile);
-extern void DisplayWordCount(const std::map<std::string, int> &word_map,
-                            std::ostream &out = std::cout);
+extern void ProcessFile(std::map<std::string, int> &word_map, const std::set<std::string> &exclude_set, std::ifstream &ifile);
+extern void DisplayWordCount(const std::map<std::string, int> &word_map, std::ostream &out = std::cout);
 extern void UserQuery(const std::map<std::string, int> &word_map);
-
 class StrSizeComp
 {
 public:

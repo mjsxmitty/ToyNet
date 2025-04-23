@@ -7,46 +7,19 @@
 
 using namespace std;
 
-Triangular::Triangular(int len, int bp) :
-    beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
+vector<int> Triangular::elems_;
+//int         Triangular::init_size_ = 1024;
+
+Triangular::Triangular(int len, int bp) : beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
 {
     next_ = beg_pos_ - 1;
-    unsigned int elem_cnt = length_ + beg_pos_ + 1;
+    unsigned int elem_cnt = length_ + beg_pos_ - 1;
 
     if (elems_.size() < elem_cnt)
         GenElements(elem_cnt);
 }
 
-Triangular::Triangular(const Triangular &rhs) :
-                        beg_pos_(rhs.beg_pos_),
-                        length_(rhs.length_),
-                        next_(rhs.beg_pos_ - 1)
-{ }
-
-int Sum(const Triangular &item)
-{
-#if 0
-    int beg_pos = item.BegPos();
-    int len = item.Length();
-    int sum = 0;
-
-    for (int i = 0; i < len; ++i)
-    {
-        sum += item.Elem(beg_pos + i);
-    }
-    return sum;
-#endif
-    if (!item.Length()) 
-        return 0;
-
-    item.NextReset();
-
-    int val = 0, sum = 0;
-    while (item.Next(val))
-        sum += val;
-
-    return sum;
-}
+Triangular::Triangular(const Triangular &rhs) : beg_pos_(rhs.beg_pos_), length_(rhs.length_), next_(rhs.beg_pos_ - 1) { }
 
 bool Triangular::Next(int &val) const
 {
@@ -56,10 +29,9 @@ bool Triangular::Next(int &val) const
         return true;
     }
 
-    next_ = 0;
     return false;
 }
-#if 0
+
 Triangular& Triangular::Copy(const Triangular &rhs)
 {
     if (this != &rhs)
@@ -71,21 +43,19 @@ Triangular& Triangular::Copy(const Triangular &rhs)
 
     return *this;
 }
-#endif
+
 Triangular& Triangular::operator=(const Triangular &rhs)
 {
-    if (this != &rhs)
-    {
-        beg_pos_ = rhs.beg_pos_;
-        length_ = rhs.length_;
-        next_ = rhs.beg_pos_ - 1;
-    }
-
-    return *this;
+    return Copy(rhs);
 }
 
-vector<int> Triangular::elems_;
-int         Triangular::init_size_ = 1024;
+bool Triangular::IsElem(int val)
+{
+    if (!elems_.size() || elems_[elems_.size() - 1] < val)
+        GenElemsToValue(val);
+
+    return find(elems_.begin(), elems_.end(), val) != elems_.end();
+}
 
 void Triangular::GenElemsToValue(int value)
 {
@@ -108,14 +78,6 @@ void Triangular::GenElemsToValue(int value)
                 << value << " --- exceeds max size of "
                 << max_size_ << endl;
     }
-}
-
-bool Triangular::IsElem(int val)
-{
-    if (!elems_.size() || elems_[elems_.size() - 1] < val)
-        GenElemsToValue(val);
-
-    return find(elems_.begin(), elems_.end(), val) != elems_.end();
 }
 
 void Triangular::GenElements(int length)
@@ -158,6 +120,31 @@ Triangular::Iterator Triangular::Begin() const
 Triangular::Iterator Triangular::End() const
 {
     return Iterator(beg_pos_ + length_);    // 不需要-1
+}
+
+int Sum(const Triangular &item)
+{
+#if 0
+    int beg_pos = item.BegPos();
+    int len = item.Length();
+    int sum = 0;
+
+    for (int i = 0; i < len; ++i)
+    {
+        sum += item.Elem(beg_pos + i);
+    }
+#endif
+
+    if (!item.Length()) 
+        return 0;
+
+    item.NextReset();
+
+    int val = 0, sum = 0;
+    while (item.Next(val))
+        sum += val;
+
+    return sum;
 }
 
 ostream &operator<<(ostream &os, const Triangular &rhs)
