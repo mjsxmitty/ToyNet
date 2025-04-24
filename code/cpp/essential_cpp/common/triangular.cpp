@@ -3,14 +3,14 @@
 #include <algorithm>
 
 #include "triangular.h"
-#include "triangular_iterator.h"
+//#include "triangular_iterator.h"
 
 using namespace std;
 
 vector<int> Triangular::elems_;
 //int         Triangular::init_size_ = 1024;
 
-Triangular::Triangular(int len, int bp) : beg_pos_(bp > 1 ? bp : 1), length_(len > 1 ? len : 1)
+Triangular::Triangular(int len, int bp) : beg_pos_(bp > 0 ? bp : 1), length_(len > 0 ? len : 1)
 {
     next_ = beg_pos_ - 1;
     unsigned int elem_cnt = length_ + beg_pos_ - 1;
@@ -166,3 +166,4 @@ istream& operator>>(istream& in, Triangular& rhs)
 
     return in;
 }
+

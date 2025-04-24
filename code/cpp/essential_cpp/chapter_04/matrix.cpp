@@ -66,7 +66,7 @@ Matrix& Matrix::operator=(const Matrix &rhs)
 {
     if (this != &rhs)
     {
-        Destory();
+        Destory();//
 
         col_ = rhs.col();
         row_ = rhs.row();

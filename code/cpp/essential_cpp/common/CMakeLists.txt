@@ -3,7 +3,8 @@ set(SRC_FILES common.cpp
               num_sequence.cpp
               stack.cpp
               triangular.cpp
-              triangular_iterator.cpp)
+              triangular_iterator.cpp
+              )
 
 include_directories(.)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
