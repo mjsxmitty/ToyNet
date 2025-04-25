@@ -29,12 +29,12 @@ int CountLessThan(const vector<int> &vec, int comp)
 int SumLessThan(const std::vector<int> &vec, int comp)
 {
     LessThan lt(comp);
-    
+
     int sum = 0;
     for (size_t i = 0; i < vec.size(); i++)
         if (lt(vec[i]))
             sum += vec[i];
-    
+
     return sum;
 }
 

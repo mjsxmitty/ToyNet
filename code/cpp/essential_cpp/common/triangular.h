@@ -11,6 +11,7 @@
 class TriangularIterator;
 class Triangular
 {
+    friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
     friend class TriangularIterator;
     // friend int TriangularIterator::operator*() const;
     // friend void TriangularIterator::CheckIntegrity() const;
@@ -21,6 +22,9 @@ public:
 public:
     Triangular& Copy(const Triangular &rhs);
 public:
+    void Length(int len) { length_ = len; }
+    void BegPos(int pos) { beg_pos_ = pos; }
+
     int Length() const { return length_; }
     int BegPos() const { return beg_pos_; }
     int Elem(int pos) const { return elems_[pos - 1]; }
@@ -33,8 +37,6 @@ public:
     static void GenElemsToValue(int val);
     static void Display(int len, int bp, std::ostream &os = std::cout);
 public:
-    friend std::ostream &operator<<(std::ostream &os, const Triangular &rhs);
-
     static int max_size() { return max_size_; }
     static int elem_size() { return elems_.size(); }
 private:
@@ -53,9 +55,6 @@ public:
 
     Iterator Begin() const;
     Iterator End() const;
-public:
-    void Length(int len) { length_ = len; }
-    void BegPos(int pos) { beg_pos_ = pos; }
 };
 
 extern int Sum(const Triangular &item);

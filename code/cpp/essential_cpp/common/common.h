@@ -153,6 +153,24 @@ public:
     }
 };
 
+class LessThanObj
+{
+public:
+    LessThanObj(int val) : val_(val) {}
+    bool operator()(int nval) const;
+private:
+    int val_;
+};
+
+inline bool LessThanObj::operator()(int val) const
+{
+    return val < val_;
+}
+
+extern int CountLessThan(const std::vector<int> &vec, int comp);
+extern int SumLessThan(const std::vector<int> &vec, int comp);
+extern void PrintLessThan(const std::vector<int> &vec, int comp, std::ostream &os = std::cout);
+
 }
 
 #endif //__ESSENTIAL_CPP_COMMON_H__

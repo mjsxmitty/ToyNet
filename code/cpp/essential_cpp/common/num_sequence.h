@@ -60,4 +60,61 @@ inline bool CheckIntegrity(int size)
 
 }
 
+namespace ch_04
+{
+
+class NumSequence
+{
+public:
+    typedef void (NumSequence::*PtrType)(int);
+
+    enum NUM_SEQ {
+        NS_UNK = 0,
+        NS_FIB,
+        NS_PELL,
+        NS_LUCAS,
+        NS_TRI,
+        NS_SQ,
+        NS_PENT
+    };
+public:
+    NumSequence(int beg = 1, int len = 1, NUM_SEQ nst = NS_UNK);
+public:
+    void SetLength(int len);
+    void SetBegin(int beg);
+    void SetSequence(NUM_SEQ nst);
+
+    int Elem(int pos);
+    int Length() const { return length_; }
+    int Begin() const { return beg_pos_; }
+    const std::vector<int>* Sequence() const { return elem_; }
+public:
+    static int NumOfSequence() {return num_seq_;}
+    static NUM_SEQ SeqType(int num);
+private:
+    void Fibonacci(int pos);
+    void Pell(int pos);
+    void Lucas(int pos);
+    void Triangular(int pos);
+    void Sequare(int pos);
+    void Pentagonal(int pos);
+private:
+    bool CheckIntegrity(int pos);
+
+public:
+    int                 beg_pos_;
+    int                 length_;
+    PtrType             pmf_;       // 当前数列函数
+    std::vector<int>    *elem_;     // 当前数列的元素
+    NUM_SEQ             nst_;       // 当前数列
+
+    static const int                        num_seq_ = 7;       //数列个数（+1）
+    static const int                        max_seq_;
+    static PtrType                          func_arr_[num_seq_];
+    static std::vector<std::vector<int>>    seq_;
+};
+
+
+}
+
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__

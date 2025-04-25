@@ -13,6 +13,8 @@ public:
     Matrix(const Matrix &rhs);
     ~Matrix();
 
+    Matrix& operator=(const Matrix &rhs);
+public:
     Matrix& operator+=(const Matrix &rhs);
 
     int col() const {return col_; }
@@ -20,12 +22,11 @@ public:
 
     double& operator()(int row, int col) { return pmat_[row][col]; }
     double operator()(int row, int col) const { return pmat_[row][col]; }
-public:
-    Matrix& operator=(const Matrix &rhs);
 
     std::ostream& Print(std::ostream &os = std::cout)const;
 private:
     void Destory();
+    void Assign(int row, int col);
 private:
     int     row_,col_;
     double  **pmat_;

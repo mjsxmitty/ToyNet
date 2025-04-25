@@ -8,6 +8,7 @@
 using namespace std;
 
 vector<int> Triangular::elems_;
+const int   Triangular::max_size_;
 //int         Triangular::init_size_ = 1024;
 
 Triangular::Triangular(int len, int bp) : beg_pos_(bp > 0 ? bp : 1), length_(len > 0 ? len : 1)

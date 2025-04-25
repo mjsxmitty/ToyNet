@@ -13,11 +13,7 @@ Matrix::Matrix(int row, int col) : row_(row), col_(col)
 
 Matrix::Matrix(const Matrix &rhs) : row_(rhs.row_), col_(rhs.row_)
 {
-    pmat_ = new double* [row_];
-    for (int i = 0; i < row_; ++i)
-    {
-        pmat_[i] = new double[col_];
-    }
+    Assign(row_, col_);
 
     for (int ix = 0; ix < rhs.row(); ++ix)
     {
@@ -49,6 +45,15 @@ void Matrix::Destory()
     }
 }
 
+void Matrix::Assign(int row, int col)
+{
+    pmat_ = new double* [row_];
+    for (int i = 0; i < row_; ++i)
+    {
+        pmat_[i] = new double[col_];
+    }
+}
+
 Matrix& Matrix::operator+=(const Matrix &rhs)
 {
     for (int i = 0; i < rhs.col(); ++i)
@@ -70,6 +75,8 @@ Matrix& Matrix::operator=(const Matrix &rhs)
 
         col_ = rhs.col();
         row_ = rhs.row();
+
+        Assign(row_, col_);
 
         for (int ix = 0; ix < rhs.row(); ++ix)
             for (int jx = 0; jx < rhs.col(); ++jx)

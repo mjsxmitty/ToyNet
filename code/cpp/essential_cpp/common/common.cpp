@@ -390,4 +390,40 @@ void QueryMap(const string &family, svec_map familes)
     }
 }
 
+int CountLessThan(const vector<int> &vec, int comp)
+{
+    LessThanObj lt(comp);
+    int count = 0;
+
+    for (size_t ix = 0; ix < vec.size(); ++ix)
+        if (lt(vec[ix]))
+            ++count;
+
+    return count;
+}
+
+int SumLessThan(const std::vector<int> &vec, int comp)
+{
+    LessThanObj lt(comp);
+
+    int sum = 0;
+    for (size_t i = 0; i < vec.size(); i++)
+        if (lt(vec[i]))
+            sum += vec[i];
+
+    return sum;
+}
+
+void PrintLessThan(const vector<int> &vec, int comp, ostream &os)
+{
+    LessThanObj lt(comp);
+
+    auto it = vec.begin(), it_end = vec.end();
+    while ((it = find_if(it, it_end, lt)) != it_end)
+    {
+        os << *it << ' ';
+        ++it;
+    }
+}
+
 }
