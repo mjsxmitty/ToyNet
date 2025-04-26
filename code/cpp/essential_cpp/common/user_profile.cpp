@@ -30,7 +30,7 @@ void UserProfile::init_level_map()
     level_map_["Guru"] = Guru;
 }
 
-UserProfile::UserProfile(const string login, ULevel level) : 
+UserProfile::UserProfile(const string login, ULevel level) :
                             login_(login), times_logged_(1),
                             guesses_(0), correct_guesses_(0), level_(level)
 {
@@ -60,9 +60,9 @@ void UserProfile::reset_login(const string &val)
 {
     char buffer[16] = {0};
 
-    login_.substr(0, login_.find("-"));
+    // login_.substr(0, login_.find("-"));
 
-    snprintf(buffer, 16, "%s-%d", login_.c_str(), id++);
+    snprintf(buffer, 16, "%s-%d", val.c_str(), id++);
     login_ = buffer;
 }
 
@@ -70,7 +70,7 @@ void UserProfile::reset_level(const std::string &val)
 {
     if (level_map_.empty())
         init_level_map();
-    
+
     map<string, ULevel>::iterator it;
     level_ = ((it = level_map_.find(val)) != level_map_.end()) ? it->second : Beginner;
 }

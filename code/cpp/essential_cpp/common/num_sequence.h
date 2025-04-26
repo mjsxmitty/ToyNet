@@ -6,7 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-
+#include <map>
 namespace common
 {
 
@@ -65,8 +65,10 @@ namespace ch_04
 
 class NumSequence
 {
+    friend std::ostream& operator<<(std::ostream &os, const NumSequence &ns);
 public:
     typedef void (NumSequence::*PtrType)(int);
+    typedef std::vector<int>::iterator iterator;
 
     enum NUM_SEQ {
         NS_UNK = 0,
@@ -87,10 +89,45 @@ public:
     int Elem(int pos);
     int Length() const { return length_; }
     int Begin() const { return beg_pos_; }
-    const std::vector<int>* Sequence() const { return elem_; }
+    const std::vector<int>* Sequence() const;
+
+    bool Begin(iterator &it);
+    bool End(iterator &it);
 public:
     static int NumOfSequence() {return num_seq_;}
     static NUM_SEQ SeqType(int num);
+
+    int PosElem(int elem);
+    bool IsElem(int elem);
+    std::ostream& Print(std::ostream &os);
+
+    bool operator==( const NumSequence &rhs )
+    {
+        return ( beg_pos_ == rhs.beg_pos_ &&
+                 length_ == rhs.length_ &&
+                 pmf_ == rhs.pmf_ &&
+                 nst_ == rhs.nst_);
+    }
+
+    bool operator!=( const NumSequence &rhs )
+    {
+        return !( *this == rhs );
+    }
+
+    char const* WhatAmI() const
+    {
+        static const char* names[num_seq_] = {
+			"not set",
+			"fibonacci",
+			"pell",
+			"lucus",
+			"triangular",
+			"square",
+			"pentagonal"
+        };
+
+        return names[nst_];
+    }
 private:
     void Fibonacci(int pos);
     void Pell(int pos);
@@ -99,8 +136,18 @@ private:
     void Sequare(int pos);
     void Pentagonal(int pos);
 private:
-    bool CheckIntegrity(int pos);
-
+    static void InitSeqMap()
+    {
+        seq_map_[ "fibonacci" ] = NS_FIB;
+        seq_map_[ "pell" ] = NS_PELL;
+        seq_map_[ "lucus" ] = NS_LUCAS;
+        seq_map_[ "triangular" ] = NS_TRI;
+        seq_map_[ "square" ] = NS_SQ;
+        seq_map_[ "pentagonal" ] = NS_PENT;
+    }
+private:
+    bool CheckIntegrity(int pos) const;
+    int CalcPos(int elem);
 public:
     int                 beg_pos_;
     int                 length_;
@@ -112,9 +159,11 @@ public:
     static const int                        max_seq_;
     static PtrType                          func_arr_[num_seq_];
     static std::vector<std::vector<int>>    seq_;
+    static std::map<std::string, NUM_SEQ>   seq_map_;
 };
 
-
+extern void Display(std::ostream &os, NumSequence &ns, int pos, int elem_val);
+std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 }
 
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__

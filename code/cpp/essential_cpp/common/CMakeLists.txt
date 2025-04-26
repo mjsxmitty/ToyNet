@@ -4,6 +4,7 @@ set(SRC_FILES common.cpp
               stack.cpp
               triangular.cpp
               triangular_iterator.cpp
+              matrix.cpp
               )
 
 include_directories(.)

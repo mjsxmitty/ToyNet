@@ -4,10 +4,13 @@ using namespace std;
 
 Matrix::Matrix(int row, int col) : row_(row), col_(col)
 {
-    pmat_ = new double* [row_];
-    for (int i = 0; i < row_; ++i)
+    Assign(row_, col_);
+
+    int index_ = 0;
+    for (int ix = 0; ix < row_; ++ix)
     {
-        pmat_[i] = new double[col_];
+        for (int jx = 0; jx < col_; ++jx)
+            pmat_[ix][jx] = ++index_;
     }
 }
 

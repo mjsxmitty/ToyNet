@@ -123,10 +123,27 @@ int main()
 
     for (int ix = 1; ix < ch_04::NumSequence::NumOfSequence(); ++ix)
     {
+        ns.SetBegin(ix);
         ns.SetSequence(ch_04::NumSequence::SeqType(ix));
         elem_val = ns.Elem(pos);
-        //ch_04::Display(cout, ns, pos, elem_val);
+        ch_04::Display(cout, ns, pos, elem_val);
     }
+
+    ch_04::NumSequence ns1(1,2,ch_04::NumSequence::NS_FIB);
+    ch_04::NumSequence ns2(1,2,ch_04::NumSequence::NS_FIB);
+    cout << ( ns != ns1 ) << endl;
+    cout << ( ns2 == ns1 ) << endl;
+
+    int value;
+    cout << "enter a sequence value: ";
+    cin >> value;
+
+    bool ret = ns.IsElem(value);
+    if (ret)
+        cout << "elem " << value <<  " is " << ns.WhatAmI() << " elem, distance: "
+            << ns.PosElem(value) << endl;
+    else
+        cout << "elem " << value << " is not " << ns.WhatAmI() << " elem.\n";
 
     return 0;
 }
