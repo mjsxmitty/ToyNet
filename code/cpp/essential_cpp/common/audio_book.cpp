@@ -1,6 +1,6 @@
 #include "audio_book.h"
 
-namespace chapter_05
+namespace common
 {
 
 void AudioBook::Print() const

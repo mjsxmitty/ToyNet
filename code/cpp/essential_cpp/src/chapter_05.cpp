@@ -6,24 +6,23 @@
 #include "audio_book.h"
 
 using namespace std;
-using namespace chapter_05;
 
 int main()
 {
     {
-        LibMat libmat;
+        common::LibMat libmat;
         Print(libmat);
     }
     cout << "==================================" << endl;
 
     {
-        Book book("a", "b");
+        common::Book book("a", "b");
         Print(book);
     }
     cout << "==================================" << endl;
 
     {
-        AudioBook audio("1", "2", "3");
+        common::AudioBook audio("1", "2", "3");
         Print(audio);
     }
 

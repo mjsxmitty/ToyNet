@@ -5,16 +5,16 @@
 
 #include <iostream>
 #include <string>
+
 #include "mat.h"
 
-namespace chapter_05
+namespace common
 {
 
 class Book : public LibMat
 {
 public:
-    Book(const std::string &title, const std::string &author) :
-        title_(title), author_(author)
+    Book(const std::string &title, const std::string &author) : title_(title), author_(author)
     {
         std::cout << "Book::Book() ( " << title_ << ", "
                   << author_ << " ) constructor " << std::endl;

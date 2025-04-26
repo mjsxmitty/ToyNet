@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace chapter_05
+namespace common
 {
 
 void Print(const LibMat &mat)

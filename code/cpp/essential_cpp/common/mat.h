@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace chapter_05
+namespace common
 {
 
 class LibMat

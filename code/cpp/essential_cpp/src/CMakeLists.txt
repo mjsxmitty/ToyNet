@@ -12,3 +12,7 @@ target_include_directories(chapter_03 PUBLIC ../common)
 add_executable(chapter_04 "chapter_04.cpp")
 target_link_libraries(chapter_04 common)
 target_include_directories(chapter_04 PUBLIC ../common)
+
+add_executable(chapter_05 "chapter_05.cpp")
+target_link_libraries(chapter_05 common)
+target_include_directories(chapter_05 PUBLIC ../common)

@@ -5,6 +5,8 @@ set(SRC_FILES common.cpp
               triangular.cpp
               triangular_iterator.cpp
               matrix.cpp
+              mat.cpp
+              audio_book.cpp
               )
 
 include_directories(.)
