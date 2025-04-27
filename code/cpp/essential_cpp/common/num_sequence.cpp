@@ -531,3 +531,207 @@ ostream& operator<<(ostream &os, NumSequence &ns)
 }
 
 }
+
+namespace ch_05
+{
+
+namespace ns_ver1
+{
+
+std::ostream& operator<<(std::ostream &os, const NumSequence &ns)
+{
+    cout << " ( " << ns.Length() << ", " << ns.BegPos() << " ) ";
+    return  ns.Print(os);
+}
+
+bool NumSequence::CheckIntegrity(int pos, int size) const
+{
+    if (pos <=0 || pos >= max_elems_)
+    {
+        cerr << "invalid position: " << pos << endl;
+        return false;
+    }
+
+    if (pos > size)
+        GenElems(pos);  //
+
+    return true;
+}
+
+vector<int> Fibonacci::elems_;
+
+void Fibonacci::GenElems(int pos) const
+{
+    if (elems_.empty())
+    {
+        elems_.push_back(1);
+        elems_.push_back(1);
+    }
+
+    if(elems_.size() <= pos)
+    {
+        int ix = elems_.size();
+        int n2 = elems_[ix - 2];
+        int n1 = elems_[ix - 1];
+
+        for ( ; ix < pos; ++ix)
+        {
+            int elem = n1 + n2;
+            elems_.push_back(elem);
+            n2 = n1;
+            n1 = elem;
+        }
+    }
+
+    //length_ = elems_.size();
+}
+
+int Fibonacci::Elem(int pos) const
+{
+    if (!CheckIntegrity(pos, elems_.size()))    // 使用继承来的函数
+        return 0;
+#if 0
+    // 跳过虚函数机制
+    if (pos > elems_.size())
+        Fibonacci::GenElems(pos);
+#endif
+    return elems_[pos - 1];
+}
+
+const char* Fibonacci::WhatAmI() const
+{
+    return "Fibonacci";
+}
+
+ostream& Fibonacci::Print(ostream &os) const
+{
+    size_t elem_pos = beg_pos_ - 1;
+    size_t elem_cnt = elem_pos + length_;
+
+    if (elem_cnt > elems_.size())
+        Fibonacci::GenElems(elem_cnt);
+
+    while (elem_pos < elem_cnt)
+        os << elems_[elem_pos++] << ' ';
+
+    return os;
+}
+
+}
+
+namespace ns_ver2
+{
+
+NumSequence& NumSequence::operator=(const NumSequence &rhs)
+{
+    cout << "NumSequence::operator=(const NumSequence &r)" << endl;
+    if (this != &rhs)
+    {
+        length_ = rhs.length_;
+        beg_pos_ = rhs.beg_pos_;
+        relems_ = rhs.relems_;          // ?
+
+        name_ = rhs.name_;
+    }
+
+    return *this;
+}
+
+NumSequence::NumSequence(const NumSequence &rhs) :
+    relems_(rhs.relems_), beg_pos_(rhs.beg_pos_),
+    length_(rhs.length_), name_(rhs.name_)
+{
+    //cout << "NumSequence::NumSequence(const NumSequence &r)" << endl;
+}
+
+bool NumSequence::CheckIntegrity(int pos, int size) const
+{
+    if (pos <=0 || pos >= MaxElems())
+    {
+        cerr << "invalid position: " << pos
+             << " can not handle request!!"
+             << endl;
+        return false;
+    }
+
+    if (pos > size)
+        GenElems(pos);
+
+    return true;
+}
+
+NumSequence::NumSequence(int len, int beg, std::vector<int> &re, const string &s) :
+    length_(len), beg_pos_(beg), relems_(re), name_(s)
+{
+
+}
+
+int NumSequence::Elem(int pos) const
+{
+    if (!CheckIntegrity(pos, relems_.size()))
+        return 0;
+
+    return relems_[pos - 1];
+}
+
+ostream &NumSequence::Print(ostream &os) const
+{
+    size_t elem_pos = beg_pos_ - 1;
+    size_t elem_cnt = elem_pos + length_;
+
+    if (elem_cnt > relems_.size())
+        GenElems(elem_cnt);
+
+    while (elem_pos < elem_cnt)
+        os << relems_[elem_pos++]
+           << ' ';
+    os << endl;
+
+    return os;
+}
+
+
+vector<int> Fibonacci::elems_;
+
+Fibonacci::Fibonacci(int len, int beg) :
+                // NumSequence(len, beg, elems_){}
+                NumSequence(len, beg, elems_, "Fibonacci")
+{}
+
+Fibonacci::Fibonacci(const Fibonacci &rhs) : NumSequence(rhs) // 基类没有会自动调用默认
+{}
+
+Fibonacci& Fibonacci::operator=(const Fibonacci &rhs)
+{
+    if (this != &rhs)
+        NumSequence::operator=(rhs);    // 必须手动调用
+
+    return *this;
+}
+
+void Fibonacci::GenElems(int pos) const
+{
+    if (elems_.empty())
+    {
+        elems_.push_back(1);
+        elems_.push_back(1);
+    }
+
+    if(elems_.size() <= pos)
+    {
+        int ix = elems_.size();
+        int n2 = elems_[ix - 2];
+        int n1 = elems_[ix - 1];
+
+        for ( ; ix < pos; ++ix)
+        {
+            int elem = n1 + n2;
+            elems_.push_back(elem);
+            n2 = n1;
+            n1 = elem;
+        }
+    }
+}
+
+}
+}

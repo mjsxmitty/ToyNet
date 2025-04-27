@@ -166,4 +166,125 @@ extern void Display(std::ostream &os, NumSequence &ns, int pos, int elem_val);
 std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 }
 
+namespace ch_05
+{
+
+namespace ns_ver1
+{
+
+class NumSequence
+{
+    friend std::ostream& operator<<(std::ostream &os, const NumSequence &ns);
+public:
+    virtual ~NumSequence(){}
+public:
+    virtual int             Length() const = 0;
+    virtual int             BegPos() const = 0;
+    virtual int             Elem(int pos) const = 0;
+    virtual const char*     WhatAmI() const = 0;
+    virtual std::ostream&   Print(std::ostream &os = std::cout) const = 0;
+
+    static int              max_elems() { return max_elems_; }
+protected:
+    virtual void            GenElems(int pos) const = 0;
+    bool                    CheckIntegrity(int pos, int size) const;
+protected:
+    enum { max_elems_ = 1024 };
+};
+
+std::ostream& operator<<(std::ostream &os, const NumSequence &ns);
+
+inline void Display(std::ostream &os, const NumSequence &ns, int pos)
+{
+    os << "the element at position: " << pos
+        << " for the " << ns.WhatAmI() << " sequence is "
+        << ns.Elem(pos) << std::endl;
+}
+
+class Fibonacci : public NumSequence
+{
+public:
+    Fibonacci(int len = 1, int beg = 1) : length_(len), beg_pos_(beg) { }
+public:
+    int             Length() const { return length_; }
+    int             BegPos() const { return beg_pos_; }
+
+    int             Elem(int pos) const;
+    const char*     WhatAmI() const;
+    std::ostream&   Print(std::ostream &os = std::cout) const;
+protected:
+    void            GenElems(int pos) const;
+protected:
+    static std::vector<int> elems_;
+    int                     length_;
+    int                     beg_pos_;
+};
+
+}
+
+namespace ns_ver2
+{
+
+class NumSequence
+{
+public:
+    NumSequence(int len, int beg, std::vector<int> &re, const std::string &s);
+    virtual ~NumSequence() {}
+public:
+    virtual NumSequence* Clone() = 0;   //
+public:
+    //virtual const char* WhatAmI() const = 0;
+    //const char* WhatAmI() const {return name_.c_str();}
+    const char* WhatAmI() const
+    {
+        return typeid(*this).name();
+    }
+    int                 Elem(int pos) const;
+    std::ostream&       Print(std::ostream &os = std::cout) const;
+    int                 Length() const { return length_; }
+    int                 BegPos() const { return beg_pos_; }
+    
+    static int          MaxElems() { return 64; }
+protected:
+    virtual void        GenElems(int pos) const = 0;                // 
+    bool                CheckIntegrity(int pos, int size) const;
+protected:
+    int                 length_;
+    int                 beg_pos_;
+    std::vector<int>    &relems_;   // 另一种实现(指针);但是需要检查指针是否为空;引用不需要检查
+protected:
+    std::string         name_;
+
+    NumSequence& operator=(const NumSequence &rhs);
+    NumSequence(const NumSequence &rhs);
+};
+
+inline void Display(std::ostream &os, const NumSequence &ns, int pos)
+{
+    os << "the element at position: " << pos
+        << " for the " << ns.WhatAmI() << " sequence is "
+        << ns.Elem(pos) << std::endl;
+}
+
+
+class Fibonacci : public NumSequence
+{
+public:
+    Fibonacci(int len = 1, int beg = 1);
+    Fibonacci(const Fibonacci &rhs);
+    Fibonacci& operator=(const Fibonacci &rhs);
+public:
+    Fibonacci* Clone() { return new Fibonacci(*this); } // 调用拷贝构造
+    // const char* WhatAmI() const { return "fibonacci"; }
+protected:
+    void    GenElems(int pos) const;
+private:
+    static std::vector<int>    elems_;
+};
+
+}
+
+}
+
+
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__
