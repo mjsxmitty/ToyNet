@@ -171,6 +171,69 @@ extern int CountLessThan(const std::vector<int> &vec, int comp);
 extern int SumLessThan(const std::vector<int> &vec, int comp);
 extern void PrintLessThan(const std::vector<int> &vec, int comp, std::ostream &os = std::cout);
 
+template<typename ElemType, typename Comp = std::less<ElemType> >
+class LessThanPred
+{
+public:
+    LessThanPred(const ElemType &val): val_(val){}
+
+    bool operator()(const ElemType &val) const
+    {
+        return Comp()(val, val_);
+    }
+
+    ElemType val() const
+    {
+        return val_;
+    }
+
+    void Val(const ElemType &val)
+    {
+        val_ = val;
+    }
+
+private:
+    ElemType    val_;
+};
+
+class StringLess
+{
+public:
+    bool operator()(const std::string &s1, const std::string &s2)
+    {
+        return s1.size() < s2.size();
+    }
+};
+
+class PrintIt1
+{
+public:
+    PrintIt1(std::ostream &os) : os_(os) {}
+
+    template <typename ElemType>
+    void Print(const ElemType &val, char ch = '\n')
+    {
+        os_ << val << ch;
+    }
+private:
+    std::ostream   &os_;
+};
+
+template <typename OutStream>
+class PrintIt
+{
+public:
+    PrintIt(OutStream &os) : os_(os) {}
+
+    template <typename ElemType>
+    void Print(const ElemType &val, char ch = '\n')
+    {
+        os_ << val << ch;
+    }
+private:
+    OutStream   &os_;
+};
+
 }
 
 #endif //__ESSENTIAL_CPP_COMMON_H__
