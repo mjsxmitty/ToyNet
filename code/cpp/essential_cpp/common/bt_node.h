@@ -4,7 +4,7 @@
 
 #include <ostream>
 
-namespace chapter_06
+namespace common
 {
 
 template <typename Type>
@@ -16,6 +16,11 @@ class BTnode
     friend class BinaryTree<ValType>;
 public:
     BTnode(const ValType &);
+    BTnode& operator=(const BTnode &);
+public:
+    const ValType& Value() const { return val_; }
+    int Occurs() const { return cnt_; }
+    bool FindValue(const ValType &val) const;
 private:
     void InsertValue(const ValType &val);
     void RemoveValue(const ValType &val, BTnode *&prev);
@@ -34,7 +39,7 @@ private:
 };
 
 template<typename ValType>
-BTnode<ValType>::BTnode(const ValType &val) : val_(val) //
+BTnode<ValType>::BTnode(const ValType &val) : val_(val) // 防止类
 {
     cnt_ = 1;
     lchild_ = rchild_ = 0;
@@ -65,6 +70,27 @@ void BTnode<ValType>::InsertValue(const ValType &val)
             rchild_ = new BTnode<ValType>(val);
         else
             rchild_->InsertValue(val);
+    }
+}
+
+template<typename ValType>
+bool BTnode<ValType>::FindValue(const ValType &val) const
+{
+    if (val == val_) return true;
+
+    if (val < val_)
+    {
+        if (!lchild_)
+            return false;
+        else
+            lchild_->FindValue(val);
+    }
+    else
+    {
+        if (!rchild_)
+            return false;
+        else
+            rchild_->FindValue(val);
     }
 }
 
@@ -146,7 +172,10 @@ void BTnode<ValType>::Postorder(BTnode *pt, std::ostream &os)
 template<typename ValType>
 void BTnode<ValType>::DisplayVal(BTnode *pt, std::ostream &os)
 {
-    os << pt->val_ << ' ';
+    os << pt->val_;
+    if ( pt->cnt_ > 1)
+        os << "(" << pt->cnt_ << ")";
+    os << ' ';
 }
 
 }
