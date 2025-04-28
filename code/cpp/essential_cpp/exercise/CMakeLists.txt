@@ -20,3 +20,7 @@ target_include_directories(ex_3_3 PUBLIC ../common)
 add_executable(ex_3_4 "ex_3_4.cpp")
 target_link_libraries(ex_3_4 common)
 target_include_directories(ex_3_4 PUBLIC ../common)
+
+add_executable(ex_5_2 "ex_5_2.cpp")
+target_link_libraries(ex_5_2 common)
+target_include_directories(ex_5_2 PUBLIC ../common)

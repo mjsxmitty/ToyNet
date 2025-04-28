@@ -5,6 +5,9 @@
 
 using namespace std;
 
+namespace ver1
+{
+
 void FillStack(Stack &stack, istream &is)
 {
     string str;
@@ -58,3 +61,4 @@ int Stack::Count(const string &elem)
     return count(elems_.begin(), elems_.end(), elem);
 }
 
+}

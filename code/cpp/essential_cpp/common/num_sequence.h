@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-namespace common
+namespace ver1
 {
 
 typedef const std::vector<int>* pvec;
@@ -60,7 +60,7 @@ inline bool CheckIntegrity(int size)
 
 }
 
-namespace ch_04
+namespace ver2
 {
 
 class NumSequence
@@ -166,10 +166,7 @@ extern void Display(std::ostream &os, NumSequence &ns, int pos, int elem_val);
 std::ostream& operator<<(std::ostream &os, NumSequence &ns);
 }
 
-namespace ch_05
-{
-
-namespace ns_ver1
+namespace ver3
 {
 
 class NumSequence
@@ -222,7 +219,7 @@ protected:
 
 }
 
-namespace ns_ver2
+namespace ver4
 {
 
 class NumSequence
@@ -283,8 +280,5 @@ private:
 };
 
 }
-
-}
-
 
 #endif //__ESSENTIAL_CPP_NUMERIC_SEQUENCE_H__

@@ -11,8 +11,8 @@ using namespace std;
 
 int main1()
 {
-    Stack sta;
-    FillStack(sta, cin);
+    ver1::Stack sta;
+    ver1::FillStack(sta, cin);
 
     return 0;
 }
@@ -115,22 +115,22 @@ int main6()
 
 int main()
 {
-    ch_04::NumSequence ns;
+    ver2::NumSequence ns;
     int elem_val = 0;
     int pos;
     cout << "enter a position: ";
     cin >> pos;
 
-    for (int ix = 1; ix < ch_04::NumSequence::NumOfSequence(); ++ix)
+    for (int ix = 1; ix < ver2::NumSequence::NumOfSequence(); ++ix)
     {
         ns.SetBegin(ix);
-        ns.SetSequence(ch_04::NumSequence::SeqType(ix));
+        ns.SetSequence(ver2::NumSequence::SeqType(ix));
         elem_val = ns.Elem(pos);
-        ch_04::Display(cout, ns, pos, elem_val);
+        ver2::Display(cout, ns, pos, elem_val);
     }
 
-    ch_04::NumSequence ns1(1,2,ch_04::NumSequence::NS_FIB);
-    ch_04::NumSequence ns2(1,2,ch_04::NumSequence::NS_FIB);
+    ver2::NumSequence ns1(1,2,ver2::NumSequence::NS_FIB);
+    ver2::NumSequence ns2(1,2,ver2::NumSequence::NS_FIB);
     cout << ( ns != ns1 ) << endl;
     cout << ( ns2 == ns1 ) << endl;
 

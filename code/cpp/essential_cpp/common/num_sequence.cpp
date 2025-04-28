@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace common
+namespace ver1
 {
 
 //pvec (*seq_array[])(int)
@@ -189,7 +189,7 @@ bool SeqElem(int size, int &elem, pfunc f)
 
 }
 
-namespace ch_04
+namespace ver2
 {
 
 const int NumSequence::num_seq_;
@@ -532,10 +532,7 @@ ostream& operator<<(ostream &os, NumSequence &ns)
 
 }
 
-namespace ch_05
-{
-
-namespace ns_ver1
+namespace ver3
 {
 
 std::ostream& operator<<(std::ostream &os, const NumSequence &ns)
@@ -619,7 +616,7 @@ ostream& Fibonacci::Print(ostream &os) const
 
 }
 
-namespace ns_ver2
+namespace ver4
 {
 
 NumSequence& NumSequence::operator=(const NumSequence &rhs)
@@ -733,5 +730,4 @@ void Fibonacci::GenElems(int pos) const
     }
 }
 
-}
 }

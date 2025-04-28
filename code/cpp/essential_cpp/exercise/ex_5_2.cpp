@@ -2,9 +2,10 @@
 #include <iostream>
 
 #include "lifo_stack.h"
+#include "stack.h"
 
 using namespace std;
-using namespace chapter_05;
+using namespace ver2;
 
 int main()
 {
@@ -21,6 +22,7 @@ int main()
     string s;
     ls.pop(s);
     cout << s << endl;
+
     ls.peek(ls.top() - 1, s);
     cout << s << endl;
 

@@ -5,6 +5,7 @@
 #include "num_sequence.h"
 
 using namespace std;
+using namespace ver1;
 using namespace common;
 
 int main1()

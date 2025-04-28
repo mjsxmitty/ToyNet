@@ -7,6 +7,7 @@ set(SRC_FILES common.cpp
               matrix.cpp
               mat.cpp
               audio_book.cpp
+              lifo_stack.cpp
               )
 
 include_directories(.)

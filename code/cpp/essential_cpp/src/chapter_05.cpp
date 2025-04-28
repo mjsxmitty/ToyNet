@@ -32,7 +32,7 @@ int main1()
 
 int main2()
 {
-    using namespace ch_05::ns_ver1;
+    using namespace ver3;
 
     Fibonacci fib;
     cout << "fib: the begging at element 1 for 1 element: \n"
@@ -51,7 +51,7 @@ int main2()
 
 int main3()
 {
-    using namespace ch_05::ns_ver1;
+    using namespace ver3;
 
     const int pos = 8;
     Fibonacci fib;
@@ -65,7 +65,7 @@ int main3()
 
 int main4()
 {
-    using namespace ch_05::ns_ver1;
+    using namespace ver3;
     Fibonacci a;
     cout << a << endl;
 
@@ -81,7 +81,7 @@ int main4()
 
 int main5()
 {
-    using namespace ch_05::ns_ver2;
+    using namespace ver4;
 
     Fibonacci b;
     cout << b.WhatAmI() << endl;
@@ -97,7 +97,7 @@ int main5()
 
 int main()
 {
-    using namespace ch_05::ns_ver2;
+    using namespace ver4;
 
     Fibonacci fib;
     NumSequence *ps = &fib;

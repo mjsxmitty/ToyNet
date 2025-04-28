@@ -8,7 +8,7 @@
 
 #include "stack.h"
 
-namespace chapter_05
+namespace ver2
 {
 
 class LifoStack : public Stack

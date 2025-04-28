@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace chapter_05
+namespace ver2
 {
 
 bool LifoStack::pop(string &val)
