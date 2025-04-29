@@ -7,7 +7,7 @@
 std::istream& Grad::Read(std::istream &in)
 {
     ReadCommon(in);
-    ReadHw(in, 3, homework_);
+    ReadHw(in, homework_);
     in >> thesis_;
     return in;
 }

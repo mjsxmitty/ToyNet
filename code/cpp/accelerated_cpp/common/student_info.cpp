@@ -18,15 +18,15 @@ bool Compare(const StudentInfo &lhs, const StudentInfo &rhs)
     return lhs.name < rhs.name;
 }
 
-std::istream& Read(std::istream &is, size_t num, StudentInfo &s)
+std::istream& Read(std::istream &is, StudentInfo &s)
 {
     std::cout << "Please enter name, midterm and final: ";
     is >> s.name >> s.midterm >> s.final;
-    ReadHw(is, num, s.homework);
+    ReadHw(is, s.homework);
     return is;
 }
 
-std::istream& ReadHw(std::istream &in, size_t num, std::vector<double> &hw)
+std::istream& ReadHw(std::istream &in, std::vector<double> &hw)
 {
     std::cout << "Please enter homeworks: ";
 
@@ -35,11 +35,7 @@ std::istream& ReadHw(std::istream &in, size_t num, std::vector<double> &hw)
         hw.clear();
         double x;
         while (in >> x)
-        {
             hw.push_back(x);
-            if (hw.size() == num)
-                break;
-        }
             
         in.clear();
     }
@@ -135,7 +131,7 @@ std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students)
 
 std::istream &StudentInfo2::Read(std::istream &in)
 {
-    return ReadHw(in, 3, homework_);
+    return ReadHw(in, homework_);
 }
 
 double StudentInfo2::Grade() const

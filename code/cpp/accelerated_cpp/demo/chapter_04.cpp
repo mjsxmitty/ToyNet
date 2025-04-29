@@ -17,7 +17,7 @@ int main()
     StudentInfo          record;
     string::size_type    max_len = 0;
 
-    while (Read(cin, 3, record))
+    while (Read(cin, record))
     {
         max_len = max(max_len, record.name.size());
         students.push_back(record);

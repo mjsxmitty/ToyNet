@@ -15,8 +15,8 @@ struct StudentInfo
 
 bool Compare(const StudentInfo &, const StudentInfo &);
 
-std::istream& ReadHw(std::istream &in, size_t num, std::vector<double> &);
-std::istream& Read(std::istream &in, size_t num, StudentInfo &);
+std::istream& ReadHw(std::istream &in,  std::vector<double> &);
+std::istream& Read(std::istream &in, StudentInfo &);
 
 typedef double (*Analysis)(const std::vector<StudentInfo> &);
 

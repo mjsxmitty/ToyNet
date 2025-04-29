@@ -15,7 +15,7 @@ double Median(std::vector<double> vec)
     if (size == 0) {
         throw domain_error("median of an empty vector.");
     }
-    
+
     sort(vec.begin(), vec.end());
 
     vec_sz mid = size / 2;
