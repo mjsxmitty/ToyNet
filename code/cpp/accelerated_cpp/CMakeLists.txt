@@ -1,22 +1,23 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(accelerated_cpp VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.16)
+project(accelerated_cpp LANGUAGES CXX VERSION 0.1.0)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-
+set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall -ggdb -fPIC")
 set(CMAKE_BUILD_TYPE "Debug")
 
+# 添加 Cppcheck 分析目标
+add_custom_target(cppcheck_all
+    COMMAND cppcheck
+        --check-level=exhaustive
+        --enable=all
+        --project=${CMAKE_BINARY_DIR}/compile_commands.json
+        --error-exitcode=1
+    COMMENT "Running exhaustive Cppcheck analysis..."
+)
+
 add_subdirectory(common)
-add_subdirectory(chapter_02)
-add_subdirectory(chapter_03)
-add_subdirectory(chapter_04)
-add_subdirectory(chapter_05)
-add_subdirectory(chapter_06)
-add_subdirectory(chapter_07)
-add_subdirectory(chapter_11)
-add_subdirectory(chapter_12)
-add_subdirectory(chapter_13)
+add_subdirectory(demo)
+add_subdirectory(homework)
