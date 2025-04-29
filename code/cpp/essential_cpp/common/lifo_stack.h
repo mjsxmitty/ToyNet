@@ -30,7 +30,7 @@ public:
     int top() const {return top_; };
 
     bool empty() const {return elem_.empty(); };
-    bool full() const {return size() >= elem_.max_size(); };
+    bool full() const {return size() >= (int)elem_.max_size(); };
     void print(std::ostream &os = std::cout) const;
 
 private:

@@ -11,9 +11,15 @@ namespace common
 {
 
 template <typename ElemType>
+class BinaryTree;
+
+template <typename ElemType>
+std::ostream& operator<<(std::ostream &os, const BinaryTree<ElemType> &bt);
+
+template <typename ElemType>
 class BinaryTree
 {
-    friend std::ostream& operator<<(std::ostream &os, const BinaryTree<ElemType> &bt);
+    friend std::ostream& operator<< <>(std::ostream &os, const BinaryTree<ElemType> &bt);
 public:
     BinaryTree();
     BinaryTree(const BinaryTree &);

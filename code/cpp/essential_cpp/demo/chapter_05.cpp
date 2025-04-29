@@ -105,8 +105,8 @@ int main()
     if (typeid(*ps) == typeid(Fibonacci))
     {
         Fibonacci *p = static_cast<Fibonacci *>(ps);
-        cout << ps->WhatAmI() << endl;
-        //ps->Fibonacci::GenElems(64);   //error
+        cout << p->WhatAmI() << endl;
+        //p->Fibonacci::GenElems(64);   //error
     }
 #endif
 

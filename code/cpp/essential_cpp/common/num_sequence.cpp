@@ -267,7 +267,7 @@ int NumSequence::Elem(int pos)
     if (!CheckIntegrity(pos))
         return 0;
 
-    if (pos > elem_->size())
+    if (pos > (int)elem_->size())
     {
         (this->*pmf_)(pos);
     }
@@ -297,7 +297,7 @@ bool NumSequence::End(iterator &it)
     if ( !CheckIntegrity( length_ + beg_pos_ - 1 ) )
         return false;
 
-    it = elem_->begin() + length_ + beg_pos_ - 1;
+    it = elem_->begin() + length_ + beg_pos_;
     return true;
 }
 
@@ -343,7 +343,7 @@ ostream& NumSequence::Print(ostream &os)
         return os;
 
     int num = length_ + beg_pos_ - 1;
-    if ( elem_->size() < num )
+    if ( (int)elem_->size() < num )
         (this->*pmf_)(num);
 
     cout << " ( " <<  beg_pos_ << ", " << length_ << " ) ";
@@ -364,7 +364,7 @@ void NumSequence::Fibonacci(int pos)
         elem_->push_back( 1 ); 
     }
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int ix = elem_->size();
         int n_2 = (*elem_)[ix-2],
@@ -393,7 +393,7 @@ void NumSequence::Pell(int pos)
         elem_->push_back(2); 
     }
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int ix = elem_->size();
         int n_2 = (*elem_)[ix-2],
@@ -422,7 +422,7 @@ void NumSequence::Lucas(int pos)
         elem_->push_back( 3 ); 
     }
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int ix = elem_->size();
         int n_2 = (*elem_)[ix-2],
@@ -445,7 +445,7 @@ void NumSequence::Triangular(int pos)
     if ( pos <= 0 || pos > max_seq_ )
         return;
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int end_pos = pos+1;
         int ix = elem_->size()+1;
@@ -461,7 +461,7 @@ void NumSequence::Sequare(int pos)
     if ( pos <= 0 || pos > max_seq_ )
         return;
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int end_pos = pos + 1;
         int ix = elem_->size()+1;
@@ -477,7 +477,7 @@ void NumSequence::Pentagonal(int pos)
     if ( pos <= 0 || pos > max_seq_ )
         return;
 
-    if ( elem_->size() <= pos )
+    if ( (int)elem_->size() <= pos )
     {
         int end_pos = pos + 1;
         int ix = elem_->size()+1;
@@ -543,7 +543,7 @@ std::ostream& operator<<(std::ostream &os, const NumSequence &ns)
 
 bool NumSequence::CheckIntegrity(int pos, int size) const
 {
-    if (pos <=0 || pos >= max_elems_)
+    if (pos <=0 || pos >= MaxElems())
     {
         cerr << "invalid position: " << pos << endl;
         return false;
@@ -565,7 +565,7 @@ void Fibonacci::GenElems(int pos) const
         elems_.push_back(1);
     }
 
-    if(elems_.size() <= pos)
+    if((int)elems_.size() <= pos)
     {
         int ix = elems_.size();
         int n2 = elems_[ix - 2];
@@ -635,8 +635,8 @@ NumSequence& NumSequence::operator=(const NumSequence &rhs)
 }
 
 NumSequence::NumSequence(const NumSequence &rhs) :
-    relems_(rhs.relems_), beg_pos_(rhs.beg_pos_),
-    length_(rhs.length_), name_(rhs.name_)
+    length_(rhs.length_), beg_pos_(rhs.beg_pos_), 
+    relems_(rhs.relems_), name_(rhs.name_)
 {
     //cout << "NumSequence::NumSequence(const NumSequence &r)" << endl;
 }
@@ -714,7 +714,7 @@ void Fibonacci::GenElems(int pos) const
         elems_.push_back(1);
     }
 
-    if(elems_.size() <= pos)
+    if((int)elems_.size() <= pos)
     {
         int ix = elems_.size();
         int n2 = elems_[ix - 2];
@@ -728,6 +728,136 @@ void Fibonacci::GenElems(int pos) const
             n1 = elem;
         }
     }
+}
+
+}
+
+namespace ver7
+{
+std::vector<uint> Fibonacci::_elems;
+std::vector<uint> Pell::_elems;
+std::vector<uint> Lucas::_elems;
+std::vector<uint> Triangular::_elems;
+std::vector<uint> Square::_elems;
+std::vector<uint> Pentagonal::_elems;
+
+void Fibonacci::GenElems( int pos ) const
+{   
+	if ( pos <= 0 || 
+		 pos > NumSequence<Fibonacci>::MaxElems() )
+		       return;
+
+    if ( _elems.empty() )
+       { _elems.push_back( 1 ); _elems.push_back( 1 ); }
+
+    if ( (int)_elems.size() <= pos )
+	{
+		    int ix = (int)_elems.size();
+			int n_2 = _elems[ ix-2 ], 
+				n_1 = _elems[ ix-1 ];
+
+			int elem;
+			for ( ; ix <= pos; ++ix ){
+				    elem = n_2 + n_1; 
+					// cout << "GenElems: " << elem << endl;
+					_elems.push_back( elem );
+					n_2 = n_1; n_1 = elem;
+			}
+	 }
+}
+   
+void Pell::GenElems( int pos ) const    
+{    
+	if ( pos <= 0 || 
+		 pos > NumSequence<Pell>::MaxElems() )
+		       return;
+
+    if ( _elems.empty() )
+       {  _elems.push_back( 1 ); _elems.push_back( 2 ); }
+
+    if ( (int)_elems.size() <= pos )
+	{
+		    int ix = (int)_elems.size();
+			int n_2 = _elems[ ix-2 ], 
+				n_1 = _elems[ ix-1 ];
+
+			int elem;
+			for ( ; ix <= pos; ++ix ){
+				    elem = n_2 + 2 * n_1; 
+					_elems.push_back( elem );
+					n_2 = n_1; n_1 = elem;
+			}
+	 }
+}
+   
+void Lucas::GenElems( int pos ) const
+{     
+	if ( pos <= 0 || 
+		 pos > NumSequence<Lucas>::MaxElems() )
+		       return;
+
+    if ( _elems.empty() )
+       {  _elems.push_back( 1 ); _elems.push_back( 3 ); }
+
+    if ( (int)_elems.size() <= pos )
+	{
+		    int ix = (int)_elems.size();
+			int n_2 = _elems[ ix-2 ], 
+				n_1 = _elems[ ix-1 ];
+
+			int elem;
+			for ( ; ix <= pos; ++ix ){
+				    elem = n_2 +  n_1; 
+					_elems.push_back( elem );
+					n_2 = n_1; n_1 = elem;
+			}
+	 }
+}    
+
+void Triangular::GenElems( int pos ) const
+{
+	if ( pos <= 0 || 
+		 pos > NumSequence<Triangular>::MaxElems() )
+		       return;
+
+    if ( (int)_elems.size() <= pos )
+	{
+		int end_pos = pos+1;
+		int ix = (int)_elems.size()+1;
+		
+		for ( ; ix <= end_pos; ++ix )
+			  _elems.push_back( ix*(ix+1)/2 );
+	}
+}
+
+void Square::GenElems( int pos ) const
+{
+	if ( pos <= 0 || 
+		 pos > NumSequence<Square>::MaxElems() )
+		       return;
+
+    if ( (int)_elems.size() <= pos )
+	{
+		int end_pos = pos + 1;
+		int ix = (int)_elems.size()+1;
+		for ( ; ix <= end_pos; ++ix )
+			  _elems.push_back( ix*ix );
+	}
+}   
+    
+void Pentagonal::GenElems( int pos ) const
+{
+	if ( pos <= 0 || 
+		 pos > NumSequence<Pentagonal>::MaxElems() )
+		       return;
+
+    if ( (int)_elems.size() <= pos )
+	{
+		int end_pos = pos + 1;
+		int ix = (int)_elems.size()+1;
+		for ( ; ix <= end_pos; ++ix )
+			  _elems.push_back( ix*(3*ix-1)/2 );
+	}
 }
 
 }

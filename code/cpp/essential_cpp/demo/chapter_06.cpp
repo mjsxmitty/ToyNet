@@ -77,7 +77,7 @@ void fibonacci(int pos, std::vector<int> &seq)
         seq.push_back(1);
     }
 
-    if(seq.size() <= pos)
+    if((int)seq.size() <= pos)
     {
         int ix = seq.size();
         int n2 = seq[ix - 2];
@@ -100,6 +100,7 @@ int main3()
     NumSequence<fibonacci> nf2(12, 1);
     cout << "nf1: " << nf1 << endl;
     cout << "nf2: " << nf2 << endl;
+    return 0;
 }
 
 int main4()
@@ -109,12 +110,6 @@ int main4()
 
     cout << ltpi(1) << endl;
     cout << ltps("abc") << endl;
-
-    return 0;
-}
-
-int main()
-{
 
     return 0;
 }
@@ -133,6 +128,146 @@ int main7()
     PrintIt<ostream> to_standard_out(cout);
     to_standard_out.Print("Hello");
     to_standard_out.Print(1024);
+
+    return 0;
+}
+
+int main00()
+{
+    using namespace ver7;
+	const int pos = 8;
+
+	NumSequence<Fibonacci> fib;	
+	display( cout, fib, pos );
+
+	NumSequence<Pell> pell;
+	display( cout, pell, pos );
+
+	NumSequence<Lucas> lucas;
+	display( cout, lucas, pos );
+
+	NumSequence<Triangular> trian;
+	display( cout, trian, pos );
+	
+	NumSequence<Square> square;
+	display( cout, square, pos );
+
+	NumSequence<Pentagonal> penta;
+    display( cout, penta, pos );
+    return 0;
+}
+
+int main01()
+{
+    using namespace ver7;
+	NumSequence<Fibonacci>  fib( 3, 3 );
+	cout << "fib: " << fib.WhatAmI() << endl;
+	NumSequence<Pell>       pell( 4, 6 );
+	NumSequence<Lucas>      lucas( 7, 10 );
+	NumSequence<Triangular> trian( 12, 1 );
+	NumSequence<Square>     square( 6, 6 );
+	NumSequence<Pentagonal> penta( 8, 1 );
+	
+	cout << "fib: "    << fib    << '\n'
+	     << "pell: "   << pell   << '\n'
+		 << "lucas: "  << lucas  << '\n'
+		 << "trian: "  << trian  << '\n'
+		 << "square: " << square << '\n'
+		 << "penta: "  << penta  << endl;
+
+    return 0;
+};
+
+using namespace ver7;
+
+template <typename seq_type>
+void prog_3( seq_type ns, int elem_values )
+{
+	int elem_val = 0;
+	const int pos = 8;
+	const int find_pos = 14;
+
+    elem_val = ns.Elem( pos );
+    display( cout, ns, pos, elem_val );
+	cout << ns.WhatAmI() << " : ( " 
+		 << ns.BegPos()   << ", "
+		 << ns.Length()    << " ) : "
+		 << ns;
+	cout << endl;
+
+	ns.SetLength( 12 );
+	cout << ns << endl;
+
+	cout << "NumnSequence::is_elem() ";
+	if ( ! ns.IsElem( elem_val ) ||
+		   ns.IsElem( 2*elem_val ))
+				 cout << "failed\n";
+	else cout << "ok!\n";
+
+	cout << "copy constructor and equality ";
+	seq_type ns2 = ns;
+	if ( ns != ns2 )
+		 cout << "failed!\n";
+	else cout << "ok!\n";
+
+	ns2.SetPosition( 5 );
+ 
+	int posit = ns.PosElem( elem_val );
+	if ( ns.PosElem( elem_val ) != pos )
+	     cout << "pos_elem() failed : " << posit << "\n";
+	else cout << "pos_elem() -- ok: " << posit << "\n";
+
+	posit = ns.PosElem( elem_values );
+    if ( posit != find_pos ) 
+		 cout << "pos_elem(): not found but grown: failed: " 
+			  << posit << " correct: " << find_pos << "\n";
+    else cout << "pos_elem(): not found but grown: ok\n";
+
+	cout << "about to print final ns vector: \n";
+	ns.Print();
+	cout << endl;
+		  
+	cout << "ns2: should begin at position 5:\n" 
+		 << ns2 << endl;
+}
+
+int main()
+{
+	int elem_values[] = 
+		{ 377, 80782, 843, 105, 196, 287 };
+	
+	for ( int ix = 0; ix < 6; ++ix ) // test all
+	// for ( int ix = 0; ix < 1; ++ix )    // test 1 at time
+	{
+		switch( ix ) {
+		case 0: {
+			NumSequence<Fibonacci> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		case 1:{
+			NumSequence<Pell> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		case 2:{
+			NumSequence<Lucas> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		case 3:{
+			NumSequence<Triangular> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		case 4:{
+			NumSequence<Square> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		case 5:{
+			NumSequence<Pentagonal> ns( 1,8 );
+			prog_3( ns, elem_values[ix] );
+			break;}
+		default:
+			break;
+		}	
+	}
 
     return 0;
 }

@@ -117,10 +117,14 @@ void BTnode<ValType>::RemoveValue(const ValType &val, BTnode *&prev)
         {
             prev = rchild_;
             if (lchild_)
+            {
                 if (!prev->lchild_)
                     prev->lchild_ = lchild_;
                 else
                     LchildLeaf(lchild_, prev->lchild_);
+            }
+            else
+                return;
         }
         else
             prev = lchild_;

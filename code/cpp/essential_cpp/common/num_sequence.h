@@ -48,8 +48,8 @@ inline void DisPlay(const std::string &msg)
 
 inline bool CheckIntegrity(int size)
 {
-    const int max_elems = 1024;
-    if (size <= 0 || size > max_elems)
+    const int MaxElems = 1024;
+    if (size <= 0 || size > MaxElems)
     {
         std::cerr << "invalid size: " << size << std::endl;
         return false;
@@ -181,12 +181,12 @@ public:
     virtual const char*     WhatAmI() const = 0;
     virtual std::ostream&   Print(std::ostream &os = std::cout) const = 0;
 
-    static int              max_elems() { return max_elems_; }
+    static int              MaxElems() { return MaxElems_; }
 protected:
     virtual void            GenElems(int pos) const = 0;
     bool                    CheckIntegrity(int pos, int size) const;
 protected:
-    enum { max_elems_ = 1024 };
+    enum { MaxElems_ = 1024 };
 };
 
 std::ostream& operator<<(std::ostream &os, const NumSequence &ns);
@@ -292,11 +292,11 @@ public:
 public:
     int             Elem(int pos);
     const char*     WhatAmI() const;
-    static int      MaxElems() { return max_elems_; }
+    static int      MaxElems() { return MaxElems_; }
     std::ostream&   Print(std::ostream &os = std::cout) const;
 protected:
     std::vector<int>    *pelems_;
-    static const int    max_elems_ = 1024;
+    static const int    MaxElems_ = 1024;
 protected:
     NumSequence(std::vector<int> *pv) : pelems_(pv){}
 protected:
@@ -330,7 +330,7 @@ template<int len, int beg_pos>
 std::ostream &NumSequence<len, beg_pos>::Print(std::ostream &os) const
 {
     int elem_cnt = len + beg_pos - 1;
-    if (elem_cnt > pelems_->size())
+    if (elem_cnt > (int)pelems_->size())
         GenElems(elem_cnt);
 
     int elem_pos = beg_pos - 1;
@@ -345,7 +345,7 @@ std::ostream &NumSequence<len, beg_pos>::Print(std::ostream &os) const
 template<int len, int beg_pos>
 bool NumSequence<len, beg_pos>::CheckIntegrity(int pos, int size) const
 {
-    if (pos <= 0 || pos >= max_elems_)
+    if (pos <= 0 || pos >= MaxElems_)
     {
         std::cerr << "invalid position: " << pos
              << " can not handle request!!"
@@ -382,7 +382,7 @@ void Fibonacci<len, beg_pos>::GenElems(int pos) const
         elems_.push_back(1);
     }
 
-    if(elems_.size() <= pos)
+    if((int)elems_.size() <= pos)
     {
         int ix = elems_.size();
         int n2 = elems_[ix - 2];
@@ -404,13 +404,19 @@ namespace ver6
 {
 
 template <void (*pf)(int pos, std::vector<int> &seq)>
+class NumSequence;
+
+template<void (*pf)(int pos, std::vector<int> &seq)>
+std::ostream& operator<<(std::ostream &os, const NumSequence<pf> &ns);
+
+template <void (*pf)(int pos, std::vector<int> &seq)>
 class NumSequence
 {
-    friend std::ostream& operator<<(std::ostream &os, const NumSequence<pf> &ns);
+    friend std::ostream& operator<< <>(std::ostream &os, const NumSequence<pf> &ns);
 public:
     NumSequence(int len, int bp = 1)
     {
-        if (!pf) return;
+        // if (!pf) return;
 
         len_ = len > 0 ? len : 1;
         beg_pos_ = bp > 0 ? bp : 1;
@@ -442,6 +448,263 @@ std::ostream& operator<<(std::ostream &os, NumSequence<pf> &ns)
 {
     ns.Print(os);
     return os;
+}
+
+}
+
+namespace ver7
+{
+
+typedef unsigned int Uint;
+
+template<typename SeqType>
+class NumSequence;
+
+template<typename SeqType>
+std::ostream& operator<<( std::ostream &os, const NumSequence<SeqType> &ns );
+
+template<typename SeqType>
+class NumSequence
+{
+public:
+    typedef std::vector<unsigned int>::iterator Iterator;
+
+    NumSequence( int len = 1, int bp = 1 );
+public:
+    Uint Elem( int pos ) const;
+    bool IsElem( Uint elem ) const;
+    int PosElem( Uint elem) const;
+
+    const char* WhatAmI() const { return SeqType::WhatAmI(); }
+    static int MaxElems() { return MaxElems_; }
+    std::ostream& Print( std::ostream &os = std::cout ) const;
+
+    void SetPosition( int pos );
+    void SetLength( int len );
+
+    bool operator==(const NumSequence &) const;
+    bool operator!=(const NumSequence &) const;
+
+    const std::vector<Uint>* Sequence() const { return pelems_; }
+    Iterator Begin() const { return pelems_->begin() + beg_pos_ - 1; }
+    Iterator End() const { return pelems_->begin() + beg_pos_ + length_; }
+
+    int Length() const { return length_; }
+    int BegPos() const { return beg_pos_; }
+protected:
+    void GenElems( int pos ) const { ns_.GenElems( pos ); }
+    bool CheckInterity( int pos, int size ) const;
+    int CalcPos( Uint Elem ) const;
+protected:
+    SeqType             ns_;
+    int                 length_;
+    int                 beg_pos_;
+    std::vector<Uint>   *pelems_;
+
+    static const int    MaxElems_;
+};
+
+template<typename SeqType>
+const int NumSequence<SeqType>::MaxElems_ = 1024;
+
+template<typename SeqType>
+std::ostream& operator<<( std::ostream &os, const NumSequence<SeqType> &ns )
+{
+    return ns.Print(os);
+}
+
+template<typename SeqType>
+inline bool NumSequence<SeqType>::operator==( const NumSequence &rhs ) const
+{
+    return ( beg_pos_ == rhs.beg_pos_ ) && ( length_ == rhs.length_ );
+}
+
+template<typename SeqType>
+inline bool NumSequence<SeqType>::operator!=( const NumSequence &rhs ) const
+{
+    return !( *this == rhs );
+}
+
+template<typename SeqType>
+void NumSequence<SeqType>::SetPosition( int pos )
+{
+    if ( pos <= 0 || pos >= MaxElems_ )
+    {
+        std::cerr << "invalid position: " << pos << " default setting 1\n";
+        beg_pos_ = 1;
+    }
+
+    beg_pos_ = pos;
+}
+
+template<typename SeqType>
+void NumSequence<SeqType>::SetLength( int len )
+{
+    if ( len <= 0 || len + beg_pos_ - 1 > MaxElems_ )
+    {
+        std::cerr << "invalid length: " << len << " default setting 1\n";
+        length_ = 1;
+    }
+
+    length_ = len;
+}
+
+template<typename SeqType>
+NumSequence<SeqType>::NumSequence( int len, int bp ) : length_(len),beg_pos_(bp), pelems_( SeqType::ElemSet() )
+{
+    SetLength(len);
+    SetPosition(bp);
+}
+
+template<typename SeqType>
+Uint NumSequence<SeqType>::Elem( int pos ) const
+{
+    return ( !CheckInterity( pos, pelems_->size() )) ? 0 : (*pelems_)[ pos - 1 ];
+}
+
+template<typename SeqType>
+bool NumSequence<SeqType>::CheckInterity( int pos, int size ) const
+{
+    if ( pos <= 0 || pos >= MaxElems_ )
+    {
+        std::cerr << "invalid position: " << pos << " can not handle request!\n";
+        return false;
+    }
+
+    if ( size > MaxElems_ )
+    {
+        std::cerr << "invalid size: " << size << " can not handle request!\n";
+        return false;
+    }
+
+    if ( pos > size )
+        GenElems( pos );
+
+    return true;
+}
+
+template<typename SeqType>
+std::ostream& NumSequence<SeqType>::Print( std::ostream &os ) const
+{
+    int beg_pos = beg_pos_ - 1;
+    int end_pos = beg_pos + length_;
+
+    if ( !CheckInterity( end_pos, pelems_->size() ) )
+        return os;
+
+    os << "( " << beg_pos_ << ", " << length_ << " )";
+    while ( beg_pos < end_pos )
+        os << (*pelems_)[beg_pos++] << ' ';
+    os << std::endl;
+    
+    return os;
+}
+
+template<typename SeqType>
+inline bool NumSequence<SeqType>::IsElem( Uint elem ) const
+{
+    return ( (!CheckInterity( beg_pos_, pelems_->size() ) ) ? false : binary_search( Begin(), End(), elem ) );
+}
+
+template<typename SeqType>
+inline int NumSequence<SeqType>::PosElem( Uint elem ) const
+{
+    if ( ( *pelems_ )[pelems_->size() - 1] < elem )
+        return CalcPos( elem );
+
+    Iterator it = find( pelems_->begin(), pelems_->end(), elem );
+    return ( it == pelems_->end() ? 0 : distance( pelems_->begin(), it ) + 1 );
+}
+
+template<typename SeqType>
+inline int NumSequence<SeqType>::CalcPos( Uint elem ) const
+{
+    int pos = pelems_->size() - 1;
+    while ( pos < MaxElems_ && (*pelems_)[pos] < elem )
+    {
+        ns_.GenElems( ++pos );
+    }
+    
+    return ( ( pos < MaxElems_ ) &&  (*pelems_)[pos] == elem ) ? pos + 1 : 0;
+}
+
+class Fibonacci {
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Fibonacci"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+class Pell {
+public:
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Pell"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+class Lucas {
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Lucas"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+class Triangular {
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Triangular"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+class Square {
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Square"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+class Pentagonal {
+public:
+    void  GenElems( int pos ) const;
+    static std::vector<uint>* ElemSet() { return &_elems; }
+    static const char* WhatAmI() { return "Pentagonal"; }
+
+protected:
+    static std::vector<uint> _elems;
+};
+
+template <typename SeqType>
+inline void display( std::ostream &os, const NumSequence<SeqType> &ns, int pos )
+{
+	os << "The element at position " 
+	   << pos            << " for the "
+	   << ns.WhatAmI() << " sequence is " 
+	   << ns.Elem( pos ) << std::endl;
+}
+
+template <typename SeqType>
+inline void display( std::ostream &os, const NumSequence<SeqType> &ns, int pos, int elem_val )
+{
+	os << "The element at position " 
+	   << pos            << " for the "
+	   << ns.WhatAmI() << " sequence is " 
+	   << elem_val << std::endl;
 }
 
 }
