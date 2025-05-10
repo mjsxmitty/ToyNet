@@ -5,13 +5,7 @@
 
 #include "str_util.h"
 
-using std::vector;
-using std::string;
-using std::max;
-using std::find_if;
-using std::equal;
-using std::find;
-using std::search;
+using namespace std;
 
 vector<string> Split(const string &s)
 {
@@ -20,18 +14,19 @@ vector<string> Split(const string &s)
     typedef string::size_type StrSz;
 
     StrSz i = 0;
-    while (i != s.size()) 
+    while (i != s.size())
     {
-        while (i != s.size() && isspace(s[i])) 
+        while (i != s.size() && isspace(s[i]))
             ++i;
 
         StrSz j = i;
-        while (j != s.size() && !isspace(s[j])) 
+        while (j != s.size() && !isspace(s[j]))
             ++j;
-        
+
         if (i != j)
         {
-            ret.push_back(string(i, j - i));
+            ret.push_back(s.substr(i, j - i));
+            //ret.push_back(string(i, j - i));
             i = j;
         }
     }
@@ -42,30 +37,31 @@ vector<string> Split(const string &s)
     vector<string>  ret;
 
     iter i = s.begin();
-    while (i != s.end()) 
+    while (i != s.end())
     {
         i = find_if(i, s.end(), NotSpace);
 
         iter j = find_if(i, s.end(), IsSpace);
 
-        if (i != s.end()) 
+        if (i != s.end())
             ret.push_back(string(i, j));
 
         i = j;
     }
-    
+
     return ret;
 }
 
-string::size_type Width(const vector<string>& v)
+string::size_type Width(const vector<string> &v)
 {
     string::size_type max_len = 0;
     for (vector<string>::size_type i = 0; i != v.size(); i++)
         max_len = max(max_len, v[i].size());
+
     return max_len;
 }
 
-vector<string> Frame(const vector<string>& v)
+vector<string> Frame(const vector<string> &v)
 {
     vector<string> ret;
     string::size_type max_len = Width(v);
@@ -81,7 +77,7 @@ vector<string> Frame(const vector<string>& v)
     return ret;
 }
 
-vector<string> Vcat(const vector<string>& top, const vector<string>& bottom)
+vector<string> Vcat(const vector<string> &top, const vector<string> &bottom)
 {
     vector<string> ret = top;
 #if 0
@@ -93,13 +89,13 @@ vector<string> Vcat(const vector<string>& top, const vector<string>& bottom)
     return ret;
 }
 
-vector<string> Hcat(const vector<string>& left, const vector<string>& right)
+vector<string> Hcat(const vector<string> &left, const vector<string> &right)
 {
     vector<string> ret;
     string::size_type width = Width(left) + 1;
 
     vector<string>::size_type i = 0, j = 0;
-    while (i != left.size() || j != right.size()) 
+    while (i != left.size() || j != right.size())
     {
         string s;
         if (i != left.size())
@@ -112,7 +108,7 @@ vector<string> Hcat(const vector<string>& left, const vector<string>& right)
 
         ret.push_back(s);
     }
-    
+
     return ret;
 }
 
@@ -138,14 +134,14 @@ string::const_iterator UrlBeg(string::const_iterator b, string::const_iterator e
     typedef string::const_iterator iter;
 
     iter i = b;
-    while ((i = search(i, e, seq.begin(), seq.end())) != e) 
+    while ((i = search(i, e, seq.begin(), seq.end())) != e)
     {
-        if (i != b && i + seq.size() != e) 
+        if (i != b && i + seq.size() != e)
         {
             iter beg = i;
             while (beg != b && isalpha(beg[-1]))
                 --beg;
-            
+
             if (beg != i && i + seq.size() != e && !NotUrlChar(i[seq.size()]))
                 return beg;
         }
@@ -153,7 +149,7 @@ string::const_iterator UrlBeg(string::const_iterator b, string::const_iterator e
         if (i != e)
             i += seq.size();
     }
-    
+
     return e;
 }
 
@@ -161,8 +157,8 @@ vector<string> FindUrls(const string &s)
 {
     vector<string> ret;
     typedef string::const_iterator iter;
-    iter b = s.begin(), e = s.end();
 
+    iter b = s.begin(), e = s.end();
     while (b != e)
     {
         b = UrlBeg(b, e);
@@ -173,12 +169,11 @@ vector<string> FindUrls(const string &s)
             b = after;
         }
     }
-    
+
     return ret;
 }
 
-std::map<std::string, std::vector<int>> Xref(std::istream &in,
-                std::vector<std::string> (*FindWords)(const std::string &str))
+std::map<std::string, std::vector<int>> Xref(std::istream &in, std::vector<std::string> (*FindWords)(const std::string &str))
 {
     std::string line;
     std::map<std::string, std::vector<int>> ret;

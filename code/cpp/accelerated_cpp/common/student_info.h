@@ -13,23 +13,21 @@ struct StudentInfo
     std::vector<double> homework;
 };
 
-bool Compare(const StudentInfo &, const StudentInfo &);
+extern bool Compare(const StudentInfo &, const StudentInfo &);
 
-std::istream& ReadHw(std::istream &in,  std::vector<double> &);
-std::istream& Read(std::istream &in, StudentInfo &);
+extern std::istream& ReadHw(std::istream &in,  std::vector<double> &);
+extern std::istream& Read(std::istream &in, StudentInfo &);
 
 typedef double (*Analysis)(const std::vector<StudentInfo> &);
 
-bool DidAllHW(const StudentInfo &s);
-void WriteAnalysis(std::ostream &os, const std::string &name, 
-                    Analysis,
-                    std::vector<StudentInfo> &did,
-                    std::vector<StudentInfo> &didnt);
-double MedianAnalysis(const std::vector<StudentInfo> &students);
-double AverageAnalysis(const std::vector<StudentInfo> &students);
-double OptimisticAnalysis(const std::vector<StudentInfo> &students);
+extern bool DidAllHW(const StudentInfo &s);
+extern void WriteAnalysis(std::ostream &os, const std::string &name, Analysis,
+                          std::vector<StudentInfo> &did, std::vector<StudentInfo> &didnt);
+extern double MedianAnalysis(const std::vector<StudentInfo> &students);
+extern double AverageAnalysis(const std::vector<StudentInfo> &students);
+extern double OptimisticAnalysis(const std::vector<StudentInfo> &students);
 
-std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students);
+extern std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students);
 
 class StudentInfo2
 {

@@ -8,74 +8,77 @@
 #include "grade.h"
 #include "median.h"
 
-using std::transform;
-using std::accumulate;
-using std::back_inserter;
-using std::vector;
+using namespace std;
 
 bool Compare(const StudentInfo &lhs, const StudentInfo &rhs)
 {
     return lhs.name < rhs.name;
 }
 
-std::istream& Read(std::istream &is, StudentInfo &s)
+istream& Read(istream &is, StudentInfo &s)
 {
-    std::cout << "Please enter name, midterm and final: ";
+    cout << "Please enter name, midterm and final: ";
     is >> s.name >> s.midterm >> s.final;
     ReadHw(is, s.homework);
+    cout << "read end...\n";
     return is;
 }
 
-std::istream& ReadHw(std::istream &in, std::vector<double> &hw)
+istream& ReadHw(istream &in, vector<double> &hw)
 {
-    std::cout << "Please enter homeworks: ";
+    cout << "Please enter homeworks: ";
 
     if (in)
     {
         hw.clear();
+
         double x;
         while (in >> x)
+        {
             hw.push_back(x);
-            
+            if ( hw.size() == 3 )
+            break;
+        }
+
         in.clear();
     }
-    
+
     return in;
 }
 
 bool DidAllHW(const StudentInfo &s)
 {
-    return ((std::find(s.homework.begin(), s.homework.end(), 0)) != s.homework.end());
+    return ((find(s.homework.begin(), s.homework.end(), 0)) != s.homework.end());
 }
 
-void WriteAnalysis(std::ostream &os, const std::string &name, 
-                    double (*Analysis)(const std::vector<StudentInfo> &),
-                    std::vector<StudentInfo> &did,
-                    std::vector<StudentInfo> &didnt)
+void WriteAnalysis(ostream &os, const string &name, double (*Analysis)(const vector<StudentInfo> &v),
+                   vector<StudentInfo> &did, vector<StudentInfo> &didnt)
 {
-    os << name << ", (did)=" << Analysis(did)
-                << ", (didnt)=" << Analysis(didnt)
-                << std::endl;
+    os << name
+       << ", (did)=" << Analysis(did)
+       << ", (didnt)=" << Analysis(didnt)
+       << endl;
 }
 
 double GradeAux(const StudentInfo &s)
 {
-    try {
+    try
+    {
         return Grade(s);
-    } catch(const std::exception& e) {
-        std::cerr << "error: " << e.what() << '\n';
+    } catch(const exception& e) {
+        cerr << "error: " << e.what() << '\n';
         return Grade(s.midterm, s.final, 0);
     }
 }
 
 double MedianAnalysis(const vector<StudentInfo>& students)
-{   
+{
     vector<double> ret;
     transform(students.begin(), students.end(), back_inserter(ret), GradeAux);
     return Median(ret);
 }
 
-double Average(const vector<double>& v)
+double Average(const vector<double> &v)
 {
     return accumulate(v.begin(), v.end(), 0.0) / v.size();
 }
@@ -94,42 +97,39 @@ double AverageAnalysis(const vector<StudentInfo>& students)
 
 double OptimisticGrade(const StudentInfo& s)
 {
-    std::vector<double> nozero;
-    std::remove_copy(s.homework.begin(), s.homework.end(), 
-                        std::back_inserter(nozero), 0);
+    vector<double> nozero;
+    remove_copy(s.homework.begin(), s.homework.end(), back_inserter(nozero), 0);
     if (nozero.empty())
         return Grade(s.midterm, s.midterm, 0);
     else
         return Grade(s.midterm, s.final, Median(s.homework));
 }
 
-double OptimisticAnalysis(const std::vector<StudentInfo> &students)
+double OptimisticAnalysis(const vector<StudentInfo> &students)
 {
-    std::vector<double> ret;
-    std::transform(students.begin(), students.end(), std::back_inserter(ret), OptimisticGrade);
+    vector<double> ret;
+    transform(students.begin(), students.end(), back_inserter(ret), OptimisticGrade);
     return Median(ret);
 }
 
-std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students)
+vector<StudentInfo> ExtractFails(vector<StudentInfo> &students)
 {
 #if 0
-    std::vector<StudentInfo> fail;
-    std::remove_copy_if(students.begin(), students.end(), std::back_inserter(fail),
-                            PGrade);
-    
-    students.erase(std::remove_if(students.begin(), students.end(), FGrade), students.end());
+    vector<StudentInfo> fail;
+    remove_copy_if(students.begin(), students.end(), back_inserter(fail), PGrade);
+    students.erase(remove_if(students.begin(), students.end(), FGrade), students.end());
 #endif
-    std::vector<StudentInfo>::iterator it = 
-                std::stable_partition(students.begin(), students.end(),PGrade);
-    std::vector<StudentInfo> fail(it, students.end());
+
+    vector<StudentInfo>::iterator it = stable_partition(students.begin(), students.end(), PGrade);
+    vector<StudentInfo> fail(it, students.end());
     students.erase(it, students.end());
-    
+
     return fail;
 }
 
 /***************************************************************************************************/
 
-std::istream &StudentInfo2::Read(std::istream &in)
+istream &StudentInfo2::Read(istream &in)
 {
     return ReadHw(in, homework_);
 }
@@ -143,13 +143,13 @@ double StudentInfo2::Grade() const
 
 #include "grad.h"
 
-std::istream& StudentInfo3::Read(std::istream &in)
+istream& StudentInfo3::Read(istream &in)
 {
     delete cp_;
 
     char c;
     in >> c;
-    std::cout << "1" << std::endl;
+    cout << "1" << endl;
     if (c == 'u')
     {
         cp_ = new Core(in);
@@ -186,7 +186,7 @@ StudentInfo3& StudentInfo3::operator=(const StudentInfo3 &s)
 
 /***************************************************************************************************/
 
-std::istream& StudentInfo4::Read(std::istream &in)
+istream& StudentInfo4::Read(istream &in)
 {
     char ch;
     in >> ch;
@@ -205,5 +205,5 @@ void StudentInfo4::ReGrade(double final, double thesis)
     if (cp_)
         cp_->Regrade(final, thesis);
     else
-        throw std::runtime_error("regrade of unknow student.");
+        throw runtime_error("regrade of unknow student.");
 }
