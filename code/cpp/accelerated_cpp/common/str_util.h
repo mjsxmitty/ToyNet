@@ -44,7 +44,8 @@ void Split(const std::string& str, Out out)
     }
 }
 
-std::map<std::string, std::vector<int>> Xref(std::istream &in, std::vector<std::string> (*FindWords)(const std::string &str) = Split);
+extern std::map<std::string, std::vector<int>>
+Xref(std::istream &in, std::vector<std::string> (*FindWords)(const std::string &str) = Split);
 
 
 #endif //__ACCELERATED_CPP_STR_H__

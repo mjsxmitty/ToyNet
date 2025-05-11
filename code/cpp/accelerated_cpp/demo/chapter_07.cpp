@@ -4,12 +4,15 @@
 #include <string>
 #include <fstream>
 #include <stdio.h>
+#include <time.h>
+
 #include "grammar.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
     if (argc != 2)
     {
         fprintf(stderr, "usage: %s <file path>.\n", argv[0]);

@@ -6,34 +6,36 @@
 #include "str_util.h"
 #include "grammar.h"
 
-Grammar ReadGrammar(std::istream &in)
+using namespace std;
+
+Grammar ReadGrammar(istream &in)
 {
     Grammar ret;
-    std::string line;
+    string line;
 
-    while (std::getline(in, line))
+    while (getline(in, line))
     {
-        std::vector<std::string> entry = Split(line);
+        vector<string> entry = Split(line);
         if (!entry.empty())
-            ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end())); 
+            ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end()));
     }
-    
+
     return ret;
 }
 
-std::vector<std::string> GenSentence(const Grammar &g)
+vector<string> GenSentence(const Grammar &g)
 {
-    std::vector<std::string> ret;
+    vector<string> ret;
     GenAux(g, "<sentences>", ret);
     return ret;
 }
 
-bool bracketed(const std::string &s)
+bool bracketed(const string &s)
 {
     return (s.size() > 0 && s[0] == '<' && s[s.size() - 1] == '>');
 }
 
-void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &ret)
+void GenAux(const Grammar &g, const string &s, vector<string> &ret)
 {
     if (!bracketed(s))
     {
@@ -44,7 +46,8 @@ void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &re
     Grammar::const_iterator citer = g.find(s);
     if (citer == g.end())
     {
-        std::cout << "can not find: " << s << std::endl;
+        cout << "can not find: " << s << endl;
+        return ;
     }
 
     const RuleCollection rc = citer->second;
@@ -53,13 +56,12 @@ void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &re
     {
         GenAux(g, *cit, ret);
     }
-
 }
 
 int Nrand(int n)
 {
     if (n <= 0 || n > RAND_MAX)
-        throw std::domain_error("out of range.");
+        throw domain_error("out of range.");
 
     const int bucket_size = RAND_MAX / n;
 

@@ -5,6 +5,7 @@ set(COMMON_LIST str.cpp         str_util.cpp
 				grade.cpp
 				median.cpp
 				student_info.cpp
+                                grammar.cpp
                                 core.cpp
                                 grad.cpp
                                 picture_base.cpp

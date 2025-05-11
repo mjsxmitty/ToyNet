@@ -2,7 +2,7 @@
 <noun>	dog
 <noun>	table
 <nounphrase>	<noun>
-<nounphrase>	<adjective> <noun phrase>
+<nounphrase>	<adjective> <nounphrase>
 <adjective>	large
 <adjective>	absurd
 <adjective>	brown

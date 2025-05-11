@@ -13,12 +13,11 @@ typedef std::vector<std::string> Rule;
 typedef std::vector<Rule> RuleCollection;
 typedef std::map<std::string, RuleCollection> Grammar;
 
-Grammar ReadGrammar(std::istream &in);
+extern Grammar ReadGrammar(std::istream &in);
 
-std::vector<std::string> GenSentence(const Grammar &g);
-bool bracketed(const std::string &s);
-void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &ret);
-int Nrand(int n);
-
+extern std::vector<std::string> GenSentence(const Grammar &g);
+extern bool bracketed(const std::string &s);
+extern void GenAux(const Grammar &g, const std::string &s, std::vector<std::string> &ret);
+extern int Nrand(int n);
 
 #endif //__ACCELERATED_CPP_GRAMMAR_HPP__
