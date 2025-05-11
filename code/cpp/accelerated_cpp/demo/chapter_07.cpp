@@ -28,13 +28,9 @@ int main(int argc, char *argv[])
 
     vector<string> sentence = GenSentence(ReadGrammar(ifs));
     if (!sentence.empty())
-        cout << sentence[0] << "\t";
+        for (vector<string>::const_iterator cit = sentence.begin(); cit != sentence.end(); ++cit)
+            cout << *cit << " ";
 
-    for (vector<string>::const_iterator cit = sentence.begin() + 1;
-        cit != sentence.end(); ++cit)
-    {
-        cout << *cit << " ";
-    }
     cout << endl;
 
     return 0;
