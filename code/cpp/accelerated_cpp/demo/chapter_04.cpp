@@ -28,7 +28,7 @@ int main()
         if (ch != 'Y' && ch != 'y')
             break;
     }
-    
+
     sort(students.begin(), students.end(), Compare);
 
     for (vector<StudentInfo>::size_type i = 0; i != students.size(); i++)

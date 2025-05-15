@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <limits>
+#include <ios>
 
 #include "student_info.h"
 #include "grade.h"
@@ -17,31 +19,45 @@ bool Compare(const StudentInfo &lhs, const StudentInfo &rhs)
 
 istream& Read(istream &is, StudentInfo &s)
 {
-    cout << "Please enter name, midterm and final: ";
-    is >> s.name >> s.midterm >> s.final;
+    cout << "Please enter name, midterm and final (or 'exit' to finish): ";
+    if (!(is >> s.name) || s.name == "exit")
+    {
+        is.setstate(ios::failbit);  // 设置失败状态以终止循环
+        return is;
+    }
+
+    if (!(is >> s.midterm >> s.final))
+    {
+        cerr << "Error reading midterm/final scores\n";
+        is.clear();  // 清除错误状态
+        is.ignore(numeric_limits<streamsize>::max(), '\n');  // 跳过当前行(忽略输入流中最多 numeric_limits<streamsize>::max() 个字符，直到遇到换行符 \n（包括换行符本身）)
+        is.setstate(ios::failbit);  // 主动标记为失败以终止循环
+        return is;
+    }
+
     ReadHw(is, s.homework);
-    cout << "read end...\n";
+
+    // 检查是否有作业成绩
+    if (s.homework.empty())
+    {
+        cerr << "Warning: No homework scores entered\n";
+    }
+
     return is;
 }
 
 istream& ReadHw(istream &in, vector<double> &hw)
 {
-    cout << "Please enter homeworks: ";
+    cout << "Please enter homeworks (enter any non-number to finish): ";
 
-    if (in)
-    {
-        hw.clear();
+    hw.clear();
+    double x;
+    while (in >> x)  // 当输入非数字时自动停止
+        hw.push_back(x);
 
-        double x;
-        while (in >> x)
-        {
-            hw.push_back(x);
-            if ( hw.size() == 3 )
-            break;
-        }
-
-        in.clear();
-    }
+    // 清除错误状态并忽略错误输入
+    in.clear();
+    in.ignore(numeric_limits<streamsize>::max(), '\n');
 
     return in;
 }
@@ -129,16 +145,18 @@ vector<StudentInfo> ExtractFails(vector<StudentInfo> &students)
 
 /***************************************************************************************************/
 
-istream &StudentInfo2::Read(istream &in)
+namespace ver1
+{
+istream &StudentInfo::Read(istream &in)
 {
     return ReadHw(in, homework_);
 }
 
-double StudentInfo2::Grade() const
+double StudentInfo::Grade() const
 {
     return ::Grade(midterm_, final_, homework_);
 }
-
+}
 /***************************************************************************************************/
 
 #include "grad.h"

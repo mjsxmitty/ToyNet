@@ -29,14 +29,17 @@ extern double OptimisticAnalysis(const std::vector<StudentInfo> &students);
 
 extern std::vector<StudentInfo> ExtractFails(std::vector<StudentInfo> &students);
 
-class StudentInfo2
+namespace ver1
+{
+class StudentInfo
 {
 public:
-    StudentInfo2() : midterm_(0.0), final_(0.0) {}
-    StudentInfo2(std::istream &in) { Read(in); }
+    StudentInfo() : midterm_(0.0), final_(0.0) {}
+    StudentInfo(std::istream &in) { Read(in); }
 public:
     std::string name() const { return name_; }
     bool Valid() const { return !homework_.empty(); }
+
     std::istream &Read(std::istream &in);
     double Grade() const;
 private:
@@ -44,6 +47,8 @@ private:
     double              midterm_, final_;
     std::vector<double> homework_;
 };
+
+}
 
 #include "core.h"
 
