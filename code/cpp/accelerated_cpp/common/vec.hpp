@@ -23,7 +23,7 @@ public:
     Vec& operator=(const Vec &v);
     ~Vec() { UnCreate(); }
 public:
-    size_type   Size() const { return avail - data;}
+    size_type   Size() const { return avail - data; }
     T&          operator[](size_type i) { return data[i]; }
     const T&    operator[](size_type i) const { return data[i]; }
 
@@ -40,12 +40,12 @@ private:
     void Create(const_iterator, const_iterator);
 
     void UnCreate();
-    
+
     void Grow();
     void UncheckedAppend(const T &val);
-
-    std::allocator<T>   alloc;
 private:
+    std::allocator<T>   alloc;
+
     T*  data;       // 开始位置
     T*  avail;      // 最后一个元素之后
     T*  limit;      // 容量位置
@@ -98,9 +98,8 @@ void Vec<T>::UnCreate()
     {
         iterator it = avail;
         while (it != data)
-        {
             alloc.destroy(--it);
-        }
+
         alloc.deallocate(data, limit - data);
     }
     data = avail = limit = 0;

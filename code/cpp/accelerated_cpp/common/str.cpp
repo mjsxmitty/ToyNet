@@ -14,8 +14,7 @@ std::istream& operator>>(std::istream &in, Str &item)
     item.data.Clear();
 
     char c;
-    while(in.get(c) && isspace(c))
-        ;
+    while(in.get(c) && isspace(c));
 
     if (in)
     {
@@ -23,6 +22,8 @@ std::istream& operator>>(std::istream &in, Str &item)
         {
             item.data.push_back(c);
         } while (in.get(c) && !isspace(c));
+
+        in.unget();//
     }
 
     return in;
